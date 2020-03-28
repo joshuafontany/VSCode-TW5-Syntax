@@ -54,7 +54,9 @@
 		],
 		"configurationDefaults": {
 			"files.associations": {
-				"*.ejs": "html"
+                "*.tid": "tiddlywiki5",
+                "*.meta": "tiddlywiki5",
+                "*.multids": "tiddlywiki5"
 			}
 		}
     }
