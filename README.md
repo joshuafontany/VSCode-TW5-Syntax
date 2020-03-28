@@ -6,12 +6,12 @@ When run with Node.js, TiddlyWiki saves each ''tiddler'' to disk as a separate t
 
 ## Features
 
-Based primarily on the grammars found:
+Based primarily on the grammars found below, with heavy tweaking and editing.
 
-* https://github.com/roma0104/sublime-tid
 * https://github.com/PaulPorfiroff/atom-language-tiddlywiki5
+* https://github.com/roma0104/sublime-tid
 
-With heavy tweaking and editing.
+`*.tid` and `*.meta` files have their field-names identified (and illegal characters detected). All field content (text field included) is parsed as "text.html.tiddlywiki5" (defined in `./syntaxes/tw5-wikitext.json`).
 
 ## Known Issues
 
