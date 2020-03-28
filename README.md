@@ -21,9 +21,9 @@ Please report isues or offer Pull Requets at the GitHub Repository:
 
 ## Release Notes
 
-### 1.0.0
+### 0.1.0
 
-Initial release of tw5-syntax
+Beta release of tw5-syntax
 
 -----------------------------------------------------------------------------------------------------------
 
