@@ -1,0 +1,449 @@
+{
+	".text.html.tw5": {
+		"Macro Definition": {
+			"prefix": "def",
+			"body": "\\\\define ${1:name}($2)\n$3\n\\\\end\n"
+		},
+		"Rules": {
+			"prefix": "rules",
+			"body": "\\\\rules ${1:only} ${2:rules}$0\n"
+		},
+		"Rules Plain Text": {
+			"prefix": "rulesoff",
+			"body": "\\\\rules only rules\n\\\\rules except rules\n"
+		},
+		"Code": {
+			"prefix": "code",
+			"body": "```${1:js}\n$2\n```"
+		},
+		"Typed Block": {
+			"prefix": "tb",
+			"body": "$$$${1:text/vnd.tiddlywiki}\n$2\n$$$"
+		},
+		"Typed Block With Render Type": {
+			"prefix": "tbt",
+			"body": "$$$${1:text/vnd.tiddlywiki} > ${2:text/html}\n$3\n$$$"
+		},
+		"Style": {
+			"prefix": "style",
+			"body": "@@${1:.class1.class2}\n@@${2:text-transform:uppercase;}\n$3\n@@"
+		},
+		"Blockquote": {
+			"prefix": "qb",
+			"body": "<<<\n$1\n<<<"
+		},
+		"Blockquote With Bottom Cite": {
+			"prefix": "qbbc",
+			"body": "<<<\n$1\n<<< ${2:cite}"
+		},
+		"Filtered Transclusion": {
+			"prefix": "ftr",
+			"body": "{{{${1:[is[current]]}}}}$0"
+		},
+		"Filtered Transclusion With Template": {
+			"prefix": "ftrt",
+			"body": "{{{${1:[is[current]]}||${2:template}}}}$0"
+		},
+		"Transclusion": {
+			"prefix": "tr",
+			"body": "{{${1:tiddler}}}$0"
+		},
+		"Transclusion Of Field": {
+			"prefix": "tf",
+			"body": "{{${1:}!!${2:title}}}$0"
+		},
+		"Transclusion Of Data Index": {
+			"prefix": "ti",
+			"body": "{{${1:}##${2:index}}}$0"
+		},
+		"Transclusion With Template": {
+			"prefix": "trt",
+			"body": "{{${1:tiddler}||${2:template}}$0"
+		},
+		"Transclusion Of Field With Template": {
+			"prefix": "tft",
+			"body": "{{${1:}!!${2:title}||${3:template}}$0"
+		},
+		"Transclusion Of Data Index With Template": {
+			"prefix": "tit",
+			"body": "{{${1:}##${2:index}||${3:template}}$0"
+		},
+		"Table": {
+			"prefix": "table",
+			"body": "|${1:Data One}   |${2:Data Two}  |\n|${3:Data Three} |${4:Data Four} |"
+		},
+		"Table With Row Headers": {
+			"prefix": "tabler",
+			"body": "|${1:Header One} |${2:Header Two} |h\n|${3:Data One}   |${4:Data Two}   |"
+		},
+		"Table With Column Headers": {
+			"prefix": "tablec",
+			"body": "|!${1:Header One} |${2:Data One} |\n|!${3:Header Two} |${4:Data Two} |"
+		},
+		"Table With Row And Column Headers": {
+			"prefix": "tablerc",
+			"body": "|                 |${1:Header One} |h\n|!${2:Header One} |${3:Data One}   |\n|!${4:Header Two} |${5:Data Two}   |"
+		},
+		"Quote": {
+			"prefix": "q",
+			"body": "> "
+		},
+		"Ordered List": {
+			"prefix": "ol",
+			"body": "# ${1:item 1}"
+		},
+		"Unordered List": {
+			"prefix": "ul",
+			"body": "* ${1:item}"
+		},
+		"Description List": {
+			"prefix": "dl",
+			"body": "; ${1:term}\n  : ${2:description}"
+		},
+		"Heading 1": {
+			"prefix": "h1",
+			"body": "!$0 ${1:Heading 1}"
+		},
+		"Heading 2": {
+			"prefix": "h2",
+			"body": "<h2>$1</h2>$0"
+		},
+		"Heading 3": {
+			"prefix": "h3",
+			"body": "<h3>$1</h3>$0"
+		},
+		"Heading 4": {
+			"prefix": "h4",
+			"body": "<h4>$1</h4>$0"
+		},
+		"Heading 5": {
+			"prefix": "h5",
+			"body": "<h5>$1</h5>$0"
+		},
+		"Heading 6": {
+			"prefix": "h6",
+			"body": "<h6>$1</h6>$0"
+		},
+		"Horizontal Rule": {
+			"prefix": "hr",
+			"body": "---\n"
+		},
+		"Bold": {
+			"prefix": "b",
+			"body": "''$1''$0"
+		},
+		"Italic": {
+			"prefix": "i",
+			"body": "//$1//$0"
+		},
+		"Underscore": {
+			"prefix": "u",
+			"body": "__$1__$0"
+		},
+		"Superscript": {
+			"prefix": "sup",
+			"body": "^^$1^^$0"
+		},
+		"Subscript": {
+			"prefix": "sub",
+			"body": ",,$1,,$0"
+		},
+		"Strikethrough": {
+			"prefix": "s",
+			"body": "~~$1~~$0"
+		},
+		"Code Inline": {
+			"prefix": ""
+		},
+		"Preformatted Text": {
+			"prefix": "pre",
+			"body": "\"\"\"\n$0\n\"\"\""
+		},
+		"Image": {
+			"prefix": "img",
+			"body": "[img[${1:URL}]]$0"
+		},
+		"Image With Tooltip": {
+			"prefix": "imgt",
+			"body": "[img[${1:Tooltip}|${2:URL}]]$0"
+		},
+		"Link": {
+			"prefix": "l",
+			"body": "[[${2:URL}]]$0"
+		},
+		"Link With Title": {
+			"prefix": "lt",
+			"body": "[[${1:Title}|${2:URL}]]$0"
+		},
+		"Comment": {
+			"prefix": "--",
+			"body": "<!-- $1 -->$0"
+		},
+		"Macro Call": {
+			"prefix": "call",
+			"body": "<<${1:variable}>>$0"
+		},
+		"Macro Csvtiddlers": {
+			"description": "Returns the fields of a selection of tiddlers in CSV form, with one row per tiddler.",
+			"descriptionMoreURL": "http://tiddlywiki.com#csvtiddlers%20Macro",
+			"prefix": "csvtiddlers",
+			"body": "<<csvtiddlers \"${1:[is[current]]}\">>$0"
+		},
+		"Macro Jsontiddlers": {
+			"description": "Returns the fields of a selection of tiddlers in JSON form.",
+			"descriptionMoreURL": "http://tiddlywiki.com#jsontiddlers%20Macro",
+			"prefix": "jsontiddlers",
+			"body": "<<jsontiddlers \"${1:[is[current]]}\">>$0"
+		},
+		"Macro Color": {
+			"description": "Returns the CSS value of the specified color in the current palette.",
+			"descriptionMoreURL": "http://tiddlywiki.com#colour%20Macro",
+			"prefix": "color",
+			"body": "<<color \"${1:page-background\">>$0"
+		},
+		"Macro Datauri": {
+			"description": "Returns a data URI for the content of the specified tiddler.",
+			"descriptionMoreURL": "http://tiddlywiki.com#datauri%20Macro",
+			"prefix": "datauri",
+			"body": "<<datauri \"${1:tiddler}\">>$0"
+		},
+		"Macro Makedatauri": {
+			"description": "Takes a piece of text and an associated ContentType, and returns a corresponding data URI.",
+			"descriptionMoreURL": "http://tiddlywiki.com#makedatauri%20Macro",
+			"prefix": "makedatauri",
+			"body": "<<makedatauri \"${1:text to encode}\" \"${2:text/plain}\">>$0"
+		},
+		"Macro Now": {
+			"description": "Returns the current date and time in a specified format.",
+			"descriptionMoreURL": "http://tiddlywiki.com#now%20Macro",
+			"prefix": "now",
+			"body": "<<now \"${1:0hh:0mm, DDth MMM YYYY}\">>$0"
+		},
+		"Macro Qualify": {
+			"description": "Returns a unique string that encodes macro call position within the widget tree.",
+			"descriptionMoreURL": "http://tiddlywiki.com#qualify%20Macro",
+			"prefix": "qualify",
+			"body": "<<qualify${1: \"${2:prefix}\"}>>$0"
+		},
+		"Macro Dumpvariables": {
+			"description": "Returns a table showing the values of all variables and macros that exist macro call position in the widget tree.",
+			"descriptionMoreURL": "http://tiddlywiki.com#dumpvariables%20Macro",
+			"prefix": "dumpvariables",
+			"body": "<<dumpvariables>>$0"
+		},
+		"Macro Tag": {
+			"description": "Generates a tag pill for a specified tag.",
+			"descriptionMoreURL": "http://tiddlywiki.com#tag%20Macro",
+			"prefix": "tag",
+			"body": "<<tag${1: \"${2:$:/tags/Macro}\"}>>$0"
+		},
+		"Macro Lingo": {
+			"description": "Returns a text of the specified tiddler in currently selected language plugin.",
+			"descriptionMoreURL": "http://tiddlywiki.com#lingo%20Macro",
+			"prefix": "lingo",
+			"body": "<<lingo \"${1:DefaultNewTiddlerTitle}\">>$0"
+		},
+		"Macro List-links": {
+			"description": "Returns a formatted list of links to a selection of tiddlers.",
+			"descriptionMoreURL": "http://tiddlywiki.com#list-links%20Macro",
+			"prefix": "list-links",
+			"body": "<<list \"${1:[is[current]]}\">>$0"
+		},
+		"Macro Tabs": {
+			"description": "Returns a set of tabs to a selection of tiddlers.",
+			"descriptionMoreURL": "http://tiddlywiki.com#tabs%20Macro",
+			"prefix": "tabs",
+			"body": "<<tabs tabList:\"${1:[is[current]]}\" state:${2:\"$:/state/${3:state}\"}${4: class:\"${5:tc-vertical}\"}>>$0"
+		},
+		"Macro Thumbnail": {
+			"description": "",
+			"descriptionMoreURL": "http://tiddlywiki.com#thumbnail%20Macro",
+			"prefix": "thumbnail",
+			"body": "<<thumbnail $1>>$0"
+		},
+		"Macro Timeline": {
+			"description": "Returns a list of tiddlers reverse sorted and grouped by day, based on the specified date field.",
+			"descriptionMoreURL": "http://tiddlywiki.com#timeline%20Macro",
+			"prefix": "timeline",
+			"body": "<<timeline${1: subfilter:\"${2:is[current]}\"}${3: dateField:\"${4:modified}\"}>>$0"
+		},
+		"Macro Toc": {
+			"description": "Generates a simple tree of tiddler links by analysing tags.",
+			"descriptionMohttp://tiddlywiki.com/#Table-of-Contents%20MacrosreURL": "",
+			"prefix": "toc",
+			"body": "<<toc \"${1:$:/tags/PageTemplate}\"${2: \"${3:sort[title]}\"}>>$0"
+		},
+		"Macro Toc-expandable": {
+			"description": "Generates a tree of tiddler links in which all the branches can be expanded and collapsed.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#Table-of-Contents%20Macros",
+			"prefix": "toc-expandable",
+			"body": "<<toc-expandable \"${1:$:/tags/PageTemplate}\"${2: \"${3:sort[title]}\"}>>$0"
+		},
+		"Macro Toc-selective-expandable": {
+			"description": "Generates a tree of tiddler links in which the non-empty branches can be expanded and collapsed.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#Table-of-Contents%20Macros",
+			"prefix": "toc-selective-expandable",
+			"body": "<<toc-selective-expandable \"${1:$:/tags/PageTemplate}\"${2: \"${3:sort[title]}\"}>>$0"
+		},
+		"Macro Toc-tabbed-internal-nav": {
+			"description": "Generates a two-panel browser with expandable tree on the left and tiddler content on the right.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#Table-of-Contents%20Macros",
+			"prefix": "toc-tabbed-internal-nav",
+			"body": "<<toc-tabbed-internal-nav tag:\"${1:$:/tags/PageTemplate}\" stateTiddler:${2:\"${3:$:/temp/toc/selectedTiddler}\"}${4: template:\"$5\"}>>$0"
+		},
+		"Macro Toc-tabbed-external-nav": {
+			"description": "Generates a two-panel browser with expandable tree on the left and tiddler story on the right.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#Table-of-Contents%20Macros",
+			"prefix": "toc-tabbed-external-nav",
+			"body": "<<toc-tabbed-external-nav tag:\"${1:$:/tags/PageTemplate}\" stateTiddler:${2:\"${3:$:/temp/toc/selectedTiddler}\"}${4: template:\"$5\"}>>$0"
+		},
+		"Widget Macrocall": {
+			"description": "Provides more flexible way for invoking macros.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#Macrocall",
+			"prefix": "macrocall",
+			"body": "<$macrocall $name=\"${1:variable}\" ${2:param1}=${3:<<currentTiddler>>} />$0"
+		},
+		"Widget Vars": {
+			"description": "Allows multiple variables to be set in one operation.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#VarsWidget",
+			"prefix": "vars",
+			"body": "<$vars ${1:name}=${2:<<currentTiddler>>}>\n  $3\n</$vars>$0"
+		},
+		"Widget List": {
+			"description": "Displays a sequence of tiddlers that match a filter expression.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#ListWidget",
+			"prefix": "list",
+			"body": "<$list filter=\"${1:[is[current]]}\">\n  ${2:<<currentTiddler>>}\n</$list>$0"
+		},
+		"Widget List With Custom Variable": {
+			"prefix": "listv",
+			"body": "<$list filter=\"${1:[is[current]]}\" variable=\"${2:item}\">\n  ${3:<<item>>}\n</$list>$0"
+		},
+		"Widget Count": {
+			"description": "Displays the number of matches to a filter expression.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#CountWidget",
+			"prefix": "count",
+			"body": "<$count filter=\"${1:[is[current]]}\" />$0"
+		},
+		"Widget View": {
+			"description": "Displays the contents of a tiddler field or index in a specified format.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#ViewWidget",
+			"prefix": "view",
+			"body": "<$view ${1:tiddler=${2:<<currentTiddler>>} }field=\"${3:modified}\" format=\"${4:date}\" template=\"${5:YYYY.0MM.0DD}\" />$0"
+		},
+		"Widget Reveal": {
+			"description": "Hides or shows its content depending upon the value of a state tiddler.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#RevealWidget",
+			"prefix": "reveal",
+			"body": "<$reveal type=\"${1:match}\" state=${2:\"$:/state/${3:state}\"}text=\"$4\">\n  $5\n</$reveal>$0"
+		},
+		"Widget Reveal With Popup": {
+			"prefix": "revealp",
+			"body": "<$reveal type=\"popup\" popup=${1:\"$:/state/${2:state}\"}>\n  $3\n</$reveal>$0"
+		},
+		"Widget Scrollable": {
+			"description": "Wraps content in a scrollable frame.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#ScrollableWidget",
+			"prefix": "scrollable",
+			"body": "<$scrollable class=\"${1:tc-scrollable-demo}\">\n  $2\n</$scrollable>$0"
+		},
+		"Widget EditText": {
+			"description": "Provides a user interface in the browser for editing text tiddler fields and indices.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#EditTextWidget",
+			"prefix": "edit-text",
+			"body": "<$edit-text ${1:tiddler=${2:<<currentTiddler>>} }field=\"${3:text}\" />$0"
+		},
+		"Widget Select": {
+			"description": "Displays a popup menu based on a HTML `select` element.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#SelectWidget",
+			"prefix": "select",
+			"body": "<$select ${1:tiddler=${2:<<currentTiddler>>} }field=\"${3:text}\">\n  <option${4: value=\"${5:option}\"}>${6:option}</option>\n</$select>$0"
+		},
+		"Widget Checkbox": {
+			"description": "Displays an HTML checkbox input bound to a specified tiddler tag, field or index.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#CheckboxWidget",
+			"prefix": "checkbox",
+			"body": "<$checkbox ${1:tiddler=${2:<<currentTiddler>>} }field=\"${3:text}\" checked=\"${4:true}\" unchecked=\"${5:false}\">\n  ${6:Label}\n</$checkbox>$0"
+		},
+		"Widget Checkbox Bound To Tag": {
+			"prefix": "checkboxt",
+			"body": "<$checkbox ${1:tiddler=${2:<<currentTiddler>>} }tag=\"$3\">\n  ${4:Label}\n</$checkbox>$0"
+		},
+		"Widget Radio": {
+			"description": "Displays an HTML radio input bound to a specified tiddler field.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#RadioWidget",
+			"prefix": "radio",
+			"body": "<$radio ${1:tiddler=${2:<<currentTiddler>>} }field=\"${3:text}\" value=\"${4:option}\">\n  ${5:Label}\n</$radio>$0'"
+		},
+		"Widget Button": {
+			"description": "Displays an HTML element that can perform a combination of optional actions when clicked.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#ButtonWidget",
+			"prefix": "button",
+			"body": "<$button>\n  ${1:Label}\n</$button>$0"
+		},
+		"Widget Button Set Value": {
+			"prefix": "buttont",
+			"body": "<$button set=\"$1!!${2:title}\" setTo=${2:{{$3!!${4:title}\\}\\}}>\n  ${5:Label}\n</$button>$0"
+		},
+		"Widget Button Send Message": {
+			"prefix": "buttonm",
+			"body": "<$button message=\"${1:tm-notify}\" param=${2:<<currentTiddler>>}>\n  ${3:Label}\n</$button>$0"
+		},
+		"Widget Button Navigate To": {
+			"prefix": "buttonn",
+			"body": "<$button to=\"{1:<<currentTiddler>>}>\n  ${2:Label}\n</$button>$0"
+		},
+		"Widget Button With Popup": {
+			"prefix": "buttonp",
+			"body": "<$button popup=${1:\"$:/state/${2:state}\"}>\n  ${3:Label}\n</$button>$0"
+		}
+	},
+	".meta.widget.tw-button.tw5 > .meta.body.tw5,\n.meta.widget.tw-keyboard.tw5 > .meta.body.tw5": {
+		"Widget ActionDeleteField": {
+			"description": "Deletes specified fields of a tiddler.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#ActionDeleteFieldWidget",
+			"prefix": "action-deletefield",
+			"body": "<$action-deletefield ${1:$tiddler=${2:<<currentTiddler>>} }${3:$field=${4:<<name>>} }${5:field1 field2 field3} />$0"
+		},
+		"Widget ActionDeleteTiddler": {
+			"description": "Deletes tiddlers matching filter without confirmation.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#ActionDeleteTiddlerWidget",
+			"prefix": "action-deletetiddler",
+			"body": "<$action-deletetiddler ${1:$tiddler=${2:<<currentTiddler>>} }${3:$filter=\"[is[current]]\" } />$0"
+		},
+		"Widget ActionListops": {
+			"description": "Manipulates user lists in any field or index.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#ActionListopsWidget",
+			"prefix": "action-listops",
+			"body": "<$action-listops${1: $tiddler=${2:<<currentTiddler>>}} $field=\"${3:list}\"${4: $filter=\"${5:[is[current]]}\"}${6: $subfilter=\"${7:-[is[current]]}\"} />$0"
+		},
+		"Widget ActionNavigate": {
+			"description": "Sends a `tm-navigate` message back up the widget tree.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#ActionNavigateWidget",
+			"prefix": "action-navigate",
+			"body": "<$action-navigate $to=${1:<<currentTiddler>>}${2: $scroll=\"${3:no}\"} />$0"
+		},
+		"Widget ActionSendMessage": {
+			"description": "Sends a specified message back up the widget tree.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#ActionSendMessageWidget",
+			"prefix": "action-sendmessage",
+			"body": "<$action-sendmessage $message=\"${1:tm-new-tiddler}\"${2: title=<<currentTiddler>> tags=\"[[tag]]\"} />$0"
+		},
+		"Widget ActionSetField": {
+			"description": "Assigns values to the specified fields of a tiddler.",
+			"descriptionMoreURL": "http://tiddlywiki.com/#ActionSetFieldWidget",
+			"prefix": "action-setfield",
+			"body": "<$action-setfield${1: $tiddler=${2:<<currentTiddler>>}}${3: tags=\"[[tag]]\"} />$0"
+		}
+	},
+	".macro.body.tw5": {
+		"Variable Parameter": {
+			"prefix": "vp",
+			"body": "$${1:parameter}$$0"
+		},
+		"Variable Reference": {
+			"prefix": "vr",
+			"body": "$(${1:currentTiddler})$$0"
+		}
+	}
+}
