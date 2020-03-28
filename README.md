@@ -1,8 +1,8 @@
 # TiddlyWiki5 Syntax README
 
-This extension adds TiddlyWiki5 syntax-highlighting to Visual Studio Code. [TiddlyWiki5](http://tiddlywiki.com) is a rich, interactive tool for manipulating complex data with structure that doesn't easily fit into conventional tools like spreadsheets or wordprocessors. It is a javascript environment that lives in the Browser, Node.js (and a few other implementations) which builds a Wiki/Content Management System out of the smallest semantically meaningful chunks – named ''tiddlers''. When run in the browser, each ''tiddler'' is a javascript object in memory (and a <div> of data in the file).
+This extension adds TiddlyWiki5 syntax-highlighting to Visual Studio Code. [TiddlyWiki5](http://tiddlywiki.com) is a rich, interactive tool for manipulating complex data with structure that doesn't easily fit into conventional tools like spreadsheets or wordprocessors. It is a javascript environment that lives in the Browser, Node.js (and a few other implementations) which builds a Wiki/Content Management System out of the smallest semantically meaningful chunks – named **tiddlers**. When run in the browser, each **tiddler** is a javascript object in memory (and a <div> of data in the file).
 
-When run under Node.js, TiddlyWiki saves each ''tiddler'' to disk as a separate text file with a `*.tid` extention. Other "MIME Types" (images, etc) are saved by the server along with a `*.meta` file that describes all other tiddler-fields (with the file-content becoming the "test" field when loaded into the wiki).
+When run under Node.js, TiddlyWiki saves each **tiddler** to disk as a separate text file with a `*.tid` extention. Other "MIME Types" (images, etc) are saved by the server along with a `*.meta` file that describes all other tiddler-fields (with the file-content becoming the "test" field when loaded into the wiki).
 
 This extension is intended for editing seperate tiddler files with Visual Studio Code.
 
