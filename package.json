@@ -1,0 +1,46 @@
+{
+    "name": "tw5-syntax",
+    "displayName": "TiddlyWiki5 Syntax",
+    "description": "TiddlyWiki5 Syntax Highlighting for Visual Studio Code",
+    "version": "0.1.0",
+    "engines": {
+        "vscode": "^1.43.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "keywords":["tiddlywiki", "tiddlywiki5", "tw5", "syntax", "highlight"],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/joshuafontany/VSCode-TW5-Syntax.git"
+    },
+    "contributes": {
+        "languages": [{
+            "id": "tiddlywiki5",
+            "aliases": ["TiddlyWiki5", "tiddlywiki5"],
+            "extensions": [".tid",".tw",".tw5",".multitids",".meta"],
+            "mimetypes": [
+                "text/vnd.tiddlywiki",
+                "application/x-tiddler"
+            ],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "tiddlywiki5",
+            "scopeName": "source.tiddlywiki5.tid-file",
+			"path": "./syntaxes/tw5-tid-file.json"
+        }, {
+			"scopeName": "text.html.tiddlywiki5",
+			"path": "./syntaxes/tw5-wikitext.json"
+		}, {
+			"scopeName": "source.tiddlywiki5.fields",
+			"path": "./syntaxes/tw5-fields.json"
+		}, {
+			"scopeName": "source.tiddlywiki5.meta-file",
+			"path": "./syntaxes/tw5-meta-file.json"
+		}, {
+			"scopeName": "source.tiddlywiki5.multids-file",
+			"path": "./syntaxes/tw5-multids-file.json"
+		}]
+    }
+}

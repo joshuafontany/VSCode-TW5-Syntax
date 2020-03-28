@@ -1,0 +1,912 @@
+field:value
+field: value:value
+field: : :field: value:
+ field   :  value
+  field name   : :field value: <<macro "attribute">>
+Illegal_&Field:  
+<field>:
+title: $:/tid
+
+\define myMacro(arg1:"default")''single line'' body
+\define myMacro()  ''single line'' body  
+\define myMacro()  ''single line body  
+\define myMacro()
+\end
+\define myMacro()  
+\end
+\define myMacro()  
+* ''multiline'' body
+
+This paragraph ends here.
+\end
+\define myMacro(arg1 arg2) two formal arguments
+\define myMacro(arg1,arg2) two formal arguments
+\define myMacro(arg1, arg2) two formal arguments
+\define myMacro(~arg1~~~arg2!! !!!arg3!!! ) almost any separator will do
+\define myMacro(~arg1~~~arg2!! !!!arg3!!!) almost any separator will do
+\define myMacro(
+) multiline parameter list
+\define myMacro(
+
+) multiline parameter list
+\define myMacro(
+~arg1~~~arg2!! !!!arg3!!!
+) multiline parameter list
+\define myMacro(
+~
+    arg1
+        ~~~
+            arg2
+        !!
+    !!!
+arg3!!!
+) multiline parameter list
+
+\define myMacro(arg1:default) `arg1` will default to `default`
+\define myMacro(arg1 : default) `arg1` will default to `default`
+\define myMacro( arg1   :   default,arg2?)) still 1 parameter
+\define myMacro( arg1   :   default ) default value set with unquoted string
+\define myMacro( arg1   :   [[ 
+"'default'"
+ ]] ) default value set with quoted string
+\define myMacro( arg1   :   """ 
+'default'
+ """ ) default value set with quoted string
+\define myMacro( arg1   :   " 
+'default'
+ " ) default value set with quoted string
+\define myMacro( arg1   :   ' 
+"default"
+ ' ) default value set with quoted string 
+
+\define myMacro(
+ ~
+     arg1 : "
+default for arg1
+"~~~
+             arg2 : default_for_arg2!!
+             !!!
+
+arg3!!!
+ ) ...
+
+\define myMacro( arg1 : default )
+Before parsing macro body text, it's being preprocessed.
+
+* Preprocessor replaces variable parameters `$arg1$` with actual values passed on macro invokation.
+* Preprocessor replaces variable references `$(currentTiddler)$` with context variables (set using e.g. `SetWidget` or `VarsWidget` widgets), visible at macro invokation scope.
+\end
+
+\define myMacro( arg1   :   default)) append some parens
+\define myMacro(( arg1   :   default)) append some parens
+\define myMacro(( arg1  ( :  default)) 2 parameters
+\define myMacro( arg1   ,:   default ) 2 parameters
+\define myMacro( arg1   :   default"arg2")) 2 parameters
+\define myMacro( arg1   :   "default"arg2)) 2 parameters
+\define myMacro( arg1   :   "default""arg2" : "arg3")) 3 parameters
+
+\rules does not amend parser rules without only or except
+\rules except rules
+\rules except bold italic heading
+\rules only table
+\rules only html dash entity
+
+
+<!--#region folder -->
+test
+this
+<!-- #endregion folder -->
+"""
+TEST TEXT BLOCK <$transclude tiddler="test"/>
+"""
+
+
+! Heading 1
+  !! Heading 2
+    !!! Heading 3
+      !!!! Heading 4
+        !!!!! Heading 5
+          !!!!!! Heading 6
+!.class1.class2 ''Heading'' //1//
+!!.class1.class2 ''Heading'' //2//
+!!!.class1.class2 ''Heading'' //3//
+!!!!.class1.class2 ''Heading'' //4//
+!!!!!.class1.class2 ''Heading'' //5//
+!!!!!!.class1.class2 ''Heading'' //6//
+!.class1.class2. ''Heading'' //1//
+!.''Heading'' //1//
+!. ''Heading'' //1//
+!''Heading'' //1//
+! ''Heading'' //1//
+!.class1.class2 """Multiline
+''heading''
+""" //1//
+
+# ''Number'' //1//
+#* ''Bullet'' //2//
+#*; ''term''
+#*: ''description''
+#> ''quote''
+#.class1.class2 ''Number'' //1//
+ #*.class1.class2 ''Bullet'' //2//
+  #*;.class1.class2 """
+  multiline
+  ''term''
+  """
+ #*:.class1.class2 ''description''
+#>.class1.class2 ''quote''
+
+* &amp;
+* &#38;
+* &#x26;
+* &#X26;
+* &amp;&#38;&#x26;&#X26;
+
+* --
+* ---
+* ----
+* -----
+* -- --- ---- -----
+
+* <!---->
+* <!-- -->
+* <!--
+-->
+* <!--comment-->
+* <!--
+  comment
+-->
+* <!--
+  comment1
+--><!--
+  comment2
+-->
+
+<!---->
+<!-- -->
+<!--
+-->
+<!--comment-->
+<!--
+  comment
+-->
+<!--
+  comment1
+--><!--
+  comment2
+-->
+
+//not comment// <!-- inline comment -->
+
+<!-- block comment --> //not comment//
+
+* ''bold''
+* //italic//
+* __underscore__
+* ^^superscript^^
+* ,,subscript,,
+* ~~strikethrough~~
+
+* ''bold //italic// __underscore__ ^^superscript^^ ,,subscript,, ~~strikethrough~~''
+* //italic ''bold'' __underscore__ ^^superscript^^ ,,subscript,, ~~strikethrough~~//
+* __underscore ''bold'' //italic// ^^superscript^^ ,,subscript,, ~~strikethrough~~__
+* ^^superscript ''bold'' //italic// __underscore__ ,,subscript,, ~~strikethrough~~^^
+* ,,subscript ''bold'' //italic// __underscore__ ^^superscript^^ ~~strikethrough~~,,
+* ~~strikethrough ''bold'' //italic// __underscore__ ^^superscript^^ ,,subscript,, ~~
+
+* `raw`
+* ``raw``
+* `''raw''`
+* ``''raw''``
+* ``raw``not raw
+* `raw``raw`not raw
+* ``raw` `raw``not raw
+
+* http://tiddlywiki.com/
+* ~http://tiddlywiki.com//
+
+* $:/core/modules/parsers/wikiparser/rules/syslink.js
+* ~$:/core/modules/parsers/wikiparser/rules/syslink.js
+
+* WikiLink
+* ~NotWikiLink
+* notWikiLink
+* ~notWikiLink
+
+* [[Anything is a link here]]
+* [[http://tiddlywiki.com]]
+* [[~http://tiddlywiki.com]]
+* [[ ~http://tiddlywiki.com ]]
+* [[WikiLink]]
+* [[~WikiLink]]
+* [[  Wiki Link  ]]
+* [[$:/syslink]]
+* [[~$:/syslink]]
+* [[ ~$:/syslink ]]
+* [[http://tiddlywiki.com IsStill $:/wiki/link]]
+* [[ ]]
+* [[]]
+* [[Link title|Anything is a link here]]
+* [[ Link title | ~http://tiddlywiki.com ]]
+* [[ Link title |  Wiki Link  ]]
+* [[ Link title | ~$:/syslink ]]
+* [[ Link title |http://tiddlywiki.com IsStill $:/wiki/link]]
+* [[ | ]]
+* [[|]]
+
+* [ext[Anything is an external link here]]
+* [ext[http://tiddlywiki.com]]
+* [ext[ http://tiddlywiki.com ]]
+* [ext[ ~http://tiddlywiki.com ]]
+* [ext[ ]]
+* [ext[]]
+* [ext[Link title| Anything is an external link here ]]
+* [ext[ Link title |http://tiddlywiki.com]]
+* [ext[ Link title | http://tiddlywiki.com ]]
+* [ext[ Link title | ~http://tiddlywiki.com ]]
+* [ext[ |http://tiddlywiki.com]]
+* [ext[| http://tiddlywiki.com ]]
+* [ext[ | ]]
+* [ext[|]]
+
+* [img[]]
+* [img[ ]]
+* [img [ ]]
+* [img [Tiddler title]]
+* [img [ Tiddler title ]]
+* [img [|Tiddler title ]]
+* [img [ | Tiddler title ]]
+* [img [Tooltip text| Tiddler title ]]
+* [img [ Tooltip text | Tiddler title ]]
+* [img [ Tooltip text | http://fakeimg.pl/100/ ]]
+* [img width=50 [ Tooltip text | http://fakeimg.pl/100/ ]]
+* [img
+width = """
+  50
+"""
+height = "
+  50
+"
+source = '
+  URI
+'
+alt = {{tiddler!!field}}
+class = <<myMacro
+  arg1 : """
+  value
+""">>
+  [ Tooltip text | http://fakeimg.pl/100/ ]]
+
+* @@@@
+* @@''Inline styling''@@
+* @@.class1.class2 ''Inline styling''@@
+* @@color:blue;background-color:red; ''Inline styling''@@
+* @@color:blue;background-color:red;''Inline styling''@@
+* @@color:blue;background-color:red;.class1.class2 ''Inline styling''@@
+* @@color:blue;background-color:red;.class1.class2 """
+''Inline styling''
+wraps inline run""" into `HTMLSpanElement` @@
+
+* <<myMacro>>
+* <<myMacro >>
+* <<myMacro
+>>
+* <<myMacro
+>>
+* <<myMacro
+
+  
+
+  >>
+* <<myMacro value_for_arg1 value_for_arg2>>
+* <<myMacro [["'value_for_arg1'"]]
+[[
+  "'value for arg2'"
+]]>>
+* <<myMacro """ "'value_for_arg1'" """
+ """
+  "'value for arg2'"
+""">>
+* <<myMacro "'value_for_arg1'"
+"
+  'value for arg2'
+">>
+* <<myMacro '"value_for_arg1"'
+'
+  "value for arg2"
+'>>
+* <<myMacro arg2:value_for_arg2 value_for_arg1>>
+* <<myMacro arg2  :  value_for_arg2 value_for_arg1>>
+* <<myMacro arg2  :  [[
+  "'value for arg2'"
+]] [["'value_for_arg1'"]]
+>>
+* <<myMacro arg2  :  """
+  "'value for arg2'"
+""" """ "'value_for_arg1'" """
+>>
+* <<myMacro arg2  :  "
+  'value for arg2'
+" "'value_for_arg1'"
+>>
+* <<myMacro arg2  :  '
+  "value for arg2"
+' '"value_for_arg1"'
+>>
+
+* {{{}}}
+* {{{ }}}
+* {{{||}}}
+* {{{|| }}}
+* {{{ || }}}
+* {{{||templateTitle}}}
+* {{{ || templateTitle }}}
+* {{{filter }}}
+* {{{ filter }}}
+* {{{filter ||}}}
+* {{{ filter || templateTitle }}}
+* {{{
+}}}
+* {{{
+  filter
+}}}
+* {{{
+  ||
+}}}
+* {{{
+  || templateTitle
+}}}
+* {{{
+  filter
+  ||
+  templateTitle
+}}}
+* {{{
+
+  multiline filter strings
+
+  are legal
+
+  ||
+
+  multiline template titles too,
+
+  but don't use it here anyway
+
+}}}
+
+* {{}}
+* {{ }}
+* {{title}}
+* {{title!!field}}
+* {{title##index}}
+* {{|| }}
+* {{ || }}
+* {{||templateTitle}}
+* {{title||templateTitle}}
+* {{title!!field || templateTitle}}
+* {{title##index || templateTitle}}
+* {{ long title !! long !! field || long template title}}
+* {{
+}}
+* {{
+  title  
+}}
+* {{
+  title!!field  
+}}
+* {{
+  title##index  
+}}
+* {{
+  ||
+}}
+* {{
+  ||templateTitle
+}}
+* {{||templateTitle
+}}
+* {{
+  title||templateTitle 
+}}
+* {{title!!field || templateTitle}}
+* {{title##index || templateTitle}}
+* {{ long title !! long !! field || long template title}}
+* {{
+  long title !! long !! field
+  ||
+  long template title
+}}
+* {{
+
+  multiline text reference
+
+  is illegal
+
+  ||
+
+  multiline template title is not
+
+  but don't use it here anyway
+
+}}
+
+<div/>
+<div />
+<div></div>
+<div ></div>
+<div > </div>
+
+<div> ''inline'' rule matches element; ''inline'' run for contents </div>
+
+<div>
+''inline'' rule matches element
+''inline'' run for contents
+</div>
+<div>   
+
+  * ''inline'' rule matches element (because in paragraph block here)
+  * ''block'' run for contents
+
+Double EOL turns on block mode for element text node.
+</div>
+
+<div>
+
+  * ''block'' rule matches element
+  * ''block'' run for contents
+
+Double EOL allows block rule match element itself.
+Double EOL turns on block mode for element text node.
+</div>
+
+* Inline <div>Inline run, displayed as block</div> run
+* Inline <span>Inline run, displayed as inline</span> run
+* Inline <div>
+
+  * Block run
+  * displayed as block
+</div> run
+* Inline <span>
+
+  * Block run
+  * displayed as inline
+</span> run
+* <$my-widget
+attribute1 = """value"""
+attribute2 = "value"
+attribute3 = 'value'
+attribute4 = {{tiddler!!field}}
+attribute5 = <<myMacro arg1 : """value""">>
+attribute6
+>
+Inline  <my-tag
+  attribute1 = """value"""
+  attribute2 = "value"
+  attribute3 = 'value'
+  attribute4 = {{tiddler!!field}}
+  attribute5 = <<myMacro arg1 : """value""">>
+  attribute6
+  >
+
+  * Block
+  * run
+  </my-tag> Run
+</$my-widget>
+
+||k
+| |k
+|||k
+| Table | class | attribute |k
+
+||c
+| |c
+|||c
+| ''Table caption section'' |c
+
+||
+| |
+|||
+|td1|td2|
+|''!td1''|''!td2''|
+|!th1|!th2|
+|td1!|td2!|
+|align=left | align=center | align=right|
+|align=left   |   align=center   |   align=right|
+|^^^valign=top|,,,valign=bottom|
+|^ valign=top|, valign=bottom|
+|^t valign=top|,b valign=bottom|
+|^ valign=top, align=left |^  valign=top, align=center |^  valign=top, align=right|
+|1|2|3|4|
+| 1 |<|>| 4 |
+|^ 1|2|3|, 4|
+|~|2|3|~|
+
+||h
+| |h
+|||h
+|^ !''valign=top, align=left'' |^  !valign=top, align=center |^  !valign=top, align=right|h
+| 1 |<|>| 4 |h
+|^ 1|2|3|, 4|h
+|~|2|3|~|h
+
+||f
+| |f
+|||f
+|^ !''valign=top, align=left'' |^  !valign=top, align=center |^  !valign=top, align=right|f
+| 1 |<|>| 4 |f
+|^ 1|2|3|, 4|f
+|~|2|3|~|f
+
+{{{}}}
+{{{ }}}
+{{{||}}}
+{{{|| }}}
+{{{ || }}}
+{{{||templateTitle}}}
+{{{ || templateTitle }}}
+{{{filter }}}
+{{{ filter }}}
+{{{filter ||}}}
+{{{ filter || templateTitle }}}
+{{{
+}}}
+{{{
+  filter
+}}}
+{{{
+  ||
+}}}
+{{{
+  || templateTitle
+}}}
+{{{
+  filter
+  ||
+  templateTitle
+}}}
+{{{
+
+  multiline filter strings
+
+  are legal
+
+  ||
+
+  multiline template titles too,
+
+  but don't use it here anyway
+
+}}}
+{{{
+  tiddler_title
+  'tiddler title'
+  "tiddler title"
+
+  [[tiddler title]]
+  [<variable name>]
+  [{text!!reference}]
+
+  [[tiddler title]<variable name>{text!!reference}]
+  [operator1[tiddler title]operator2<variable name>operator3{text!!reference}]
+  [operator1:suffix1[tiddler title]operator2:suffix2<variable name>operator3:suffix3{text!!reference}]
+
+  [![tiddler title]!<variable name>!{text!!reference}]
+  [!operator1:suffix1[tiddler title]!operator2:suffix2<variable name>!operator3:suffix3{text!!reference}]
+
+  +
+  -
+  +-
+  -+
+  +!
+  -!
+  +!-
+  -!+
+  +tiddler_title
+  +'tiddler title'
+  +"tiddler title"
+  +[!operator1:suffix1[tiddler title]!operator2:suffix2<variable name>!operator3:suffix3{text!!reference}]
+  +[!operator1:suffix1[tiddler title]!operator2:suffix2<variable name>!operator3:suffix3{text!!reference}]
+
+  -[!:suffix1[tiddler title]!operator2:<variable name>!:{text!!reference}]
+
+  "tiddler title"tiddler_title'tiddler title'[[tiddler title]]
+  +"tiddler title"+tiddler_title+'tiddler title'+[[tiddler title]]
+  +"tiddler title"+'tiddler title'+[[tiddler title]]+tiddler_title
+}}}
+
+{{}}
+{{ }}
+{{title}}
+{{title!!field}}
+{{title##index}}
+{{|| }}
+{{ || }}
+{{||templateTitle}}
+{{title||templateTitle}}
+{{title!!field || templateTitle}}
+{{title##index || templateTitle}}
+{{ long title !! long !! field || long template title}}
+{{
+}}
+{{
+  title  
+}}
+{{
+  title!!field  
+}}
+{{
+  title##index  
+}}
+{{
+  ||
+}}
+{{
+  ||templateTitle
+}}
+{{||templateTitle
+}}
+{{
+  title||templateTitle 
+}}
+{{title!!field || templateTitle}}
+{{title##index || templateTitle}}
+{{ long title !! long !! field || long template title}}
+{{
+  long title !! long !! field
+  ||
+  long template title
+}}
+{{
+
+  multiline text reference
+
+  is illegal
+
+  ||
+
+  multiline template title is not
+
+  but don't use it here anyway
+
+}}
+
+@@
+
+@@
+
+@@color:blue;background-color:red;
+
+@@
+
+@@.class1.class2
+
+@@
+
+@@color:blue;
+@@background-color:red;
+@@.class1.class2
+
+@@
+
+@@color:blue;
+@@background-color:red;
+@@.class1.class2
+Paragraph
+@@
+
+@@color:blue;
+@@background-color:red;
+@@.class1.class2
+    @@
+
+@@
+@@
+
+@@color:blue;
+@@background-color:red;
+@@.class1.class2
+One paragraph here
+    @@
+
+@@
+@@
+
+@@color:blue;
+@@background-color:red;
+@@.class1.class2
+
+Each individual block run here gets styles and classes specified, so no wrapping HTML element is needed.
+
+* This list should have red background
+* This text should be blue
+
+  @@color:blue;
+@@background-color:red;
+@@.class1.class2
+Yep, looks ugly, but that's a possibility to nest `styleblocks`.
+@@* In TW5 wikitext it's legal to start any block definition here,
+* but currently this possibility is ignored and marked as illegal by this grammar.
+
+  @@background-color:blue;Yep, same ugliness to have a paragraph starting with `styleinline`.@@
+
+@@
+
+@@background-color:blue;
+Here's a ''paragraph'' with inline styling.
+@@
+''Another'' paragraph without styling.
+
+@@background-color:blue; 
+Here's a ''paragraph'' with inline styling.
+@@
+@@background-color:blue;''Same'' paragraph with inline styling.@@
+''Same'' paragraph without styling.
+
+<<<
+Quoted text
+<<<
+
+<<< Top cite
+Quoted text
+<<< Bottom cite
+
+<<< Top cite
+Quoted text
+<<<
+
+<<<
+Quoted text
+<<< Bottom cite
+
+<<<.class1.class2 Top cite
+Quoted text
+<<< Bottom cite
+
+<<<.class1.class2 """
+''Inline'' run
+for the top cite
+"""
+''Block'' run for the quote body
+
+<<<< Nested top cite
+Nested quotation
+<<<< Nested bottom cite
+
+<<< """
+''Inline'' run
+for the bottom cite
+"""
+
+<<<
+
+<<<
+
+<<<
+<<<
+
+   <<<<<
+  <<<<
+ <<<
+<<<
+<<<<
+<<<<<
+
+<<myMacro>>
+<<myMacro >>
+<<myMacro
+>>
+  <<myMacro
+>>
+  <<myMacro
+
+  
+
+  >>
+<<myMacro value_for_arg1 value_for_arg2>>
+<<myMacro [["'value_for_arg1'"]]
+[[
+  "'value for arg2'"
+]]>>
+<<myMacro """ "'value_for_arg1'" """
+ """
+  "'value for arg2'"
+""">>
+<<myMacro "'value_for_arg1'"
+"
+  'value for arg2'
+">>
+<<myMacro '"value_for_arg1"'
+'
+  "value for arg2"
+'>>
+<<myMacro arg2:value_for_arg2 value_for_arg1>>
+<<myMacro arg2  :  value_for_arg2 value_for_arg1>>
+<<myMacro arg2  :  [[
+  "'value for arg2'"
+]] [["'value_for_arg1'"]]
+>>
+<<myMacro arg2  :  """
+  "'value for arg2'"
+""" """ "'value_for_arg1'" """
+>>
+<<myMacro arg2  :  "
+  'value for arg2'
+" "'value_for_arg1'"
+>>
+<<myMacro arg2  :  '
+  "value for arg2"
+' '"value_for_arg1"'
+>>
+
+```
+Raw block
+```
+
+```unknown-language
+Defaults to raw block
+```
+
+```CoFfEe
+1 << i for i in [0..31] when i % 2
+```
+
+$$$.js
+/* Use JS parser */
+ var test = 1 + function(){return 0}
+$$$
+$$$application/javascript
+/* Use JS parser */
+var test = {key: "value"}
+$$$
+$$$.js > type
+/* Use JS parser */
+$$$
+$$$application/javascript > type
+/* Use JS parser */
+$$$
+
+$$$.unknown
+Default to plain text parser.
+$$$
+$$$type/unknown
+Default to plain text parser.
+$$$
+$$$.unknown > type
+Default to plain text parser.
+$$$
+$$$type/unknown > type
+Default to plain text parser.
+$$$
+$$$
+Default to plain text parser.
+$$$
+
+"""
+Here be
+''hard line breaks''
+""" Not
+here """Single line break
+translates to `<br>` in HTML.""" And
+not here
+
+---
+    ---
+        -----
+
+Only blocks and pragmas may be placed at the top level.
+If there are no matching block rules, then things are parsed inline and become wrapped in `HTMLParagraphElement`.
+
+Paragraphs last until two consecutive EOL are met.
+ ''still paragraph''
+
+
+"""
+still
+
+paragraph
+"""
+* List? No, inlines only here... in paragraph
+* Not yet
+
+The previous paragraph is done, say hi to the new one.

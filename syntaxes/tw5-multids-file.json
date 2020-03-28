@@ -1,0 +1,54 @@
+{
+  "name": "TiddlyWiki5 multids file",
+  "scopeName": "source.tiddlywiki5.multids-file",
+  "fileTypes": ["multids"],
+  "patterns": [
+    {
+      "comment": "Tokenize tiddler title and text pairs.",
+      "begin": "(?<=^$)",
+      "end": "(?=1)0",
+      "contentName": "meta.dictionary.tiddler-fields.title-text-pairs.tiddlywiki5.multids-file",
+      "patterns": [
+        { "include": "#comment" },
+        { "include": "#titleAndTextPair" }
+      ]
+    },
+    {
+      "comment": "Tokenize common tiddler metadata.",
+      "begin": "^",
+      "end": "^$",
+      "name": "meta.dictionary.tiddler-fields.tiddlywiki5.multids-file",
+      "patterns": [{ "include": "source.tiddlywiki5.dictionary" }]
+    }
+  ],
+  "repository": {
+    "comment": {
+      "match": "^(#).*$",
+      "name": "comment.line.number-sign.tiddlywiki5.multids-file",
+      "captures": {
+        "1": { "name": "punctuation.definition.comment.tiddlywiki5.multids-file" }
+      }
+    },
+    "titleAndTextPair": {
+      "match": "^(.*?)(: )(.*)",
+      "name": "meta.value-pair.title-text.tiddlywiki5.multids-file",
+      "captures": {
+        "1": { "name": "string.other.field.title.value.tiddlywiki5.multids-file" },
+        "2": {
+          "name": "punctuation.separator.key-value.title-text.tiddlywiki5.multids-file"
+        },
+        "3": {
+          "patterns": [
+            {
+              "begin": "^",
+              "end": "$",
+              "name": "meta.tiddler-field.text.tiddlywiki5.multids-file",
+              "contentName": "text.html.tiddlywiki5.multids-file",
+              "patterns": [{ "include": "text.html.tiddlywiki5" }]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

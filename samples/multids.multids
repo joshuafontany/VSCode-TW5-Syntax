@@ -1,0 +1,20 @@
+# Common tiddler metadata
+title: common title prefix/
+tags: common tags list
+text: this field will be overwritten by text fields of individual tiddlers.
+
+# Tiddler title suffixes and text fields
+tiddler: text
+tiddler:text
+tiddler : text
+tiddler   :   text 
+  tiddler   :   text 
+  tiddler::text
+  tiddler   ::   text 
+  tiddler   : :  text 
+ :
+:
+ : 
+: 
+
+ # No valid title-text pair in this line, just ignore it

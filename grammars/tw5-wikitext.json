@@ -1,0 +1,2172 @@
+{
+  "name": "TiddlyWiki5",
+  "scopeName": "text.html.tw5",
+  "fileTypes": ["tw5"],
+  "firstLineMatch": "<!--\\s*TW5\\s*-->",
+  "patterns": [{ "include": "#wikitext" }],
+  "injections": {
+    "meta.function.macro.body.tw5": {
+      "patterns": [
+        {
+          "comment": "Parse variable reference.",
+          "match": "(\\$\\()(.+?)(\\)\\$)",
+          "name": "markup.other.variable.variable-reference.tw5",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.variable.variable-reference.begin.tw5"
+            },
+            "2": { "name": "entity.other.name.variable.tw5" },
+            "3": {
+              "name": "punctuation.definition.variable.variable-reference.end.tw5"
+            }
+          }
+        },
+        {
+          "comment": "Parse variable parameter.",
+          "match": "(\\$)(.*?)(\\$)",
+          "name": "markup.other.variable.variable-parameter.tw5",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.variable.variable-parameter.begin.tw5"
+            },
+            "2": { "name": "variable.parameter.tw5" },
+            "3": {
+              "name": "punctuation.definition.variable.variable-parameter.end.tw5"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "repository": {
+    "wikitext": {
+      "patterns": [
+        { "include": "#pragma" },
+        { "include": "#block" },
+        {
+          "begin": "(?!\\s*$)",
+          "end": "^$",
+          "name": "markup.other.paragraph.tw5",
+          "patterns": [{ "include": "#inline" }]
+        }
+      ]
+    },
+    "pragma": {
+      "patterns": [{ "include": "#macrodef" }, { "include": "#rules" }]
+    },
+    "macrodef": {
+      "begin": "^(\\\\)(define)\\s+([^\\s\\(]+)(?=\\()",
+      "end": "^",
+      "name": "meta.pragma.directive.function.macro.tw5",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.pragma.directive.tw5" },
+        "2": { "name": "keyword.control.directive.define.tw5" },
+        "3": { "name": "entity.name.function.macro.tw5" }
+      },
+      "patterns": [
+        {
+          "comment": "Match single line macro body.",
+          "match": "(?<=\\))\\s*(\\S.*)$",
+          "captures": {
+            "1": {
+              "begin": "^",
+              "end": "$",
+              "name": "meta.function.macro.body.tw5",
+              "patterns": [{ "include": "#wikitext" }]
+            }
+          }
+        },
+        {
+          "comment": "Match multiline macro body.",
+          "begin": "(?<=\\))\\s*$",
+          "end": "(\\\\)(end)\\s*?$",
+          "contentName": "meta.function.macro.body.tw5",
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.pragma.directive.tw5" },
+            "2": { "name": "keyword.control.directive.end.tw5" }
+          },
+          "patterns": [
+            { "include": "#block" },
+            {
+              "begin": "(?!\\s*$)",
+              "end": "(?:(?=\\\\end\\s*?$))|^$",
+              "name": "markup.other.paragraph.tw5",
+              "patterns": [{ "include": "#inline" }]
+            }
+          ]
+        },
+        {
+          "comment": "Parse parameter list.",
+          "begin": "(?<=\\S)\\(",
+          "end": "\\)",
+          "name": "meta.function.macro.parameters.tw5",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.function.macro.parameters.begin.tw5"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.function.macro.parameters.end.tw5"
+            }
+          },
+          "patterns": [
+            {
+              "begin": "([\\w\\-]+)(?:\\s*(:)\\s*(?=\"\"\"))",
+              "end": "(?<=\"\"\")",
+              "name": "meta.function.macro.parameter.tw-$1.tw5",
+              "contentName": "entity.other.default.value.tw5",
+              "beginCaptures": {
+                "1": { "name": "variable.parameter.tw5" },
+                "2": { "name": "keyword.operator.assignment.tw5" }
+              },
+              "patterns": [{ "include": "#string" }]
+            },
+            {
+              "begin": "([\\w\\-]+)(?:\\s*(:)\\s*(?=\"))",
+              "end": "(?<=\")",
+              "name": "meta.function.macro.parameter.tw-$1.tw5",
+              "contentName": "entity.other.default.value.tw5",
+              "beginCaptures": {
+                "1": { "name": "variable.parameter.tw5" },
+                "2": { "name": "keyword.operator.assignment.tw5" }
+              },
+              "patterns": [{ "include": "#string" }]
+            },
+            {
+              "begin": "([\\w\\-]+)(?:\\s*(:)\\s*(?='))",
+              "end": "(?<=')",
+              "name": "meta.function.macro.parameter.tw-$1.tw5",
+              "contentName": "entity.other.default.value.tw5",
+              "beginCaptures": {
+                "1": { "name": "variable.parameter.tw5" },
+                "2": { "name": "keyword.operator.assignment.tw5" }
+              },
+              "patterns": [{ "include": "#string" }]
+            },
+            {
+              "begin": "([\\w\\-]+)(?:\\s*(:)\\s*(?=\\[\\[))",
+              "end": "(?<=\\]\\])",
+              "name": "meta.function.macro.parameter.tw-$1.tw5",
+              "contentName": "entity.other.default.value.tw5",
+              "beginCaptures": {
+                "1": { "name": "variable.parameter.tw5" },
+                "2": { "name": "keyword.operator.assignment.tw5" }
+              },
+              "patterns": [{ "include": "#string" }]
+            },
+            {
+              "match": "([\\w\\-]+)(?:\\s*(:)\\s*([^\\)\"'\\s]+))",
+              "name": "meta.function.macro.parameter.tw-$1.tw5",
+              "captures": {
+                "1": { "name": "variable.parameter.tw5" },
+                "2": { "name": "keyword.operator.assignment.tw5" },
+                "3": {
+                  "begin": "^",
+                  "end": "$",
+                  "name": "entity.other.default.value.tw5",
+                  "patterns": [{ "include": "#string" }]
+                }
+              }
+            },
+            {
+              "comment": "Parse formal argument definition.",
+              "match": "[\\w\\-]+",
+              "name": "meta.function.macro.parameter.tw-$1.tw5",
+              "captures": { "0": { "name": "variable.parameter.tw5" } }
+            },
+            {
+              "comment": "Match parameter separators.",
+              "match": "[^\\w\\-\\)\\s]+",
+              "name": "punctuation.separator.function.macro.parameter.tw5"
+            }
+          ]
+        }
+      ]
+    },
+    "rules": {
+      "match": "^(\\\\)(rules)\\s+(only|except)?(.*)$",
+      "name": "meta.pragma.directive.rules.tw5",
+      "captures": {
+        "1": { "name": "punctuation.definition.pragma.directive.tw5" },
+        "2": { "name": "keyword.control.directive.rules.tw5" },
+        "3": { "name": "keyword.operator.$3.tw5" },
+        "4": {
+          "patterns": [{ "match": "\\S+", "name": "variable.parameter.tw5" }]
+        }
+      }
+    },
+    "block": {
+      "patterns": [
+        { "include": "#codeblock" },
+        { "include": "#htmlblock" },
+        { "include": "#typedblock" },
+        { "include": "#styleblock" },
+        { "include": "#quoteblock" },
+        { "include": "#macrocallblock" },
+        { "include": "#filteredtranscludeblock" },
+        { "include": "#transcludeblock" },
+        { "include": "#table" },
+        { "include": "#list" },
+        { "include": "#heading" },
+        { "include": "#horizrule" },
+        { "include": "#commentblock" }
+      ]
+    },
+    "codeblock": {
+      "begin": "\\s*(```)(?=[\\w-]*$)",
+      "end": "^(```)$",
+      "name": "meta.codeblock.tw5",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.raw.markup.begin.tw5" }
+      },
+      "endCaptures": {
+        "1": { "name": "punctuation.definition.raw.markup.end.tw5" }
+      },
+      "patterns": [
+        {
+          "begin": "(?i)\\G(m(?:arkdown|d|kd(?:own)?))$",
+          "end": "(?=^```$)",
+          "contentName": "source.gfm.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "source.gfm" }]
+        },
+        {
+          "begin": "(?i)\\G(gemspec|irb|podspec|r(?:b|uby)|thor)$",
+          "end": "(?=^```$)",
+          "contentName": "source.ruby.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "source.ruby" }]
+        },
+        {
+          "begin": "(?i)\\G(m(?:ak(?:efile)?|k))$",
+          "end": "(?=^```$)",
+          "contentName": "source.makefile.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "source.makefile" }]
+        },
+        {
+          "begin": "(?i)\\G(json)$",
+          "end": "(?=^```$)",
+          "contentName": "source.json.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "source.json" }]
+        },
+        {
+          "begin": "(?i)\\G(atom|rss|xhtml)$",
+          "end": "(?=^```$)",
+          "contentName": "text.xml.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "text.xml" }]
+        },
+        {
+          "begin": "(?i)\\G(xsl)$",
+          "end": "(?=^```$)",
+          "contentName": "text.xml.xsl.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "text.xml.xsl" }]
+        },
+        {
+          "begin": "(?i)\\G(html)$",
+          "end": "(?=^```$)",
+          "contentName": "text.html.basic.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "text.html.basic" }]
+        },
+        {
+          "begin": "(?i)\\G(plist)$",
+          "end": "(?=^```$)",
+          "contentName": "text.xml.plist.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "text.xml.plist" }]
+        },
+        {
+          "begin": "(?i)\\G(css)$",
+          "end": "(?=^```$)",
+          "contentName": "source.css.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "source.css" }]
+        },
+        {
+          "begin": "(?i)\\G(p(?:erl|l))$",
+          "end": "(?=^```$)",
+          "contentName": "source.perl.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "source.perl" }]
+        },
+        {
+          "begin": "(?i)\\G(cs(?:harp)?)$",
+          "end": "(?=^```$)",
+          "contentName": "source.cs.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "source.cs" }]
+        },
+        {
+          "begin": "(?i)\\G(obj(?:\\-c|c|ectivec))$",
+          "end": "(?=^```$)",
+          "contentName": "source.objc.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "source.objc" }]
+        },
+        {
+          "begin": "(?i)\\G(mm)$",
+          "end": "(?=^```$)",
+          "contentName": "source.objcpp.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "source.objcpp" }]
+        },
+        {
+          "begin": "(?i)\\G(gyp|py(?:thon)?)$",
+          "end": "(?=^```$)",
+          "contentName": "source.python.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "source.python" }]
+        },
+        {
+          "begin": "(?i)\\G(java)$",
+          "end": "(?=^```$)",
+          "contentName": "source.java.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "source.java" }]
+        },
+        {
+          "begin": "(?i)\\G(jsp)$",
+          "end": "(?=^```$)",
+          "contentName": "text.html.jsp.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "text.html.jsp" }]
+        },
+        {
+          "begin": "(?i)\\G(bash|sh|zsh)$",
+          "end": "(?=^```$)",
+          "contentName": "source.shell.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "source.shell" }]
+        },
+        {
+          "begin": "(?i)\\G(sql)$",
+          "end": "(?=^```$)",
+          "contentName": "source.sql.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "source.sql" }]
+        },
+        {
+          "begin": "(?i)\\G(c|p)$",
+          "end": "(?=^```$)",
+          "contentName": "source.c.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "source.c" }]
+        },
+        {
+          "begin": "(?i)\\G(c(?:\\+\\+|c|pp)|h(?:\\+\\+|pp))$",
+          "end": "(?=^```$)",
+          "contentName": "source.cpp.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "source.cpp" }]
+        },
+        {
+          "begin": "(?i)\\G(php(?:3|4|5|6)?)$",
+          "end": "(?=^```$)",
+          "contentName": "text.html.php.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "text.html.php" }]
+        },
+        {
+          "begin": "(?i)\\G(ini|toml)$",
+          "end": "(?=^```$)",
+          "contentName": "source.toml.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "source.toml" }]
+        },
+        {
+          "begin": "(?i)\\G(diff|patch)$",
+          "end": "(?=^```$)",
+          "contentName": "text.git-commit.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "text.git-commit" }]
+        },
+        {
+          "begin": "(?i)\\G(c(?:offee(?:script)?|son)|iced)$",
+          "end": "(?=^```$)",
+          "contentName": "source.coffee.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "source.coffee" }]
+        },
+        {
+          "begin": "(?i)\\G(j(?:avascript|s))$",
+          "end": "(?=^```$)",
+          "contentName": "source.js.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          },
+          "patterns": [{ "include": "source.js" }]
+        },
+        {
+          "begin": "\\G([\\w-]*)$",
+          "end": "(?=^```$)",
+          "contentName": "markup.raw.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.language.tw5" }
+          }
+        }
+      ]
+    },
+    "htmlblock": {
+      "patterns": [
+        {
+          "begin": "\\s*(\\<)((\\$)([a-zA-Z0-9\\-]+))",
+          "end": "(\\/>)|(<\\/)((\\$)\\4)(>)",
+          "name": "meta.block.html.widget.tw-$4.tw5",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.tag.begin.tw5" },
+            "2": { "name": "entity.name.tag.tw5" },
+            "3": { "name": "punctuation.definition.widget.tw5" }
+          },
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.tag.end.tw5" },
+            "2": { "name": "punctuation.definition.tag.begin.tw5" },
+            "3": { "name": "entity.name.tag.tw5" },
+            "4": { "name": "punctuation.definition.tag.widget.tw5" }
+          },
+          "patterns": [{ "include": "#htmlAttributesAndText" }]
+        },
+        {
+          "begin": "\\s*(\\<)([a-zA-Z0-9\\-]+)",
+          "end": "(\\/>)|(<\\/)(\\2)(>)",
+          "name": "meta.block.html.element.tw-$2.tw5",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.tag.begin.tw5" },
+            "2": { "name": "entity.name.tag.tw5" }
+          },
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.tag.end.tw5" },
+            "2": { "name": "punctuation.definition.tag.begin.tw5" },
+            "3": { "name": "entity.name.tag.tw5" },
+            "4": { "name": "punctuation.definition.tag.end.tw5" }
+          },
+          "patterns": [{ "include": "#htmlAttributesAndText" }]
+        }
+      ]
+    },
+    "htmlAttributesAndText": {
+      "patterns": [
+        {
+          "comment": "Parse text node.",
+          "begin": "(?<=>)(\\s*$)?",
+          "end": "(?=<\\/)",
+          "patterns": [
+            {
+              "comment": "Parse text node in block mode.",
+              "begin": "^\\s*$",
+              "end": "(?=<\\/)",
+              "name": "meta.body.block.tw5",
+              "patterns": [
+                { "include": "#block" },
+                {
+                  "begin": "(?!\\s*$)",
+                  "end": "(?:(?=<\\/))|^$",
+                  "name": "markup.other.paragraph.tw5",
+                  "patterns": [{ "include": "#inline" }]
+                }
+              ]
+            },
+            {
+              "comment": "Parse text node in inline mode.",
+              "begin": "(?=.*\\S)",
+              "end": "(?=<\\/)",
+              "name": "meta.body.inline.tw5",
+              "patterns": [{ "include": "#inline" }]
+            }
+          ]
+        },
+        {
+          "comment": "Parse attribute list.",
+          "begin": "\\G",
+          "end": ">|(?=\\/?>)",
+          "contentName": "meta.attributes.tw5",
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.tag.end.tw5" }
+          },
+          "patterns": [{ "include": "#attribute" }]
+        }
+      ]
+    },
+    "typedblock": {
+      "begin": "\\s*(\\$\\$\\$)(?=[^\\s>]*(?:\\s*>\\s*\\S+)?$)",
+      "end": "^(\\$\\$\\$)$",
+      "name": "meta.typedblock.tw5",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.typedblock.begin.tw5" }
+      },
+      "endCaptures": {
+        "1": { "name": "punctuation.definition.typedblock.end.tw5" }
+      },
+      "patterns": [
+        {
+          "begin": "\\G(\\.tid|application\\/x\\-tiddler)(?:\\s*(>)\\s*(\\S+))?$",
+          "end": "(?=^\\$\\$\\$$)",
+          "contentName": "text.html.tw5.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.parse.tw5" },
+            "2": { "name": "punctuation.definition.typedblock.render.tw5" },
+            "3": { "name": "entity.other.attribute-name.render.tw5" }
+          },
+          "patterns": [{ "include": "text.html.tw5" }]
+        },
+        {
+          "begin": "\\G(\\.css|text\\/css)(?:\\s*(>)\\s*(\\S+))?$",
+          "end": "(?=^\\$\\$\\$$)",
+          "contentName": "source.css.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.parse.tw5" },
+            "2": { "name": "punctuation.definition.typedblock.render.tw5" },
+            "3": { "name": "entity.other.attribute-name.render.tw5" }
+          },
+          "patterns": [{ "include": "source.css" }]
+        },
+        {
+          "begin": "\\G(\\.html?|text\\/html)(?:\\s*(>)\\s*(\\S+))?$",
+          "end": "(?=^\\$\\$\\$$)",
+          "contentName": "text.html.basic.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.parse.tw5" },
+            "2": { "name": "punctuation.definition.typedblock.render.tw5" },
+            "3": { "name": "entity.other.attribute-name.render.tw5" }
+          },
+          "patterns": [{ "include": "text.html.basic" }]
+        },
+        {
+          "begin": "\\G(\\.hta|application\\/hta)(?:\\s*(>)\\s*(\\S+))?$",
+          "end": "(?=^\\$\\$\\$$)",
+          "contentName": "text.html.basic.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.parse.tw5" },
+            "2": { "name": "punctuation.definition.typedblock.render.tw5" },
+            "3": { "name": "entity.other.attribute-name.render.tw5" }
+          },
+          "patterns": [{ "include": "text.html.basic" }]
+        },
+        {
+          "begin": "\\G(\\.js|application\\/javascript)(?:\\s*(>)\\s*(\\S+))?$",
+          "end": "(?=^\\$\\$\\$$)",
+          "contentName": "source.js.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.parse.tw5" },
+            "2": { "name": "punctuation.definition.typedblock.render.tw5" },
+            "3": { "name": "entity.other.attribute-name.render.tw5" }
+          },
+          "patterns": [{ "include": "source.js" }]
+        },
+        {
+          "begin": "\\G(\\.json|application\\/json)(?:\\s*(>)\\s*(\\S+))?$",
+          "end": "(?=^\\$\\$\\$$)",
+          "contentName": "source.json.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.parse.tw5" },
+            "2": { "name": "punctuation.definition.typedblock.render.tw5" },
+            "3": { "name": "entity.other.attribute-name.render.tw5" }
+          },
+          "patterns": [{ "include": "source.json" }]
+        },
+        {
+          "begin": "\\G(\\.svg|image\\/svg\\+xml)(?:\\s*(>)\\s*(\\S+))?$",
+          "end": "(?=^\\$\\$\\$$)",
+          "contentName": "text.xml.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.parse.tw5" },
+            "2": { "name": "punctuation.definition.typedblock.render.tw5" },
+            "3": { "name": "entity.other.attribute-name.render.tw5" }
+          },
+          "patterns": [{ "include": "text.xml" }]
+        },
+        {
+          "begin": "\\G(\\.m(?:arkdown|d)|text\\/x\\-markdown)(?:\\s*(>)\\s*(\\S+))?$",
+          "end": "(?=^\\$\\$\\$$)",
+          "contentName": "source.gfm.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.parse.tw5" },
+            "2": { "name": "punctuation.definition.typedblock.render.tw5" },
+            "3": { "name": "entity.other.attribute-name.render.tw5" }
+          },
+          "patterns": [{ "include": "source.gfm" }]
+        },
+        {
+          "begin": "\\G([^\\s>]*)(?:\\s*(>)\\s*(\\S+))?$",
+          "end": "(?=^\\$\\$\\$$)",
+          "contentName": "markup.raw.tw5",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.parse.tw5" },
+            "2": { "name": "punctuation.definition.typedblock.render.tw5" },
+            "3": { "name": "entity.other.attribute-name.render.tw5" }
+          }
+        }
+      ]
+    },
+    "styleblock": {
+      "applyEndPatternLast": 1,
+      "begin": "\\s*(?=@@((?:[^\\s]+?\\:.+?;)+)?((?:\\.[^\\s\\.]+)+)?$)",
+      "end": "(?<=^@@)\\s*(.*)$",
+      "contentName": "markup.other.style.styleblock.tw5",
+      "endCaptures": { "1": { "name": "invalid.illegal.tw5" } },
+      "patterns": [
+        {
+          "comment": "Tokenize markers, styles and classes.",
+          "match": "(?:^|\\G)(@@)((?:[^\\s]+?\\:.+?;)+)?((?:\\.[^\\s\\.]+)+)?\\r?\\n",
+          "name": "meta.styleblock.definition.begin.top.tw5",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.markup.other.style.styleblock.begin.tw5"
+            },
+            "2": { "patterns": [{ "include": "#styles" }] },
+            "3": { "patterns": [{ "include": "#classes" }] }
+          }
+        },
+        {
+          "comment": "Tokenize body and end marker.",
+          "begin": "^",
+          "end": "^(@@)",
+          "contentName": "meta.styleblock.definition.body.tw5",
+          "endCaptures": {
+            "0": { "name": "meta.styleblock.definition.end.bottom.tw5" },
+            "1": {
+              "name": "punctuation.definition.markup.other.style.styleblock.end.tw5"
+            }
+          },
+          "patterns": [
+            { "include": "#block" },
+            {
+              "begin": "(?!\\s*$)",
+              "end": "(?:^(?=@@))|^$",
+              "name": "markup.other.paragraph.tw5",
+              "patterns": [{ "include": "#inline" }]
+            }
+          ]
+        }
+      ]
+    },
+    "quoteblock": {
+      "patterns": [
+        {
+          "applyEndPatternLast": 1,
+          "begin": "\\s*(<<<<<)(?!<)(?:\\r?\\n)?",
+          "end": "$",
+          "name": "markup.quote.blockquote.tw5",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.markup.quote.blockquote.begin.tw5"
+            }
+          },
+          "patterns": [
+            {
+              "comment": "Tokenize classes and top cite.",
+              "begin": "(?<=<<<<<)(?!$)((?:\\.[^\\s\\.]+)+)?[^\\S\\n]*",
+              "end": "\\r?\\n",
+              "contentName": "meta.quote.blockquote.cite.top.tw5",
+              "beginCaptures": {
+                "1": { "patterns": [{ "include": "#classes" }] }
+              },
+              "patterns": [{ "include": "#inline" }]
+            },
+            {
+              "comment": "Tokenize bottom cite.",
+              "begin": "^(<<<<<)(?!<)[^\\S\\n]*?",
+              "end": "$",
+              "contentName": "meta.quote.blockquote.cite.bottom.tw5",
+              "beginCaptures": {
+                "1": {
+                  "name": "punctuation.definition.markup.quote.blockquote.end.tw5"
+                }
+              },
+              "patterns": [{ "include": "#inline" }]
+            },
+            {
+              "comment": "Tokenize body.",
+              "begin": "^",
+              "end": "^(?=<<<<<(?!<))",
+              "patterns": [
+                { "include": "#block" },
+                {
+                  "begin": "(?!\\s*$)",
+                  "end": "(?:^(?=<<<<<(?!<)))|^$",
+                  "name": "markup.other.paragraph.tw5",
+                  "patterns": [{ "include": "#inline" }]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "applyEndPatternLast": 1,
+          "begin": "\\s*(<<<<)(?!<)(?:\\r?\\n)?",
+          "end": "$",
+          "name": "markup.quote.blockquote.tw5",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.markup.quote.blockquote.begin.tw5"
+            }
+          },
+          "patterns": [
+            {
+              "comment": "Tokenize classes and top cite.",
+              "begin": "(?<=<<<<)(?!$)((?:\\.[^\\s\\.]+)+)?[^\\S\\n]*",
+              "end": "\\r?\\n",
+              "contentName": "meta.quote.blockquote.cite.top.tw5",
+              "beginCaptures": {
+                "1": { "patterns": [{ "include": "#classes" }] }
+              },
+              "patterns": [{ "include": "#inline" }]
+            },
+            {
+              "comment": "Tokenize bottom cite.",
+              "begin": "^(<<<<)(?!<)[^\\S\\n]*?",
+              "end": "$",
+              "contentName": "meta.quote.blockquote.cite.bottom.tw5",
+              "beginCaptures": {
+                "1": {
+                  "name": "punctuation.definition.markup.quote.blockquote.end.tw5"
+                }
+              },
+              "patterns": [{ "include": "#inline" }]
+            },
+            {
+              "comment": "Tokenize body.",
+              "begin": "^",
+              "end": "^(?=<<<<(?!<))",
+              "patterns": [
+                { "include": "#block" },
+                {
+                  "begin": "(?!\\s*$)",
+                  "end": "(?:^(?=<<<<(?!<)))|^$",
+                  "name": "markup.other.paragraph.tw5",
+                  "patterns": [{ "include": "#inline" }]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "applyEndPatternLast": 1,
+          "begin": "\\s*(<<<)(?!<)(?:\\r?\\n)?",
+          "end": "$",
+          "name": "markup.quote.blockquote.tw5",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.markup.quote.blockquote.begin.tw5"
+            }
+          },
+          "patterns": [
+            {
+              "comment": "Tokenize classes and top cite.",
+              "begin": "(?<=<<<)(?!$)((?:\\.[^\\s\\.]+)+)?[^\\S\\n]*",
+              "end": "\\r?\\n",
+              "contentName": "meta.quote.blockquote.cite.top.tw5",
+              "beginCaptures": {
+                "1": { "patterns": [{ "include": "#classes" }] }
+              },
+              "patterns": [{ "include": "#inline" }]
+            },
+            {
+              "comment": "Tokenize bottom cite.",
+              "begin": "^(<<<)(?!<)[^\\S\\n]*?",
+              "end": "$",
+              "contentName": "meta.quote.blockquote.cite.bottom.tw5",
+              "beginCaptures": {
+                "1": {
+                  "name": "punctuation.definition.markup.quote.blockquote.end.tw5"
+                }
+              },
+              "patterns": [{ "include": "#inline" }]
+            },
+            {
+              "comment": "Tokenize body.",
+              "begin": "^",
+              "end": "^(?=<<<(?!<))",
+              "patterns": [
+                { "include": "#block" },
+                {
+                  "begin": "(?!\\s*$)",
+                  "end": "(?:^(?=<<<(?!<)))|^$",
+                  "name": "markup.other.paragraph.tw5",
+                  "patterns": [{ "include": "#inline" }]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "macrocallblock": {
+      "begin": "\\s*(<<)([^>\\s]+)",
+      "end": "(>>)\\r?\\n",
+      "name": "meta.function-call.macrocallblock.tw5",
+      "contentName": "meta.function.macro.parameters.tw5",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.macrocallblock.begin.tw5" },
+        "2": { "name": "entity.name.function.macro.tw5" }
+      },
+      "endCaptures": {
+        "1": { "name": "punctuation.definition.macrocallblock.end.tw5" }
+      },
+      "patterns": [
+        {
+          "begin": "(?:([\\w\\-]+)\\s*(:)\\s*)?(?=\"\"\")",
+          "end": "(?<=\"\"\")",
+          "name": "meta.function.macro.parameter.tw-$1.tw5",
+          "beginCaptures": {
+            "1": { "name": "variable.parameter.tw5" },
+            "2": { "name": "keyword.operator.assignment.tw5" }
+          },
+          "patterns": [{ "include": "#string" }]
+        },
+        {
+          "begin": "(?:([\\w\\-]+)\\s*(:)\\s*)?(?=\")",
+          "end": "(?<=\")",
+          "name": "meta.function.macro.parameter.tw-$1.tw5",
+          "beginCaptures": {
+            "1": { "name": "variable.parameter.tw5" },
+            "2": { "name": "keyword.operator.assignment.tw5" }
+          },
+          "patterns": [{ "include": "#string" }]
+        },
+        {
+          "begin": "(?:([\\w\\-]+)\\s*(:)\\s*)?(?=')",
+          "end": "(?<=')",
+          "name": "meta.function.macro.parameter.tw-$1.tw5",
+          "beginCaptures": {
+            "1": { "name": "variable.parameter.tw5" },
+            "2": { "name": "keyword.operator.assignment.tw5" }
+          },
+          "patterns": [{ "include": "#string" }]
+        },
+        {
+          "begin": "(?:([\\w\\-]+)\\s*(:)\\s*)?(?=\\[\\[)",
+          "end": "(?<=\\]\\])",
+          "name": "meta.function.macro.parameter.tw-$1.tw5",
+          "beginCaptures": {
+            "1": { "name": "variable.parameter.tw5" },
+            "2": { "name": "keyword.operator.assignment.tw5" }
+          },
+          "patterns": [{ "include": "#string" }]
+        },
+        {
+          "match": "(?:([\\w\\-]+)\\s*(:)\\s*)?([^\\>\"'\\s]+)",
+          "name": "meta.function.macro.parameter.tw-$1.tw5",
+          "captures": {
+            "1": { "name": "variable.parameter.tw5" },
+            "2": { "name": "keyword.operator.assignment.tw5" },
+            "3": {
+              "begin": "^",
+              "end": "$",
+              "patterns": [{ "include": "#string" }]
+            }
+          }
+        },
+        {
+          "comment": "Match separators.",
+          "match": "[^\\w\\-\\>\\s]+",
+          "name": "punctuation.separator.function.macro.parameter.tw5"
+        }
+      ]
+    },
+    "filteredtranscludeblock": {
+      "begin": "\\s*(\\{\\{\\{)",
+      "end": "(\\}\\}\\})\\r?\\n",
+      "name": "meta.transclusion.filteredtranscludeblock.tw5",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.transclusion.filteredtranscludeblock.begin.tw5"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.transclusion.filteredtranscludeblock.end.tw5"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Tokenize template tiddler title.",
+          "begin": "(\\|\\|)",
+          "end": "(?=\\}\\}\\})",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.transclusion.filteredtranscludeblock.template.tw5"
+            }
+          },
+          "patterns": [
+            {
+              "comment": "Treat nearest non-whitespace line as template tiddler title.",
+              "begin": "(?<=\\|\\|)\\G",
+              "end": "(?=\\S)((?:(?!\\}\\}\\}).)*?)\\s*(?=$|\\}\\}\\})",
+              "endCaptures": {
+                "1": { "name": "entity.other.name.tiddler.title.template.tw5" }
+              }
+            },
+            {
+              "begin": "(?=\\S)",
+              "end": "(?=\\}\\}\\})",
+              "name": "invalid.illegal.multiline-tiddler-title.tw5"
+            }
+          ]
+        },
+        {
+          "begin": "\\G",
+          "end": "(?=\\|\\||\\}\\}\\})",
+          "name": "meta.filter.tw5",
+          "patterns": [{ "include": "#filter" }]
+        }
+      ]
+    },
+    "transcludeblock": {
+      "begin": "\\s*(\\{\\{)",
+      "end": "(\\}\\})\\r?\\n",
+      "name": "meta.transclusion.transcludeblock.tw5",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.transclusion.transcludeblock.begin.tw5"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.transclusion.transcludeblock.end.tw5"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Tokenize template tiddler title.",
+          "begin": "(\\|\\|)",
+          "end": "(?=\\}\\})",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.transclusion.transcludeblock.template.tw5"
+            }
+          },
+          "patterns": [
+            {
+              "comment": "Treat nearest non-whitespace line as template tiddler title.",
+              "begin": "(?<=\\|\\|)\\G",
+              "end": "(?=\\S)((?:(?!\\}\\}).)*?)\\s*(?=$|\\}\\})",
+              "endCaptures": {
+                "1": { "name": "entity.other.name.tiddler.title.template.tw5" }
+              }
+            },
+            {
+              "begin": "(?=\\S)",
+              "end": "(?=\\}\\})",
+              "name": "invalid.illegal.multiline-tiddler-title.tw5"
+            }
+          ]
+        },
+        {
+          "comment": "Tokenize text reference.",
+          "begin": "(?<=\\{\\{)\\G",
+          "end": "(?=\\}\\}|\\|\\|)",
+          "patterns": [
+            {
+              "begin": "(?<=\\{\\{)\\G",
+              "end": "(?x)\n(?= \\}\\} | \\|\\|) | # Allow dropping text reference\n(\\S.*?)\\s* (?= $ | \\}\\} | \\|\\|)",
+              "endCaptures": {
+                "1": { "patterns": [{ "include": "#textReference" }] }
+              }
+            },
+            {
+              "begin": "(?=\\S)",
+              "end": "(?=\\|\\||\\}\\})",
+              "name": "invalid.illegal.multiline-text-reference.tw5"
+            }
+          ]
+        }
+      ]
+    },
+    "table": {
+      "patterns": [
+        {
+          "match": "^(\\|)(.*)(\\|)(k)$",
+          "name": "markup.other.table.tw5",
+          "captures": {
+            "0": { "name": "classes.meta.table.tw5" },
+            "1": {
+              "name": "punctuation.definition.table.pipe.outer.begin.tw5"
+            },
+            "2": {
+              "patterns": [
+                {
+                  "match": "^.*$",
+                  "name": "meta.support.classes.tw5",
+                  "captures": {
+                    "0": { "name": "entity.other.attribute-name.class.css" }
+                  }
+                }
+              ]
+            },
+            "3": { "name": "punctuation.definition.table.pipe.outer.end.tw5" },
+            "4": { "name": "classes.markup.other.table.tw5" }
+          }
+        },
+        {
+          "match": "^(\\|)(.*)(\\|)(c)$",
+          "name": "markup.other.table.tw5",
+          "captures": {
+            "0": { "name": "caption.meta.table.tw5" },
+            "1": {
+              "name": "punctuation.definition.table.pipe.outer.begin.tw5"
+            },
+            "2": {
+              "patterns": [
+                {
+                  "match": "^.*$",
+                  "name": "entity.other.name.caption.tw5",
+                  "captures": {
+                    "0": { "patterns": [{ "include": "#inline" }] }
+                  }
+                }
+              ]
+            },
+            "3": { "name": "punctuation.definition.table.pipe.outer.end.tw5" },
+            "4": { "name": "caption.markup.other.table.tw5" }
+          }
+        },
+        {
+          "match": "^(\\|)(.*)(\\|)(h)$",
+          "name": "markup.other.table.tw5",
+          "captures": {
+            "0": { "name": "row.thead.header.meta.table.tw5" },
+            "1": {
+              "name": "punctuation.definition.table.pipe.outer.begin.tw5"
+            },
+            "2": { "patterns": [{ "include": "#tableRow" }] },
+            "3": { "name": "punctuation.definition.table.pipe.outer.end.tw5" },
+            "4": { "name": "row.thead.header.markup.other.table.tw5" }
+          }
+        },
+        {
+          "match": "^(\\|)(.*)(\\|)(f)$",
+          "name": "markup.other.table.tw5",
+          "captures": {
+            "0": { "name": "row.tfoot.footer.meta.table.tw5" },
+            "1": {
+              "name": "punctuation.definition.table.pipe.outer.begin.tw5"
+            },
+            "2": { "patterns": [{ "include": "#tableRow" }] },
+            "3": { "name": "punctuation.definition.table.pipe.outer.end.tw5" },
+            "4": { "name": "row.tfoot.footer.markup.other.table.tw5" }
+          }
+        },
+        {
+          "match": "^(\\|)(.*)(\\|)()$",
+          "name": "markup.other.table.tw5",
+          "captures": {
+            "0": { "name": "row.tbody.body.meta.table.tw5" },
+            "1": {
+              "name": "punctuation.definition.table.pipe.outer.begin.tw5"
+            },
+            "2": { "patterns": [{ "include": "#tableRow" }] },
+            "3": { "name": "punctuation.definition.table.pipe.outer.end.tw5" },
+            "4": { "name": "row.tbody.body.markup.other.table.tw5" }
+          }
+        }
+      ]
+    },
+    "tableRow": {
+      "patterns": [
+        {
+          "comment": "Tokenize table cell.",
+          "match": "(?<!$)(.*?)(\\||$)",
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "match": "^~$",
+                  "name": "rowspan.down.meta.cell.td.tw5",
+                  "capture": {
+                    "0": {
+                      "name": "rowspan.down.punctuation.definition.cell.tw5"
+                    }
+                  }
+                },
+                {
+                  "match": "^>$",
+                  "name": "colspan.right.meta.cell.td.tw5",
+                  "capture": {
+                    "0": {
+                      "name": "colspan.right.punctuation.definition.cell.tw5"
+                    }
+                  }
+                },
+                {
+                  "match": "^<$",
+                  "name": "colspan.left.meta.cell.td.tw5",
+                  "capture": {
+                    "0": {
+                      "name": "colspan.left.punctuation.definition.cell.tw5"
+                    }
+                  }
+                },
+                {
+                  "match": "(?x)\n^\n(?:\n  (\\^(?:[^^]|\\^\\^)) |  # Top alignment marker\n  (\\,(?:[^,]|\\,\\,))    # Bottom alignment marker\n)?\n([ \\t]*)                 # Left alignment marker\n(!)               # Heading cell marker\n(.*?)                     # Cell contents\n([ \\t]*)                 # Right alignment marker\n$",
+                  "name": "heading.th.meta.cell.tw5",
+                  "captures": {
+                    "1": {
+                      "name": "punctuation.definition.cell.valign.top.tw5"
+                    },
+                    "2": {
+                      "name": "punctuation.definition.cell.valign.bottom.tw5"
+                    },
+                    "3": {
+                      "name": "punctuation.definition.cell.align.left.tw5"
+                    },
+                    "4": {
+                      "name": "punctuation.definition.cell.heading.th.tw5"
+                    },
+                    "5": { "patterns": [{ "include": "#inline" }] },
+                    "6": {
+                      "name": "punctuation.definition.cell.align.right.tw5"
+                    }
+                  }
+                },
+                {
+                  "match": "(?x)\n^\n(?:\n  (\\^(?:[^^]|\\^\\^)) |  # Top alignment marker\n  (\\,(?:[^,]|\\,\\,))    # Bottom alignment marker\n)?\n([ \\t]*)                 # Left alignment marker\n()               # Heading cell marker\n(.*?)                     # Cell contents\n([ \\t]*)                 # Right alignment marker\n$",
+                  "name": "data.td.meta.cell.tw5",
+                  "captures": {
+                    "1": {
+                      "name": "punctuation.definition.cell.valign.top.tw5"
+                    },
+                    "2": {
+                      "name": "punctuation.definition.cell.valign.bottom.tw5"
+                    },
+                    "3": {
+                      "name": "punctuation.definition.cell.align.left.tw5"
+                    },
+                    "4": {
+                      "name": "punctuation.definition.cell.heading.th.tw5"
+                    },
+                    "5": { "patterns": [{ "include": "#inline" }] },
+                    "6": {
+                      "name": "punctuation.definition.cell.align.right.tw5"
+                    }
+                  }
+                }
+              ]
+            },
+            "2": { "name": "punctuation.separator.cell.pipe.inner.tw5" }
+          }
+        }
+      ]
+    },
+    "list": {
+      "patterns": [
+        {
+          "begin": "\\s*([\\*#;:>]*\\*(?![\\*#;:>]))((?:\\.[^\\s\\.]+)+)?",
+          "end": "$",
+          "name": "unnumbered.unordered.ul.li.markup.list.tw5",
+          "captures": {
+            "1": {
+              "name": "unnumbered.unordered.ul.li.punctuation.definition.list.markup.tw5"
+            },
+            "2": { "patterns": [{ "include": "#classes" }] }
+          },
+          "patterns": [{ "include": "#inline" }]
+        },
+        {
+          "begin": "\\s*([\\*#;:>]*#(?![\\*#;:>]))((?:\\.[^\\s\\.]+)+)?",
+          "end": "$",
+          "name": "numbered.ordered.ol.li.markup.list.tw5",
+          "captures": {
+            "1": {
+              "name": "numbered.ordered.ol.li.punctuation.definition.list.markup.tw5"
+            },
+            "2": { "patterns": [{ "include": "#classes" }] }
+          },
+          "patterns": [{ "include": "#inline" }]
+        },
+        {
+          "begin": "\\s*([\\*#;:>]*;(?![\\*#;:>]))((?:\\.[^\\s\\.]+)+)?",
+          "end": "$",
+          "name": "unnumbered.term.dl.dt.markup.list.tw5",
+          "captures": {
+            "1": {
+              "name": "unnumbered.term.dl.dt.punctuation.definition.list.markup.tw5"
+            },
+            "2": { "patterns": [{ "include": "#classes" }] }
+          },
+          "patterns": [{ "include": "#inline" }]
+        },
+        {
+          "begin": "\\s*([\\*#;:>]*:(?![\\*#;:>]))((?:\\.[^\\s\\.]+)+)?",
+          "end": "$",
+          "name": "unnumbered.description.dl.dd.markup.list.tw5",
+          "captures": {
+            "1": {
+              "name": "unnumbered.description.dl.dd.punctuation.definition.list.markup.tw5"
+            },
+            "2": { "patterns": [{ "include": "#classes" }] }
+          },
+          "patterns": [{ "include": "#inline" }]
+        },
+        {
+          "begin": "\\s*([\\*#;:>]*>(?![\\*#;:>]))((?:\\.[^\\s\\.]+)+)?",
+          "end": "$",
+          "name": "unnumbered.blockquote.quote.markup.list.tw5",
+          "captures": {
+            "1": {
+              "name": "unnumbered.blockquote.quote.punctuation.definition.list.markup.tw5"
+            },
+            "2": { "patterns": [{ "include": "#classes" }] }
+          },
+          "patterns": [{ "include": "#inline" }]
+        }
+      ]
+    },
+    "heading": {
+      "patterns": [
+        {
+          "begin": "\\s*(!{6})((?:\\.[^\\s\\.]+)+)?",
+          "end": "$",
+          "name": "markup.heading.heading-6.tw5",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.heading.markup.tw5" },
+            "2": { "patterns": [{ "include": "#classes" }] }
+          },
+          "patterns": [{ "include": "#inline" }]
+        },
+        {
+          "begin": "\\s*(!{5})((?:\\.[^\\s\\.]+)+)?",
+          "end": "$",
+          "name": "markup.heading.heading-5.tw5",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.heading.markup.tw5" },
+            "2": { "patterns": [{ "include": "#classes" }] }
+          },
+          "patterns": [{ "include": "#inline" }]
+        },
+        {
+          "begin": "\\s*(!{4})((?:\\.[^\\s\\.]+)+)?",
+          "end": "$",
+          "name": "markup.heading.heading-4.tw5",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.heading.markup.tw5" },
+            "2": { "patterns": [{ "include": "#classes" }] }
+          },
+          "patterns": [{ "include": "#inline" }]
+        },
+        {
+          "begin": "\\s*(!{3})((?:\\.[^\\s\\.]+)+)?",
+          "end": "$",
+          "name": "markup.heading.heading-3.tw5",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.heading.markup.tw5" },
+            "2": { "patterns": [{ "include": "#classes" }] }
+          },
+          "patterns": [{ "include": "#inline" }]
+        },
+        {
+          "begin": "\\s*(!{2})((?:\\.[^\\s\\.]+)+)?",
+          "end": "$",
+          "name": "markup.heading.heading-2.tw5",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.heading.markup.tw5" },
+            "2": { "patterns": [{ "include": "#classes" }] }
+          },
+          "patterns": [{ "include": "#inline" }]
+        },
+        {
+          "begin": "\\s*(!{1})((?:\\.[^\\s\\.]+)+)?",
+          "end": "$",
+          "name": "markup.heading.heading-1.tw5",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.heading.markup.tw5" },
+            "2": { "patterns": [{ "include": "#classes" }] }
+          },
+          "patterns": [{ "include": "#inline" }]
+        }
+      ]
+    },
+    "horizrule": { "match": "\\s*-{3,}$", "name": "meta.separator.hr.tw5" },
+    "commentblock": {
+      "begin": "<!--",
+      "end": "-->",
+      "name": "comment.block.commentblock.tw5",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.comment.begin.tw5" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.comment.end.tw5" }
+      }
+    },
+    "inline": {
+      "patterns": [
+        { "include": "#emphasis" },
+        { "include": "#codeinline" },
+        { "include": "#htmlinline" },
+        { "include": "#styleinline" },
+        { "include": "#hardlinebreaks" },
+        { "include": "#macrocallinline" },
+        { "include": "#filteredtranscludeinline" },
+        { "include": "#transcludeinline" },
+        { "include": "#image" },
+        { "include": "#link" },
+        { "include": "#entity" },
+        { "include": "#dash" },
+        { "include": "#commentinline" }
+      ]
+    },
+    "emphasis": {
+      "patterns": [
+        {
+          "begin": "''",
+          "end": "''",
+          "contentName": "bold.markup.tw5",
+          "beginCaptures": {
+            "0": { "name": "bold.punctuation.definition.markup.begin.tw5" }
+          },
+          "endCaptures": {
+            "0": { "name": "bold.punctuation.definition.markup.end.tw5" }
+          },
+          "patterns": [{ "include": "#inline" }]
+        },
+        {
+          "begin": "//",
+          "end": "//",
+          "contentName": "italic.markup.tw5",
+          "beginCaptures": {
+            "0": { "name": "italic.punctuation.definition.markup.begin.tw5" }
+          },
+          "endCaptures": {
+            "0": { "name": "italic.punctuation.definition.markup.end.tw5" }
+          },
+          "patterns": [{ "include": "#inline" }]
+        },
+        {
+          "begin": "__",
+          "end": "__",
+          "contentName": "underscore.markup.tw5",
+          "beginCaptures": {
+            "0": {
+              "name": "underscore.punctuation.definition.markup.begin.tw5"
+            }
+          },
+          "endCaptures": {
+            "0": { "name": "underscore.punctuation.definition.markup.end.tw5" }
+          },
+          "patterns": [{ "include": "#inline" }]
+        },
+        {
+          "begin": "\\^\\^",
+          "end": "\\^\\^",
+          "contentName": "superscript.markup.tw5",
+          "beginCaptures": {
+            "0": {
+              "name": "superscript.punctuation.definition.markup.begin.tw5"
+            }
+          },
+          "endCaptures": {
+            "0": { "name": "superscript.punctuation.definition.markup.end.tw5" }
+          },
+          "patterns": [{ "include": "#inline" }]
+        },
+        {
+          "begin": ",,",
+          "end": ",,",
+          "contentName": "subscript.markup.tw5",
+          "beginCaptures": {
+            "0": { "name": "subscript.punctuation.definition.markup.begin.tw5" }
+          },
+          "endCaptures": {
+            "0": { "name": "subscript.punctuation.definition.markup.end.tw5" }
+          },
+          "patterns": [{ "include": "#inline" }]
+        },
+        {
+          "begin": "~~",
+          "end": "~~",
+          "contentName": "strikethrough.markup.tw5",
+          "beginCaptures": {
+            "0": {
+              "name": "strikethrough.punctuation.definition.markup.begin.tw5"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "strikethrough.punctuation.definition.markup.end.tw5"
+            }
+          },
+          "patterns": [{ "include": "#inline" }]
+        }
+      ]
+    },
+    "codeinline": {
+      "begin": "``?",
+      "end": "\\0",
+      "contentName": "markup.raw.tw5",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.raw.markup.begin.tw5" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.raw.markup.end.tw5" }
+      }
+    },
+    "htmlinline": {
+      "patterns": [
+        {
+          "begin": "(\\<)((\\$)([a-zA-Z0-9\\-]+))",
+          "end": "(\\/>)|(<\\/)((\\$)\\4)(>)",
+          "name": "meta.html.inline.widget.tw-$4.tw5",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.tag.begin.tw5" },
+            "2": { "name": "entity.name.tag.tw5" },
+            "3": { "name": "punctuation.definition.widget.tw5" }
+          },
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.tag.end.tw5" },
+            "2": { "name": "punctuation.definition.tag.begin.tw5" },
+            "3": { "name": "entity.name.tag.tw5" },
+            "4": { "name": "punctuation.definition.tag.widget.tw5" }
+          },
+          "patterns": [{ "include": "#htmlAttributesAndText" }]
+        },
+        {
+          "begin": "(\\<)([a-zA-Z0-9\\-]+)",
+          "end": "(\\/>)|(<\\/)(\\2)(>)",
+          "name": "meta.html.inline.element.tw-$2.tw5",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.tag.begin.tw5" },
+            "2": { "name": "entity.name.tag.tw5" }
+          },
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.tag.end.tw5" },
+            "2": { "name": "punctuation.definition.tag.begin.tw5" },
+            "3": { "name": "entity.name.tag.tw5" },
+            "4": { "name": "punctuation.definition.tag.end.tw5" }
+          },
+          "patterns": [{ "include": "#htmlAttributesAndText" }]
+        }
+      ]
+    },
+    "styleinline": {
+      "begin": "(@@)((?:[^\\s]+?\\:.+?;)+)?((?:\\.[^\\s\\.]+)+)?",
+      "end": "(@@)",
+      "name": "markup.other.style.tw5",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.style.markup.begin.tw5" },
+        "2": { "patterns": [{ "include": "#styles" }] },
+        "3": { "patterns": [{ "include": "#classes" }] }
+      },
+      "endCaptures": {
+        "1": { "name": "punctuation.definition.style.markup.end.tw5" }
+      },
+      "patterns": [{ "include": "#inline" }]
+    },
+    "hardlinebreaks": {
+      "begin": "\"\"\"",
+      "end": "\"\"\"",
+      "contentName": "markup.other.preformatted.hardlinebreaks.tw5",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.hardlinebreaks.begin.tw5" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.hardlinebreaks.end.tw5" }
+      },
+      "patterns": [{ "include": "#inline" }]
+    },
+    "macrocallinline": {
+      "begin": "(<<)([^>\\s]+)",
+      "end": "(>>)",
+      "name": "meta.function-call.macrocallinline.tw5",
+      "contentName": "meta.function.macro.parameters.tw5",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.macrocallinline.begin.tw5" },
+        "2": { "name": "entity.name.function.macro.tw5" }
+      },
+      "endCaptures": {
+        "1": { "name": "punctuation.definition.macrocallinline.end.tw5" }
+      },
+      "patterns": [
+        {
+          "begin": "(?:([\\w\\-]+)\\s*(:)\\s*)?(?=\"\"\")",
+          "end": "(?<=\"\"\")",
+          "name": "meta.function.macro.parameter.tw-$1.tw5",
+          "beginCaptures": {
+            "1": { "name": "variable.parameter.tw5" },
+            "2": { "name": "keyword.operator.assignment.tw5" }
+          },
+          "patterns": [{ "include": "#string" }]
+        },
+        {
+          "begin": "(?:([\\w\\-]+)\\s*(:)\\s*)?(?=\")",
+          "end": "(?<=\")",
+          "name": "meta.function.macro.parameter.tw-$1.tw5",
+          "beginCaptures": {
+            "1": { "name": "variable.parameter.tw5" },
+            "2": { "name": "keyword.operator.assignment.tw5" }
+          },
+          "patterns": [{ "include": "#string" }]
+        },
+        {
+          "begin": "(?:([\\w\\-]+)\\s*(:)\\s*)?(?=')",
+          "end": "(?<=')",
+          "name": "meta.function.macro.parameter.tw-$1.tw5",
+          "beginCaptures": {
+            "1": { "name": "variable.parameter.tw5" },
+            "2": { "name": "keyword.operator.assignment.tw5" }
+          },
+          "patterns": [{ "include": "#string" }]
+        },
+        {
+          "begin": "(?:([\\w\\-]+)\\s*(:)\\s*)?(?=\\[\\[)",
+          "end": "(?<=\\]\\])",
+          "name": "meta.function.macro.parameter.tw-$1.tw5",
+          "beginCaptures": {
+            "1": { "name": "variable.parameter.tw5" },
+            "2": { "name": "keyword.operator.assignment.tw5" }
+          },
+          "patterns": [{ "include": "#string" }]
+        },
+        {
+          "match": "(?:([\\w\\-]+)\\s*(:)\\s*)?([^\\>\"'\\s]+)",
+          "name": "meta.function.macro.parameter.tw-$1.tw5",
+          "captures": {
+            "1": { "name": "variable.parameter.tw5" },
+            "2": { "name": "keyword.operator.assignment.tw5" },
+            "3": {
+              "begin": "^",
+              "end": "$",
+              "patterns": [{ "include": "#string" }]
+            }
+          }
+        },
+        {
+          "comment": "Match separators.",
+          "match": "[^\\w\\-\\>\\s]+",
+          "name": "punctuation.separator.function.macro.parameter.tw5"
+        }
+      ]
+    },
+    "filteredtranscludeinline": {
+      "begin": "(\\{\\{\\{)",
+      "end": "(\\}\\}\\})",
+      "name": "meta.transclusion.filteredtranscludeblock.tw5",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.transclusion.filteredtranscludeblock.begin.tw5"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.transclusion.filteredtranscludeblock.end.tw5"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Tokenize template tiddler title.",
+          "begin": "(\\|\\|)",
+          "end": "(?=\\}\\}\\})",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.transclusion.filteredtranscludeblock.template.tw5"
+            }
+          },
+          "patterns": [
+            {
+              "comment": "Treat nearest non-whitespace line as template tiddler title.",
+              "begin": "(?<=\\|\\|)\\G",
+              "end": "(?=\\S)((?:(?!\\}\\}\\}).)*?)\\s*(?=$|\\}\\}\\})",
+              "endCaptures": {
+                "1": { "name": "entity.other.name.tiddler.title.template.tw5" }
+              }
+            },
+            {
+              "begin": "(?=\\S)",
+              "end": "(?=\\}\\}\\})",
+              "name": "invalid.illegal.multiline-tiddler-title.tw5"
+            }
+          ]
+        },
+        {
+          "begin": "\\G",
+          "end": "(?=\\|\\||\\}\\}\\})",
+          "name": "meta.filter.tw5",
+          "patterns": [{ "include": "#filter" }]
+        }
+      ]
+    },
+    "transcludeinline": {
+      "begin": "(\\{\\{)",
+      "end": "(\\}\\})",
+      "name": "meta.transclusion.transcludeinline.tw5",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.transclusion.transcludeinline.begin.tw5"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.transclusion.transcludeinline.end.tw5"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Tokenize template tiddler title.",
+          "begin": "(\\|\\|)",
+          "end": "(?=\\}\\})",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.transclusion.transcludeinline.template.tw5"
+            }
+          },
+          "patterns": [
+            {
+              "comment": "Treat nearest non-whitespace line as template tiddler title.",
+              "begin": "(?<=\\|\\|)\\G",
+              "end": "(?=\\S)((?:(?!\\}\\}).)*?)\\s*(?=$|\\}\\})",
+              "endCaptures": {
+                "1": { "name": "entity.other.name.tiddler.title.template.tw5" }
+              }
+            },
+            {
+              "begin": "(?=\\S)",
+              "end": "(?=\\}\\})",
+              "name": "invalid.illegal.multiline-tiddler-title.tw5"
+            }
+          ]
+        },
+        {
+          "comment": "Tokenize text reference.",
+          "begin": "(?<=\\{\\{)\\G",
+          "end": "(?=\\}\\}|\\|\\|)",
+          "patterns": [
+            {
+              "begin": "(?<=\\{\\{)\\G",
+              "end": "(?x)\n(?= \\}\\} | \\|\\|) | # Allow dropping text reference\n(\\S.*?)\\s* (?= $ | \\}\\} | \\|\\|)",
+              "endCaptures": {
+                "1": { "patterns": [{ "include": "#textReference" }] }
+              }
+            },
+            {
+              "begin": "(?=\\S)",
+              "end": "(?=\\|\\||\\}\\})",
+              "name": "invalid.illegal.multiline-text-reference.tw5"
+            }
+          ]
+        }
+      ]
+    },
+    "image": {
+      "begin": "(\\[)(img)",
+      "end": "(?<=\\])\\]",
+      "name": "markup.other.image.tw5",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.image.outer.begin.tw5" },
+        "2": { "name": "keyword.other.img.tw5" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.image.outer.end.tw5" }
+      },
+      "patterns": [
+        {
+          "comment": "Parse image source.",
+          "match": "(\\[)(.*?)(\\])(?=\\])",
+          "captures": {
+            "1": { "name": "punctuation.definition.image.inner.begin.tw5" },
+            "2": {
+              "patterns": [
+                {
+                  "match": "^(?:([^|]*)(\\|))?(.+)$",
+                  "captures": {
+                    "1": { "name": "entity.other.title.tooltip.tw5" },
+                    "2": {
+                      "name": "punctuation.definition.image.title.tooltip.tw5"
+                    },
+                    "3": { "name": "markup.underline.link.tw5" }
+                  }
+                }
+              ]
+            },
+            "3": { "name": "punctuation.definition.image.inner.end.tw5" }
+          }
+        },
+        {
+          "comment": "Parse attribute list.",
+          "begin": "\\G",
+          "end": "(?=\\[)",
+          "name": "meta.attributes.tw5",
+          "patterns": [{ "include": "#attribute" }]
+        }
+      ]
+    },
+    "link": {
+      "patterns": [
+        { "include": "#prettyextlink" },
+        { "include": "#prettylink" },
+        { "include": "#extlink" },
+        { "include": "#syslink" },
+        { "include": "#wikilink" }
+      ]
+    },
+    "prettyextlink": {
+      "match": "(\\[)(ext)(\\[)(.*?)(\\])(\\])",
+      "name": "markup.link.external.tw5",
+      "captures": {
+        "1": { "name": "punctuation.definition.link.outer.begin.tw5" },
+        "2": { "name": "keyword.other.ext.tw5" },
+        "3": { "name": "punctuation.definition.link.external.inner.begin.tw5" },
+        "4": {
+          "patterns": [
+            {
+              "comment": "Parse links like [ext[<Link title>|<URI>]]",
+              "match": "^((.*?))(\\|)((.*?))$",
+              "captures": {
+                "1": { "name": "entity.other.title.link.tw5" },
+                "2": { "name": "string.other.title.link.tw5" },
+                "3": { "name": "punctuation.definition.link.title.tw5" },
+                "4": { "name": "entity.other.link.tw5" },
+                "5": { "name": "markup.underline.link.external.tw5" }
+              }
+            },
+            {
+              "comment": "Parse links like [ext[<URI>]]",
+              "match": "^.*$",
+              "name": "entity.other.link.tw5",
+              "captures": {
+                "0": { "name": "markup.underline.link.external.tw5" }
+              }
+            }
+          ]
+        },
+        "5": { "name": "punctuation.definition.link.external.inner.end.tw5" },
+        "6": { "name": "punctuation.definition.link.external.outer.end.tw5" }
+      }
+    },
+    "prettylink": {
+      "match": "(\\[)(\\[)(.*?)(\\])(\\])",
+      "name": "markup.link.tw5",
+      "captures": {
+        "1": { "name": "punctuation.definition.link.outer.begin.tw5" },
+        "2": { "name": "punctuation.definition.link.inner.begin.tw5" },
+        "3": {
+          "patterns": [
+            {
+              "comment": "Parse links like [[<Link title>|<URI>]]",
+              "match": "^((.*?))(\\|)((.*?))$",
+              "captures": {
+                "1": { "name": "entity.other.title.link.tw5" },
+                "2": { "name": "string.other.title.link.tw5" },
+                "3": { "name": "punctuation.definition.link.title.tw5" },
+                "4": { "name": "entity.other.link.tw5" },
+                "5": { "name": "markup.underline.link.tw5" }
+              }
+            },
+            {
+              "comment": "Parse links like [[<URI>]]",
+              "match": "^.*$",
+              "name": "entity.other.link.tw5",
+              "captures": { "0": { "name": "markup.underline.link.tw5" } }
+            }
+          ]
+        },
+        "4": { "name": "punctuation.definition.link.inner.end.tw5" },
+        "5": { "name": "punctuation.definition.link.outer.end.tw5" }
+      }
+    },
+    "extlink": {
+      "match": "(?<!~)(file|http|https|mailto|ftp|irc|news|data|skype):[^\\s<>{}\\[\\]`|'\"\\\\^~]+",
+      "name": "markup.underline.link.external.$1.tw5"
+    },
+    "syslink": {
+      "match": "(?<!~)(\\$:\\/)[\\w\\/\\.\\-]+",
+      "name": "markup.underline.link.wiki-link.syslink.tw5",
+      "captures": {
+        "1": { "name": "punctuation.definition.link.wiki-link.syslink.tw5" }
+      }
+    },
+    "wikilink": {
+      "match": "(?<!~)(?<!(?:(?:[a-zß-öø-ÿőű])|(?:[A-ZÀ-ÖØ-ÞŐŰ]))|\\-|_)(?:(?:[A-ZÀ-ÖØ-ÞŐŰ])+(?:[a-zß-öø-ÿőű])+(?:[A-ZÀ-ÖØ-ÞŐŰ])(?:(?:[a-zß-öø-ÿőű])|(?:[A-ZÀ-ÖØ-ÞŐŰ]))*)",
+      "name": "markup.underline.link.wiki-link.tw5"
+    },
+    "entity": {
+      "match": "(&)#?[^\\W_]{2,8}(;)",
+      "name": "constant.character.entity.tw5",
+      "captures": {
+        "1": { "name": "punctuation.definition.entity.begin.tw5" },
+        "2": { "name": "punctuation.definition.entity.end.tw5" }
+      }
+    },
+    "dash": {
+      "patterns": [
+        { "match": "--(?!-)", "name": "ndash.markup.other.dash.tw5" },
+        { "match": "---(?!-)", "name": "mdash.markup.other.dash.tw5" }
+      ]
+    },
+    "commentinline": {
+      "begin": "<!--",
+      "end": "-->",
+      "name": "comment.block.commentinline.tw5",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.comment.begin.tw5" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.comment.end.tw5" }
+      }
+    },
+    "classes": {
+      "match": "(?:\\.[^\\s\\.]+)+",
+      "name": "meta.support.classes.tw5",
+      "captures": {
+        "0": {
+          "patterns": [
+            {
+              "match": "(\\.([^\\s\\.]+))",
+              "captures": {
+                "1": { "name": "entity.other.attribute-name.class.css" },
+                "2": { "name": "punctuation.definition.entity.css" }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "styles": {
+      "match": "(?:[^\\s]+?\\:.+?;)+",
+      "name": "meta.support.styles.tw5",
+      "captures": {
+        "0": {
+          "patterns": [
+            {
+              "match": "([^\\s]+?)(\\:)(.+?)(;)",
+              "name": "meta.property-value.css",
+              "captures": {
+                "1": { "name": "support.type.property-name.css" },
+                "2": { "name": "punctuation.separator.key-value.css" },
+                "3": {
+                  "patterns": [{ "include": "source.css#property-values" }]
+                },
+                "4": { "name": "punctuation.terminator.rule.css" }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "filter": {
+      "patterns": [
+        {
+          "comment": "Match filter operation (run).",
+          "begin": "(?:(\\+)|(\\-))?(\\[)",
+          "end": "(\\])",
+          "name": "meta.filter.operation.run.tw5",
+          "contentName": "entity.filter.operator.step.title.tw5",
+          "beginCaptures": {
+            "1": { "name": "keyword.operator.prefix.plus.replacement.tw5" },
+            "2": { "name": "keyword.operator.prefix.minus.difference.tw5" },
+            "3": { "name": "punctuation.definition.filter.operation.begin.tw5" }
+          },
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.filter.operation.end.tw5" }
+          },
+          "patterns": [
+            {
+              "comment": "Match filter operator (step).",
+              "match": "(!?)([^\\[\\{<]*?)(?:(:)([^\\[\\{<]*?))?((<)(.*?)(>))",
+              "name": "meta.filter.operator.step.tw-$2.tw-suffix-$4.tw5",
+              "captures": {
+                "1": { "name": "keyword.operator.prefix.not.negation.tw5" },
+                "2": { "name": "entity.filter.operator.step.name.tw5" },
+                "3": {
+                  "name": "punctuation.definition.filter.operator.suffix.tw5"
+                },
+                "4": { "name": "entity.filter.operator.step.suffix.tw5" },
+                "5": { "name": "variable.entity.operand.tw5" },
+                "6": {
+                  "name": "variable.punctuation.definition.operand.begin.tw5"
+                },
+                "7": {},
+                "8": {
+                  "name": "variable.punctuation.definition.operand.end.tw5"
+                }
+              }
+            },
+            {
+              "comment": "Match filter operator (step).",
+              "match": "(!?)([^\\[\\{<]*?)(?:(:)([^\\[\\{<]*?))?((\\[)(.*?)(\\]))",
+              "name": "meta.filter.operator.step.tw-$2.tw-suffix-$4.tw5",
+              "captures": {
+                "1": { "name": "keyword.operator.prefix.not.negation.tw5" },
+                "2": { "name": "entity.filter.operator.step.name.tw5" },
+                "3": {
+                  "name": "punctuation.definition.filter.operator.suffix.tw5"
+                },
+                "4": { "name": "entity.filter.operator.step.suffix.tw5" },
+                "5": { "name": "direct.entity.operand.tw5" },
+                "6": {
+                  "name": "direct.punctuation.definition.operand.begin.tw5"
+                },
+                "7": {},
+                "8": { "name": "direct.punctuation.definition.operand.end.tw5" }
+              }
+            },
+            {
+              "comment": "Match filter operator (step).",
+              "match": "(!?)([^\\[\\{<]*?)(?:(:)([^\\[\\{<]*?))?((\\{)(.*?)(\\}))",
+              "name": "meta.filter.operator.step.tw-$2.tw-suffix-$4.tw5",
+              "captures": {
+                "1": { "name": "keyword.operator.prefix.not.negation.tw5" },
+                "2": { "name": "entity.filter.operator.step.name.tw5" },
+                "3": {
+                  "name": "punctuation.definition.filter.operator.suffix.tw5"
+                },
+                "4": { "name": "entity.filter.operator.step.suffix.tw5" },
+                "5": { "name": "indirect.entity.operand.tw5" },
+                "6": {
+                  "name": "indirect.punctuation.definition.operand.begin.tw5"
+                },
+                "7": { "patterns": [{ "include": "#textReference" }] },
+                "8": {
+                  "name": "indirect.punctuation.definition.operand.end.tw5"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "begin": "(?:(\\+)|(\\-))?(?=\")",
+          "end": "(?<=\")",
+          "name": "meta.filter.operation.run.tw5",
+          "contentName": "entity.filter.operator.step.title.tw5",
+          "beginCaptures": {
+            "1": { "name": "keyword.operator.prefix.plus.replacement.tw5" },
+            "2": { "name": "keyword.operator.prefix.minus.difference.tw5" }
+          },
+          "patterns": [{ "include": "#string" }]
+        },
+        {
+          "begin": "(?:(\\+)|(\\-))?(?=')",
+          "end": "(?<=')",
+          "name": "meta.filter.operation.run.tw5",
+          "contentName": "entity.filter.operator.step.title.tw5",
+          "beginCaptures": {
+            "1": { "name": "keyword.operator.prefix.plus.replacement.tw5" },
+            "2": { "name": "keyword.operator.prefix.minus.difference.tw5" }
+          },
+          "patterns": [{ "include": "#string" }]
+        },
+        {
+          "match": "(?:(\\+)|(\\-))?(\\S+)",
+          "name": "meta.filter.operation.run.tw5",
+          "captures": {
+            "1": { "name": "keyword.operator.prefix.plus.replacement.tw5" },
+            "2": { "name": "keyword.operator.prefix.minus.difference.tw5" },
+            "3": {
+              "patterns": [
+                {
+                  "match": "^.*$",
+                  "name": "entity.filter.operator.step.title.tw5",
+                  "captures": {
+                    "0": { "patterns": [{ "include": "#string" }] }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "attribute": {
+      "patterns": [
+        {
+          "begin": "([^\\s\\/>\"'=]+)\\s*(=)\\s*(?=\"\"\")",
+          "end": "(?<=\"\"\")",
+          "name": "meta.attribute.tw-$1.tw5",
+          "contentName": "direct.entity.attribute-value.tw5",
+          "captures": {
+            "1": { "name": "entity.other.attribute-name.t5" },
+            "2": { "name": "keyword.operator.assignment.tw5" }
+          },
+          "patterns": [{ "include": "#string" }]
+        },
+        {
+          "begin": "([^\\s\\/>\"'=]+)\\s*(=)\\s*(?=\")",
+          "end": "(?<=\")",
+          "name": "meta.attribute.tw-$1.tw5",
+          "contentName": "direct.entity.attribute-value.tw5",
+          "captures": {
+            "1": { "name": "entity.other.attribute-name.t5" },
+            "2": { "name": "keyword.operator.assignment.tw5" }
+          },
+          "patterns": [{ "include": "#string" }]
+        },
+        {
+          "begin": "([^\\s\\/>\"'=]+)\\s*(=)\\s*(?=')",
+          "end": "(?<=')",
+          "name": "meta.attribute.tw-$1.tw5",
+          "contentName": "direct.entity.attribute-value.tw5",
+          "captures": {
+            "1": { "name": "entity.other.attribute-name.t5" },
+            "2": { "name": "keyword.operator.assignment.tw5" }
+          },
+          "patterns": [{ "include": "#string" }]
+        },
+        {
+          "begin": "([^\\s\\/>\"'=]+)\\s*(=)\\s*(?=<<[^>\\s]+)",
+          "end": "(?<=>>)",
+          "name": "meta.attribute.tw-$1.tw5",
+          "contentName": "variable.macro.entity.attribute-value.tw5",
+          "captures": {
+            "1": { "name": "entity.other.attribute-name.t5" },
+            "2": { "name": "keyword.operator.assignment.tw5" }
+          },
+          "patterns": [{ "include": "#macrocallinline" }]
+        },
+        {
+          "begin": "([^\\s\\/>\"'=]+)\\s*(=)\\s*(?=\\{\\{)",
+          "end": "(?<=\\}\\})",
+          "name": "meta.attribute.tw-$1.tw5",
+          "contentName": "indirect.entity.attribute-value.tw5",
+          "captures": {
+            "1": { "name": "entity.other.attribute-name.t5" },
+            "2": { "name": "keyword.operator.assignment.tw5" }
+          },
+          "patterns": [
+            {
+              "match": "(\\{\\{)(.*?)(\\}\\})",
+              "captures": {
+                "1": {
+                  "name": "punctuation.definition.text-reference.begin.tw5"
+                },
+                "2": { "patterns": [{ "include": "#textReference" }] },
+                "3": { "name": "punctuation.definition.text-reference.end.tw5" }
+              }
+            }
+          ]
+        },
+        {
+          "match": "([^\\s\\/>\"'=]+)(?:\\s*(=)\\s*([^\\s\\/<>\"'=]+))?",
+          "name": "meta.attribute.tw-$1.tw5",
+          "captures": {
+            "1": { "name": "entity.other.attribute-name.t5" },
+            "2": { "name": "keyword.operator.assignment.tw5" },
+            "3": { "patterns": [{ "include": "#string" }] }
+          }
+        }
+      ]
+    },
+    "textReference": {
+      "match": "^(.*?)(?:(!!)(.*)|(\\#\\#)(.*))?$",
+      "name": "meta.support.text-reference.tw5",
+      "captures": {
+        "0": { "name": "string.other.text-reference.tw5" },
+        "1": {
+          "name": "entity.other.name.tiddler.field.tiddler-field.title.tw5"
+        },
+        "2": {
+          "name": "punctuation.definition.text-reference.field.tiddler-field.tw5"
+        },
+        "3": { "name": "entity.other.name.tiddler.field.tiddler-field.tw5" },
+        "4": {
+          "name": "punctuation.definition.text-reference.index.data-index.tiddler-index.tw5"
+        },
+        "5": {
+          "name": "entity.other.name.tiddler.index.data-index.tiddler-index.tw5"
+        }
+      }
+    },
+    "string": {
+      "patterns": [
+        {
+          "begin": "\"\"\"",
+          "end": "\"\"\"",
+          "name": "triple.string.quoted.tw5",
+          "beginCaptures": {
+            "0": { "name": "triple.punctuation.definition.string.begin.tw5" }
+          },
+          "endCaptures": {
+            "0": { "name": "triple.punctuation.definition.string.end.tw5" }
+          }
+        },
+        {
+          "begin": "\"",
+          "end": "\"",
+          "name": "double.string.quoted.tw5",
+          "beginCaptures": {
+            "0": { "name": "double.punctuation.definition.string.begin.tw5" }
+          },
+          "endCaptures": {
+            "0": { "name": "double.punctuation.definition.string.end.tw5" }
+          }
+        },
+        {
+          "begin": "'",
+          "end": "'",
+          "name": "single.string.quoted.tw5",
+          "beginCaptures": {
+            "0": { "name": "single.punctuation.definition.string.begin.tw5" }
+          },
+          "endCaptures": {
+            "0": { "name": "single.punctuation.definition.string.end.tw5" }
+          }
+        },
+        {
+          "begin": "\\[\\[",
+          "end": "\\]\\]",
+          "name": "parens.square.string.quoted.tw5",
+          "beginCaptures": {
+            "0": {
+              "name": "parens.square.punctuation.definition.string.begin.tw5"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "parens.square.punctuation.definition.string.end.tw5"
+            }
+          }
+        },
+        { "match": "\\S+", "name": "string.unquoted.tw5" }
+      ]
+    }
+  }
+}

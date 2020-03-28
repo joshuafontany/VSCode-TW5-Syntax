@@ -1,0 +1,12 @@
+{
+  "name": "TiddlyWiki5 meta file",
+  "scopeName": "source.tiddlywiki5.meta-file",
+  "fileTypes": ["meta"],
+  "patterns": [
+    {
+      "begin": "^",
+      "contentName": "meta.tiddler-fields.tiddlywiki5",
+      "patterns": [{ "include": "source.tiddlywiki5.fields" }]
+    }
+  ]
+}

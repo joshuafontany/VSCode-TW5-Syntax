@@ -1,0 +1,20 @@
+{
+  "name": "TiddlyWiki5 tid file",
+  "scopeName": "source.tiddlywiki5.tid-file",
+  "fileTypes": ["tid"],
+  "patterns": [
+    {
+      "comment": "Tokenize tiddler text field.",
+      "begin": "(?<=^$)",
+      "contentName": "meta.tiddler-text.tiddlywiki5",
+      "patterns": [{ "include": "text.html.tiddlywiki5" }]
+    },
+    {
+      "comment": "Tokenize mandatory tiddler metadata.",
+      "begin": "^",
+      "end": "^$",
+      "contentName": "meta.tiddler-fields.tiddlywiki5",
+      "patterns": [{ "include": "source.tiddlywiki5.fields" }]
+    }
+  ]
+}
