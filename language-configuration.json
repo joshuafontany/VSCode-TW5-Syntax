@@ -11,11 +11,12 @@
     ],
     // symbols that are auto closed when typing
     "autoClosingPairs": [
-        ["{", "}"],
-        ["[", "]"],
-        ["(", ")"],
-        ["<", ">"],
-        ["\"", "\""]
+        { "open": "{", "close": "}"},
+		{ "open": "[", "close": "]"},
+		{ "open": "(", "close": ")" },
+		{ "open": "<", "close": ">" },
+		{ "open": "\"", "close": "\"" },
+		{ "open": "<!--", "close": "-->", "notIn": [ "comment", "string" ]}
     ],
     "autoCloseBefore": ";:.,=}])>` \n\t",
     // symbols that can be used to surround a selection
