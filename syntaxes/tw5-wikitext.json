@@ -1364,7 +1364,7 @@
         {
           "begin": "''",
           "end": "''",
-          "contentName": "bold.markup.tiddlywiki5",
+          "contentName": "markup.bold.tiddlywiki5",
           "beginCaptures": {
             "0": { "name": "bold.punctuation.definition.markup.begin.tiddlywiki5" }
           },
@@ -1376,7 +1376,7 @@
         {
           "begin": "//",
           "end": "//",
-          "contentName": "italic.markup.tiddlywiki5",
+          "contentName": "markup.italic.tiddlywiki5",
           "beginCaptures": {
             "0": { "name": "italic.punctuation.definition.markup.begin.tiddlywiki5" }
           },
@@ -1388,7 +1388,7 @@
         {
           "begin": "__",
           "end": "__",
-          "contentName": "underscore.markup.tiddlywiki5",
+          "contentName": "markup.underline.tiddlywiki5",
           "beginCaptures": {
             "0": {
               "name": "underscore.punctuation.definition.markup.begin.tiddlywiki5"
@@ -1402,7 +1402,7 @@
         {
           "begin": "\\^\\^",
           "end": "\\^\\^",
-          "contentName": "superscript.markup.tiddlywiki5",
+          "contentName": "markup.superscript.tiddlywiki5",
           "beginCaptures": {
             "0": {
               "name": "superscript.punctuation.definition.markup.begin.tiddlywiki5"
@@ -1416,7 +1416,7 @@
         {
           "begin": ",,",
           "end": ",,",
-          "contentName": "subscript.markup.tiddlywiki5",
+          "contentName": "markup.subscript.tiddlywiki5",
           "beginCaptures": {
             "0": { "name": "subscript.punctuation.definition.markup.begin.tiddlywiki5" }
           },
@@ -1428,7 +1428,7 @@
         {
           "begin": "~~",
           "end": "~~",
-          "contentName": "strikethrough.markup.tiddlywiki5",
+          "contentName": "markup.strikethrough.tiddlywiki5",
           "beginCaptures": {
             "0": {
               "name": "strikethrough.punctuation.definition.markup.begin.tiddlywiki5"

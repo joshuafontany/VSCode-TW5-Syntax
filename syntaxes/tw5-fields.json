@@ -10,7 +10,7 @@
           "name": "meta.tiddler-field.tiddlywiki5",
           "captures": {
             "1": { 
-              "name": "entity.other.attribute.field-name.tiddlywiki5",
+              "name": "entity.other.attribute-name.field.tiddlywiki5",
               "patterns": [
                 {
                   "comment": "Test for illegal characters", 

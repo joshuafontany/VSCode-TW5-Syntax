@@ -14,7 +14,7 @@ title: $:/tid
 \end
 \define myMacro()  
 \end
-\define myMacro()  
+\define myMacro()
 * ''multiline'' body
 
 This paragraph ends here.
@@ -90,7 +90,9 @@ Before parsing macro body text, it's being preprocessed.
 \rules except bold italic heading
 \rules only table
 \rules only html dash entity
-
+\rules
+\whitespace trim|notrim
+\import [filter[expression]]
 
 <!--#region folder -->
 test
@@ -919,3 +921,4 @@ hide this
 
 
 test 
+table
