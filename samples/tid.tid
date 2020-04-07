@@ -91,7 +91,8 @@ Before parsing macro body text, it's being preprocessed.
 \rules only table
 \rules only html dash entity
 \rules
-\whitespace trim|notrim
+\whitespace trim
+\whitespace notrim
 \import [filter[expression]]
 
 <!--#region folder -->

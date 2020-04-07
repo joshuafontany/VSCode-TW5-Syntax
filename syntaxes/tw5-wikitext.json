@@ -54,7 +54,24 @@
       ]
     },
     "pragma": {
-      "patterns": [{ "include": "#macrodef" }, { "include": "#rules" }]
+      "patterns": [
+        { "include": "#import" },
+        { "include": "#macrodef" },
+        { "include": "#rules" },
+        { "include": "#whitespace" }
+      ]
+    },
+    "import": {
+      "match": "^(\\\\)(import)\\s+(.*)$",
+      "name": "meta.pragma.directive.import.tiddlywiki5",
+      "captures": {
+        "1": { "name": "punctuation.definition.pragma.directive.tiddlywiki5" },
+        "2": { "name": "keyword.control.directive.import.tiddlywiki5" },
+        "3": {
+          "name": "meta.filter.tiddlywiki5",
+          "patterns": [{ "include": "#filter" }]
+        }
+      }
     },
     "macrodef": {
       "begin": "^(\\\\)(define)\\s+([^\\s\\(]+)(?=\\()",
@@ -196,6 +213,15 @@
         "4": {
           "patterns": [{ "match": "\\S+", "name": "variable.parameter.tiddlywiki5" }]
         }
+      }
+    },
+    "whitespace": {
+      "match": "^(\\\\)(whitespace)\\s+(trim|notrim)?$",
+      "name": "meta.pragma.directive.whitespace.tiddlywiki5",
+      "captures": {
+        "1": { "name": "punctuation.definition.pragma.directive.tiddlywiki5" },
+        "2": { "name": "keyword.control.directive.whitespace.tiddlywiki5" },
+        "3": { "name": "keyword.operator.$3.tiddlywiki5" }
       }
     },
     "block": {
