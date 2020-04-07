@@ -2,7 +2,7 @@ field:value
 field: value:value
 field: : :field: value:
  field   :  value
-  field name   : :field value: <<macro "attribute">>
+  field name   : :field value: <<macro attribute:"value">>
 Illegal_&Field:  
 <field>:
 title: $:/tid
@@ -228,6 +228,7 @@ TEST TEXT BLOCK <$transclude tiddler="test"/>
 * [[http://tiddlywiki.com IsStill $:/wiki/link]]
 * [[ ]]
 * [[]]
+* [[Displayed Link Title|Tiddler Title]]
 * [[Link title|Anything is a link here]]
 * [[ Link title | ~http://tiddlywiki.com ]]
 * [[ Link title |  Wiki Link  ]]
@@ -251,7 +252,7 @@ TEST TEXT BLOCK <$transclude tiddler="test"/>
 * [ext[ | ]]
 * [ext[|]]
 
-* [img[]]
+* [img[title]]
 * [img[ ]]
 * [img [ ]]
 * [img [Tiddler title]]
@@ -347,6 +348,7 @@ wraps inline run""" into `HTMLSpanElement` @@
 * {{{ filter }}}
 * {{{filter ||}}}
 * {{{ filter || templateTitle }}}
+* {{{ [filter[]step[]] || templateTitle }}}
 * {{{
 }}}
 * {{{
