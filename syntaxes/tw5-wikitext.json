@@ -454,7 +454,7 @@
         {
           "begin": "\\G([\\w-]*)$",
           "end": "(?=^```$)",
-          "contentName": "markup.raw.tiddlywiki5",
+          "contentName": "markup.inline.raw.tiddlywiki5",
           "beginCaptures": {
             "1": { "name": "entity.other.attribute-name.language.tiddlywiki5" }
           }
@@ -644,7 +644,7 @@
         {
           "begin": "\\G([^\\s>]*)(?:\\s*(>)\\s*(\\S+))?$",
           "end": "(?=^\\$\\$\\$$)",
-          "contentName": "markup.raw.tiddlywiki5",
+          "contentName": "markup.inline.raw.tiddlywiki5",
           "beginCaptures": {
             "1": { "name": "entity.other.attribute-name.parse.tiddlywiki5" },
             "2": { "name": "punctuation.definition.typedblock.render.tiddlywiki5" },
@@ -1447,7 +1447,7 @@
     "codeinline": {
       "begin": "``?",
       "end": "\\0",
-      "contentName": "markup.raw.tiddlywiki5",
+      "contentName": "markup.inline.raw.tiddlywiki5",
       "beginCaptures": {
         "0": { "name": "punctuation.definition.raw.markup.begin.tiddlywiki5" }
       },
