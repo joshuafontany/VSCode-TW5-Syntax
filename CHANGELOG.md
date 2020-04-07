@@ -4,6 +4,11 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
+
+## 0.1.1
+
+- Improved string and pragma recognition
+
+## 0.1.0
 
 - Initial release
