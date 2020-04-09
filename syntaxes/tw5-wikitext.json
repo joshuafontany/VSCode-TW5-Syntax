@@ -2142,22 +2142,22 @@
       ]
     },
     "textReference": {
-      "match": "([^!\\#\\}\\|]*?)(?:(!!)(.*)|(\\#\\#)(.*))?",
+      "match": "([^!\\#]*)(?:(!!)(.*)|(\\#\\#)(.*))?",
       "name": "meta.support.text-reference.tiddlywiki5",
       "captures": {
-        "0": { "name": "string.other.text-reference.tiddlywiki5" },
+        "0": { "name": "string.text-reference.tiddlywiki5" },
         "1": {
-          "name": "entity.other.name.tiddler.field.tiddler-field.title.tiddlywiki5"
+          "name": "entity.name.tiddler.field.title.tiddlywiki5"
         },
         "2": {
-          "name": "punctuation.definition.text-reference.field.tiddler-field.tiddlywiki5"
+          "name": "punctuation.definition.text-reference.field.tiddlywiki5"
         },
-        "3": { "name": "entity.other.name.tiddler.field.tiddler-field.tiddlywiki5" },
+        "3": { "name": "entity.name.tiddler.field.tiddlywiki5" },
         "4": {
-          "name": "punctuation.definition.text-reference.index.data-index.tiddler-index.tiddlywiki5"
+          "name": "punctuation.definition.text-reference.index..tiddlywiki5"
         },
         "5": {
-          "name": "entity.other.name.tiddler.index.data-index.tiddler-index.tiddlywiki5"
+          "name": "entity.name.tiddler.index.tiddlywiki5"
         }
       }
     },

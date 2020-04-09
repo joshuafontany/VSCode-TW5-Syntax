@@ -16,6 +16,8 @@ title: $:/tid/title/with/slashes
 \end
 \define myMacro()
 * ''multiline'' body
+* {{{  [operator1:suffix1[tiddler title]operator2:suffix2<variable name>operator3:suffix3{text!!reference}] }}}
+* <tag attr={{tiddler!!field}}/>
 
 This paragraph ends here.
 \end
