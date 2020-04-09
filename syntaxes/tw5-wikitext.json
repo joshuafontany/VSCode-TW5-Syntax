@@ -996,15 +996,15 @@
     "transcludeblock": {
       "begin": "\\s*(\\{\\{)",
       "end": "(\\}\\})\\r?\\n",
-      "name": "meta.transclusion.transcludeblock.tiddlywiki5",
+      "name": "meta.transclusion.transcludeblock.tw5",
       "beginCaptures": {
         "1": {
-          "name": "punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5"
+          "name": "punctuation.definition.transclusion.transcludeblock.begin.tw5"
         }
       },
       "endCaptures": {
         "1": {
-          "name": "punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5"
+          "name": "punctuation.definition.transclusion.transcludeblock.end.tw5"
         }
       },
       "patterns": [
@@ -1014,7 +1014,7 @@
           "end": "(?=\\}\\})",
           "beginCaptures": {
             "1": {
-              "name": "punctuation.definition.transclusion.transcludeblock.template.tiddlywiki5"
+              "name": "punctuation.definition.transclusion.transcludeblock.template.tw5"
             }
           },
           "patterns": [
@@ -1023,35 +1023,37 @@
               "begin": "(?<=\\|\\|)\\G",
               "end": "(?=\\S)((?:(?!\\}\\}).)*?)\\s*(?=$|\\}\\})",
               "endCaptures": {
-                "1": { "name": "entity.other.name.tiddler.title.template.tiddlywiki5" }
+                "1": { "name": "entity.other.name.tiddler.title.template.tw5" }
               }
             },
             {
               "begin": "(?=\\S)",
               "end": "(?=\\}\\})",
-              "name": "invalid.illegal.multiline-tiddler-title.tiddlywiki5"
+              "name": "invalid.illegal.multiline-tiddler-title.tw5"
             }
           ]
         },
         {
           "comment": "Tokenize text reference.",
-          "name": "meta.tokenize.text-reference.tiddlywiki5",
+          "name": "meta.transclusion.tokenize.tiddlywiki5",
           "begin": "(?<=\\{\\{)",
           "end": "(?=\\}\\}|\\|\\|)",
           "patterns": [
             {
-              "comment": "# Allow dropping text reference",
-              "name": "meta.tokenize.text-reference.tiddlywiki5",
+              "comment": "Allow dropping text reference.",
               "begin": "(?<=\\{\\{)",
               "end": "(?=\\}\\}|\\|\\|)|(\\S.*?)\\s*(?=$|\\}\\}|\\|\\|)",
               "endCaptures": {
-                "1": { "patterns": [{ "include": "#textReference" }] }
+                "1": { 
+                  "name": "meta.transclusion.text-reference.tiddlywiki5",
+                  "patterns": [{ "include": "#textReference" }] 
+                }
               }
             },
             {
               "begin": "(?=\\S)",
               "end": "(?=\\|\\||\\}\\})",
-              "name": "invalid.illegal.multiline-text-reference.tiddlywiki5"
+              "name": "invalid.illegal.multiline-text-reference.tw5"
             }
           ]
         }
@@ -1711,20 +1713,25 @@
         },
         {
           "comment": "Tokenize text reference.",
-          "begin": "(?<=\\{\\{)\\G",
+          "name": "meta.transclusion.tokenize.tiddlywiki5",
+          "begin": "(?<=\\{\\{)",
           "end": "(?=\\}\\}|\\|\\|)",
           "patterns": [
             {
-              "begin": "(?<=\\{\\{)\\G",
-              "end": "(?x)\n(?= \\}\\} | \\|\\|) | # Allow dropping text reference\n(\\S.*?)\\s* (?= $ | \\}\\} | \\|\\|)",
+              "comment": "Allow dropping text reference.",
+              "begin": "(?<=\\{\\{)",
+              "end": "(?=\\}\\}|\\|\\|)|(\\S.*?)\\s*(?=$|\\}\\}|\\|\\|)",
               "endCaptures": {
-                "1": { "patterns": [{ "include": "#textReference" }] }
+                "1": { 
+                  "name": "meta.transclusion.text-reference.tiddlywiki5",
+                  "patterns": [{ "include": "#textReference" }] 
+                }
               }
             },
             {
               "begin": "(?=\\S)",
               "end": "(?=\\|\\||\\}\\})",
-              "name": "invalid.illegal.multiline-text-reference.tiddlywiki5"
+              "name": "invalid.illegal.multiline-text-reference.tw5"
             }
           ]
         }
@@ -2135,7 +2142,7 @@
       ]
     },
     "textReference": {
-      "match": "(.*?)(?:(!!)(.*)|(\\#\\#)(.*))?",
+      "match": "([^!\\#\\}\\|]*?)(?:(!!)(.*)|(\\#\\#)(.*))?",
       "name": "meta.support.text-reference.tiddlywiki5",
       "captures": {
         "0": { "name": "string.other.text-reference.tiddlywiki5" },
