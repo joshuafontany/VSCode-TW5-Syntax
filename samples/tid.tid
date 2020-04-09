@@ -5,7 +5,7 @@ field: : :field: value:
   field name   : :field value: <<macro attribute:"value">>
 Illegal_&Field:  
 <field>:
-title: $:/tid
+title: $:/tid/title/with/slashes
 
 \define myMacro(arg1:"default")''single line'' body
 \define myMacro()  ''single line'' body  
@@ -389,9 +389,9 @@ wraps inline run""" into `HTMLSpanElement` @@
 * {{ || }}
 * {{||templateTitle}}
 * {{title||templateTitle}}
-* {{title!!field || templateTitle}}
-* {{title##index || templateTitle}}
-* {{ long title !! long !! field || long template title}}
+* {{title!!field||templateTitle}}
+* {{title##index||templateTitle}}
+* {{ long title !!.long.___-field-|| long template title}}
 * {{
 }}
 * {{
@@ -615,7 +615,7 @@ Inline  <my-tag
 
   -[!:suffix1[tiddler title]!operator2:<variable name>!:{text!!reference}]
 
-  "tiddler title"tiddler_title'tiddler title'[[tiddler title]]
+  "tiddler title" tiddler_title 'tiddler title' [[tiddler title]]
   +"tiddler title"+tiddler_title+'tiddler title'+[[tiddler title]]
   +"tiddler title"+'tiddler title'+[[tiddler title]]+tiddler_title
 }}}
@@ -924,4 +924,3 @@ hide this
 
 
 test 
-table

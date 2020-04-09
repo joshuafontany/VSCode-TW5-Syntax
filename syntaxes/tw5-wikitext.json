@@ -1035,12 +1035,15 @@
         },
         {
           "comment": "Tokenize text reference.",
-          "begin": "(?<=\\{\\{)\\G",
+          "name": "meta.tokenize.text-reference.tiddlywiki5",
+          "begin": "(?<=\\{\\{)",
           "end": "(?=\\}\\}|\\|\\|)",
           "patterns": [
             {
-              "begin": "(?<=\\{\\{)\\G",
-              "end": "(?x)\n(?= \\}\\} | \\|\\|) | # Allow dropping text reference\n(\\S.*?)\\s* (?= $ | \\}\\} | \\|\\|)",
+              "comment": "# Allow dropping text reference",
+              "name": "meta.tokenize.text-reference.tiddlywiki5",
+              "begin": "(?<=\\{\\{)",
+              "end": "(?=\\}\\}|\\|\\|)|(\\S.*?)\\s*(?=$|\\}\\}|\\|\\|)",
               "endCaptures": {
                 "1": { "patterns": [{ "include": "#textReference" }] }
               }
@@ -1893,8 +1896,8 @@
             {
               "match": "(\\.([^\\s\\.]+))",
               "captures": {
-                "1": { "name": "entity.other.attribute-name.class.css" },
-                "2": { "name": "punctuation.definition.entity.css" }
+                "1": { "name": "punctuation.definition.entity.css" },
+                "2": { "name": "entity.other.attribute-name.class.css" }
               }
             }
           ]
@@ -1926,88 +1929,92 @@
     "filter": {
       "patterns": [
         {
-          "comment": "Match filter operation (run).",
+          "comment": "Match bracketed filter run.",
           "begin": "(?:(\\+)|(\\-))?(\\[)",
           "end": "(\\])",
-          "name": "meta.filter.operation.run.tiddlywiki5",
-          "contentName": "entity.filter.operator.step.title.tiddlywiki5",
+          "name": "meta.filter.run.tiddlywiki5",
+          "contentName": "entity.filter.operator.title.tiddlywiki5",
           "beginCaptures": {
             "1": { "name": "keyword.operator.prefix.plus.replacement.tiddlywiki5" },
             "2": { "name": "keyword.operator.prefix.minus.difference.tiddlywiki5" },
-            "3": { "name": "punctuation.definition.filter.operation.begin.tiddlywiki5" }
+            "3": { "name": "punctuation.definition.filter.run.begin.tiddlywiki5" }
           },
           "endCaptures": {
-            "1": { "name": "punctuation.definition.filter.operation.end.tiddlywiki5" }
+            "1": { "name": "punctuation.definition.filter.run.end.tiddlywiki5" }
           },
           "patterns": [
             {
-              "comment": "Match filter operator (step).",
+              "comment": "Match string filter operator (step).",
+              "match": "(!?)([^\\[\\{<]*?)(?:(:)([^\\[\\{<]*?))?((\\[)(.*?)(\\]))",
+              "name": "meta.filter.operator.step.tw-$2.tw-suffix-$4.tiddlywiki5",
+              "captures": {
+                "1": { "name": "keyword.control.operator.prefix.negation.tiddlywiki5" },
+                "2": { "name": "keyword.operator.filter.tiddlywiki5" },
+                "3": {
+                  "name": "keyword.control.operator.suffix.tiddlywiki5"
+                },
+                "4": { "name": "keyword.operator.suffix.tiddlywiki5" },
+                "5": { "name": "meta.string.entity.filter.operand.tiddlywiki5" },
+                "6": {
+                  "name": "string.punctuation.definition.operand.begin.tiddlywiki5"
+                },
+                "7": {"name": "string.entity.filter.operand.tiddlywiki5"},
+                "8": { "name": "string.punctuation.definition.operand.end.tiddlywiki5" }
+              }
+            },
+            {
+              "comment": "Match variable filter operator (step).",
               "match": "(!?)([^\\[\\{<]*?)(?:(:)([^\\[\\{<]*?))?((<)(.*?)(>))",
               "name": "meta.filter.operator.step.tw-$2.tw-suffix-$4.tiddlywiki5",
               "captures": {
-                "1": { "name": "keyword.operator.prefix.not.negation.tiddlywiki5" },
-                "2": { "name": "entity.name.operator.filter.step.tiddlywiki5" },
+                "1": { "name": "keyword.control.operator.prefix.negation.tiddlywiki5" },
+                "2": { "name": "keyword.operator.operator.filter.tiddlywiki5" },
                 "3": {
-                  "name": "punctuation.definition.filter.operator.suffix.tiddlywiki5"
+                  "name": "keyword.control.operator.suffix.tiddlywiki5"
                 },
-                "4": { "name": "entity.filter.operator.step.suffix.tiddlywiki5" },
-                "5": { "name": "variable.entity.operand.tiddlywiki5" },
+                "4": { "name": "keyword.operator.suffix.tiddlywiki5" },
+                "5": { "name": "meta.variable.entity.filter.operand.tiddlywiki5" },
                 "6": {
                   "name": "variable.punctuation.definition.operand.begin.tiddlywiki5"
                 },
-                "7": {},
+                "7": {"name": "variable.entity.filter.operand.tiddlywiki5"},
                 "8": {
                   "name": "variable.punctuation.definition.operand.end.tiddlywiki5"
                 }
               }
             },
             {
-              "comment": "Match filter operator (step).",
-              "match": "(!?)([^\\[\\{<]*?)(?:(:)([^\\[\\{<]*?))?((\\[)(.*?)(\\]))",
-              "name": "meta.filter.operator.step.tw-$2.tw-suffix-$4.tiddlywiki5",
-              "captures": {
-                "1": { "name": "keyword.operator.prefix.not.negation.tiddlywiki5" },
-                "2": { "name": "entity.name.operator.filter.step.tiddlywiki5" },
-                "3": {
-                  "name": "punctuation.definition.filter.operator.suffix.tiddlywiki5"
-                },
-                "4": { "name": "entity.filter.operator.step.suffix.tiddlywiki5" },
-                "5": { "name": "direct.entity.operand.tiddlywiki5" },
-                "6": {
-                  "name": "direct.punctuation.definition.operand.begin.tiddlywiki5"
-                },
-                "7": {},
-                "8": { "name": "direct.punctuation.definition.operand.end.tiddlywiki5" }
-              }
-            },
-            {
-              "comment": "Match filter operator (step).",
+              "comment": "Match text reference filter operator (step).",
               "match": "(!?)([^\\[\\{<]*?)(?:(:)([^\\[\\{<]*?))?((\\{)(.*?)(\\}))",
               "name": "meta.filter.operator.step.tw-$2.tw-suffix-$4.tiddlywiki5",
               "captures": {
-                "1": { "name": "keyword.operator.prefix.not.negation.tiddlywiki5" },
-                "2": { "name": "entity.name.operator.filter.step.tiddlywiki5" },
+                "1": { "name": "keyword.control.operator.prefix.negation.tiddlywiki5" },
+                "2": { "name": "keyword.operator.filter.tiddlywiki5" },
                 "3": {
-                  "name": "punctuation.definition.filter.operator.suffix.tiddlywiki5"
+                  "name": "keyword.control.operator.suffix.tiddlywiki5"
                 },
-                "4": { "name": "entity.filter.operator.step.suffix.tiddlywiki5" },
-                "5": { "name": "indirect.entity.operand.tiddlywiki5" },
+                "4": { "name": "keyword.operator.suffix.tiddlywiki5" },
+                "5": { "name": "meta.entity.indirect.operand.tiddlywiki5" },
                 "6": {
-                  "name": "indirect.punctuation.definition.operand.begin.tiddlywiki5"
+                  "name": "entity.name.punctuation.definition.operand.begin.tiddlywiki5"
                 },
-                "7": { "patterns": [{ "include": "#textReference" }] },
+                "7": { 
+                  "name": "entity.name.indirect.operand.tiddlywiki5",
+                  "patterns": [{ "include": "#textReference" }] 
+                },
                 "8": {
-                  "name": "indirect.punctuation.definition.operand.end.tiddlywiki5"
+                  "name": "entity.name.punctuation.definition.operand.end.tiddlywiki5"
                 }
               }
             }
           ]
         },
         {
+          "comment": "Match double-quoted filter run.",
           "begin": "(?:(\\+)|(\\-))?(?=\")",
           "end": "(?<=\")",
-          "name": "meta.filter.operation.run.tiddlywiki5",
-          "contentName": "entity.filter.operator.step.title.tiddlywiki5",
+          "name": "meta.filter.run.tiddlywiki5",
+          "contentName": "entity.filter.operator.title.tiddlywiki5",
           "beginCaptures": {
             "1": { "name": "keyword.operator.prefix.plus.replacement.tiddlywiki5" },
             "2": { "name": "keyword.operator.prefix.minus.difference.tiddlywiki5" }
@@ -2015,10 +2022,11 @@
           "patterns": [{ "include": "#string" }]
         },
         {
+          "comment": "Match single-quoted filter run.",
           "begin": "(?:(\\+)|(\\-))?(?=')",
           "end": "(?<=')",
-          "name": "meta.filter.operation.run.tiddlywiki5",
-          "contentName": "entity.filter.operator.step.title.tiddlywiki5",
+          "name": "meta.filter.run.tiddlywiki5",
+          "contentName": "entity.filter.operator.title.tiddlywiki5",
           "beginCaptures": {
             "1": { "name": "keyword.operator.prefix.plus.replacement.tiddlywiki5" },
             "2": { "name": "keyword.operator.prefix.minus.difference.tiddlywiki5" }
@@ -2026,8 +2034,9 @@
           "patterns": [{ "include": "#string" }]
         },
         {
+          "comment": "Match unquoted filter run.",
           "match": "(?:(\\+)|(\\-))?(\\S+)",
-          "name": "meta.filter.operation.run.tiddlywiki5",
+          "name": "meta.filter.run.tiddlywiki5",
           "captures": {
             "1": { "name": "keyword.operator.prefix.plus.replacement.tiddlywiki5" },
             "2": { "name": "keyword.operator.prefix.minus.difference.tiddlywiki5" },
@@ -2035,7 +2044,7 @@
               "patterns": [
                 {
                   "match": "^.*$",
-                  "name": "entity.filter.operator.step.title.tiddlywiki5",
+                  "name": "entity.filter.operator.title.tiddlywiki5",
                   "captures": {
                     "0": { "patterns": [{ "include": "#string" }] }
                   }
@@ -2126,7 +2135,7 @@
       ]
     },
     "textReference": {
-      "match": "^(.*?)(?:(!!)(.*)|(\\#\\#)(.*))?$",
+      "match": "(.*?)(?:(!!)(.*)|(\\#\\#)(.*))?",
       "name": "meta.support.text-reference.tiddlywiki5",
       "captures": {
         "0": { "name": "string.other.text-reference.tiddlywiki5" },
