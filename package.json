@@ -19,21 +19,36 @@
         "url": "https://github.com/joshuafontany/VSCode-TW5-Syntax.git"
     },
     "contributes": {
-        "languages": [{
-            "id": "tiddlywiki5",
-            "aliases": ["TiddlyWiki5", "tiddlywiki5"],
-            "extensions": [".tid",".tw",".tw5",".multitids",".meta"],
-            "mimetypes": [
-                "text/vnd.tiddlywiki",
-                "application/x-tiddler"
-            ],
-            "configuration": "./language-configuration.json"
-        }],
+        "languages": [
+            {
+                "id": "tid",
+                "aliases": ["Tid", "tid"],
+                "extensions": [".tid",".meta"],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "multids",
+                "aliases": ["Multids", "multids"],
+                "extensions": [".multids"],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "tiddlywiki5",
+                "aliases": ["TiddlyWiki5", "tiddlywiki5"],
+                "extensions": [".tw",".tw5"],
+                "mimetypes": [
+                    "text/vnd.tiddlywiki",
+                    "application/x-tiddler"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
         "grammars": [{
-            "language": "tiddlywiki5",
+            "language": "tid",
             "scopeName": "source.tiddlywiki5.tid-file",
 			"path": "./syntaxes/tw5-tid-file.json"
         }, {
+            "language": "tiddlywiki5",
 			"scopeName": "text.html.tiddlywiki5",
 			"path": "./syntaxes/tw5-wikitext.json"
 		}, {
@@ -43,20 +58,31 @@
 			"scopeName": "source.tiddlywiki5.meta-file",
 			"path": "./syntaxes/tw5-meta-file.json"
 		}, {
+            "language": "multids",
 			"scopeName": "source.tiddlywiki5.multids-file",
 			"path": "./syntaxes/tw5-multids-file.json"
 		}],
 		"snippets": [
-			{
+            {
+				"language": "tid",
+				"path": "./snippets/snippets.json"
+            },
+            {
+				"language": "multids",
+				"path": "./snippets/snippets.json"
+			},
+            {
 				"language": "tiddlywiki5",
 				"path": "./snippets/snippets.json"
 			}
 		],
 		"configurationDefaults": {
 			"files.associations": {
-                "*.tid": "tiddlywiki5",
-                "*.meta": "tiddlywiki5",
-                "*.multids": "tiddlywiki5"
+                "*.tw": "tiddlywiki5",
+                "*.tw5": "tiddlywiki5",
+                "*.tid": "tid",
+                "*.meta": "tid",
+                "*.multids": "multids"
 			}
 		}
     }

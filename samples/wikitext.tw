@@ -1,12 +1,3 @@
-field:value
-field: value:value
-field: : :field: value:
- field   :  value
-  field name   : :field value: <<macro attribute:"value">>
-Illegal_&Field:  
-<field>:
-title: $:/tid/title/with/slashes
-
 \define regionHelperOpen()
 <!--#region Pragma Wikitext -->
 $arg1$ $(var1)$
@@ -26,6 +17,7 @@ $test$ $test$ $(fnord)$
 * {{{  [operator1:suffix1[tiddler title]operator2:suffix2<variable name>operator3:suffix3{text!!reference}] }}}
 * <tag attr={{tiddler!!field}}/>
 
+{{{ [[test]prefix[test]] }}}
 This paragraph ends here.
 \end
 \define myMacro(arg1 arg2) two formal arguments
@@ -476,7 +468,7 @@ wraps inline run""" into `HTMLSpanElement` @@
 
 <!--#endregion -->
 
-<!--#region Tang and Widget Wikitext -->
+<!--#region Tag and Widget Wikitext -->
 
 <div/>
 <div />
@@ -591,6 +583,7 @@ Inline  <my-tag
 <!-- #region Block Filtered Transclusion Wikitext -->
 {{{}}}
 {{{ }}}
+{{{ [[test]prefix[test]] }}}
 {{{||}}}
 {{{|| }}}
 {{{ || }}}
@@ -601,10 +594,18 @@ Inline  <my-tag
 {{{filter ||}}}
 {{{ filter || templateTitle }}}
 {{{
+
 }}}
-{{{
-  filter
-}}}
+
+Context:
+  {{{
+    [
+        [filter]
+        step<variable>
+        !step:suffix{tiddler}
+    ]
+  }}}
+
 {{{
   ||
 }}}

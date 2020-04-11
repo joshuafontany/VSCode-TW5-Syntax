@@ -1,17 +1,16 @@
-# Common tiddler metadata
 title: common title prefix/
 tags: common tags list
-text: this field will be overwritten by text fields of individual tiddlers.
+text: this field will be overwritten by text fields of individual tiddlers. <<test>> {{tid}}
 
 # Tiddler title suffixes and text fields
 tiddler: text
-tiddler:text
+tiddler: text
 tiddler : text
 tiddler   :   text 
-  tiddler   :   text 
-  tiddler::text
-  tiddler   ::   text 
-  tiddler   : :  text 
+  tiddler   :   text <<var>> {{tiddler}}
+  tiddler:: text
+  tiddler  ::   text 
+  tiddler   : :text 
  :
 :
  : 

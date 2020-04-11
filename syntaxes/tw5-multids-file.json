@@ -6,8 +6,7 @@
     {
       "comment": "Tokenize tiddler title and text pairs.",
       "begin": "(?<=^$)",
-      "end": "(?=1)0",
-      "contentName": "meta.dictionary.tiddler-fields.title-text-pairs.tiddlywiki5.multids-file",
+      "contentName": "meta.text-field.title-text-pairs.tiddlywiki5.multids-file",
       "patterns": [
         { "include": "#comment" },
         { "include": "#titleAndTextPair" }
@@ -17,8 +16,8 @@
       "comment": "Tokenize common tiddler metadata.",
       "begin": "^",
       "end": "^$",
-      "name": "meta.dictionary.tiddler-fields.tiddlywiki5.multids-file",
-      "patterns": [{ "include": "source.tiddlywiki5.dictionary" }]
+      "name": "meta.tiddler-fields.tiddlywiki5.multids-file",
+      "patterns": [{ "include": "source.tiddlywiki5.fields" }]
     }
   ],
   "repository": {

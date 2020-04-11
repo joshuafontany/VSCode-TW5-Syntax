@@ -16,5 +16,39 @@
       "contentName": "meta.tiddler-fields.tiddlywiki5",
       "patterns": [{ "include": "source.tiddlywiki5.fields" }]
     }
-  ]
+  ],
+  "injections": {
+    "L:meta.variable.macro.body.tiddlywiki5": {
+      "patterns": [
+        {
+          "comment": "Parse variable reference.",
+          "match": "(\\$\\()(.+?)(\\)\\$)",
+          "name": "markup.other.variable.variable-reference.tiddlywiki5",
+          "captures": {
+            "1": {
+              "name": "keyword.other.variable.variable-reference.begin.tiddlywiki5"
+            },
+            "2": { "name": "variable.name.variable-reference.tiddlywiki5" },
+            "3": {
+              "name": "keyword.other.variable.variable-reference.end.tiddlywiki5"
+            }
+          }
+        },
+        {
+          "comment": "Parse variable parameter.",
+          "match": "(\\$)(.*?)(\\$)",
+          "name": "markup.other.variable.variable-parameter.tiddlywiki5",
+          "captures": {
+            "1": {
+              "name": "keyword.other.variable.variable-parameter.begin.tiddlywiki5"
+            },
+            "2": { "name": "entity.name.variable-parameter.tiddlywiki5" },
+            "3": {
+              "name": "keyword.other.variable.variable-parameter.end.tiddlywiki5"
+            }
+          }
+        }
+      ]
+    }
+  }
 }

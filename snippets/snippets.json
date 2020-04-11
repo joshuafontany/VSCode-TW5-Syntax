@@ -1,5 +1,5 @@
 {
-	".text.html.tw5": {
+	".text.html.tiddlywiki5": {
 		"Macro Definition": {
 			"prefix": "def",
 			"body": "\\\\define ${1:name}($2)\n$3\n\\\\end\n"
@@ -398,7 +398,7 @@
 			"body": "<$button popup=${1:\"$:/state/${2:state}\"}>\n  ${3:Label}\n</$button>$0"
 		}
 	},
-	".meta.widget.tw-button.tw5 > .meta.body.tw5,\n.meta.widget.tw-keyboard.tw5 > .meta.body.tw5": {
+	".meta.widget.tw-button.tiddlywiki5 > .meta.body.tiddlywiki5,\n.meta.widget.tw-keyboard.tiddlywiki5 > .meta.body.tiddlywiki5": {
 		"Widget ActionDeleteField": {
 			"description": "Deletes specified fields of a tiddler.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#ActionDeleteFieldWidget",
@@ -436,7 +436,7 @@
 			"body": "<$action-setfield${1: $tiddler=${2:<<currentTiddler>>}}${3: tags=\"[[tag]]\"} />$0"
 		}
 	},
-	".macro.body.tw5": {
+	".macro.body.tiddlywiki5": {
 		"Variable Parameter": {
 			"prefix": "vp",
 			"body": "$${1:parameter}$$0"

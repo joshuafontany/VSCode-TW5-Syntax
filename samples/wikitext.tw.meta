@@ -1,0 +1,7 @@
+field:value
+ field   :  value <$test> {{test}} <<test>>
+  i||egal field name   : :field value: @@.class test@@
+  no:  {{{ [[test]prefix[test]] +[<test>] }}}
+i||egal field name:
+title: $:/wikitext.tw
+ # No valid key-value pair in this line, just ignore it
