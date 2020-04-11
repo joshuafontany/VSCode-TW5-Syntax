@@ -37,15 +37,8 @@
           "name": "punctuation.separator.key-value.title-text.tiddlywiki5.multids-file"
         },
         "3": {
-          "patterns": [
-            {
-              "begin": "^",
-              "end": "$",
-              "name": "meta.tiddler-field.text.tiddlywiki5.multids-file",
-              "contentName": "text.html.tiddlywiki5.multids-file",
-              "patterns": [{ "include": "text.html.tiddlywiki5" }]
-            }
-          ]
+          "name": "meta.field.text.value.tiddlywiki5.multids-file",
+          "patterns": [{ "include": "text.html.tiddlywiki5" }]
         }
       }
     }
