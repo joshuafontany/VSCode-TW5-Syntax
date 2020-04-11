@@ -7,7 +7,7 @@
     { "include": "#wikitext" }
   ],
   "injections": {
-    "meta.function.macro.body.tiddlywiki5": {
+    "meta.variable.macro.body.tiddlywiki5": {
       "patterns": [
         {
           "comment": "Parse variable reference.",
@@ -17,7 +17,7 @@
             "1": {
               "name": "punctuation.definition.variable.variable-reference.begin.tiddlywiki5"
             },
-            "2": { "name": "entity.name.variable.other.tiddlywiki5" },
+            "2": { "name": "variable.name.variable-reference.tiddlywiki5" },
             "3": {
               "name": "punctuation.definition.variable.variable-reference.end.tiddlywiki5"
             }
@@ -31,7 +31,7 @@
             "1": {
               "name": "punctuation.definition.variable.variable-parameter.begin.tiddlywiki5"
             },
-            "2": { "name": "variable.parameter.tiddlywiki5" },
+            "2": { "name": "entity.name.variable-parameter.tiddlywiki5" },
             "3": {
               "name": "punctuation.definition.variable.variable-parameter.end.tiddlywiki5"
             }
@@ -76,21 +76,22 @@
     "macrodef": {
       "begin": "^(\\\\)(define)\\s+([^\\s\\(]+)(?=\\()",
       "end": "^",
-      "name": "meta.pragma.directive.function.macro.tiddlywiki5",
+      "name": "meta.pragma.directive.variable.macro.tiddlywiki5",
       "beginCaptures": {
         "1": { "name": "punctuation.definition.pragma.directive.tiddlywiki5" },
         "2": { "name": "keyword.control.directive.define.tiddlywiki5" },
-        "3": { "name": "entity.name.function.macro.tiddlywiki5" }
+        "3": { "name": "entity.name.variable.macro.tiddlywiki5" }
       },
       "patterns": [
         {
           "comment": "Match single line macro body.",
           "match": "(?<=\\))\\s*(\\S.*)$",
+          "name": "meta.variable.macro-inline.tiddlywiki5",
           "captures": {
             "1": {
               "begin": "^",
               "end": "$",
-              "name": "meta.function.macro.body.tiddlywiki5",
+              "name": "meta.variable.macro.body.tiddlywiki5",
               "patterns": [{ "include": "#wikitext" }]
             }
           }
@@ -99,7 +100,8 @@
           "comment": "Match multiline macro body.",
           "begin": "(?<=\\))\\s*$",
           "end": "(\\\\)(end)\\s*?$",
-          "contentName": "meta.function.macro.body.tiddlywiki5",
+          "name": "meta.variable.macro-block.tiddlywiki5",
+          "contentName": "meta.variable.macro.body.tiddlywiki5",
           "endCaptures": {
             "1": { "name": "punctuation.definition.pragma.directive.tiddlywiki5" },
             "2": { "name": "keyword.control.directive.end.tiddlywiki5" }
@@ -118,22 +120,22 @@
           "comment": "Parse parameter list.",
           "begin": "(?<=\\S)\\(",
           "end": "\\)",
-          "name": "meta.function.macro.parameters.tiddlywiki5",
+          "name": "meta.variable.macro.parameters.tiddlywiki5",
           "beginCaptures": {
             "0": {
-              "name": "punctuation.definition.function.macro.parameters.begin.tiddlywiki5"
+              "name": "punctuation.definition.variable.macro.parameters.begin.tiddlywiki5"
             }
           },
           "endCaptures": {
             "0": {
-              "name": "punctuation.definition.function.macro.parameters.end.tiddlywiki5"
+              "name": "punctuation.definition.variable.macro.parameters.end.tiddlywiki5"
             }
           },
           "patterns": [
             {
               "begin": "([\\w\\-]+)(?:\\s*(:)\\s*(?=\"\"\"))",
               "end": "(?<=\"\"\")",
-              "name": "meta.function.macro.parameter.tw-$1.tiddlywiki5",
+              "name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
               "contentName": "entity.other.default.value.tiddlywiki5",
               "beginCaptures": {
                 "1": { "name": "variable.parameter.tiddlywiki5" },
@@ -144,7 +146,7 @@
             {
               "begin": "([\\w\\-]+)(?:\\s*(:)\\s*(?=\"))",
               "end": "(?<=\")",
-              "name": "meta.function.macro.parameter.tw-$1.tiddlywiki5",
+              "name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
               "contentName": "entity.other.default.value.tiddlywiki5",
               "beginCaptures": {
                 "1": { "name": "variable.parameter.tiddlywiki5" },
@@ -155,7 +157,7 @@
             {
               "begin": "([\\w\\-]+)(?:\\s*(:)\\s*(?='))",
               "end": "(?<=')",
-              "name": "meta.function.macro.parameter.tw-$1.tiddlywiki5",
+              "name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
               "contentName": "entity.other.default.value.tiddlywiki5",
               "beginCaptures": {
                 "1": { "name": "variable.parameter.tiddlywiki5" },
@@ -166,7 +168,7 @@
             {
               "begin": "([\\w\\-]+)(?:\\s*(:)\\s*(?=\\[\\[))",
               "end": "(?<=\\]\\])",
-              "name": "meta.function.macro.parameter.tw-$1.tiddlywiki5",
+              "name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
               "contentName": "entity.other.default.value.tiddlywiki5",
               "beginCaptures": {
                 "1": { "name": "variable.parameter.tiddlywiki5" },
@@ -176,7 +178,7 @@
             },
             {
               "match": "([\\w\\-]+)(?:\\s*(:)\\s*([^\\)\"'\\s]+))",
-              "name": "meta.function.macro.parameter.tw-$1.tiddlywiki5",
+              "name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
               "captures": {
                 "1": { "name": "variable.parameter.tiddlywiki5" },
                 "2": { "name": "keyword.operator.assignment.tiddlywiki5" },
@@ -191,13 +193,13 @@
             {
               "comment": "Parse formal argument definition.",
               "match": "[\\w\\-]+",
-              "name": "meta.function.macro.parameter.tw-$1.tiddlywiki5",
+              "name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
               "captures": { "0": { "name": "variable.parameter.tiddlywiki5" } }
             },
             {
               "comment": "Match parameter separators.",
               "match": "[^\\w\\-\\)\\s]+",
-              "name": "punctuation.separator.function.macro.parameter.tiddlywiki5"
+              "name": "punctuation.separator.variable.macro.parameter.tiddlywiki5"
             }
           ]
         }
@@ -875,11 +877,11 @@
     "macrocallblock": {
       "begin": "^\\s*(<<)([^>\\s]+)",
       "end": "(>>)\\s*$",
-      "name": "meta.function-call.macrocallblock.tiddlywiki5",
-      "contentName": "meta.function.macro.parameters.tiddlywiki5",
+      "name": "meta.variable.macrocallblock.tiddlywiki5",
+      "contentName": "meta.variable.macro.parameters.tiddlywiki5",
       "beginCaptures": {
         "1": { "name": "punctuation.definition.macrocallblock.begin.tiddlywiki5" },
-        "2": { "name": "entity.name.function.macro.tiddlywiki5" }
+        "2": { "name": "variable.name.macro.tiddlywiki5" }
       },
       "endCaptures": {
         "1": { "name": "punctuation.definition.macrocallblock.end.tiddlywiki5" }
@@ -888,7 +890,7 @@
         {
           "begin": "(?:([\\w\\-]+)\\s*(:)\\s*)?(?=\"\"\")",
           "end": "(?<=\"\"\")",
-          "name": "meta.function.macro.parameter.tw-$1.tiddlywiki5",
+          "name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
           "beginCaptures": {
             "1": { "name": "variable.parameter.tiddlywiki5" },
             "2": { "name": "keyword.operator.assignment.tiddlywiki5" }
@@ -898,7 +900,7 @@
         {
           "begin": "(?:([\\w\\-]+)\\s*(:)\\s*)?(?=\")",
           "end": "(?<=\")",
-          "name": "meta.function.macro.parameter.tw-$1.tiddlywiki5",
+          "name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
           "beginCaptures": {
             "1": { "name": "variable.parameter.tiddlywiki5" },
             "2": { "name": "keyword.operator.assignment.tiddlywiki5" }
@@ -908,7 +910,7 @@
         {
           "begin": "(?:([\\w\\-]+)\\s*(:)\\s*)?(?=')",
           "end": "(?<=')",
-          "name": "meta.function.macro.parameter.tw-$1.tiddlywiki5",
+          "name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
           "beginCaptures": {
             "1": { "name": "variable.parameter.tiddlywiki5" },
             "2": { "name": "keyword.operator.assignment.tiddlywiki5" }
@@ -918,7 +920,7 @@
         {
           "begin": "(?:([\\w\\-]+)\\s*(:)\\s*)?(?=\\[\\[)",
           "end": "(?<=\\]\\])",
-          "name": "meta.function.macro.parameter.tw-$1.tiddlywiki5",
+          "name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
           "beginCaptures": {
             "1": { "name": "variable.parameter.tiddlywiki5" },
             "2": { "name": "keyword.operator.assignment.tiddlywiki5" }
@@ -927,7 +929,7 @@
         },
         {
           "match": "(?:([\\w\\-]+)\\s*(:)\\s*)?([^\\>\"'\\s]+)",
-          "name": "meta.function.macro.parameter.tw-$1.tiddlywiki5",
+          "name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
           "captures": {
             "1": { "name": "variable.parameter.tiddlywiki5" },
             "2": { "name": "keyword.operator.assignment.tiddlywiki5" },
@@ -1023,7 +1025,7 @@
               "begin": "(?<=\\|\\|)\\G",
               "end": "(?=\\S)((?:(?!\\}\\}).)*?)\\s*(?=$|\\}\\})",
               "endCaptures": {
-                "1": { "name": "entity.other.name.tiddler.title.template.tw5" }
+                "1": { "name": "entity.name.tiddler.title.template.tw5" }
               }
             },
             {
@@ -1553,11 +1555,11 @@
     "macrocallinline": {
       "begin": "(<<)([^>\\s]+)",
       "end": "(>>)",
-      "name": "meta.function-call.macrocallinline.tiddlywiki5",
-      "contentName": "meta.function.macro.parameters.tiddlywiki5",
+      "name": "meta.variable.macrocallinline.tiddlywiki5",
+      "contentName": "meta.variable.macro.parameters.tiddlywiki5",
       "beginCaptures": {
         "1": { "name": "punctuation.definition.macrocallinline.begin.tiddlywiki5" },
-        "2": { "name": "entity.name.function.macro.tiddlywiki5" }
+        "2": { "name": "variable.name.macro.tiddlywiki5" }
       },
       "endCaptures": {
         "1": { "name": "punctuation.definition.macrocallinline.end.tiddlywiki5" }
@@ -1566,7 +1568,7 @@
         {
           "begin": "(?:([\\w\\-]+)\\s*(:)\\s*)?(?=\"\"\")",
           "end": "(?<=\"\"\")",
-          "name": "meta.function.macro.parameter.tw-$1.tiddlywiki5",
+          "name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
           "beginCaptures": {
             "1": { "name": "variable.parameter.tiddlywiki5" },
             "2": { "name": "keyword.operator.assignment.tiddlywiki5" }
@@ -1576,7 +1578,7 @@
         {
           "begin": "(?:([\\w\\-]+)\\s*(:)\\s*)?(?=\")",
           "end": "(?<=\")",
-          "name": "meta.function.macro.parameter.tw-$1.tiddlywiki5",
+          "name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
           "beginCaptures": {
             "1": { "name": "variable.parameter.tiddlywiki5" },
             "2": { "name": "keyword.operator.assignment.tiddlywiki5" }
@@ -1586,7 +1588,7 @@
         {
           "begin": "(?:([\\w\\-]+)\\s*(:)\\s*)?(?=')",
           "end": "(?<=')",
-          "name": "meta.function.macro.parameter.tw-$1.tiddlywiki5",
+          "name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
           "beginCaptures": {
             "1": { "name": "variable.parameter.tiddlywiki5" },
             "2": { "name": "keyword.operator.assignment.tiddlywiki5" }
@@ -1596,7 +1598,7 @@
         {
           "begin": "(?:([\\w\\-]+)\\s*(:)\\s*)?(?=\\[\\[)",
           "end": "(?<=\\]\\])",
-          "name": "meta.function.macro.parameter.tw-$1.tiddlywiki5",
+          "name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
           "beginCaptures": {
             "1": { "name": "variable.parameter.tiddlywiki5" },
             "2": { "name": "keyword.operator.assignment.tiddlywiki5" }
@@ -1605,7 +1607,7 @@
         },
         {
           "match": "(?:([\\w\\-]+)\\s*(:)\\s*)?([^\\>\"'\\s]+)",
-          "name": "meta.function.macro.parameter.tw-$1.tiddlywiki5",
+          "name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
           "captures": {
             "1": { "name": "variable.parameter.tiddlywiki5" },
             "2": { "name": "keyword.operator.assignment.tiddlywiki5" },

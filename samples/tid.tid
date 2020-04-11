@@ -7,14 +7,18 @@ Illegal_&Field:
 <field>:
 title: $:/tid/title/with/slashes
 
-\define myMacro(arg1:"default")''single line'' body
-\define myMacro()  ''single line'' body  
-\define myMacro()  ''single line body  
-\define myMacro()
+\define regionHelperOpen()
+<!--#region Pragma Wikitext -->
+$arg1$ $(var1)$
+\end
+\define myMacro()  ''single line'' body  $(var1)$
+\define myMacro()  ''single line body $
+\define myMacro() $test$ $test$ $(fnord)$
 \end
 \define myMacro()  
 \end
 \define myMacro()
+* $ $ $test$
 * ''multiline'' body
 * {{{  [operator1:suffix1[tiddler title]operator2:suffix2<variable name>operator3:suffix3{text!!reference}] }}}
 * <tag attr={{tiddler!!field}}/>
@@ -75,6 +79,7 @@ arg3!!!
 \define myMacro( arg1 : default )
 Before parsing macro body text, it's being preprocessed.
 
+* $arg1$ $(arg1)$
 * Preprocessor replaces variable parameters `$arg1$` with actual values passed on macro invokation.
 * Preprocessor replaces variable references `$(currentTiddler)$` with context variables (set using e.g. `SetWidget` or `VarsWidget` widgets), visible at macro invokation scope.
 \end
@@ -97,15 +102,25 @@ Before parsing macro body text, it's being preprocessed.
 \whitespace notrim
 \import [filter[expression]]
 
-<!--#region folder -->
-test
-this
-<!-- #endregion folder -->
+\define regionHelperClose()
+<!--#endregion -->
+\end
+
+<!--#region Simple Wikitext -->
+:test
+;this
+
 """
 TEST TEXT BLOCK <$transclude tiddler="test"/>
 """
 
+<<variable>>
+{{transclusion}}
+[[wiki-link]]
 
+<!-- #endregion folder -->
+
+<!--#region Header, CSS, & Formatting Wikitext -->
 ! Heading 1
   !! Heading 2
     !!! Heading 3
@@ -206,6 +221,9 @@ TEST TEXT BLOCK <$transclude tiddler="test"/>
 * ``raw``not raw
 * `raw``raw`not raw
 * ``raw` `raw``not raw
+<!--#endregion -->
+
+<!--#region Inline Links Wikitext -->
 
 * http://tiddlywiki.com/
 * ~http://tiddlywiki.com//
@@ -283,6 +301,10 @@ class = <<myMacro
 """>>
   [ Tooltip text | http://fakeimg.pl/100/ ]]
 
+  <!--#endregion -->
+
+  <!--#region Inline Styliong Wikitext -->
+
 * @@@@
 * @@''Inline styling''@@
 * @@.class1.class2 ''Inline styling''@@
@@ -292,6 +314,10 @@ class = <<myMacro
 * @@color:blue;background-color:red;.class1.class2 """
 ''Inline styling''
 wraps inline run""" into `HTMLSpanElement` @@
+
+<!--#endregion -->
+
+<!--#region Inline Macros Wikitext -->
 
 * <<myMacro>>
 * <<myMacro >>
@@ -339,7 +365,9 @@ wraps inline run""" into `HTMLSpanElement` @@
   "value for arg2"
 ' '"value_for_arg1"'
 >>
+<!--#endregion -->
 
+<!--#region Inline Filtered Transclusion Wikitext -->
 * {{{}}}
 * {{{ }}}
 * {{{||}}}
@@ -381,6 +409,10 @@ wraps inline run""" into `HTMLSpanElement` @@
   but don't use it here anyway
 
 }}}
+
+<!--#endregion -->
+
+<!--#region Inline Transclusion Wikitext -->
 
 * {{}}
 * {{||}}
@@ -438,6 +470,10 @@ wraps inline run""" into `HTMLSpanElement` @@
   but don't use it here anyway
 
 }}
+
+<!--#endregion -->
+
+<!--#region Tang and Widget Wikitext -->
 
 <div/>
 <div />
@@ -501,7 +537,9 @@ Inline  <my-tag
   * run
   </my-tag> Run
 </$my-widget>
+<!-- #endregion -->
 
+<!-- #region Table Wikitext-->
 ||k
 | |k
 |||k
@@ -545,7 +583,9 @@ Inline  <my-tag
 | 1 |<|>| 4 |f
 |^ 1|2|3|, 4|f
 |~|2|3|~|f
+<!-- #endregion -->
 
+<!-- #region Block Filtered Transclusion Wikitext -->
 {{{}}}
 {{{ }}}
 {{{||}}}
@@ -623,6 +663,10 @@ Inline  <my-tag
   +"tiddler title"+'tiddler title'+[[tiddler title]]+tiddler_title
 }}}
 
+<!--#endregion -->
+
+<!--#region Block Transclusion Wikitext -->
+
 {{}}
 {{ }}
 {{title}}
@@ -678,6 +722,10 @@ Inline  <my-tag
   but don't use it here anyway
 
 }}
+
+<!--#endregion -->
+
+<!--#region Block CSS Wikitext -->
 
 @@
 
@@ -751,6 +799,10 @@ Here's a ''paragraph'' with inline styling.
 @@background-color:blue;''Same'' paragraph with inline styling.@@
 ''Same'' paragraph without styling.
 
+<!--#endregion -->
+
+<!--#region Block Markup Wikitext -->
+
 <<<
 Quoted text
 <<<
@@ -800,6 +852,10 @@ for the bottom cite
 <<<<
 <<<<<
 
+<!--#endregion -->
+
+<!--#region Block Macro Wikitext -->
+
 <<myMacro>>
 <<myMacro >>
 <<myMacro
@@ -846,6 +902,10 @@ for the bottom cite
   "value for arg2"
 ' '"value_for_arg1"'
 >>
+
+<!--#endregion -->
+
+<!--#region Block Raw/Code Wikitext -->
 
 ```
 Raw block
@@ -898,6 +958,10 @@ here """Single line break
 translates to `<br>` in HTML.""" And
 not here
 
+<!--#endregion -->
+
+<!--#region Other Wikitext -->
+
 ---
     ---
         -----
@@ -919,11 +983,11 @@ paragraph
 
 The previous paragraph is done, say hi to the new one.
 
+<!-- #endregion -->
 
 <!-- #region test -->
 
 hide this
-<!-- #endregion -->
-
 
 test 
+<!-- #endregion -->
