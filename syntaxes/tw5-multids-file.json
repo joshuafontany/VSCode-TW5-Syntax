@@ -1,25 +1,56 @@
 {
-  "name": "TiddlyWiki5 multids file",
+  "name": "TiddlyWiki5 tid file",
   "scopeName": "source.tiddlywiki5.multids-file",
   "fileTypes": ["multids"],
   "patterns": [
     {
-      "comment": "Tokenize tiddler title and text pairs.",
+      "comment": "Tokenize tiddler text field.",
       "begin": "(?<=^$)",
-      "contentName": "meta.text-field.title-text-pairs.tiddlywiki5.multids-file",
-      "patterns": [
-        { "include": "#comment" },
-        { "include": "#titleAndTextPair" }
-      ]
+      "contentName": "meta.multids.tiddler-text.tiddlywiki5",
+      "patterns": [{ "include": "#comment" }, {"include": "#titleline"},{ "include": "text.html.tiddlywiki5" }]
     },
     {
-      "comment": "Tokenize common tiddler metadata.",
+      "comment": "Tokenize mandatory tiddler metadata.",
       "begin": "^",
       "end": "^$",
-      "name": "meta.tiddler-fields.tiddlywiki5.multids-file",
+      "contentName": "meta.multids.tiddler-fields.tiddlywiki5",
       "patterns": [{ "include": "source.tiddlywiki5.fields" }]
     }
   ],
+  "injections": {
+    "L:meta.variable.macro.body.tiddlywiki5": {
+      "patterns": [
+        {
+          "comment": "Parse variable reference.",
+          "match": "(\\$\\()(.+?)(\\)\\$)",
+          "name": "markup.other.variable.variable-reference.tiddlywiki5",
+          "captures": {
+            "1": {
+              "name": "keyword.other.variable.variable-reference.begin.tiddlywiki5"
+            },
+            "2": { "name": "variable.name.variable-reference.tiddlywiki5" },
+            "3": {
+              "name": "keyword.other.variable.variable-reference.end.tiddlywiki5"
+            }
+          }
+        },
+        {
+          "comment": "Parse variable parameter.",
+          "match": "(\\$)(.*?)(\\$)",
+          "name": "markup.other.variable.variable-parameter.tiddlywiki5",
+          "captures": {
+            "1": {
+              "name": "keyword.other.variable.variable-parameter.begin.tiddlywiki5"
+            },
+            "2": { "name": "entity.name.variable-parameter.tiddlywiki5" },
+            "3": {
+              "name": "keyword.other.variable.variable-parameter.end.tiddlywiki5"
+            }
+          }
+        }
+      ]
+    }
+  },
   "repository": {
     "comment": {
       "match": "^(#).*$",
@@ -28,16 +59,16 @@
         "1": { "name": "punctuation.definition.comment.tiddlywiki5.multids-file" }
       }
     },
-    "titleAndTextPair": {
-      "match": "^(.*?)(: )(.*)",
-      "name": "meta.value-pair.title-text.tiddlywiki5.multids-file",
+    "titleline": {
+      "match": "^(.*?)(: )(.*)$",
+      "name": "meta.multids.tiddler-title.tiddler-text.tiddlywiki5.multids-file",
       "captures": {
-        "1": { "name": "string.other.field.title.value.tiddlywiki5.multids-file" },
+        "1": { "name": "string.value.title.field.tiddlywiki5.multids-file" },
         "2": {
           "name": "punctuation.separator.key-value.title-text.tiddlywiki5.multids-file"
         },
         "3": {
-          "name": "meta.field.text.value.tiddlywiki5.multids-file",
+          "name": "meta.tiddler-field.text.tiddlywiki5.multids-file",
           "patterns": [{ "include": "text.html.tiddlywiki5" }]
         }
       }

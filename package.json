@@ -24,34 +24,40 @@
                 "id": "tid",
                 "aliases": ["Tid", "tid"],
                 "extensions": [".tid",".meta"],
-                "configuration": "./language-configuration.json"
+                "mimetypes": [
+                    "text/vnd.tiddlywiki",
+                    "application/x-tiddler"
+                ],
+                "configuration": "./tid.language-configuration.json"
             },
             {
                 "id": "multids",
                 "aliases": ["Multids", "multids"],
                 "extensions": [".multids"],
-                "configuration": "./language-configuration.json"
+                "mimetypes": [
+                    "application/x-tiddlers"
+                ],
+                "configuration": "./multids.language-configuration.json"
             },
             {
                 "id": "tiddlywiki5",
                 "aliases": ["TiddlyWiki5", "tiddlywiki5"],
                 "extensions": [".tw",".tw5"],
                 "mimetypes": [
-                    "text/vnd.tiddlywiki",
-                    "application/x-tiddler"
+                    "text/vnd.tiddlywiki"
                 ],
-                "configuration": "./language-configuration.json"
+                "configuration": "./tiddlywiki5.language-configuration.json"
             }
         ],
         "grammars": [{
-            "language": "tid",
-            "scopeName": "source.tiddlywiki5.tid-file",
-			"path": "./syntaxes/tw5-tid-file.json"
-        }, {
             "language": "tiddlywiki5",
 			"scopeName": "text.html.tiddlywiki5",
 			"path": "./syntaxes/tw5-wikitext.json"
 		}, {
+            "language": "tid",
+            "scopeName": "source.tiddlywiki5.tid-file",
+			"path": "./syntaxes/tw5-tid-file.json"
+        }, {
 			"scopeName": "source.tiddlywiki5.fields",
 			"path": "./syntaxes/tw5-fields.json"
 		}, {

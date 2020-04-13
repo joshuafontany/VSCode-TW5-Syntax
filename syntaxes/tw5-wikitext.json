@@ -1,7 +1,7 @@
 {
   "name": "TiddlyWiki5",
   "scopeName": "text.html.tiddlywiki5",
-  "fileTypes": ["tw", "tiddlywiki5"],
+  "fileTypes": ["tw", "tw5"],
   "firstLineMatch": "<!--\\s*tiddlywiki5\\s*-->",
   "patterns": [
     { "include": "#wikitext" }

@@ -1,5 +1,5 @@
 title: common title prefix/
-tags: common tags list
+tags: common tags list {{test}}
 text: this field will be overwritten by text fields of individual tiddlers. <<test>> {{tid}}
 
 # Tiddler title suffixes and text fields
