@@ -7,7 +7,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 0.1.2
 
 - Improved variable, tranclusion, link, and macro definition recognition
-- Setup seperate "language names" for *.tid / *.meta / *.multids files ("tid") vs *.tw / *.tw5 wikitext ("tiddlywiki5"). This helps debug and with certain grammar features (injections).
+- Setup seperate "language names" for *.tid / *.meta ("tid"), vs  / *.multids files ("multitids") vs *.tw / *.tw5 wikitext ("tiddlywiki5"). This helps debugging and with certain grammar features (injections).
+- Mapped MIME types
 
 ## 0.1.1
 

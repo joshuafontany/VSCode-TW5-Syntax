@@ -25,7 +25,6 @@
                 "aliases": ["Tid", "tid"],
                 "extensions": [".tid",".meta"],
                 "mimetypes": [
-                    "text/vnd.tiddlywiki",
                     "application/x-tiddler"
                 ],
                 "configuration": "./tid.language-configuration.json"
