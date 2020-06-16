@@ -36,7 +36,7 @@
         },
         {
           "comment": "Parse variable parameter.",
-          "match": "(\\$)(.*?)(\\$)",
+          "match": "(\\$)(?!:\\/)(.*?)(\\$)(?!:\\/)",
           "name": "markup.other.variable.variable-parameter.tiddlywiki5",
           "captures": {
             "1": {

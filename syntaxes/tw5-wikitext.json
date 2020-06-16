@@ -25,7 +25,7 @@
         },
         {
           "comment": "Parse variable parameter.",
-          "match": "(\\$)(.*?)(\\$)",
+          "match": "(\\$)(?!:\\/)(.*?)(\\$)(?!:\\/)",
           "name": "markup.other.variable.variable-parameter.tiddlywiki5",
           "captures": {
             "1": {
@@ -492,8 +492,8 @@
     "htmlblock": {
       "patterns": [
         {
-          "begin": "\\s*(\\<)((\\$)([a-zA-Z0-9\\-]+))",
-          "end": "(\\/>)|(<\\/)((\\$)\\4)(>)",
+          "begin": "\\s*(\\<)((\\$)(?!:\\/)([a-zA-Z0-9\\-]+))",
+          "end": "(\\/>)|(<\\/)((\\$)(?!:\\/)\\4)(>)",
           "name": "meta.block.html.widget.tw-$4.tiddlywiki5",
           "beginCaptures": {
             "1": { "name": "punctuation.definition.tag.begin.tiddlywiki5" },
@@ -1491,8 +1491,8 @@
     "htmlinline": {
       "patterns": [
         {
-          "begin": "(\\<)((\\$)([a-zA-Z0-9\\-]+))",
-          "end": "(\\/>)|(<\\/)((\\$)\\4)(>)",
+          "begin": "(\\<)((\\$)(?!:\\/)([a-zA-Z0-9\\-]+))",
+          "end": "(\\/>)|(<\\/)((\\$)(?!:\\/)\\4)(>)",
           "name": "meta.html.inline.widget.tw-$4.tiddlywiki5",
           "beginCaptures": {
             "1": { "name": "punctuation.definition.tag.begin.tiddlywiki5" },

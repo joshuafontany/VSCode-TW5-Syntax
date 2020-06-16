@@ -288,21 +288,21 @@ TEST TEXT BLOCK <$transclude tiddler="test"/>
 * [img [ Tooltip text | http://fakeimg.pl/100/ ]]
 * [img width=50 [ Tooltip text | http://fakeimg.pl/100/ ]]
 * [img
-width = """
-  50
-"""
-height = "
-  50
-"
-source = '
-  URI
-'
-alt = {{tiddler!!field}}
-class = <<myMacro
-  arg1 : """
-  value
-""">>
-  [ Tooltip text | http://fakeimg.pl/100/ ]]
+    width = """
+      50
+    """
+    height = "
+      50
+    "
+    source = '
+      URI
+    '
+    alt = {{tiddler!!field}}
+    class = <<myMacro
+      arg1 : """
+        value
+      """>>
+    [ Tooltip text | http://fakeimg.pl/100/ ]]
 
   <!--#endregion -->
 
@@ -653,7 +653,7 @@ Inline  <my-tag
   -!
   +!-
   -!+
-  +tiddler_title
+  +[[tiddler_title]]
   +'tiddler title'
   +"tiddler title"
   +[!operator1:suffix1[tiddler title]!operator2:suffix2<variable name>!operator3:suffix3{text!!reference}]
@@ -919,38 +919,41 @@ Defaults to raw block
 ```
 
 ```CoFfEe
-1 << i for i in [0..31] when i % 2
+  1 << i for i in [0..31] when i % 2
 ```
 
 $$$.js
-/* Use JS parser */
- var test = 1 + function(){return 0}
+  /* Use JS parser */
+  var test = 1 + function(){return 0}
 $$$
+
 $$$application/javascript
-/* Use JS parser */
-var test = {key: "value"}
+  /* Use JS parser */
+  var test = {key: "value"}
 $$$
+
 $$$.js > type
-/* Use JS parser */
+  /* Use JS parser */
 $$$
+
 $$$application/javascript > type
-/* Use JS parser */
+  /* Use JS parser */
 $$$
 
 $$$.unknown
-Default to plain text parser.
+  Default to plain text parser.
 $$$
 $$$type/unknown
-Default to plain text parser.
+  Default to plain text parser.
 $$$
 $$$.unknown > type
-Default to plain text parser.
+  Default to plain text parser.
 $$$
 $$$type/unknown > type
-Default to plain text parser.
+  Default to plain text parser.
 $$$
 $$$
-Default to plain text parser.
+  Default to plain text parser.
 $$$
 
 """
@@ -977,9 +980,9 @@ Paragraphs last until two consecutive EOL are met.
 
 
 """
-still
+  still
 
-paragraph
+  paragraph
 """
 * List? No, inlines only here... in paragraph
 * Not yet
