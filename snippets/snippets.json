@@ -303,6 +303,12 @@
 			"prefix": "macrocall",
 			"body": "<$macrocall $name=\"${1:variable}\" ${2:param1}=${3:<<currentTiddler>>} />$0"
 		},
+		"Widget Set": {
+			"description": "Assigns a value to a specified variable.",
+			"descriptionMoreURL": "https://tiddlywiki.com/prerelease/#SetWidget",
+			"prefix": "set",
+			"body": "<$set $name=\"${1:variable}\" >\n  $2\n</$set>$0"
+		},
 		"Widget Vars": {
 			"description": "Allows multiple variables to be set in one operation.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#VarsWidget",

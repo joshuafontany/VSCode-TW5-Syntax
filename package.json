@@ -2,7 +2,8 @@
     "name": "tw5-syntax",
     "displayName": "TiddlyWiki5 Syntax",
     "description": "TiddlyWiki5 Syntax Highlighting for Visual Studio Code",
-    "version": "0.1.2",
+    "version": "1.0.0",
+    "icon": "./tw5.png",
     "engines": {
         "vscode": "^1.43.0"
     },
@@ -10,6 +11,7 @@
         "Programming Languages"
     ],
     "keywords":["tiddlywiki", "tiddlywiki5", "tw5", "syntax highlighting"],
+    "publisher" : "joshua-fontany",
     "author": {
 		"name": "Joshua Fontany",
 		"email": "joshua.fontany@gmail.com"
