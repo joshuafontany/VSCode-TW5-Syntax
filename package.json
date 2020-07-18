@@ -3,7 +3,7 @@
     "displayName": "TiddlyWiki5 Syntax",
     "description": "TiddlyWiki5 Syntax Highlighting for Visual Studio Code",
     "version": "1.0.0",
-    "icon": "./tw5.png",
+    "icon": "tw5.png",
     "engines": {
         "vscode": "^1.43.0"
     },
