@@ -4,6 +4,16 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 1.0.1
+
+- Fixed snippets to correctly render widget syntax, `<$button> </$button>`.
+- Added a very nifty "Tiddler Metadata" snippet, `tid`, which will insert a block of tiddler meta-data fields into an emntpy *.tid file. Just type `tid` and press tab. `created` and `modified` fields come automatically timestamped, and you can tab to move between field values.
+-- Very neat, thanks a lot to "_Phi / hpx1" for this snippet!
+
+## 1.0.0
+
+- Release!
+
 ## 0.1.2
 
 - Improved variable, tranclusion, link, and macro definition recognition

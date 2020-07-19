@@ -1,4 +1,17 @@
 {
+	"meta.tiddler-fields.tiddlywiki5,\nmeta.tiddler-text.tiddlywiki5": {
+		"Tiddler Metadata": {
+			"prefix": "tid",
+			"body": [
+				"created: $CURRENT_YEAR$CURRENT_MONTH$CURRENT_DATE$CURRENT_HOUR$CURRENT_MINUTE${CURRENT_SECOND}000",
+				"modified: $CURRENT_YEAR$CURRENT_MONTH$CURRENT_DATE$CURRENT_HOUR$CURRENT_MINUTE${CURRENT_SECOND}333",
+				"tags: ${1:spaceseparator}",
+				"title: ${2:$TM_FILENAME_BASE}",
+				"type: $0"
+			],
+			"description": "insert tiddler metadata"
+		}
+	},
 	".text.html.tiddlywiki5": {
 		"Macro Definition": {
 			"prefix": "def",
@@ -301,107 +314,107 @@
 			"description": "Provides more flexible way for invoking macros.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#Macrocall",
 			"prefix": "macrocall",
-			"body": "<$macrocall $name=\"${1:variable}\" ${2:param1}=${3:<<currentTiddler>>} />$0"
+			"body": "<\\$macrocall $name=\"${1:variable}\" ${2:param1}=${3:<<currentTiddler>>} />$0"
 		},
 		"Widget Set": {
 			"description": "Assigns a value to a specified variable.",
 			"descriptionMoreURL": "https://tiddlywiki.com/prerelease/#SetWidget",
 			"prefix": "set",
-			"body": "<$set $name=\"${1:variable}\" >\n  $2\n</$set>$0"
+			"body": "<\\$set $name=\"${1:variable}\" >\n  $2\n</\\$set>$0"
 		},
 		"Widget Vars": {
 			"description": "Allows multiple variables to be set in one operation.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#VarsWidget",
 			"prefix": "vars",
-			"body": "<$vars ${1:name}=${2:<<currentTiddler>>}>\n  $3\n</$vars>$0"
+			"body": "<\\$vars ${1:name}=${2:<<currentTiddler>>}>\n  $3\n</\\$vars>$0"
 		},
 		"Widget List": {
 			"description": "Displays a sequence of tiddlers that match a filter expression.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#ListWidget",
 			"prefix": "list",
-			"body": "<$list filter=\"${1:[is[current]]}\">\n  ${2:<<currentTiddler>>}\n</$list>$0"
+			"body": "<\\$list filter=\"${1:[is[current]]}\">\n  ${2:<<currentTiddler>>}\n</\\$list>$0"
 		},
 		"Widget List With Custom Variable": {
 			"prefix": "listv",
-			"body": "<$list filter=\"${1:[is[current]]}\" variable=\"${2:item}\">\n  ${3:<<item>>}\n</$list>$0"
+			"body": "<\\$list filter=\"${1:[is[current]]}\" variable=\"${2:item}\">\n  ${3:<<item>>}\n</\\$list>$0"
 		},
 		"Widget Count": {
 			"description": "Displays the number of matches to a filter expression.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#CountWidget",
 			"prefix": "count",
-			"body": "<$count filter=\"${1:[is[current]]}\" />$0"
+			"body": "<\\$count filter=\"${1:[is[current]]}\" />$0"
 		},
 		"Widget View": {
 			"description": "Displays the contents of a tiddler field or index in a specified format.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#ViewWidget",
 			"prefix": "view",
-			"body": "<$view ${1:tiddler=${2:<<currentTiddler>>} }field=\"${3:modified}\" format=\"${4:date}\" template=\"${5:YYYY.0MM.0DD}\" />$0"
+			"body": "<\\$view ${1:tiddler=${2:<<currentTiddler>>} }field=\"${3:modified}\" format=\"${4:date}\" template=\"${5:YYYY.0MM.0DD}\" />$0"
 		},
 		"Widget Reveal": {
 			"description": "Hides or shows its content depending upon the value of a state tiddler.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#RevealWidget",
 			"prefix": "reveal",
-			"body": "<$reveal type=\"${1:match}\" state=${2:\"$:/state/${3:state}\"}text=\"$4\">\n  $5\n</$reveal>$0"
+			"body": "<\\$reveal type=\"${1:match}\" state=${2:\"$:/state/${3:state}\"}text=\"$4\">\n  $5\n</\\$reveal>$0"
 		},
 		"Widget Reveal With Popup": {
 			"prefix": "revealp",
-			"body": "<$reveal type=\"popup\" popup=${1:\"$:/state/${2:state}\"}>\n  $3\n</$reveal>$0"
+			"body": "<\\$reveal type=\"popup\" popup=${1:\"$:/state/${2:state}\"}>\n  $3\n</\\$reveal>$0"
 		},
 		"Widget Scrollable": {
 			"description": "Wraps content in a scrollable frame.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#ScrollableWidget",
 			"prefix": "scrollable",
-			"body": "<$scrollable class=\"${1:tc-scrollable-demo}\">\n  $2\n</$scrollable>$0"
+			"body": "<\\$scrollable class=\"${1:tc-scrollable-demo}\">\n  $2\n</\\$scrollable>$0"
 		},
 		"Widget EditText": {
 			"description": "Provides a user interface in the browser for editing text tiddler fields and indices.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#EditTextWidget",
 			"prefix": "edit-text",
-			"body": "<$edit-text ${1:tiddler=${2:<<currentTiddler>>} }field=\"${3:text}\" />$0"
+			"body": "<\\$edit-text ${1:tiddler=${2:<<currentTiddler>>} }field=\"${3:text}\" />$0"
 		},
 		"Widget Select": {
 			"description": "Displays a popup menu based on a HTML `select` element.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#SelectWidget",
 			"prefix": "select",
-			"body": "<$select ${1:tiddler=${2:<<currentTiddler>>} }field=\"${3:text}\">\n  <option${4: value=\"${5:option}\"}>${6:option}</option>\n</$select>$0"
+			"body": "<\\$select ${1:tiddler=${2:<<currentTiddler>>} }field=\"${3:text}\">\n  <option${4: value=\"${5:option}\"}>${6:option}</option>\n</\\$select>$0"
 		},
 		"Widget Checkbox": {
 			"description": "Displays an HTML checkbox input bound to a specified tiddler tag, field or index.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#CheckboxWidget",
 			"prefix": "checkbox",
-			"body": "<$checkbox ${1:tiddler=${2:<<currentTiddler>>} }field=\"${3:text}\" checked=\"${4:true}\" unchecked=\"${5:false}\">\n  ${6:Label}\n</$checkbox>$0"
+			"body": "<\\$checkbox ${1:tiddler=${2:<<currentTiddler>>} }field=\"${3:text}\" checked=\"${4:true}\" unchecked=\"${5:false}\">\n  ${6:Label}\n</\\$checkbox>$0"
 		},
 		"Widget Checkbox Bound To Tag": {
 			"prefix": "checkboxt",
-			"body": "<$checkbox ${1:tiddler=${2:<<currentTiddler>>} }tag=\"$3\">\n  ${4:Label}\n</$checkbox>$0"
+			"body": "<\\$checkbox ${1:tiddler=${2:<<currentTiddler>>} }tag=\"$3\">\n  ${4:Label}\n</\\$checkbox>$0"
 		},
 		"Widget Radio": {
 			"description": "Displays an HTML radio input bound to a specified tiddler field.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#RadioWidget",
 			"prefix": "radio",
-			"body": "<$radio ${1:tiddler=${2:<<currentTiddler>>} }field=\"${3:text}\" value=\"${4:option}\">\n  ${5:Label}\n</$radio>$0'"
+			"body": "<\\$radio ${1:tiddler=${2:<<currentTiddler>>} }field=\"${3:text}\" value=\"${4:option}\">\n  ${5:Label}\n</\\$radio>$0'"
 		},
 		"Widget Button": {
 			"description": "Displays an HTML element that can perform a combination of optional actions when clicked.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#ButtonWidget",
 			"prefix": "button",
-			"body": "<$button>\n  ${1:Label}\n</$button>$0"
+			"body": "<\\$button>\n  ${1:Label}\n</\\$button>$0"
 		},
 		"Widget Button Set Value": {
 			"prefix": "buttont",
-			"body": "<$button set=\"$1!!${2:title}\" setTo=${2:{{$3!!${4:title}\\}\\}}>\n  ${5:Label}\n</$button>$0"
+			"body": "<\\$button set=\"$1!!${2:title}\" setTo=${2:{{$3!!${4:title}\\}\\}}>\n  ${5:Label}\n</\\$button>$0"
 		},
 		"Widget Button Send Message": {
 			"prefix": "buttonm",
-			"body": "<$button message=\"${1:tm-notify}\" param=${2:<<currentTiddler>>}>\n  ${3:Label}\n</$button>$0"
+			"body": "<\\$button message=\"${1:tm-notify}\" param=${2:<<currentTiddler>>}>\n  ${3:Label}\n</\\$button>$0"
 		},
 		"Widget Button Navigate To": {
 			"prefix": "buttonn",
-			"body": "<$button to=\"{1:<<currentTiddler>>}>\n  ${2:Label}\n</$button>$0"
+			"body": "<\\$button to=\"{1:<<currentTiddler>>}>\n  ${2:Label}\n</\\$button>$0"
 		},
 		"Widget Button With Popup": {
 			"prefix": "buttonp",
-			"body": "<$button popup=${1:\"$:/state/${2:state}\"}>\n  ${3:Label}\n</$button>$0"
+			"body": "<\\$button popup=${1:\"$:/state/${2:state}\"}>\n  ${3:Label}\n</\\$button>$0"
 		}
 	},
 	".meta.widget.tw-button.tiddlywiki5 > .meta.body.tiddlywiki5,\n.meta.widget.tw-keyboard.tiddlywiki5 > .meta.body.tiddlywiki5": {
@@ -409,37 +422,37 @@
 			"description": "Deletes specified fields of a tiddler.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#ActionDeleteFieldWidget",
 			"prefix": "action-deletefield",
-			"body": "<$action-deletefield ${1:$tiddler=${2:<<currentTiddler>>} }${3:$field=${4:<<name>>} }${5:field1 field2 field3} />$0"
+			"body": "<\\$action-deletefield ${1:$tiddler=${2:<<currentTiddler>>} }${3:$field=${4:<<name>>} }${5:field1 field2 field3} />$0"
 		},
 		"Widget ActionDeleteTiddler": {
 			"description": "Deletes tiddlers matching filter without confirmation.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#ActionDeleteTiddlerWidget",
 			"prefix": "action-deletetiddler",
-			"body": "<$action-deletetiddler ${1:$tiddler=${2:<<currentTiddler>>} }${3:$filter=\"[is[current]]\" } />$0"
+			"body": "<\\$action-deletetiddler ${1:$tiddler=${2:<<currentTiddler>>} }${3:$filter=\"[is[current]]\" } />$0"
 		},
 		"Widget ActionListops": {
 			"description": "Manipulates user lists in any field or index.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#ActionListopsWidget",
 			"prefix": "action-listops",
-			"body": "<$action-listops${1: $tiddler=${2:<<currentTiddler>>}} $field=\"${3:list}\"${4: $filter=\"${5:[is[current]]}\"}${6: $subfilter=\"${7:-[is[current]]}\"} />$0"
+			"body": "<\\$action-listops${1: $tiddler=${2:<<currentTiddler>>}} $field=\"${3:list}\"${4: $filter=\"${5:[is[current]]}\"}${6: $subfilter=\"${7:-[is[current]]}\"} />$0"
 		},
 		"Widget ActionNavigate": {
 			"description": "Sends a `tm-navigate` message back up the widget tree.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#ActionNavigateWidget",
 			"prefix": "action-navigate",
-			"body": "<$action-navigate $to=${1:<<currentTiddler>>}${2: $scroll=\"${3:no}\"} />$0"
+			"body": "<\\$action-navigate $to=${1:<<currentTiddler>>}${2: $scroll=\"${3:no}\"} />$0"
 		},
 		"Widget ActionSendMessage": {
 			"description": "Sends a specified message back up the widget tree.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#ActionSendMessageWidget",
 			"prefix": "action-sendmessage",
-			"body": "<$action-sendmessage $message=\"${1:tm-new-tiddler}\"${2: title=<<currentTiddler>> tags=\"[[tag]]\"} />$0"
+			"body": "<\\$action-sendmessage $message=\"${1:tm-new-tiddler}\"${2: title=<<currentTiddler>> tags=\"[[tag]]\"} />$0"
 		},
 		"Widget ActionSetField": {
 			"description": "Assigns values to the specified fields of a tiddler.",
 			"descriptionMoreURL": "http://tiddlywiki.com/#ActionSetFieldWidget",
 			"prefix": "action-setfield",
-			"body": "<$action-setfield${1: $tiddler=${2:<<currentTiddler>>}}${3: tags=\"[[tag]]\"} />$0"
+			"body": "<\\$action-setfield${1: $tiddler=${2:<<currentTiddler>>}}${3: tags=\"[[tag]]\"} />$0"
 		}
 	},
 	".macro.body.tiddlywiki5": {
