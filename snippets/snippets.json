@@ -1,16 +1,17 @@
 {
 	"meta.tiddler-fields.tiddlywiki5,\nmeta.tiddler-text.tiddlywiki5": {
 		"Tiddler Metadata": {
-			"prefix": "tid",
-			"body": [
-				"created: $CURRENT_YEAR$CURRENT_MONTH$CURRENT_DATE$CURRENT_HOUR$CURRENT_MINUTE${CURRENT_SECOND}000",
-				"modified: $CURRENT_YEAR$CURRENT_MONTH$CURRENT_DATE$CURRENT_HOUR$CURRENT_MINUTE${CURRENT_SECOND}333",
-				"tags: ${1:spaceseparator}",
-				"title: ${2:$TM_FILENAME_BASE}",
-				"type: $0"
-			],
-			"description": "insert tiddler metadata"
-		}
+            "prefix": "tid",
+            "body": [
+                "created: $CURRENT_YEAR$CURRENT_MONTH$CURRENT_DATE$CURRENT_HOUR$CURRENT_MINUTE${CURRENT_SECOND}000",
+                "modified: $CURRENT_YEAR$CURRENT_MONTH$CURRENT_DATE$CURRENT_HOUR$CURRENT_MINUTE${CURRENT_SECOND}333",
+                "tags: ${1:spaceseparator}",
+                "title: ${2:$TM_FILENAME_BASE}",
+                "type: ${3|text/vnd.tiddlywiki,text/css,text/x-markdown,text/html,text/csv,text/plain,application/javascript,application/json,image/svg+xml|}",
+                "$0"
+            ],
+            "description": "insert tiddler metadata"
+        }
 	},
 	".text.html.tiddlywiki5": {
 		"Macro Definition": {

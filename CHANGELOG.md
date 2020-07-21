@@ -4,6 +4,10 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 1.0.2
+- Updated `tid` Snippet to offer a dropdown of `type` field options.
+-- Mahalo to "_Phi / hpx1" for the contributions!
+
 ## 1.0.1
 
 - Fixed snippets to correctly render widget syntax, `<$button> </$button>`.
