@@ -59,11 +59,9 @@
             "scopeName": "source.tiddlywiki5.tid-file",
 			"path": "./syntaxes/tw5-tid-file.json"
         }, {
-            "language": "tid-fields",
 			"scopeName": "source.tiddlywiki5.fields",
 			"path": "./syntaxes/tw5-fields.json"
 		}, {
-            "language": "tid-meta",
 			"scopeName": "source.tiddlywiki5.meta-file",
 			"path": "./syntaxes/tw5-meta-file.json"
 		}, {
