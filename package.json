@@ -2,7 +2,7 @@
     "name": "tw5-syntax",
     "displayName": "TiddlyWiki5 Syntax",
     "description": "TiddlyWiki5 Syntax Highlighting for Visual Studio Code",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "icon": "tw5.png",
     "engines": {
         "vscode": "^1.43.0"
@@ -59,9 +59,11 @@
             "scopeName": "source.tiddlywiki5.tid-file",
 			"path": "./syntaxes/tw5-tid-file.json"
         }, {
+            "language": "tid-fields",
 			"scopeName": "source.tiddlywiki5.fields",
 			"path": "./syntaxes/tw5-fields.json"
 		}, {
+            "language": "tid-meta",
 			"scopeName": "source.tiddlywiki5.meta-file",
 			"path": "./syntaxes/tw5-meta-file.json"
 		}, {
