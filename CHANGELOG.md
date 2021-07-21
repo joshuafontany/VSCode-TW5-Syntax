@@ -4,9 +4,12 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## 1.0.2
+## 1.0.4
+- Reverted bugs
+- Fixed typos
+## 1.0.3
 - Updated the grammar names for `tid-fields` and `tid-meta` grammars.
-- Added a Snippet to set the `modified` field to a current hnix-style timestamp.
+- Added a Snippet to set the `modified` field to a current unix-style timestamp.
 ## 1.0.2
 - Updated `tid` Snippet to offer a dropdown of `type` field options.
 -- Mahalo to "_Phi / hpx1" for the contributions!
