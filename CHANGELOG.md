@@ -8,7 +8,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Reverted bugs
 - Fixed typos
 ## 1.0.3
-- Updated the grammar names for `tid-fields` and `tid-meta` grammars.
 - Added a Snippet to set the `modified` field to a current unix-style timestamp.
 ## 1.0.2
 - Updated `tid` Snippet to offer a dropdown of `type` field options.
