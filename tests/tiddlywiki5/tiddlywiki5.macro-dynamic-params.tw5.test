@@ -55,4 +55,41 @@ text <<myproc param=[[value with spaces]]>>
 #             ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
 #               ^ -meta.variable.macrocallblock.tiddlywiki5
 
+<<p a1=`$(v2)$`>> -
+#<- meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5
+#   ^^ meta.variable.macrocallblock.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.macrocallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^ meta.variable.macrocallblock.tiddlywiki5 text.substituted.single.attribute.html.tiddlywiki5
+#              ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+#                ^ -meta.variable.macrocallblock.tiddlywiki5
+
+<<p a1={{my tiddler}}>> -
+#<- meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5
+#   ^^ meta.variable.macrocallblock.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.macrocallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.text-reference.begin.tiddlywiki5
+#        ^ meta.variable.macrocallblock.tiddlywiki5 indirect.attribute.html.tiddlywiki5
+#                  ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.text-reference.end.tiddlywiki5
+#                    ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+#                      ^ -meta.variable.macrocallblock.tiddlywiki5
+
+<<p a1={{my tiddler!!myfield}}>> -
+#<- meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5
+#   ^^ meta.variable.macrocallblock.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.macrocallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.text-reference.begin.tiddlywiki5
+#        ^ meta.variable.macrocallblock.tiddlywiki5 indirect.attribute.html.tiddlywiki5
+#                           ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.text-reference.end.tiddlywiki5
+#                             ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+#                               ^ -meta.variable.macrocallblock.tiddlywiki5
+
+<<p a1={{{ foo 6 :and[join[ ]] }}}>>
+#<- meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5
+#   ^^ meta.variable.macrocallblock.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.macrocallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.filtered.attribute.begin.tiddlywiki5
+#         ^ meta.variable.macrocallblock.tiddlywiki5 filtered.attribute.html.tiddlywiki5
+#                              ^^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.filtered.attribute.end.tiddlywiki5
+#                                 ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+
 </$let>
