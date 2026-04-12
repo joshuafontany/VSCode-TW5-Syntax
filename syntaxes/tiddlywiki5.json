@@ -4254,6 +4254,45 @@
 					}
 				},
 				{
+					"comment": "Dynamic param: name=```substituted```",
+					"begin": "([\\w\\-]+)\\s*(=)\\s*(?=```)",
+					"end": "(?<=```)(?=[\\s>]|$)",
+					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"contentName": "text.substituted.triple.attribute.html.tiddlywiki5",
+					"beginCaptures": {
+						"1": {
+							"name": "variable.parameter.tiddlywiki5"
+						},
+						"2": {
+							"name": "keyword.operator.assignment.tiddlywiki5"
+						}
+					},
+					"patterns": [
+						{
+							"begin": "(```)",
+							"end": "(```)",
+							"beginCaptures": {
+								"1": {
+									"name": "punctuation.definition.substituted.triple.attribute.begin.tiddlywiki5"
+								}
+							},
+							"endCaptures": {
+								"1": {
+									"name": "punctuation.definition.substituted.triple.attribute.end.tiddlywiki5"
+								}
+							},
+							"patterns": [
+								{
+									"include": "#htmlwidget-entities"
+								},
+								{
+									"include": "#inline"
+								}
+							]
+						}
+					]
+				},
+				{
 					"comment": "Dynamic param: name=`substituted`",
 					"begin": "([\\w\\-]+)\\s*(=)\\s*(?=`)",
 					"end": "(?<=`)(?=[\\s>]|$)",
@@ -5824,6 +5863,45 @@
 							"name": "mvv.attribute.html.tiddlywiki5 punctuation.definition.mvv.attribute.end.tiddlywiki5"
 						}
 					}
+				},
+				{
+					"comment": "Dynamic param: name=```substituted```",
+					"begin": "([\\w\\-]+)\\s*(=)\\s*(?=```)",
+					"end": "(?<=```)(?=[\\s>]|$)",
+					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"contentName": "text.substituted.triple.attribute.html.tiddlywiki5",
+					"beginCaptures": {
+						"1": {
+							"name": "variable.parameter.tiddlywiki5"
+						},
+						"2": {
+							"name": "keyword.operator.assignment.tiddlywiki5"
+						}
+					},
+					"patterns": [
+						{
+							"begin": "(```)",
+							"end": "(```)",
+							"beginCaptures": {
+								"1": {
+									"name": "punctuation.definition.substituted.triple.attribute.begin.tiddlywiki5"
+								}
+							},
+							"endCaptures": {
+								"1": {
+									"name": "punctuation.definition.substituted.triple.attribute.end.tiddlywiki5"
+								}
+							},
+							"patterns": [
+								{
+									"include": "#htmlwidget-entities"
+								},
+								{
+									"include": "#inline"
+								}
+							]
+						}
+					]
 				},
 				{
 					"comment": "Dynamic param: name=`substituted`",
