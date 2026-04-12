@@ -531,17 +531,61 @@
 			"prefix": "<\\$genesis",
 			"body": "<\\$genesis \\$type=\"${1:\\$list}\" ${2:filter}=\"${3:[all[current]]}\">\n\t$0\n</\\$genesis>"
 		},
+		"Widget Genesis With All Parameters": {
+			"descriptionMoreURL": "https://tiddlywiki.com/#GenesisWidget",
+			"prefix": "<\\$genesisz",
+			"body": [
+				"<\\$genesis \\$type=\"${1:\\$list}\"",
+				"\t\\$remappable=\"${2|yes,no|}\"",
+				"\t\\$names=\"${3:filter-for-names}\"",
+				"\t\\$values=\"${4:filter-for-values}\"",
+				"\t\\$mode=\"${5|block,inline|}\"",
+				"\t${6:attribute}=\"${7:value}\"",
+				">",
+				"\t$0",
+				"</\\$genesis>"
+			]
+		},
 		"Widget MessageCatcher": {
 			"description": "Catches and handles messages dispatched by action widgets.",
 			"descriptionMoreURL": "https://tiddlywiki.com/#MessageCatcherWidget",
 			"prefix": "<\\$messagecatcher",
 			"body": "<\\$messagecatcher \\$${1:tm-notify}=<<${2:actions}>>>\n\t$0\n</\\$messagecatcher>"
 		},
+		"Widget MessageCatcher Multiple Messages": {
+			"descriptionMoreURL": "https://tiddlywiki.com/#MessageCatcherWidget",
+			"prefix": "<\\$messagecatcherz",
+			"body": [
+				"<\\$messagecatcher",
+				"\t\\$${1:tm-notify}=<<${2:notifyActions}>>",
+				"\t\\$${3:tm-navigate}=<<${4:navigateActions}>>",
+				">",
+				"\t$0",
+				"</\\$messagecatcher>"
+			]
+		},
 		"Widget EventCatcher": {
 			"description": "Catches DOM events on child elements via event delegation.",
 			"descriptionMoreURL": "https://tiddlywiki.com/#EventCatcherWidget",
 			"prefix": "<\\$eventcatcher",
 			"body": "<\\$eventcatcher selector=\"${1:.my-selector}\" \\$${2:click}=<<${3:actions}>>>\n\t$0\n</\\$eventcatcher>"
+		},
+		"Widget EventCatcher With All Parameters": {
+			"descriptionMoreURL": "https://tiddlywiki.com/#EventCatcherWidget",
+			"prefix": "<\\$eventcatcherz",
+			"body": [
+				"<\\$eventcatcher",
+				"\tselector=\"${1:.my-selector}\"",
+				"\tmatchSelector=\"${2:}\"",
+				"\ttag=\"${3:div}\"",
+				"\tclass=\"${4:}\"",
+				"\tstopPropagation=\"${5|onaction,always,no|}\"",
+				"\tdisabled=\"${6|no,yes|}\"",
+				"\t\\$${7:click}=<<${8:actions}>>",
+				">",
+				"\t$0",
+				"</\\$eventcatcher>"
+			]
 		},
 		"Widget Fill": {
 			"description": "Supplies a slot value for transclusion.",
@@ -565,7 +609,21 @@
 			"description": "Wikifies text and stores the result in a variable.",
 			"descriptionMoreURL": "https://tiddlywiki.com/#WikifyWidget",
 			"prefix": "<\\$wikify",
-			"body": "<\\$wikify name=\"${1:result}\" text=\"${2:<<currentTiddler>>}\"${3: output=\"${4|text,html|}\"} ${5:mode=\"${6|block,inline|}\"} >\n\t$0\n</\\$wikify>"
+			"body": "<\\$wikify name=\"${1:result}\" text=\"${2:<<currentTiddler>>}\">\n\t$0\n</\\$wikify>"
+		},
+		"Widget Wikify With All Parameters": {
+			"descriptionMoreURL": "https://tiddlywiki.com/#WikifyWidget",
+			"prefix": "<\\$wikifyz",
+			"body": [
+				"<\\$wikify name=\"${1:result}\"",
+				"\ttext=\"${2:<<currentTiddler>>}\"",
+				"\ttype=\"${3:text/vnd.tiddlywiki}\"",
+				"\tmode=\"${4|block,inline|}\"",
+				"\toutput=\"${5|text,html,formattedtext,parsetree,widgettree|}\"",
+				">",
+				"\t$0",
+				"</\\$wikify>"
+			]
 		},
 		"Widget Range": {
 			"description": "Displays an HTML range input slider bound to a tiddler field.",
@@ -615,7 +673,22 @@
 			"description": "Creates a new tiddler programmatically.",
 			"descriptionMoreURL": "https://tiddlywiki.com/#ActionCreateTiddlerWidget",
 			"prefix": "<\\$action-createtiddler",
-			"body": "<\\$action-createtiddler \\$basetitle=\"${1:New Tiddler}\"${2: \\$template=\"${3:template-title}\"}${4: \\$savetitle=\"${5:$:/temp/newtitle}\"}/>$0"
+			"body": "<\\$action-createtiddler \\$basetitle=\"${1:New Tiddler}\"${2: \\$template=\"${3:template-title}\"}/>$0"
+		},
+		"Widget ActionCreate All Parameters": {
+			"descriptionMoreURL": "https://tiddlywiki.com/#ActionCreateTiddlerWidget",
+			"prefix": "<\\$action-createtiddlerz",
+			"body": [
+				"<\\$action-createtiddler",
+				"\t\\$basetitle=\"${1:New Tiddler}\"",
+				"\t\\$template=\"${2:template-title}\"",
+				"\t\\$savetitle=\"${3:$:/temp/newtitle}\"",
+				"\t\\$savedrafttitle=\"${4:}\"",
+				"\t\\$timestamp=\"${5|yes,no|}\"",
+				"\t\\$overwrite=\"${6|no,yes|}\"",
+				"\t${7:tags}=\"${8:tag1 [[tag with spaces]]}\"",
+				"/>$0"
+			]
 		},
 		"Widget ActionConfirm": {
 			"description": "Prompts user for confirmation before proceeding with actions.",
@@ -628,6 +701,16 @@
 			"descriptionMoreURL": "https://tiddlywiki.com/#ActionLogWidget",
 			"prefix": "<\\$action-log",
 			"body": "<\\$action-log ${1:name}=\"${2:value}\"/>$0"
+		},
+		"Widget ActionLog All Variables": {
+			"descriptionMoreURL": "https://tiddlywiki.com/#ActionLogWidget",
+			"prefix": "<\\$action-logz",
+			"body": "<\\$action-log \\$\\$all=\"yes\" \\$\\$message=\"${1:debug}\"/>$0"
+		},
+		"Widget ActionLog With Filter": {
+			"descriptionMoreURL": "https://tiddlywiki.com/#ActionLogWidget",
+			"prefix": "<\\$action-logv",
+			"body": "<\\$action-log \\$\\$filter=\"${1:[prefix[temp]]}\" \\$\\$message=\"${2:debug}\"/>$0"
 		}
 	},
 	"meta.variable.\ntext.substituted.attribute.html.tiddlywiki5\nstring.entity.filter.operand.tiddlywiki5": {
