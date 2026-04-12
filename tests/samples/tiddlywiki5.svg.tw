@@ -1,0 +1,23 @@
+\parameters (size:"22pt")
+<svg width=<<size>> height=<<size>> class="tc-image-advanced-search-button tc-image-button" viewBox="0 0 128 128">
+  <g fill-rule="evenodd" test=<<this>>><path d="M74.565 87.985A47.776 47.776 0 0148 96C21.49 96 0 74.51 0 48S21.49 0 48 0s48 21.49 48 48c0 9.854-2.97 19.015-8.062 26.636l34.347 34.347a9.443 9.443 0 010 13.36 9.446 9.446 0 01-13.36 0l-34.36-34.358zM48 80c17.673 0 32-14.327 32-32 0-17.673-14.327-32-32-32-17.673 0-32 14.327-32 32 0 17.673 14.327 32 32 32z"/><circle cx="48" cy="48" r="8"/><circle cx="28" cy="48" r="8"/><circle cx="68" cy="48" r=<<radius>>/></g>
+</svg>
+
+<svg width={{!!width}} height=<<height>> class={{{ [tag[Class]] }}} >
+
+</svg>
+
+<svg width="150" height="100">
+<circle cx="60" cy="60" r="30"
+  style="fill: #ff9; stroke: gray; stroke-width: 10;">
+  <animate attributeName=<<fillORstroke>>
+    begin="2s" dur="4s" from="#ff9" to="red" fill="freeze"/>
+  <animate attributeName={{!!stroke}}
+    begin="2s" dur="4s" from="gray" to="blue" fill="freeze"/>
+</circle>
+</svg>
+
+<svg viewBox="0 0 200 30" xmlns="http://www.w3.org/2000/svg">
+  <text y=<<20>> font-family="Arial, Helvetica, sans-serif">Sans ''serif''</text>
+  <text x="100" y="20" font-family=<<monospace>>>Monospace</text>
+</svg>

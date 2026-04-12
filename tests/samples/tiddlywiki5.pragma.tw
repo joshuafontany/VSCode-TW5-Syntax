@@ -1,4 +1,30 @@
 <!-- tiddlywiki5 -->
+\procedure saveNewWikiActions()
+    \procedure saveNewWikiCallback()
+        \procedure failureHandler()
+        <$action-log status="error saving new wiki to the server"/>
+        <$action-setfield $tiddler={{{ [[$:/temp/webdav/error/]addsuffix<now [UTC]YYYY0MM0DD0hh0mm0ssXXX]>] }}} text={{{ [[There was an error creating the new wiki. ]addsuffix<error>] }}} component="WebDAV save new wiki" tags="$:/tags/Alert"/>
+        \end failureHandler
+    <$list filter="201 204 :intersection[<status>]" variable="null" emptyMessage=<<saveNewWikiCallbackFailure>> >
+        <$action-sendmessage $message="tm-notify" $param="$:/plugins/sq/webdav-utils/ui/templates/wiki-created" path=<<destinationURL>> />
+        <$action-deletetiddler $filter="$:/temp/sq/fs/new-wiki-template-url $:/temp/sq/fs/new-wiki-name"/>
+        <$action-sendmessage $message="tm-webdav-ls" $param={{{ [<destinationURL>split[/]butlast[]join[/]trim[/]!is[blank]addsuffix[/]addprefix[/]] :else[[/]] }}} />
+    </$list>
+    \end saveNewWikiCallback
+<$wikify name="myplugins" text={{$:/plugins/sq/webdav-utils/templates/new-wiki-plugins}}>
+    <$action-sendmessage
+        $message="tm-http-request"
+        method="PUT"
+        bind-status="$:/state/webdav/http-status"
+        oncompletion=<<saveNewWikiCallback>>
+        url=<<destinationURL>>
+        body={{{ [<data>addprefix<myplugins>] }}}
+        var-destinationURL=<<destinationURL>>
+        >
+</$wikify>
+\end saveNewWikiActions
+
+
 \import [[test]]
 \define myMacro1(param:test, param:"""Test""", param: [[Test]]) test $test$ $(fnord)$
 
@@ -80,3 +106,18 @@ This is the widget, and the attribute is <<attribute>>.
 
 This is the widget, and the attribute is <<attribute>>.
 \end
+
+\define macroName (param: "default")
+$param$ $(extVar)$ $:/core/system/tiddler/title
+\end
+
+\define special-button(caption:"Click me")
+\define actions()
+<$action-sendmessage $message="tm-notify" $param="HelloThere"/>
+\end actions
+<$button actions=<<actions>>>
+$caption$
+</$button>
+\end special-button
+
+<<special-button>>

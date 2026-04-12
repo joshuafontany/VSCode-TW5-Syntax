@@ -2,7 +2,7 @@
     "name": "tw5-syntax",
     "displayName": "TiddlyWiki5 Syntax",
     "description": "TiddlyWiki5 v5.3.4 Textmate compatible Syntax / Grammar",
-    "version": "2.0.1",
+    "version": "2.0.6",
     "icon": "tw5.png",
     "engines": {
         "vscode": "^1.43.0"
@@ -33,6 +33,16 @@
     },
     "contributes": {
         "languages": [
+            {
+                "id": "json",
+                "extensions": [
+                  ".info", ".files"
+                ],
+                "aliases": [
+                  "Tiddlywiki5 Json",
+                  "tiddlywiki5-json"
+                ]
+            },
             {
                 "id": "tiddlywiki5.test",
                 "aliases": [
@@ -84,7 +94,7 @@
             {
                 "id": "tiddlywiki5",
                 "aliases": [
-                    "TiddlyWiki5",
+                    "Tiddlywiki5",
                     "tiddlywiki5",
                     "tw5"
                 ],

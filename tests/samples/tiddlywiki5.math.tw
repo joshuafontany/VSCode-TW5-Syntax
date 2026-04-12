@@ -1,0 +1,76 @@
+<math>
+    <mrow>
+        <mrow>
+            <msup>
+                <mi><<x>></mi>
+                <mn>2</mn>
+            </msup>
+            <mo>+</mo>
+            <msup>
+                <mi>y</mi>
+                <mn>2</mn>
+            </msup>
+        </mrow>
+        <mo>=</mo>
+        <msup>
+            <mi>{{z}}</mi>
+            <mn>2</mn>
+        </msup>
+    </mrow>
+</math>
+
+<p>
+  The infinite sum
+
+Paragraph text with a few [[Title Links]] and [[References]]...
+
+<<variable>>
+{{transclusion}}
+[[wiki-link]]
+
+: test
+; this
+
+"""
+TEST TEXT 
+BLOCK <$transclude tiddler="test"/>
+"""
+
+<<variable>>
+{{transclusion}}
+[[wiki-link]]
+
+  <math display=<<"block">>>
+    <mrow>
+      <munderover>
+        <mo>∑</mo>
+        <mrow>
+          <mi>n</mi>
+          <mo>=</mo>
+          <mn>1</mn>
+        </mrow>
+        <mrow>
+          <mo>+</mo>
+          <mn>∞</mn>
+        </mrow>
+      </munderover>
+      <mfrac>
+        <mn>1</mn>
+        <msup>
+          <mi>n Paragraph ''text'' with //a few// [[X]] ~~and~~ [[Y]]...</mi>
+          <mn>2</mn>
+        </msup>
+      </mfrac>
+    </mrow>
+  </math>
+  is equal to the real number
+  <math display=<<"inline">>>
+    <mfrac>
+      <msup>
+        <mi>π Paragraph text with a few [[Title Links]] and [[References]]... </mi>
+        <mn>2</mn>
+      </msup>
+      <mn>6</mn>
+    </mfrac>
+      <annotation display=<<"inline">>></annotation></math>.
+</p>

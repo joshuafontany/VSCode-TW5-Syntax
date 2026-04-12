@@ -14,7 +14,7 @@
 
 	<tag lang={{HTML!!lang}}/>
 
-<tag lang=<<en param>>>__test__</tag>
+<tag lang=<<en param>> an>__test__</tag>
 
 <tag lang={{{ [<currentTiddler>addprefix[en]] }}}/>
 
