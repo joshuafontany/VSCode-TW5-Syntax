@@ -1,0 +1,20 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "Test for MVV default values in pragma parameter definitions"
+
+\procedure myProc(param:((myvar)))
+#<- meta.directive.variable.procedure.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+#^ meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+#          ^ meta.directive.variable.procedure.tiddlywiki5 entity.name.variable.procedure.tiddlywiki5
+#                 ^ meta.variable.pragma.parameters.tiddlywiki5 variable.parameter.tiddlywiki5
+#                      ^ meta.variable.pragma.parameters.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#                       ^^ meta.variable.pragma.parameters.tiddlywiki5 mvv.default.parameter.tiddlywiki5 punctuation.definition.mvv.default.begin.tiddlywiki5
+#                         ^ meta.variable.pragma.parameters.tiddlywiki5 mvv.default.parameter.tiddlywiki5 variable.name.mvv.default.tiddlywiki5
+body text
+\end
+
+\function myFunc(param:((myvar)))
+#^ meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.html.tiddlywiki5
+#          ^ meta.directive.variable.function.tiddlywiki5 entity.name.variable.function.tiddlywiki5
+#                ^ meta.variable.pragma.parameters.tiddlywiki5 variable.parameter.tiddlywiki5
+#                     ^ meta.variable.pragma.parameters.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#                      ^^ meta.variable.pragma.parameters.tiddlywiki5 mvv.default.parameter.tiddlywiki5 punctuation.definition.mvv.default.begin.tiddlywiki5
+\end
