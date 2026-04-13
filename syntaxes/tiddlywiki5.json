@@ -4070,296 +4070,7 @@
 			},
 			"patterns": [
 				{
-					"begin": "(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\"\"\")",
-					"end": "(?<=\"\"\")",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"beginCaptures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#string"
-						},
-						{
-							"match": "\\S+",
-							"name": "string.unquoted.html.tiddlywiki5"
-						}
-					]
-				},
-				{
-					"begin": "(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\")",
-					"end": "(?<=\")",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"beginCaptures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#string"
-						},
-						{
-							"match": "\\S+",
-							"name": "string.unquoted.html.tiddlywiki5"
-						}
-					]
-				},
-				{
-					"begin": "(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=')",
-					"end": "(?<=')",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"beginCaptures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#string"
-						},
-						{
-							"match": "\\S+",
-							"name": "string.unquoted.html.tiddlywiki5"
-						}
-					]
-				},
-				{
-					"begin": "(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\\[\\[)",
-					"end": "(?<=\\]\\])",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"beginCaptures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#string"
-						},
-						{
-							"match": "\\S+",
-							"name": "string.unquoted.html.tiddlywiki5"
-						}
-					]
-				},
-				{
-					"comment": "Dynamic param: name=<<macro>>",
-					"begin": "([\\w\\-]+)\\s*(=)\\s*(?=<<[^>\\s]+)",
-					"end": "(?<=>{2})",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"contentName": "variable.macro.attribute.html.tiddlywiki5",
-					"beginCaptures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#macrocallinline"
-						}
-					]
-				},
-				{
-					"comment": "Dynamic param: name={{{filter}}}",
-					"match": "([\\w\\-]+)\\s*(=)\\s*(\\{{3})(.*?)(\\}{3})",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"captures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						},
-						"3": {
-							"name": "punctuation.definition.filtered.attribute.begin.tiddlywiki5"
-						},
-						"4": {
-							"name": "filtered.attribute.html.tiddlywiki5",
-							"patterns": [
-								{
-									"include": "#filter"
-								}
-							]
-						},
-						"5": {
-							"name": "punctuation.definition.filtered.attribute.end.tiddlywiki5"
-						}
-					}
-				},
-				{
-					"comment": "Dynamic param: name={{indirect}}",
-					"match": "([\\w\\-]+)\\s*(=)\\s*(\\{\\{)([^{]*?)(\\}\\})",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"captures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						},
-						"3": {
-							"name": "punctuation.definition.text-reference.begin.tiddlywiki5"
-						},
-						"4": {
-							"name": "indirect.attribute.html.tiddlywiki5",
-							"patterns": [
-								{
-									"include": "#textReference"
-								}
-							]
-						},
-						"5": {
-							"name": "punctuation.definition.text-reference.end.tiddlywiki5"
-						}
-					}
-				},
-				{
-					"comment": "Dynamic param: name=((mvvvar))",
-					"match": "([\\w\\-]+)\\s*(=)\\s*(\\(\\()([^()|]+?)(\\)\\))",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"captures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						},
-						"3": {
-							"name": "mvv.attribute.html.tiddlywiki5 punctuation.definition.mvv.attribute.begin.tiddlywiki5"
-						},
-						"4": {
-							"name": "mvv.attribute.html.tiddlywiki5 variable.name.mvv.attribute.tiddlywiki5"
-						},
-						"5": {
-							"name": "mvv.attribute.html.tiddlywiki5 punctuation.definition.mvv.attribute.end.tiddlywiki5"
-						}
-					}
-				},
-				{
-					"comment": "Dynamic param: name=```substituted```",
-					"begin": "([\\w\\-]+)\\s*(=)\\s*(?=```)",
-					"end": "(?<=```)(?=[\\s>]|$)",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"contentName": "text.substituted.triple.attribute.html.tiddlywiki5",
-					"beginCaptures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						}
-					},
-					"patterns": [
-						{
-							"begin": "(```)",
-							"end": "(```)",
-							"beginCaptures": {
-								"1": {
-									"name": "punctuation.definition.substituted.triple.attribute.begin.tiddlywiki5"
-								}
-							},
-							"endCaptures": {
-								"1": {
-									"name": "punctuation.definition.substituted.triple.attribute.end.tiddlywiki5"
-								}
-							},
-							"patterns": [
-								{
-									"include": "#htmlwidget-entities"
-								},
-								{
-									"include": "#inline"
-								}
-							]
-						}
-					]
-				},
-				{
-					"comment": "Dynamic param: name=`substituted`",
-					"begin": "([\\w\\-]+)\\s*(=)\\s*(?=`)",
-					"end": "(?<=`)(?=[\\s>]|$)",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"contentName": "text.substituted.single.attribute.html.tiddlywiki5",
-					"beginCaptures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						}
-					},
-					"patterns": [
-						{
-							"begin": "(`)",
-							"end": "(`)",
-							"beginCaptures": {
-								"1": {
-									"name": "punctuation.definition.substituted.single.attribute.begin.tiddlywiki5"
-								}
-							},
-							"endCaptures": {
-								"1": {
-									"name": "punctuation.definition.substituted.single.attribute.end.tiddlywiki5"
-								}
-							},
-							"patterns": [
-								{
-									"include": "#htmlwidget-entities"
-								},
-								{
-									"include": "#inline"
-								}
-							]
-						}
-					]
-				},
-				{
-					"match": "(?:([\\w\\-]+)\\s*([:=])\\s*)?([^\\>\"'\\s]+)",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"captures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						},
-						"3": {
-							"begin": "^",
-							"end": "$",
-							"patterns": [
-								{
-									"include": "#string"
-								},
-								{
-									"match": "\\S+",
-									"name": "string.unquoted.html.tiddlywiki5"
-								}
-							]
-						}
-					}
-				},
-				{
-					"comment": "Match separators.",
-					"match": "[^\\w\\-\\>\\s]+",
-					"name": "punctuation.separator.function.macro.parameter.tiddlywiki5"
+					"include": "#macro-parameters"
 				}
 			]
 		},
@@ -5681,319 +5392,7 @@
 			},
 			"patterns": [
 				{
-					"begin": "(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\"\"\")",
-					"end": "(?<=\"\"\")",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"beginCaptures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#string"
-						},
-						{
-							"match": "\\S+",
-							"name": "string.unquoted.html.tiddlywiki5"
-						}
-					]
-				},
-				{
-					"begin": "(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\")",
-					"end": "(?<=\")",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"beginCaptures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#string"
-						},
-						{
-							"match": "\\S+",
-							"name": "string.unquoted.html.tiddlywiki5"
-						}
-					]
-				},
-				{
-					"begin": "(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=')",
-					"end": "(?<=')",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"beginCaptures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#string"
-						},
-						{
-							"match": "\\S+",
-							"name": "string.unquoted.html.tiddlywiki5"
-						}
-					]
-				},
-				{
-					"begin": "(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\\[\\[)",
-					"end": "(?<=\\]\\])",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"beginCaptures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#string"
-						},
-						{
-							"match": "\\S+",
-							"name": "string.unquoted.html.tiddlywiki5"
-						}
-					]
-				},
-				{
-					"comment": "Dynamic param: name=<<macro>>",
-					"begin": "([\\w\\-]+)\\s*(=)\\s*(?=<<[^>\\s]+)",
-					"end": "(?<=>{2})",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"contentName": "variable.macro.attribute.html.tiddlywiki5",
-					"beginCaptures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#macrocallinline"
-						}
-					]
-				},
-				{
-					"comment": "Dynamic param: name={{{filter}}}",
-					"match": "([\\w\\-]+)\\s*(=)\\s*(\\{{3})(.*?)(\\}{3})",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"captures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						},
-						"3": {
-							"name": "punctuation.definition.filtered.attribute.begin.tiddlywiki5"
-						},
-						"4": {
-							"name": "filtered.attribute.html.tiddlywiki5",
-							"patterns": [
-								{
-									"include": "#filter"
-								}
-							]
-						},
-						"5": {
-							"name": "punctuation.definition.filtered.attribute.end.tiddlywiki5"
-						}
-					}
-				},
-				{
-					"comment": "Dynamic param: name={{indirect}}",
-					"match": "([\\w\\-]+)\\s*(=)\\s*(\\{\\{)([^{]*?)(\\}\\})",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"captures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						},
-						"3": {
-							"name": "punctuation.definition.text-reference.begin.tiddlywiki5"
-						},
-						"4": {
-							"name": "indirect.attribute.html.tiddlywiki5",
-							"patterns": [
-								{
-									"include": "#textReference"
-								}
-							]
-						},
-						"5": {
-							"name": "punctuation.definition.text-reference.end.tiddlywiki5"
-						}
-					}
-				},
-				{
-					"comment": "Dynamic param: name=((mvvvar))",
-					"match": "([\\w\\-]+)\\s*(=)\\s*(\\(\\()([^()|]+?)(\\)\\))",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"captures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						},
-						"3": {
-							"name": "mvv.attribute.html.tiddlywiki5 punctuation.definition.mvv.attribute.begin.tiddlywiki5"
-						},
-						"4": {
-							"name": "mvv.attribute.html.tiddlywiki5 variable.name.mvv.attribute.tiddlywiki5"
-						},
-						"5": {
-							"name": "mvv.attribute.html.tiddlywiki5 punctuation.definition.mvv.attribute.end.tiddlywiki5"
-						}
-					}
-				},
-				{
-					"comment": "Dynamic param: name=```substituted```",
-					"begin": "([\\w\\-]+)\\s*(=)\\s*(?=```)",
-					"end": "(?<=```)(?=[\\s>]|$)",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"contentName": "text.substituted.triple.attribute.html.tiddlywiki5",
-					"beginCaptures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						}
-					},
-					"patterns": [
-						{
-							"begin": "(```)",
-							"end": "(```)",
-							"beginCaptures": {
-								"1": {
-									"name": "punctuation.definition.substituted.triple.attribute.begin.tiddlywiki5"
-								}
-							},
-							"endCaptures": {
-								"1": {
-									"name": "punctuation.definition.substituted.triple.attribute.end.tiddlywiki5"
-								}
-							},
-							"patterns": [
-								{
-									"include": "#htmlwidget-entities"
-								},
-								{
-									"include": "#inline"
-								}
-							]
-						}
-					]
-				},
-				{
-					"comment": "Dynamic param: name=`substituted`",
-					"begin": "([\\w\\-]+)\\s*(=)\\s*(?=`)",
-					"end": "(?<=`)(?=[\\s>]|$)",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"contentName": "text.substituted.single.attribute.html.tiddlywiki5",
-					"beginCaptures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						}
-					},
-					"patterns": [
-						{
-							"begin": "(`)",
-							"end": "(`)",
-							"beginCaptures": {
-								"1": {
-									"name": "punctuation.definition.substituted.single.attribute.begin.tiddlywiki5"
-								}
-							},
-							"endCaptures": {
-								"1": {
-									"name": "punctuation.definition.substituted.single.attribute.end.tiddlywiki5"
-								}
-							},
-							"patterns": [
-								{
-									"include": "#htmlwidget-entities"
-								},
-								{
-									"include": "#inline"
-								}
-							]
-						}
-					]
-				},
-				{
-					"comment": "Dynamic param: name=[[bracket value]]",
-					"match": "([\\w\\-]+)\\s*(=)\\s*(\\[\\[)(.*?)(\\]\\])",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"contentName": "string.quoted.bracket.attribute.html.tiddlywiki5",
-					"captures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						},
-						"3": {
-							"name": "punctuation.definition.string.begin.html.tiddlywiki5"
-						},
-						"4": {
-							"name": "string.quoted.bracket.attribute.html.tiddlywiki5"
-						},
-						"5": {
-							"name": "punctuation.definition.string.end.html.tiddlywiki5"
-						}
-					}
-				},
-				{
-					"match": "(?:([\\w\\-]+)\\s*([:=])\\s*)?([^\\>\"'\\s]+)",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"captures": {
-						"1": {
-							"name": "variable.parameter.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.operator.assignment.tiddlywiki5"
-						},
-						"3": {
-							"begin": "^",
-							"end": "$",
-							"patterns": [
-								{
-									"include": "#string"
-								},
-								{
-									"match": "\\S+",
-									"name": "string.unquoted.html.tiddlywiki5"
-								}
-							]
-						}
-					}
-				},
-				{
-					"comment": "Match separators.",
-					"match": "[^\\w\\-\\>\\s]+",
-					"name": "punctuation.separator.function.macro.parameter.tiddlywiki5"
+					"include": "#macro-parameters"
 				}
 			]
 		},
@@ -6927,6 +6326,326 @@
 					"name": "keyword.other.variable.substitute-filter.end.tiddlywiki5"
 				}
 			}
+		},
+		"macro-parameters": {
+			"comment": "Shared parameter patterns for macrocallblock and macrocallinline. Supports both : and = separators, string values, and dynamic value types (macro, filter, indirect, mvv, substituted, bracket).",
+			"patterns": [
+				{
+					"begin": "(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\"\"\")",
+					"end": "(?<=\"\"\")",
+					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"beginCaptures": {
+						"1": {
+							"name": "variable.parameter.tiddlywiki5"
+						},
+						"2": {
+							"name": "keyword.operator.assignment.tiddlywiki5"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#string"
+						},
+						{
+							"match": "\\S+",
+							"name": "string.unquoted.html.tiddlywiki5"
+						}
+					]
+				},
+				{
+					"begin": "(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\")",
+					"end": "(?<=\")",
+					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"beginCaptures": {
+						"1": {
+							"name": "variable.parameter.tiddlywiki5"
+						},
+						"2": {
+							"name": "keyword.operator.assignment.tiddlywiki5"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#string"
+						},
+						{
+							"match": "\\S+",
+							"name": "string.unquoted.html.tiddlywiki5"
+						}
+					]
+				},
+				{
+					"begin": "(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=')",
+					"end": "(?<=')",
+					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"beginCaptures": {
+						"1": {
+							"name": "variable.parameter.tiddlywiki5"
+						},
+						"2": {
+							"name": "keyword.operator.assignment.tiddlywiki5"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#string"
+						},
+						{
+							"match": "\\S+",
+							"name": "string.unquoted.html.tiddlywiki5"
+						}
+					]
+				},
+				{
+					"begin": "(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\\[\\[)",
+					"end": "(?<=\\]\\])",
+					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"beginCaptures": {
+						"1": {
+							"name": "variable.parameter.tiddlywiki5"
+						},
+						"2": {
+							"name": "keyword.operator.assignment.tiddlywiki5"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#string"
+						},
+						{
+							"match": "\\S+",
+							"name": "string.unquoted.html.tiddlywiki5"
+						}
+					]
+				},
+				{
+					"comment": "Dynamic param: name=<<macro>>",
+					"begin": "([\\w\\-]+)\\s*(=)\\s*(?=<<[^>\\s]+)",
+					"end": "(?<=>{2})",
+					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"contentName": "variable.macro.attribute.html.tiddlywiki5",
+					"beginCaptures": {
+						"1": {
+							"name": "variable.parameter.tiddlywiki5"
+						},
+						"2": {
+							"name": "keyword.operator.assignment.tiddlywiki5"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#macrocallinline"
+						}
+					]
+				},
+				{
+					"comment": "Dynamic param: name={{{filter}}}",
+					"match": "([\\w\\-]+)\\s*(=)\\s*(\\{{3})(.*?)(\\}{3})",
+					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"captures": {
+						"1": {
+							"name": "variable.parameter.tiddlywiki5"
+						},
+						"2": {
+							"name": "keyword.operator.assignment.tiddlywiki5"
+						},
+						"3": {
+							"name": "punctuation.definition.filtered.attribute.begin.tiddlywiki5"
+						},
+						"4": {
+							"name": "filtered.attribute.html.tiddlywiki5",
+							"patterns": [
+								{
+									"include": "#filter"
+								}
+							]
+						},
+						"5": {
+							"name": "punctuation.definition.filtered.attribute.end.tiddlywiki5"
+						}
+					}
+				},
+				{
+					"comment": "Dynamic param: name={{indirect}}",
+					"match": "([\\w\\-]+)\\s*(=)\\s*(\\{\\{)([^{]*?)(\\}\\})",
+					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"captures": {
+						"1": {
+							"name": "variable.parameter.tiddlywiki5"
+						},
+						"2": {
+							"name": "keyword.operator.assignment.tiddlywiki5"
+						},
+						"3": {
+							"name": "punctuation.definition.text-reference.begin.tiddlywiki5"
+						},
+						"4": {
+							"name": "indirect.attribute.html.tiddlywiki5",
+							"patterns": [
+								{
+									"include": "#textReference"
+								}
+							]
+						},
+						"5": {
+							"name": "punctuation.definition.text-reference.end.tiddlywiki5"
+						}
+					}
+				},
+				{
+					"comment": "Dynamic param: name=((mvvvar))",
+					"match": "([\\w\\-]+)\\s*(=)\\s*(\\(\\()([^()|]+?)(\\)\\))",
+					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"captures": {
+						"1": {
+							"name": "variable.parameter.tiddlywiki5"
+						},
+						"2": {
+							"name": "keyword.operator.assignment.tiddlywiki5"
+						},
+						"3": {
+							"name": "mvv.attribute.html.tiddlywiki5 punctuation.definition.mvv.attribute.begin.tiddlywiki5"
+						},
+						"4": {
+							"name": "mvv.attribute.html.tiddlywiki5 variable.name.mvv.attribute.tiddlywiki5"
+						},
+						"5": {
+							"name": "mvv.attribute.html.tiddlywiki5 punctuation.definition.mvv.attribute.end.tiddlywiki5"
+						}
+					}
+				},
+				{
+					"comment": "Dynamic param: name=```substituted```",
+					"begin": "([\\w\\-]+)\\s*(=)\\s*(?=```)",
+					"end": "(?<=```)(?=[\\s>]|$)",
+					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"contentName": "text.substituted.triple.attribute.html.tiddlywiki5",
+					"beginCaptures": {
+						"1": {
+							"name": "variable.parameter.tiddlywiki5"
+						},
+						"2": {
+							"name": "keyword.operator.assignment.tiddlywiki5"
+						}
+					},
+					"patterns": [
+						{
+							"begin": "(```)",
+							"end": "(```)",
+							"beginCaptures": {
+								"1": {
+									"name": "punctuation.definition.substituted.triple.attribute.begin.tiddlywiki5"
+								}
+							},
+							"endCaptures": {
+								"1": {
+									"name": "punctuation.definition.substituted.triple.attribute.end.tiddlywiki5"
+								}
+							},
+							"patterns": [
+								{
+									"include": "#htmlwidget-entities"
+								},
+								{
+									"include": "#inline"
+								}
+							]
+						}
+					]
+				},
+				{
+					"comment": "Dynamic param: name=`substituted`",
+					"begin": "([\\w\\-]+)\\s*(=)\\s*(?=`)",
+					"end": "(?<=`)(?=[\\s>]|$)",
+					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"contentName": "text.substituted.single.attribute.html.tiddlywiki5",
+					"beginCaptures": {
+						"1": {
+							"name": "variable.parameter.tiddlywiki5"
+						},
+						"2": {
+							"name": "keyword.operator.assignment.tiddlywiki5"
+						}
+					},
+					"patterns": [
+						{
+							"begin": "(`)",
+							"end": "(`)",
+							"beginCaptures": {
+								"1": {
+									"name": "punctuation.definition.substituted.single.attribute.begin.tiddlywiki5"
+								}
+							},
+							"endCaptures": {
+								"1": {
+									"name": "punctuation.definition.substituted.single.attribute.end.tiddlywiki5"
+								}
+							},
+							"patterns": [
+								{
+									"include": "#htmlwidget-entities"
+								},
+								{
+									"include": "#inline"
+								}
+							]
+						}
+					]
+				},
+				{
+					"comment": "Dynamic param: name=[[bracket value]]",
+					"match": "([\\w\\-]+)\\s*(=)\\s*(\\[\\[)(.*?)(\\]\\])",
+					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"contentName": "string.quoted.bracket.attribute.html.tiddlywiki5",
+					"captures": {
+						"1": {
+							"name": "variable.parameter.tiddlywiki5"
+						},
+						"2": {
+							"name": "keyword.operator.assignment.tiddlywiki5"
+						},
+						"3": {
+							"name": "punctuation.definition.string.begin.html.tiddlywiki5"
+						},
+						"4": {
+							"name": "string.quoted.bracket.attribute.html.tiddlywiki5"
+						},
+						"5": {
+							"name": "punctuation.definition.string.end.html.tiddlywiki5"
+						}
+					}
+				},
+				{
+					"match": "(?:([\\w\\-]+)\\s*([:=])\\s*)?([^\\>\"'\\s]+)",
+					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"captures": {
+						"1": {
+							"name": "variable.parameter.tiddlywiki5"
+						},
+						"2": {
+							"name": "keyword.operator.assignment.tiddlywiki5"
+						},
+						"3": {
+							"begin": "^",
+							"end": "$",
+							"patterns": [
+								{
+									"include": "#string"
+								},
+								{
+									"match": "\\S+",
+									"name": "string.unquoted.html.tiddlywiki5"
+								}
+							]
+						}
+					}
+				},
+				{
+					"comment": "Match separators.",
+					"match": "[^\\w\\-\\>\\s]+",
+					"name": "punctuation.separator.function.macro.parameter.tiddlywiki5"
+				}
+			]
 		}
 	}
 }
