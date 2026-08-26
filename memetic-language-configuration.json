@@ -41,7 +41,7 @@
     // marker cannot match against its own opener, and the nearest structural
     // heuristic — a line carrying only a name and a #fragment — leaves 52 of 616
     // carriers unbalanced when measured. A marker that mis-pairs folds the wrong
-    // span, which is the same failure the grammar guards against elsewhere. Folding
+    // span, reproducing the failure the grammar guards against elsewhere. Folding
     // by structure waits for a language server, which can match a close to its open.
     "folding": {
         "markers": {
