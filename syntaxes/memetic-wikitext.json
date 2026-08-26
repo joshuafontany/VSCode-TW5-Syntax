@@ -260,7 +260,7 @@
     },
     "sigil": {
       "name": "meta.sigil.memetic-wikitext",
-      "begin": "(<<)(~)\\s+(\\\\?[A-Za-z_][A-Za-z0-9_-]*)",
+      "begin": "(<<)(~)\\s*(\\\\?[A-Za-z_][A-Za-z0-9_-]*)",
       "end": "(>>)|$",
       "beginCaptures": {
         "1": {
@@ -282,7 +282,8 @@
         {
           "include": "#params"
         }
-      ]
+      ],
+      "comment": "The sharktooth claims both spacings: <<~ name …>> and <<~name …>>. TW5 reads the first as macro `~` with a positional parameter and the second as macro `~name`, and both stand inside this namespace. LWSP in the grammar admits zero (memetic-wikitext #grammar)."
     },
     "params": {
       "patterns": [
