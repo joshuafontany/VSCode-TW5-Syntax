@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   `<<~ name …>>`, so bearing arrows, `#fragment` anchors and `lar:` URIs inside the tight
   form scope as themselves rather than as undifferentiated macro parameters. 973 of the
   7,920 sharktooth forms in a 616-document corpus took the tight spelling.
+  The pragma and unresolved registers take the same spacing: `<<~!name …>>` and `<<~?#anchor >>`.
 - Highlighting no longer runs to the end of the file. TiddlyWiki ends an inline run at a paragraph
   boundary; the grammar did not, and an unclosed run also held its paragraph open, so the colouring
   compounded outward. All six emphasis variants and both inline-code variants now end at a blank

@@ -11,3 +11,11 @@
 
 <<~/ranks >>
 # ^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext keyword.control.sharktooth.close.memetic-wikitext
+
+<<~!wehe name(p) >>
+# ^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.pragma.memetic-wikitext keyword.control.sharktooth.pragma.memetic-wikitext
+#   ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.pragma.memetic-wikitext entity.name.function.sigil.definition.memetic-wikitext
+
+<<~?#fragment >>
+# ^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.unresolved.memetic-wikitext keyword.control.sharktooth.unresolved.memetic-wikitext
+#    ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.unresolved.memetic-wikitext entity.name.tag.anchor.memetic-wikitext

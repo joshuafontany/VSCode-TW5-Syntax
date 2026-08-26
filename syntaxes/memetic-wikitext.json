@@ -211,7 +211,7 @@
     },
     "sigil-unresolved": {
       "name": "meta.sigil.unresolved.memetic-wikitext",
-      "begin": "(<<)(~\\?)(?=[\\s>])",
+      "begin": "(<<)(~\\?)(?=[\\s>#])",
       "end": "(>>)|$",
       "beginCaptures": {
         "1": {
@@ -230,11 +230,12 @@
         {
           "include": "#params"
         }
-      ]
+      ],
+      "comment": "A fragment may follow the tooth directly: the grammar puts LWSP, never required space, between them."
     },
     "sigil-pragma": {
       "name": "meta.sigil.pragma.memetic-wikitext",
-      "begin": "(<<)(~!)\\s+(\\\\?[A-Za-z_][A-Za-z0-9_-]*)",
+      "begin": "(<<)(~!)\\s*(\\\\?[A-Za-z_][A-Za-z0-9_-]*)",
       "end": "(>>)|$",
       "beginCaptures": {
         "1": {
@@ -256,7 +257,8 @@
         {
           "include": "#params"
         }
-      ]
+      ],
+      "comment": "LWSP admits zero between the tooth and the name, as it does for the speaking set."
     },
     "sigil": {
       "name": "meta.sigil.memetic-wikitext",
