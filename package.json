@@ -107,7 +107,7 @@
                 "mimetypes": [
                     "text/memetic-wikitext+tiddlywiki"
                 ],
-                "configuration": "./language-configuration.json"
+                "configuration": "./memetic-language-configuration.json"
             },
             {
                 "id": "tiddlywiki5",

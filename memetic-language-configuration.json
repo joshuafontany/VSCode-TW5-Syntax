@@ -1,0 +1,52 @@
+{
+    // Memetic-wikitext extends TiddlyWiki wikitext, so it keeps the host's comment
+    // form. Everything else here answers to the sharktooth.
+    "comments": {
+        "blockComment": [ "<!--", "-->" ]
+    },
+    // "<<" and ">>" bracket every sigil, so bracket matching and jump-to-pair follow
+    // the grammar rather than the HTML underneath it.
+    "brackets": [
+        ["<<", ">>"],
+        ["<!--", "-->"],
+        ["[[", "]]"],
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"]
+    ],
+    "autoClosingPairs": [
+        { "open": "<<", "close": " >>" },
+        { "open": "[[", "close": "]]" },
+        { "open": "{", "close": "}" },
+        { "open": "[", "close": "]" },
+        { "open": "(", "close": ")" },
+        { "open": "\"", "close": "\"" },
+        { "open": "<!--", "close": "-->", "notIn": ["comment", "string"] }
+    ],
+    "autoCloseBefore": ";:.,=}])> \n\t",
+    "surroundingPairs": [
+        ["<<", ">>"],
+        ["[[", "]]"],
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["\"", "\""],
+        ["'", "'"],
+        ["`", "`"]
+    ],
+    // A sigil name, a lar: URI and a #fragment each select as one word, so a double
+    // click takes the whole address instead of stopping at a dot or a slash.
+    "wordPattern": "(lar:[^\\s>]+)|(#[A-Za-z_][A-Za-z0-9_-]*)|(\\\\?[A-Za-z_][A-Za-z0-9_-]*)",
+    // Folding stays out on purpose. A sigil block closes on a name that a folding
+    // marker cannot match against its own opener, and the nearest structural
+    // heuristic — a line carrying only a name and a #fragment — leaves 52 of 616
+    // carriers unbalanced when measured. A marker that mis-pairs folds the wrong
+    // span, which is the same failure the grammar guards against elsewhere. Folding
+    // by structure waits for a language server, which can match a close to its open.
+    "folding": {
+        "markers": {
+            "start": "^\\s*<!--\\s*#?region\\b.*-->",
+            "end": "^\\s*<!--\\s*#?endregion\\b.*-->"
+        }
+    }
+}

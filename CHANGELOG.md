@@ -22,6 +22,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Unquoted attribute values keep single parentheses again; only `((` opens an MVV reference.
 
 ### Added
+- A language configuration of its own for `memetic-wikitext`: `<<` and `>>` bracket and
+  auto-close as a pair, `[[…]]` with them, and a sigil name, a `#fragment` or a whole
+  `lar:` URI each select as one word. Folding stays with region markers — see below.
 - Continuous integration. Every pull request and every push to `main` installs from the
   lockfile, runs both grammar suites, holds the terminator-closure ratchet at zero, and
   builds the `.vsix` a user would install, keeping it as an artifact.
