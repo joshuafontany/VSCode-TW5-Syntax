@@ -44,10 +44,12 @@ resolve. It reports any it cannot find on your platform and runs the rest.
 ## Highlighting that runs to the end of the file
 
 TextMate grammars fail in one characteristic way: a `begin` whose `end` never
-matches does not error — it wins, and colours everything after it. Several
-long-standing issues here share that root.
+matches does not error — it wins, and colours everything after it. An unclosed
+child also blocks its parent's `end`, so the damage compounds outward: a run that
+cannot close keeps the paragraph around it open too. This root produces most of
+the highlighting bugs a grammar of this size will ever carry.
 
-So every construct must end on its own terminator **or on end-of-line** — never
-on end-of-file. When adding a pattern, add a fixture that puts an ordinary
+So every construct ends on its own terminator **or on a paragraph boundary** —
+never on end-of-file. When adding a pattern, add a fixture that puts an ordinary
 sentence after the construct and asserts that the sentence still reads as plain
 text. `tests/memetic-wikitext/gradient-floor.mem.test` stands as the worked example.

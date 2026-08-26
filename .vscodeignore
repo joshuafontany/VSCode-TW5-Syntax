@@ -12,7 +12,7 @@
 tests/**
 run_tests.sh
 
-# Superseded grammars, kept for reference.
+# Reference grammars. The extension ships none of them.
 grammars_archive/**
 
 # Resolved from package.json at install time.
