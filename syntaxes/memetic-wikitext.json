@@ -1,0 +1,382 @@
+{
+  "name": "Memetic-Wikitext",
+  "scopeName": "text.html.tiddlywiki5.memetic-wikitext",
+  "fileTypes": [
+    "mem"
+  ],
+  "patterns": [
+    {
+      "include": "#memetic"
+    },
+    {
+      "include": "text.html.tiddlywiki5"
+    }
+  ],
+  "repository": {
+    "memetic": {
+      "patterns": [
+        {
+          "include": "#declaration"
+        },
+        {
+          "include": "#control-soh"
+        },
+        {
+          "include": "#control-stx"
+        },
+        {
+          "include": "#control-etx"
+        },
+        {
+          "include": "#control-eot"
+        },
+        {
+          "include": "#control-other"
+        },
+        {
+          "include": "#sigil-close"
+        },
+        {
+          "include": "#sigil-unresolved"
+        },
+        {
+          "include": "#sigil-pragma"
+        },
+        {
+          "include": "#sigil"
+        }
+      ]
+    },
+    "declaration": {
+      "name": "meta.carrier.declaration.memetic-wikitext",
+      "begin": "(<<)(!DOCTYPE)(?=[\\s>])",
+      "end": "(>>)|$",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.sigil.begin.memetic-wikitext"
+        },
+        "2": {
+          "name": "keyword.control.declaration.memetic-wikitext"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.sigil.end.memetic-wikitext"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#params"
+        }
+      ]
+    },
+    "control-soh": {
+      "name": "meta.carrier.control.soh.memetic-wikitext",
+      "begin": "(<<)(\\^)(?=\\s+code:\"&#x00(01|11);\")",
+      "end": "(>>)|$",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.sigil.begin.memetic-wikitext"
+        },
+        "2": {
+          "name": "keyword.control.carrier.soh.memetic-wikitext"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.sigil.end.memetic-wikitext"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#params"
+        }
+      ]
+    },
+    "control-stx": {
+      "name": "meta.carrier.control.stx.memetic-wikitext",
+      "begin": "(<<)(\\^)(?=\\s+code:\"&#x0002;\")",
+      "end": "(>>)|$",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.sigil.begin.memetic-wikitext"
+        },
+        "2": {
+          "name": "keyword.control.carrier.stx.memetic-wikitext"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.sigil.end.memetic-wikitext"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#params"
+        }
+      ]
+    },
+    "control-etx": {
+      "name": "meta.carrier.control.etx.memetic-wikitext",
+      "begin": "(<<)(\\^)(?=\\s+code:\"&#x00(03|17);\")",
+      "end": "(>>)(\\s*(ni:///[a-z0-9-]+;[A-Za-z0-9_-]+))?|$",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.sigil.begin.memetic-wikitext"
+        },
+        "2": {
+          "name": "keyword.control.carrier.etx.memetic-wikitext"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.sigil.end.memetic-wikitext"
+        },
+        "3": {
+          "name": "constant.other.blockcheck.memetic-wikitext"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#params"
+        }
+      ]
+    },
+    "control-eot": {
+      "name": "meta.carrier.control.eot.memetic-wikitext",
+      "begin": "(<<)(\\^)(?=\\s+code:\"&#x00(04|14);\")",
+      "end": "(>>)|$",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.sigil.begin.memetic-wikitext"
+        },
+        "2": {
+          "name": "keyword.control.carrier.eot.memetic-wikitext"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.sigil.end.memetic-wikitext"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#params"
+        }
+      ]
+    },
+    "control-other": {
+      "name": "meta.carrier.control.memetic-wikitext",
+      "begin": "(<<)(\\^)(?=[\\s>])",
+      "end": "(>>)|$",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.sigil.begin.memetic-wikitext"
+        },
+        "2": {
+          "name": "keyword.control.carrier.memetic-wikitext"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.sigil.end.memetic-wikitext"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#params"
+        }
+      ]
+    },
+    "sigil-close": {
+      "name": "meta.sigil.close.memetic-wikitext",
+      "match": "(<<)(~/)(\\\\?[A-Za-z_][A-Za-z0-9_-]*)\\s*(>>)",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.sigil.begin.memetic-wikitext"
+        },
+        "2": {
+          "name": "keyword.control.sharktooth.close.memetic-wikitext"
+        },
+        "3": {
+          "name": "entity.name.function.sigil.memetic-wikitext"
+        },
+        "4": {
+          "name": "punctuation.definition.sigil.end.memetic-wikitext"
+        }
+      }
+    },
+    "sigil-unresolved": {
+      "name": "meta.sigil.unresolved.memetic-wikitext",
+      "begin": "(<<)(~\\?)(?=[\\s>])",
+      "end": "(>>)|$",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.sigil.begin.memetic-wikitext"
+        },
+        "2": {
+          "name": "keyword.control.sharktooth.unresolved.memetic-wikitext"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.sigil.end.memetic-wikitext"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#params"
+        }
+      ]
+    },
+    "sigil-pragma": {
+      "name": "meta.sigil.pragma.memetic-wikitext",
+      "begin": "(<<)(~!)\\s+(\\\\?[A-Za-z_][A-Za-z0-9_-]*)",
+      "end": "(>>)|$",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.sigil.begin.memetic-wikitext"
+        },
+        "2": {
+          "name": "keyword.control.sharktooth.pragma.memetic-wikitext"
+        },
+        "3": {
+          "name": "entity.name.function.sigil.definition.memetic-wikitext"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.sigil.end.memetic-wikitext"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#params"
+        }
+      ]
+    },
+    "sigil": {
+      "name": "meta.sigil.memetic-wikitext",
+      "begin": "(<<)(~)\\s+(\\\\?[A-Za-z_][A-Za-z0-9_-]*)",
+      "end": "(>>)|$",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.sigil.begin.memetic-wikitext"
+        },
+        "2": {
+          "name": "keyword.control.sharktooth.memetic-wikitext"
+        },
+        "3": {
+          "name": "entity.name.function.sigil.memetic-wikitext"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.sigil.end.memetic-wikitext"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#params"
+        }
+      ]
+    },
+    "params": {
+      "patterns": [
+        {
+          "include": "#bearing"
+        },
+        {
+          "include": "#lar-uri"
+        },
+        {
+          "include": "#fragment"
+        },
+        {
+          "include": "#named-param"
+        },
+        {
+          "include": "#string"
+        }
+      ]
+    },
+    "bearing": {
+      "patterns": [
+        {
+          "match": "(?<=[\\s>])->(?=[\\s>])",
+          "name": "keyword.operator.bearing.arrow.memetic-wikitext"
+        },
+        {
+          "match": "(?<=[\\s>])\\?(?=[\\s>])",
+          "name": "constant.language.bearing.unresolved.memetic-wikitext"
+        }
+      ]
+    },
+    "lar-uri": {
+      "name": "markup.underline.link.lar.memetic-wikitext",
+      "match": "\\b(lar)(:)(//[^\\s>]*)",
+      "captures": {
+        "1": {
+          "name": "keyword.other.scheme.lar.memetic-wikitext"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.memetic-wikitext"
+        },
+        "3": {
+          "name": "string.unquoted.uri.lar.memetic-wikitext"
+        }
+      }
+    },
+    "fragment": {
+      "match": "(#)([A-Za-z_][A-Za-z0-9_-]*)",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.anchor.memetic-wikitext"
+        },
+        "2": {
+          "name": "entity.name.tag.anchor.memetic-wikitext"
+        }
+      }
+    },
+    "named-param": {
+      "match": "\\b([A-Za-z0-9_-]+)(:)(?=[\"'\\[])",
+      "captures": {
+        "1": {
+          "name": "entity.other.attribute-name.memetic-wikitext"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.memetic-wikitext"
+        }
+      }
+    },
+    "string": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.memetic-wikitext",
+          "begin": "\"",
+          "end": "\"|$"
+        },
+        {
+          "name": "string.quoted.single.memetic-wikitext",
+          "begin": "'",
+          "end": "'|$"
+        },
+        {
+          "name": "string.quoted.bracket.memetic-wikitext",
+          "begin": "\\[\\[",
+          "end": "\\]\\]|$"
+        }
+      ]
+    }
+  },
+  "injections": {
+    "L:meta.paragraph.tiddlywiki5, markup.quote.quoteblock.tiddlywiki5, meta.other.list.tiddlywiki5": {
+      "comment": "Sigils keep their reading inside base block contexts.",
+      "patterns": [
+        {
+          "include": "text.html.tiddlywiki5.memetic-wikitext#memetic"
+        }
+      ]
+    }
+  }
+}

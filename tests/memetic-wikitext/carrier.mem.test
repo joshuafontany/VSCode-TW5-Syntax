@@ -1,0 +1,36 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "Carrier frame, sigils, and base-grammar fall-through"
+
+<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext >>
+# ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.declaration.memetic-wikitext keyword.control.declaration.memetic-wikitext
+#                                      ^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.declaration.memetic-wikitext markup.underline.link.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext
+
+<<^ code:"&#x0001;" ? -> lar:///ha.ka.ba/lares/api/pono/memetic-wikitext >>
+# ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext keyword.control.carrier.soh.memetic-wikitext
+#   ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext entity.other.attribute-name.memetic-wikitext
+#                   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext constant.language.bearing.unresolved.memetic-wikitext
+#                     ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext keyword.operator.bearing.arrow.memetic-wikitext
+
+<<^ code:"&#x0002;" >>
+# ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext keyword.control.carrier.stx.memetic-wikitext
+
+<<~ ahu #abstract >>
+# ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext keyword.control.sharktooth.memetic-wikitext
+#   ^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext entity.name.function.sigil.memetic-wikitext
+#       ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext punctuation.definition.anchor.memetic-wikitext
+#        ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext entity.name.tag.anchor.memetic-wikitext
+
+! A heading, read by the base grammar
+#<- text.html.tiddlywiki5.memetic-wikitext meta.heading.heading-1.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+
+<<~/ahu >>
+# ^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext keyword.control.sharktooth.close.memetic-wikitext
+#   ^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext entity.name.function.sigil.memetic-wikitext
+
+<<^ code:"&#x0003;" >>ni:///sha-256;abc_DEF-123
+# ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext keyword.control.carrier.etx.memetic-wikitext
+#                     ^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext constant.other.blockcheck.memetic-wikitext
+
+<<^ code:"&#x0004;" -> ? >>
+# ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext keyword.control.carrier.eot.memetic-wikitext
+#                   ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext keyword.operator.bearing.arrow.memetic-wikitext
+#                      ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext constant.language.bearing.unresolved.memetic-wikitext

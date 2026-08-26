@@ -20,7 +20,8 @@
         "syntax",
         "highlighting",
         "snippets",
-        "shiki"
+        "shiki",
+        "memetic-wikitext"
     ],
     "publisher": "joshua-fontany",
     "author": {
@@ -92,6 +93,21 @@
                 "configuration": "./language-configuration.json"
             },
             {
+                "id": "memetic-wikitext",
+                "aliases": [
+                    "Memetic-Wikitext",
+                    "memetic-wikitext",
+                    "mem"
+                ],
+                "extensions": [
+                    ".mem"
+                ],
+                "mimetypes": [
+                    "text/memetic-wikitext+tiddlywiki"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
                 "id": "tiddlywiki5",
                 "aliases": [
                     "Tiddlywiki5",
@@ -114,6 +130,11 @@
                 "language": "tiddlywiki5",
                 "scopeName": "text.html.tiddlywiki5",
                 "path": "./syntaxes/tiddlywiki5.json"
+            },
+            {
+                "language": "memetic-wikitext",
+                "scopeName": "text.html.tiddlywiki5.memetic-wikitext",
+                "path": "./syntaxes/memetic-wikitext.json"
             },
             {
                 "language": "tiddlywiki5.test",
@@ -151,6 +172,10 @@
             {
                 "language": "tiddlywiki5",
                 "path": "./snippets/snippets.json"
+            },
+            {
+                "language": "memetic-wikitext",
+                "path": "./snippets/snippets.json"
             }
         ],
         "configurationDefaults": {
@@ -161,7 +186,8 @@
                 "*.tw5.test": "tiddlywiki5.test",
                 "*.tid": "tid",
                 "*.meta": "tid",
-                "*.multids": "multids"
+                "*.multids": "multids",
+                "*.mem": "memetic-wikitext"
             }
         }
     },
@@ -182,7 +208,8 @@
         "tests-advanced": "bash ./run_tests.sh './tests/tiddlywiki5/html.advanced.tw5.test'",
         "tests-basic": "bash ./run_tests.sh './tests/tiddlywiki5/html.basic.tw5.test'",
         "tests-htmltiddler": "bash ./run_tests.sh './tests/tiddlywiki5/html.tiddler.tw5.test'",
-        "tests-wikitext": "bash ./run_tests.sh './tests/tiddlywiki5/tiddlywiki5.*.tw5.test'"
+        "tests-wikitext": "bash ./run_tests.sh './tests/tiddlywiki5/tiddlywiki5.*.tw5.test'",
+        "tests-memetic": "bash ./run_tests.sh './tests/memetic-wikitext/*.mem.test'"
     },
     "npmConfig": {
       "script-shell": "/bin/bash"

@@ -1,0 +1,13 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "The gradient floor: a malformed sigil surfaces as itself and never swallows the rest"
+
+<<~ ahu #broken
+# ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext keyword.control.sharktooth.memetic-wikitext
+
+SENTINEL reads as an ordinary paragraph.
+#<- text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+
+<<^ code:"&#x0001;" ? -> lar:///unclosed.frame.opens
+# ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext keyword.control.carrier.soh.memetic-wikitext
+
+SENTINEL reads as an ordinary paragraph.
+#<- text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
