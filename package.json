@@ -172,6 +172,14 @@
                 "path": "./snippets/snippets.json"
             },
             {
+                "language": "tid",
+                "path": "./snippets/tiddler-fields.json"
+            },
+            {
+                "language": "multids",
+                "path": "./snippets/tiddler-fields.json"
+            },
+            {
                 "language": "tiddlywiki5",
                 "path": "./snippets/snippets.json"
             },

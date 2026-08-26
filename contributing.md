@@ -16,6 +16,20 @@ If your contribution carries code you do not own — a grammar excerpt, a patter
 lifted from another project — say so in the pull request and name its licence, so
 the attribution in `LICENSE` can carry it.
 
+## Snippets
+
+VS Code scopes a snippet by **language identifier only**, and for an extension that
+identifier comes from `contributes.snippets[].language` in `package.json` — never from
+inside the snippet file. A `scope` written in the file gets overridden; a nested group
+key parses and then falls away, carrying no scope, no name and no meaning.
+
+So a snippet reaches an audience by living in a file registered for that language.
+`snippets/snippets.json` serves all four languages; `snippets/tiddler-fields.json`
+serves `tid` and `multids`, where a field header exists to write into.
+
+Nothing narrower than a language can be expressed. A snippet that should appear only
+inside a particular widget body wants a completion provider, not a snippet file.
+
 ## Reporting a highlighting bug
 
 A screenshot tells us something went wrong. A failing test tells us where.

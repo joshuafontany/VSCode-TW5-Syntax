@@ -39,6 +39,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - `LICENSE` (BSD 3-Clause, following TiddlyWiki5's own) and `contributing.md`.
 
 ### Changed
+- Snippets reach the languages they serve. The three tiddler-metadata snippets move to
+  `snippets/tiddler-fields.json`, registered for `tid` and `multids`, where a field header
+  exists to write into; the remaining 125 stay registered for all four languages. The file's
+  former scope-selector group keys carried no scope — VS Code discards them — so they give way
+  to a flat map that claims only what it delivers.
 - `.vscodeignore` keeps `tools/` out of the published package; `.gitignore` keeps the built
   `*.vsix` out of the repository.
 - TiddlyWiki5 v5.4.0 grammar and snippet update, by @pmario (#49): `\parsermode`, MVV inline
