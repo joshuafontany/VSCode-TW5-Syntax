@@ -50,6 +50,26 @@ cannot close keeps the paragraph around it open too. This root produces most of
 the highlighting bugs a grammar of this size will ever carry.
 
 So every construct ends on its own terminator **or on a paragraph boundary** —
-never on end-of-file. When adding a pattern, add a fixture that puts an ordinary
+never on end-of-file.
+
+Three properties of the grammar carry that rule, and each one derives from structure
+rather than from a list of names to maintain.
+
+**Terminator closure.** A region may admit a nested region only if the nested one
+cannot consume the outer terminator. `npm run lint-closure` checks this by reading the
+grammar alone. Only nested regions carry the risk: a `match` rule consumes a bounded
+token and returns, so it never holds its parent open.
+
+**The delimiter declares the content.** A value's delimiter already says what may live
+inside it, because an author chose it for that reason. Across TiddlyWiki's own core and
+documentation, 69% of `"""…"""` attribute values carry wikitext and 65% contain a quote;
+of 7,840 `"…"` values, under 3% carry wikitext and 0.7% contain a quote — because they
+structurally cannot. Read the delimiter, not the attribute name.
+
+**A guest grammar governs its own region.** Filter syntax shares delimiters with markup
+and means different things by them: `[[…]]` is an operand, `<<…>>` a variable, and
+`__name__` a parameter — that last one appears 24 times in TiddlyWiki's own core, and
+reading it as underline is what made #8. Inside a guest region, host markup rules do
+not apply. When adding a pattern, add a fixture that puts an ordinary
 sentence after the construct and asserts that the sentence still reads as plain
 text. `tests/memetic-wikitext/gradient-floor.mem.test` stands as the worked example.

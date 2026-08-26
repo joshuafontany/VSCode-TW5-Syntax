@@ -209,7 +209,8 @@
         "tests-basic": "bash ./run_tests.sh './tests/tiddlywiki5/html.basic.tw5.test'",
         "tests-htmltiddler": "bash ./run_tests.sh './tests/tiddlywiki5/html.tiddler.tw5.test'",
         "tests-wikitext": "bash ./run_tests.sh './tests/tiddlywiki5/tiddlywiki5.*.tw5.test'",
-        "tests-memetic": "bash ./run_tests.sh './tests/memetic-wikitext/*.mem.test'"
+        "tests-memetic": "bash ./run_tests.sh './tests/memetic-wikitext/*.mem.test'",
+        "lint-closure": "node ./tools/terminator-closure.js ./syntaxes/memetic-wikitext.json"
     },
     "npmConfig": {
         "script-shell": "/bin/bash"
