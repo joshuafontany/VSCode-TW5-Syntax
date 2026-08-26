@@ -27,6 +27,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - `LICENSE` (BSD 3-Clause, following TiddlyWiki5's own) and `contributing.md`.
 
 ### Changed
+- `.vscodeignore` keeps `tools/` out of the published package; `.gitignore` keeps the built
+  `*.vsix` out of the repository.
 - TiddlyWiki5 v5.4.0 grammar and snippet update, by @pmario (#49): `\parsermode`, MVV inline
   display `((var))` / `(((filter)))`, `((var))` and `[[bracket]]` as attribute values, dynamic
   macro parameters with `=`, MVV defaults in pragma parameters, and `text/vnd.tiddlywiki` as a

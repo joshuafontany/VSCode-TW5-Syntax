@@ -11,6 +11,7 @@
 # embedded-language assertions can resolve their scopes.
 tests/**
 run_tests.sh
+tools/**
 
 # Reference grammars. The extension ships none of them.
 grammars_archive/**
