@@ -1,0 +1,94 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "Test for string parameters with : and = separators in macro calls"
+
+\procedure p(a1) <$text text=<<a1>>/>
+
+<<p foo1>> -
+#<- meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5
+# ^ meta.variable.macrocallblock.tiddlywiki5 variable.name.macro.tiddlywiki5
+#   ^^^^ meta.variable.macrocallblock.tiddlywiki5 string.unquoted.html.tiddlywiki5
+#       ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+#         ^ -meta.variable.macrocallblock.tiddlywiki5
+
+<<p a1:foo2>> -
+#   ^^ meta.variable.macrocallblock.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.macrocallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^^^^ meta.variable.macrocallblock.tiddlywiki5 string.unquoted.html.tiddlywiki5
+#          ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+
+<<p a1=foo3>>
+#   ^^ meta.variable.macrocallblock.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.macrocallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^^^^ meta.variable.macrocallblock.tiddlywiki5 string.unquoted.html.tiddlywiki5
+#          ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+
+<<p "foo 4">> -
+#   ^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#    ^^^^^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.double.html.tiddlywiki5
+#         ^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
+#          ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+
+<<p a1:"foo 5">> -
+#   ^^ meta.variable.macrocallblock.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.macrocallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#             ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+
+<<p a1="foo 6">>
+#   ^^ meta.variable.macrocallblock.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.macrocallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#             ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+
+<<p 'foo 7'>> -
+#   ^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.single.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#    ^^^^^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.single.html.tiddlywiki5
+#         ^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.single.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
+#          ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+
+<<p a1:'foo 8'>> -
+#   ^^ meta.variable.macrocallblock.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.macrocallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.single.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#             ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+
+<<p a1='foo 9'>>
+#   ^^ meta.variable.macrocallblock.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.macrocallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.single.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#             ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+
+<<p """foo 10""">> -
+#   ^^^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.triple.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#      ^^^^^^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.triple.html.tiddlywiki5
+#            ^^^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.triple.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
+#               ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+
+<<p a1:"""foo 11""">> -
+#   ^^ meta.variable.macrocallblock.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.macrocallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^^^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.triple.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#                  ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+
+<<p a1="""foo 12""">>
+#   ^^ meta.variable.macrocallblock.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.macrocallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^^^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.triple.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#                  ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+
+<<p [[foo 13]]>> -
+#   ^^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.parens.square.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#     ^^^^^^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.parens.square.html.tiddlywiki5
+#           ^^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.parens.square.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
+#             ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+
+<<p a1:[[foo 14]]>> -
+#   ^^ meta.variable.macrocallblock.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.macrocallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.parens.square.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#                ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+
+<<p a1=[[foo 15]]>>
+#   ^^ meta.variable.macrocallblock.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.macrocallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^^ meta.variable.macrocallblock.tiddlywiki5 string.quoted.parens.square.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#                ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5

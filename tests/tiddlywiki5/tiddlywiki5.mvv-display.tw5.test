@@ -1,0 +1,29 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "Test for MVV display inline syntax"
+
+((myVariable))
+#<- meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.begin.tiddlywiki5
+#^ meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.begin.tiddlywiki5
+# ^ meta.variable.mvv-display.tiddlywiki5 variable.name.mvv-display.tiddlywiki5
+#            ^ meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.end.tiddlywiki5
+
+((myVariable||, ))
+#<- meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.begin.tiddlywiki5
+# ^ meta.variable.mvv-display.tiddlywiki5 variable.name.mvv-display.tiddlywiki5
+#           ^^ meta.variable.mvv-display.tiddlywiki5 keyword.operator.separator.mvv-display.tiddlywiki5
+#             ^ meta.variable.mvv-display.tiddlywiki5 string.unquoted.separator.mvv-display.tiddlywiki5
+#               ^ meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.end.tiddlywiki5
+
+((([tag[test]])))
+#<- meta.filter.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.begin.tiddlywiki5
+# ^ meta.filter.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.filter.begin.tiddlywiki5
+#  ^ meta.filter.mvv-display.tiddlywiki5
+#             ^ meta.filter.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.filter.end.tiddlywiki5
+#              ^ meta.filter.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.end.tiddlywiki5
+
+((([tag[test]]||; )))
+#<- meta.filter.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.begin.tiddlywiki5
+#             ^^ meta.filter.mvv-display.tiddlywiki5 keyword.operator.separator.mvv-display.tiddlywiki5
+#               ^ meta.filter.mvv-display.tiddlywiki5 string.unquoted.separator.mvv-display.tiddlywiki5
+#                ^ meta.filter.mvv-display.tiddlywiki5 string.unquoted.separator.mvv-display.tiddlywiki5
+#                 ^ meta.filter.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.filter.end.tiddlywiki5
+#                  ^^ meta.filter.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.end.tiddlywiki5

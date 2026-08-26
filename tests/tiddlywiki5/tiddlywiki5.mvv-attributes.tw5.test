@@ -1,0 +1,23 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "Test for MVV and [[...]] as widget attribute values"
+
+<$text text=((myvar))/>
+#      ^ entity.other.attribute-name.html.tiddlywiki5
+#          ^ punctuation.separator.key-value.html.tiddlywiki5
+#           ^^ mvv.attribute.html.tiddlywiki5 punctuation.definition.mvv.attribute.begin.tiddlywiki5
+#             ^ mvv.attribute.html.tiddlywiki5 variable.name.mvv.attribute.tiddlywiki5
+#                  ^^ mvv.attribute.html.tiddlywiki5 punctuation.definition.mvv.attribute.end.tiddlywiki5
+
+<$list filter=((myfilter))>
+#      ^ entity.other.attribute-name.html.tiddlywiki5
+#            ^ punctuation.separator.key-value.html.tiddlywiki5
+#             ^^ mvv.attribute.html.tiddlywiki5 punctuation.definition.mvv.attribute.begin.tiddlywiki5
+#               ^ mvv.attribute.html.tiddlywiki5 variable.name.mvv.attribute.tiddlywiki5
+#                       ^^ mvv.attribute.html.tiddlywiki5 punctuation.definition.mvv.attribute.end.tiddlywiki5
+</$list>
+
+<$text text=[[value with spaces]]/>
+#      ^ entity.other.attribute-name.html.tiddlywiki5
+#          ^ punctuation.separator.key-value.html.tiddlywiki5
+#           ^^ string.quoted.bracket.attribute.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#             ^ string.quoted.bracket.attribute.html.tiddlywiki5
+#                              ^^ string.quoted.bracket.attribute.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
