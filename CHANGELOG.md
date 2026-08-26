@@ -29,7 +29,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   lockfile, runs both grammar suites, holds the terminator-closure ratchet at zero, and
   builds the `.vsix` a user would install, keeping it as an artifact.
 - `tools/terminator-closure.js` and `npm run lint-closure`: a check that a region never
-  admits a nested region able to consume its own terminator — the property behind the
+  admits a nested region able to consume its own terminator, and that a child which
+  closes on that terminator hands it back rather than eating it — the property behind the
   end-of-file colouring bugs. It reads the grammar alone, with no corpus and no name list.
 - A `memetic-wikitext` language for `*.mem` files (`text/memetic-wikitext+tiddlywiki`), scope
   `text.html.tiddlywiki5.memetic-wikitext`, extending the base scope by name and falling through to

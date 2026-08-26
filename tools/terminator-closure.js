@@ -14,11 +14,17 @@
 // This reports every region that breaks the closure, naming the rule that breaks it.
 // It reads the grammar alone: no corpus, no list of widget or attribute names.
 //
-// Precision: the literal extractor over-approximates. A single-character terminator
-// (`<`, `/`, a backslash) matches loosely, so a dense grammar reports more regions
-// than genuinely fail. It discriminates rather than flooding — syntaxes/memetic-wikitext.json,
-// tw5-fields.json and tw5-tid-file.json all report zero — so use it as a ratchet on a
-// grammar already at zero, and as a triage list on one that is not.
+// Precision. The extractor reads guaranteed literals out of a regex and skips what
+// carries none: character classes, wide alternations, negative lookarounds, inline
+// flags. It expands a counted repetition, so ">{2}" terminates on ">>". Two further
+// cuts keep it honest: a child that closes ON the outer terminator hands it back
+// rather than eating it, and only a nested REGION can hold a parent open at all.
+//
+// It discriminates rather than floods — memetic-wikitext, tw5-fields, tw5-tid-file
+// and tw5-multids-file each report zero. tiddlywiki5.json reports 77, dominated by
+// single-character tag punctuation where HTML regions nest legitimately, so read that
+// number as a triage list and not as a defect count. Run it as a ratchet on a grammar
+// already at zero.
 
 const fs = require('fs');
 
@@ -33,8 +39,11 @@ function literals(source) {
   // the contents and drop only the marker. Character classes and quantified atoms
   // carry no guaranteed literal, so they are dropped.
   const stripped = String(source)
+    .replace(/\(\?[a-zA-Z]+\)/g, ' ')     // inline flags: (?i) carries no literal
     .replace(/\(\?<?![^)]*\)/g, ' ')      // negative lookaround: requires absence
     .replace(/\(\?<?[:=]/g, '(')
+    // A counted repetition carries its literal n times: ">{2}" terminates on ">>".
+    .replace(/(\\?.)\{(\d+)(?:,\d*)?\}/g, (_, ch, n) => ch.repeat(Math.min(+n, 8)))
     .replace(/\[(?:\\.|[^\]])*\]/g, ' ')
     .replace(/[()|]/g, ' ');
   const out = [];
@@ -72,7 +81,7 @@ function collect(rule, seen) {
   if (!rule || typeof rule !== 'object') return out;
   // Only a nested REGION can swallow a terminator and keep going. A `match` rule
   // consumes a bounded token and returns, so it cannot hold the parent open.
-  if (rule.begin && rule.end) out.push({ src: rule.begin, end: rule.end });
+  if (rule.begin && rule.end) out.push({ src: rule.begin, end: rule.end, name: rule.name || '' });
   for (const p of rule.patterns || []) out = out.concat(resolve(p.include || p, seen));
   return out;
 }
@@ -87,9 +96,14 @@ function scan(rule, path) {
     for (const p of rule.patterns) emitters.push(...resolve(p.include || p, new Set()));
     for (const term of terms) {
       const culprit = emitters.find(e => {
-        const ls = literals(e.src);
-        if (ls.length > 6) return false;   // a wide alternation guarantees no single branch
-        return ls.some(l => l.includes(term));
+        const opens = literals(e.src);
+        if (opens.length > 6) return false;      // a wide alternation guarantees no single branch
+        if (!opens.some(l => l.includes(term))) return false;
+        // A nested region that closes ON the outer terminator hands it back rather than
+        // eating it. Only a region whose own end ignores the terminator can swallow it.
+        const closes = literals(e.end);
+        if (closes.some(l => l.includes(term))) return false;
+        return true;
       });
       if (culprit) {
         findings.push({
