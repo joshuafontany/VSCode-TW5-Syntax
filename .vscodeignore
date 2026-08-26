@@ -7,8 +7,8 @@
 .gitignore
 .vscodeignore
 
-# Test harness: the fixtures plus twelve third-party grammars vendored so the
-# embedded-language assertions can resolve their scopes.
+# Test harness: the fixtures, and the third-party grammars vendored so the
+# embedded-language assertions resolve their scopes.
 tests/**
 run_tests.sh
 tools/**

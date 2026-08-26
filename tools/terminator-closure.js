@@ -1,30 +1,16 @@
 #!/usr/bin/env node
 // Terminator closure.
 //
-// A delimited region may admit a nested region only if that nested region cannot
-// consume the outer region's terminator.
+// A region may admit a nested region only if the nested one cannot consume the outer
+// terminator. A child that eats the terminator leaves the parent open, and an unclosed
+// child blocks its parent's end outright, so the colouring runs to end of file.
 //
-// A region whose nested regions can consume its `end` cannot close reliably: the
-// child eats the terminator, the parent runs on, and — because an unclosed child
-// blocks its parent's `end` outright — the colouring compounds to end of file.
+// The check reads the grammar alone — no corpus, no names. It reports a region and the
+// nested rule that breaks its closure, and exits non-zero on any finding.
 //
-// Only nested regions carry this risk. A `match` rule consumes a bounded token and
-// returns, so it never holds its parent open.
-//
-// This reports every region that breaks the closure, naming the rule that breaks it.
-// It reads the grammar alone: no corpus, no list of widget or attribute names.
-//
-// Precision. The extractor reads guaranteed literals out of a regex and skips what
-// carries none: character classes, wide alternations, negative lookarounds, inline
-// flags. It expands a counted repetition, so ">{2}" terminates on ">>". Two further
-// cuts keep it honest: a child that closes ON the outer terminator hands it back
-// rather than eating it, and only a nested REGION can hold a parent open at all.
-//
-// It discriminates rather than floods — memetic-wikitext, tw5-fields, tw5-tid-file
-// and tw5-multids-file each report zero. tiddlywiki5.json reports 77, dominated by
-// single-character tag punctuation where HTML regions nest legitimately, so read that
-// number as a triage list and not as a defect count. Run it as a ratchet on a grammar
-// already at zero.
+// The extractor reads only guaranteed literals, so a grammar dense in single-character
+// tag punctuation reports more regions than genuinely fail. Run it as a ratchet on a
+// grammar standing at zero; read a larger report as triage.
 
 const fs = require('fs');
 
@@ -32,12 +18,11 @@ const grammarPath = process.argv[2] || 'syntaxes/tiddlywiki5.json';
 const grammar = JSON.parse(fs.readFileSync(grammarPath, 'utf8'));
 const repo = grammar.repository || {};
 
-// The literal runs a regex source can emit, ignoring anchors, classes and groups.
+// The literals a regex source guarantees.
 function literals(source) {
   if (!source) return [];
-  // A lookaround in an `end` still requires its characters in the stream, so keep
-  // the contents and drop only the marker. Character classes and quantified atoms
-  // carry no guaranteed literal, so they are dropped.
+  // A lookaround in an `end` still requires its characters in the stream: the marker
+  // drops, the contents stand. A character class guarantees no literal.
   const stripped = String(source)
     .replace(/\(\?[a-zA-Z]+\)/g, ' ')     // inline flags: (?i) carries no literal
     .replace(/\(\?<?![^)]*\)/g, ' ')      // negative lookaround: requires absence
@@ -79,8 +64,7 @@ function resolve(ref, seen) {
 function collect(rule, seen) {
   let out = [];
   if (!rule || typeof rule !== 'object') return out;
-  // Only a nested REGION can swallow a terminator and keep going. A `match` rule
-  // consumes a bounded token and returns, so it cannot hold the parent open.
+  // A `match` rule consumes a bounded token and returns; only a region spans.
   if (rule.begin && rule.end) out.push({ src: rule.begin, end: rule.end, name: rule.name || '' });
   for (const p of rule.patterns || []) out = out.concat(resolve(p.include || p, seen));
   return out;
@@ -99,8 +83,7 @@ function scan(rule, path) {
         const opens = literals(e.src);
         if (opens.length > 6) return false;      // a wide alternation guarantees no single branch
         if (!opens.some(l => l.includes(term))) return false;
-        // A nested region that closes ON the outer terminator hands it back rather than
-        // eating it. Only a region whose own end ignores the terminator can swallow it.
+        // A child closing on the outer terminator hands it back.
         const closes = literals(e.end);
         if (closes.some(l => l.includes(term))) return false;
         return true;

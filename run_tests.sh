@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Check if the user has provided an argument
 if [ $# -eq 0 ]; then
     echo "Usage: ./run_tests.sh <pattern>"
     exit 1
@@ -12,9 +11,9 @@ PATTERN=$1
 NODEMODULES_ROOT="./node_modules"
 TMGRAMMAR_ROOT="${NODEMODULES_ROOT}/tm-grammars/grammars"
 
-# VS Code ships a handful of grammars this suite borrows. The install root differs
-# per platform, and a remote/WSL server ships none of them, so resolve what exists
-# and report what does not rather than aborting the whole run.
+# This suite borrows grammars VS Code ships. The install root differs per platform and
+# a remote server carries none of them, so every grammar below loads if it resolves and
+# reports itself if it does not.
 for candidate in \
     "${HOME}/AppData/Local/Programs/Microsoft VS Code/resources/app/extensions" \
     "/usr/share/code/resources/app/extensions" \

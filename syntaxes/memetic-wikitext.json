@@ -332,7 +332,7 @@
           "name": "string.unquoted.uri.lar.memetic-wikitext"
         }
       },
-      "comment": "A lar: URI reads as an address wherever it stands, sigil or prose. TW5 has no rule for the scheme, so its '//' would otherwise open an italic run."
+      "comment": "A lar: URI reads as an address wherever it stands, sigil or prose. TW5 binds no rule to the scheme, so the base grammar takes its '//' for an italic run."
     },
     "fragment": {
       "match": "(#)([A-Za-z_][A-Za-z0-9_-]*)",

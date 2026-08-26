@@ -35,14 +35,11 @@
         ["`", "`"]
     ],
     // A sigil name, a lar: URI and a #fragment each select as one word, so a double
-    // click takes the whole address instead of stopping at a dot or a slash.
+    // click takes the whole address.
     "wordPattern": "(lar:[^\\s>]+)|(#[A-Za-z_][A-Za-z0-9_-]*)|(\\\\?[A-Za-z_][A-Za-z0-9_-]*)",
-    // Folding stays out on purpose. A sigil block closes on a name that a folding
-    // marker cannot match against its own opener, and the nearest structural
-    // heuristic — a line carrying only a name and a #fragment — leaves 52 of 616
-    // carriers unbalanced when measured. A marker that mis-pairs folds the wrong
-    // span, reproducing the failure the grammar guards against elsewhere. Folding
-    // by structure waits for a language server, which can match a close to its open.
+    // A sigil block closes on a name, and a folding marker matches text rather than
+    // names. Structural folding waits for a language server that can pair a close
+    // with its open; region markers stand until then.
     "folding": {
         "markers": {
             "start": "^\\s*<!--\\s*#?region\\b.*-->",
