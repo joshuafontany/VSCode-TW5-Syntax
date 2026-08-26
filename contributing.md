@@ -85,9 +85,8 @@ of 7,840 `"…"` values, under 3% carry wikitext and 0.7% contain a quote — be
 structurally cannot. Read the delimiter, not the attribute name.
 
 **A guest grammar governs its own region.** Filter syntax shares delimiters with markup
-and means different things by them: `[[…]]` is an operand, `<<…>>` a variable, and
+and means different things by them: `[[…]]` marks an operand, `<<…>>` a variable, and
 `__name__` a parameter — that last one appears 24 times in TiddlyWiki's own core, and
-reading it as underline is what made #8. Inside a guest region, host markup rules do
-not apply. When adding a pattern, add a fixture that puts an ordinary
+reading it as underline made #8. Inside a guest region, host markup rules do not apply. When adding a pattern, add a fixture that puts an ordinary
 sentence after the construct and asserts that the sentence still reads as plain
 text. `tests/memetic-wikitext/gradient-floor.mem.test` stands as the worked example.
