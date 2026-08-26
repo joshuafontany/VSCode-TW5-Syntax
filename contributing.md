@@ -27,7 +27,7 @@ So a snippet reaches an audience by living in a file registered for that languag
 `snippets/snippets.json` serves all four languages; `snippets/tiddler-fields.json`
 serves `tid` and `multids`, where a field header exists to write into.
 
-Nothing narrower than a language can be expressed. A snippet that should appear only
+VS Code offers no gate narrower than a language. A snippet that should appear only
 inside a particular widget body wants a completion provider, not a snippet file.
 
 ## Reporting a highlighting bug
