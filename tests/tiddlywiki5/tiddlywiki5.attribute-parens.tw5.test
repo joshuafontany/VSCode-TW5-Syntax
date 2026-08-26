@@ -1,0 +1,9 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "Unquoted attribute values keep single parentheses; doubled ones open an MVV reference"
+
+<$button actions=doThing(now) class=tc-btn>Go</$button>
+#                ^^^^^^^^^^^^ text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 meta.attribute.unrecognized.actions.html.tiddlywiki5 string.unquoted.attribute.html.tiddlywiki5
+
+<$text text=((myVar)) />
+#           ^^ text.html.tiddlywiki5 meta.tag.widget.text.html.tiddlywiki5 meta.attribute.unrecognized.text.html.tiddlywiki5 mvv.attribute.html.tiddlywiki5 punctuation.definition.mvv.attribute.begin.tiddlywiki5
+#             ^^^^^ text.html.tiddlywiki5 meta.tag.widget.text.html.tiddlywiki5 meta.attribute.unrecognized.text.html.tiddlywiki5 mvv.attribute.html.tiddlywiki5 variable.name.mvv.attribute.tiddlywiki5
+#                  ^^ text.html.tiddlywiki5 meta.tag.widget.text.html.tiddlywiki5 meta.attribute.unrecognized.text.html.tiddlywiki5 mvv.attribute.html.tiddlywiki5 punctuation.definition.mvv.attribute.end.tiddlywiki5

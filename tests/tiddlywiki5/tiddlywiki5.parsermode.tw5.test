@@ -1,0 +1,13 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "Test for parsermode pragma"
+
+\parsermode block
+#<- text.html.tiddlywiki5 meta.directive.parsermode.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+#^ text.html.tiddlywiki5 meta.directive.parsermode.tiddlywiki5 keyword.control.directive.parsermode.tiddlywiki5
+#           ^ text.html.tiddlywiki5 meta.directive.parsermode.tiddlywiki5
+#            ^ text.html.tiddlywiki5 meta.directive.parsermode.tiddlywiki5 keyword.operator.block.tiddlywiki5
+
+\parsermode inline
+#<- text.html.tiddlywiki5 meta.directive.parsermode.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+#^ text.html.tiddlywiki5 meta.directive.parsermode.tiddlywiki5 keyword.control.directive.parsermode.tiddlywiki5
+#           ^ text.html.tiddlywiki5 meta.directive.parsermode.tiddlywiki5
+#            ^ text.html.tiddlywiki5 meta.directive.parsermode.tiddlywiki5 keyword.operator.inline.tiddlywiki5

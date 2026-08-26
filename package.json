@@ -23,6 +23,7 @@
         "shiki",
         "memetic-wikitext"
     ],
+    "license": "BSD-3-Clause",
     "publisher": "joshua-fontany",
     "author": {
         "name": "Joshua Fontany",
