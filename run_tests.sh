@@ -6,7 +6,7 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
-# The first argument is the pattern for test files
+# The first argument carries the pattern for test files
 PATTERN=$1
 
 NODEMODULES_ROOT="./node_modules"

@@ -8,8 +8,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - TiddlyWiki5 v5.4.0 grammar and snippet update, by @pmario (#49): `\parsermode`, MVV inline
   display `((var))` / `(((filter)))`, `((var))` and `[[bracket]]` as attribute values, dynamic
   macro parameters with `=`, MVV defaults in pragma parameters, and `text/vnd.tiddlywiki` as a
-  codeblock language. `.tid` field-name validation now matches TW5 v5.2.x, `#` comment lines are
-  recognised in field headers, and field-header scopes use standard TextMate names.
+  codeblock language. `.tid` field-name validation now matches TW5 v5.2.x, field headers recognise `#`
+  comment lines, and field-header scopes use standard TextMate names.
   - **Behaviour change:** field values in a `.tid` header no longer parse as wikitext. Fields
     TiddlyWiki renders as wikitext — `caption`, `subtitle` — show as plain strings in the editor.
 - Unquoted attribute values keep single parentheses; only `((` opens an MVV reference.

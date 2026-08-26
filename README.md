@@ -30,7 +30,8 @@ its reading and colour themes written for the base scope apply unchanged. It hig
 `ni:///sha-256;` check, the `<<~ name … >>` sigil family with its `<<~/name >>` closes and
 `#fragment` anchors, and `lar:` URIs.
 
-Editing `*.tid` or `*.tw5` files is unaffected — the grammar loads for `*.mem` only.
+The grammar loads for `*.mem` only, so editing `*.tid` or `*.tw5` files carries on
+unchanged.
 
 ## Known Issues
 
