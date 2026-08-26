@@ -4,6 +4,15 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## Unreleased
+- Add a `memetic-wikitext` language for `*.mem` files (`text/memetic-wikitext+tiddlywiki`), scoped
+  `text.html.tiddlywiki5.memetic-wikitext` and falling through to the TiddlyWiki5 grammar.
+- `run_tests.sh` resolves the VS Code grammar root per platform and loads the grammars that exist,
+  reporting the rest, so the suite runs on Linux, WSL and macOS instead of aborting.
+- `node_modules` no longer tracked in git.
+- Add `.vscodeignore` so the published extension carries the grammars, snippets, language
+  configuration and documentation, and leaves the test harness behind.
+
 ## 2.0.6
 - Allow all pragmas to have leading whitespace (allows nested and indented named pragmas of macros, procedures, and widgets).
 

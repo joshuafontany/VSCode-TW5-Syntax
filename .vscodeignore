@@ -1,3 +1,22 @@
+# The published extension carries the grammars, the snippets, the language
+# configuration and its documentation. Everything below serves development.
+
+.github/**
 .vscode/**
 .vscode-test/**
 .gitignore
+.vscodeignore
+
+# Test harness: the fixtures plus twelve third-party grammars vendored so the
+# embedded-language assertions can resolve their scopes.
+tests/**
+run_tests.sh
+
+# Superseded grammars, kept for reference.
+grammars_archive/**
+
+# Resolved from package.json at install time.
+node_modules/**
+package-lock.json
+
+*.vsix
