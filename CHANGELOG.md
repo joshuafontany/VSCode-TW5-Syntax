@@ -4,24 +4,40 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## Unreleased
+## 2.1.0
+
+### Fixed
+- Highlighting no longer runs to the end of the file. TiddlyWiki ends an inline run at a paragraph
+  boundary; the grammar did not, and an unclosed run also held its paragraph open, so the colouring
+  compounded outward. All six emphasis variants and both inline-code variants now end at a blank
+  line, and the emphasis family ends at a triple-quote as well. Closes #8 (`__localVar` in prose
+  underlined everything after it), #47 (a doubled apostrophe inside a `"""…"""` widget attribute
+  bolded everything after it) and #14 (the same defect, with the closing `"""` read as a
+  hardlinebreak opener). A multi-line italic still spans its soft line break.
+- Unquoted attribute values keep single parentheses again; only `((` opens an MVV reference.
+
+### Added
+- A `memetic-wikitext` language for `*.mem` files (`text/memetic-wikitext+tiddlywiki`), scope
+  `text.html.tiddlywiki5.memetic-wikitext`, extending the base scope by name and falling through to
+  the TiddlyWiki5 grammar. It loads for `*.mem` only; editing `*.tid` or `*.tw5` carries on
+  unchanged. `lar:` URIs read as addresses in prose rather than opening an italic run.
+- `LICENSE` (BSD 3-Clause, following TiddlyWiki5's own) and `contributing.md`.
+
+### Changed
 - TiddlyWiki5 v5.4.0 grammar and snippet update, by @pmario (#49): `\parsermode`, MVV inline
   display `((var))` / `(((filter)))`, `((var))` and `[[bracket]]` as attribute values, dynamic
   macro parameters with `=`, MVV defaults in pragma parameters, and `text/vnd.tiddlywiki` as a
-  codeblock language. `.tid` field-name validation now matches TW5 v5.2.x, field headers recognise `#`
+  codeblock language. `.tid` field-name validation matches TW5 v5.2.x, field headers recognise `#`
   comment lines, and field-header scopes use standard TextMate names.
   - **Behaviour change:** field values in a `.tid` header no longer parse as wikitext. Fields
     TiddlyWiki renders as wikitext — `caption`, `subtitle` — show as plain strings in the editor.
-- Unquoted attribute values keep single parentheses; only `((` opens an MVV reference.
-- Bump `brace-expansion` to 1.1.18 (#51) and `minimatch` to 3.1.5 (#48).
-- Add `LICENSE` (BSD 3-Clause, following TiddlyWiki5's own) and `contributing.md`.
-- Add a `memetic-wikitext` language for `*.mem` files (`text/memetic-wikitext+tiddlywiki`), scoped
-  `text.html.tiddlywiki5.memetic-wikitext` and falling through to the TiddlyWiki5 grammar.
 - `run_tests.sh` resolves the VS Code grammar root per platform and loads the grammars that exist,
   reporting the rest, so the suite runs on Linux, WSL and macOS instead of aborting.
-- `node_modules` no longer tracked in git.
-- Add `.vscodeignore` so the published extension carries the grammars, snippets, language
-  configuration and documentation, and leaves the test harness behind.
+- `brace-expansion` to 1.1.18 (#51) and `minimatch` to 3.1.5 (#48). Both take effect for the first
+  time here: `node_modules` rode in git tracking, so the lockfile governed nothing.
+- `node_modules` leaves git tracking.
+- `.vscodeignore` keeps the published extension to the grammars, snippets, language configuration
+  and documentation, leaving the test harness behind.
 
 ## 2.0.6
 - Allow all pragmas to have leading whitespace (allows nested and indented named pragmas of macros, procedures, and widgets).

@@ -2,7 +2,7 @@
     "name": "tw5-syntax",
     "displayName": "TiddlyWiki5 Syntax",
     "description": "TiddlyWiki5 v5.3.4 Textmate compatible Syntax / Grammar",
-    "version": "2.0.6",
+    "version": "2.1.0",
     "icon": "tw5.png",
     "engines": {
         "vscode": "^1.43.0"
@@ -38,11 +38,12 @@
             {
                 "id": "json",
                 "extensions": [
-                  ".info", ".files"
+                    ".info",
+                    ".files"
                 ],
                 "aliases": [
-                  "Tiddlywiki5 Json",
-                  "tiddlywiki5-json"
+                    "Tiddlywiki5 Json",
+                    "tiddlywiki5-json"
                 ]
             },
             {
@@ -192,13 +193,11 @@
             }
         }
     },
-    "dependencies": {
-
-    },
+    "dependencies": {},
     "devDependencies": {
         "vscode-tmgrammar-test": "^0.1.3",
-        "tm-grammars":"^1.7.2",
-        "tm-themes":"^1.4.1",
+        "tm-grammars": "^1.7.2",
+        "tm-themes": "^1.4.1",
         "language-gfm": "https://github.com/atom/language-gfm",
         "vscode-jsp": "https://github.com/pthorsson/vscode-jsp"
     },
@@ -213,6 +212,6 @@
         "tests-memetic": "bash ./run_tests.sh './tests/memetic-wikitext/*.mem.test'"
     },
     "npmConfig": {
-      "script-shell": "/bin/bash"
-    } 
+        "script-shell": "/bin/bash"
+    }
 }
