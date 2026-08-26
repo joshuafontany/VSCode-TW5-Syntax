@@ -30,12 +30,16 @@ __localVar in ordinary prose
 #<- text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 ```
 
-Run the suite with:
+Every pull request runs the suites, the closure check and a package build; the built
+`.vsix` hangs off the run as an artifact, so a reviewer can install what a change produces.
+
+Run the same locally with:
 
 ```
 npm install
 npm test               # the TiddlyWiki5 grammar
 npm run tests-memetic  # the memetic-wikitext grammar
+npm run lint-closure   # no region admits a nested region that eats its terminator
 ```
 
 `run_tests.sh` loads a large set of grammars so that embedded-language scopes

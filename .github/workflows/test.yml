@@ -1,0 +1,45 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  grammar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # run_tests.sh resolves the VS Code grammar root per platform. A runner ships
+      # none of the bundled grammar extensions, so the script reports what it cannot
+      # find and loads the rest; tm-grammars supplies the same text.html.basic.
+      - name: TiddlyWiki5 grammar
+        run: npm test
+
+      - name: Memetic-Wikitext grammar
+        run: npm run tests-memetic
+
+      # A region that admits a nested region able to consume its own terminator
+      # colours to the end of the file. The memetic grammar stands at zero and holds
+      # there; see contributing.md.
+      - name: Terminator closure
+        run: npm run lint-closure
+
+      # The package a user installs, built on every change so that .vscodeignore and
+      # the manifest answer to something more than review.
+      - name: Package
+        run: npx --yes @vscode/vsce package --allow-missing-repository --out /tmp/tw5-syntax.vsix
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vsix
+          path: /tmp/tw5-syntax.vsix
