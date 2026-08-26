@@ -1,0 +1,8 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A lar: URI reads as an address in prose, not as an italic run"
+
+A prose line naming lar:///ha.ka.ba/lares/api/pono/meme in passing.
+#                   ^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext
+#                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
+
+An ordinary sentence after the blank line.
+#<- text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5

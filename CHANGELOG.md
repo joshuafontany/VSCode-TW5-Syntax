@@ -4,6 +4,25 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## Unreleased
+- TiddlyWiki5 v5.4.0 grammar and snippet update, by @pmario (#49): `\parsermode`, MVV inline
+  display `((var))` / `(((filter)))`, `((var))` and `[[bracket]]` as attribute values, dynamic
+  macro parameters with `=`, MVV defaults in pragma parameters, and `text/vnd.tiddlywiki` as a
+  codeblock language. `.tid` field-name validation now matches TW5 v5.2.x, field headers recognise `#`
+  comment lines, and field-header scopes use standard TextMate names.
+  - **Behaviour change:** field values in a `.tid` header no longer parse as wikitext. Fields
+    TiddlyWiki renders as wikitext — `caption`, `subtitle` — show as plain strings in the editor.
+- Unquoted attribute values keep single parentheses; only `((` opens an MVV reference.
+- Bump `brace-expansion` to 1.1.18 (#51) and `minimatch` to 3.1.5 (#48).
+- Add `LICENSE` (BSD 3-Clause, following TiddlyWiki5's own) and `contributing.md`.
+- Add a `memetic-wikitext` language for `*.mem` files (`text/memetic-wikitext+tiddlywiki`), scoped
+  `text.html.tiddlywiki5.memetic-wikitext` and falling through to the TiddlyWiki5 grammar.
+- `run_tests.sh` resolves the VS Code grammar root per platform and loads the grammars that exist,
+  reporting the rest, so the suite runs on Linux, WSL and macOS instead of aborting.
+- `node_modules` no longer tracked in git.
+- Add `.vscodeignore` so the published extension carries the grammars, snippets, language
+  configuration and documentation, and leaves the test harness behind.
+
 ## 2.0.6
 - Allow all pragmas to have leading whitespace (allows nested and indented named pragmas of macros, procedures, and widgets).
 

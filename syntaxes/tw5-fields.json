@@ -1,31 +1,37 @@
 {
   "name": "TiddlyWiki5 fields",
   "scopeName": "source.tiddlywiki5.fields",
-  "patterns": [{ "include": "#field" }],
+  "patterns": [{ "include": "#comment" }, { "include": "#field" }],
   "repository": {
+    "comment": {
+      "match": "^(#).*$",
+      "name": "comment.line.number-sign.tiddlywiki5.fields",
+      "captures": {
+        "1": { "name": "punctuation.definition.comment.tiddlywiki5.fields" }
+      }
+    },
     "field": {
       "patterns": [
         {
           "match": "^([^:]*?)(:)(.*?)$",
           "name": "meta.tiddler.field.tiddlywiki5",
           "captures": {
-            "1": { 
-              "name": "entity.other.attribute.field.name.tiddlywiki5",
+            "1": {
+              "name": "entity.other.attribute-name.field.tiddlywiki5",
               "patterns": [
                 {
-                  "comment": "Test for illegal characters", 
-                  "match": "(?=[^a-z0-9\\-\\._])(.*)",
+                  "comment": "Only control characters are illegal in field names since TW5 v5.2.x",
+                  "match": "(?=[\\x00-\\x1f])(.*)",
                   "name":"invalid.illegal.field.name.tiddlywiki5"
                  }
               ]
             },
             "2": {
-              "name": "entity.name.operator.field.separator.tiddlywiki5"
+              "name": "punctuation.separator.key-value.field.tiddlywiki5"
             },
             "3": {
-              "comment": "Field value are interpreted as text.html.tiddlywiki5",
-              "name": "field.value.text.html.tiddlywiki5",
-              "patterns": [{ "include": "text.html.tiddlywiki5" }]
+              "comment": "Field values are plain strings in the header",
+              "name": "string.unquoted.field.value.tiddlywiki5"
             }
           }
         }
