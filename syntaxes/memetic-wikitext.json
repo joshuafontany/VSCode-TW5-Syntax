@@ -44,6 +44,9 @@
         },
         {
           "include": "#sigil"
+        },
+        {
+          "include": "#lar-uri"
         }
       ]
     },
@@ -325,7 +328,8 @@
         "3": {
           "name": "string.unquoted.uri.lar.memetic-wikitext"
         }
-      }
+      },
+      "comment": "A lar: URI reads as an address wherever it stands, sigil or prose. TW5 has no rule for the scheme, so its '//' would otherwise open an italic run."
     },
     "fragment": {
       "match": "(#)([A-Za-z_][A-Za-z0-9_-]*)",
