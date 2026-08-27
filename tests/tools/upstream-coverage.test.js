@@ -1,9 +1,9 @@
-// The deciding half of tools/upstream-coverage.js, against snapshots whose answer is known.
+// The deciding half of tools/upstream-coverage.js, against snapshots that state their answer.
 //
 // The tool reads a .snap file and asks, per source line, whether the grammar scoped that
-// line's OPENING token. Every earlier attempt to check that was made through a real
-// grammar and a real corpus, where a wrong answer and a wrong reason look identical.
-// Here the snapshot is a fixture and the answer is stated.
+// line's OPENING token. Every earlier check ran through a real grammar over a real
+// corpus, where a wrong answer and a wrong reason look identical.
+// Here the snapshot stands as a fixture and states its own answer.
 //
 //   node --test tests/tools/
 
@@ -30,8 +30,8 @@ test('a line whose opening token carries a real scope reads scoped', () => {
 });
 
 test('a scope arriving only AFTER the opening token does not count', () => {
-  // A table row the table rule no longer reads: column 0 is plain, and a transclusion
-  // further along carries a scope of its own. The row is unscoped.
+  // A table row no rule reads: column 0 stands plain, and a transclusion further along
+  // carries a scope of its own. The row reads unscoped.
   const snap = [
     '>|Alpha |{{Ref}} |',
     `#^^^^^^^^ ${BASE}`,
@@ -69,8 +69,8 @@ test('blank source lines carry no verdict', () => {
 });
 
 test('every source line in a snapshot receives a verdict', () => {
-  // A line the reader never decides on silently counts as scoped in the caller, which
-  // is how a deleted rule can go unreported.
+  // A line the reader never decides on silently counts as scoped in the caller, letting
+  // a deleted rule go unreported.
   const snap = [
     '>! a heading',
     '#^ text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5',

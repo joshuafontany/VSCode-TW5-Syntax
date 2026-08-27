@@ -13,9 +13,10 @@
 // the construct's OPENING token carrying nothing but the base scopes.
 //
 // WHAT IT DETECTS, proven by deletion: a construct no rule reads any more. Removing
-// #table, or #codeblock, or both transclusion rules, makes those rules report 0/6.
+// #table, or #codeblock, or both transclusion rules, makes those rules report every
+// case unscoped.
 // Removing only #transcludeblock reports nothing, and rightly — #transcludeinline still
-// reads the same text, so the construct is still read.
+// reads the same text, so the construct still reads.
 //
 // WHAT IT DOES NOT COVER: a rule whose regex matches only its own marker. heading is
 // /(!{1,6})/, list is /([\*#;:>]+)/, quoteblock is /(<<<+)/ — the harvested span carries
@@ -23,7 +24,7 @@
 // tests/tiddlywiki5 instead.
 //
 // The deciding half stands under test in tests/tools/upstream-coverage.test.js, against
-// snapshots whose answer is stated rather than inferred.
+// snapshots that state their answer rather than leaving a grammar to supply it.
 
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
@@ -41,12 +42,12 @@ const BASE = new Set([
  * OPENING token with anything beyond the base?
  *
  * The opening token decides. A construct's own rule scopes its first mark; anything
- * nested inside may be scoped by a different rule entirely, so asking whether the line
+ * nested inside may answer to a different rule entirely, so asking whether the line
  * carries some scope somewhere would pass a table row that a transclusion inside it had
  * coloured.
  *
  * Every non-blank source line receives a verdict. A line left undecided reads as scoped
- * in the caller, which is how a deleted rule goes unreported.
+ * in the caller, letting a deleted rule go unreported.
  *
  * @param {string} text  a .snap file's contents
  * @returns {Map<string, boolean>}
@@ -141,13 +142,13 @@ function main() {
       if (found.get(r.name).size >= PER_RULE) continue;
       r.re.lastIndex = 0;
       for (const m of text.matchAll(r.re)) {
-        // Trailing whitespace never survives into a snapshot's source line, so a case
-        // carrying it could never be found again by its own text.
+        // Trailing whitespace never survives into a snapshot's source line, so nothing
+        // could find a case carrying it again by its own text.
         const hit = m[0].replace(/\s+$/, '');
         // One line, short enough to stand alone in a probe. Some rules match only their
         // opening delimiter — codeinline is /(``?)/, the emphasis family is /''/ and its
-        // siblings — so the harvested span is a delimiter with neither content nor
-        // closer. Those carry their own cases in tests/tiddlywiki5.
+        // siblings — so the harvested span carries a delimiter with neither content nor
+        // closer. Those keep their own cases in tests/tiddlywiki5.
         if (!hit.trim() || hit.includes('\n') || hit.length > 60) continue;
         if (!/[A-Za-z0-9]/.test(hit)) continue;
         if (claimed.has(hit)) continue;

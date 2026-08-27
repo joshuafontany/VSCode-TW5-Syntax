@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // Snapshot check.
 //
-// A sample's whole tokenization is pinned beside it, so a sample covers every construct
-// it happens to contain and any change to any of them surfaces as a diff. No assertion
-// is written by hand, and none goes stale.
+// A sample's whole tokenization pins beside it, so a sample covers every construct it
+// happens to contain and any change to any of them surfaces as a diff. Nobody writes an
+// assertion here, and none goes stale.
 //
 // The check regenerates each snapshot into a scratch directory and compares bytes.
 // vscode-tmgrammar-snap writes deterministically — two runs produce identical files —

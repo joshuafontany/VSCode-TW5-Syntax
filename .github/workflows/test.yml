@@ -75,6 +75,22 @@ jobs:
           name: vsix
           path: /tmp/tw5-syntax.vsix
 
+  compose:
+    # Does a sample still read the same way with another sample in front of it? A
+    # construct reaching past its own file shows up here as the next file reading
+    # differently — the one direction no other gate looks in. Three sample pairs stand
+    # open, so this reports rather than blocks.
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run compose
+
   upstream:
     # TiddlyWiki's own rule regexes, taken to TiddlyWiki's own tiddlers, asking whether
     # this grammar reads each construct they match. It answers to upstream rather than to
