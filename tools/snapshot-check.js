@@ -50,8 +50,9 @@ const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-snap-'));
 for (const src of sources) fs.copyFileSync(src, path.join(scratch, path.basename(src)));
 
 const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'], {
-  encoding: 'utf8',
-  shell: process.platform === 'win32'
+  // No shell: cmd.exe would mangle the -c argument, and Git Bash stands on PATH
+  // wherever this runs.
+  encoding: 'utf8'
 }).trim().split('\n').filter(Boolean);
 
 const staged = sources.map((src) => path.join(scratch, path.basename(src)));
