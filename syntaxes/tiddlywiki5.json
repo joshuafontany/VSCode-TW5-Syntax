@@ -4435,6 +4435,10 @@
 											"name": "punctuation.definition.cell.align.right.tiddlywiki5"
 										}
 									}
+								},
+								{
+									"comment": "TiddlyWiki parses a cell with parseInlineRun (core/…/rules/table.js), so a cell carries inline wikitext. The alignment and span marks above claim a whole cell and are tried first; whatever they leave reads as inline.",
+									"include": "#inline"
 								}
 							]
 						},

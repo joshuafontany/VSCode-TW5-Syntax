@@ -25,6 +25,10 @@ does not register them, so no language reaches an editor from them.
 ## 2.1.0
 
 ### Fixed
+- A table cell carries inline wikitext. A link, a transclusion, a macro call, bold, an
+  entity, inline code and an image all read inside a cell as they read outside one.
+  TiddlyWiki parses a cell with `parseInlineRun`; the cell's alignment and span marks claim
+  a whole cell and still take precedence.
 - A `\parameters` pragma closes on its own parenthesis. An unquoted default value admitted
   a `)`, so `\parameters (a:1)` consumed the closer and every line after it — a pragma, a
   paragraph, the whole document. TiddlyWiki reads the parameter list as `[^)]*`, and so does
