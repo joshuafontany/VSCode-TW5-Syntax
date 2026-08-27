@@ -1010,7 +1010,7 @@
 													"match": "([^\\n\"/]|/(?![/*]))+"
 												},
 												{
-													"begin": "//",
+													"begin": "//(?=[^\\n]*//)",
 													"beginCaptures": {
 														"0": {
 															"name": "punctuation.definition.comment.js"
@@ -1068,7 +1068,7 @@
 													"match": "([^\\n'/]|/(?![/*]))+"
 												},
 												{
-													"begin": "//",
+													"begin": "//(?=[^\\n]*//)",
 													"beginCaptures": {
 														"0": {
 															"name": "punctuation.definition.comment.js"
@@ -2805,7 +2805,7 @@
 															"end": "(?!\\G)",
 															"patterns": [
 																{
-																	"begin": "//",
+																	"begin": "//(?=[^\\n]*//)",
 																	"beginCaptures": {
 																		"0": {
 																			"name": "punctuation.definition.comment.js"
@@ -5157,8 +5157,8 @@
 		"emphasis": {
 			"patterns": [
 				{
-					"begin": "''",
-					"end": "''|(?=^\\s*$)|(?=\\\"\\\"\\\")",
+					"begin": "''(?=[^\\n]*'')",
+					"end": "''|(?=$)",
 					"contentName": "markup.bold.tiddlywiki5",
 					"beginCaptures": {
 						"0": {
@@ -5177,8 +5177,8 @@
 					]
 				},
 				{
-					"begin": "//",
-					"end": "//|(?=^\\s*$)|(?=\\\"\\\"\\\")",
+					"begin": "//(?=[^\\n]*//)",
+					"end": "//|(?=$)",
 					"contentName": "markup.italic.tiddlywiki5",
 					"beginCaptures": {
 						"0": {
@@ -5197,8 +5197,8 @@
 					]
 				},
 				{
-					"begin": "__",
-					"end": "__|(?=^\\s*$)|(?=\\\"\\\"\\\")",
+					"begin": "__(?=[^\\n]*__)",
+					"end": "__|(?=$)",
 					"contentName": "markup.underline.tiddlywiki5",
 					"beginCaptures": {
 						"0": {
@@ -5217,8 +5217,8 @@
 					]
 				},
 				{
-					"begin": "\\^\\^",
-					"end": "\\^\\^|(?=^\\s*$)|(?=\\\"\\\"\\\")",
+					"begin": "\\^\\^(?=[^\\n]*\\^\\^)",
+					"end": "\\^\\^|(?=$)",
 					"contentName": "markup.superscript.tiddlywiki5",
 					"beginCaptures": {
 						"0": {
@@ -5237,8 +5237,8 @@
 					]
 				},
 				{
-					"begin": ",,",
-					"end": ",,|(?=^\\s*$)|(?=\\\"\\\"\\\")",
+					"begin": ",,(?=[^\\n]*,,)",
+					"end": ",,|(?=$)",
 					"contentName": "markup.subscript.tiddlywiki5",
 					"beginCaptures": {
 						"0": {
@@ -5257,8 +5257,8 @@
 					]
 				},
 				{
-					"begin": "~~",
-					"end": "~~|(?=^\\s*$)|(?=\\\"\\\"\\\")",
+					"begin": "~~(?=[^\\n]*~~)",
+					"end": "~~|(?=$)",
 					"contentName": "markup.underline.strikethrough.tiddlywiki5",
 					"beginCaptures": {
 						"0": {
@@ -5281,8 +5281,8 @@
 		"codeinline": {
 			"patterns": [
 				{
-					"begin": "(?<!`)``(?!`)",
-					"end": "(?<!`)``(?!`)|(?=^\\s*$)",
+					"begin": "(?<!`)``(?!`)(?=[^\\n]*(?<!`)``(?!`))",
+					"end": "(?<!`)``(?!`)|(?=$)",
 					"contentName": "markup.inline.raw.double.tiddlywiki5",
 					"beginCaptures": {
 						"0": {
@@ -5302,8 +5302,8 @@
 					]
 				},
 				{
-					"begin": "(?<!`)`(?!`)",
-					"end": "(?<!`)`(?!`)|(?=^\\s*$)",
+					"begin": "(?<!`)`(?!`)(?=[^\\n]*(?<!`)`(?!`))",
+					"end": "(?<!`)`(?!`)|(?=$)",
 					"contentName": "markup.inline.raw.single.tiddlywiki5",
 					"beginCaptures": {
 						"0": {

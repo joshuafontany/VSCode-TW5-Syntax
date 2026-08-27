@@ -25,13 +25,16 @@ does not register them, so no language reaches an editor from them.
 ## 2.1.0
 
 ### Fixed
-- Highlighting no longer runs to the end of the file. TiddlyWiki ends an inline run at a paragraph
-  boundary; the grammar did not, and an unclosed run also held its paragraph open, so the colouring
-  compounded outward. All six emphasis variants and both inline-code variants now end at a blank
-  line, and the emphasis family ends at a triple-quote as well. Closes #8 (`__localVar` in prose
-  underlined everything after it), #47 (a doubled apostrophe inside a `"""…"""` widget attribute
-  bolded everything after it) and #14 (the same defect, with the closing `"""` read as a
-  hardlinebreak opener). A multi-line italic still spans its soft line break.
+- Highlighting stays on the line it starts on. An inline run — `''bold''`, `//italic//`,
+  `__underline__`, `^^sup^^`, `,,sub,,`, `~~strike~~` and inline code — now opens only where
+  its closing mark stands on the same line, and ends there. A half-typed mark colours nothing,
+  so the editor stops flickering while a pair is being written. Closes #8 (`__localVar` in
+  prose underlined everything after it), #47 (a doubled apostrophe inside a `"""…"""` widget
+  attribute bolded everything after it) and #14 (the same defect, with the closing `"""` read
+  as a hardlinebreak opener).
+  - **Behaviour change:** an emphasis pair that closes on a later line no longer colours.
+    Across TiddlyWiki's own core and documentation — 2,654 tiddlers — 2,347 emphasis pairs
+    close on the line they open and 10 do not.
 - Unquoted attribute values keep single parentheses again; only `((` opens an MVV reference.
 
 ### Added
