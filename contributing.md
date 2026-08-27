@@ -30,6 +30,39 @@ serves `tid` and `multids`, where a field header exists to write into.
 VS Code offers no gate narrower than a language. A snippet that should appear only
 inside a particular widget body wants a completion provider, not a snippet file.
 
+## Testing the extension in an editor
+
+A grammar test resolves scopes; it renders nothing. Seeing the colouring takes an editor.
+
+**The Extension Development Host carries the shortest path.** Open this folder and press
+F5. The launch configuration named *Extension (isolated, on the release check)* opens a
+second window with every installed extension silenced — including an installed copy of
+this one — and `tests/samples/release-check.tid` already open. What colours that file
+comes from the working tree and nowhere else.
+
+**A grammar loads on the UI side.** It contributes declaratively, so VS Code runs it where
+the window runs, not where the files live. Editing over Remote-WSL, Remote-SSH or a
+container therefore has a trap in it: `code --install-extension` run from the remote CLI
+installs on the **remote**, where a grammar contributes nothing, while the copy already
+installed locally keeps colouring every buffer. The install reports success and the editor
+never changes.
+
+From WSL, install on the Windows side:
+
+```
+cp tw5-syntax-<version>.vsix /mnt/c/Users/<you>/Downloads/
+cmd.exe /c "%LOCALAPPDATA%\Programs\Microsoft VS Code\bin\code.cmd" \
+  --install-extension "C:\Users\<you>\Downloads\tw5-syntax-<version>.vsix" --force
+```
+
+Then run **Developer: Reload Window**. A grammar loads at startup, so an install alone
+changes nothing in a window already open.
+
+**Confirm which grammar answers.** Put the cursor in the text and run
+**Developer: Inspect Editor Tokens and Scopes**. The panel names the scopes under the
+cursor and the extension that contributed them, which settles in one glance whether the
+version under test colours the screen.
+
 ## Reporting a highlighting bug
 
 A screenshot tells us something went wrong. A failing test tells us where.
