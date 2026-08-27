@@ -29,17 +29,21 @@ A region in `#htmlwidget` spanning an opening tag to its matching close, includi
 family carries half this grammar; the repair wants its own sitting, with the composition
 check and the canary watching.
 
-## A fence language carrying a slash or a dot
+## Fence rules, against a moving upstream
 
-`codeblock.js:23` matches ```` ```([\w-]*)\r?\n ````, so ```` ```text/vnd.tiddlywiki ````
-opens no code block in TiddlyWiki — the line renders as an ordinary paragraph. This grammar
-reads it as a code block and hands the body back to wikitext, which is wider than upstream
-on purpose: the wikitext-in-a-fence convenience rests on it, and `tests/samples/release-check.tid`
-pins it.
+TiddlyWiki's fence rule changed under
+[PR #9920](https://github.com/TiddlyWiki/TiddlyWiki5/pull/9920): an opening fence takes three
+or more backticks and closes only on a fence at least as long, the info string admits any
+character but a backtick, and either fence may carry up to three spaces of indentation.
 
-`tiddlywiki5.codeblock-fence.tw5.test` states the upstream-faithful reading. Narrowing the
-begin lookahead and `\G` language capture to `[\w-]` makes it pass and removes the convenience.
-That trade belongs to the operator, so the grammar keeps the wider form and the spec sits here.
+The gap that stood here — this grammar reading ```` ```text/vnd.tiddlywiki ```` as a code block
+where `codeblock.js` refused it — closed by upstream moving. Three gaps open the other way, and
+belong to the 2.2.0 line:
+
+- the info string still reads `[\w\-/.]*`, so ```` ```C++ ```` and ```` ```js {highlight} ````
+  scope nothing;
+- a fence of four or more backticks opens no block, so a nested sample reads as plain text;
+- the leniency below is no longer leniency.
 
 ## A closing fence carrying leading whitespace
 
@@ -47,6 +51,6 @@ That trade belongs to the operator, so the grammar keeps the wider form and the 
 a block in TiddlyWiki — the block runs to the end of the tiddler. This grammar closes on
 `^(?!\s*```)`, which is lenient by one leading-whitespace run.
 
-Held deliberately. Tightening it converts a benign leniency into an unbounded swallow, and a
-run that opens and never closes has been this grammar's costliest defect family. The corpus
-carries one indented closing fence.
+Upstream now closes on a fence carrying up to three spaces of indentation, so this grammar and
+the parser agree for one to three spaces and part company beyond them. What stood as deliberate
+leniency now reads as a near-alignment that wants finishing on the 2.2.0 line.
