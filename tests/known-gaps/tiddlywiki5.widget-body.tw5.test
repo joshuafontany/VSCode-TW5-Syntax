@@ -1,0 +1,16 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A widget body carries inline wikitext on its own line"
+
+# TiddlyWiki parses a widget's content as wikitext, so a transclusion, a link, bold
+# and a macro call read inside a one-line widget body as they read in a sentence.
+
+<$button>{{Some/Tiddler}}</$button>
+#        ^^ text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+
+<$button>[[Some Target]]</$button>
+#          ^^^^^^^^^^^ text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
+
+<$button>''strong''</$button>
+#          ^^^^^^ text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 markup.bold.tiddlywiki5
+
+<$button class=x><<myMacro one>></$button>
+#                  ^^^^^^^ text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5

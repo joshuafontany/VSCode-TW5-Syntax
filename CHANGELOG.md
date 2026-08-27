@@ -55,6 +55,13 @@ does not register them, so no language reaches an editor from them.
 - Unquoted attribute values keep single parentheses again; only `((` opens an MVV reference.
 
 ### Added
+- `tools/nesting-coverage.js` and `npm run nesting-coverage`: which container-and-construct
+  pairs TiddlyWiki's own tiddlers actually stand up, and whether the grammar reads the
+  construct inside the container as it reads it in a sentence. Containers come from the rules
+  TiddlyWiki declares block, constructs from those it declares inline, and the pairing from
+  the corpus — so it finds pairs a hand-built matrix would not think to list.
+- `tests/known-gaps/`, for a test that states what the grammar should do and does not yet. It
+  stands outside `npm test`, so a known gap never reads as a regression.
 - `tools/composition-check.js` and `npm run compose`: does a sample still read the same way
   with another sample in front of it? A construct reaching past its own file surfaces as the
   next file reading differently — the direction no other check looks in, and the one with no
