@@ -1,0 +1,279 @@
+><!--#region Inline Transclusion Wikitext -->
+#^^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5
+#                                         ^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
+>
+>* {{}}
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+#    ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{||}}
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+#    ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.template.tiddlywiki5
+#      ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{ }}
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+#    ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+#     ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{title}}
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+#    ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#         ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{title!!field}}
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+#    ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#         ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
+#           ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
+#                ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{title##index}}
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+#    ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#         ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.index..tiddlywiki5
+#           ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.index.tiddlywiki5
+#                ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{|| }}
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+#    ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.template.tiddlywiki5
+#      ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5
+#       ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{ || }}
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+#    ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+#     ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.template.tiddlywiki5
+#       ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5
+#        ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{||templateTitle}}
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+#    ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.template.tiddlywiki5
+#      ^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
+#                   ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{title||templateTitle}}
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+#    ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#         ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.template.tiddlywiki5
+#           ^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
+#                        ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{title!!field||templateTitle}}
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+#    ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#         ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
+#           ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
+#                ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.template.tiddlywiki5
+#                  ^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
+#                               ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{title##index||templateTitle}}
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+#    ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#         ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.index..tiddlywiki5
+#           ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.index.tiddlywiki5
+#                ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.template.tiddlywiki5
+#                  ^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
+#                               ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{ long title !!.long.___-field-|| long template title}}
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+#    ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+#     ^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#                ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
+#                  ^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
+#                                  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.template.tiddlywiki5
+#                                    ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5
+#                                     ^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
+#                                                        ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+>}}
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+>  title  
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+#  ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#       ^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+>}}
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+>  title!!field  
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+#  ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#       ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
+#         ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
+#              ^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+>}}
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+>  title##index  
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+#  ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#       ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.index..tiddlywiki5
+#         ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.index.tiddlywiki5
+#              ^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+>}}
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+>  ||
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.template.tiddlywiki5
+>}}
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+>  ||templateTitle
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.template.tiddlywiki5
+#    ^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
+>}}
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{||templateTitle
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+#    ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.template.tiddlywiki5
+#      ^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
+>}}
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+>  title||templateTitle 
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+#  ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#       ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.template.tiddlywiki5
+#         ^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
+#                      ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5
+>}}
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{title!!field || templateTitle}}
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+#    ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#         ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
+#           ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
+#                ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+#                 ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.template.tiddlywiki5
+#                   ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5
+#                    ^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
+#                                 ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{title##index || templateTitle}}
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+#    ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#         ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.index..tiddlywiki5
+#           ^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.index.tiddlywiki5
+#                ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+#                 ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.template.tiddlywiki5
+#                   ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5
+#                    ^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
+#                                 ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{ long title !! long !! field || long template title}}
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+#    ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+#     ^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#                ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
+#                  ^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
+#                                ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+#                                 ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.template.tiddlywiki5
+#                                   ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5
+#                                    ^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
+#                                                       ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+>  long title !! long !! field
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+#  ^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#             ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
+#               ^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
+>  ||
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.template.tiddlywiki5
+>  long template title
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
+>}}
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{ don't use | one pipe}}
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+#    ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+#     ^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#                         ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>* {{
+#^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+>
+>  multiline text reference
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+>
+>  is illegal
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
+#  ^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 invalid.illegal.multiline-text-reference.tiddlywiki5
+>
+>  ||
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 invalid.illegal.multiline-text-reference.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.template.tiddlywiki5
+>
+>  multiline template title is not
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
+>
+>  but don't use it here anyway
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 invalid.illegal.multiline-tiddler-title.tiddlywiki5
+>
+>}}
+#^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5
+>
+><!--#endregion -->
+#^^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
+#    ^^^^^^^^^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5
+#               ^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
+>

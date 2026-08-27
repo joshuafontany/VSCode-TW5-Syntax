@@ -13,7 +13,7 @@
 ''inline'' rule matches element
 ''inline'' run for contents
 </div>
-<div>   
+<div>
 
   * ''inline'' rule matches element (because in paragraph block here)
   * ''block'' run for contents
@@ -221,13 +221,13 @@ Context:
 {{
 }}
 {{
-  title  
+  title
 }}
 {{
-  title!!field  
+  title!!field
 }}
 {{
-  title##index  
+  title##index
 }}
 {{
   ||
@@ -238,7 +238,7 @@ Context:
 {{||templateTitle
 }}
 {{
-  title||templateTitle 
+  title||templateTitle
 }}
 {{title!!field || templateTitle}}
 {{title##index || templateTitle}}
@@ -332,7 +332,7 @@ Here's a ''paragraph'' with inline styling.
 @@
 ''Another'' paragraph without styling.
 
-@@background-color:blue; 
+@@background-color:blue;
 Here's a ''paragraph'' with inline styling.
 @@
 @@background-color:blue;''Same'' paragraph with inline styling.@@
@@ -403,7 +403,7 @@ for the bottom cite
 >>
   <<myMacro
 
-  
+
 
   >>
 <<myMacro value_for_arg1 value_for_arg2>>
@@ -550,5 +550,5 @@ The previous paragraph is done, say hi to the new one.
 
 hide this
 
-test 
+test
 <!-- #endregion -->

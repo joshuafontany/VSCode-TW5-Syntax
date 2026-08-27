@@ -1,0 +1,95 @@
+><!-- #region Conditional Syntax -->
+#^^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5
+#                                ^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
+>
+>! Major Improvements
+#^ text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+# ^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5
+>
+>!! Conditional Shortcut Syntax
+#^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5
+>
+>added a new shortcut syntax for concisely expressing if-then-else logic. This is the first of a new type of wikitext syntax based on tokens delimited with <% and %>. We plan to introduce other structures using the same format such as a "case" statement.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                                                                                                                                                           ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#                                                                                                                                                            ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.shortcut.html.tiddlywiki5
+#                                                                                                                                                             ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5
+#                                                                                                                                                              ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 keyword.control.shortcut.unrecognized.tiddlywiki5
+#                                                                                                                                                                 ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5
+#                                                                                                                                                                  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.shortcut.html.tiddlywiki5
+#                                                                                                                                                                   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+#                                                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+>These new token-based shortcuts allow a richer structure and expressivity than existing features such as widgets or pragmas. For example:
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+><% if [<animal>match[Elephant]] %>
+#^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+# ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.shortcut.html.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5
+#   ^^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 keyword.control.shortcut.conditional.if.tiddlywiki5
+#     ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5
+#      ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#       ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tw-.tw-suffix-.tiddlywiki5 meta.variable.entity.filter.operand.tiddlywiki5 variable.punctuation.definition.operand.begin.tiddlywiki5
+#        ^^^^^^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tw-.tw-suffix-.tiddlywiki5 meta.variable.entity.filter.operand.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5
+#              ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tw-.tw-suffix-.tiddlywiki5 meta.variable.entity.filter.operand.tiddlywiki5 variable.punctuation.definition.operand.end.tiddlywiki5
+#               ^^^^^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tw-match.tw-suffix-.tiddlywiki5 keyword.operator.filter.tiddlywiki5
+#                    ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tw-match.tw-suffix-.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 string.punctuation.definition.operand.begin.tiddlywiki5
+#                     ^^^^^^^^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tw-match.tw-suffix-.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
+#                             ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tw-match.tw-suffix-.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 string.punctuation.definition.operand.end.tiddlywiki5
+#                              ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                               ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5
+#                                ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.shortcut.html.tiddlywiki5
+#                                 ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+>  It is an elephant
+#^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+><% elseif [<animal>match[Giraffe]] %>
+#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.shortcut.html.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5
+#   ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 keyword.control.shortcut.conditional.elseif.tiddlywiki5
+#         ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5
+#          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#           ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tw-.tw-suffix-.tiddlywiki5 meta.variable.entity.filter.operand.tiddlywiki5 variable.punctuation.definition.operand.begin.tiddlywiki5
+#            ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tw-.tw-suffix-.tiddlywiki5 meta.variable.entity.filter.operand.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5
+#                  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tw-.tw-suffix-.tiddlywiki5 meta.variable.entity.filter.operand.tiddlywiki5 variable.punctuation.definition.operand.end.tiddlywiki5
+#                   ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tw-match.tw-suffix-.tiddlywiki5 keyword.operator.filter.tiddlywiki5
+#                        ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tw-match.tw-suffix-.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 string.punctuation.definition.operand.begin.tiddlywiki5
+#                         ^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tw-match.tw-suffix-.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
+#                                ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tw-match.tw-suffix-.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 string.punctuation.definition.operand.end.tiddlywiki5
+#                                 ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                                  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5
+#                                   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.shortcut.html.tiddlywiki5
+#                                    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+>	It is a giraffe
+#^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+><% else %>
+#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.shortcut.html.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5
+#   ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 keyword.control.shortcut.conditional.else.tiddlywiki5
+#       ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5
+#        ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.shortcut.html.tiddlywiki5
+#         ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+>	It is completely unknown
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+><% endif %>
+#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.shortcut.html.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5
+#   ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 keyword.control.shortcut.conditional.endif.tiddlywiki5
+#        ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5
+#         ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.shortcut.html.tiddlywiki5
+#          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+>
+>Behind the scenes, the conditional shortcut syntax is rendered as the equivalent ListWidgets.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                                                                                 ^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5
+#                                                                                            ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+><!-- #endregion -->
+#^^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
+#    ^^^^^^^^^^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5
+#                ^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5

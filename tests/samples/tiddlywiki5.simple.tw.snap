@@ -1,0 +1,111 @@
+>
+><!--#region Simple Wikitext -->
+#^^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
+#    ^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5
+#                            ^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
+>
+>Paragraph text with a few [[Title Links]] and [[References]]...
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.begin.tiddlywiki5
+#                           ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.begin.tiddlywiki5
+#                            ^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
+#                                       ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.end.tiddlywiki5
+#                                        ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.end.tiddlywiki5
+#                                         ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                                              ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.begin.tiddlywiki5
+#                                               ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.begin.tiddlywiki5
+#                                                ^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
+#                                                          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.end.tiddlywiki5
+#                                                           ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.end.tiddlywiki5
+#                                                            ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+><<variable>>
+#^^ text.html.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5
+#  ^^^^^^^^ text.html.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.macro.tiddlywiki5
+#          ^^ text.html.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+>{{transclusion}}
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#  ^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#              ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+>[[wiki-link]]
+#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.begin.tiddlywiki5
+# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.begin.tiddlywiki5
+#  ^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
+#           ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.end.tiddlywiki5
+#            ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.end.tiddlywiki5
+>
+>: test
+#^ text.html.tiddlywiki5 unnumbered.description.dl.dd.markup.list.tiddlywiki5 punctuation.definition.unnumbered.description.dl.dd.list.markup.tiddlywiki5
+# ^^^^^ text.html.tiddlywiki5 unnumbered.description.dl.dd.markup.list.tiddlywiki5
+>; this
+#^ text.html.tiddlywiki5 unnumbered.term.dl.dt.markup.list.tiddlywiki5 punctuation.definition.unnumbered.term.dl.dt.list.markup.tiddlywiki5
+# ^^^^^ text.html.tiddlywiki5 unnumbered.term.dl.dt.markup.list.tiddlywiki5
+>
+>"""
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 punctuation.definition.hardlinebreaks.begin.tiddlywiki5
+>TEST TEXT 
+#^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
+>BLOCK <$transclude tiddler="test"/>
+#^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
+#      ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#       ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
+#        ^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#                  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5
+#                   ^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 meta.attribute.unrecognized.tiddler.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#                          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 meta.attribute.unrecognized.tiddler.html.tiddlywiki5 punctuation.separator.key-value.html.tiddlywiki5
+#                           ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 meta.attribute.unrecognized.tiddler.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#                            ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 meta.attribute.unrecognized.tiddler.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5
+#                                ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 meta.attribute.unrecognized.tiddler.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
+#                                 ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+>"""
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 punctuation.definition.hardlinebreaks.end.tiddlywiki5
+>
+><<variable>>
+#^^ text.html.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5
+#  ^^^^^^^^ text.html.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.macro.tiddlywiki5
+#          ^^ text.html.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+>{{transclusion}}
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#  ^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#              ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+>[[wiki-link]]
+#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.begin.tiddlywiki5
+# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.begin.tiddlywiki5
+#  ^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
+#           ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.end.tiddlywiki5
+#            ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.end.tiddlywiki5
+>
+>-- ndash
+#^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.dash.ndash.tiddlywiki5
+#  ^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>--- mdash
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.separator.hr.tiddlywiki5
+#   ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.separator.hr.tiddlywiki5 invalid.illegal.expected-newline-after-hr.tiddlywiki5
+>
+>----
+#^^^^ text.html.tiddlywiki5 constant.separator.hr.tiddlywiki5
+>
+>-----
+#^^^^^ text.html.tiddlywiki5 constant.separator.hr.tiddlywiki5
+>
+>-- --- horizontal rules --- --
+#^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.dash.ndash.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#   ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.dash.mdash.tiddlywiki5
+#      ^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                        ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.dash.mdash.tiddlywiki5
+#                           ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                            ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.dash.ndash.tiddlywiki5
+>
+>----
+#^^^^ text.html.tiddlywiki5 constant.separator.hr.tiddlywiki5
+>not valid, must have a blank line
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+>-----
+#^^^^^ text.html.tiddlywiki5 constant.separator.hr.tiddlywiki5
+>
+><!-- #endregion folder -->
+#^^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
+#    ^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5
+#                       ^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5

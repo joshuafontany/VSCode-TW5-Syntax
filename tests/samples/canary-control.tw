@@ -1,0 +1,19 @@
+The canary's positive control. Every mark below opens and never closes, so each one
+tests that a run stays on its own line. With the same-line guard in place nothing here
+reaches the sentence the canary appends; without it, several would.
+
+Prose naming __localVar in passing.
+
+Prose with ''an unclosed bold run.
+
+Prose with //an unclosed italic run.
+
+Prose with `an unclosed backtick.
+
+Prose with ~~an unclosed strikethrough.
+
+An attribute carrying a doubled apostrophe inside a triple-quoted value:
+
+<$basic-table columns="""
+  [ { fmt: (r) => r.join(', ') }, ...get('$:/c', '') ]
+"""/>

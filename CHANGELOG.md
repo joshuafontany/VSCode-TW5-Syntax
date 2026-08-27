@@ -38,6 +38,15 @@ does not register them, so no language reaches an editor from them.
 - Unquoted attribute values keep single parentheses again; only `((` opens an MVV reference.
 
 ### Added
+- Snapshot coverage over every sample. `npm run snap` pins each file's whole tokenization
+  beside it, so a sample covers every construct it contains and any change surfaces as a
+  diff naming the file, the line and both readings. 22 samples pinned; `npm run snap-update`
+  re-pins them in the same commit that moves them.
+- A bleed canary. `npm run canary` appends an ordinary sentence to a copy of every sample and
+  asserts the sentence carries nothing but its base scopes — one assertion per sample, written
+  by nobody, catching the whole family of runs that open and never close.
+  `tests/samples/canary-control.tw` stands as its positive control: with the same-line guard
+  it reports nothing, and without it the control fires.
 - Continuous integration. Every pull request and every push to `main` installs from the
   lockfile, runs the grammar suites, holds the terminator-closure ratchet at zero, and
   builds the `.vsix` a user would install, keeping it as an artifact.

@@ -1,0 +1,32 @@
+<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/sample >>
+
+<<^ code:"&#x0001;" namespace:"⊙" ? -> lar:///ha.ka.ba/lares/api/pono/sample >>
+```toml meta
+register = "Synthesis-Canon"
+uri-path = "ha.ka.ba/lares/api/pono/sample"
+```
+
+<<~ aka lar:///ha.ka.ba/lares/api/pono/RFC-2119#normative-language >>
+
+<<^ code:"&#x0002;" >>
+
+<<~ ahu #entry >>
+
+! A heading the base grammar reads
+
+Prose naming lar:///ha.ka.ba/lares/api/pono/meme, a ''bold run'' and a `code span`.
+
+<<~ranks focus pulse@0..4 -> beat@5..8 >>
+<<~ loulou #entry ? -> lar:///ha.ka.ba/x.y.z >>
+<<~! wehe name(p) >>
+<<~?#unresolved >>
+
+<<~ hana x-tiddlywiki-filter >>
+[tag[invariant]sort[title]]
+<<~/hana >>
+
+<<~ /ahu >>
+
+<<^ code:"&#x0003;" >>ni:///sha-256;abc_DEF-123
+
+<<^ code:"&#x0004;" -> ? >>
