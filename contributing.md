@@ -84,10 +84,19 @@ Run the same locally with:
 
 ```
 npm install
-npm test               # the TiddlyWiki5 grammar
-npm run tests-memetic  # the memetic-wikitext grammar
+npm test               # the TiddlyWiki5 grammar's assertion tests
+npm run tests-memetic  # the memetic-wikitext grammar's assertion tests
+npm run snap           # every sample's whole tokenization, against its pinned snapshot
+npm run canary         # no sample colours the ordinary sentence appended after it
 npm run lint-closure   # no region admits a nested region that eats its terminator
 ```
+
+`npm run snap-update` re-pins the snapshots. Re-pin in the same commit that moves them,
+and read the diff before you do: a snapshot moving is the tokenization changing, which
+either intends something or regresses something.
+
+Adding a file to `tests/samples/` extends both the snapshot set and the canary. No
+assertion needs writing for either.
 
 `run_tests.sh` loads a large set of grammars so that embedded-language scopes
 resolve. It reports any it cannot find on your platform and runs the rest.

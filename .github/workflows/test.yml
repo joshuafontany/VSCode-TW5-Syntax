@@ -8,34 +8,91 @@ on:
 
 jobs:
   grammar:
-    runs-on: ubuntu-latest
+    # The harness resolves the VS Code grammar root per platform, and a runner carries
+    # none of the grammars VS Code bundles. Running three platforms proves both.
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node: [22]
+        include:
+          - os: ubuntu-latest
+            node: 20
+    runs-on: ${{ matrix.os }}
+    name: grammar (${{ matrix.os }}, node ${{ matrix.node }})
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v7
 
       - uses: actions/setup-node@v7
         with:
-          node-version: 22
+          node-version: ${{ matrix.node }}
           cache: npm
 
       - run: npm ci
 
-      # A runner carries none of the grammars VS Code bundles. run_tests.sh loads what
-      # resolves and reports the rest; tm-grammars supplies the same text.html.basic.
       - name: TiddlyWiki5 grammar
         run: npm test
 
       - name: Memetic-Wikitext grammar
         run: npm run tests-memetic
 
+      # Each sample's whole tokenization, pinned beside it. A change to any construct a
+      # sample carries surfaces here, naming the file, the line and both readings.
+      - name: Snapshots
+        run: npm run snap
+
+      # A run that opens and never closes colours to the end of the file. The canary
+      # appends an ordinary sentence to every sample and asserts it stays plain.
+      - name: Bleed canary
+        run: npm run canary
+
       # The memetic grammar stands at zero findings and holds there; see contributing.md.
       - name: Terminator closure
         run: npm run lint-closure
 
-      # The package a user installs, so .vscodeignore and the manifest meet a build.
-      - name: Package
-        run: npx --yes @vscode/vsce package --allow-missing-repository --out /tmp/tw5-syntax.vsix
-
+  package:
+    # The package a user installs, so .vscodeignore and the manifest meet a build.
+    needs: grammar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx --yes @vscode/vsce package --allow-missing-repository --out /tmp/tw5-syntax.vsix
       - uses: actions/upload-artifact@v7
         with:
           name: vsix
           path: /tmp/tw5-syntax.vsix
+
+  changelog:
+    # A change a user can see reaches the changelog in the commit that makes it. The one
+    # entry that went missing surfaced only when someone asked for a version bump.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: A user-visible change carries a changelog entry
+        run: |
+          git fetch --quiet origin "${{ github.base_ref }}"
+          changed=$(git diff --name-only "origin/${{ github.base_ref }}...HEAD")
+          visible=$(echo "$changed" | grep -E '^(syntaxes/|snippets/|package\.json$|.*language-configuration\.json$)' || true)
+          if [ -z "$visible" ]; then
+            echo "No user-visible surface changed."
+            exit 0
+          fi
+          echo "Changed, and visible to a user:"
+          echo "$visible" | sed 's/^/  /'
+          if echo "$changed" | grep -qx 'CHANGELOG.md'; then
+            echo "CHANGELOG.md moves with it."
+            exit 0
+          fi
+          echo "::error::A grammar, snippet, manifest or language configuration changed and CHANGELOG.md did not."
+          exit 1

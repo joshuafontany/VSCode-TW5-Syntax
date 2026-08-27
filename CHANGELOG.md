@@ -47,9 +47,12 @@ does not register them, so no language reaches an editor from them.
   by nobody, catching the whole family of runs that open and never close.
   `tests/samples/canary-control.tw` stands as its positive control: with the same-line guard
   it reports nothing, and without it the control fires.
-- Continuous integration. Every pull request and every push to `main` installs from the
-  lockfile, runs the grammar suites, holds the terminator-closure ratchet at zero, and
-  builds the `.vsix` a user would install, keeping it as an artifact.
+- Continuous integration across Linux, macOS and Windows, on Node 20 and 22. Every push and
+  every pull request installs from the lockfile, runs both assertion suites, compares every
+  snapshot, runs the bleed canary, holds the terminator-closure ratchet at zero, and builds
+  the `.vsix` a user would install, keeping it as an artifact. A pull request that changes a
+  grammar, a snippet, the manifest or a language configuration without moving `CHANGELOG.md`
+  fails. Dependabot answers weekly for the harness and monthly for the actions.
 - `tools/terminator-closure.js` and `npm run lint-closure`: a check that a region never
   admits a nested region able to consume its own terminator, and that a child which
   closes on that terminator hands it back rather than eating it — the property behind the

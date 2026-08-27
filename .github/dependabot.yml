@@ -1,0 +1,27 @@
+version: 2
+
+updates:
+  # The test harness pulls a large grammar set and a packager. Both carry advisories that
+  # reach a contributor before they reach a user, so they answer weekly.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: deps
+    groups:
+      test-harness:
+        patterns:
+          - vscode-tmgrammar-test
+          - tm-grammars
+          - tm-themes
+
+  # A pinned action major goes stale quietly: the runner forces a newer Node and every
+  # green run gains an annotation nobody reads twice.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: ci
