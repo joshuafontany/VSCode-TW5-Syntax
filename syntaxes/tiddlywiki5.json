@@ -18,6 +18,9 @@
 			"comment": "Text replacement in macro body contexts.",
 			"patterns": [
 				{
+					"include": "#substitute-filter"
+				},
+				{
 					"include": "#substitute-param"
 				},
 				{
@@ -2644,6 +2647,32 @@
 		"htmlwidget-tags-valid": {
 			"patterns": [
 				{
+					"comment": "A widget opening and closing on one line. TiddlyWiki parses a widget body with parseInlineRun unless a blank line follows the opening tag (core/rules/html.js), so the body reads as an inline run and the element scope spans it. The begin consumes its own tag, so nothing re-enters at the same position; the end names the same tag the begin matched, and falls back to end-of-line so the region can never outlive its own line.",
+					"begin": "(<)(\\$)([a-zA-Z0-9\\-\\.]+)(?=(?:\\s[^>\\n]*)?>[^\\n]*<\\/\\$\\3>)",
+					"end": "(<\\/)(\\$)(\\3)(>)|$",
+					"name": "meta.tag.widget.$3.html.tiddlywiki5",
+					"beginCaptures": {
+						"1": { "name": "punctuation.definition.tag.begin.html.tiddlywiki5" },
+						"2": { "name": "entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5" },
+						"3": { "name": "entity.name.tag.html.tiddlywiki5" }
+					},
+					"endCaptures": {
+						"1": { "name": "punctuation.definition.tag.begin.html.tiddlywiki5" },
+						"2": { "name": "entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5" },
+						"3": { "name": "entity.name.tag.html.tiddlywiki5" },
+						"4": { "name": "punctuation.definition.tag.end.html.tiddlywiki5" }
+					},
+					"patterns": [
+						{
+							"begin": "\\G",
+							"end": ">",
+							"endCaptures": { "0": { "name": "punctuation.definition.tag.end.html.tiddlywiki5" } },
+							"patterns": [ { "include": "#htmlwidget-attribute" } ]
+						},
+						{ "include": "#inline" }
+					]
+				},
+				{
 					"begin": "(^[ \\t]+)?(?=<(?i:style)\\b(?!-))",
 					"beginCaptures": {
 						"1": {
@@ -3514,7 +3543,7 @@
 					]
 				},
 				{
-					"begin": "(<\\/?)((\\$)(?!:\\/)([a-zA-Z0-9\\-\\.]+))(?<!\\/)(?=\\s|>)",
+					"begin": "(<\\/?)((\\$)(?!:\\/)([a-zA-Z0-9\\-\\.]+))(?<!\\/)(?=\\s|\\/?>)",
 					"end": "(?: ?/)?>",
 					"name": "meta.tag.widget.$4.html.tiddlywiki5",
 					"beginCaptures": {
@@ -4347,106 +4376,62 @@
 		},
 		"tableRow": {
 			"patterns": [
-				{
-					"comment": "Tokenize table cell.",
-					"match": "(?<!$)(.*?)(\\||$)",
-					"captures": {
-						"1": {
-							"patterns": [
-								{
-									"match": "^~$",
-									"name": "rowspan.down.meta.cell.td.tiddlywiki5",
-									"capture": {
-										"0": {
-											"name": "rowspan.down.punctuation.definition.cell.tiddlywiki5"
-										}
-									}
-								},
-								{
-									"match": "^>$",
-									"name": "colspan.right.meta.cell.td.tiddlywiki5",
-									"capture": {
-										"0": {
-											"name": "colspan.right.punctuation.definition.cell.tiddlywiki5"
-										}
-									}
-								},
-								{
-									"match": "^<$",
-									"name": "colspan.left.meta.cell.td.tiddlywiki5",
-									"capture": {
-										"0": {
-											"name": "colspan.left.punctuation.definition.cell.tiddlywiki5"
-										}
-									}
-								},
-								{
-									"match": "(?x)\n^\n(?:\n  (\\^(?:[^^]|\\^\\^)) |  # Top alignment marker\n  (\\,(?:[^,]|\\,\\,))    # Bottom alignment marker\n)?\n([ \\t]*)                 # Left alignment marker\n(!)               # Heading cell marker\n(.*?)                     # Cell contents\n([ \\t]*)                 # Right alignment marker\n$",
-									"name": "heading.th.meta.cell.tiddlywiki5",
-									"captures": {
-										"1": {
-											"name": "punctuation.definition.cell.valign.top.tiddlywiki5"
-										},
-										"2": {
-											"name": "punctuation.definition.cell.valign.bottom.tiddlywiki5"
-										},
-										"3": {
-											"name": "punctuation.definition.cell.align.left.tiddlywiki5"
-										},
-										"4": {
-											"name": "punctuation.definition.cell.heading.th.tiddlywiki5"
-										},
-										"5": {
-											"patterns": [
-												{
-													"include": "#inline"
-												}
-											]
-										},
-										"6": {
-											"name": "punctuation.definition.cell.align.right.tiddlywiki5"
-										}
-									}
-								},
-								{
-									"match": "(?x)\n^\n(?:\n  (\\^(?:[^^]|\\^\\^)) |  # Top alignment marker\n  (\\,(?:[^,]|\\,\\,))    # Bottom alignment marker\n)?\n([ \\t]*)                 # Left alignment marker\n()               # Heading cell marker\n(.*?)                     # Cell contents\n([ \\t]*)                 # Right alignment marker\n$",
-									"name": "data.td.meta.cell.tiddlywiki5",
-									"captures": {
-										"1": {
-											"name": "punctuation.definition.cell.valign.top.tiddlywiki5"
-										},
-										"2": {
-											"name": "punctuation.definition.cell.valign.bottom.tiddlywiki5"
-										},
-										"3": {
-											"name": "punctuation.definition.cell.align.left.tiddlywiki5"
-										},
-										"4": {
-											"name": "punctuation.definition.cell.heading.th.tiddlywiki5"
-										},
-										"5": {
-											"patterns": [
-												{
-													"include": "#inline"
-												}
-											]
-										},
-										"6": {
-											"name": "punctuation.definition.cell.align.right.tiddlywiki5"
-										}
-									}
-								},
-								{
-									"comment": "TiddlyWiki parses a cell with parseInlineRun (core/…/rules/table.js), so a cell carries inline wikitext. The alignment and span marks above claim a whole cell and are tried first; whatever they leave reads as inline.",
-									"include": "#inline"
-								}
-							]
-						},
-						"2": {
-							"name": "punctuation.separator.cell.pipe.inner.tiddlywiki5"
-						}
-					}
+			{
+				"comment": "A heading cell. TiddlyWiki builds a th rather than a td (core/rules/table.js).",
+				"match": "(?:(?<=\\|)|^)[ \\t]*(!)",
+				"name": "heading.th.meta.cell.tiddlywiki5",
+				"captures": {
+					"1": { "name": "punctuation.definition.cell.heading.th.tiddlywiki5" }
 				}
+			},
+			{
+				"comment": "A cell holding only ~ carries the row above it down (rowspan).",
+				"match": "(?:(?<=\\|)|^)(~)(?=\\||$)",
+				"name": "rowspan.down.meta.cell.td.tiddlywiki5",
+				"captures": {
+					"1": { "name": "rowspan.down.punctuation.definition.cell.tiddlywiki5" }
+				}
+			},
+			{
+				"comment": "A cell holding only > joins the cell to its right (colspan).",
+				"match": "(?:(?<=\\|)|^)(>)(?=\\||$)",
+				"name": "colspan.right.meta.cell.td.tiddlywiki5",
+				"captures": {
+					"1": { "name": "colspan.right.punctuation.definition.cell.tiddlywiki5" }
+				}
+			},
+			{
+				"comment": "A cell holding only < joins the cell to its left (colspan).",
+				"match": "(?:(?<=\\|)|^)(<)(?=\\||$)",
+				"name": "colspan.left.meta.cell.td.tiddlywiki5",
+				"captures": {
+					"1": { "name": "colspan.left.punctuation.definition.cell.tiddlywiki5" }
+				}
+			},
+			{
+				"comment": "A leading ^ aligns the cell to the top. Two carry superscript instead.",
+				"match": "(?:(?<=\\|)|^)(\\^)(?!\\^)",
+				"name": "meta.cell.valign.tiddlywiki5",
+				"captures": {
+					"1": { "name": "punctuation.definition.cell.valign.top.tiddlywiki5" }
+				}
+			},
+			{
+				"comment": "A leading , aligns the cell to the bottom. Two carry subscript instead.",
+				"match": "(?:(?<=\\|)|^)(,)(?!,)",
+				"name": "meta.cell.valign.tiddlywiki5",
+				"captures": {
+					"1": { "name": "punctuation.definition.cell.valign.bottom.tiddlywiki5" }
+				}
+			},
+			{
+				"match": "\\|",
+				"name": "punctuation.separator.cell.pipe.inner.tiddlywiki5"
+			},
+			{
+				"comment": "TiddlyWiki parses a cell with parseInlineRun (core/rules/table.js), so whatever the marks above leave reads as inline wikitext. The marks stand as their own rules rather than inside a splitting capture: a rule reached through two nested captures loses its own name.",
+				"include": "#inline"
+			}
 			]
 		},
 		"list": {
@@ -6057,7 +6042,7 @@
 				},
 				{
 					"comment": "Match unquoted filter run.",
-					"match": "(\\+|\\-|~|=)?(\\S+)",
+					"match": "(\\+|\\-|~|=)?((?:(?!\\}\\}\\}|\\)\\)\\)|%>)\\S)+)",
 					"name": "meta.filter.run.tiddlywiki5",
 					"captures": {
 						"1": {
@@ -6274,7 +6259,7 @@
 		},
 		"substitute-param": {
 			"comment": "Parse substitution parameter reference.",
-			"match": "(\\$)(?!:\\/)([^\\(\\{].*?[^\\)\\}])(\\$)(?!:/)",
+			"match": "(\\$)(?!:\\/)([^\\s$(){}](?:[^\\s$]*[^\\s$(){}])?)(\\$)(?!:/)",
 			"name": "markup.other.variable.substitute-parameter.tiddlywiki5",
 			"captures": {
 				"1": {

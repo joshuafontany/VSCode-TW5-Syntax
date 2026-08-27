@@ -43,11 +43,11 @@
 #          ^^ text.html.tiddlywiki5 meta.tag.widget.a.html.tiddlywiki5 meta.attribute.lang.html.tiddlywiki5 string.quoted.single.html.tiddlywiki5
 #            ^ text.html.tiddlywiki5 meta.tag.widget.a.html.tiddlywiki5 meta.attribute.lang.html.tiddlywiki5 string.quoted.single.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
 #             ^ text.html.tiddlywiki5 meta.tag.widget.a.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
-#              ^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
-#                       ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.a.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
-#                         ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.a.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
-#                          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.a.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
-#                           ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.a.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+#              ^^^^^^^^^ text.html.tiddlywiki5 meta.tag.widget.a.html.tiddlywiki5
+#                       ^^ text.html.tiddlywiki5 meta.tag.widget.a.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#                         ^ text.html.tiddlywiki5 meta.tag.widget.a.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
+#                          ^ text.html.tiddlywiki5 meta.tag.widget.a.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#                           ^ text.html.tiddlywiki5 meta.tag.widget.a.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 >
 >	<tag lang="""en"""/>
 #^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
@@ -1478,8 +1478,10 @@
 >
 >		<$my.custom.widget/>
 #^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#   ^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.my.custom.widget.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.my.custom.widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
+#    ^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.my.custom.widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#                    ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.my.custom.widget.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 >
 >		<% IF %>
 #^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5

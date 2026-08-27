@@ -28,3 +28,25 @@ A region in `#htmlwidget` spanning an opening tag to its matching close, includi
 `\parsermode` pragma two sections away in `tests/samples/release-check.tid`. The html
 family carries half this grammar; the repair wants its own sitting, with the composition
 check and the canary watching.
+
+## A fence language carrying a slash or a dot
+
+`codeblock.js:23` matches ```` ```([\w-]*)\r?\n ````, so ```` ```text/vnd.tiddlywiki ````
+opens no code block in TiddlyWiki — the line renders as an ordinary paragraph. This grammar
+reads it as a code block and hands the body back to wikitext, which is wider than upstream
+on purpose: the wikitext-in-a-fence convenience rests on it, and `tests/samples/release-check.tid`
+pins it.
+
+`tiddlywiki5.codeblock-fence.tw5.test` states the upstream-faithful reading. Narrowing the
+begin lookahead and `\G` language capture to `[\w-]` makes it pass and removes the convenience.
+That trade belongs to the operator, so the grammar keeps the wider form and the spec sits here.
+
+## A closing fence carrying leading whitespace
+
+`codeblock.js:26` sets `reEnd = /(^|\r?\n)```$/mg`, so an indented ```` ``` ```` does not close
+a block in TiddlyWiki — the block runs to the end of the tiddler. This grammar closes on
+`^(?!\s*```)`, which is lenient by one leading-whitespace run.
+
+Held deliberately. Tightening it converts a benign leniency into an unbounded swallow, and a
+run that opens and never closes has been this grammar's costliest defect family. The corpus
+carries one indented closing fence.

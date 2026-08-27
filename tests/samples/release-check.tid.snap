@@ -69,11 +69,11 @@
 #                                   ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 meta.attribute.class.html.tiddlywiki5 punctuation.separator.key-value.html.tiddlywiki5
 #                                    ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 meta.attribute.class.html.tiddlywiki5 string.unquoted.attribute.html.tiddlywiki5
 #                                          ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
-#                                           ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
-#                                             ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
-#                                               ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
-#                                                ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
-#                                                      ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+#                                           ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5
+#                                             ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#                                               ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
+#                                                ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#                                                      ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 >
 >`doThing(now)` must read as one attribute value; `(now)` must not become a second
 #^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5

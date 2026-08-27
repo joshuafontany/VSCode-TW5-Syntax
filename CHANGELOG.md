@@ -25,6 +25,23 @@ does not register them, so no language reaches an editor from them.
 ## 2.1.0
 
 ### Fixed
+- A widget closes itself with or without a space before its slash. `<$transclude/>` read as
+  an illegal angle bracket; TiddlyWiki reads a tag name and then looks for `/>` directly, and
+  TiddlyWiki's own core carries 50 of them.
+- A widget that opens and closes on one line spans its own body. `<$button>{{X}}</$button>`
+  read its body as a block run beneath the tag; TiddlyWiki parses a widget body with
+  `parseInlineRun` unless a blank line follows the opening tag, so the body reads inline and
+  the element scope reaches it.
+- An unquoted filter run stops at the delimiter of whatever carries it. `{{{Bare}}}` consumed
+  its own `}}}`, leaving the transclusion open and colouring every line after it to the end of
+  the file; `(((filter)))` and `<%if%>` did the same.
+- A substitution reference names one parameter. `$a$` alone matched nothing and `$a$ $b$`
+  merged into a single span reaching across the gap, because the name needed two characters
+  and admitted a `$`. TiddlyWiki substitutes one name at a time.
+- A macro body reads the `${filter}$` form, which its injection never carried.
+- A table cell wears its own marker. `!`, `~`, `>`, `<`, `^` and `,` scoped nothing at all, and
+  a left-colspan `<` read as a stray angle bracket. The marks stood two captures deep, where a
+  rule loses its own name; they stand at one depth now.
 - A table cell carries inline wikitext. A link, a transclusion, a macro call, bold, an
   entity, inline code and an image all read inside a cell as they read outside one.
   TiddlyWiki parses a cell with `parseInlineRun`; the cell's alignment and span marks claim
