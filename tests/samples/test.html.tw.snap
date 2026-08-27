@@ -326,8 +326,10 @@
 >----
 #^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.separator.hr.tiddlywiki5
 >----asdf <!-- Invalid content after hr -->
-#^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.separator.hr.tiddlywiki5
-#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.separator.hr.tiddlywiki5 invalid.illegal.expected-newline-after-hr.tiddlywiki5
+#^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#         ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 comment.block.html.tiddlywiki5
+#                                       ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
 >
 >----
 #^^^^ text.html.tiddlywiki5 constant.separator.hr.tiddlywiki5

@@ -483,7 +483,7 @@
 			"patterns": [
 				{
 					"comment": "Handle individual parameters and optional default values.",
-					"match": "([\\w\\-]+)(?:(\\s*:\\s*)(\"[^\"]*\"|'[^']*'|\\[\\[[^\\]]*\\]\\]|[^,\\s\"]+))?",
+					"match": "([\\w\\-]+)(?:(\\s*:\\s*)(\"[^\"]*\"|'[^']*'|\\[\\[[^\\]]*\\]\\]|[^,\\s\")]+))?",
 					"name": "meta.variable.parameter.tiddlywiki5",
 					"captures": {
 						"1": {
@@ -4696,15 +4696,9 @@
 			]
 		},
 		"horizrule": {
-			"begin": "^\\s*-{3,6}",
-			"end": "$",
-			"name": "constant.separator.hr.tiddlywiki5",
-			"patterns": [
-				{
-					"match": "(?<=^-{3,6}).+$",
-					"name": "invalid.illegal.expected-newline-after-hr.tiddlywiki5"
-				}
-			]
+			"comment": "TiddlyWiki reads a rule as three or more dashes reaching the end of the line: /-{3,}\\r?(?:\\n|$)/. Anything after them makes the line ordinary text, where the dash rule takes two or three. No count ceiling, and no error to invent.",
+			"match": "^\\s*(-{3,})\\r?$",
+			"name": "constant.separator.hr.tiddlywiki5"
 		},
 		"codeblock": {
 			"begin": "\\s*(```)(?=[\\w\\-/.]*$)",

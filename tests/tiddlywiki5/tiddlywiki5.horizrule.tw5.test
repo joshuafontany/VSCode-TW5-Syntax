@@ -1,0 +1,14 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A rule reaches the end of its line; anything after it is text"
+
+---
+#<- text.html.tiddlywiki5 constant.separator.hr.tiddlywiki5
+
+----
+#<- text.html.tiddlywiki5 constant.separator.hr.tiddlywiki5
+
+-------
+#<- text.html.tiddlywiki5 constant.separator.hr.tiddlywiki5
+
+--- trailing text keeps the dash and the text.
+#<- text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.dash.mdash.tiddlywiki5
+#   ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5

@@ -1,0 +1,49 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "Inline rules, read from TiddlyWiki's own matchRegExp"
+
+Two --dashes and three ---dashes.
+#   ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.dash.ndash.tiddlywiki5
+#                      ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.dash.mdash.tiddlywiki5
+
+One -dash and four ----dashes read as text.
+#   ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                  ^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+
+Entities &amp; and &#38; and &#x26; here.
+#         ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.entity.named.amp.html.tiddlywiki5
+#                   ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.entity.numeric.decimal.html.tiddlywiki5
+#                             ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.entity.numeric.hexadecimal.html.tiddlywiki5
+
+Too short &a; and too long &abcdefghij; read as ambiguous.
+#         ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 invalid.illegal.ambiguous-ampersand.html.tiddlywiki5
+#                          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 invalid.illegal.ambiguous-ampersand.html.tiddlywiki5
+
+Code `one` and ``two`` here.
+#     ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.inline.raw.single.tiddlywiki5
+#                ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.inline.raw.double.tiddlywiki5
+
+A link [[Caption|Target]] here.
+#        ^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 string.entity.other.title.link.tiddlywiki5
+#                ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
+
+A transclusion {{Title||Template}} here.
+#                       ^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
+
+An external https://example.com/a here.
+#           ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.external.tiddlywiki5 markup.underline.link.external.https.tiddlywiki5
+
+An unknown scheme zzz://example.com/a reads as text.
+#                 ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+
+A system link $:/core/ui/Thing here.
+#                ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.syslink.tiddlywiki5
+
+A CamelCaseLink and a ~SuppressedLink here.
+# ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5
+#                     ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5 punctuation.definition.suppress.wikilink.tiddlywiki5
+
+An image [img[alt|file.png]] here.
+#         ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.image.tiddlywiki5 keyword.other.img.tiddlywiki5
+#                 ^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.image.tiddlywiki5 markup.underline.link.image.tiddlywiki5
+
+Styled @@color:red;text@@ here.
+#                  ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5

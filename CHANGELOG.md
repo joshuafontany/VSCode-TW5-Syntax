@@ -25,6 +25,13 @@ does not register them, so no language reaches an editor from them.
 ## 2.1.0
 
 ### Fixed
+- A `\parameters` pragma closes on its own parenthesis. An unquoted default value admitted
+  a `)`, so `\parameters (a:1)` consumed the closer and every line after it — a pragma, a
+  paragraph, the whole document. TiddlyWiki reads the parameter list as `[^)]*`, and so does
+  this now.
+- A rule line reaches the end of its line. `---` and longer stand as a rule; `--- trailing
+  text` reads as a dash followed by text, which is what TiddlyWiki's `-{3,}\r?(?:\n|$)` does.
+  The count ceiling of six and the invented `expected-newline-after-hr` error are gone.
 - A fenced block closes on its fence. Inside a `.tid` file, a fence whose language is
   wikitext — ` ```text/vnd.tiddlywiki `, ` ```tw5 ` — swallowed the rest of the file: the
   branch re-enters this grammar, and the nested codeblock rule opened on the closing fence
@@ -44,6 +51,12 @@ does not register them, so no language reaches an editor from them.
 - Unquoted attribute values keep single parentheses again; only `((` opens an MVV reference.
 
 ### Added
+- Tests derived from TiddlyWiki's own rule modules. Every wikitext rule declares the regex it
+  matches on; `tiddlywiki5.inline-rules`, `tiddlywiki5.block-rules`, `tiddlywiki5.horizrule`
+  and `tiddlywiki5.pragmas` assert positives and negatives read from those regexes rather than
+  from anyone's reading of the format — entity lengths, dash counts, heading depth to six,
+  every list marker, unknown URL schemes, and all ten pragmas including the sequences
+  `parsePragmas` admits.
 - Snapshot coverage over every sample. `npm run snap` pins each file's whole tokenization
   beside it, so a sample covers every construct it contains and any change surfaces as a
   diff naming the file, the line and both readings. 22 samples pinned; `npm run snap-update`

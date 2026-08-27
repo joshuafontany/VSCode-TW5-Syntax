@@ -17,3 +17,11 @@ An attribute carrying a doubled apostrophe inside a triple-quoted value:
 <$basic-table columns="""
   [ { fmt: (r) => r.join(', ') }, ...get('$:/c', '') ]
 """/>
+
+A parameters pragma whose default value must stop at the closing paren:
+
+\parameters (a:1)
+
+And a rule line carrying trailing text, which TiddlyWiki reads as a dash and text:
+
+--- trailing text

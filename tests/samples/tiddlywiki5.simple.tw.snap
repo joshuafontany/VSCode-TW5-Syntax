@@ -79,8 +79,8 @@
 #^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.dash.ndash.tiddlywiki5
 #  ^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >--- mdash
-#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.separator.hr.tiddlywiki5
-#   ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.separator.hr.tiddlywiki5 invalid.illegal.expected-newline-after-hr.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.dash.mdash.tiddlywiki5
+#   ^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >
 >----
 #^^^^ text.html.tiddlywiki5 constant.separator.hr.tiddlywiki5
