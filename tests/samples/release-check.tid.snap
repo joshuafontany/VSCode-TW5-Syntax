@@ -184,14 +184,44 @@
 #                                                                               ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 bold.punctuation.definition.markup.end.tiddlywiki5
 #                                                                                 ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >```
-#^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 punctuation.definition.raw.markup.end.tiddlywiki5
 >
->! 5 · Emphasis still spans a soft line break
-#^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5
+>! 5 · An inline run stays on the line it opens on
+#^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5
+>
+>Here //an italic run// closes where it opened, and colours.
+#^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#     ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 italic.punctuation.definition.markup.begin.tiddlywiki5
+#       ^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.italic.tiddlywiki5
+#                    ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 italic.punctuation.definition.markup.end.tiddlywiki5
+#                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >
 >A whole //italic run spanning
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
->a soft line break// still scopes, and this sentence closes the check.
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>a soft line break colours nothing — the mark never opens, so nothing flickers while
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>a pair is half typed.
+#^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+>! 6 · A fenced block closes on its fence
+#^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5
+>
+>```text/vnd.tiddlywiki
+#^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 punctuation.definition.raw.markup.begin.tiddlywiki5
+#   ^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 entity.other.attribute-name.language.tiddlywiki5
+>Wikitext inside the fence: ''this reads as bold''.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                           ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 bold.punctuation.definition.markup.begin.tiddlywiki5
+#                             ^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.bold.tiddlywiki5
+#                                               ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 bold.punctuation.definition.markup.end.tiddlywiki5
+#                                                 ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>```
+#^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 punctuation.definition.raw.markup.end.tiddlywiki5
+>
+>Everything after the fence reads as ordinary paragraph text, and this sentence closes
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>the check.
+#^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >

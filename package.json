@@ -200,7 +200,8 @@
         "snap-memetic": "node ./tools/snapshot-check.js text.html.tiddlywiki5.memetic-wikitext './tests/samples/*.mem'",
         "canary-wikitext": "node ./tools/bleed-canary.js text.html.tiddlywiki5 './tests/samples/*.tw'",
         "canary-memetic": "node ./tools/bleed-canary.js text.html.tiddlywiki5.memetic-wikitext './tests/samples/*.mem'",
-        "canary": "npm run canary-wikitext && npm run canary-memetic",
+        "canary-tid": "node ./tools/bleed-canary.js source.tiddlywiki5.tid-file \"./tests/samples/*.tid\"",
+        "canary": "npm run canary-wikitext && npm run canary-tid && npm run canary-memetic",
         "snap": "npm run snap-wikitext && npm run snap-tid && npm run snap-meta && npm run snap-multids && npm run snap-memetic",
         "snap-update": "npm run snap-wikitext -- --update && npm run snap-tid -- --update && npm run snap-meta -- --update && npm run snap-multids -- --update && npm run snap-memetic -- --update"
     },

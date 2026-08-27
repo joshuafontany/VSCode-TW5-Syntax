@@ -4723,7 +4723,6 @@
 			"patterns": [
 				{
 					"begin": "(?i)\\G(t(?:ext/vnd\\.tiddlywiki|w|w5|iddlywiki5?))$",
-					"end": "(?=^```$)",
 					"contentName": "text.html.tiddlywiki5",
 					"beginCaptures": {
 						"1": {
@@ -4734,11 +4733,11 @@
 						{
 							"include": "text.html.tiddlywiki5"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(m(?:arkdown|d|kd(?:own)?))$",
-					"end": "(?=^```$)",
 					"contentName": "source.gfm",
 					"beginCaptures": {
 						"1": {
@@ -4749,11 +4748,11 @@
 						{
 							"include": "source.gfm"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(gemspec|irb|podspec|r(?:b|uby)|thor)$",
-					"end": "(?=^```$)",
 					"contentName": "source.ruby",
 					"beginCaptures": {
 						"1": {
@@ -4764,11 +4763,11 @@
 						{
 							"include": "source.ruby"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(m(?:ak(?:efile)?|k))$",
-					"end": "(?=^```$)",
 					"contentName": "source.makefile",
 					"beginCaptures": {
 						"1": {
@@ -4779,11 +4778,11 @@
 						{
 							"include": "source.makefile"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(json)$",
-					"end": "(?=^```$)",
 					"contentName": "source.json",
 					"beginCaptures": {
 						"1": {
@@ -4794,11 +4793,11 @@
 						{
 							"include": "source.json"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(atom|rss|xhtml)$",
-					"end": "(?=^```$)",
 					"contentName": "text.xml",
 					"beginCaptures": {
 						"1": {
@@ -4809,11 +4808,11 @@
 						{
 							"include": "text.xml"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(xsl)$",
-					"end": "(?=^```$)",
 					"contentName": "text.xml.xsl",
 					"beginCaptures": {
 						"1": {
@@ -4824,11 +4823,11 @@
 						{
 							"include": "text.xml.xsl"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(html)$",
-					"end": "(?=^```$)",
 					"contentName": "text.html.basic",
 					"beginCaptures": {
 						"1": {
@@ -4839,11 +4838,11 @@
 						{
 							"include": "text.html.basic"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(css)$",
-					"end": "(?=^```$)",
 					"contentName": "source.css",
 					"beginCaptures": {
 						"1": {
@@ -4854,11 +4853,11 @@
 						{
 							"include": "source.css"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(p(?:erl|l))$",
-					"end": "(?=^```$)",
 					"contentName": "source.perl",
 					"beginCaptures": {
 						"1": {
@@ -4869,11 +4868,11 @@
 						{
 							"include": "source.perl"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(cs(?:harp)?)$",
-					"end": "(?=^```$)",
 					"contentName": "source.cs",
 					"beginCaptures": {
 						"1": {
@@ -4884,11 +4883,11 @@
 						{
 							"include": "source.cs"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(obj(?:\\-c|c|ectivec))$",
-					"end": "(?=^```$)",
 					"contentName": "source.objc",
 					"beginCaptures": {
 						"1": {
@@ -4899,11 +4898,11 @@
 						{
 							"include": "source.objc"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(mm)$",
-					"end": "(?=^```$)",
 					"contentName": "source.objcpp",
 					"beginCaptures": {
 						"1": {
@@ -4914,11 +4913,11 @@
 						{
 							"include": "source.objcpp"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(gyp|py(?:thon)?)$",
-					"end": "(?=^```$)",
 					"contentName": "source.python",
 					"beginCaptures": {
 						"1": {
@@ -4929,11 +4928,11 @@
 						{
 							"include": "source.python"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(java)$",
-					"end": "(?=^```$)",
 					"contentName": "source.java",
 					"beginCaptures": {
 						"1": {
@@ -4944,11 +4943,11 @@
 						{
 							"include": "source.java"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(jsp)$",
-					"end": "(?=^```$)",
 					"contentName": "text.html.jsp",
 					"beginCaptures": {
 						"1": {
@@ -4959,11 +4958,11 @@
 						{
 							"include": "text.html.jsp"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(bash|sh|zsh)$",
-					"end": "(?=^```$)",
 					"contentName": "source.shell",
 					"beginCaptures": {
 						"1": {
@@ -4974,11 +4973,11 @@
 						{
 							"include": "source.shell"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(sql)$",
-					"end": "(?=^```$)",
 					"contentName": "source.sql",
 					"beginCaptures": {
 						"1": {
@@ -4989,11 +4988,11 @@
 						{
 							"include": "source.sql"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(c|p)$",
-					"end": "(?=^```$)",
 					"contentName": "source.c",
 					"beginCaptures": {
 						"1": {
@@ -5004,11 +5003,11 @@
 						{
 							"include": "source.c"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(c(?:\\+\\+|c|pp)|h(?:\\+\\+|pp))$",
-					"end": "(?=^```$)",
 					"contentName": "source.cpp",
 					"beginCaptures": {
 						"1": {
@@ -5019,11 +5018,11 @@
 						{
 							"include": "source.cpp"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(php(?:3|4|5|6)?)$",
-					"end": "(?=^```$)",
 					"contentName": "text.html.php",
 					"beginCaptures": {
 						"1": {
@@ -5034,11 +5033,11 @@
 						{
 							"include": "text.html.php"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(ini|toml)$",
-					"end": "(?=^```$)",
 					"contentName": "source.toml",
 					"beginCaptures": {
 						"1": {
@@ -5049,11 +5048,11 @@
 						{
 							"include": "source.toml"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(diff|patch)$",
-					"end": "(?=^```$)",
 					"contentName": "text.git-commit",
 					"beginCaptures": {
 						"1": {
@@ -5064,11 +5063,11 @@
 						{
 							"include": "text.git-commit"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(c(?:offee(?:script)?|son)|iced)$",
-					"end": "(?=^```$)",
 					"contentName": "source.coffee",
 					"beginCaptures": {
 						"1": {
@@ -5079,11 +5078,11 @@
 						{
 							"include": "source.coffee"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(j(?:avascript|s))$",
-					"end": "(?=^```$)",
 					"contentName": "source.js",
 					"beginCaptures": {
 						"1": {
@@ -5094,17 +5093,18 @@
 						{
 							"include": "source.js"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "\\G([\\w\\-/.]*)$",
-					"end": "(?=^```$)",
 					"contentName": "markup.inline.raw",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
 						}
-					}
+					},
+					"while": "^(?!\\s*```)"
 				}
 			]
 		},

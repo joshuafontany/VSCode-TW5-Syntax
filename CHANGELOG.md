@@ -25,6 +25,12 @@ does not register them, so no language reaches an editor from them.
 ## 2.1.0
 
 ### Fixed
+- A fenced block closes on its fence. Inside a `.tid` file, a fence whose language is
+  wikitext — ` ```text/vnd.tiddlywiki `, ` ```tw5 ` — swallowed the rest of the file: the
+  branch re-enters this grammar, and the nested codeblock rule opened on the closing fence
+  and consumed it. Each language branch now runs on a `while` clause, tested per line before
+  any child pattern, so no embedded grammar can eat the closer. A `js` fence and a bare fence
+  were never affected, and a `.tw` file was never affected.
 - Highlighting stays on the line it starts on. An inline run — `''bold''`, `//italic//`,
   `__underline__`, `^^sup^^`, `,,sub,,`, `~~strike~~` and inline code — now opens only where
   its closing mark stands on the same line, and ends there. A half-typed mark colours nothing,

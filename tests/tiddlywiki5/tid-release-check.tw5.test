@@ -1,0 +1,50 @@
+# SYNTAX TEST "source.tiddlywiki5.tid-file" "The release check body, section by section"
+
+# The header zone closes at the blank line above, so every line below stands in the
+# text body — the scope the fenced-block defect lived in.
+
+Prose naming __localVar in passing, and the rest reads plain.
+#            ^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                                       ^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+
+<$basic-table columns="""
+# ^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+
+  [ ...getText('$:/c', '') ]
+#                      ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 string.quoted.triple.html.tiddlywiki5
+
+  """/>
+
+After the widget the text reads plain.
+#<- source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+
+<$button actions=doThing(now) class=tc-btn>Go</$button>
+#                ^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 meta.attribute.unrecognized.actions.html.tiddlywiki5 string.unquoted.attribute.html.tiddlywiki5
+#                                   ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 meta.attribute.class.html.tiddlywiki5 string.unquoted.attribute.html.tiddlywiki5
+
+\parsermode block
+#^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.directive.parsermode.tiddlywiki5 keyword.control.directive.parsermode.tiddlywiki5
+#           ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.directive.parsermode.tiddlywiki5 keyword.operator.block.tiddlywiki5
+
+An MVV display: ((myVar)) and ((other||, )) here.
+#                 ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 variable.name.mvv-display.tiddlywiki5
+#                                    ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 keyword.operator.separator.mvv-display.tiddlywiki5
+
+Here //an italic run// closes where it opened.
+#      ^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.italic.tiddlywiki5
+
+A whole //italic run spanning
+#         ^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+
+```text/vnd.tiddlywiki
+#<- source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 punctuation.definition.raw.markup.begin.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 entity.other.attribute-name.language.tiddlywiki5
+
+Wikitext inside the fence: ''this reads as bold''.
+#                            ^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.bold.tiddlywiki5
+
+```
+#<- source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 punctuation.definition.raw.markup.end.tiddlywiki5
+
+After the fence the text reads plain.
+#<- source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5

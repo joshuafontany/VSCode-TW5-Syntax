@@ -58,8 +58,7 @@ const SPANS_BY_DESIGN = [
   'markup.other.style',
   'markup.quote',
   'meta.quote',
-  'meta.typedblock',
-  'meta.codeblock'
+  'meta.typedblock'
 ];
 const spanning = (s) => SPANS_BY_DESIGN.some((p) => s.startsWith(p));
 
