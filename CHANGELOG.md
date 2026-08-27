@@ -51,6 +51,10 @@ does not register them, so no language reaches an editor from them.
 - Unquoted attribute values keep single parentheses again; only `((` opens an MVV reference.
 
 ### Added
+- `tools/upstream-coverage.js` and `npm run upstream-coverage`: TiddlyWiki's own rule regexes
+  taken to TiddlyWiki's own tiddlers, asking whether this grammar reads each construct they
+  match. Its deciding half stands under test in `tests/tools/`, and CI runs it against a fresh
+  TiddlyWiki checkout so an upstream rule this grammar does not read surfaces on its own.
 - Tests derived from TiddlyWiki's own rule modules. Every wikitext rule declares the regex it
   matches on; `tiddlywiki5.inline-rules`, `tiddlywiki5.block-rules`, `tiddlywiki5.horizrule`
   and `tiddlywiki5.pragmas` assert positives and negatives read from those regexes rather than

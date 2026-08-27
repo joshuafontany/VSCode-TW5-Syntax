@@ -53,6 +53,11 @@ jobs:
       - name: Terminator closure
         run: npm run lint-closure
 
+      # The deciding half of tools/upstream-coverage.js, against snapshots whose answer
+      # is stated rather than inferred.
+      - name: Tool tests
+        run: npm run test-tools
+
   package:
     # The package a user installs, so .vscodeignore and the manifest meet a build.
     needs: grammar
@@ -69,6 +74,24 @@ jobs:
         with:
           name: vsix
           path: /tmp/tw5-syntax.vsix
+
+  upstream:
+    # TiddlyWiki's own rule regexes, taken to TiddlyWiki's own tiddlers, asking whether
+    # this grammar reads each construct they match. It answers to upstream rather than to
+    # this repository, so it runs beside the matrix and reports rather than blocks.
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Fetch TiddlyWiki5
+        run: git clone --depth 1 https://github.com/TiddlyWiki/TiddlyWiki5.git /tmp/tw5
+      - name: Coverage against upstream
+        run: npm run upstream-coverage -- /tmp/tw5 6
 
   changelog:
     # A change a user can see reaches the changelog in the commit that makes it. The one

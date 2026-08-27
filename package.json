@@ -193,6 +193,8 @@
         "tests-wikitext": "bash ./run_tests.sh './tests/tiddlywiki5/tiddlywiki5.*.tw5.test'",
         "tests-memetic": "bash ./run_tests.sh './tests/memetic-wikitext/*.mem.test'",
         "lint-closure": "node ./tools/terminator-closure.js ./syntaxes/memetic-wikitext.json",
+        "test-tools": "node --test ./tests/tools/upstream-coverage.test.js",
+        "upstream-coverage": "node ./tools/upstream-coverage.js",
         "snap-wikitext": "node ./tools/snapshot-check.js text.html.tiddlywiki5 './tests/samples/*.tw'",
         "snap-tid": "node ./tools/snapshot-check.js source.tiddlywiki5.tid-file './tests/samples/*.tid'",
         "snap-meta": "node ./tools/snapshot-check.js source.tiddlywiki5.tid-file './tests/samples/*.meta'",
