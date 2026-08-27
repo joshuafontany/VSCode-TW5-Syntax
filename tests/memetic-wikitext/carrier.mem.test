@@ -23,7 +23,8 @@
 #<- text.html.tiddlywiki5.memetic-wikitext meta.heading.heading-1.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
 
 <<~/ahu >>
-# ^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext keyword.control.sharktooth.close.memetic-wikitext
+# ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext keyword.control.sharktooth.memetic-wikitext
+#  ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext punctuation.definition.sigil.close.memetic-wikitext
 #   ^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext entity.name.function.sigil.memetic-wikitext
 
 <<^ code:"&#x0003;" >>ni:///sha-256;abc_DEF-123

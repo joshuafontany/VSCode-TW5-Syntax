@@ -7,6 +7,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.1.0
 
 ### Fixed
+- The sharktooth stands at one dispatch position, so a close mirrors its open. `<<~ /ahu >>`
+  reads as a close beside `<<~/ahu >>`, the tooth scopes as the tooth in both, and the slash
+  rides on the command word — matching the plain register's `<<fragment …>>` / `<</fragment>>`.
 - The sharktooth namespace claims both spacings. `<<~name …>>` reads as a sigil alongside
   `<<~ name …>>`, so bearing arrows, `#fragment` anchors and `lar:` URIs inside the tight
   form scope as themselves rather than as undifferentiated macro parameters. 973 of the

@@ -10,12 +10,11 @@
 #                ^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext markup.underline.link.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext
 
 <<~/ranks >>
-# ^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext keyword.control.sharktooth.close.memetic-wikitext
+# ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext keyword.control.sharktooth.memetic-wikitext
+#  ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext punctuation.definition.sigil.close.memetic-wikitext
+#   ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext entity.name.function.sigil.memetic-wikitext
 
-<<~!wehe name(p) >>
-# ^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.pragma.memetic-wikitext keyword.control.sharktooth.pragma.memetic-wikitext
-#   ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.pragma.memetic-wikitext entity.name.function.sigil.definition.memetic-wikitext
-
-<<~?#fragment >>
-# ^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.unresolved.memetic-wikitext keyword.control.sharktooth.unresolved.memetic-wikitext
-#    ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.unresolved.memetic-wikitext entity.name.tag.anchor.memetic-wikitext
+<<~ /ranks >>
+# ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext keyword.control.sharktooth.memetic-wikitext
+#   ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext punctuation.definition.sigil.close.memetic-wikitext
+#    ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext entity.name.function.sigil.memetic-wikitext

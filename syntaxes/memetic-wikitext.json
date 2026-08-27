@@ -193,18 +193,22 @@
     },
     "sigil-close": {
       "name": "meta.sigil.close.memetic-wikitext",
-      "match": "(<<)(~/)(\\\\?[A-Za-z_][A-Za-z0-9_-]*)\\s*(>>)",
+      "comment": "The tooth stands at one dispatch position: <<~ then LWSP then the command word. A close word carries its own slash, so the tooth scopes as the tooth and the slash rides on the word — mirroring the plain register's <<fragment …>> and <</fragment>>.",
+      "match": "(<<)(~)\\s*(/)\\s*(\\\\?[A-Za-z_][A-Za-z0-9_-]*)\\s*(>>)",
       "captures": {
         "1": {
           "name": "punctuation.definition.sigil.begin.memetic-wikitext"
         },
         "2": {
-          "name": "keyword.control.sharktooth.close.memetic-wikitext"
+          "name": "keyword.control.sharktooth.memetic-wikitext"
         },
         "3": {
-          "name": "entity.name.function.sigil.memetic-wikitext"
+          "name": "punctuation.definition.sigil.close.memetic-wikitext"
         },
         "4": {
+          "name": "entity.name.function.sigil.memetic-wikitext"
+        },
+        "5": {
           "name": "punctuation.definition.sigil.end.memetic-wikitext"
         }
       }
