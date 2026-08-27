@@ -193,25 +193,29 @@
     },
     "sigil-close": {
       "name": "meta.sigil.close.memetic-wikitext",
-      "match": "(<<)(~/)(\\\\?[A-Za-z_][A-Za-z0-9_-]*)\\s*(>>)",
+      "comment": "The tooth stands at one dispatch position: <<~ then LWSP then the command word. A close word carries its own slash, so the tooth scopes as the tooth and the slash rides on the word — mirroring the plain register's <<fragment …>> and <</fragment>>.",
+      "match": "(<<)(~)\\s*(/)\\s*(\\\\?[A-Za-z_][A-Za-z0-9_-]*)\\s*(>>)",
       "captures": {
         "1": {
           "name": "punctuation.definition.sigil.begin.memetic-wikitext"
         },
         "2": {
-          "name": "keyword.control.sharktooth.close.memetic-wikitext"
+          "name": "keyword.control.sharktooth.memetic-wikitext"
         },
         "3": {
-          "name": "entity.name.function.sigil.memetic-wikitext"
+          "name": "punctuation.definition.sigil.close.memetic-wikitext"
         },
         "4": {
+          "name": "entity.name.function.sigil.memetic-wikitext"
+        },
+        "5": {
           "name": "punctuation.definition.sigil.end.memetic-wikitext"
         }
       }
     },
     "sigil-unresolved": {
       "name": "meta.sigil.unresolved.memetic-wikitext",
-      "begin": "(<<)(~\\?)(?=[\\s>])",
+      "begin": "(<<)(~\\?)(?=[\\s>#])",
       "end": "(>>)|$",
       "beginCaptures": {
         "1": {
@@ -230,11 +234,12 @@
         {
           "include": "#params"
         }
-      ]
+      ],
+      "comment": "A fragment may follow the tooth directly: the grammar puts LWSP, never required space, between them."
     },
     "sigil-pragma": {
       "name": "meta.sigil.pragma.memetic-wikitext",
-      "begin": "(<<)(~!)\\s+(\\\\?[A-Za-z_][A-Za-z0-9_-]*)",
+      "begin": "(<<)(~!)\\s*(\\\\?[A-Za-z_][A-Za-z0-9_-]*)",
       "end": "(>>)|$",
       "beginCaptures": {
         "1": {
@@ -256,11 +261,12 @@
         {
           "include": "#params"
         }
-      ]
+      ],
+      "comment": "LWSP admits zero between the tooth and the name, as it does for the speaking set."
     },
     "sigil": {
       "name": "meta.sigil.memetic-wikitext",
-      "begin": "(<<)(~)\\s+(\\\\?[A-Za-z_][A-Za-z0-9_-]*)",
+      "begin": "(<<)(~)\\s*(\\\\?[A-Za-z_][A-Za-z0-9_-]*)",
       "end": "(>>)|$",
       "beginCaptures": {
         "1": {
@@ -282,7 +288,8 @@
         {
           "include": "#params"
         }
-      ]
+      ],
+      "comment": "The sharktooth claims both spacings: <<~ name …>> and <<~name …>>. TW5 reads the first as macro `~` with a positional parameter and the second as macro `~name`, and both stand inside this namespace. LWSP in the grammar admits zero (memetic-wikitext #grammar)."
     },
     "params": {
       "patterns": [
@@ -329,7 +336,7 @@
           "name": "string.unquoted.uri.lar.memetic-wikitext"
         }
       },
-      "comment": "A lar: URI reads as an address wherever it stands, sigil or prose. TW5 has no rule for the scheme, so its '//' would otherwise open an italic run."
+      "comment": "A lar: URI reads as an address wherever it stands, sigil or prose. TW5 binds no rule to the scheme, so the base grammar takes its '//' for an italic run."
     },
     "fragment": {
       "match": "(#)([A-Za-z_][A-Za-z0-9_-]*)",

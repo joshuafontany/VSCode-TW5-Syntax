@@ -1,0 +1,49 @@
+{
+    // Memetic-wikitext extends TiddlyWiki wikitext, so it keeps the host's comment
+    // form. Everything else here answers to the sharktooth.
+    "comments": {
+        "blockComment": [ "<!--", "-->" ]
+    },
+    // "<<" and ">>" bracket every sigil, so bracket matching and jump-to-pair follow
+    // the grammar rather than the HTML underneath it.
+    "brackets": [
+        ["<<", ">>"],
+        ["<!--", "-->"],
+        ["[[", "]]"],
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"]
+    ],
+    "autoClosingPairs": [
+        { "open": "<<", "close": " >>" },
+        { "open": "[[", "close": "]]" },
+        { "open": "{", "close": "}" },
+        { "open": "[", "close": "]" },
+        { "open": "(", "close": ")" },
+        { "open": "\"", "close": "\"" },
+        { "open": "<!--", "close": "-->", "notIn": ["comment", "string"] }
+    ],
+    "autoCloseBefore": ";:.,=}])> \n\t",
+    "surroundingPairs": [
+        ["<<", ">>"],
+        ["[[", "]]"],
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["\"", "\""],
+        ["'", "'"],
+        ["`", "`"]
+    ],
+    // A sigil name, a lar: URI and a #fragment each select as one word, so a double
+    // click takes the whole address.
+    "wordPattern": "(lar:[^\\s>]+)|(#[A-Za-z_][A-Za-z0-9_-]*)|(\\\\?[A-Za-z_][A-Za-z0-9_-]*)",
+    // A sigil block closes on a name, and a folding marker matches text rather than
+    // names. Structural folding waits for a language server that can pair a close
+    // with its open; region markers stand until then.
+    "folding": {
+        "markers": {
+            "start": "^\\s*<!--\\s*#?region\\b.*-->",
+            "end": "^\\s*<!--\\s*#?endregion\\b.*-->"
+        }
+    }
+}

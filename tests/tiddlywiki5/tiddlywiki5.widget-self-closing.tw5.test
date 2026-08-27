@@ -1,0 +1,34 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A widget closes itself with or without a space"
+
+# TiddlyWiki reads a widget tag name with reTagName = /([a-zA-Z0-9\-\$\.]+)/y and then
+# looks for /> directly (core/…/rules/html.js), so a self-closing widget needs no space
+# before its slash. TiddlyWiki's own core carries 50 of them.
+
+<$transclude/>
+#<- text.html.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#<- - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#^ text.html.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
+# ^^^^^^^^^^ text.html.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#           ^^ text.html.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+
+<$link/>
+#<- text.html.tiddlywiki5 meta.tag.widget.link.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#<- - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+
+# A dotted widget name closes itself too.
+<$my.widget/>
+#<- text.html.tiddlywiki5 meta.tag.widget.my.widget.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#<- - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+
+# The spaced form already read, and goes on reading.
+<$list />
+#<- text.html.tiddlywiki5 meta.tag.widget.list.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+
+# An attribute-bearing self-closing widget keeps its attribute.
+<$transclude tiddler="X"/>
+#<- text.html.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#            ^^^^^^^ text.html.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 meta.attribute.unrecognized.tiddler.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+
+# A stray bracket goes on reading as one; the fix widens the tag rule, never the prose.
+A stray < in prose.
+#       ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5

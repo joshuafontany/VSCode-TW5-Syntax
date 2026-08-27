@@ -1,0 +1,32 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "Substitution references in a macro body"
+
+# TiddlyWiki substitutes one parameter at a time, per name:
+#   new RegExp("\\$" + escapeRegExp(param.name) + "\\$","mg")   core/…/widgets/widget.js:146
+# so each $name$ stands on its own and none reaches across the gap to the next.
+# The filter form is /\$\{([\S\s]+?)\}\$/g (core/modules/wiki.js:1166) and the variable
+# form is /\$\(([^\)\$]+)\)\$/g (widget.js:248).
+
+\define d(a,b,n)
+$a$ $b$
+#<- markup.other.variable.substitute-parameter.tiddlywiki5 keyword.other.variable.substitute-parameter.begin.tiddlywiki5
+#^ markup.other.variable.substitute-parameter.tiddlywiki5 entity.name.substitute-parameter.tiddlywiki5
+# ^ markup.other.variable.substitute-parameter.tiddlywiki5 keyword.other.variable.substitute-parameter.end.tiddlywiki5
+#   ^ markup.other.variable.substitute-parameter.tiddlywiki5 keyword.other.variable.substitute-parameter.begin.tiddlywiki5
+#    ^ markup.other.variable.substitute-parameter.tiddlywiki5 entity.name.substitute-parameter.tiddlywiki5
+#     ^ markup.other.variable.substitute-parameter.tiddlywiki5 keyword.other.variable.substitute-parameter.end.tiddlywiki5
+
+# A one-character parameter name reads as a reference.
+$n$
+#<- markup.other.variable.substitute-parameter.tiddlywiki5 keyword.other.variable.substitute-parameter.begin.tiddlywiki5
+#^ markup.other.variable.substitute-parameter.tiddlywiki5 entity.name.substitute-parameter.tiddlywiki5
+
+# The filter form reaches a macro body too.
+${ [tag[x]] }$
+#<- markup.other.variable.substitute-filter.tiddlywiki5 keyword.other.variable.substitute-filter.begin.tiddlywiki5
+#           ^ markup.other.variable.substitute-filter.tiddlywiki5 keyword.other.variable.substitute-filter.end.tiddlywiki5
+
+# The variable form goes on reading.
+$(v)$
+#<- markup.other.variable.substitute-variable.tiddlywiki5 keyword.other.variable.substitute-variable.begin.tiddlywiki5
+# ^ markup.other.variable.substitute-variable.tiddlywiki5 variable.name.substitute-variable.tiddlywiki5
+\end

@@ -1,0 +1,59 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "Block rules, read from TiddlyWiki's own matchRegExp"
+
+! heading 1
+#<- text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+
+!! heading 2
+#<- text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+
+!!! heading 3
+#<- text.html.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+
+!!!! heading 4
+#<- text.html.tiddlywiki5 meta.heading.heading-4.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+
+!!!!! heading 5
+#<- text.html.tiddlywiki5 meta.heading.heading-5.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+
+!!!!!! heading 6
+#<- text.html.tiddlywiki5 meta.heading.heading-6.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+
+!!!!!!! seven marks take six
+#<- text.html.tiddlywiki5 meta.heading.heading-6.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+
+* list star
+#<- text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+
+# list number
+#<- text.html.tiddlywiki5 numbered.ordered.ol.li.markup.list.tiddlywiki5 punctuation.definition.numbered.ordered.ol.li.list.markup.tiddlywiki5
+
+; list term
+#<- text.html.tiddlywiki5 unnumbered.term.dl.dt.markup.list.tiddlywiki5 punctuation.definition.unnumbered.term.dl.dt.list.markup.tiddlywiki5
+
+: list definition
+#<- text.html.tiddlywiki5 unnumbered.description.dl.dd.markup.list.tiddlywiki5 punctuation.definition.unnumbered.description.dl.dd.list.markup.tiddlywiki5
+
+> list quote
+#<- text.html.tiddlywiki5 listquote.quote.markup.list.tiddlywiki5 punctuation.definition.listquote.quote.list.markup.tiddlywiki5
+
+|cell|cell|
+#<- text.html.tiddlywiki5 markup.other.table.tiddlywiki5 row.tbody.body.meta.table.tiddlywiki5 punctuation.definition.table.pipe.outer.begin.tiddlywiki5
+
+$$$text/plain
+#<- text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 punctuation.definition.typedblock.begin.tiddlywiki5
+
+typed body
+
+$$$
+#<- text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 punctuation.definition.typedblock.end.tiddlywiki5
+
+<<< a quote block
+#<- text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 punctuation.definition.markup.quote.quoteblock.begin.tiddlywiki5
+
+quoted body
+
+<<<
+#<- text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 punctuation.definition.markup.quote.quoteblock.end.tiddlywiki5
+
+<!-- a block comment -->
+#<- text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5

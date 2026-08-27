@@ -1,0 +1,50 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "Every pragma TiddlyWiki declares, and the sequences it admits"
+
+# A pragma stands before the body. TiddlyWiki loops over them until one fails to
+# match, so a run of them reads as a run — including after a block-bodied define.
+
+\whitespace trim
+#^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.whitespace.tiddlywiki5 keyword.control.directive.whitespace.tiddlywiki5
+
+\parsermode inline
+#^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.parsermode.tiddlywiki5 keyword.control.directive.parsermode.tiddlywiki5
+
+\rules except codeblock dash
+#^^^^^ text.html.tiddlywiki5 meta.directive.rules.tiddlywiki5 keyword.control.directive.rules.tiddlywiki5
+
+\import [[Something]]
+#^^^^^^ text.html.tiddlywiki5 meta.directive.import.tiddlywiki5 keyword.control.directive.import.tiddlywiki5
+
+\parameters (a:1)
+#^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5 keyword.control.directive.parameters.tiddlywiki5
+
+\function aFn(x) [<x>addsuffix[y]]
+#^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.html.tiddlywiki5
+#         ^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 entity.name.variable.function.tiddlywiki5
+
+\define aMacro(a,b)
+#^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 keyword.control.directive.define.tiddlywiki5
+
+macro body
+
+\end
+#^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 keyword.control.directive.end.tiddlywiki5
+
+\procedure aProc(x)
+#^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+
+procedure body
+
+\end
+
+\widget $my.widget(x)
+#^^^^^^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 keyword.control.directive.widget.html.tiddlywiki5
+
+widget body
+
+\end
+
+
+
+The body begins here, after every pragma above.
+#   ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5

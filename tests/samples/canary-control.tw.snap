@@ -1,0 +1,64 @@
+>The canary's positive control. Every mark below opens and never closes, so each one
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>tests that a run stays on its own line. With the same-line guard in place nothing here
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>reaches the sentence the canary appends; without it, several would.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+>Prose naming __localVar in passing.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+>Prose with ''an unclosed bold run.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+>Prose with //an unclosed italic run.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+>Prose with `an unclosed backtick.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+>Prose with ~~an unclosed strikethrough.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+>An attribute carrying a doubled apostrophe inside a triple-quoted value:
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+><$basic-table columns="""
+#^ text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+# ^ text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
+#  ^^^^^^^^^^^ text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#             ^ text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5
+#              ^^^^^^^ text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#                     ^ text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 punctuation.separator.key-value.html.tiddlywiki5
+#                      ^^^ text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 string.quoted.triple.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+>  [ { fmt: (r) => r.join(', ') }, ...get('$:/c', '') ]
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 string.quoted.triple.html.tiddlywiki5
+#                                          ^^^ text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 string.quoted.triple.html.tiddlywiki5 markup.underline.link.syslink.tiddlywiki5 punctuation.definition.link.syslink.tiddlywiki5
+#                                             ^ text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 string.quoted.triple.html.tiddlywiki5 markup.underline.link.syslink.tiddlywiki5
+#                                              ^^^^^^^^^ text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 string.quoted.triple.html.tiddlywiki5
+>"""/>
+#^^^ text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 string.quoted.triple.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
+#   ^^ text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+>
+>A parameters pragma whose default value must stop at the closing paren:
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+>\parameters (a:1)
+#^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5 keyword.control.directive.parameters.tiddlywiki5
+#           ^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5
+#            ^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5 punctuation.definition.variable.parameters.begin.tiddlywiki5
+#             ^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5 meta.variable.parameter.tiddlywiki5 variable.parameter.tiddlywiki5
+#              ^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5 meta.variable.parameter.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#               ^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5 meta.variable.parameter.tiddlywiki5 string.unquoted.html.tiddlywiki5
+#                ^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5 punctuation.definition.variable.parameters.end.tiddlywiki5
+>
+>And a rule line carrying trailing text, which TiddlyWiki reads as a dash and text:
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                                              ^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5
+#                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+>--- trailing text
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.dash.mdash.tiddlywiki5
+#   ^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>

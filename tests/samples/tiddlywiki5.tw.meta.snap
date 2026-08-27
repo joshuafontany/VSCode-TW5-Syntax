@@ -1,0 +1,25 @@
+>field:value
+#^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.tiddlywiki5
+#     ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 punctuation.separator.key-value.field.tiddlywiki5
+#      ^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 string.unquoted.field.value.tiddlywiki5
+> field   :  value <$test> {{test}} <<test>>
+#^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.tiddlywiki5
+#         ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 punctuation.separator.key-value.field.tiddlywiki5
+#          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 string.unquoted.field.value.tiddlywiki5
+>  i||egal field name   : :field value: @@.class test@@
+#^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.tiddlywiki5
+#                       ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 punctuation.separator.key-value.field.tiddlywiki5
+#                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 string.unquoted.field.value.tiddlywiki5
+>  no:  {{{ [[test]prefix[test]] +[<test>] }}}
+#^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.tiddlywiki5
+#    ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 punctuation.separator.key-value.field.tiddlywiki5
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 string.unquoted.field.value.tiddlywiki5
+>i||egal field name:
+#^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.tiddlywiki5
+#                  ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 punctuation.separator.key-value.field.tiddlywiki5
+>title: $:/wikitext.tw
+#^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.tiddlywiki5
+#     ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 punctuation.separator.key-value.field.tiddlywiki5
+#      ^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 string.unquoted.field.value.tiddlywiki5
+> # No valid key-value pair in this line, just ignore it
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5

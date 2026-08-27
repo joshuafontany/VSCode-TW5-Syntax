@@ -1,0 +1,32 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A table cell wears its own marker"
+
+# TiddlyWiki reads a cell's leading marks before its content (core/…/rules/table.js):
+# ! builds a th rather than a td (:91), ~ sets rowspan (:35), > and < set colspan (:47),
+# and ^ and , set valign (:74). TiddlyWiki's own tiddlers carry 191 header rows.
+
+|!Header A|!Header B|h
+#^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 heading.th.meta.cell.tiddlywiki5 punctuation.definition.cell.heading.th.tiddlywiki5
+#          ^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 heading.th.meta.cell.tiddlywiki5 punctuation.definition.cell.heading.th.tiddlywiki5
+
+|~|rowspan|
+#^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 rowspan.down.meta.cell.td.tiddlywiki5 rowspan.down.punctuation.definition.cell.tiddlywiki5
+
+|>|colspan right|
+#^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 colspan.right.meta.cell.td.tiddlywiki5 colspan.right.punctuation.definition.cell.tiddlywiki5
+
+# A left-colspan mark reads as table syntax, never as a stray angle bracket.
+|<|colspan left|
+#^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 colspan.left.meta.cell.td.tiddlywiki5 colspan.left.punctuation.definition.cell.tiddlywiki5
+#^ - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+
+|^top|,bottom|
+#^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.valign.tiddlywiki5 punctuation.definition.cell.valign.top.tiddlywiki5
+#     ^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.valign.tiddlywiki5 punctuation.definition.cell.valign.bottom.tiddlywiki5
+
+# Superscript and subscript keep their own reading at the head of a cell.
+|^^sup^^ |,,sub,, |
+#^ - punctuation.definition.cell.valign.top.tiddlywiki5
+
+# An ordinary cell goes on carrying inline wikitext.
+|a link |[[Some Target]] |
+#          ^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 markup.link.tiddlywiki5

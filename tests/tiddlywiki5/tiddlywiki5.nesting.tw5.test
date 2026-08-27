@@ -1,0 +1,21 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A construct reads the same wherever it legitimately stands"
+
+# Depth is where this grammar has broken: an unclosed run inside a widget, a fence
+# inside a tid body, a cell that read nothing at all. Each container below holds a
+# construct that must read exactly as it reads at top level.
+
+<<<
+
+|a |[[Some Target]] |
+#     ^^^^^^^^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.other.table.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
+
+<<<
+
+* an item with ''strong'' in it
+#                ^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.bold.tiddlywiki5
+
+! a heading with {{Some/Tiddler}}
+#                ^^ text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+
+|a |<<myMacro one>> |
+#     ^^^^^^^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5

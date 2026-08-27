@@ -1,0 +1,7 @@
+# A snapshot pins byte-for-byte tokenization, so a fixture and its snapshot must reach
+# every platform with the same line endings. Without this a Windows checkout converts
+# them and every snapshot drifts for reasons that have nothing to do with the grammar.
+* text=auto eol=lf
+
+*.png binary
+*.vsix binary

@@ -1,0 +1,23 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "An inline run opens only where it closes on the same line"
+
+Prose naming __localVar in passing, and the rest reads plain.
+#              ^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+
+A stray '' apostrophe pair leaves the line alone.
+#          ^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+
+A lone ` backtick leaves the line alone.
+#        ^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+
+Here //an italic run// closes where it opened.
+#      ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.italic.tiddlywiki5
+
+Here ''a bold run'' closes where it opened.
+#      ^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.bold.tiddlywiki5
+
+See http://example.com/a and //genuine italic// together.
+#   ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.external.tiddlywiki5 markup.underline.link.external.http.tiddlywiki5
+#                              ^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.italic.tiddlywiki5
+
+An ordinary sentence after the blank line.
+#<- text.html.tiddlywiki5 meta.paragraph.tiddlywiki5

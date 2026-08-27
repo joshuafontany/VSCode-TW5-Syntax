@@ -7,10 +7,18 @@
 .gitignore
 .vscodeignore
 
-# Test harness: the fixtures plus twelve third-party grammars vendored so the
-# embedded-language assertions can resolve their scopes.
+# Test harness: the fixtures, and the third-party grammars vendored so the
+# embedded-language assertions resolve their scopes.
 tests/**
 run_tests.sh
+run_snapshots.sh
+grammars.sh
+tools/**
+
+# Held for 2.2.0: the grammar and its configuration ride in the repository and run in
+# CI, and the manifest registers neither, so the package carries neither.
+syntaxes/memetic-wikitext.json
+memetic-language-configuration.json
 
 # Reference grammars. The extension ships none of them.
 grammars_archive/**

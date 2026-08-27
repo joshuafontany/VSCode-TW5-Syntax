@@ -2,7 +2,7 @@
     "name": "tw5-syntax",
     "displayName": "TiddlyWiki5 Syntax",
     "description": "TiddlyWiki5 v5.3.4 Textmate compatible Syntax / Grammar",
-    "version": "2.0.6",
+    "version": "2.1.0",
     "icon": "tw5.png",
     "engines": {
         "vscode": "^1.43.0"
@@ -20,8 +20,7 @@
         "syntax",
         "highlighting",
         "snippets",
-        "shiki",
-        "memetic-wikitext"
+        "shiki"
     ],
     "license": "BSD-3-Clause",
     "publisher": "joshua-fontany",
@@ -38,11 +37,12 @@
             {
                 "id": "json",
                 "extensions": [
-                  ".info", ".files"
+                    ".info",
+                    ".files"
                 ],
                 "aliases": [
-                  "Tiddlywiki5 Json",
-                  "tiddlywiki5-json"
+                    "Tiddlywiki5 Json",
+                    "tiddlywiki5-json"
                 ]
             },
             {
@@ -94,21 +94,6 @@
                 "configuration": "./language-configuration.json"
             },
             {
-                "id": "memetic-wikitext",
-                "aliases": [
-                    "Memetic-Wikitext",
-                    "memetic-wikitext",
-                    "mem"
-                ],
-                "extensions": [
-                    ".mem"
-                ],
-                "mimetypes": [
-                    "text/memetic-wikitext+tiddlywiki"
-                ],
-                "configuration": "./language-configuration.json"
-            },
-            {
                 "id": "tiddlywiki5",
                 "aliases": [
                     "Tiddlywiki5",
@@ -131,11 +116,6 @@
                 "language": "tiddlywiki5",
                 "scopeName": "text.html.tiddlywiki5",
                 "path": "./syntaxes/tiddlywiki5.json"
-            },
-            {
-                "language": "memetic-wikitext",
-                "scopeName": "text.html.tiddlywiki5.memetic-wikitext",
-                "path": "./syntaxes/memetic-wikitext.json"
             },
             {
                 "language": "tiddlywiki5.test",
@@ -171,11 +151,15 @@
                 "path": "./snippets/snippets.json"
             },
             {
-                "language": "tiddlywiki5",
-                "path": "./snippets/snippets.json"
+                "language": "tid",
+                "path": "./snippets/tiddler-fields.json"
             },
             {
-                "language": "memetic-wikitext",
+                "language": "multids",
+                "path": "./snippets/tiddler-fields.json"
+            },
+            {
+                "language": "tiddlywiki5",
                 "path": "./snippets/snippets.json"
             }
         ],
@@ -187,18 +171,15 @@
                 "*.tw5.test": "tiddlywiki5.test",
                 "*.tid": "tid",
                 "*.meta": "tid",
-                "*.multids": "multids",
-                "*.mem": "memetic-wikitext"
+                "*.multids": "multids"
             }
         }
     },
-    "dependencies": {
-
-    },
+    "dependencies": {},
     "devDependencies": {
         "vscode-tmgrammar-test": "^0.1.3",
-        "tm-grammars":"^1.7.2",
-        "tm-themes":"^1.4.1",
+        "tm-grammars": "^1.7.2",
+        "tm-themes": "^1.4.1",
         "language-gfm": "https://github.com/atom/language-gfm",
         "vscode-jsp": "https://github.com/pthorsson/vscode-jsp"
     },
@@ -210,9 +191,28 @@
         "tests-basic": "bash ./run_tests.sh './tests/tiddlywiki5/html.basic.tw5.test'",
         "tests-htmltiddler": "bash ./run_tests.sh './tests/tiddlywiki5/html.tiddler.tw5.test'",
         "tests-wikitext": "bash ./run_tests.sh './tests/tiddlywiki5/tiddlywiki5.*.tw5.test'",
-        "tests-memetic": "bash ./run_tests.sh './tests/memetic-wikitext/*.mem.test'"
+        "tests-memetic": "bash ./run_tests.sh './tests/memetic-wikitext/*.mem.test'",
+        "lint-closure": "node ./tools/terminator-closure.js ./syntaxes/memetic-wikitext.json",
+        "test-tools": "node --test ./tests/tools/upstream-coverage.test.js ./tests/tools/composition-check.test.js ./tests/tools/nesting-coverage.test.js",
+        "compose-wikitext": "node ./tools/composition-check.js text.html.tiddlywiki5 \"./tests/samples/*.tw\"",
+        "compose-memetic": "node ./tools/composition-check.js text.html.tiddlywiki5.memetic-wikitext \"./tests/samples/*.mem\"",
+        "compose": "npm run compose-wikitext",
+        "upstream-coverage": "node ./tools/upstream-coverage.js",
+        "nesting-coverage": "node ./tools/nesting-coverage.js",
+        "tests-known-gaps": "bash ./run_tests.sh \"./tests/known-gaps/*.tw5.test\"",
+        "snap-wikitext": "node ./tools/snapshot-check.js text.html.tiddlywiki5 './tests/samples/*.tw'",
+        "snap-tid": "node ./tools/snapshot-check.js source.tiddlywiki5.tid-file './tests/samples/*.tid'",
+        "snap-meta": "node ./tools/snapshot-check.js source.tiddlywiki5.tid-file './tests/samples/*.meta'",
+        "snap-multids": "node ./tools/snapshot-check.js source.tiddlywiki5.multids-file './tests/samples/*.multids'",
+        "snap-memetic": "node ./tools/snapshot-check.js text.html.tiddlywiki5.memetic-wikitext './tests/samples/*.mem'",
+        "canary-wikitext": "node ./tools/bleed-canary.js text.html.tiddlywiki5 './tests/samples/*.tw'",
+        "canary-memetic": "node ./tools/bleed-canary.js text.html.tiddlywiki5.memetic-wikitext './tests/samples/*.mem'",
+        "canary-tid": "node ./tools/bleed-canary.js source.tiddlywiki5.tid-file \"./tests/samples/*.tid\"",
+        "canary": "npm run canary-wikitext && npm run canary-tid && npm run canary-memetic",
+        "snap": "npm run snap-wikitext && npm run snap-tid && npm run snap-meta && npm run snap-multids && npm run snap-memetic",
+        "snap-update": "npm run snap-wikitext -- --update && npm run snap-tid -- --update && npm run snap-meta -- --update && npm run snap-multids -- --update && npm run snap-memetic -- --update"
     },
     "npmConfig": {
-      "script-shell": "/bin/bash"
-    } 
+        "script-shell": "/bin/bash"
+    }
 }

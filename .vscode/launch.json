@@ -13,6 +13,20 @@
             "args": [
                 "--extensionDevelopmentPath=${workspaceFolder}"
             ]
+        },
+        {
+            // The grammar under test, alone. `--disable-extensions` silences every
+            // installed extension INCLUDING an installed copy of this one, so what
+            // colours the sample comes from this working tree and nowhere else.
+            "name": "Extension (isolated, on the release check)",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "args": [
+                "--extensionDevelopmentPath=${workspaceFolder}",
+                "--disable-extensions",
+                "${workspaceFolder}/tests/samples/release-check.tid"
+            ]
         }
     ]
 }

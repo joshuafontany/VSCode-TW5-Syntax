@@ -1,0 +1,22 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "The fence rules TiddlyWiki adopted in 5.5.0"
+
+# codeblock.js takes an opening fence of three or more backticks, closes only on a fence at
+# least as long, and admits any info string carrying no backtick. This grammar still reads a
+# fixed three backticks and a [\w\-/.]* language, so the three cases below scope nothing.
+
+```C++
+#<- text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 punctuation.definition.raw.markup.begin.tiddlywiki5
+int a;
+```
+
+```js {highlight}
+#<- text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 punctuation.definition.raw.markup.begin.tiddlywiki5
+var a = 1;
+```
+
+````
+#<- text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 punctuation.definition.raw.markup.begin.tiddlywiki5
+```js
+var a = 1;
+```
+````

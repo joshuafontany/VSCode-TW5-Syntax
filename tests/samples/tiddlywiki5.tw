@@ -6,7 +6,7 @@ $arg1$ $(var1)$
 \define myMacro()  ''single line body $''
 \define myMacro()
 \end
-\define myMacro()   
+\define myMacro()
 \end
 \define myMacro()
 
@@ -47,18 +47,18 @@ arg3!!!
 \define myMacro(arg1 : default) `arg1` will default to `default`
 \define myMacro( arg1   :   default,arg2?)) still 1 parameter
 \define myMacro( arg1   :   default ) default value set with unquoted string
-\define myMacro( arg1   :   [[ 
+\define myMacro( arg1   :   [[
 "'default'"
  ]] ) default value set with quoted string
-\define myMacro( arg1   :   """ 
+\define myMacro( arg1   :   """
 'default'
  """ ) default value set with quoted string
-\define myMacro( arg1   :   " 
+\define myMacro( arg1   :   "
 'default'
  " ) default value set with quoted string
-\define myMacro( arg1   :   ' 
+\define myMacro( arg1   :   '
 "default"
- ' ) default value set with quoted string 
+ ' ) default value set with quoted string
 
 \define myMacro(
  ~
@@ -322,7 +322,7 @@ wraps inline run""" into `HTMLSpanElement` @@
 >>
 * <<myMacro
 
-  
+
 
   >>
 * <<myMacro value_for_arg1 value_for_arg2>>
@@ -425,13 +425,13 @@ wraps inline run""" into `HTMLSpanElement` @@
 * {{
 }}
 * {{
-  title  
+  title
 }}
 * {{
-  title!!field  
+  title!!field
 }}
 * {{
-  title##index  
+  title##index
 }}
 * {{
   ||
@@ -442,7 +442,7 @@ wraps inline run""" into `HTMLSpanElement` @@
 * {{||templateTitle
 }}
 * {{
-  title||templateTitle 
+  title||templateTitle
 }}
 * {{title!!field || templateTitle}}
 * {{title##index || templateTitle}}
@@ -482,7 +482,7 @@ wraps inline run""" into `HTMLSpanElement` @@
 ''inline'' rule matches element
 ''inline'' run for contents
 </div>
-<div>   
+<div>
 
   * ''inline'' rule matches element (because in paragraph block here)
   * ''block'' run for contents
@@ -686,13 +686,13 @@ Context:
 {{
 }}
 {{
-  title  
+  title
 }}
 {{
-  title!!field  
+  title!!field
 }}
 {{
-  title##index  
+  title##index
 }}
 {{
   ||
@@ -703,7 +703,7 @@ Context:
 {{||templateTitle
 }}
 {{
-  title||templateTitle 
+  title||templateTitle
 }}
 {{title!!field || templateTitle}}
 {{title##index || templateTitle}}
@@ -797,7 +797,7 @@ Here's a ''paragraph'' with inline styling.
 @@
 ''Another'' paragraph without styling.
 
-@@background-color:blue; 
+@@background-color:blue;
 Here's a ''paragraph'' with inline styling.
 @@
 @@background-color:blue;''Same'' paragraph with inline styling.@@
@@ -868,7 +868,7 @@ for the bottom cite
 >>
   <<myMacro
 
-  
+
 
   >>
 <<myMacro value_for_arg1 value_for_arg2>>
@@ -1015,5 +1015,7 @@ The previous paragraph is done, say hi to the new one.
 
 hide this
 
-test 
+test
 <!-- #endregion -->
+
+@@

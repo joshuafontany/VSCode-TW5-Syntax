@@ -18,6 +18,9 @@
 			"comment": "Text replacement in macro body contexts.",
 			"patterns": [
 				{
+					"include": "#substitute-filter"
+				},
+				{
 					"include": "#substitute-param"
 				},
 				{
@@ -483,7 +486,7 @@
 			"patterns": [
 				{
 					"comment": "Handle individual parameters and optional default values.",
-					"match": "([\\w\\-]+)(?:(\\s*:\\s*)(\"[^\"]*\"|'[^']*'|\\[\\[[^\\]]*\\]\\]|[^,\\s\"]+))?",
+					"match": "([\\w\\-]+)(?:(\\s*:\\s*)(\"[^\"]*\"|'[^']*'|\\[\\[[^\\]]*\\]\\]|[^,\\s\")]+))?",
 					"name": "meta.variable.parameter.tiddlywiki5",
 					"captures": {
 						"1": {
@@ -1010,7 +1013,7 @@
 													"match": "([^\\n\"/]|/(?![/*]))+"
 												},
 												{
-													"begin": "//",
+													"begin": "//(?=[^\\n]*//)",
 													"beginCaptures": {
 														"0": {
 															"name": "punctuation.definition.comment.js"
@@ -1068,7 +1071,7 @@
 													"match": "([^\\n'/]|/(?![/*]))+"
 												},
 												{
-													"begin": "//",
+													"begin": "//(?=[^\\n]*//)",
 													"beginCaptures": {
 														"0": {
 															"name": "punctuation.definition.comment.js"
@@ -2644,6 +2647,32 @@
 		"htmlwidget-tags-valid": {
 			"patterns": [
 				{
+					"comment": "A widget opening and closing on one line. TiddlyWiki parses a widget body with parseInlineRun unless a blank line follows the opening tag (core/rules/html.js), so the body reads as an inline run and the element scope spans it. The begin consumes its own tag, so nothing re-enters at the same position; the end names the same tag the begin matched, and falls back to end-of-line so the region can never outlive its own line.",
+					"begin": "(<)(\\$)([a-zA-Z0-9\\-\\.]+)(?=(?:\\s[^>\\n]*)?>[^\\n]*<\\/\\$\\3>)",
+					"end": "(<\\/)(\\$)(\\3)(>)|$",
+					"name": "meta.tag.widget.$3.html.tiddlywiki5",
+					"beginCaptures": {
+						"1": { "name": "punctuation.definition.tag.begin.html.tiddlywiki5" },
+						"2": { "name": "entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5" },
+						"3": { "name": "entity.name.tag.html.tiddlywiki5" }
+					},
+					"endCaptures": {
+						"1": { "name": "punctuation.definition.tag.begin.html.tiddlywiki5" },
+						"2": { "name": "entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5" },
+						"3": { "name": "entity.name.tag.html.tiddlywiki5" },
+						"4": { "name": "punctuation.definition.tag.end.html.tiddlywiki5" }
+					},
+					"patterns": [
+						{
+							"begin": "\\G",
+							"end": ">",
+							"endCaptures": { "0": { "name": "punctuation.definition.tag.end.html.tiddlywiki5" } },
+							"patterns": [ { "include": "#htmlwidget-attribute" } ]
+						},
+						{ "include": "#inline" }
+					]
+				},
+				{
 					"begin": "(^[ \\t]+)?(?=<(?i:style)\\b(?!-))",
 					"beginCaptures": {
 						"1": {
@@ -2805,7 +2834,7 @@
 															"end": "(?!\\G)",
 															"patterns": [
 																{
-																	"begin": "//",
+																	"begin": "//(?=[^\\n]*//)",
 																	"beginCaptures": {
 																		"0": {
 																			"name": "punctuation.definition.comment.js"
@@ -3514,7 +3543,7 @@
 					]
 				},
 				{
-					"begin": "(<\\/?)((\\$)(?!:\\/)([a-zA-Z0-9\\-\\.]+))(?<!\\/)(?=\\s|>)",
+					"begin": "(<\\/?)((\\$)(?!:\\/)([a-zA-Z0-9\\-\\.]+))(?<!\\/)(?=\\s|\\/?>)",
 					"end": "(?: ?/)?>",
 					"name": "meta.tag.widget.$4.html.tiddlywiki5",
 					"beginCaptures": {
@@ -4347,102 +4376,62 @@
 		},
 		"tableRow": {
 			"patterns": [
-				{
-					"comment": "Tokenize table cell.",
-					"match": "(?<!$)(.*?)(\\||$)",
-					"captures": {
-						"1": {
-							"patterns": [
-								{
-									"match": "^~$",
-									"name": "rowspan.down.meta.cell.td.tiddlywiki5",
-									"capture": {
-										"0": {
-											"name": "rowspan.down.punctuation.definition.cell.tiddlywiki5"
-										}
-									}
-								},
-								{
-									"match": "^>$",
-									"name": "colspan.right.meta.cell.td.tiddlywiki5",
-									"capture": {
-										"0": {
-											"name": "colspan.right.punctuation.definition.cell.tiddlywiki5"
-										}
-									}
-								},
-								{
-									"match": "^<$",
-									"name": "colspan.left.meta.cell.td.tiddlywiki5",
-									"capture": {
-										"0": {
-											"name": "colspan.left.punctuation.definition.cell.tiddlywiki5"
-										}
-									}
-								},
-								{
-									"match": "(?x)\n^\n(?:\n  (\\^(?:[^^]|\\^\\^)) |  # Top alignment marker\n  (\\,(?:[^,]|\\,\\,))    # Bottom alignment marker\n)?\n([ \\t]*)                 # Left alignment marker\n(!)               # Heading cell marker\n(.*?)                     # Cell contents\n([ \\t]*)                 # Right alignment marker\n$",
-									"name": "heading.th.meta.cell.tiddlywiki5",
-									"captures": {
-										"1": {
-											"name": "punctuation.definition.cell.valign.top.tiddlywiki5"
-										},
-										"2": {
-											"name": "punctuation.definition.cell.valign.bottom.tiddlywiki5"
-										},
-										"3": {
-											"name": "punctuation.definition.cell.align.left.tiddlywiki5"
-										},
-										"4": {
-											"name": "punctuation.definition.cell.heading.th.tiddlywiki5"
-										},
-										"5": {
-											"patterns": [
-												{
-													"include": "#inline"
-												}
-											]
-										},
-										"6": {
-											"name": "punctuation.definition.cell.align.right.tiddlywiki5"
-										}
-									}
-								},
-								{
-									"match": "(?x)\n^\n(?:\n  (\\^(?:[^^]|\\^\\^)) |  # Top alignment marker\n  (\\,(?:[^,]|\\,\\,))    # Bottom alignment marker\n)?\n([ \\t]*)                 # Left alignment marker\n()               # Heading cell marker\n(.*?)                     # Cell contents\n([ \\t]*)                 # Right alignment marker\n$",
-									"name": "data.td.meta.cell.tiddlywiki5",
-									"captures": {
-										"1": {
-											"name": "punctuation.definition.cell.valign.top.tiddlywiki5"
-										},
-										"2": {
-											"name": "punctuation.definition.cell.valign.bottom.tiddlywiki5"
-										},
-										"3": {
-											"name": "punctuation.definition.cell.align.left.tiddlywiki5"
-										},
-										"4": {
-											"name": "punctuation.definition.cell.heading.th.tiddlywiki5"
-										},
-										"5": {
-											"patterns": [
-												{
-													"include": "#inline"
-												}
-											]
-										},
-										"6": {
-											"name": "punctuation.definition.cell.align.right.tiddlywiki5"
-										}
-									}
-								}
-							]
-						},
-						"2": {
-							"name": "punctuation.separator.cell.pipe.inner.tiddlywiki5"
-						}
-					}
+			{
+				"comment": "A heading cell. TiddlyWiki builds a th rather than a td (core/rules/table.js).",
+				"match": "(?:(?<=\\|)|^)[ \\t]*(!)",
+				"name": "heading.th.meta.cell.tiddlywiki5",
+				"captures": {
+					"1": { "name": "punctuation.definition.cell.heading.th.tiddlywiki5" }
 				}
+			},
+			{
+				"comment": "A cell holding only ~ carries the row above it down (rowspan).",
+				"match": "(?:(?<=\\|)|^)(~)(?=\\||$)",
+				"name": "rowspan.down.meta.cell.td.tiddlywiki5",
+				"captures": {
+					"1": { "name": "rowspan.down.punctuation.definition.cell.tiddlywiki5" }
+				}
+			},
+			{
+				"comment": "A cell holding only > joins the cell to its right (colspan).",
+				"match": "(?:(?<=\\|)|^)(>)(?=\\||$)",
+				"name": "colspan.right.meta.cell.td.tiddlywiki5",
+				"captures": {
+					"1": { "name": "colspan.right.punctuation.definition.cell.tiddlywiki5" }
+				}
+			},
+			{
+				"comment": "A cell holding only < joins the cell to its left (colspan).",
+				"match": "(?:(?<=\\|)|^)(<)(?=\\||$)",
+				"name": "colspan.left.meta.cell.td.tiddlywiki5",
+				"captures": {
+					"1": { "name": "colspan.left.punctuation.definition.cell.tiddlywiki5" }
+				}
+			},
+			{
+				"comment": "A leading ^ aligns the cell to the top. Two carry superscript instead.",
+				"match": "(?:(?<=\\|)|^)(\\^)(?!\\^)",
+				"name": "meta.cell.valign.tiddlywiki5",
+				"captures": {
+					"1": { "name": "punctuation.definition.cell.valign.top.tiddlywiki5" }
+				}
+			},
+			{
+				"comment": "A leading , aligns the cell to the bottom. Two carry subscript instead.",
+				"match": "(?:(?<=\\|)|^)(,)(?!,)",
+				"name": "meta.cell.valign.tiddlywiki5",
+				"captures": {
+					"1": { "name": "punctuation.definition.cell.valign.bottom.tiddlywiki5" }
+				}
+			},
+			{
+				"match": "\\|",
+				"name": "punctuation.separator.cell.pipe.inner.tiddlywiki5"
+			},
+			{
+				"comment": "TiddlyWiki parses a cell with parseInlineRun (core/rules/table.js), so whatever the marks above leave reads as inline wikitext. The marks stand as their own rules rather than inside a splitting capture: a rule reached through two nested captures loses its own name.",
+				"include": "#inline"
+			}
 			]
 		},
 		"list": {
@@ -4696,15 +4685,9 @@
 			]
 		},
 		"horizrule": {
-			"begin": "^\\s*-{3,6}",
-			"end": "$",
-			"name": "constant.separator.hr.tiddlywiki5",
-			"patterns": [
-				{
-					"match": "(?<=^-{3,6}).+$",
-					"name": "invalid.illegal.expected-newline-after-hr.tiddlywiki5"
-				}
-			]
+			"comment": "TiddlyWiki reads a rule as three or more dashes reaching the end of the line: /-{3,}\\r?(?:\\n|$)/. Anything after them makes the line ordinary text, where the dash rule takes two or three. No count ceiling, and no error to invent.",
+			"match": "^\\s*(-{3,})\\r?$",
+			"name": "constant.separator.hr.tiddlywiki5"
 		},
 		"codeblock": {
 			"begin": "\\s*(```)(?=[\\w\\-/.]*$)",
@@ -4723,7 +4706,6 @@
 			"patterns": [
 				{
 					"begin": "(?i)\\G(t(?:ext/vnd\\.tiddlywiki|w|w5|iddlywiki5?))$",
-					"end": "(?=^```$)",
 					"contentName": "text.html.tiddlywiki5",
 					"beginCaptures": {
 						"1": {
@@ -4734,11 +4716,11 @@
 						{
 							"include": "text.html.tiddlywiki5"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(m(?:arkdown|d|kd(?:own)?))$",
-					"end": "(?=^```$)",
 					"contentName": "source.gfm",
 					"beginCaptures": {
 						"1": {
@@ -4749,11 +4731,11 @@
 						{
 							"include": "source.gfm"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(gemspec|irb|podspec|r(?:b|uby)|thor)$",
-					"end": "(?=^```$)",
 					"contentName": "source.ruby",
 					"beginCaptures": {
 						"1": {
@@ -4764,11 +4746,11 @@
 						{
 							"include": "source.ruby"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(m(?:ak(?:efile)?|k))$",
-					"end": "(?=^```$)",
 					"contentName": "source.makefile",
 					"beginCaptures": {
 						"1": {
@@ -4779,11 +4761,11 @@
 						{
 							"include": "source.makefile"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(json)$",
-					"end": "(?=^```$)",
 					"contentName": "source.json",
 					"beginCaptures": {
 						"1": {
@@ -4794,11 +4776,11 @@
 						{
 							"include": "source.json"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(atom|rss|xhtml)$",
-					"end": "(?=^```$)",
 					"contentName": "text.xml",
 					"beginCaptures": {
 						"1": {
@@ -4809,11 +4791,11 @@
 						{
 							"include": "text.xml"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(xsl)$",
-					"end": "(?=^```$)",
 					"contentName": "text.xml.xsl",
 					"beginCaptures": {
 						"1": {
@@ -4824,11 +4806,11 @@
 						{
 							"include": "text.xml.xsl"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(html)$",
-					"end": "(?=^```$)",
 					"contentName": "text.html.basic",
 					"beginCaptures": {
 						"1": {
@@ -4839,11 +4821,11 @@
 						{
 							"include": "text.html.basic"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(css)$",
-					"end": "(?=^```$)",
 					"contentName": "source.css",
 					"beginCaptures": {
 						"1": {
@@ -4854,11 +4836,11 @@
 						{
 							"include": "source.css"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(p(?:erl|l))$",
-					"end": "(?=^```$)",
 					"contentName": "source.perl",
 					"beginCaptures": {
 						"1": {
@@ -4869,11 +4851,11 @@
 						{
 							"include": "source.perl"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(cs(?:harp)?)$",
-					"end": "(?=^```$)",
 					"contentName": "source.cs",
 					"beginCaptures": {
 						"1": {
@@ -4884,11 +4866,11 @@
 						{
 							"include": "source.cs"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(obj(?:\\-c|c|ectivec))$",
-					"end": "(?=^```$)",
 					"contentName": "source.objc",
 					"beginCaptures": {
 						"1": {
@@ -4899,11 +4881,11 @@
 						{
 							"include": "source.objc"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(mm)$",
-					"end": "(?=^```$)",
 					"contentName": "source.objcpp",
 					"beginCaptures": {
 						"1": {
@@ -4914,11 +4896,11 @@
 						{
 							"include": "source.objcpp"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(gyp|py(?:thon)?)$",
-					"end": "(?=^```$)",
 					"contentName": "source.python",
 					"beginCaptures": {
 						"1": {
@@ -4929,11 +4911,11 @@
 						{
 							"include": "source.python"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(java)$",
-					"end": "(?=^```$)",
 					"contentName": "source.java",
 					"beginCaptures": {
 						"1": {
@@ -4944,11 +4926,11 @@
 						{
 							"include": "source.java"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(jsp)$",
-					"end": "(?=^```$)",
 					"contentName": "text.html.jsp",
 					"beginCaptures": {
 						"1": {
@@ -4959,11 +4941,11 @@
 						{
 							"include": "text.html.jsp"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(bash|sh|zsh)$",
-					"end": "(?=^```$)",
 					"contentName": "source.shell",
 					"beginCaptures": {
 						"1": {
@@ -4974,11 +4956,11 @@
 						{
 							"include": "source.shell"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(sql)$",
-					"end": "(?=^```$)",
 					"contentName": "source.sql",
 					"beginCaptures": {
 						"1": {
@@ -4989,11 +4971,11 @@
 						{
 							"include": "source.sql"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(c|p)$",
-					"end": "(?=^```$)",
 					"contentName": "source.c",
 					"beginCaptures": {
 						"1": {
@@ -5004,11 +4986,11 @@
 						{
 							"include": "source.c"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(c(?:\\+\\+|c|pp)|h(?:\\+\\+|pp))$",
-					"end": "(?=^```$)",
 					"contentName": "source.cpp",
 					"beginCaptures": {
 						"1": {
@@ -5019,11 +5001,11 @@
 						{
 							"include": "source.cpp"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(php(?:3|4|5|6)?)$",
-					"end": "(?=^```$)",
 					"contentName": "text.html.php",
 					"beginCaptures": {
 						"1": {
@@ -5034,11 +5016,11 @@
 						{
 							"include": "text.html.php"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(ini|toml)$",
-					"end": "(?=^```$)",
 					"contentName": "source.toml",
 					"beginCaptures": {
 						"1": {
@@ -5049,11 +5031,11 @@
 						{
 							"include": "source.toml"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(diff|patch)$",
-					"end": "(?=^```$)",
 					"contentName": "text.git-commit",
 					"beginCaptures": {
 						"1": {
@@ -5064,11 +5046,11 @@
 						{
 							"include": "text.git-commit"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(c(?:offee(?:script)?|son)|iced)$",
-					"end": "(?=^```$)",
 					"contentName": "source.coffee",
 					"beginCaptures": {
 						"1": {
@@ -5079,11 +5061,11 @@
 						{
 							"include": "source.coffee"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "(?i)\\G(j(?:avascript|s))$",
-					"end": "(?=^```$)",
 					"contentName": "source.js",
 					"beginCaptures": {
 						"1": {
@@ -5094,17 +5076,18 @@
 						{
 							"include": "source.js"
 						}
-					]
+					],
+					"while": "^(?!\\s*```)"
 				},
 				{
 					"begin": "\\G([\\w\\-/.]*)$",
-					"end": "(?=^```$)",
 					"contentName": "markup.inline.raw",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
 						}
-					}
+					},
+					"while": "^(?!\\s*```)"
 				}
 			]
 		},
@@ -5157,8 +5140,8 @@
 		"emphasis": {
 			"patterns": [
 				{
-					"begin": "''",
-					"end": "''|(?=^\\s*$)|(?=\\\"\\\"\\\")",
+					"begin": "''(?=[^\\n]*'')",
+					"end": "''|(?=$)",
 					"contentName": "markup.bold.tiddlywiki5",
 					"beginCaptures": {
 						"0": {
@@ -5177,8 +5160,8 @@
 					]
 				},
 				{
-					"begin": "//",
-					"end": "//|(?=^\\s*$)|(?=\\\"\\\"\\\")",
+					"begin": "//(?=[^\\n]*//)",
+					"end": "//|(?=$)",
 					"contentName": "markup.italic.tiddlywiki5",
 					"beginCaptures": {
 						"0": {
@@ -5197,8 +5180,8 @@
 					]
 				},
 				{
-					"begin": "__",
-					"end": "__|(?=^\\s*$)|(?=\\\"\\\"\\\")",
+					"begin": "__(?=[^\\n]*__)",
+					"end": "__|(?=$)",
 					"contentName": "markup.underline.tiddlywiki5",
 					"beginCaptures": {
 						"0": {
@@ -5217,8 +5200,8 @@
 					]
 				},
 				{
-					"begin": "\\^\\^",
-					"end": "\\^\\^|(?=^\\s*$)|(?=\\\"\\\"\\\")",
+					"begin": "\\^\\^(?=[^\\n]*\\^\\^)",
+					"end": "\\^\\^|(?=$)",
 					"contentName": "markup.superscript.tiddlywiki5",
 					"beginCaptures": {
 						"0": {
@@ -5237,8 +5220,8 @@
 					]
 				},
 				{
-					"begin": ",,",
-					"end": ",,|(?=^\\s*$)|(?=\\\"\\\"\\\")",
+					"begin": ",,(?=[^\\n]*,,)",
+					"end": ",,|(?=$)",
 					"contentName": "markup.subscript.tiddlywiki5",
 					"beginCaptures": {
 						"0": {
@@ -5257,8 +5240,8 @@
 					]
 				},
 				{
-					"begin": "~~",
-					"end": "~~|(?=^\\s*$)|(?=\\\"\\\"\\\")",
+					"begin": "~~(?=[^\\n]*~~)",
+					"end": "~~|(?=$)",
 					"contentName": "markup.underline.strikethrough.tiddlywiki5",
 					"beginCaptures": {
 						"0": {
@@ -5281,8 +5264,8 @@
 		"codeinline": {
 			"patterns": [
 				{
-					"begin": "(?<!`)``(?!`)",
-					"end": "(?<!`)``(?!`)|(?=^\\s*$)",
+					"begin": "(?<!`)``(?!`)(?=[^\\n]*(?<!`)``(?!`))",
+					"end": "(?<!`)``(?!`)|(?=$)",
 					"contentName": "markup.inline.raw.double.tiddlywiki5",
 					"beginCaptures": {
 						"0": {
@@ -5302,8 +5285,8 @@
 					]
 				},
 				{
-					"begin": "(?<!`)`(?!`)",
-					"end": "(?<!`)`(?!`)|(?=^\\s*$)",
+					"begin": "(?<!`)`(?!`)(?=[^\\n]*(?<!`)`(?!`))",
+					"end": "(?<!`)`(?!`)|(?=$)",
 					"contentName": "markup.inline.raw.single.tiddlywiki5",
 					"beginCaptures": {
 						"0": {
@@ -6059,7 +6042,7 @@
 				},
 				{
 					"comment": "Match unquoted filter run.",
-					"match": "(\\+|\\-|~|=)?(\\S+)",
+					"match": "(\\+|\\-|~|=)?((?:(?!\\}\\}\\}|\\)\\)\\)|%>)\\S)+)",
 					"name": "meta.filter.run.tiddlywiki5",
 					"captures": {
 						"1": {
@@ -6276,7 +6259,7 @@
 		},
 		"substitute-param": {
 			"comment": "Parse substitution parameter reference.",
-			"match": "(\\$)(?!:\\/)([^\\(\\{].*?[^\\)\\}])(\\$)(?!:/)",
+			"match": "(\\$)(?!:\\/)([^\\s$(){}](?:[^\\s$]*[^\\s$(){}])?)(\\$)(?!:/)",
 			"name": "markup.other.variable.substitute-parameter.tiddlywiki5",
 			"captures": {
 				"1": {

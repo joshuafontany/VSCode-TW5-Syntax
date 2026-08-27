@@ -1,0 +1,22 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A table cell carries inline wikitext"
+
+# TiddlyWiki parses a cell with parseInlineRun (core/…/rules/table.js), so every
+# inline construct reads inside a cell exactly as it reads outside one.
+
+|a link |[[Some Target]] |
+#          ^^^^^^^^^^^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
+
+|bold |''strong'' |
+#        ^^^^^^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 markup.bold.tiddlywiki5
+
+|transclusion |{{Some/Tiddler}} |
+#              ^^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+
+|macro |<<myMacro one>> |
+#         ^^^^^^^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
+
+|entity |&amp; |
+#         ^^^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 constant.character.entity.named.amp.html.tiddlywiki5
+
+|code |`inline` |
+#       ^^^^^^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 markup.inline.raw.single.tiddlywiki5

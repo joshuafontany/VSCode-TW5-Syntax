@@ -1,0 +1,26 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A filter run stops at its own closing delimiter"
+
+# A bare title stands as a legal filter run, and filteredtranscludeblock matches
+# \{\{\{([^\}]+)\}\}\} (core/…/rules/filteredtranscludeblock.js). An unquoted run that
+# eats its own }}} leaves the transclusion open and colours the rest of the file.
+
+{{{Bare}}}
+#  ^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
+#      ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+
+# The line after it reads as its own construct, never as filter text.
+! A heading after a bare filter run
+#<- text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<- - meta.filter.tiddlywiki5
+
+A paragraph after a bare filter run.
+#<- text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#<- - meta.filter.tiddlywiki5
+
+# The MVV display form closes on its own delimiter too (core/…/rules/mvvdisplayinline.js).
+(((Bare)))
+#  ^^^^ text.html.tiddlywiki5
+
+! A heading after a bare MVV filter
+#<- text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<- - meta.filter.tiddlywiki5

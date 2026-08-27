@@ -5,23 +5,137 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 ## Unreleased
+
+Held for 2.2.0, once the tree-sitter grammar aligns with these scopes.
+
+### Added
+- A `memetic-wikitext` language for `*.mem` files (`text/memetic-wikitext+tiddlywiki`), scope
+  `text.html.tiddlywiki5.memetic-wikitext`, extending the base scope by name and falling through
+  to the TiddlyWiki5 grammar. It loads for `*.mem` only; editing `*.tid` or `*.tw5` carries on
+  unchanged. `lar:` URIs read as addresses in prose rather than opening an italic run.
+- A language configuration of its own: `<<` and `>>` bracket and auto-close as a pair, `[[…]]`
+  with them, and a sigil name, a `#fragment` or a whole `lar:` URI each select as one word.
+- The sharktooth namespace claims both spacings, and the tooth stands at one dispatch position
+  so a close mirrors its open: `<<~name …>>` beside `<<~ name …>>`, `<<~ /ahu >>` beside
+  `<<~/ahu >>`, matching the plain register's `<<fragment …>>` / `<</fragment>>`.
+
+The grammar, its configuration and its tests ride in the repository and run in CI; this release
+does not register them, so no language reaches an editor from them.
+
+## 2.1.0
+
+### Fixed
+- A widget closes itself with or without a space before its slash. `<$transclude/>` read as
+  an illegal angle bracket; TiddlyWiki reads a tag name and then looks for `/>` directly, and
+  TiddlyWiki's own core carries 50 of them.
+- A widget that opens and closes on one line spans its own body. `<$button>{{X}}</$button>`
+  read its body as a block run beneath the tag; TiddlyWiki parses a widget body with
+  `parseInlineRun` unless a blank line follows the opening tag, so the body reads inline and
+  the element scope reaches it.
+- An unquoted filter run stops at the delimiter of whatever carries it. `{{{Bare}}}` consumed
+  its own `}}}`, leaving the transclusion open and colouring every line after it to the end of
+  the file; `(((filter)))` and `<%if%>` did the same.
+- A substitution reference names one parameter. `$a$` alone matched nothing and `$a$ $b$`
+  merged into a single span reaching across the gap, because the name needed two characters
+  and admitted a `$`. TiddlyWiki substitutes one name at a time.
+- A macro body reads the `${filter}$` form, which its injection never carried.
+- A table cell wears its own marker. `!`, `~`, `>`, `<`, `^` and `,` scoped nothing at all, and
+  a left-colspan `<` read as a stray angle bracket. The marks stood two captures deep, where a
+  rule loses its own name; they stand at one depth now.
+- A table cell carries inline wikitext. A link, a transclusion, a macro call, bold, an
+  entity, inline code and an image all read inside a cell as they read outside one.
+  TiddlyWiki parses a cell with `parseInlineRun`; the cell's alignment and span marks claim
+  a whole cell and still take precedence.
+- A `\parameters` pragma closes on its own parenthesis. An unquoted default value admitted
+  a `)`, so `\parameters (a:1)` consumed the closer and every line after it — a pragma, a
+  paragraph, the whole document. TiddlyWiki reads the parameter list as `[^)]*`, and so does
+  this now.
+- A rule line reaches the end of its line. `---` and longer stand as a rule; `--- trailing
+  text` reads as a dash followed by text, which is what TiddlyWiki's `-{3,}\r?(?:\n|$)` does.
+  The count ceiling of six and the invented `expected-newline-after-hr` error are gone.
+- A fenced block closes on its fence. Inside a `.tid` file, a fence whose language is
+  wikitext — ` ```text/vnd.tiddlywiki `, ` ```tw5 ` — swallowed the rest of the file: the
+  branch re-enters this grammar, and the nested codeblock rule opened on the closing fence
+  and consumed it. Each language branch now runs on a `while` clause, tested per line before
+  any child pattern, so no embedded grammar can eat the closer. A `js` fence and a bare fence
+  were never affected, and a `.tw` file was never affected.
+- Highlighting stays on the line it starts on. An inline run — `''bold''`, `//italic//`,
+  `__underline__`, `^^sup^^`, `,,sub,,`, `~~strike~~` and inline code — now opens only where
+  its closing mark stands on the same line, and ends there. A half-typed mark colours nothing,
+  so the editor stops flickering while a pair is being written. Closes #8 (`__localVar` in
+  prose underlined everything after it), #47 (a doubled apostrophe inside a `"""…"""` widget
+  attribute bolded everything after it) and #14 (the same defect, with the closing `"""` read
+  as a hardlinebreak opener).
+  - **Behaviour change:** an emphasis pair that closes on a later line no longer colours.
+    Across TiddlyWiki's own core and documentation — 2,654 tiddlers — 2,347 emphasis pairs
+    close on the line they open and 10 do not.
+- Unquoted attribute values keep single parentheses again; only `((` opens an MVV reference.
+
+### Added
+- `tools/nesting-coverage.js` and `npm run nesting-coverage`: which container-and-construct
+  pairs TiddlyWiki's own tiddlers actually stand up, and whether the grammar reads the
+  construct inside the container as it reads it in a sentence. Containers come from the rules
+  TiddlyWiki declares block, constructs from those it declares inline, and the pairing from
+  the corpus — so it finds pairs a hand-built matrix would not think to list.
+- `tests/known-gaps/`, for a test that states what the grammar should do and does not yet. It
+  stands outside `npm test`, so a known gap never reads as a regression.
+- `tools/composition-check.js` and `npm run compose`: does a sample still read the same way
+  with another sample in front of it? A construct reaching past its own file surfaces as the
+  next file reading differently — the direction no other check looks in, and the one with no
+  allowance list. Its two pure halves stand under test in `tests/tools/`.
+- `tools/upstream-coverage.js` and `npm run upstream-coverage`: TiddlyWiki's own rule regexes
+  taken to TiddlyWiki's own tiddlers, asking whether this grammar reads each construct they
+  match. Its deciding half stands under test in `tests/tools/`, and CI runs it against a fresh
+  TiddlyWiki checkout so an upstream rule this grammar does not read surfaces on its own.
+- Tests derived from TiddlyWiki's own rule modules. Every wikitext rule declares the regex it
+  matches on; `tiddlywiki5.inline-rules`, `tiddlywiki5.block-rules`, `tiddlywiki5.horizrule`
+  and `tiddlywiki5.pragmas` assert positives and negatives read from those regexes rather than
+  from anyone's reading of the format — entity lengths, dash counts, heading depth to six,
+  every list marker, unknown URL schemes, and all ten pragmas including the sequences
+  `parsePragmas` admits.
+- Snapshot coverage over every sample. `npm run snap` pins each file's whole tokenization
+  beside it, so a sample covers every construct it contains and any change surfaces as a
+  diff naming the file, the line and both readings. 22 samples pinned; `npm run snap-update`
+  re-pins them in the same commit that moves them.
+- A bleed canary. `npm run canary` appends an ordinary sentence to a copy of every sample and
+  asserts the sentence carries nothing but its base scopes — one assertion per sample, written
+  by nobody, catching the whole family of runs that open and never close.
+  `tests/samples/canary-control.tw` stands as its positive control: with the same-line guard
+  it reports nothing, and without it the control fires.
+- Continuous integration across Linux, macOS and Windows, on Node 20 and 22. Every push and
+  every pull request installs from the lockfile, runs both assertion suites, compares every
+  snapshot, runs the bleed canary, holds the terminator-closure ratchet at zero, and builds
+  the `.vsix` a user would install, keeping it as an artifact. A pull request that changes a
+  grammar, a snippet, the manifest or a language configuration without moving `CHANGELOG.md`
+  fails. Dependabot answers weekly for the harness and monthly for the actions.
+- `tools/terminator-closure.js` and `npm run lint-closure`: a check that a region never
+  admits a nested region able to consume its own terminator, and that a child which
+  closes on that terminator hands it back rather than eating it — the property behind the
+  end-of-file colouring bugs. It reads the grammar alone, with no corpus and no name list.
+- `LICENSE` (BSD 3-Clause, following TiddlyWiki5's own) and `contributing.md`.
+
+### Changed
+- Snippets reach the languages they serve. The three tiddler-metadata snippets move to
+  `snippets/tiddler-fields.json`, registered for `tid` and `multids`, where a field header
+  exists to write into; the remaining 125 stay registered for every language this extension
+  serves. The file's group keys read as scope selectors and carried no scope — VS Code discards
+  them — so they give way to a flat map that claims only what it delivers.
+- `.vscodeignore` keeps `tools/` out of the published package; `.gitignore` keeps the built
+  `*.vsix` out of the repository.
 - TiddlyWiki5 v5.4.0 grammar and snippet update, by @pmario (#49): `\parsermode`, MVV inline
   display `((var))` / `(((filter)))`, `((var))` and `[[bracket]]` as attribute values, dynamic
   macro parameters with `=`, MVV defaults in pragma parameters, and `text/vnd.tiddlywiki` as a
-  codeblock language. `.tid` field-name validation now matches TW5 v5.2.x, field headers recognise `#`
+  codeblock language. `.tid` field-name validation matches TW5 v5.2.x, field headers recognise `#`
   comment lines, and field-header scopes use standard TextMate names.
   - **Behaviour change:** field values in a `.tid` header no longer parse as wikitext. Fields
     TiddlyWiki renders as wikitext — `caption`, `subtitle` — show as plain strings in the editor.
-- Unquoted attribute values keep single parentheses; only `((` opens an MVV reference.
-- Bump `brace-expansion` to 1.1.18 (#51) and `minimatch` to 3.1.5 (#48).
-- Add `LICENSE` (BSD 3-Clause, following TiddlyWiki5's own) and `contributing.md`.
-- Add a `memetic-wikitext` language for `*.mem` files (`text/memetic-wikitext+tiddlywiki`), scoped
-  `text.html.tiddlywiki5.memetic-wikitext` and falling through to the TiddlyWiki5 grammar.
 - `run_tests.sh` resolves the VS Code grammar root per platform and loads the grammars that exist,
   reporting the rest, so the suite runs on Linux, WSL and macOS instead of aborting.
-- `node_modules` no longer tracked in git.
-- Add `.vscodeignore` so the published extension carries the grammars, snippets, language
-  configuration and documentation, and leaves the test harness behind.
+- `brace-expansion` to 1.1.18 (#51) and `minimatch` to 3.1.5 (#48). Both take effect for the first
+  time here: `node_modules` rode in git tracking, so the lockfile governed nothing.
+- `node_modules` leaves git tracking.
+- `.vscodeignore` keeps the published extension to the grammars, snippets, language configuration
+  and documentation, leaving the test harness behind.
 
 ## 2.0.6
 - Allow all pragmas to have leading whitespace (allows nested and indented named pragmas of macros, procedures, and widgets).
