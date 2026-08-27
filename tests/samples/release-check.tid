@@ -1,0 +1,46 @@
+title: Release/Check/2.1.0
+caption: {{$:/core/images/edit-button}} <<lingo Tabs/Next>>
+tags: $:/tags/Check
+# a comment line in the field header
+
+! 1 · An underline that used to reach the end of the file
+
+Prose naming __localVar in passing. Everything below this line must read as ordinary
+paragraph text — no underline, no bleed. (#8)
+
+! 2 · A doubled apostrophe inside a triple-quoted attribute
+
+<$basic-table
+  columns="""
+    [ { field: 'tags', fmt: (r) => r.tags.join(', ') },
+      ...$tw.wiki.getTiddlerText('$:/config/x', '') ]
+  """
+/>
+
+Everything below this line must read as ordinary paragraph text — no bold, no bleed. (#47, #14)
+
+! 3 · An unquoted attribute value carrying parentheses
+
+<$button actions=doThing(now) class=tc-btn>Go</$button>
+
+`doThing(now)` must read as one attribute value; `(now)` must not become a second
+attribute name.
+
+! 4 · TiddlyWiki 5.4.0 constructs
+
+\parsermode block
+
+An MVV display: ((myVar)) and ((myVar||, )) and (((  [tag[x]]  ))).
+
+<$text text=((myVar)) other=[[a bracket string]] />
+
+<<myProc first=<<inner>> second={{{ [tag[x]] }}} third=`sub` >>
+
+```text/vnd.tiddlywiki
+A fenced block whose language identifier now resolves: ''this reads as wikitext''.
+```
+
+! 5 · Emphasis still spans a soft line break
+
+A whole //italic run spanning
+a soft line break// still scopes, and this sentence closes the check.

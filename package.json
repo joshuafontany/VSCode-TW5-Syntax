@@ -20,8 +20,7 @@
         "syntax",
         "highlighting",
         "snippets",
-        "shiki",
-        "memetic-wikitext"
+        "shiki"
     ],
     "license": "BSD-3-Clause",
     "publisher": "joshua-fontany",
@@ -95,21 +94,6 @@
                 "configuration": "./language-configuration.json"
             },
             {
-                "id": "memetic-wikitext",
-                "aliases": [
-                    "Memetic-Wikitext",
-                    "memetic-wikitext",
-                    "mem"
-                ],
-                "extensions": [
-                    ".mem"
-                ],
-                "mimetypes": [
-                    "text/memetic-wikitext+tiddlywiki"
-                ],
-                "configuration": "./memetic-language-configuration.json"
-            },
-            {
                 "id": "tiddlywiki5",
                 "aliases": [
                     "Tiddlywiki5",
@@ -132,11 +116,6 @@
                 "language": "tiddlywiki5",
                 "scopeName": "text.html.tiddlywiki5",
                 "path": "./syntaxes/tiddlywiki5.json"
-            },
-            {
-                "language": "memetic-wikitext",
-                "scopeName": "text.html.tiddlywiki5.memetic-wikitext",
-                "path": "./syntaxes/memetic-wikitext.json"
             },
             {
                 "language": "tiddlywiki5.test",
@@ -182,10 +161,6 @@
             {
                 "language": "tiddlywiki5",
                 "path": "./snippets/snippets.json"
-            },
-            {
-                "language": "memetic-wikitext",
-                "path": "./snippets/snippets.json"
             }
         ],
         "configurationDefaults": {
@@ -196,8 +171,7 @@
                 "*.tw5.test": "tiddlywiki5.test",
                 "*.tid": "tid",
                 "*.meta": "tid",
-                "*.multids": "multids",
-                "*.mem": "memetic-wikitext"
+                "*.multids": "multids"
             }
         }
     },

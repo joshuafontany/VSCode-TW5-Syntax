@@ -18,23 +18,6 @@ Based primarily on the grammars found below, with heavy tweaking and editing.
 
 `*.tid` and `*.meta` files have syntaxes that parse the metadata field "block" (and illegal characters detected). All field content (text field included) is parsed as `text.html.tiddlywiki5` (defined in `./syntaxes/tiddlywiki5.json`).
 
-### Memetic-Wikitext
-
-`*.mem` files carry `text/memetic-wikitext+tiddlywiki`, a superset of TW5 wikitext in which
-every additional construct spells a TiddlyWiki macro call — the third character after `<<`
-names the macro, so a vanilla TiddlyWiki processor reads the whole document as valid
-wikitext with each construct an unbound call.
-
-The grammar (`./syntaxes/memetic-wikitext.json`, scope `text.html.tiddlywiki5.memetic-wikitext`)
-claims those constructs and then falls through to `text.html.tiddlywiki5`, so base wikitext keeps
-its reading and colour themes written for the base scope apply unchanged. It highlights the
-`<<!DOCTYPE … >>` declaration, the `<<^ code:"&#x000N;" >>` transmission frame with its trailing
-`ni:///sha-256;` check, the `<<~ name … >>` sigil family with its `<<~/name >>` closes and
-`#fragment` anchors, and `lar:` URIs.
-
-The grammar loads for `*.mem` only, so editing `*.tid` or `*.tw5` files carries on
-unchanged.
-
 ## Known Issues
 
 Please report isues or offer Pull Requets at the GitHub Repository:

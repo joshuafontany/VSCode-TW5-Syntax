@@ -4,17 +4,27 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## Unreleased
+
+Held for 2.2.0, once the tree-sitter grammar aligns with these scopes.
+
+### Added
+- A `memetic-wikitext` language for `*.mem` files (`text/memetic-wikitext+tiddlywiki`), scope
+  `text.html.tiddlywiki5.memetic-wikitext`, extending the base scope by name and falling through
+  to the TiddlyWiki5 grammar. It loads for `*.mem` only; editing `*.tid` or `*.tw5` carries on
+  unchanged. `lar:` URIs read as addresses in prose rather than opening an italic run.
+- A language configuration of its own: `<<` and `>>` bracket and auto-close as a pair, `[[…]]`
+  with them, and a sigil name, a `#fragment` or a whole `lar:` URI each select as one word.
+- The sharktooth namespace claims both spacings, and the tooth stands at one dispatch position
+  so a close mirrors its open: `<<~name …>>` beside `<<~ name …>>`, `<<~ /ahu >>` beside
+  `<<~/ahu >>`, matching the plain register's `<<fragment …>>` / `<</fragment>>`.
+
+The grammar, its configuration and its tests ride in the repository and run in CI; this release
+does not register them, so no language reaches an editor from them.
+
 ## 2.1.0
 
 ### Fixed
-- The sharktooth stands at one dispatch position, so a close mirrors its open. `<<~ /ahu >>`
-  reads as a close beside `<<~/ahu >>`, the tooth scopes as the tooth in both, and the slash
-  rides on the command word — matching the plain register's `<<fragment …>>` / `<</fragment>>`.
-- The sharktooth namespace claims both spacings. `<<~name …>>` reads as a sigil alongside
-  `<<~ name …>>`, so bearing arrows, `#fragment` anchors and `lar:` URIs inside the tight
-  form scope as themselves rather than as undifferentiated macro parameters. 973 of the
-  7,920 sharktooth forms in a 616-document corpus took the tight spelling.
-  The pragma and unresolved registers take the same spacing: `<<~!name …>>` and `<<~?#anchor >>`.
 - Highlighting no longer runs to the end of the file. TiddlyWiki ends an inline run at a paragraph
   boundary; the grammar did not, and an unclosed run also held its paragraph open, so the colouring
   compounded outward. All six emphasis variants and both inline-code variants now end at a blank
@@ -25,28 +35,21 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Unquoted attribute values keep single parentheses again; only `((` opens an MVV reference.
 
 ### Added
-- A language configuration of its own for `memetic-wikitext`: `<<` and `>>` bracket and
-  auto-close as a pair, `[[…]]` with them, and a sigil name, a `#fragment` or a whole
-  `lar:` URI each select as one word. Folding stays with region markers — see below.
 - Continuous integration. Every pull request and every push to `main` installs from the
-  lockfile, runs both grammar suites, holds the terminator-closure ratchet at zero, and
+  lockfile, runs the grammar suites, holds the terminator-closure ratchet at zero, and
   builds the `.vsix` a user would install, keeping it as an artifact.
 - `tools/terminator-closure.js` and `npm run lint-closure`: a check that a region never
   admits a nested region able to consume its own terminator, and that a child which
   closes on that terminator hands it back rather than eating it — the property behind the
   end-of-file colouring bugs. It reads the grammar alone, with no corpus and no name list.
-- A `memetic-wikitext` language for `*.mem` files (`text/memetic-wikitext+tiddlywiki`), scope
-  `text.html.tiddlywiki5.memetic-wikitext`, extending the base scope by name and falling through to
-  the TiddlyWiki5 grammar. It loads for `*.mem` only; editing `*.tid` or `*.tw5` carries on
-  unchanged. `lar:` URIs read as addresses in prose rather than opening an italic run.
 - `LICENSE` (BSD 3-Clause, following TiddlyWiki5's own) and `contributing.md`.
 
 ### Changed
 - Snippets reach the languages they serve. The three tiddler-metadata snippets move to
   `snippets/tiddler-fields.json`, registered for `tid` and `multids`, where a field header
-  exists to write into; the remaining 125 stay registered for all four languages. The file's
-  former scope-selector group keys carried no scope — VS Code discards them — so they give way
-  to a flat map that claims only what it delivers.
+  exists to write into; the remaining 125 stay registered for every language this extension
+  serves. The file's group keys read as scope selectors and carried no scope — VS Code discards
+  them — so they give way to a flat map that claims only what it delivers.
 - `.vscodeignore` keeps `tools/` out of the published package; `.gitignore` keeps the built
   `*.vsix` out of the repository.
 - TiddlyWiki5 v5.4.0 grammar and snippet update, by @pmario (#49): `\parsermode`, MVV inline
