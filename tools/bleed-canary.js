@@ -19,6 +19,8 @@ const path = require('node:path');
 // Node 22 added fs.globSync and Windows disagrees with a forward-slash glob, so the
 // listing happens here: every pattern this repository uses reads `dir/*.ext`.
 function listFiles(pattern) {
+  // cmd.exe hands a single-quoted argument through with its quotes attached.
+  pattern = pattern.replace(/^['"]|['"]$/g, '');
   const dir = path.dirname(pattern);
   const base = path.basename(pattern);
   const suffix = base.startsWith('*') ? base.slice(1) : null;
