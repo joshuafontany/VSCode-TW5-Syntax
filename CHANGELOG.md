@@ -8,6 +8,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 Held for 2.2.0, once the tree-sitter grammar aligns with these scopes.
 
+### Fixed
+- A fenced block carries the fence rules TiddlyWiki adopted in 5.5.0. An opening fence takes
+  three or more backticks and closes only on a fence at least as long, so a longer fence holds
+  shorter runs and a nested sample reads as one block. The info string admits any character but
+  a backtick, so ` ```C++ `, ` ```js {highlight} ` and a MIME type each name a language, and the
+  language reads as the first word. Either fence may carry up to three spaces of indentation,
+  and a fence indented further neither opens nor closes.
+
 ### Added
 - A `memetic-wikitext` language for `*.mem` files (`text/memetic-wikitext+tiddlywiki`), scope
   `text.html.tiddlywiki5.memetic-wikitext`, extending the base scope by name and falling through

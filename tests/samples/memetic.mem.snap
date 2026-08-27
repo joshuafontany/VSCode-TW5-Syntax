@@ -34,13 +34,27 @@
 #                                                                            ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext
 #                                                                             ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
 >```toml meta
-#^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+#^^^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 punctuation.definition.raw.markup.begin.tiddlywiki5
+#   ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 entity.other.attribute-name.language.tiddlywiki5
+#       ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5
 >register = "Synthesis-Canon"
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+#^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 source.toml variable.other.key.toml
+#        ^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 source.toml
+#         ^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 source.toml punctuation.separator.key-value.toml
+#          ^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 source.toml
+#           ^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 source.toml string.quoted.double.toml punctuation.definition.string.begin.toml
+#            ^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 source.toml string.quoted.double.toml
+#                           ^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 source.toml string.quoted.double.toml punctuation.definition.string.end.toml
 >uri-path = "ha.ka.ba/lares/api/pono/sample"
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+#^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 source.toml variable.other.key.toml
+#        ^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 source.toml
+#         ^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 source.toml punctuation.separator.key-value.toml
+#          ^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 source.toml
+#           ^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 source.toml string.quoted.double.toml punctuation.definition.string.begin.toml
+#            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 source.toml string.quoted.double.toml
+#                                          ^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 source.toml string.quoted.double.toml punctuation.definition.string.end.toml
 >```
-#^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+#^^^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 punctuation.definition.raw.markup.end.tiddlywiki5
 >
 ><<~ aka lar:///ha.ka.ba/lares/api/pono/RFC-2119#normative-language >>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
