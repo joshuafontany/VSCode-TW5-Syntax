@@ -15,6 +15,22 @@ mkdir -p "$BENCH/workspace" "$BENCH/exts-live" "$BENCH/data-live" "$BENCH/exts-p
 chmod 777 "$BENCH/workspace" "$BENCH/exts-live" "$BENCH/data-live" "$BENCH/exts-packaged" "$BENCH/data-packaged"
 # The working tree enters the live bench as a link, so a syntax edit needs only a window reload.
 ln -sfn /src "$BENCH/exts-live/tw5-syntax"
+
+# A bench that prompts is a bench nobody reaches. Workspace trust guards against executing
+# files in a folder you did not write; this folder holds the repository's own fixtures.
+for d in data-live data-packaged; do
+  mkdir -p "$BENCH/$d/User"
+  cat > "$BENCH/$d/User/settings.json" <<'JSON'
+{
+  "security.workspace.trust.enabled": false,
+  "security.workspace.trust.startupPrompt": "never",
+  "security.workspace.trust.banner": "never",
+  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.startupEditor": "none",
+  "telemetry.telemetryLevel": "off"
+}
+JSON
+done
 # Clear the CONTENTS, never the directory: a running container binds the inode, and
 # recreating the directory orphans that bind and leaves the container seeing nothing.
 mkdir -p "$BENCH/workspace"
