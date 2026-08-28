@@ -9,6 +9,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 Held for 2.2.0, once the tree-sitter grammar aligns with these scopes.
 
 ### Fixed
+- The `memetic-wikitext` language reaches an editor. The manifest registers the language
+  (`.mem`, `text/memetic-wikitext+tiddlywiki`) and its grammar, `.vscodeignore` releases the
+  two files it held back, and the package carries them.
 - A fenced block carries the fence rules TiddlyWiki adopted in 5.5.0. An opening fence takes
   three or more backticks and closes only on a fence at least as long, so a longer fence holds
   shorter runs and a nested sample reads as one block. The info string admits any character but
@@ -27,8 +30,8 @@ Held for 2.2.0, once the tree-sitter grammar aligns with these scopes.
   so a close mirrors its open: `<<~name …>>` beside `<<~ name …>>`, `<<~ /ahu >>` beside
   `<<~/ahu >>`, matching the plain register's `<<fragment …>>` / `<</fragment>>`.
 
-The grammar, its configuration and its tests ride in the repository and run in CI; this release
-does not register them, so no language reaches an editor from them.
+The manifest registers the language and its grammar, and the package carries both, so a `*.mem`
+file opens as Memetic-Wikitext in an editor.
 
 ## 2.1.0
 
