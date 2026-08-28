@@ -15,7 +15,10 @@ mkdir -p "$BENCH/workspace" "$BENCH/exts-live" "$BENCH/data-live" "$BENCH/exts-p
 chmod 777 "$BENCH/workspace" "$BENCH/exts-live" "$BENCH/data-live" "$BENCH/exts-packaged" "$BENCH/data-packaged"
 # The working tree enters the live bench as a link, so a syntax edit needs only a window reload.
 ln -sfn /src "$BENCH/exts-live/tw5-syntax"
-rm -rf "$BENCH/workspace"; mkdir -p "$BENCH/workspace"
+# Clear the CONTENTS, never the directory: a running container binds the inode, and
+# recreating the directory orphans that bind and leaves the container seeing nothing.
+mkdir -p "$BENCH/workspace"
+find "$BENCH/workspace" -mindepth 1 -delete
 cp -r "$HERE"/corpus/. "$BENCH/workspace/" 2>/dev/null || true
 mkdir -p "$BENCH/workspace/samples"
 cp -f "$HERE"/tests/samples/*.tw "$HERE"/tests/samples/*.tid "$HERE"/tests/samples/*.mem \
@@ -39,5 +42,5 @@ fi
 
 docker compose -f "$BENCH/docker-compose.yml" up -d "$MODE"
 echo "bench ($MODE) -> http://localhost:$PORT/"
-echo "  workspace: $BENCH/workspace  (seeded from tests/samples, safe to edit)"
+echo "  workspace: $BENCH/workspace  (seeded from corpus/, with tests/samples under samples/)"
 echo "  stop with: tools/bench.sh down"
