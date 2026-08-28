@@ -10,35 +10,35 @@ This extension is intended for editing separate tiddler files on disk with Visua
 
 ## Languages
 
-This extension implements several specifications, each with its own grammar and its own scope.
+This extension provides five languages, each with its own grammar and scope.
 
-| language | files | scope | specifies |
+| language | files | scope | covers |
 |---|---|---|---|
 | `tiddlywiki5` | `.tw`, `.tw5`, `.tiddlywiki5` | `text.html.tiddlywiki5` | TiddlyWiki wikitext, following the rules in `core/modules/parsers/wikiparser/rules` |
 | `tid` | `.tid`, `.meta` | `source.tiddlywiki5.tid-file` | the tiddler file format: a field block, a blank line, then a body parsed as wikitext |
 | `multids` | `.multids` | `source.tiddlywiki5.multids-file` | the multiple-tiddler file format |
 | `memetic-wikitext` | `.mem` | `text.html.tiddlywiki5.memetic-wikitext` | Memetic-Wikitext, a superset of TiddlyWiki wikitext |
-| `tiddlywiki5.test` | `.tw5.test` | `text.html.tiddlywiki5.test` | the syntax-test files this repository checks itself with |
+| `tiddlywiki5.test` | `.tw5.test` | `text.html.tiddlywiki5.test` | the syntax-test files used to check the grammars |
 
-Editing a `.tid`, `.tw5` or `.multids` file carries on exactly as before; a language added here reaches only the file extensions it names.
+Each language applies only to the file extensions listed, so adding one changes nothing about how the others behave.
 
 ## Memetic-Wikitext
 
-`*.mem` files open as **Memetic-Wikitext** (`text/memetic-wikitext+tiddlywiki`), a superset of TiddlyWiki
-wikitext. Its scope extends the wikitext scope **by name**, so every construct TiddlyWiki reads keeps its
-own reading inside a `*.mem` file, and the dialect adds to that rather than replacing any of it:
+`*.mem` files open as **Memetic-Wikitext** (`text/memetic-wikitext+tiddlywiki`), a small extension of
+TiddlyWiki wikitext used by the [Lares](https://github.com/amorphous-dreams) agent tooling. Its scope,
+`text.html.tiddlywiki5.memetic-wikitext`, includes the wikitext grammar, so ordinary wikitext highlights
+inside a `*.mem` file exactly as it does in a `*.tid` file. On top of that it highlights four additions:
 
-* the **sharktooth** sigil, `<<~ name … >>`, closing as `<<~ /name >>`
-* a **control set** carried on `<<^ code="&#x0001;" … >>`
-* **`lar:` URIs**, which name rather than fetch, read as addresses in prose
-* named parameters bound with `=`, the separator TiddlyWiki reads as new-style and the only one that admits
-  a filtered, indirect or macro value
+* `<<~ name … >>` and its closing form `<<~ /name >>`
+* `<<^ code="&#x0001;" … >>`, a set of document-structure markers
+* `lar:` URIs, highlighted as addresses where they appear in prose
+* named parameters written `key=value`, which TiddlyWiki 5.4 accepts alongside `key:value`
 
-The superset holds in both directions, which earns it the name: **a stock TiddlyWiki reads a `*.mem` file as
-slightly odd wikitext.** A sigil parses as a macro call, a control carrier as a macro call, a `lar:` URI as
-text. Nothing raises, nothing swallows, and the file still renders. An editor with this extension reads the
-same bytes with the dialect's structure visible — the second reader sees more, and the first reader never
-loses the file.
+Every addition uses syntax TiddlyWiki already parses — each of the first two reads as a macro call, and a
+`lar:` URI reads as plain text. A `*.mem` file therefore loads and renders in an unmodified TiddlyWiki
+without errors, and this extension simply shows more of its structure while editing.
+
+If you do not use `*.mem` files, nothing here affects you: the language applies to that extension alone.
 
 ## Features
 

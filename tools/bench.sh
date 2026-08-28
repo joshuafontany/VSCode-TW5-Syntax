@@ -41,6 +41,8 @@ else
 fi
 
 docker compose -f "$BENCH/docker-compose.yml" up -d "$MODE"
-echo "bench ($MODE) -> http://localhost:$PORT/"
+# VS Code Web opens an empty workbench unless the URL names the folder; the folder
+# argument on the server only sets the default for a desktop client.
+echo "bench ($MODE) -> http://localhost:$PORT/?folder=/workspace"
 echo "  workspace: $BENCH/workspace  (seeded from corpus/, with tests/samples under samples/)"
 echo "  stop with: tools/bench.sh down"
