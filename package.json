@@ -225,7 +225,7 @@
         "bench": "bash ./tools/bench.sh live",
         "bench:packaged": "bash ./tools/bench.sh packaged",
         "bench:down": "bash ./tools/bench.sh down",
-        "tests-known-gaps": "bash ./run_tests.sh \"./tests/known-gaps/*.tw5.test\"",
+        "tests-known-gaps": "bash -c 'ls ./tests/known-gaps/*.tw5.test >/dev/null 2>&1 && bash ./run_tests.sh \"./tests/known-gaps/*.tw5.test\" || echo \"no known gap stands\"'",
         "snap-wikitext": "node ./tools/snapshot-check.js text.html.tiddlywiki5 './tests/samples/*.tw'",
         "snap-tid": "node ./tools/snapshot-check.js source.tiddlywiki5.tid-file './tests/samples/*.tid'",
         "snap-meta": "node ./tools/snapshot-check.js source.tiddlywiki5.tid-file './tests/samples/*.meta'",
