@@ -9,6 +9,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 Held for 2.2.0, once the tree-sitter grammar aligns with these scopes.
 
 ### Fixed
+- A sigil binds its parameters with `=`, the memetic standard. TiddlyWiki reads `=` as the
+  new-style separator (`parseMacroParameterAsAttribute`), which is what admits a filtered,
+  indirect or macro value where a colon admits neither; the colon spelling stays valid and
+  stays read, in a sigil body and in a control carrier alike. A value carrying no delimiter
+  of its own now scopes, while a `lar:` URI, a bearing or a quoted string still claims its own.
 - The `memetic-wikitext` language reaches an editor. The manifest registers the language
   (`.mem`, `text/memetic-wikitext+tiddlywiki`) and its grammar, `.vscodeignore` releases the
   two files it held back, and the package carries them.

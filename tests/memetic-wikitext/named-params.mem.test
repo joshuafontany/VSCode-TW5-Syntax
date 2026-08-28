@@ -1,0 +1,30 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A sigil binds its parameters with equals"
+
+# The memetic standard writes key=value. TiddlyWiki reads = as the new-style separator
+# (parseMacroParameterAsAttribute in core/modules/parsers/parseutils.js), which is what admits a
+# filtered, indirect or macro value. A colon stays valid and stays read.
+
+<<~ Persona name=Lares trigger=unclear-intent >>
+#           ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext entity.other.attribute-name.memetic-wikitext
+#               ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext keyword.operator.assignment.memetic-wikitext
+#                ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext string.unquoted.memetic-wikitext
+#                      ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext entity.other.attribute-name.memetic-wikitext
+#                             ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext keyword.operator.assignment.memetic-wikitext
+
+# A lar: URI claims its own value, so the address reads as an address.
+<<~ lares aim from=lar:///a.b.c -> to=lar:///d.e.f >>
+#             ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext entity.other.attribute-name.memetic-wikitext
+#                 ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext keyword.operator.assignment.memetic-wikitext
+#                  ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext markup.underline.link.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext
+
+# The TiddlyWiki spelling still reads.
+<<~ Persona name:"Lares" >>
+#           ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext entity.other.attribute-name.memetic-wikitext
+#               ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext punctuation.separator.key-value.memetic-wikitext
+
+# A control carrier binds the same way, and its earlier spelling still reads.
+<<^ code="&#x0001;" namespace="example" >>
+#<- text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext
+
+<<^ code:"&#x0002;" >>
+#<- text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext
