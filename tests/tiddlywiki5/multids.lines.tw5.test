@@ -1,0 +1,27 @@
+# SYNTAX TEST "source.tiddlywiki5.multids-file" "A multids line takes its first colon"
+
+# boot.js takes any line carrying a colon as a tiddler: the title runs to the first colon and
+# the text follows it. A line with an empty value defines a tiddler with empty text, and a line
+# carrying no space after the colon defines one too.
+
+title: $:/language/Example/
+
+Greeting: Hello
+#<- source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.htmltiddlywiki5.multids-file string.value.title.field.tiddlywiki5.multids-file
+#       ^ source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.htmltiddlywiki5.multids-file punctuation.separator.key-value.title-text.tiddlywiki5.multids-file
+
+Empty:
+#<- source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.htmltiddlywiki5.multids-file string.value.title.field.tiddlywiki5.multids-file
+#    ^ source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.htmltiddlywiki5.multids-file punctuation.separator.key-value.title-text.tiddlywiki5.multids-file
+
+NoSpace:value
+#<- source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.htmltiddlywiki5.multids-file string.value.title.field.tiddlywiki5.multids-file
+#      ^ source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.htmltiddlywiki5.multids-file punctuation.separator.key-value.title-text.tiddlywiki5.multids-file
+
+# A line after an empty value keeps its own reading.
+AfterEmpty: still a field
+#<- source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.htmltiddlywiki5.multids-file string.value.title.field.tiddlywiki5.multids-file
+
+# A value carries wikitext.
+WithLink: a value carrying [[a link|T]]
+#                          ^ source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.htmltiddlywiki5.multids-file meta.tiddle.field.text.tiddlywiki5.multids-file markup.link.tiddlywiki5

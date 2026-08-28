@@ -9,6 +9,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 Held for 2.2.0, once the tree-sitter grammar aligns with these scopes.
 
 ### Fixed
+- A `.multids` line takes its first colon. `boot.js` reads `line.indexOf(":")`, so a line with
+  an empty value defines a tiddler with empty text and a line carrying no space after the colon
+  defines one too; the rule demanded `": "` and matched neither. An unmatched line then opened a
+  wikitext paragraph that ran to the next blank line and took every field line after it with it,
+  so one empty value cost the rest of the file. Wikitext now reads inside a value and never at
+  line level, so an unmatched line can no longer swallow its neighbours.
 - A sigil binds its parameters with `=`, the memetic standard. TiddlyWiki reads `=` as the
   new-style separator (`parseMacroParameterAsAttribute`), which is what admits a filtered,
   indirect or macro value where a colon admits neither; the colon spelling stays valid and
