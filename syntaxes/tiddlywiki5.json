@@ -3640,12 +3640,12 @@
 			"name": "meta.typedblock.tiddlywiki5",
 			"beginCaptures": {
 				"1": {
-					"name": "punctuation.definition.typedblock.begin.tiddlywiki5"
+					"name": "keyword.control.raw.typedblock.tiddlywiki5 punctuation.definition.typedblock.begin.tiddlywiki5"
 				}
 			},
 			"endCaptures": {
 				"1": {
-					"name": "punctuation.definition.typedblock.end.tiddlywiki5"
+					"name": "keyword.control.raw.typedblock.tiddlywiki5 punctuation.definition.typedblock.end.tiddlywiki5"
 				}
 			},
 			"patterns": [
@@ -4695,12 +4695,12 @@
 			"name": "meta.codeblock.tiddlywiki5",
 			"beginCaptures": {
 				"1": {
-					"name": "punctuation.definition.raw.markup.begin.tiddlywiki5"
+					"name": "keyword.control.raw.fence.tiddlywiki5 punctuation.definition.raw.markup.begin.tiddlywiki5"
 				}
 			},
 			"endCaptures": {
 				"1": {
-					"name": "punctuation.definition.raw.markup.end.tiddlywiki5"
+					"name": "keyword.control.raw.fence.tiddlywiki5 punctuation.definition.raw.markup.end.tiddlywiki5"
 				}
 			},
 			"patterns": [
@@ -5269,12 +5269,12 @@
 					"contentName": "markup.inline.raw.double.tiddlywiki5",
 					"beginCaptures": {
 						"0": {
-							"name": "punctuation.definition.raw.markup.double.begin.tiddlywiki5"
+							"name": "keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.double.begin.tiddlywiki5"
 						}
 					},
 					"endCaptures": {
 						"0": {
-							"name": "punctuation.definition.raw.markup.double.end.tiddlywiki5"
+							"name": "keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.double.end.tiddlywiki5"
 						}
 					},
 					"patterns": [
@@ -5290,12 +5290,12 @@
 					"contentName": "markup.inline.raw.single.tiddlywiki5",
 					"beginCaptures": {
 						"0": {
-							"name": "punctuation.definition.raw.markup.single.begin.tiddlywiki5"
+							"name": "keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5"
 						}
 					},
 					"endCaptures": {
 						"0": {
-							"name": "punctuation.definition.raw.markup.single.end.tiddlywiki5"
+							"name": "keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5"
 						}
 					}
 				}

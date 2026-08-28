@@ -9,6 +9,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 Held for 2.2.0, once the tree-sitter grammar aligns with these scopes.
 
 ### Fixed
+- A raw delimiter carries a scope themes colour. A code fence, an inline tick and a typed-block
+  marker each sat on `punctuation.definition.*` alone, which no shipped theme styles, so they
+  rendered in the editor's default foreground while the code beside them coloured. Every
+  surveyed grammar solves this one of two ways — a region scoped `comment.*` or `string.*` that
+  the delimiter inherits from, or a scope of its own, as shell gives a heredoc marker and Perl
+  gives POD. These take their own: `keyword.control`, which all fifteen shipped themes colour,
+  where `keyword.operator` resolves to the default foreground in six of them.
 - A `.multids` line takes its first colon. `boot.js` reads `line.indexOf(":")`, so a line with
   an empty value defines a tiddler with empty text and a line carrying no space after the colon
   defines one too; the rule demanded `": "` and matched neither. An unmatched line then opened a

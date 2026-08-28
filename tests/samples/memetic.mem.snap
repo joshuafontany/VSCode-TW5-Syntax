@@ -34,7 +34,7 @@
 #                                                                            ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext
 #                                                                             ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
 >```toml meta
-#^^^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 punctuation.definition.raw.markup.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 keyword.control.raw.fence.tiddlywiki5 punctuation.definition.raw.markup.begin.tiddlywiki5
 #   ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 entity.other.attribute-name.language.tiddlywiki5
 #       ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5
 >register = "Synthesis-Canon"
@@ -54,7 +54,7 @@
 #            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 source.toml string.quoted.double.toml
 #                                          ^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 source.toml string.quoted.double.toml punctuation.definition.string.end.toml
 >```
-#^^^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 punctuation.definition.raw.markup.end.tiddlywiki5
+#^^^ text.html.tiddlywiki5.memetic-wikitext meta.codeblock.tiddlywiki5 keyword.control.raw.fence.tiddlywiki5 punctuation.definition.raw.markup.end.tiddlywiki5
 >
 ><<~ aka lar:///ha.ka.ba/lares/api/pono/RFC-2119#normative-language >>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
@@ -105,9 +105,9 @@
 #                                                      ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.bold.tiddlywiki5
 #                                                              ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 bold.punctuation.definition.markup.end.tiddlywiki5
 #                                                                ^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
-#                                                                       ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
+#                                                                       ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
 #                                                                        ^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.inline.raw.single.tiddlywiki5
-#                                                                                 ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
+#                                                                                 ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
 #                                                                                  ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
 >
 ><<~ranks focus pulse@0..4 -> beat@5..8 >>

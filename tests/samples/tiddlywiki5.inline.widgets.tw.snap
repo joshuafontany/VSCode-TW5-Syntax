@@ -661,9 +661,9 @@
 >
 >    !!! `header` doesn't highlight here
 #^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 meta.attribute.unrecognized.string-replaced-block.html.tiddlywiki5 text.substituted.triple.attribute.html.tiddlywiki5
-#        ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 meta.attribute.unrecognized.string-replaced-block.html.tiddlywiki5 text.substituted.triple.attribute.html.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
+#        ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 meta.attribute.unrecognized.string-replaced-block.html.tiddlywiki5 text.substituted.triple.attribute.html.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
 #         ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 meta.attribute.unrecognized.string-replaced-block.html.tiddlywiki5 text.substituted.triple.attribute.html.tiddlywiki5 markup.inline.raw.single.tiddlywiki5
-#               ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 meta.attribute.unrecognized.string-replaced-block.html.tiddlywiki5 text.substituted.triple.attribute.html.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
+#               ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 meta.attribute.unrecognized.string-replaced-block.html.tiddlywiki5 text.substituted.triple.attribute.html.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
 #                ^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 meta.attribute.unrecognized.string-replaced-block.html.tiddlywiki5 text.substituted.triple.attribute.html.tiddlywiki5
 >
 >    value with <a href='test'>a link</a> ${[[and]]}$ __inline__ ''wikitext'' ${here}$
