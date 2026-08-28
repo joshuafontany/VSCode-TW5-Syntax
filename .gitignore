@@ -128,3 +128,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# The bench seeds a writable workspace and builds a vsix into the container mount.
+test-bench/workspace/
+test-bench/vsix/
+test-bench/exts-*/
+test-bench/data-*/

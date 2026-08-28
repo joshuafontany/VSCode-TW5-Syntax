@@ -10,6 +10,7 @@
 # Test harness: the fixtures, and the third-party grammars vendored so the
 # embedded-language assertions resolve their scopes.
 tests/**
+test-bench/**
 run_tests.sh
 run_snapshots.sh
 grammars.sh

@@ -69,6 +69,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # Every path the manifest names must stand inside the package. The source tree
+      # resolves a file the package excludes; only the built .vsix answers this.
+      - name: The package carries what the manifest names
+        run: npm run package-contents
       - run: npx --yes @vscode/vsce package --allow-missing-repository --out /tmp/tw5-syntax.vsix
       - uses: actions/upload-artifact@v7
         with:
