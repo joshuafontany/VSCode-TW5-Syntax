@@ -88,6 +88,10 @@ file opens as Memetic-Wikitext in an editor.
 - Unquoted attribute values keep single parentheses again; only `((` opens an MVV reference.
 
 ### Added
+- The readme declares each specification this repository implements — the wikitext grammar, the
+  `.tid`/`.meta` and `.multids` file formats, the syntax-test format, and Memetic-Wikitext — with
+  the scope each carries, and states the superset law: a stock TiddlyWiki reads a `*.mem` file as
+  slightly odd wikitext, so the second reader sees more and the first never loses the file.
 - `corpus/` and `npm run corpus`: broad ground gated on invariants rather than pinned tokens.
   Every scope the grammar declares should be reached by some file there — the declared set
   read from the grammar's own `name` and `contentName` fields, so no hand-kept list can drift
