@@ -1,0 +1,21 @@
+<$widget plain="a string"/>
+
+<$widget single='a string'/>
+
+<$widget triple="""a triple quoted string"""/>
+
+<$widget filtered={{{ [tag[x]] }}}/>
+
+<$widget indirect={{A/Tiddler!!field}}/>
+
+<$widget macro=<<aMacro one>>/>
+
+<$widget mvv=((aVariable))/>
+
+<$widget substituted=`a backtick value`/>
+
+<$widget unquoted=avalue/>
+
+<$widget boolean/>
+
+<$action-sendmessage $message="tm-notify" $param="value"/>

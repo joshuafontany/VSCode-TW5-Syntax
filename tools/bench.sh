@@ -15,9 +15,12 @@ mkdir -p "$BENCH/workspace" "$BENCH/exts-live" "$BENCH/data-live" "$BENCH/exts-p
 chmod 777 "$BENCH/workspace" "$BENCH/exts-live" "$BENCH/data-live" "$BENCH/exts-packaged" "$BENCH/data-packaged"
 # The working tree enters the live bench as a link, so a syntax edit needs only a window reload.
 ln -sfn /src "$BENCH/exts-live/tw5-syntax"
+rm -rf "$BENCH/workspace"; mkdir -p "$BENCH/workspace"
+cp -r "$HERE"/corpus/. "$BENCH/workspace/" 2>/dev/null || true
+mkdir -p "$BENCH/workspace/samples"
 cp -f "$HERE"/tests/samples/*.tw "$HERE"/tests/samples/*.tid "$HERE"/tests/samples/*.mem \
-      "$HERE"/tests/samples/*.multids "$BENCH/workspace/" 2>/dev/null || true
-rm -f "$BENCH"/workspace/*.snap
+      "$HERE"/tests/samples/*.multids "$BENCH/workspace/samples/" 2>/dev/null || true
+rm -f "$BENCH"/workspace/samples/*.snap "$BENCH"/workspace/coverage-floor.txt
 
 if [ "$MODE" = "packaged" ]; then
   mkdir -p "$BENCH/vsix"

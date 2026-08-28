@@ -1,0 +1,27 @@
+\define aMacro(a,b:"default")
+The body, carrying $a$ and $b$.
+\end
+
+\define inline() an inline definition
+
+\procedure aProcedure(x)
+The body.
+\end
+
+\function aFunction(y) [<y>addsuffix[!]]
+
+\widget $my.widget(z)
+The body.
+\end
+
+\parameters (a:"one",b:"two")
+
+\import [tag[macros]]
+
+\rules only filteredtranscludeinline transcludeinline codeinline
+
+\whitespace trim
+
+\parsermode block
+
+A paragraph after every pragma.

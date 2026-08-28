@@ -83,6 +83,20 @@ file opens as Memetic-Wikitext in an editor.
 - Unquoted attribute values keep single parentheses again; only `((` opens an MVV reference.
 
 ### Added
+- `corpus/` and `npm run corpus`: broad ground gated on invariants rather than pinned tokens.
+  Every scope the grammar declares should be reached by some file there — the declared set
+  read from the grammar's own `name` and `contentName` fields, so no hand-kept list can drift
+  — and `corpus/coverage-floor.txt` ratchets the count. Each file is also snapshotted with a
+  sentence appended, which must carry only what that sentence carries alone, measured from a
+  control rather than assumed. 29 files across wikitext, `.tid` and memetic, including
+  degenerate files that hold unterminated constructs on purpose.
+- `test-bench/` and `npm run bench`: a disposable editor in a container, carrying the working
+  tree as an unpacked extension, seeded from the corpus. `npm run bench:packaged` installs the
+  built `.vsix` instead. Both run the editor server-side, where a TextMate grammar loads
+  beside the files rather than in a remote UI.
+- `tools/package-contents.js` and `npm run package-contents`: every path the manifest names
+  must stand inside the built package. Each other check reads the source tree, where a file
+  the package excludes still resolves.
 - `tools/nesting-coverage.js` and `npm run nesting-coverage`: which container-and-construct
   pairs TiddlyWiki's own tiddlers actually stand up, and whether the grammar reads the
   construct inside the container as it reads it in a sentence. Containers come from the rules

@@ -1,0 +1,9 @@
+((aVariable))
+
+((aVariable||separator))
+
+((( [tag[x]] )))
+
+((( [tag[x]] ||separator)))
+
+<$text text=((aVariable))/>

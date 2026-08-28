@@ -1,0 +1,12 @@
+! Level one
+!! Level two
+!!! Level three
+!!!! Level four
+!!!!! Level five
+!!!!!! Level six
+
+!Tight, no space after the mark
+
+! A heading carrying ''bold'', //italic//, `code` and [[a link|Target]]
+
+! A heading carrying {{A/Transclusion}} and <<aMacro one>>

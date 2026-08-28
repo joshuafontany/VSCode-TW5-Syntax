@@ -219,6 +219,8 @@
         "compose": "npm run compose-wikitext",
         "upstream-coverage": "node ./tools/upstream-coverage.js",
         "nesting-coverage": "node ./tools/nesting-coverage.js",
+        "corpus": "node ./tools/corpus-check.js",
+        "corpus-verbose": "node ./tools/corpus-check.js --verbose",
         "package-contents": "node ./tools/package-contents.js",
         "bench": "bash ./tools/bench.sh live",
         "bench:packaged": "bash ./tools/bench.sh packaged",

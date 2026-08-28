@@ -1,0 +1,15 @@
+! A heading carrying <$button>{{X}}</$button>
+
+* A list item carrying <$link to="T">{{Y}}</$link>
+
+|a cell |<$button>{{Z}}</$button> |
+
+<<<
+A quote holding ''bold'' and {{X}} and a nested <$button>widget</$button>.
+<<<
+
+@@color:red;
+A style block holding [[a link|T]] and `code`.
+@@
+
+|!A header carrying [[A|B]] and {{||T}} |h

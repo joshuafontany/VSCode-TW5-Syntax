@@ -1,0 +1,12 @@
+&amp; &lt; &gt; &quot; &nbsp;
+
+&#160; &#x00A0;
+
+&unknownentity;
+
+<!-- an inline comment -->
+
+<!--
+a comment
+across lines
+-->

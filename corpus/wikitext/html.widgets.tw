@@ -1,0 +1,27 @@
+<$transclude/>
+
+<$transclude />
+
+<$my.widget/>
+
+<$button>{{An/Icon}}</$button>
+
+<$button class="tc-btn">[[A link|Target]]</$button>
+
+<$link to="Target">A one-line link body</$link>
+
+<$button>
+A block body.
+</$button>
+
+<div class="wrapper">
+
+Block content inside plain HTML.
+
+</div>
+
+<br>
+
+<br/>
+
+<span>inline html</span>

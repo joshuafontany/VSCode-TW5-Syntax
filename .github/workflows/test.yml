@@ -53,6 +53,11 @@ jobs:
       - name: Terminator closure
         run: npm run lint-closure
 
+      # Broad ground, gated on invariants: every declared scope reached, and nothing
+      # colouring the sentence after it.
+      - name: Corpus
+        run: npm run corpus
+
       # The deciding half of tools/upstream-coverage.js, against snapshots whose answer
       # is stated rather than inferred.
       - name: Tool tests

@@ -1,0 +1,14 @@
+```toml meta
+cacheable = true
+namespace = "example"
+```
+
+```js
+var a = 1;
+```
+
+````
+```toml meta
+A metadata block held inside four backticks.
+```
+````

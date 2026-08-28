@@ -1,0 +1,19 @@
+''bold'' //italic// __underline__ ^^superscript^^ ,,subscript,, ~~strikethrough~~
+
+''bold with //italic inside// it''
+
+//italic carrying `code` and [[a link|Target]]//
+
+A lone '' mark that never closes.
+
+Prose naming __localVar in passing, and nothing after it should read underlined.
+
+`inline code` and ``code with a ` backtick inside``
+
+--- a dash --- and an em dash
+
+A hard linebreak block:
+"""
+line one
+line two
+"""

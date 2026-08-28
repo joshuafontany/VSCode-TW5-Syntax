@@ -1,0 +1,20 @@
+|!Header A |!Header B |h
+|cell |cell |
+|footer |footer |f
+|A caption |c
+|myclass |k
+
+|~ |a rowspan above |
+|> |a colspan right |
+|< |a colspan left |
+|^top aligned |,bottom aligned |
+| centred | left|
+|right |normal |
+
+|a link |[[Some Target]] |
+|transclusion |{{Some/Tiddler}} |
+|macro |<<myMacro one>> |
+|entity |&amp; |
+|code |`inline` |
+|bold |''strong'' |
+|piped link |[[Label|Target]] |
