@@ -75,7 +75,7 @@
     },
     "control-soh": {
       "name": "meta.carrier.control.soh.memetic-wikitext",
-      "begin": "(<<)(\\^)(?=\\s+code:\"&#x00(01|11);\")",
+      "begin": "(<<)(\\^)(?=\\s+code=\"&#x00(01|11);\")",
       "end": "(>>)|$",
       "beginCaptures": {
         "1": {
@@ -98,7 +98,7 @@
     },
     "control-stx": {
       "name": "meta.carrier.control.stx.memetic-wikitext",
-      "begin": "(<<)(\\^)(?=\\s+code:\"&#x0002;\")",
+      "begin": "(<<)(\\^)(?=\\s+code=\"&#x0002;\")",
       "end": "(>>)|$",
       "beginCaptures": {
         "1": {
@@ -121,7 +121,7 @@
     },
     "control-etx": {
       "name": "meta.carrier.control.etx.memetic-wikitext",
-      "begin": "(<<)(\\^)(?=\\s+code:\"&#x00(03|17);\")",
+      "begin": "(<<)(\\^)(?=\\s+code=\"&#x00(03|17);\")",
       "end": "(>>)(\\s*(ni:///[a-z0-9-]+;[A-Za-z0-9_-]+))?|$",
       "beginCaptures": {
         "1": {
@@ -147,7 +147,7 @@
     },
     "control-eot": {
       "name": "meta.carrier.control.eot.memetic-wikitext",
-      "begin": "(<<)(\\^)(?=\\s+code:\"&#x00(04|14);\")",
+      "begin": "(<<)(\\^)(?=\\s+code=\"&#x00(04|14);\")",
       "end": "(>>)|$",
       "beginCaptures": {
         "1": {
