@@ -17,6 +17,11 @@ On first open the editor asks whether you trust the authors of the folder. Answe
 decision persists in `data-live/`; the web build asks regardless of `security.workspace.trust`
 settings.
 
+A grammar is read once when the extension host starts, so `npm run bench` recreates its
+container: a browser reload alone shows the grammar the bench started with. The packaged bench
+additionally rebuilds and reinstalls the `.vsix`, so it answers for the current working tree
+rather than whenever it was last built.
+
 `workspace/` reseeds from `corpus/` on every start, with `tests/samples` beside it under
 `samples/`, and takes your typing safely — nothing there touches a fixture. The working tree enters the live bench read-only, so a syntax edit
 needs only a window reload (`Ctrl+R` in the browser tab).

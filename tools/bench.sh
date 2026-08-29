@@ -46,7 +46,9 @@ if [ "$MODE" = "packaged" ]; then
   ( cd "$HERE" && npx --yes @vscode/vsce package --allow-missing-repository --out "$BENCH/vsix/tw5-syntax.vsix" >/dev/null )
   echo "packaged $(unzip -l "$BENCH/vsix/tw5-syntax.vsix" | tail -1 | awk '{print $2}') files"
   # Install it the way a user installs it, in its own step so a failure here reads plainly.
-  rm -rf "$BENCH/exts-packaged"; mkdir -p "$BENCH/exts-packaged"; chmod 777 "$BENCH/exts-packaged"
+  # Clear the contents, never the directory: a running container binds the inode.
+  mkdir -p "$BENCH/exts-packaged"; chmod 777 "$BENCH/exts-packaged"
+  find "$BENCH/exts-packaged" -mindepth 1 -delete
   docker run --rm \
     -v "$BENCH/vsix:/vsix:ro" -v "$BENCH/exts-packaged:/exts" -v "$BENCH/data-packaged:/data" \
     gitpod/openvscode-server:latest \
@@ -56,7 +58,8 @@ else
   PORT=3000
 fi
 
-docker compose -f "$BENCH/docker-compose.yml" up -d "$MODE"
+# A grammar is read once when the extension host starts, so a bench always starts fresh.
+docker compose -f "$BENCH/docker-compose.yml" up -d --force-recreate "$MODE"
 # VS Code Web opens an empty workbench unless the URL names the folder; the folder
 # argument on the server only sets the default for a desktop client.
 echo "bench ($MODE) -> http://localhost:$PORT/?folder=/workspace"
