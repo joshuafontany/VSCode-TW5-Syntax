@@ -3854,12 +3854,7 @@
 			"begin": "\\s*(?=@@((?:[^\\s]+?\\:.+?;)+)?((?:\\.[^\\s\\.]+)+)?$)",
 			"end": "(?<=^\\s*@@)\\s*(.*)$",
 			"contentName": "markup.other.style.styleblock.tiddlywiki5",
-			"endCaptures": {
-				"1": {
-					"name": "invalid.illegal.tiddlywiki5"
-				}
-			},
-			"patterns": [
+						"patterns": [
 				{
 					"comment": "Tokenize markers, styles and classes.",
 					"match": "(?:^|\\G)(@@)((?:[^\\s]+?\\:.+?;)+)?((?:\\.[^\\s\\.]+)+)?\\r?\\n",

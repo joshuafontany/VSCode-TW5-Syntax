@@ -4,27 +4,7 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## 2.3.3
-
-### Fixed
-- Only `=` introduces a parameter value. The value rule looked behind a colon as well, so a scheme's
-  own path read as an unquoted parameter value — `ni:///sha-256;abc` and `https://example.com` both
-  coloured as though a parameter had claimed them.
-
-## 2.3.2
-
-### Removed
-- A bare `?` carries no bearing scope. An end names itself — `from=?`, `to=?` — so the glyph rides as
-  an ordinary value, and standing alone it reads as content like any other character.
-
-## 2.3.1
-
-### Changed
-- The corpus and samples carry the framing form the graph now writes: a control sigil names its ends,
-  `from=? -> to=lar:///…`, with the bearing arrow riding between them as an unnamed positional. The
-  grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
-
-## 2.3.0
+## 2.3.0 — unreleased
 
 ### Added
 - A `lar:` URI reads its own structure. The path, each `?key=value` in the query, the `&` between
@@ -32,12 +12,18 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   an address colours the way the rest of a call does.
 
 ### Fixed
-- The colon in `lar:` scopes as a scheme separator, not as a key/value one. Only `=` names a
-  parameter under the memetic standard, and a scheme colon never separated one.
-- A fragment reads with the leading slash and dots this corpus writes it with — `#/normative-language`
-  went unrecognized where `#section` was read.
-- A colon separates a parameter only where a QUOTED value follows. `f:[tag[Done]]` spells a filter run,
-  and it read as a named parameter whose value began mid-filter.
+- A style block's closing marker takes the rest of its line as content. TiddlyWiki builds a
+  paragraph node from it and raises nothing, and the grammar called that span illegal.
+- Only `=` introduces a parameter value. The value rule looked behind a colon as well, so a scheme's
+  own path read as an unquoted parameter value — `ni:///sha-256;abc` and `https://example.com` both
+  coloured as though a parameter had claimed them.
+- The corpus and samples carry the framing form the graph now writes: a control sigil names its ends,
+  `from=? -> to=lar:///…`, with the bearing arrow riding between them as an unnamed positional. The
+  grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
+
+### Removed
+- A bare `?` carries no bearing scope. An end names itself — `from=?`, `to=?` — so the glyph rides as
+  an ordinary value, and standing alone it reads as content like any other character.
 
 ## 2.2.1
 

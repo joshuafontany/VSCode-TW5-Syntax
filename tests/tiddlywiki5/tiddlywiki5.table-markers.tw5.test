@@ -1,7 +1,7 @@
 # SYNTAX TEST "text.html.tiddlywiki5" "A table cell wears its own marker"
 
 # TiddlyWiki reads a cell's leading marks before its content (core/…/rules/table.js):
-# ! builds a th rather than a td (:91), ~ sets rowspan (:35), > and < set colspan (:47),
+# The bang builds a th rather than a td (:91), tilde sets rowspan (:35), the angle marks set
 # and ^ and , set valign (:74). TiddlyWiki's own tiddlers carry 191 header rows.
 
 |!Header A|!Header B|h

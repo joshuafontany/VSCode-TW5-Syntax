@@ -49,3 +49,15 @@ A stray < in prose.
 
 <div =foo>y</div>
 #    ^ text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+
+# A style block's closing marker takes the rest of its line as ordinary content, and TiddlyWiki
+# builds a paragraph node from it. Measured: two nodes, zero diagnostics.
+@@color:red;
+content
+@@ trailing words
+#  ^ - invalid.illegal.tiddlywiki5
+
+# The HTML claim stands where TiddlyWiki's does not. The align attribute parses and renders;
+# the verdict names HTML's own deprecation, never a refusal by this parser.
+<div align="left">x</div>
+#    ^^^^^ text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 meta.attribute.align.html.tiddlywiki5 invalid.deprecated.entity.other.attribute-name.html.tiddlywiki5
