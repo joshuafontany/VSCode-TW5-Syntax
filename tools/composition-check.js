@@ -22,10 +22,9 @@
 // differently. Closing two samples' constructs turned two pairs green, which is the
 // property working.
 //
-// Three pairs stand open here — tiddlywiki.styleblock, tiddlywiki5.quotes and
-// tiddlywiki5.inline.links each leave something unclosed that the sentinel alone does not
-// reach. That reads as fixture debt rather than grammar debt, so CI reports this rather
-// than blocking on it until those samples close.
+// Readings compare by position rather than by line text. The same line stands in more than
+// one sample, and keying by text compares one sample's reading against another's, which read
+// as three failing pairs while every sample composed.
 
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
