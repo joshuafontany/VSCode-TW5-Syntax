@@ -32,7 +32,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
-const { BASE, readSnapshot, claims } = require('./snapshot-format.js');
+const { BASE, readSnapshot, claims, verdicts } = require('./snapshot-format.js');
 
 /**
  * The spans a snapshot annotates, flattened across its lines.
@@ -60,38 +60,45 @@ function offsetAt(source, line, col) {
 }
 
 /**
- * Every span the grammar claims and TiddlyWiki refuses.
+ * Every span where the grammar and TiddlyWiki disagree, in both directions.
  *
  * A span answers for itself: the grammar painted THIS stretch, so TiddlyWiki gets asked
- * about THIS stretch. A verdict of `text` means the parser walked over it and built
- * nothing — the grammar coloured markup that does not work.
+ * about THIS stretch. Two disagreements stand, and they run opposite ways:
+ *
+ * - `overreach` — the grammar CLAIMS a construct and the parser yields plain text. The
+ *   grammar coloured markup that does not work.
+ * - `invention` — the grammar passes a VERDICT and the parser BUILDS a node. The grammar
+ *   condemned markup that does.
+ *
+ * A verdict over refused text and a claim over a built construct both read correct, and
+ * neither reports.
  *
  * @param {string} source    the file the grammar read
  * @param {string} snapText  its .snap
  * @param {{readAt: Function}} oracle
- * @returns {{line:number, col:number, span:string, scope:string, rule:string|null}[]}
+ * @returns {{kind:'overreach'|'invention', line:number, col:number, span:string, scope:string, rule:string|null}[]}
  */
 function review(source, snapText, oracle) {
   const findings = [];
   for (const ann of parseSnapshot(snapText)) {
     const claimed = claims(ann.scopes);
-    if (claimed.length === 0) continue;
+    const condemned = verdicts(ann.scopes);
+    if (claimed.length === 0 && condemned.length === 0) continue;
     const start = offsetAt(source, ann.line, ann.start);
     const end = offsetAt(source, ann.line, ann.end);
-    const verdict = oracle.readAt(source, start, end);
-    if (verdict.kind !== 'text') continue;
-    findings.push({
-      line: ann.line + 1,
-      col: ann.start + 1,
-      span: source.slice(start, end),
-      scope: claimed[claimed.length - 1],
-      rule: verdict.rule
-    });
+    const read = oracle.readAt(source, start, end);
+    const at = { line: ann.line + 1, col: ann.start + 1, span: source.slice(start, end), rule: read.rule };
+    if (claimed.length > 0 && read.kind === 'text') {
+      findings.push({ kind: 'overreach', ...at, scope: claimed[claimed.length - 1] });
+    }
+    if (condemned.length > 0 && read.kind === 'built') {
+      findings.push({ kind: 'invention', ...at, scope: condemned[condemned.length - 1] });
+    }
   }
   return findings;
 }
 
-module.exports = { BASE, parseSnapshot, offsetAt, claims, review };
+module.exports = { BASE, parseSnapshot, offsetAt, claims, verdicts, review };
 
 if (require.main === module) {
   const args = process.argv.slice(2);
@@ -174,7 +181,7 @@ if (require.main === module) {
     shell: process.platform === 'win32'
   });
 
-  const byScope = new Map();
+  const byScope = { overreach: new Map(), invention: new Map() };
   let scanned = 0;
   copies.forEach((copy, i) => {
     const snap = `${copy}.snap`;
@@ -182,25 +189,29 @@ if (require.main === module) {
     scanned += 1;
     const source = fs.readFileSync(copy, 'utf8');
     for (const f of review(source, fs.readFileSync(snap, 'utf8'), oracle)) {
-      if (!byScope.has(f.scope)) byScope.set(f.scope, []);
-      byScope.get(f.scope).push({ ...f, file: files[i] });
+      const bucket = byScope[f.kind];
+      if (!bucket.has(f.scope)) bucket.set(f.scope, []);
+      bucket.get(f.scope).push({ ...f, file: files[i] });
     }
   });
   fs.rmSync(scratch, { recursive: true, force: true });
 
-  const total = [...byScope.values()].reduce((n, v) => n + v.length, 0);
-  console.log(
-    `overreach-check  ${scanned} file(s), ${total} span(s) the grammar claims and TiddlyWiki refuses` +
-      `${camelcase ? '  [CamelCase forced on]' : ''}`
-  );
-  console.log('');
-  for (const [scope, hits] of [...byScope].sort((a, b) => b[1].length - a[1].length)) {
-    console.log(`  ${String(hits.length).padStart(4)}  ${scope}`);
-    for (const h of verbose ? hits : hits.slice(0, 2)) {
-      console.log(`        ${h.file}:${h.line}:${h.col}  ${JSON.stringify(h.span)}${h.rule ? `  (TiddlyWiki looked: ${h.rule})` : ''}`);
+  const count = (m) => [...m.values()].reduce((n, v) => n + v.length, 0);
+  const total = count(byScope.overreach) + count(byScope.invention);
+  console.log(`overreach-check  ${scanned} file(s)${camelcase ? '  [CamelCase forced on]' : ''}`);
+  const section = (kind, headline) => {
+    const map = byScope[kind];
+    console.log(`\n  ${String(count(map)).padStart(4)}  ${headline}`);
+    for (const [scope, hits] of [...map].sort((a, b) => b[1].length - a[1].length)) {
+      console.log(`  ${String(hits.length).padStart(4)}  ${scope}`);
+      for (const h of verbose ? hits : hits.slice(0, 2)) {
+        console.log(`        ${h.file}:${h.line}:${h.col}  ${JSON.stringify(h.span)}${h.rule ? `  (TiddlyWiki looked: ${h.rule})` : ''}`);
+      }
+      if (!verbose && hits.length > 2) console.log(`        … ${hits.length - 2} more (--verbose)`);
     }
-    if (!verbose && hits.length > 2) console.log(`        … ${hits.length - 2} more (--verbose)`);
-  }
-  if (total === 0) console.log('  nothing over-reached');
+  };
+  section('overreach', 'span(s) the grammar CLAIMS and TiddlyWiki refuses');
+  section('invention', 'span(s) the grammar CONDEMNS and TiddlyWiki builds');
+  if (total === 0) console.log('\n  the grammar and the parser agree everywhere they were asked');
   process.exitCode = total === 0 ? 0 : 1;
 }

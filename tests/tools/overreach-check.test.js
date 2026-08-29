@@ -1,13 +1,13 @@
 // The pure halves of tools/overreach-check.js: reading a snapshot back into spans, placing
-// a column in the file, and deciding which claims TiddlyWiki refuses.
+// a column in the file, and deciding where the grammar and the parser disagree.
 //
-// The column arithmetic carries the whole tool. A snapshot's caret sits ONE column past
-// the source column it names, and a reading off by one moves every verdict onto its
-// neighbour — silently, because the neighbour is usually scoped too.
+// The column arithmetic carries the whole tool. A reading off by one moves every finding
+// onto its neighbour — silently, because the neighbour is usually scoped too. The `.snap`
+// convention itself lives in tools/snapshot-format.js.
 
 const test = require('node:test');
 const assert = require('node:assert');
-const { parseSnapshot, offsetAt, claims, review } = require('../../tools/overreach-check.js');
+const { parseSnapshot, offsetAt, claims, verdicts, review } = require('../../tools/overreach-check.js');
 
 test('a snapshot reads back as the spans it annotates', () => {
   const snap = ['>A x1HelloThere here', '#    ^^^^^^^^^^ text.html.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5', '>'].join('\n');
@@ -21,7 +21,8 @@ test('a snapshot reads back as the spans it annotates', () => {
   ]);
 });
 
-// The '#' occupies column 0, so a caret at annotation index 5 names source column 4.
+// The '#' holds column 0 of the annotation line, so its whitespace run measures the
+// source column: four spaces before the caret name source column 4.
 test('the caret column lands on the source column it names', () => {
   const source = 'A x1HelloThere here';
   const [ann] = parseSnapshot(`>${source}\n#    ^^^^^^^^^^ scope.a\n`);
@@ -58,12 +59,44 @@ const stubOracle = (answers) => ({
   readAt: (_source, start, end) => answers[`${start}-${end}`] || { kind: 'built', rule: 'stub', start, end }
 });
 
+// A verdict runs OPPOSITE to a claim: it says nothing works here, so it answers to whether
+// TiddlyWiki REFUSED. Counting it as a claim reads a correct verdict as an over-reach.
+test('a verdict counts as a verdict, never as a claim', () => {
+  const scopes = ['text.html.tiddlywiki5', 'invalid.illegal.bad-angle-bracket.html.tiddlywiki5'];
+  assert.deepStrictEqual(claims(scopes), []);
+  assert.deepStrictEqual(verdicts(scopes), ['invalid.illegal.bad-angle-bracket.html.tiddlywiki5']);
+});
+
+test('a verdict standing where TiddlyWiki refuses reports nothing', () => {
+  const source = 'NDT<<:>> here';
+  const snap = `>${source}\n#  ^ text.html.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5\n`;
+  const refuse = { readAt: (_s, start, end) => ({ kind: 'text', rule: null, start, end }) };
+  assert.deepStrictEqual(review(source, snap, refuse), []);
+});
+
+test('a verdict standing where TiddlyWiki builds reports as an invention', () => {
+  const source = 'see [[A Tiddler]] here';
+  const snap = `>${source}\n#   ^ text.html.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5\n`;
+  const build = { readAt: (_s, start, end) => ({ kind: 'built', rule: 'prettylink', start, end }) };
+  const found = review(source, snap, build);
+  assert.strictEqual(found.length, 1);
+  assert.strictEqual(found[0].kind, 'invention');
+  assert.strictEqual(found[0].rule, 'prettylink');
+});
+
 test('a claimed span TiddlyWiki refuses reports, and names what it painted', () => {
   const source = 'A x1HelloThere here';
   const snap = `>${source}\n#    ^^^^^^^^^^ text.html.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5\n`;
   const found = review(source, snap, stubOracle({ '4-14': { kind: 'text', rule: 'wikilink', start: 4, end: 14 } }));
   assert.deepStrictEqual(found, [
-    { line: 1, col: 5, span: 'HelloThere', scope: 'markup.underline.link.wikilink.tiddlywiki5', rule: 'wikilink' }
+    {
+      kind: 'overreach',
+      line: 1,
+      col: 5,
+      span: 'HelloThere',
+      rule: 'wikilink',
+      scope: 'markup.underline.link.wikilink.tiddlywiki5'
+    }
   ]);
 });
 

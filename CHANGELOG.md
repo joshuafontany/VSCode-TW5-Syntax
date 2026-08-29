@@ -19,7 +19,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   an address colours the way the rest of a call does.
 
 ### Fixed
-- A macro call stands as a `style` attribute value. Every other attribute already admitted one; the
+- A macro name ends where the host's own name regexp ends it. TiddlyWiki reads a name with
+  `/([^\s>"'=:]+)/y`, so a colon, quote or equals sign closes it and a call carrying no name
+  at all builds nothing; the grammar took any run of non-space, non-`>` characters. `<<:>>`
+  standing in the fr-FR edition's prose about camel case read as a macro call, and `<<a:b>>`
+  carried the name scope across a parameter. Thirty calls across 400 of TiddlyWiki's own
+  tiddlers coloured as macro calls the parser refuses. Every other attribute already admitted one; the
   CSS-embedding branch excluded the angle bracket, so `<div style=<<tag-pill-style>>>` read as a
   stray bracket where TiddlyWiki parses a value of type macro.
 - A slash before the closing bracket marks a tag self-closing, for any tag. Four attribute catch-alls
@@ -44,6 +49,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Changed
+- A verdict answers to refusal, a claim answers to construction. `invalid.*` scopes say the
+  author reached for markup and missed, so they read correct exactly where TiddlyWiki refuses
+  — the reverse of every other scope. The over-reach gate now reports both directions: a
+  claim standing over refused text, and a verdict standing over a construct the parser built.
 - One reader for the `.snap` format. Four tools each parsed it by hand, each carrying its own
   reading of the caret-column convention — the annotation's `#` holds column 0, so a caret at
   index N names source column N, and the assertion format counts differently. `tools/snapshot-format.js`

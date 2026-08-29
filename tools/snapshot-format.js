@@ -55,13 +55,39 @@ function readSnapshot(text) {
 }
 
 /**
- * The scopes on a span that CLAIM something — everything past the base scopes.
+ * A verdict: a scope saying the author reached for markup and missed.
+ *
+ * A verdict runs OPPOSITE to a claim. A claim says a construct works, so it answers to
+ * whether TiddlyWiki built one; a verdict says nothing works here, so it answers to
+ * whether TiddlyWiki refused. Counting the two together reads a correct verdict as an
+ * over-reach and hides an invention behind a passing total.
+ *
+ * @param {string} scope
+ * @returns {boolean}
+ */
+function isVerdict(scope) {
+  return scope.startsWith('invalid.');
+}
+
+/**
+ * The scopes on a span that CLAIM a construct works — past the base scopes every span
+ * carries, and past the verdicts, which claim the reverse.
  *
  * @param {string[]} scopes
  * @returns {string[]}
  */
 function claims(scopes) {
-  return scopes.filter((s) => !BASE.has(s));
+  return scopes.filter((s) => !BASE.has(s) && !isVerdict(s));
 }
 
-module.exports = { BASE, readSnapshot, claims };
+/**
+ * The verdicts on a span.
+ *
+ * @param {string[]} scopes
+ * @returns {string[]}
+ */
+function verdicts(scopes) {
+  return scopes.filter(isVerdict);
+}
+
+module.exports = { BASE, readSnapshot, claims, verdicts, isVerdict };

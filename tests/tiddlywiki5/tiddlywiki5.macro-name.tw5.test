@@ -1,0 +1,44 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A macro name carries the characters the host's own name regexp admits"
+
+# TiddlyWiki reads a macro name with /([^\s>"'=:]+)/y — parseMacroInvocationAsTransclusion
+# in core/modules/parsers/parseutils.js. Colon, quote and equals END the name, and a name
+# of zero characters fails the call outright.
+#
+# Every negative below stands beside a positive at the same column, so a column that stopped
+# naming anything fails loudly rather than passing empty. Every column here comes off a
+# snapshot of these same lines, never off a hand count.
+
+! A name of ordinary letters reads to its end
+
+x <<myMacro>> y
+# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
+#         ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
+#          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5
+
+! A colon ends the name, and what follows it reads as a parameter
+
+x <<a:b>> y
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
+#    ^ - variable.name.macro.tiddlywiki5
+#    ^ meta.variable.macrocallinline.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
+
+! An equals sign ends the name the same way
+
+x <<a=b>> y
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
+#    ^ - variable.name.macro.tiddlywiki5
+#    ^ meta.variable.macrocallinline.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
+
+! A call carrying no name at all opens nothing
+
+# The fr-FR edition writes this as prose about camel case, and TiddlyWiki builds plain text
+# from it. No macro call stands here — and because the parser refuses the markup rather than
+# reading it, the stray-bracket verdict earns its place on the brackets themselves.
+NDT<<:>> here
+#  ^ - punctuation.definition.macrocallinline.begin.tiddlywiki5
+#  ^ - meta.variable.macrocallinline.tiddlywiki5
+#  ^ invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#    ^ - variable.name.macro.tiddlywiki5
+#    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+
