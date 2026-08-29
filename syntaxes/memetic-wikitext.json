@@ -321,12 +321,9 @@
         {
           "match": "(?<=[\\s>])->(?=[\\s>])",
           "name": "keyword.operator.bearing.arrow.memetic-wikitext"
-        },
-        {
-          "match": "(?<=[\\s>])\\?(?=[\\s>])",
-          "name": "constant.language.bearing.unresolved.memetic-wikitext"
         }
-      ]
+      ],
+      "comment": "The bearing arrow rides as an unnamed positional between two named ends. A bare `?` names nothing on its own — an end states itself as `from=?` or `to=?`, where the glyph reads as an ordinary value."
     },
     "lar-uri": {
       "comment": "A lar: URI reads as an address wherever it stands, sigil or prose. TW5 binds no rule to the scheme, so the base grammar takes its '//' for an italic run. The colon separates a scheme; only '=' names a parameter.",

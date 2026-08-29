@@ -4,6 +4,12 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 2.3.2
+
+### Removed
+- A bare `?` carries no bearing scope. An end names itself — `from=?`, `to=?` — so the glyph rides as
+  an ordinary value, and standing alone it reads as content like any other character.
+
 ## 2.3.1
 
 ### Changed

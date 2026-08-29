@@ -7,7 +7,7 @@
 <<^ code:"&#x0001;" ? -> lar:///ha.ka.ba/lares/api/pono/memetic-wikitext >>
 # ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext keyword.control.carrier.soh.memetic-wikitext
 #   ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext entity.other.attribute-name.memetic-wikitext
-#                   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext constant.language.bearing.unresolved.memetic-wikitext
+#                   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext - constant.language.bearing.unresolved.memetic-wikitext
 #                     ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext keyword.operator.bearing.arrow.memetic-wikitext
 
 <<^ code:"&#x0002;" >>
@@ -34,7 +34,7 @@
 <<^ code:"&#x0004;" -> ? >>
 # ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext keyword.control.carrier.eot.memetic-wikitext
 #                   ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext keyword.operator.bearing.arrow.memetic-wikitext
-#                      ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext constant.language.bearing.unresolved.memetic-wikitext
+#                      ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext - constant.language.bearing.unresolved.memetic-wikitext
 
 # The framing sigil names its ends; the arrow rides between them as an unnamed positional.
 <<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/x >>

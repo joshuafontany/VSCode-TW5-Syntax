@@ -38,3 +38,10 @@
 <<~ kau t(c:[[z]]) >>
 #         ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext entity.other.attribute-name.memetic-wikitext
 #          ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext punctuation.separator.key-value.memetic-wikitext
+
+# A bare ? carries no bearing. An end names itself, so the glyph rides as the value of from= or to=.
+<<~ hoike ? >>
+#          ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext - constant.language.bearing.unresolved.memetic-wikitext
+
+<<~ hoike from=? >>
+#              ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext string.unquoted.memetic-wikitext

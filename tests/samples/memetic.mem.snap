@@ -132,9 +132,7 @@
 #          ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext
 #           ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext punctuation.definition.anchor.memetic-wikitext
 #            ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext entity.name.tag.anchor.memetic-wikitext
-#                 ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext
-#                  ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext constant.language.bearing.unresolved.memetic-wikitext
-#                   ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext
+#                 ^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext
 #                    ^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext keyword.operator.bearing.arrow.memetic-wikitext
 #                      ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext
 #                       ^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext markup.underline.link.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext
