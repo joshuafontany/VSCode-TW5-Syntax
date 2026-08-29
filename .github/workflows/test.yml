@@ -87,10 +87,8 @@ jobs:
   compose:
     # Does a sample still read the same way with another sample in front of it? A
     # construct reaching past its own file shows up here as the next file reading
-    # differently — the one direction no other gate looks in. Three sample pairs stand
-    # open, so this reports rather than blocks.
+    # differently — the one direction no other gate looks in.
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7

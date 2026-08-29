@@ -9,6 +9,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 Held for 2.2.0, once the tree-sitter grammar aligns with these scopes.
 
 ### Fixed
+- `npm run compose` compares readings by position. It keyed them by line text, so a line
+  standing in both samples of a pair compared one sample's reading against the other's, and
+  three pairs read as failing while every sample composed. It blocks in CI now rather than
+  reporting, and a pair whose lines do not line up says so instead of passing quietly.
 - Raw markup carries no verdict. The stray-bracket rule reached inside a fence, an inline tick
   and a typed block, so a `<` in code read as an illegal character. Nothing inside raw markup
   answers to a wikitext rule, and the rule stops at that boundary.
