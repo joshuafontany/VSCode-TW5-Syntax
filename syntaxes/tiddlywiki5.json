@@ -39,7 +39,7 @@
 				}
 			]
 		},
-		"R:text.html - (comment.block, text.html meta.embedded, meta.tag.*.*.html, meta.tag.*.*.*.html, meta.tag.*.*.*.*.html, markup.quote.blockquote.tiddlywiki5)": {
+		"R:text.html - (comment.block, text.html meta.embedded, meta.tag.*.*.html, meta.tag.*.*.*.html, meta.tag.*.*.*.*.html, markup.quote.blockquote.tiddlywiki5, markup.inline.raw)": {
 			"comment": "Uses R: to ensure this matches after any other injections.",
 			"patterns": [
 				{
@@ -4781,7 +4781,7 @@
 					"while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
 				},
 				{
-					"begin": "(?i)\\G(atom|rss|xhtml)(?:[ \\t][^`\\n]*)?$",
+					"begin": "(?i)\\G(atom|rss|xhtml|xml)(?:[ \\t][^`\\n]*)?$",
 					"contentName": "text.xml",
 					"beginCaptures": {
 						"1": {

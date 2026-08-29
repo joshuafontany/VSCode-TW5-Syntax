@@ -9,6 +9,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 Held for 2.2.0, once the tree-sitter grammar aligns with these scopes.
 
 ### Fixed
+- Raw markup carries no verdict. The stray-bracket rule reached inside a fence, an inline tick
+  and a typed block, so a `<` in code read as an illegal character. Nothing inside raw markup
+  answers to a wikitext rule, and the rule stops at that boundary.
+- An `xml` fence names the XML grammar. The branch listed `atom`, `rss` and `xhtml` and not the
+  name most authors reach for, so an `xml` fence fell through to the plain-text branch.
 - Raw markup reads as markup. A code fence, an inline tick and a typed-block marker carry
   `keyword.control`, and a fence body carries `markup.inline.raw.block` — families a theme
   colours. They sat on scopes no theme styles, so a fence and its body rendered in the editor's

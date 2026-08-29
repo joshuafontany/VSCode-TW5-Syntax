@@ -5064,8 +5064,7 @@
 >translates to `<br>` in HTML.""" And
 #^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
 #              ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
-#               ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#                ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 markup.inline.raw.single.tiddlywiki5
+#               ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 markup.inline.raw.single.tiddlywiki5
 #                   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
 #                    ^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
 #                             ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.hardlinebreaks.end.tiddlywiki5
