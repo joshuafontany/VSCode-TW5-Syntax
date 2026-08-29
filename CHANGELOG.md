@@ -16,7 +16,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   parameter under the memetic standard, and a scheme colon never separated one.
 - A fragment reads with the leading slash and dots this corpus writes it with — `#/normative-language`
   went unrecognized where `#section` was read.
-- A colon separates a parameter only where a QUOTED value follows. `f:[tag[Done]]` is a filter run,
+- A colon separates a parameter only where a QUOTED value follows. `f:[tag[Done]]` spells a filter run,
   and it read as a named parameter whose value began mid-filter.
 
 ## 2.2.1
