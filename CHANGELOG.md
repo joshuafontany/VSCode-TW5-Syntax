@@ -4,9 +4,7 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## Unreleased
-
-Held for 2.2.0, once the tree-sitter grammar aligns with these scopes.
+## 2.2.0
 
 ### Fixed
 - `npm run compose` compares readings by position. It keyed them by line text, so a line
