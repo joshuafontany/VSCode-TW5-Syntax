@@ -866,6 +866,17 @@
 							"end": "(?<=[^\\s=])(?!\\s*=)|(?=/?>)",
 							"patterns": [
 								{
+									"comment": "A macro call stands as an attribute value: reUnquotedAttribute excludes `<<` so the value reaches its own branch.",
+									"begin": "(?=<<[^>\\s]+)",
+									"end": "(?<=>{2})(?=(\\s|/?>|$))",
+									"contentName": "variable.macro.attribute.html.tiddlywiki5",
+									"patterns": [
+										{
+											"include": "#macrocallinline"
+										}
+									]
+								},
+								{
 									"begin": "(?=[^\\s=<>`/]|/(?!>))",
 									"end": "(?!\\G)",
 									"name": "meta.embedded.line.css",

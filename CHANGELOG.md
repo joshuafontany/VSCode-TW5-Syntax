@@ -12,6 +12,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   an address colours the way the rest of a call does.
 
 ### Fixed
+- A macro call stands as a `style` attribute value. Every other attribute already admitted one; the
+  CSS-embedding branch excluded the angle bracket, so `<div style=<<tag-pill-style>>>` read as a
+  stray bracket where TiddlyWiki parses a value of type macro.
 - A slash before the closing bracket marks a tag self-closing, for any tag. Four attribute catch-alls
   swallowed it and called it a character not allowed here, so `<th/>` and `<div style="…"/>` — both
   ordinary in TiddlyWiki's own tiddlers — carried a verdict.

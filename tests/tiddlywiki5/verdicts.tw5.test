@@ -90,3 +90,11 @@ content
 
 <div style="height:0.5em;"/>
 #                         ^ - invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+
+# reUnquotedAttribute opens with a negative lookahead on the double angle, so a macro call reaches
+# its own value branch and parses as a value of type macro.
+<$text text=<<answerText>>/>
+#           ^ - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+
+<div style=<<tag-pill-style>>>x</div>
+#          ^ - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
