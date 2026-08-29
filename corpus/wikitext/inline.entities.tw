@@ -10,3 +10,7 @@
 a comment
 across lines
 -->
+
+&foo; &xy; &abcdefgh;
+
+&a; &abcdefghij;

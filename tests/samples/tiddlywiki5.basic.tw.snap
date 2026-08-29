@@ -854,7 +854,7 @@
 >
 >  but don't use it here anyway
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5
-#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 invalid.illegal.multiline-tiddler-title.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 entity.name.tiddler.title.template.tiddlywiki5
 >
 >}}}
 #^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
@@ -1380,10 +1380,10 @@
 >
 >  is illegal
 #^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
-#  ^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 invalid.illegal.multiline-text-reference.tiddlywiki5
+#  ^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5
 >
 >  ||
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 invalid.illegal.multiline-text-reference.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5
 #  ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.template.tiddlywiki5
 >
 >  multiline template title is not
@@ -1392,7 +1392,7 @@
 >
 >  but don't use it here anyway
 #^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5
-#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 invalid.illegal.multiline-tiddler-title.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 entity.name.tiddler.title.template.tiddlywiki5
 >
 >}}
 #^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5

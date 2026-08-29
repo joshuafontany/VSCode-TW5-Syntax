@@ -4,6 +4,20 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 2.2.1
+
+### Fixed
+- A multi-line transclusion reads as a transclusion. `{{`, `{{{` and their `||Template` slots
+  match across a newline in TiddlyWiki, whose title and template patterns are negated character
+  classes. The grammar condemned every continuation line as
+  `invalid.illegal.multiline-text-reference` or `invalid.illegal.multiline-tiddler-title`, so a
+  wrapped title read as an error in all four transclusion rules. A continuation now carries the
+  same scope as the line it continues.
+- An unknown entity name is still an entity. `entity.js` reads `&#?[a-zA-Z0-9]{2,8};` whether or
+  not the name is one HTML knows, so `&foo;` renders as an entity. It read as
+  `invalid.illegal.ambiguous-ampersand`. The verdict now fires only outside that window, where
+  the ampersand does stay literal text.
+
 ## 2.2.0
 
 ### Fixed

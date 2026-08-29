@@ -1,0 +1,51 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A verdict stands only where TiddlyWiki refuses"
+
+! Where TiddlyWiki builds a node, no verdict stands
+
+an &foo; here
+#  ^ - invalid.illegal.ambiguous-ampersand.html.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.entity.named.html.tiddlywiki5 punctuation.definition.entity.html.tiddlywiki5
+#   ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.entity.named.html.tiddlywiki5
+#      ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.entity.named.html.tiddlywiki5 punctuation.definition.entity.html.tiddlywiki5
+
+{{multi
+line}}
+#^^^ - invalid.illegal.multiline-text-reference.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5
+
+{{multi
+line||Template}}
+#^^^ - invalid.illegal.multiline-text-reference.tiddlywiki5
+
+{{a||Temp
+late}}
+#^^^ - invalid.illegal.multiline-tiddler-title.tiddlywiki5
+
+an x{{a
+b}}x inline
+#^ - invalid.illegal.multiline-text-reference.tiddlywiki5
+
+{{{a
+b}}}
+#^ - invalid.illegal.multiline-tiddler-title.tiddlywiki5
+
+! Where TiddlyWiki yields plain text, the verdict stands
+
+a &verylongname; b
+# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 invalid.illegal.ambiguous-ampersand.html.tiddlywiki5
+
+<$widget = >
+#        ^ text.html.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+
+A stray < in prose.
+#       ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+
+# html.js reads any [a-zA-Z0-9\-\$\.]+ as a tag name, so a custom element is ordinary markup.
+<mytag>x</mytag>
+#^^^^^ - invalid.illegal.unrecognized-tag.html.tiddlywiki5
+
+<my-widget attr="v">y</my-widget>
+#^^^^^^^^^ - invalid.illegal.unrecognized-tag.html.tiddlywiki5
+
+<div =foo>y</div>
+#    ^ text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5

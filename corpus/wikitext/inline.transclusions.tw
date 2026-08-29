@@ -15,3 +15,12 @@
 {{{ [tag[x]] +[sort[title]] }}}
 
 {{{ [<currentTiddler>get[text]] }}}
+
+{{A
+Tiddler}}
+
+{{A/Tiddler||A
+Template}}
+
+{{{ [tag[Done]]
+}}}

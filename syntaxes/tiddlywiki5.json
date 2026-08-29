@@ -1460,7 +1460,21 @@
 					"name": "constant.character.entity.numeric.hexadecimal.html.tiddlywiki5"
 				},
 				{
-					"match": "&(?=[a-zA-Z0-9]+;)",
+					"comment": "entity.js reads &#?[a-zA-Z0-9]{2,8}; whether or not the name is known.",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.entity.html.tiddlywiki5"
+						},
+						"2": {
+							"name": "punctuation.definition.entity.html.tiddlywiki5"
+						}
+					},
+					"match": "(&)#?[a-zA-Z0-9]{2,8}(;)",
+					"name": "constant.character.entity.named.html.tiddlywiki5"
+				},
+				{
+					"comment": "Outside entity.js's 2-8 window: the ampersand stays literal text.",
+					"match": "&(?=[a-zA-Z0-9];|[a-zA-Z0-9]{9,};)",
 					"name": "invalid.illegal.ambiguous-ampersand.html.tiddlywiki5"
 				}
 			]
@@ -4141,7 +4155,7 @@
 						{
 							"begin": "(?=\\S)",
 							"end": "(?=\\}\\}\\})",
-							"name": "invalid.illegal.multiline-tiddler-title.tiddlywiki5"
+							"name": "entity.name.tiddler.title.template.tiddlywiki5"
 						}
 					]
 				},
@@ -4195,7 +4209,7 @@
 						{
 							"begin": "(?=\\S)",
 							"end": "(?=\\}\\})",
-							"name": "invalid.illegal.multiline-tiddler-title.tiddlywiki5"
+							"name": "entity.name.tiddler.title.template.tiddlywiki5"
 						}
 					]
 				},
@@ -4223,7 +4237,7 @@
 						{
 							"begin": "(?=\\S)",
 							"end": "(?=\\|\\||\\}\\})",
-							"name": "invalid.illegal.multiline-text-reference.tiddlywiki5"
+							"name": "meta.transclusion.text-reference.tiddlywiki5"
 						}
 					]
 				}
@@ -5418,7 +5432,7 @@
 						{
 							"begin": "(?=\\S)",
 							"end": "(?=\\}\\}\\})",
-							"name": "invalid.illegal.multiline-tiddler-title.tiddlywiki5"
+							"name": "entity.name.tiddler.title.template.tiddlywiki5"
 						}
 					]
 				},
@@ -5472,7 +5486,7 @@
 						{
 							"begin": "(?=\\S)",
 							"end": "(?=\\}\\})",
-							"name": "invalid.illegal.multiline-tiddler-title.tiddlywiki5"
+							"name": "entity.name.tiddler.title.template.tiddlywiki5"
 						}
 					]
 				},
@@ -5500,7 +5514,7 @@
 						{
 							"begin": "(?=\\S)",
 							"end": "(?=\\|\\||\\}\\})",
-							"name": "invalid.illegal.multiline-text-reference.tiddlywiki5"
+							"name": "meta.transclusion.text-reference.tiddlywiki5"
 						}
 					]
 				}
