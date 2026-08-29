@@ -17,3 +17,7 @@ A body inside the section.
 <<~! a pragma sigil >>
 
 <<~? >>
+
+<<~ kahea greeting(name="Operator") >>
+
+<<~ kahea greeting(name:"Operator") >>

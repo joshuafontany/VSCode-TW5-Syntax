@@ -7,3 +7,9 @@ An address with a fragment lar:///a.b.c/path#section in prose.
 Two addresses lar:///a.b.c and lar:///d.e.f on one line.
 
 An ordinary URL https://example.com beside lar:///a.b.c
+
+An address with a query lar:///a.b.c/turn?stances=A.B&p=3 in prose.
+
+An address with query and fragment lar:///a.b.c/turn?p=3#/two-clocks in prose.
+
+<<~ hoike lar:///ha.ka.ba/turn?confidence=P:14&p=3#/normative-language >>

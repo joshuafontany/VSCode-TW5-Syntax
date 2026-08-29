@@ -4,6 +4,21 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 2.3.0
+
+### Added
+- A `lar:` URI reads its own structure. The path, each `?key=value` in the query, the `&` between
+  them and a `#/fragment` now carry their own scopes instead of riding in one unbroken string, so
+  an address colours the way the rest of a call does.
+
+### Fixed
+- The colon in `lar:` scopes as a scheme separator, not as a key/value one. Only `=` names a
+  parameter under the memetic standard, and a scheme colon never separated one.
+- A fragment reads with the leading slash and dots this corpus writes it with — `#/normative-language`
+  went unrecognized where `#section` was read.
+- A colon separates a parameter only where a QUOTED value follows. `f:[tag[Done]]` is a filter run,
+  and it read as a named parameter whose value began mid-filter.
+
 ## 2.2.1
 
 ### Fixed

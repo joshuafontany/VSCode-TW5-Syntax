@@ -28,3 +28,13 @@
 
 <<^ code:"&#x0002;" >>
 #<- text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext
+
+# A colon separates a parameter only where a QUOTED value follows. A filter run is not one.
+<<~ kau t(f:[tag[Done]]) >>
+#         ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext - entity.other.attribute-name.memetic-wikitext
+#          ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext - punctuation.separator.key-value.memetic-wikitext
+
+# A bracket STRING literal is one.
+<<~ kau t(c:[[z]]) >>
+#         ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext entity.other.attribute-name.memetic-wikitext
+#          ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext punctuation.separator.key-value.memetic-wikitext

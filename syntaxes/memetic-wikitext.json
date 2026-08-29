@@ -329,23 +329,42 @@
       ]
     },
     "lar-uri": {
+      "comment": "A lar: URI reads as an address wherever it stands, sigil or prose. TW5 binds no rule to the scheme, so the base grammar takes its '//' for an italic run. The colon separates a scheme; only '=' names a parameter.",
       "name": "markup.underline.link.lar.memetic-wikitext",
-      "match": "\\b(lar)(:)(//[^\\s>]*)",
-      "captures": {
+      "begin": "\\b(lar)(:)(//[^\\s>\"'?#\\]]*)",
+      "end": "(?=[\\s>\"'\\]])|$",
+      "beginCaptures": {
         "1": {
           "name": "keyword.other.scheme.lar.memetic-wikitext"
         },
         "2": {
-          "name": "punctuation.separator.key-value.memetic-wikitext"
+          "name": "punctuation.separator.scheme.lar.memetic-wikitext"
         },
         "3": {
           "name": "string.unquoted.uri.lar.memetic-wikitext"
         }
       },
-      "comment": "A lar: URI reads as an address wherever it stands, sigil or prose. TW5 binds no rule to the scheme, so the base grammar takes its '//' for an italic run."
+      "patterns": [
+        {
+          "comment": "A value claims everything up to the next separator.",
+          "match": "(?<==)[^\\s>\"'&#\\]]+",
+          "name": "string.unquoted.memetic-wikitext"
+        },
+        {
+          "include": "#named-param"
+        },
+        {
+          "include": "#fragment"
+        },
+        {
+          "match": "[?&]",
+          "name": "punctuation.separator.query.memetic-wikitext"
+        }
+      ]
     },
     "fragment": {
-      "match": "(#)([A-Za-z_][A-Za-z0-9_-]*)",
+      "comment": "A fragment names an anchor. This corpus writes it with a leading slash and dots.",
+      "match": "(#)([/A-Za-z0-9_][/A-Za-z0-9_.-]*)",
       "captures": {
         "1": {
           "name": "punctuation.definition.anchor.memetic-wikitext"
@@ -387,7 +406,7 @@
       ]
     },
     "named-param-colon": {
-      "match": "\\b([A-Za-z0-9_-]+)(:)(?=[\"'\\[])",
+      "match": "\\b([A-Za-z0-9_-]+)(:)(?=[\"']|\\[\\[)",
       "captures": {
         "1": {
           "name": "entity.other.attribute-name.memetic-wikitext"

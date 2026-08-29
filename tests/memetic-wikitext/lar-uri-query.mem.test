@@ -1,0 +1,18 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A lar: URI carries structure: scheme, path, query, fragment"
+
+# The scheme colon separates a scheme. Only = names a parameter.
+<<~ hoike lar:///ha.ka.ba/turn?stances=A.B&confidence=P:14&p=3#/two-clocks >>
+#         ^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext markup.underline.link.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext
+#            ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext markup.underline.link.lar.memetic-wikitext punctuation.separator.scheme.lar.memetic-wikitext
+#              ^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
+#                             ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext markup.underline.link.lar.memetic-wikitext punctuation.separator.query.memetic-wikitext
+#                              ^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext markup.underline.link.lar.memetic-wikitext entity.other.attribute-name.memetic-wikitext
+#                                      ^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext markup.underline.link.lar.memetic-wikitext string.unquoted.memetic-wikitext
+#                                          ^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext markup.underline.link.lar.memetic-wikitext entity.other.attribute-name.memetic-wikitext
+#                                                     ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext markup.underline.link.lar.memetic-wikitext string.unquoted.memetic-wikitext
+#                                                             ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext markup.underline.link.lar.memetic-wikitext punctuation.definition.anchor.memetic-wikitext
+#                                                              ^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext markup.underline.link.lar.memetic-wikitext entity.name.tag.anchor.memetic-wikitext
+
+# A fragment reads as an anchor in prose too, leading slash and all.
+See lar:///ha.ka.ba/lares/api/pono/RFC-1#/normative-language here.
+#                                        ^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext entity.name.tag.anchor.memetic-wikitext
