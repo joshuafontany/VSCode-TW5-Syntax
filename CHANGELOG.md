@@ -9,6 +9,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 Held for 2.2.0, once the tree-sitter grammar aligns with these scopes.
 
 ### Fixed
+- A fence body carries a scope themes colour. A language branch ends at any fence line, so a
+  nested sample lost its branch part way through and the rest of the block carried only
+  `meta.codeblock`, which no theme styles — the body read in the editor's default foreground,
+  white on a dark theme. The region itself now carries `markup.inline.raw.block`, so a body
+  reads as raw markup whether or not a branch is still running, and an embedded grammar still
+  wins inside its own span.
 - A raw delimiter carries a scope themes colour. A code fence, an inline tick and a typed-block
   marker each sat on `punctuation.definition.*` alone, which no shipped theme styles, so they
   rendered in the editor's default foreground while the code beside them coloured. Every

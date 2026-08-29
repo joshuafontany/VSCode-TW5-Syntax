@@ -4693,6 +4693,7 @@
 			"begin": "^[ \\t]{0,3}(`{3,})(?=[^`\\n]*$)",
 			"end": "^[ \\t]{0,3}(\\1`*)[ \\t]*$",
 			"name": "meta.codeblock.tiddlywiki5",
+			"contentName": "markup.inline.raw.block.tiddlywiki5",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.control.raw.fence.tiddlywiki5 punctuation.definition.raw.markup.begin.tiddlywiki5"

@@ -176,13 +176,13 @@
 >
 >```text/vnd.tiddlywiki
 #^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 keyword.control.raw.fence.tiddlywiki5 punctuation.definition.raw.markup.begin.tiddlywiki5
-#   ^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 entity.other.attribute-name.language.tiddlywiki5
+#   ^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 entity.other.attribute-name.language.tiddlywiki5
 >A fenced block whose language identifier now resolves: ''this reads as wikitext''.
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
-#                                                       ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 bold.punctuation.definition.markup.begin.tiddlywiki5
-#                                                         ^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.bold.tiddlywiki5
-#                                                                               ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 bold.punctuation.definition.markup.end.tiddlywiki5
-#                                                                                 ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                                                       ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 bold.punctuation.definition.markup.begin.tiddlywiki5
+#                                                         ^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.bold.tiddlywiki5
+#                                                                               ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 bold.punctuation.definition.markup.end.tiddlywiki5
+#                                                                                 ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >```
 #^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 keyword.control.raw.fence.tiddlywiki5 punctuation.definition.raw.markup.end.tiddlywiki5
 >
@@ -210,13 +210,13 @@
 >
 >```text/vnd.tiddlywiki
 #^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 keyword.control.raw.fence.tiddlywiki5 punctuation.definition.raw.markup.begin.tiddlywiki5
-#   ^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 entity.other.attribute-name.language.tiddlywiki5
+#   ^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 entity.other.attribute-name.language.tiddlywiki5
 >Wikitext inside the fence: ''this reads as bold''.
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
-#                           ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 bold.punctuation.definition.markup.begin.tiddlywiki5
-#                             ^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.bold.tiddlywiki5
-#                                               ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 bold.punctuation.definition.markup.end.tiddlywiki5
-#                                                 ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                           ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 bold.punctuation.definition.markup.begin.tiddlywiki5
+#                             ^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.bold.tiddlywiki5
+#                                               ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 bold.punctuation.definition.markup.end.tiddlywiki5
+#                                                 ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >```
 #^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 keyword.control.raw.fence.tiddlywiki5 punctuation.definition.raw.markup.end.tiddlywiki5
 >
