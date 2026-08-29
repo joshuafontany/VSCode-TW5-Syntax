@@ -415,8 +415,8 @@
       "comment": "The TiddlyWiki spelling, still valid and still read. The lookahead keeps a colon inside a lar: URI or a ratio from reading as a separator."
     },
     "param-value": {
-      "comment": "Whatever follows a separator carrying no delimiter of its own. A lar: URI, a bearing or a quoted string claims its value before this reaches it.",
-      "match": "(?<=[=:])[^\\s>\"']+",
+      "comment": "Only `=` names a parameter, so only `=` introduces a value. A colon-separated parameter carries a quoted value and the string rule claims it; a scheme colon introduces a path, never a value.",
+      "match": "(?<==)[^\\s>\"']+",
       "name": "string.unquoted.memetic-wikitext"
     }
   },

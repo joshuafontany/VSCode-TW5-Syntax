@@ -45,3 +45,14 @@
 
 <<~ hoike from=? >>
 #              ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext string.unquoted.memetic-wikitext
+
+# Only = names a parameter, so only = introduces a parameter VALUE. A scheme colon introduces a path.
+<<~ hoike ni:///sha-256;abc >>
+#             ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext - string.unquoted.memetic-wikitext
+
+<<~ hoike https://example.com >>
+#                ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext - string.unquoted.memetic-wikitext
+
+# A colon-separated parameter carries a quoted value, and the string rule claims it.
+<<~ kau t(a:"x") >>
+#            ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext string.quoted.double.memetic-wikitext

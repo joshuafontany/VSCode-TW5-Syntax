@@ -4,6 +4,13 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 2.3.3
+
+### Fixed
+- Only `=` introduces a parameter value. The value rule looked behind a colon as well, so a scheme's
+  own path read as an unquoted parameter value — `ni:///sha-256;abc` and `https://example.com` both
+  coloured as though a parameter had claimed them.
+
 ## 2.3.2
 
 ### Removed
