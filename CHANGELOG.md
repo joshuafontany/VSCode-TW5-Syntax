@@ -4,6 +4,13 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 2.3.1
+
+### Changed
+- The corpus and samples carry the framing form the graph now writes: a control sigil names its ends,
+  `from=? -> to=lar:///…`, with the bearing arrow riding between them as an unnamed positional. The
+  grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
+
 ## 2.3.0
 
 ### Added

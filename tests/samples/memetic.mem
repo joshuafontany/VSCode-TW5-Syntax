@@ -1,6 +1,6 @@
 <<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/sample >>
 
-<<^ code="&#x0001;" namespace="⊙" ? -> lar:///ha.ka.ba/lares/api/pono/sample >>
+<<^ code="&#x0001;" namespace="⊙" from=? -> to=lar:///ha.ka.ba/lares/api/pono/sample >>
 ```toml meta
 register = "Synthesis-Canon"
 uri-path = "ha.ka.ba/lares/api/pono/sample"
@@ -29,4 +29,4 @@ Prose naming lar:///ha.ka.ba/lares/api/pono/meme, a ''bold run'' and a `code spa
 
 <<^ code="&#x0003;" >>ni:///sha-256;abc_DEF-123
 
-<<^ code="&#x0004;" -> ? >>
+<<^ code="&#x0004;" -> to=? >>

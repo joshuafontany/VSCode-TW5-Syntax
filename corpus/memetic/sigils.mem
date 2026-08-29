@@ -21,3 +21,7 @@ A body inside the section.
 <<~ kahea greeting(name="Operator") >>
 
 <<~ kahea greeting(name:"Operator") >>
+
+<<~ hoike ? >>
+
+<<~ hoike lar:///a.b.c -> ? >>
