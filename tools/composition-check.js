@@ -22,10 +22,9 @@
 // differently. Closing two samples' constructs turned two pairs green, which is the
 // property working.
 //
-// Three pairs stand open here — tiddlywiki.styleblock, tiddlywiki5.quotes and
-// tiddlywiki5.inline.links each leave something unclosed that the sentinel alone does not
-// reach. That reads as fixture debt rather than grammar debt, so CI reports this rather
-// than blocking on it until those samples close.
+// Readings compare by position rather than by line text. The same line stands in more than
+// one sample, and keying by text compares one sample's reading against another's, which read
+// as three failing pairs while every sample composed.
 
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
@@ -33,29 +32,24 @@ const os = require('node:os');
 const path = require('node:path');
 
 /**
- * The scope annotations a snapshot carries, keyed by source line.
+ * The scope annotations a snapshot carries, in source order.
  *
- * A line appearing twice keeps its first reading; a probe never needs the second, and a
- * later occurrence would otherwise overwrite the reading under comparison.
+ * Readings sit in a list rather than a map keyed by line text: the same text stands in more
+ * than one sample, and keying by it compares one file's reading against another's.
  *
  * @param {string} text  a .snap file's contents
- * @returns {Map<string, string[]>}
+ * @returns {Array<{line: string, reading: string[]}>}
  */
 function readingsOf(text) {
-  const readings = new Map();
+  const readings = [];
   let current = null;
-  let collecting = false;
   for (const line of text.split('\n')) {
     if (line.startsWith('>')) {
-      current = line.slice(1);
-      // A line standing a second time keeps the reading it took the first time; a later
-      // occurrence would otherwise append to the reading under comparison.
-      collecting = Boolean(current.trim()) && !readings.has(current);
-      if (collecting) readings.set(current, []);
+      current = { line: line.slice(1), reading: [] };
+      readings.push(current);
       continue;
     }
-    if (!collecting || !line.startsWith('#')) continue;
-    readings.get(current).push(line);
+    if (current && line.startsWith('#')) current.reading.push(line);
   }
   return readings;
 }
@@ -63,16 +57,21 @@ function readingsOf(text) {
 /**
  * The lines whose reading moved between standing alone and standing in company.
  *
- * @param {Map<string, string[]>} alone
- * @param {Map<string, string[]>} together
+ * Compares index by index. The caller passes the slice of the pair the sample occupies, so
+ * nothing here computes an offset from line counts.
+ *
+ * @param {Array<{line: string, reading: string[]}>} alone
+ * @param {Array<{line: string, reading: string[]}>} slice  the same span, read in company
  * @returns {string[]} source lines that read differently
  */
-function movedLines(alone, together) {
+function movedLines(alone, slice) {
   const moved = [];
-  for (const [line, reading] of alone) {
-    const other = together.get(line);
-    if (!other) continue; // the line never reappeared; a duplicate elsewhere in the pair
-    if (reading.join('\n') !== other.join('\n')) moved.push(line);
+  for (let i = 0; i < alone.length && i < slice.length; i += 1) {
+    const here = alone[i];
+    const there = slice[i];
+    if (!here.line.trim()) continue;
+    if (here.line !== there.line) return [`ALIGNMENT LOST at ${JSON.stringify(here.line.slice(0, 40))}`];
+    if (here.reading.join('\n') !== there.reading.join('\n')) moved.push(here.line);
   }
   return moved;
 }
@@ -136,8 +135,9 @@ function main() {
   let broken = 0;
   for (const { file, i, j } of pairs) {
     const together = readingsOf(fs.readFileSync(`${file}.snap`, 'utf8'));
-    const first = movedLines(soloReadings[i], together);
-    const second = movedLines(soloReadings[j], together);
+    // The pair holds the first sample, then the second; each occupies one end of it.
+    const first = movedLines(soloReadings[i], together.slice(0, soloReadings[i].length));
+    const second = movedLines(soloReadings[j], together.slice(together.length - soloReadings[j].length));
     if (!first.length && !second.length) continue;
     broken++;
     console.error(`\n  ${path.basename(sources[i])} followed by ${path.basename(sources[j])}:`);

@@ -53,6 +53,11 @@ jobs:
       - name: Terminator closure
         run: npm run lint-closure
 
+      # Broad ground, gated on invariants: every declared scope reached, and nothing
+      # colouring the sentence after it.
+      - name: Corpus
+        run: npm run corpus
+
       # The deciding half of tools/upstream-coverage.js, against snapshots whose answer
       # is stated rather than inferred.
       - name: Tool tests
@@ -69,6 +74,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # Every path the manifest names must stand inside the package. The source tree
+      # resolves a file the package excludes; only the built .vsix answers this.
+      - name: The package carries what the manifest names
+        run: npm run package-contents
       - run: npx --yes @vscode/vsce package --allow-missing-repository --out /tmp/tw5-syntax.vsix
       - uses: actions/upload-artifact@v7
         with:
@@ -78,10 +87,8 @@ jobs:
   compose:
     # Does a sample still read the same way with another sample in front of it? A
     # construct reaching past its own file shows up here as the next file reading
-    # differently — the one direction no other gate looks in. Three sample pairs stand
-    # open, so this reports rather than blocks.
+    # differently — the one direction no other gate looks in.
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7

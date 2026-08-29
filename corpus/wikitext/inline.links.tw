@@ -1,0 +1,27 @@
+[[A simple link]]
+
+[[A label|A Target]]
+
+[[A label|https://example.com/path]]
+
+https://example.com/bare
+
+~https://example.com/suppressed
+
+$:/a/system/link
+
+~$:/a/suppressed/system/link
+
+CamelCaseLink
+
+~CamelCaseSuppressed
+
+[img[an-image.png]]
+
+[img[A tooltip|an-image.png]]
+
+[img width=32 [an-image.png]]
+
+[ext[https://example.com/pretty]]
+
+[ext[A label|https://example.com/pretty]]

@@ -4,9 +4,40 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## Unreleased
+## 2.2.0
 
-Held for 2.2.0, once the tree-sitter grammar aligns with these scopes.
+### Fixed
+- `npm run compose` compares readings by position. It keyed them by line text, so a line
+  standing in both samples of a pair compared one sample's reading against the other's, and
+  three pairs read as failing while every sample composed. It blocks in CI now rather than
+  reporting, and a pair whose lines do not line up says so instead of passing quietly.
+- Raw markup carries no verdict. The stray-bracket rule reached inside a fence, an inline tick
+  and a typed block, so a `<` in code read as an illegal character. Nothing inside raw markup
+  answers to a wikitext rule, and the rule stops at that boundary.
+- An `xml` fence names the XML grammar. The branch listed `atom`, `rss` and `xhtml` and not the
+  name most authors reach for, so an `xml` fence fell through to the plain-text branch.
+- Raw markup reads as markup. A code fence, an inline tick and a typed-block marker carry
+  `keyword.control`, and a fence body carries `markup.inline.raw.block` — families a theme
+  colours. They sat on scopes no theme styles, so a fence and its body rendered in the editor's
+  default foreground while the code beside them coloured. A language branch ends at any fence
+  line, so the region carries the body's scope and a nested sample reads as raw markup all the
+  way through; an embedded grammar still wins inside its own span.
+- A fenced block carries the fence rules TiddlyWiki adopted in 5.5.0. An opening fence takes
+  three or more backticks and closes only on a fence at least as long, so a longer fence holds
+  shorter runs and a nested sample reads as one block. The info string admits any character but
+  a backtick, so ` ```C++ `, ` ```js {highlight} ` and a MIME type each name a language, and the
+  language reads as the first word. Either fence may carry up to three spaces of indentation,
+  and a fence indented further neither opens nor closes.
+- A `.multids` line takes its first colon, as `boot.js` does. A line with an empty value defines
+  a tiddler with empty text, and a line carrying no space after the colon defines one too; the
+  rule demanded `": "` and matched neither. An unmatched line opened a wikitext paragraph that
+  ran to the next blank line and took every field line after it, so one empty value cost the
+  rest of the file. Wikitext reads inside a value and never at line level.
+- A sigil binds its parameters with `=`, the memetic standard. TiddlyWiki reads `=` as the
+  new-style separator, which admits a filtered, indirect or macro value where a colon admits
+  neither; the colon spelling stays valid and stays read, in a sigil body and in a control
+  carrier alike. A value carrying no delimiter of its own scopes, while a `lar:` URI, a bearing
+  or a quoted string still claims its own.
 
 ### Added
 - A `memetic-wikitext` language for `*.mem` files (`text/memetic-wikitext+tiddlywiki`), scope
@@ -18,9 +49,22 @@ Held for 2.2.0, once the tree-sitter grammar aligns with these scopes.
 - The sharktooth namespace claims both spacings, and the tooth stands at one dispatch position
   so a close mirrors its open: `<<~name …>>` beside `<<~ name …>>`, `<<~ /ahu >>` beside
   `<<~/ahu >>`, matching the plain register's `<<fragment …>>` / `<</fragment>>`.
-
-The grammar, its configuration and its tests ride in the repository and run in CI; this release
-does not register them, so no language reaches an editor from them.
+- The manifest registers the language and its grammar and the package carries both, so a
+  `*.mem` file opens as Memetic-Wikitext in an editor.
+- `corpus/` and `npm run corpus`: broad ground gated on invariants rather than pinned tokens.
+  Every scope the grammar declares should be reached by some file there — the declared set
+  read from the grammar's own `name` and `contentName` fields, so no hand-kept list can drift
+  — and `corpus/coverage-floor.txt` ratchets the count. The gate also appends a sentence to each file and
+  requires it to carry only what the same sentence carries alone, measuring the baseline from a
+  control rather than assuming it. 29 files across wikitext, `.tid` and memetic, including
+  degenerate files that hold unterminated constructs on purpose.
+- `test-bench/` and `npm run bench`: a disposable editor in a container, carrying the working
+  tree as an unpacked extension, seeded from the corpus. `npm run bench:packaged` installs the
+  built `.vsix` instead. Both run the editor server-side, where a TextMate grammar loads
+  beside the files rather than in a remote UI.
+- `tools/package-contents.js` and `npm run package-contents`: every path the manifest names
+  must stand inside the built package. Each other check reads the source tree, where a file
+  the package excludes still resolves.
 
 ## 2.1.0
 
@@ -72,6 +116,10 @@ does not register them, so no language reaches an editor from them.
 - Unquoted attribute values keep single parentheses again; only `((` opens an MVV reference.
 
 ### Added
+- The readme declares each specification this repository implements — the wikitext grammar, the
+  `.tid`/`.meta` and `.multids` file formats, the syntax-test format, and Memetic-Wikitext — with
+  the scope each carries, and states the superset law: a stock TiddlyWiki reads a `*.mem` file as
+  slightly odd wikitext, so the second reader sees more and the first never loses the file.
 - `tools/nesting-coverage.js` and `npm run nesting-coverage`: which container-and-construct
   pairs TiddlyWiki's own tiddlers actually stand up, and whether the grammar reads the
   construct inside the container as it reads it in a sentence. Containers come from the rules

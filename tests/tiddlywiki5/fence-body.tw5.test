@@ -1,0 +1,24 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A fence body carries a scope themes colour"
+
+# A language branch ends at any fence line, so a nested sample loses its branch part way
+# through. The region carries the raw scope, so the body reads as raw markup either way, and
+# an embedded grammar still wins inside its own span.
+
+```
+A bare fence body.
+#<- text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5
+```
+
+`````
+````
+```
+A body three fences deep.
+#<- text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5
+```
+````
+`````
+
+```js
+var a = 1;
+#<- text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 source.js
+```

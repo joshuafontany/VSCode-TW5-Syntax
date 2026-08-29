@@ -1,0 +1,17 @@
+<<aMacro>>
+
+<<aMacro one two>>
+
+<<aMacro one:"a value">>
+
+<<aMacro param:"""a triple quoted value""">>
+
+<<aMacro a>b>>
+
+<<.def A definition macro>>
+
+$(aVariable)$
+
+$aParameter$
+
+${ [tag[x]] }$

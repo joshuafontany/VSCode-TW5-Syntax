@@ -706,7 +706,7 @@
 #                               ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 >
 >$$$.html
-#^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 punctuation.definition.typedblock.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 keyword.control.raw.typedblock.tiddlywiki5 punctuation.definition.typedblock.begin.tiddlywiki5
 #   ^^^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 entity.other.attribute-name.parse.tiddlywiki5
 >
 ><html> 
@@ -751,7 +751,7 @@
 #      ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.html.basic meta.tag.structure.html.end.html punctuation.definition.tag.end.html
 >
 >$$$
-#^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 punctuation.definition.typedblock.end.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 keyword.control.raw.typedblock.tiddlywiki5 punctuation.definition.typedblock.end.tiddlywiki5
 >
 ><a href={{transcluded!!value}}>test</a>
 #^ text.html.tiddlywiki5 meta.tag.inline.a.start.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5

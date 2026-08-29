@@ -2,7 +2,7 @@
     "name": "tw5-syntax",
     "displayName": "TiddlyWiki5 Syntax",
     "description": "TiddlyWiki5 v5.3.4 Textmate compatible Syntax / Grammar",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "icon": "tw5.png",
     "engines": {
         "vscode": "^1.43.0"
@@ -109,7 +109,22 @@
                     "text/vnd.tiddlywiki"
                 ],
                 "configuration": "./language-configuration.json"
-            }
+            },
+        {
+            "id": "memetic-wikitext",
+            "aliases": [
+                "Memetic-Wikitext",
+                "memetic-wikitext",
+                "mem"
+            ],
+            "extensions": [
+                ".mem"
+            ],
+            "mimetypes": [
+                "text/memetic-wikitext+tiddlywiki"
+            ],
+            "configuration": "./memetic-language-configuration.json"
+        }
         ],
         "grammars": [
             {
@@ -139,7 +154,12 @@
                 "language": "multids",
                 "scopeName": "source.tiddlywiki5.multids-file",
                 "path": "./syntaxes/tw5-multids-file.json"
-            }
+            },
+        {
+            "language": "memetic-wikitext",
+            "scopeName": "text.html.tiddlywiki5.memetic-wikitext",
+            "path": "./syntaxes/memetic-wikitext.json"
+        }
         ],
         "snippets": [
             {
@@ -199,7 +219,13 @@
         "compose": "npm run compose-wikitext",
         "upstream-coverage": "node ./tools/upstream-coverage.js",
         "nesting-coverage": "node ./tools/nesting-coverage.js",
-        "tests-known-gaps": "bash ./run_tests.sh \"./tests/known-gaps/*.tw5.test\"",
+        "corpus": "node ./tools/corpus-check.js",
+        "corpus-verbose": "node ./tools/corpus-check.js --verbose",
+        "package-contents": "node ./tools/package-contents.js",
+        "bench": "bash ./tools/bench.sh live",
+        "bench:packaged": "bash ./tools/bench.sh packaged",
+        "bench:down": "bash ./tools/bench.sh down",
+        "tests-known-gaps": "bash -c 'ls ./tests/known-gaps/*.tw5.test >/dev/null 2>&1 && bash ./run_tests.sh \"./tests/known-gaps/*.tw5.test\" || echo \"no known gap stands\"'",
         "snap-wikitext": "node ./tools/snapshot-check.js text.html.tiddlywiki5 './tests/samples/*.tw'",
         "snap-tid": "node ./tools/snapshot-check.js source.tiddlywiki5.tid-file './tests/samples/*.tid'",
         "snap-meta": "node ./tools/snapshot-check.js source.tiddlywiki5.tid-file './tests/samples/*.meta'",

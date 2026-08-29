@@ -1,0 +1,13 @@
+An unterminated ''bold run that reaches the end of its block.
+
+An unterminated `code span in prose.
+
+An unterminated [[link
+
+An unterminated {{transclusion
+
+<<<
+An unterminated quote block.
+
+@@color:red;
+An unterminated style block.

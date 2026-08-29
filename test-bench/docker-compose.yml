@@ -1,0 +1,51 @@
+# A disposable editor for looking at the grammar with human eyes.
+#
+#   live      — the working tree loaded as an unpacked extension. Edit a syntax, reload the
+#               browser window, look again.
+#   packaged  — the built .vsix installed the way a user installs it, which answers the one
+#               question the source tree cannot: does what SHIPS carry what the manifest names.
+#
+# Both run the editor server-side, so the grammar loads where the files live and the
+# UI-versus-remote split that hides a local change cannot arise.
+#
+# The server writes its state into bind mounts the bench script creates, so nothing needs to
+# be writable inside the image and the working tree enters read-only.
+#
+# The workspace binds twice: at /workspace, which the URL names, and under the editor's home,
+# which is where a browser lands when the URL carries no folder.
+
+services:
+  live:
+    image: gitpod/openvscode-server:latest
+    container_name: tw5-bench-live
+    ports: ["3000:3000"]
+    volumes:
+      - ../:/src:ro
+      - ./exts-live:/exts
+      - ./data-live:/data
+      - ./workspace:/workspace
+      - ./workspace:/home/workspace/bench
+    command:
+      - --host=0.0.0.0
+      - --port=3000
+      - --without-connection-token
+      - --extensions-dir=/exts
+      - --user-data-dir=/data
+      - /workspace
+
+  packaged:
+    image: gitpod/openvscode-server:latest
+    container_name: tw5-bench-packaged
+    ports: ["3001:3000"]
+    volumes:
+      - ./exts-packaged:/exts
+      - ./data-packaged:/data
+      - ./workspace:/workspace
+      - ./workspace:/home/workspace/bench
+    command:
+      - --host=0.0.0.0
+      - --port=3000
+      - --without-connection-token
+      - --extensions-dir=/exts
+      - --user-data-dir=/data
+      - /workspace

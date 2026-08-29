@@ -1,0 +1,31 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "Raw markup carries no verdict"
+
+# Nothing inside raw markup answers to wikitext, so the stray-bracket rule stops at the
+# boundary of a fence, an inline tick and a typed block. A bracket in prose still reads as one.
+
+Inline `a < b` code.
+#          ^ - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+
+```
+a < b in a bare fence
+# ^ - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+```
+
+```notalanguage
+x < y
+# ^ - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+```
+
+$$$text/plain
+x < y
+# ^ - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+$$$
+
+# A stray bracket in prose keeps its verdict.
+A stray < in prose.
+#       ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+
+# An xml fence names its own grammar.
+```xml
+<a/>
+```

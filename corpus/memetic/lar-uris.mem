@@ -1,0 +1,9 @@
+A local address lar:///ha.ka.ba/lares/api/pono/meme in prose.
+
+A session address lar://alias:grant@host/a.b.c/path in prose.
+
+An address with a fragment lar:///a.b.c/path#section in prose.
+
+Two addresses lar:///a.b.c and lar:///d.e.f on one line.
+
+An ordinary URL https://example.com beside lar:///a.b.c

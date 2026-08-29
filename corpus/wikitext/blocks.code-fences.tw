@@ -1,0 +1,45 @@
+```
+A bare fence.
+```
+
+```js
+var a = b + c;
+```
+
+```C++
+int a = 1;
+```
+
+```text/vnd.tiddlywiki
+A wikitext fence carrying {{X}} and ''bold''.
+```
+
+```js {highlight}
+var extra = "info words after the language";
+```
+
+````
+```js
+A three-backtick sample held inside four.
+```
+````
+
+`````
+````
+```
+Three lengths nested.
+```
+````
+`````
+
+   ```js
+   An indented fence, opening and closing at the same indent.
+   ```
+
+$$$text/plain
+A typed block.
+$$$
+
+$$$.myclass>text/plain
+A typed block rendering as text.
+$$$

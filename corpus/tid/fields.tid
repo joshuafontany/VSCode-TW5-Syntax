@@ -1,0 +1,18 @@
+title: Fields Everywhere
+created: 20260101120000000
+modified: 20260101120000000
+tags: [[Tag One]] TagTwo
+type: text/vnd.tiddlywiki
+caption: A caption
+color: #ff0000
+custom-field: a custom value
+
+The body begins after the first blank line.
+
+```js
+var inside = "a fence inside a tid body";
+```
+
+$$$text/plain
+A typed block inside a tid body.
+$$$

@@ -1,0 +1,15 @@
+@@color:red;
+A style block by declaration.
+@@
+
+@@.myclass
+A style block by class.
+@@
+
+@@color:red;background:yellow;.myclass
+Both at once.
+@@
+
+@@color:red;an inline style run@@ after it.
+
+@@.myclass an inline class run@@ after it.

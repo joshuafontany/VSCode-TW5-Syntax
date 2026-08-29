@@ -75,7 +75,7 @@
     },
     "control-soh": {
       "name": "meta.carrier.control.soh.memetic-wikitext",
-      "begin": "(<<)(\\^)(?=\\s+code:\"&#x00(01|11);\")",
+      "begin": "(<<)(\\^)(?=\\s+code\\s*[=:]\\s*\"&#x00(01|11);\")",
       "end": "(>>)|$",
       "beginCaptures": {
         "1": {
@@ -98,7 +98,7 @@
     },
     "control-stx": {
       "name": "meta.carrier.control.stx.memetic-wikitext",
-      "begin": "(<<)(\\^)(?=\\s+code:\"&#x0002;\")",
+      "begin": "(<<)(\\^)(?=\\s+code\\s*[=:]\\s*\"&#x0002;\")",
       "end": "(>>)|$",
       "beginCaptures": {
         "1": {
@@ -121,7 +121,7 @@
     },
     "control-etx": {
       "name": "meta.carrier.control.etx.memetic-wikitext",
-      "begin": "(<<)(\\^)(?=\\s+code:\"&#x00(03|17);\")",
+      "begin": "(<<)(\\^)(?=\\s+code\\s*[=:]\\s*\"&#x00(03|17);\")",
       "end": "(>>)(\\s*(ni:///[a-z0-9-]+;[A-Za-z0-9_-]+))?|$",
       "beginCaptures": {
         "1": {
@@ -147,7 +147,7 @@
     },
     "control-eot": {
       "name": "meta.carrier.control.eot.memetic-wikitext",
-      "begin": "(<<)(\\^)(?=\\s+code:\"&#x00(04|14);\")",
+      "begin": "(<<)(\\^)(?=\\s+code\\s*[=:]\\s*\"&#x00(04|14);\")",
       "end": "(>>)|$",
       "beginCaptures": {
         "1": {
@@ -306,6 +306,12 @@
           "include": "#named-param"
         },
         {
+          "include": "#named-param-colon"
+        },
+        {
+          "include": "#param-value"
+        },
+        {
           "include": "#string"
         }
       ]
@@ -350,13 +356,14 @@
       }
     },
     "named-param": {
-      "match": "\\b([A-Za-z0-9_-]+)(:)(?=[\"'\\[])",
+      "comment": "The memetic standard writes key=value. TiddlyWiki reads `=` as the new-style separator (parseMacroParameterAsAttribute in core/modules/parsers/parseutils.js), which is what admits a filtered, indirect or macro value; a colon admits neither and demands a strict identifier so $:/foo cannot mis-parse.",
+      "match": "\\b([A-Za-z0-9_-]+)\\s*(=)",
       "captures": {
         "1": {
           "name": "entity.other.attribute-name.memetic-wikitext"
         },
         "2": {
-          "name": "punctuation.separator.key-value.memetic-wikitext"
+          "name": "keyword.operator.assignment.memetic-wikitext"
         }
       }
     },
@@ -378,6 +385,23 @@
           "end": "\\]\\]|$"
         }
       ]
+    },
+    "named-param-colon": {
+      "match": "\\b([A-Za-z0-9_-]+)(:)(?=[\"'\\[])",
+      "captures": {
+        "1": {
+          "name": "entity.other.attribute-name.memetic-wikitext"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.memetic-wikitext"
+        }
+      },
+      "comment": "The TiddlyWiki spelling, still valid and still read. The lookahead keeps a colon inside a lar: URI or a ratio from reading as a separator."
+    },
+    "param-value": {
+      "comment": "Whatever follows a separator carrying no delimiter of its own. A lar: URI, a bearing or a quoted string claims its value before this reaches it.",
+      "match": "(?<=[=:])[^\\s>\"']+",
+      "name": "string.unquoted.memetic-wikitext"
     }
   },
   "injections": {

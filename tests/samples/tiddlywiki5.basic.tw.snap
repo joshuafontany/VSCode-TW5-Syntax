@@ -1576,9 +1576,9 @@
 #          ^^^^^^ text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.classes.tiddlywiki5 entity.other.attribute-name.class.css punctuation.definition.entity.css entity.other.attribute-name.class.css
 >Yep, looks ugly, but that's a possibility to nest `styleblocks`.
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5
-#                                                  ^ text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
+#                                                  ^ text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
 #                                                   ^^^^^^^^^^^ text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.inline.raw.single.tiddlywiki5
-#                                                              ^ text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
+#                                                              ^ text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
 #                                                               ^^ text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5
 >@@* In TW5 wikitext it's legal to start any block definition here,
 #^^ text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.end.bottom.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.end.tiddlywiki5
@@ -1595,9 +1595,9 @@
 #                     ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css support.constant.color.w3c-standard-color-name.css
 #                         ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css punctuation.terminator.rule.css
 #                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
-#                                                                               ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
+#                                                                               ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
 #                                                                                ^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.inline.raw.single.tiddlywiki5
-#                                                                                           ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
+#                                                                                           ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
 #                                                                                            ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
 #                                                                                             ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.style.markup.end.tiddlywiki5
 >
@@ -2138,10 +2138,9 @@
 #        ^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
 >translates to `<br>` in HTML.""" And
 #^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
-#              ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
-#               ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#                ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 markup.inline.raw.single.tiddlywiki5
-#                   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
+#              ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
+#               ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 markup.inline.raw.single.tiddlywiki5
+#                   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
 #                    ^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
 #                             ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.hardlinebreaks.end.tiddlywiki5
 #                                ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
@@ -2263,9 +2262,9 @@
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
 >If there are no matching block rules, then things are parsed inline and become wrapped in `HTMLParagraphElement`.
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
-#                                                                                          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
+#                                                                                          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
 #                                                                                           ^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.inline.raw.single.tiddlywiki5
-#                                                                                                               ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
+#                                                                                                               ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
 #                                                                                                                ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
 >
 >Paragraphs last until two consecutive EOL are met.

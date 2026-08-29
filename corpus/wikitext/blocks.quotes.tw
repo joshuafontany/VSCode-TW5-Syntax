@@ -1,0 +1,15 @@
+<<<
+A simple quote block.
+<<<
+
+<<<.myclass
+A quote block carrying a class.
+<<<
+
+<<< A cite line
+The body of the quote.
+<<< The closing cite
+
+<<<<
+A deeper quote marker.
+<<<<

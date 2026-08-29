@@ -1,0 +1,33 @@
+<style>
+.a-rule { color: red; }
+</style>
+
+<script>
+var inScript = 1;
+</script>
+
+<pre>
+preformatted
+</pre>
+
+<p>A paragraph element.</p>
+
+<a href="https://example.com">An anchor</a>
+
+<img src="an-image.png" alt="alt text">
+
+<table><tr><td>a cell</td></tr></table>
+
+<ul><li>an item</li></ul>
+
+<h1>An html heading</h1>
+
+<input type="text" value="a value">
+
+<svg xmlns="http://www.w3.org/2000/svg"><circle cx="1" cy="1" r="1"/></svg>
+
+<section class="wrapper" data-attr="value" hidden>
+
+Block content.
+
+</section>

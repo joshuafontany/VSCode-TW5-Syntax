@@ -109,9 +109,9 @@
 #^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
 #                ^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.hardlinebreaks.end.tiddlywiki5
 #                   ^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.other.style.tiddlywiki5
-#                         ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
+#                         ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.other.style.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
 #                          ^^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.other.style.tiddlywiki5 markup.inline.raw.single.tiddlywiki5
-#                                         ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
+#                                         ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.other.style.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
 #                                          ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.other.style.tiddlywiki5
 #                                           ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.style.markup.end.tiddlywiki5
 >

@@ -1,0 +1,9 @@
+title: $:/language/Example/
+type: text/vnd.tiddlywiki
+
+Greeting: Hello, ''world''
+Farewell: Goodbye, //friend//
+Empty:
+WithColon: a value: carrying a colon
+WithWikitext: a value carrying {{A/Transclusion}} and [[a link|T]]
+Nested/Key: a slashed key

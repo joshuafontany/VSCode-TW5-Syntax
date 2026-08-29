@@ -1,0 +1,17 @@
+A stray < angle bracket in prose.
+
+A stray > angle bracket in prose.
+
+<0invalid-tag-name>
+
+</ >
+
+<$>
+
+Text with a lone & ampersand.
+
+|a row that never closes
+
+[[
+
+{{
