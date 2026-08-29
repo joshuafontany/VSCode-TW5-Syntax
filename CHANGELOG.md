@@ -12,6 +12,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   an address colours the way the rest of a call does.
 
 ### Fixed
+- An unrecognized tag name carries no verdict. TiddlyWiki parses any tag name into a node, and the
+  grammar condemned namespaced elements inside SVG — `<dc:date>` in TiddlyWiki's own shipped
+  tiddlers among them. Removed at all seven declaration sites.
 - A style block's closing marker takes the rest of its line as content. TiddlyWiki builds a
   paragraph node from it and raises nothing, and the grammar called that span illegal.
 - Only `=` introduces a parameter value. The value rule looked behind a colon as well, so a scheme's

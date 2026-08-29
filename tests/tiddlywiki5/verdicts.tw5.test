@@ -61,3 +61,21 @@ content
 # the verdict names HTML's own deprecation, never a refusal by this parser.
 <div align="left">x</div>
 #    ^^^^^ text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 meta.attribute.align.html.tiddlywiki5 invalid.deprecated.entity.other.attribute-name.html.tiddlywiki5
+
+# A self-closing tag with a name TiddlyWiki does not know still builds a node.
+<mytag />
+#^^^^^ text.html.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+
+<foo bar="baz" />
+#^^^ - invalid.illegal.unrecognized-tag.html.tiddlywiki5
+
+# An equals sign where a value belongs leaves the whole tag as plain text, so the verdict stands.
+<div style==>x</div>
+#          ^ text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 invalid.illegal.unexpected-equals-sign.html.tiddlywiki5
+
+# SVG stands in TiddlyWiki's own shipped tiddlers, and its elements build nodes like any other.
+<svg width="10"><circle cx="1" cy="1" r="1" fill="blue"/></svg>
+#                 ^^^^^^ - invalid.illegal.unrecognized-tag.html.tiddlywiki5
+
+<path d="M 1 2" fill="black"/>
+#^^^^ - invalid.illegal.unrecognized-tag.html.tiddlywiki5

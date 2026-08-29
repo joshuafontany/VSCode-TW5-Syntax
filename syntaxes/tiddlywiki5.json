@@ -1865,9 +1865,6 @@
 								"2": {
 									"name": "entity.name.tag.html.tiddlywiki5"
 								},
-								"3": {
-									"name": "invalid.illegal.unrecognized-tag.html.tiddlywiki5"
-								},
 								"4": {
 									"patterns": [
 										{
@@ -1894,9 +1891,6 @@
 								"2": {
 									"name": "entity.name.tag.html.tiddlywiki5"
 								},
-								"3": {
-									"name": "invalid.illegal.unrecognized-tag.html.tiddlywiki5"
-								},
 								"4": {
 									"patterns": [
 										{
@@ -1918,9 +1912,6 @@
 								},
 								"2": {
 									"name": "entity.name.tag.html.tiddlywiki5"
-								},
-								"3": {
-									"name": "invalid.illegal.unrecognized-tag.html.tiddlywiki5"
 								},
 								"4": {
 									"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -2532,9 +2523,6 @@
 								"2": {
 									"name": "entity.name.tag.html.tiddlywiki5"
 								},
-								"3": {
-									"name": "invalid.illegal.unrecognized-tag.html.tiddlywiki5"
-								},
 								"4": {
 									"patterns": [
 										{
@@ -2561,9 +2549,6 @@
 								"2": {
 									"name": "entity.name.tag.html.tiddlywiki5"
 								},
-								"3": {
-									"name": "invalid.illegal.unrecognized-tag.html.tiddlywiki5"
-								},
 								"4": {
 									"patterns": [
 										{
@@ -2585,9 +2570,6 @@
 								},
 								"2": {
 									"name": "entity.name.tag.html.tiddlywiki5"
-								},
-								"3": {
-									"name": "invalid.illegal.unrecognized-tag.html.tiddlywiki5"
 								},
 								"4": {
 									"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -2638,9 +2620,6 @@
 						},
 						"2": {
 							"name": "entity.name.tag.html.tiddlywiki5"
-						},
-						"3": {
-							"name": "invalid.illegal.unrecognized-tag.html.tiddlywiki5"
 						}
 					},
 					"end": "((?: ?/)?>)",
