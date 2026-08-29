@@ -79,3 +79,14 @@ content
 
 <path d="M 1 2" fill="black"/>
 #^^^^ - invalid.illegal.unrecognized-tag.html.tiddlywiki5
+
+# reTagName admits the dollar and the dot, so a parameter substitution stands as a tag name.
+<$type$ class="x">y</$type$>
+#<- - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+
+# A slash before the closing bracket marks a tag self-closing, for any tag at all.
+<th/>
+#  ^ - invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+
+<div style="height:0.5em;"/>
+#                         ^ - invalid.illegal.character-not-allowed-here.html.tiddlywiki5

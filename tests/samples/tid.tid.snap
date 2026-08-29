@@ -2980,13 +2980,12 @@
 ><div/>
 #^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
 # ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
-#    ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#    ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5
 #     ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 ><div />
 #^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
 # ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
-#    ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5
-#     ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#    ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5
 #      ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 ><div></div>
 #^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5

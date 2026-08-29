@@ -12,6 +12,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   an address colours the way the rest of a call does.
 
 ### Fixed
+- A slash before the closing bracket marks a tag self-closing, for any tag. Four attribute catch-alls
+  swallowed it and called it a character not allowed here, so `<th/>` and `<div style="…"/>` — both
+  ordinary in TiddlyWiki's own tiddlers — carried a verdict.
+- A tag name admits the dollar and the dot, matching the host's own `reTagName`. A parameter
+  substitution standing as a tag name (`<$type$ class="x">`) read as a stray angle bracket.
 - An unrecognized tag name carries no verdict. TiddlyWiki parses any tag name into a node, and the
   grammar condemned namespaced elements inside SVG — `<dc:date>` in TiddlyWiki's own shipped
   tiddlers among them. Removed at all seven declaration sites.
