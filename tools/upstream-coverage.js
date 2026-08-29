@@ -31,11 +31,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 
-const BASE = new Set([
-  'text.html.tiddlywiki5',
-  'meta.paragraph.tiddlywiki5',
-  'markup.other.paragraph.tiddlywiki5'
-]);
+const { BASE, readSnapshot } = require('./snapshot-format.js');
 
 /**
  * A snapshot, read into a verdict per source line: did the grammar scope that line's
@@ -54,32 +50,18 @@ const BASE = new Set([
  */
 function judgeSnapshot(text) {
   const verdict = new Map();
-  let current = null;
-  let decided = false;
-  const close = () => {
-    if (current !== null && current.trim() && !decided) verdict.set(current, false);
-  };
-  for (const line of text.split('\n')) {
-    if (line.startsWith('>')) {
-      close();
-      current = line.slice(1);
-      decided = verdict.has(current);
+  for (const { source, annotations } of readSnapshot(text)) {
+    // A line repeated in one snapshot answers once, on its first showing.
+    if (!source.trim() || verdict.has(source)) continue;
+    const opening = annotations[0];
+    // No annotation at all, or a first annotation past column 0: the construct's own
+    // opening mark carries nothing, whatever a later column holds.
+    if (!opening || opening.start !== 0) {
+      verdict.set(source, false);
       continue;
     }
-    if (current === null || !current.trim() || decided) continue;
-    // `#^ …` annotates source column 0; `# ^ …` annotates column 1. Only an annotation
-    // at column 0 speaks for the construct's own opening mark.
-    const m = /^#(\s*)(\^+)\s+(\S.*)$/.exec(line);
-    if (!m) continue;
-    if (m[1].length !== 0) {
-      verdict.set(current, false);
-      decided = true;
-      continue;
-    }
-    verdict.set(current, m[3].split(/\s+/).some((s) => s && !BASE.has(s)));
-    decided = true;
+    verdict.set(source, opening.scopes.some((sc) => !BASE.has(sc)));
   }
-  close();
   return verdict;
 }
 
@@ -223,7 +205,16 @@ function main() {
     console.log(`\n  cases the snapshot never reported on: ${unseen.length}`);
     for (const u of unseen.slice(0, 5)) console.log(`     ${JSON.stringify(u).slice(0, 84)}`);
   }
-  console.log(`\n  rules with an unscoped case: ${gaps}`);
+  // A rule that collected no case is not a rule that passed. Dropping it from the report
+  // leaves the closing tally speaking for rules it never measured — the corpus filters
+  // below carry no alphanumeric, so the emphasis family, dash, codeinline, hardlinebreaks
+  // and the comment rules reach this line every run.
+  const silent = rules.map((r) => r.name).filter((n) => !byRule.has(n));
+  if (silent.length) {
+    console.log(`\n  rules this sweep never reached (no case in the corpus): ${silent.length}`);
+    console.log(`     ${silent.join(' ')}`);
+  }
+  console.log(`\n  rules with an unscoped case: ${gaps} (of ${byRule.size} measured)`);
   process.exit(gaps || unseen.length ? 1 : 0);
 }
 

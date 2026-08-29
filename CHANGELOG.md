@@ -7,6 +7,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Added
+- The grammar answers to TiddlyWiki's own parser. `tools/tw5-oracle.js` boots TiddlyWiki and
+  reports what it BUILDS at a span; `tools/overreach-check.js` takes every scope the grammar
+  paints back to that parser and reports each one standing over text TiddlyWiki refused. The
+  standing coverage sweep asks whether the grammar READS what TiddlyWiki reads; nothing asked
+  the other direction, where a scope over unparsed text looks exactly like a scope doing its
+  job. `npm run overreach` runs it over the samples, `npm run overreach-corpus` over
+  TiddlyWiki's own tiddlers — a corpus the tool builds rather than looks for.
 - A `lar:` URI reads its own structure. The path, each `?key=value` in the query, the `&` between
   them and a `#/fragment` now carry their own scopes instead of riding in one unbroken string, so
   an address colours the way the rest of a call does.
@@ -28,9 +35,19 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Only `=` introduces a parameter value. The value rule looked behind a colon as well, so a scheme's
   own path read as an unquoted parameter value — `ni:///sha-256;abc` and `https://example.com` both
   coloured as though a parameter had claimed them.
+- The coverage sweep names the rules it never reached. Seventeen rules carry a literal regex
+  and collect no case from the corpus — a construct written only in punctuation cannot pass the
+  alphanumeric filter — and each one simply vanished from the report, leaving `rules with an
+  unscoped case: 0` speaking for rules nothing had measured.
 - The corpus and samples carry the framing form the graph now writes: a control sigil names its ends,
   `from=? -> to=lar:///…`, with the bearing arrow riding between them as an unnamed positional. The
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
+
+### Changed
+- One reader for the `.snap` format. Four tools each parsed it by hand, each carrying its own
+  reading of the caret-column convention — the annotation's `#` holds column 0, so a caret at
+  index N names source column N, and the assertion format counts differently. `tools/snapshot-format.js`
+  now states that once.
 
 ### Removed
 - A bare `?` carries no bearing scope. An end names itself — `from=?`, `to=?` — so the glyph rides as
