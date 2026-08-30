@@ -4,16 +4,13 @@
 # end of the line and the tiddler continues beneath it.
 #
 # A body ENDING IN A CLOSING PARENTHESIS leaves the cursor after a parenthesis at end of line,
-# which the multiline branch waits for — its begin reads (?<=\))\s*$ — so that
-# branch opens there and swallows the rest of the file hunting an \end that never comes.
-# TiddlyWiki own documentation carries the shape: filters/examples/search-replace Operator
-# (Examples) defines a regular-expression macro whose body reads as a group, and every line of
-# prose below it colours as macro body.
+# which the multiline branch waits for — its begin reads (?<=\))\s*$ — so a single rule holding
+# both forms opened a block there and swallowed the rest of the file hunting an \end that never
+# came. TiddlyWiki own documentation carries the shape: filters/examples/search-replace Operator
+# (Examples) defines a regular-expression macro whose body reads as a group.
 #
-# Anchoring the multiline branch to the parameter list with \G cures this specimen and breaks
-# the genuine block form, whose parameter close does not always end the match preceding it.
-# The cure wants a discriminator at the define opener, where one regexp reads the whole line,
-# rather than a guard on the branch.
+# The line names the form before either branch can open. The parameter list ends at the FIRST
+# closing parenthesis, balanced or not, because macrodef.js ends it there.
 
 ! A body of plain text ends at the line
 

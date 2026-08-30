@@ -316,91 +316,16 @@
 			]
 		},
 		"define": {
-			"begin": "^\\s*(\\\\)(define)\\s+([^\\s\\$\\(]+)(?=\\s*\\()",
-			"end": "^",
-			"name": "meta.directive.variable.macro.tiddlywiki5",
-			"beginCaptures": {
-				"1": {
-					"name": "punctuation.definition.directive.tiddlywiki5"
-				},
-				"2": {
-					"name": "keyword.control.directive.define.tiddlywiki5"
-				},
-				"3": {
-					"name": "entity.name.variable.macro.tiddlywiki5"
-				}
-			},
+			"comment": "A define takes one of two forms, and the LINE decides which before either can open. A body ending in a closing parenthesis leaves the cursor after a ')' at end of line, which is where the block form waits, so one rule holding both let a single-line define open a block and swallow the file hunting an \\end that never came.\n\nThe parameter list ends at the FIRST closing parenthesis, balanced or not, because that is where macrodef.js ends it: its regexp reads \\(\\s*([^)]*)\\). TiddlyWiki's own samples define macros as myMacro(( arg1 : default)) and myMacro( arg1 : default,arg2?)), and a lookahead demanding balance reads neither.\n\nA parameter list spanning several lines cannot be read by a lookahead, which sees one line, so that form keeps both branches available as it always had them.",
 			"patterns": [
 				{
-					"comment": "Match single line macro body.",
-					"match": "(?<=\\))\\s*(\\S.*)$",
-					"name": "meta.variable.macro-inline.tiddlywiki5",
-					"captures": {
-						"1": {
-							"begin": "^",
-							"end": "$",
-							"name": "meta.variable.macro.body.tiddlywiki5",
-							"patterns": [
-								{
-									"include": "#wikitext"
-								}
-							]
-						}
-					}
+					"include": "#define-open-params"
 				},
 				{
-					"comment": "Match multiline macro body.",
-					"begin": "(?<=\\))\\s*$",
-					"end": "(\\\\)(end)\\s*(\\S+)?$",
-					"name": "meta.variable.macro-block.tiddlywiki5",
-					"contentName": "meta.variable.macro.body.tiddlywiki5",
-					"endCaptures": {
-						"1": {
-							"name": "punctuation.definition.directive.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.control.directive.end.tiddlywiki5"
-						},
-						"3": {
-							"name": "entity.name.variable.macro.tiddlywiki5"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#define"
-						},
-						{
-							"include": "#function"
-						},
-						{
-							"include": "#procedure"
-						},
-						{
-							"include": "#widget"
-						},
-						{
-							"include": "#parameters"
-						},
-						{
-							"include": "#whitespace"
-						},
-						{
-							"include": "#block"
-						},
-						{
-							"begin": "(?!\\s*$)",
-							"end": "(?:(?=\\\\end))|^$",
-							"name": "markup.other.paragraph.tiddlywiki5",
-							"patterns": [
-								{
-									"include": "#inline"
-								}
-							]
-						}
-					]
+					"include": "#define-block"
 				},
 				{
-					"include": "#pragma-parameters"
+					"include": "#define-inline"
 				}
 			]
 		},
@@ -6709,6 +6634,208 @@
 					"comment": "Match separators.",
 					"match": "[^\\w\\-\\>\\s]+",
 					"name": "punctuation.separator.function.macro.parameter.tiddlywiki5"
+				}
+			]
+		},
+		"define-block": {
+			"comment": "A define whose parameter list ends its line: the body runs to \\end.",
+			"begin": "^\\s*(\\\\)(define)\\s+([^\\s\\$\\(]+)(?=\\s*\\([^)]*\\)\\s*$)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.directive.tiddlywiki5"
+				},
+				"2": {
+					"name": "keyword.control.directive.define.tiddlywiki5"
+				},
+				"3": {
+					"name": "entity.name.variable.macro.tiddlywiki5"
+				}
+			},
+			"end": "^",
+			"name": "meta.directive.variable.macro.tiddlywiki5",
+			"patterns": [
+				{
+					"include": "#pragma-parameters"
+				},
+				{
+					"comment": "Match multiline macro body.",
+					"begin": "(?<=\\))\\s*$",
+					"end": "(\\\\)(end)\\s*(\\S+)?$",
+					"name": "meta.variable.macro-block.tiddlywiki5",
+					"contentName": "meta.variable.macro.body.tiddlywiki5",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.directive.tiddlywiki5"
+						},
+						"2": {
+							"name": "keyword.control.directive.end.tiddlywiki5"
+						},
+						"3": {
+							"name": "entity.name.variable.macro.tiddlywiki5"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#define"
+						},
+						{
+							"include": "#function"
+						},
+						{
+							"include": "#procedure"
+						},
+						{
+							"include": "#widget"
+						},
+						{
+							"include": "#parameters"
+						},
+						{
+							"include": "#whitespace"
+						},
+						{
+							"include": "#block"
+						},
+						{
+							"begin": "(?!\\s*$)",
+							"end": "(?:(?=\\\\end))|^$",
+							"name": "markup.other.paragraph.tiddlywiki5",
+							"patterns": [
+								{
+									"include": "#inline"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		"define-inline": {
+			"comment": "A define carrying its body on the same line: the definition ends where the line does.",
+			"begin": "^\\s*(\\\\)(define)\\s+([^\\s\\$\\(]+)(?=\\s*\\([^)]*\\)\\s*\\S)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.directive.tiddlywiki5"
+				},
+				"2": {
+					"name": "keyword.control.directive.define.tiddlywiki5"
+				},
+				"3": {
+					"name": "entity.name.variable.macro.tiddlywiki5"
+				}
+			},
+			"end": "^",
+			"name": "meta.directive.variable.macro.tiddlywiki5",
+			"patterns": [
+				{
+					"include": "#pragma-parameters"
+				},
+				{
+					"comment": "Match single line macro body.",
+					"match": "(?<=\\))\\s*(\\S.*)$",
+					"name": "meta.variable.macro-inline.tiddlywiki5",
+					"captures": {
+						"1": {
+							"begin": "^",
+							"end": "$",
+							"name": "meta.variable.macro.body.tiddlywiki5",
+							"patterns": [
+								{
+									"include": "#wikitext"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		"define-open-params": {
+			"comment": "A define whose parameter list opens on this line and closes on a later one. The line names no form, so both stand.",
+			"begin": "^\\s*(\\\\)(define)\\s+([^\\s\\$\\(]+)(?=\\s*\\([^)]*$)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.directive.tiddlywiki5"
+				},
+				"2": {
+					"name": "keyword.control.directive.define.tiddlywiki5"
+				},
+				"3": {
+					"name": "entity.name.variable.macro.tiddlywiki5"
+				}
+			},
+			"end": "^",
+			"name": "meta.directive.variable.macro.tiddlywiki5",
+			"patterns": [
+				{
+					"include": "#pragma-parameters"
+				},
+				{
+					"comment": "Match multiline macro body.",
+					"begin": "(?<=\\))\\s*$",
+					"end": "(\\\\)(end)\\s*(\\S+)?$",
+					"name": "meta.variable.macro-block.tiddlywiki5",
+					"contentName": "meta.variable.macro.body.tiddlywiki5",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.directive.tiddlywiki5"
+						},
+						"2": {
+							"name": "keyword.control.directive.end.tiddlywiki5"
+						},
+						"3": {
+							"name": "entity.name.variable.macro.tiddlywiki5"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#define"
+						},
+						{
+							"include": "#function"
+						},
+						{
+							"include": "#procedure"
+						},
+						{
+							"include": "#widget"
+						},
+						{
+							"include": "#parameters"
+						},
+						{
+							"include": "#whitespace"
+						},
+						{
+							"include": "#block"
+						},
+						{
+							"begin": "(?!\\s*$)",
+							"end": "(?:(?=\\\\end))|^$",
+							"name": "markup.other.paragraph.tiddlywiki5",
+							"patterns": [
+								{
+									"include": "#inline"
+								}
+							]
+						}
+					]
+				},
+				{
+					"comment": "Match single line macro body.",
+					"match": "(?<=\\))\\s*(\\S.*)$",
+					"name": "meta.variable.macro-inline.tiddlywiki5",
+					"captures": {
+						"1": {
+							"begin": "^",
+							"end": "$",
+							"name": "meta.variable.macro.body.tiddlywiki5",
+							"patterns": [
+								{
+									"include": "#wikitext"
+								}
+							]
+						}
+					}
 				}
 			]
 		}

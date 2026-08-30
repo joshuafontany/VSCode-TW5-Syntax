@@ -7,6 +7,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A single-line `\define` ends where its line ends, whatever its body closes with. A body ending
+  in a closing parenthesis left the cursor after a `)` at end of line, which is exactly where the
+  multiline form waits, so the definition opened a block there and swallowed the rest of the file
+  hunting an `\end` that never came. TiddlyWiki's own documentation carries the shape — a
+  regular-expression macro whose body reads as a group — and every line of prose below it coloured
+  as macro body. The line now names the form before either branch can open, and the parameter list
+  ends at the FIRST closing parenthesis, balanced or not, because `macrodef.js` ends it there.
 - Only tiddlers TiddlyWiki parses as wikitext answer to the grammar. A `.tid` declares its type
   in its header, and the corpus sweep stripped that header and asked about every tiddler alike —
   comparing the grammar against a parser that would never have run on a `text/plain` config file
@@ -89,7 +96,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   unexplained: 243 spans stand explained by 26 written rulings, and none by a number somebody
   wanted smaller. Two of those rulings name faults rather than intentions — a hardlinebreaks
   block emits no container node, and a define whose body ends in a closing parenthesis swallows
-  what follows it, the second recorded as a known gap with its specimen.
+  what follows it — the second now fixed, its specimen standing in the suite.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses
   deliberately — a scope the host ships disabled, a `\rules` run narrowing a rule set no
   TextMate grammar can follow, a fixture carrying deliberate faults, and the memetic dialect's own
