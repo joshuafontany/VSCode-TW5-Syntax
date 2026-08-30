@@ -139,6 +139,19 @@ test('a widget calling itself text never reads as plain text', () => {
   });
 });
 
+// A second door onto the same collision. mvvdisplayinline returns a text WIDGET — type
+// "text", no tag at all, its content in attributes.text — where a plain text node carries its
+// content in a `text` property. Reading type and tag alone calls every `((variable))` in a
+// wiki prose the parser refused.
+test('a text widget carrying no tag still never reads as plain text', () => {
+  const widget = { type: 'text', attributes: { text: { type: 'filtered', filter: '[(v)join[, ]]' } } };
+  assert.strictEqual(isPlainText(widget), false);
+  assert.strictEqual(isPlainText({ type: 'text', text: 'ordinary prose' }), true);
+  const spans = flatten([{ ...widget, rule: 'mvvdisplayinline', start: 0, end: 13, children: [] }]);
+  assert.strictEqual(verdictAt(spans, 0, 13).kind, 'built');
+  assert.strictEqual(verdictAt(spans, 0, 13).innermost, 'built');
+});
+
 test('a span no node covers reads as none', () => {
   assert.deepStrictEqual(verdictAt(flatten([]), 0, 5), {
     kind: 'none', innermost: 'none', rule: null, start: null, end: null
@@ -281,6 +294,11 @@ test('TiddlyWiki looks inside no definition body, and the oracle says so', live,
   const src = '\\define m()\nbody with < here\n\\end';
   const at = src.indexOf('<');
   assert.strictEqual(boot(TW).readAt(src, at, at + 1).innermost, 'opaque');
+});
+
+test('TiddlyWiki builds a variable display, and the oracle reads it as built', live, () => {
+  const src = 'A variable ((varname)) here';
+  assert.strictEqual(boot(TW).readAt(src, ...span(src, '((varname))')).innermost, 'built');
 });
 
 test('TiddlyWiki reads a pragma only before the body begins', live, () => {

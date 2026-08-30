@@ -14,8 +14,6 @@ $a$ and $(b)$ and ${ [all[current]] }$
 <<defaults a:"two">>
 \end
 
-Body text after every definition above.
-
 \procedure mvv-default(a:((varname)))
 body
 \end
@@ -25,3 +23,5 @@ body
 raw fenced attribute value
 ```/>
 \end
+
+Body text after every definition above.

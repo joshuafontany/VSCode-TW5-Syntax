@@ -43,15 +43,21 @@ function flatten(tree) {
 /**
  * Plain text, as opposed to a widget that merely calls itself text.
  *
- * html.js sets a widget's node type from its own tag — `node.type = node.tag.substr(1)` —
- * so `<$text>` builds a node of type "text". Reading type alone reports every `<$text>`
- * widget in TiddlyWiki's own templates as prose the parser refused.
+ * Two constructs answer to the type "text" without being prose, by different routes.
+ * html.js sets a widget's type from its own tag — `node.type = node.tag.substr(1)` — so
+ * `<$text>` arrives typed "text" and tagged. mvvdisplayinline builds a text widget with NO
+ * tag at all, carrying its content in `attributes.text`, so `((variable))` arrives typed
+ * "text" and untagged.
+ *
+ * What separates prose from both: a plain text node carries its content in a `text` STRING.
+ * A widget carries its content in attributes. Reading the property, rather than the type or
+ * the tag, tells the two apart wherever the collision comes from.
  *
  * @param {object} node
  * @returns {boolean}
  */
 function isPlainText(node) {
-  return node.type === 'text' && !node.tag;
+  return node.type === 'text' && typeof node.text === 'string';
 }
 
 // A pragma whose body TiddlyWiki stores rather than parses. macrodef and fnprocdef both build
