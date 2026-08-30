@@ -5624,7 +5624,7 @@
 			]
 		},
 		"prettylink": {
-			"begin": "(\\[)(\\[)",
+			"begin": "(\\[)(\\[)(?=[^\\n]*\\]\\])",
 			"end": "(\\])(\\])",
 			"name": "markup.link.tiddlywiki5",
 			"beginCaptures": {

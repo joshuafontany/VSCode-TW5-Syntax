@@ -7,6 +7,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A pretty link opens only where it can close on the same line. TiddlyWiki reads one with
+  `/\[\[(.*?)(?:\|(.*?))?\]\]/`, whose dot crosses no newline, so halves on two lines yield
+  plain text. Without that guard the double bracket opening a filter's title operand — as in
+  `filter="[[$:/StoryList]contains<currentTiddler>]"` — read as a pretty link and hunted the
+  rest of the file for its closing pair: the attribute string never ended, the tag never
+  closed, and every construct after it read inside that tag. TiddlyWiki's own documentation
+  macros carry the shape.
 - HTML's deprecations carry no verdict. TiddlyWiki parses any tag name and any attribute name
   into a node, so `<center>`, `<dir>` and `align=` build and render; a verdict answers to what
   TiddlyWiki refuses, never to what a different language retired. `invalid.deprecated` and

@@ -1,0 +1,27 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A quoted attribute holding a title-then-variable filter closes"
+
+# A filter run that opens with a title operand and then takes a variable operand leaves the
+# quoted attribute string open. The closing quote reads as string content, the tag never
+# closes, and every construct after it in the file reads inside that tag.
+#
+# TiddlyWiki builds the element and closes it. Measured on the line this specimen reduces,
+# which stands in editions/tw5.com/tiddlers/_tw_shared/doc-utilities/doc-macros.tid and
+# filters the story list by the current tiddler:
+#     list widget node @4-126, then a separate paragraph for what follows
+#
+# The double square bracket opening the title operand reads as a pretty link, which then
+# hunts the rest of the file for its own closing pair. TiddlyWiki cannot read one that way:
+# its pretty-link regexp matches with a dot, which crosses no newline, so a pretty link
+# whose halves sit on two lines yields plain text. The opener carries the same one-line
+# guard the host enforces, and a filter's title operand closes with the attribute again.
+
+<$list filter="[[a]contains<v>]">
+#             ^ text.html.tiddlywiki5 meta.tag.widget.list.html.tiddlywiki5 meta.attribute.unrecognized.filter.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#                              ^ text.html.tiddlywiki5 meta.tag.widget.list.html.tiddlywiki5 meta.attribute.unrecognized.filter.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
+#                               ^ text.html.tiddlywiki5 meta.tag.widget.list.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+x
+</$list>
+
+after
+# ^ - meta.tag.widget.list.html.tiddlywiki5
+# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
