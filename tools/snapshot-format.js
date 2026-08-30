@@ -83,7 +83,7 @@ function isVerdict(scope) {
 function isSuppression(scope) {
   // The REGION only. The suppressing character itself answers to nothing: TiddlyWiki consumes
   // it and emits a node beginning AFTER it, so no node in the tree covers that column and no
-  // reading of the tree can say whether the mark was honoured there.
+  // reading of the tree can say whether the parser honoured the mark there.
   return scope.includes('.suppressed.');
 }
 

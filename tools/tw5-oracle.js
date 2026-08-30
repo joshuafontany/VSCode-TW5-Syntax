@@ -24,6 +24,13 @@ const path = require('node:path');
 /**
  * Every node in a parse tree, depth-first, parents before children.
  *
+ * ATTRIBUTES COUNT. TiddlyWiki places an HTML attribute and a macro-call parameter beside the
+ * node rather than beneath it — each carries its own start and end under `attributes`, and
+ * neither appears among the children. A walk that follows children alone resolves every
+ * attribute in a wiki no finer than the tag around it, and a macro's parameters not at all.
+ *
+ * A macro-typed attribute value carries a whole node of its own, so the walk descends into it.
+ *
  * @param {object[]} tree
  * @returns {object[]}
  */
@@ -33,6 +40,13 @@ function flatten(tree) {
     for (const n of nodes || []) {
       if (!n || typeof n !== 'object') continue;
       out.push(n);
+      for (const attribute of Object.values(n.attributes || {})) {
+        if (!attribute || typeof attribute !== 'object') continue;
+        // Only a placed attribute joins the spans; a name or a body carrying no extent cannot
+        // answer for a column.
+        if (typeof attribute.start === 'number' && typeof attribute.end === 'number') out.push(attribute);
+        if (attribute.value && typeof attribute.value === 'object') visit([attribute.value]);
+      }
       visit(n.children);
     }
   };
@@ -43,7 +57,7 @@ function flatten(tree) {
 /**
  * Plain text, as opposed to a widget that merely calls itself text.
  *
- * Two constructs answer to the type "text" without being prose, by different routes.
+ * Two constructs answer to the type "text" without standing as prose, by different routes.
  * html.js sets a widget's type from its own tag — `node.type = node.tag.substr(1)` — so
  * `<$text>` arrives typed "text" and tagged. mvvdisplayinline builds a text widget with NO
  * tag at all, carrying its content in `attributes.text`, so `((variable))` arrives typed
@@ -62,9 +76,15 @@ function isPlainText(node) {
 
 // Constructs TiddlyWiki stores rather than parses. macrodef and fnprocdef build a `set` node
 // carrying the body in attributes.value, which TiddlyWiki examines at the CALL, in whatever
-// context the call stands, never at the definition. A macro invocation does the same with its
-// parameters: it builds a `transclude` node with NO children, every parameter an attribute.
-const UNPARSED_BODY = new Set(['macrodef', 'fnprocdef', 'macrocallinline', 'macrocallblock']);
+// context the call stands, never at the definition. Neither the name nor the body carries an
+// extent, so no column inside one can be answered for.
+const UNPARSED_BODY = new Set(['macrodef', 'fnprocdef']);
+
+// Rules that consume a leading mark and hand back a node BEGINNING AFTER IT. wikilinkprefix
+// strips the tilde and returns `text` from start + 1; extlink and syslink do the same for a
+// link they declined. The mark itself lands in no node, so no reading of the tree can say
+// whether the parser honoured it — but the node that follows names the rule that ate it.
+const CONSUMES_A_LEADING_MARK = new Set(['wikilinkprefix', 'wikilink', 'extlink', 'syslink']);
 
 /**
  * A region the parser reached and did not look inside.
@@ -145,7 +165,11 @@ function verdictAt(spans, start, end) {
   // starts and covered by none of that construct's children, has no reading here either way.
   const childCovers = (spans.some((n) => n.start === start) === false) &&
     !covers.some((n) => n !== tightest && n.start > tightest.start && n.start <= start && n.end >= end);
-  const unreachable = !isPlainText(tightest) && tightest.start !== start && childCovers;
+  // A mark a suppressing rule ate: the refusal it produced begins exactly where this span ends.
+  const eaten = spans.some(
+    (n) => n.start === end && isPlainText(n) && CONSUMES_A_LEADING_MARK.has(n.rule)
+  );
+  const unreachable = eaten || (!isPlainText(tightest) && tightest.start !== start && childCovers);
   const innermost = isOpaqueBody(tightest) || unreachable ? 'opaque' : isPlainText(tightest) ? 'text' : 'built';
   return {
     kind: built.length > 0 ? 'built' : 'text',

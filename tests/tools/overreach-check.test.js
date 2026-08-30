@@ -171,10 +171,10 @@ test('a span on the second line reports its own line number', () => {
 //
 // Some spans stand where TiddlyWiki refuses BY RULING: CamelCase carries a scope the host
 // ships disabled, `\rules only` narrows a rule set no TextMate grammar can follow, and a
-// fixture written to be malformed is malformed on purpose. A tally that counts those beside
+// fixture carrying deliberate faults carries them on purpose. A tally that counts those beside
 // a genuine over-reach can never reach zero, and a reader learns nothing from the number.
 //
-// Each ruling stands written with its reason. A line carrying no reason is not a ruling.
+// Each ruling stands written with its reason. A line carrying no reason names no ruling.
 
 test('a ruling names a scope and a reason', () => {
   const text = [
@@ -193,8 +193,9 @@ test('a line carrying no reason reads as no ruling at all', () => {
   assert.throws(() => readExpected('meta.link.wikilink'), /reason/);
 });
 
-// A fixture written to be malformed diverges wholesale, and says so with an empty scope. A
-// ruling naming neither a file nor a scope would excuse the whole corpus, and is refused.
+// A fixture carrying deliberate faults diverges wholesale, and says so with an empty scope. A
+// ruling naming neither a file nor a scope would excuse the whole corpus, and the reader
+// refuses it.
 test('an empty scope covers one named file, and nothing wider', () => {
   const rules = readExpected('degenerate.illegal.tw:  # a fixture written to be malformed');
   assert.ok(isExpected(rules, 'corpus/wikitext/degenerate.illegal.tw', 'anything.at.all'));

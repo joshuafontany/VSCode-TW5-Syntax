@@ -15,7 +15,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   and reads unchanged.
 - A comment's contents carry no verdict. TiddlyWiki scans from `<!--` to the next `-->` and
   builds a comment across whatever stands between; HTML's rules about what may appear inside one
-  are not its rules, and three inherited verdicts condemned markup TiddlyWiki reads.
+  do not govern it, and three inherited verdicts condemned markup TiddlyWiki reads.
 - An event-handler attribute reads as an attribute. TiddlyWiki parses `onclick=` into a node like
   any other attribute, so the span carries `meta.attribute.event-handler` rather than a verdict.
 - Under an inline parser mode no block rule stands. `\parsermode inline` sets parseAsInline for
@@ -82,12 +82,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Added
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses
   deliberately — a scope the host ships disabled, a `\rules` run narrowing a rule set no
-  TextMate grammar can follow, a fixture written to be malformed, and the memetic dialect's own
+  TextMate grammar can follow, a fixture carrying deliberate faults, and the memetic dialect's own
   vocabulary. `corpus/expected-divergence.txt` names each with its reason, and a line carrying no
-  reason is not a ruling. Over the corpus, in both dialects, nothing now diverges unexplained.
+  reason names no ruling. Over the corpus, in both dialects, nothing now diverges unexplained.
 - A second memetic sample, so the composition gate over that dialect can run. It compares
   neighbouring samples and needs two; the dialect carried one, so the check reported a missing
-  source rather than a result every time it was asked.
+  source rather than a result, every time anyone asked.
 - A `lar:` URI reads its own structure. The path, each `?key=value` in the query, the `&` between
   them and a `#/fragment` now carry their own scopes instead of riding in one unbroken string, so
   an address colours the way the rest of a call does.

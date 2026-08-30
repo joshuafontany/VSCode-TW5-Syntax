@@ -63,12 +63,12 @@ function offsetAt(source, line, col) {
  * The rulings that explain a divergence, read from a file.
  *
  * Some spans stand where TiddlyWiki refuses BY RULING: a scope the host ships disabled, a
- * `\rules` run narrowing a rule set no TextMate grammar can follow, a fixture written to be
- * malformed. Counting those beside a genuine over-reach gives a tally that can never reach
+ * `\rules` run narrowing a rule set no TextMate grammar can follow, a fixture carrying
+ * deliberate faults. Counting those beside a genuine over-reach gives a tally that can never reach
  * zero and teaches a reader nothing.
  *
  * Each line names a scope prefix, optionally scoped to one file, and a reason after `#`. A
- * line carrying no reason is not a ruling — it is a number somebody wanted smaller.
+ * line carrying no reason names no ruling — it names a number somebody wanted smaller.
  *
  * @param {string} text
  * @returns {{file:string|null, scope:string, reason:string}[]}
@@ -101,7 +101,7 @@ function readExpected(text) {
  * A ruling matches a scope by dotted prefix, or by suffix where it opens with `*.` — a dialect
  * names its whole vocabulary that way while every scope it INHERITS keeps the base suffix and
  * still answers. A file matches where the path ends in the fragment the ruling names — so a ruling written for one fixture never quietly excuses another. An EMPTY scope
- * covers every span in the file it names, which a fixture written to be malformed earns and
+ * covers every span in the file it names, which a fixture carrying deliberate faults earns and
  * nothing else does: a ruling with neither a file nor a scope explains everything, and
  * readExpected refuses it.
  *
@@ -179,7 +179,7 @@ if (require.main === module) {
   const camelcase = args.includes('--camelcase');
   const pattern = args.find((a) => !a.startsWith('--')) || './tests/samples/*.tw';
   // The dialect answers to the same parser: memetic-wikitext includes the whole base grammar,
-  // so every reading below carries into a .mem file and must be asked there too.
+  // so every reading below carries into a .mem file, and the gate asks it there too.
   const scope = (args.find((a) => a.startsWith('--scope=')) || '--scope=text.html.tiddlywiki5').slice('--scope='.length);
 
   const tw = resolveTiddlyWiki();

@@ -76,7 +76,7 @@ paints a scope when one of its own rules names that scope or a dotted prefix of 
 the scope name the default. `npm run theme-paint -- <scope>` measures any scope against the
 bundled theme set, and `-- --families` ranks every family this grammar emits.
 
-Two groups are worth turning, and both turn from `editor.tokenColorCustomizations` in your
+Two groups repay turning, and both turn from `editor.tokenColorCustomizations` in your
 own settings. Nothing else needs a switch: the grammar's structural families already read
 quiet in every bundled theme.
 

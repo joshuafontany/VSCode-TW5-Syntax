@@ -217,11 +217,57 @@ test('a definition carrying the whole document as children still reads opaque in
   assert.strictEqual(verdictAt(spans, 42, 43).innermost, 'built', 'where the link beneath it begins');
 });
 
-// A macro invocation stores every parameter as an attribute and builds no children, so a span
-// inside one answers to neither question, exactly as a definition body does.
-test('a span inside a macro invocation reads as opaque', () => {
-  const spans = flatten([{ type: 'transclude', rule: 'macrocallinline', start: 2, end: 26, children: [] }]);
-  assert.strictEqual(verdictAt(spans, 10, 20).innermost, 'opaque');
+// TiddlyWiki PLACES an attribute and a macro-call parameter: each carries its own start and
+// end under `attributes`, beside the node rather than beneath it. A walk that follows children
+// alone never reaches them, and every attribute in a wiki resolves no finer than its tag.
+test('flatten reaches a placed attribute, which stands beside the node and not beneath it', () => {
+  const spans = flatten([
+    {
+      type: 'element',
+      tag: 'div',
+      rule: 'html',
+      start: 0,
+      end: 24,
+      attributes: { align: { name: 'align', type: 'string', value: 'left', start: 5, end: 18 } },
+      children: [{ type: 'text', text: 'x', start: 19, end: 20 }]
+    }
+  ]);
+  assert.ok(spans.some((n) => n.start === 5 && n.end === 18), 'the attribute stands among the spans');
+  assert.strictEqual(verdictAt(spans, 5, 18).kind, 'built');
+});
+
+// A macro invocation places its parameters the same way, so a span inside one answers even
+// though the invocation carries no children at all.
+test('a macro parameter answers, where the invocation carries no children', () => {
+  const spans = flatten([
+    {
+      type: 'transclude',
+      rule: 'macrocallinline',
+      start: 2,
+      end: 11,
+      attributes: { 0: { name: '0', type: 'string', value: 'one', start: 5, end: 9 } },
+      children: []
+    }
+  ]);
+  assert.strictEqual(verdictAt(spans, 5, 9).innermost, 'built');
+});
+
+// The suppressing mark itself. wikilinkprefix strips the tilde and returns a node beginning
+// AFTER it, so the tilde's column lands in no node at all and no reading of the tree can say
+// whether the parser honoured it. The node that follows names the rule that ate it.
+test('a mark a suppressing rule consumed reads as opaque', () => {
+  const spans = flatten([
+    {
+      type: 'element',
+      tag: 'h1',
+      rule: 'heading',
+      start: 0,
+      end: 20,
+      children: [{ type: 'text', rule: 'wikilinkprefix', text: 'CamelCaseLink', start: 5, end: 18 }]
+    }
+  ]);
+  assert.strictEqual(verdictAt(spans, 4, 5).innermost, 'opaque', 'the tilde at column four');
+  assert.strictEqual(verdictAt(spans, 5, 18).innermost, 'text', 'the text it handed back');
 });
 
 test('a construct that simply carries no children stays judgeable', () => {
