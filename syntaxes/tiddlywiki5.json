@@ -39,7 +39,7 @@
 				}
 			]
 		},
-		"R:text.html - (comment.block, text.html meta.embedded, meta.tag.*.*.html, meta.tag.*.*.*.html, meta.tag.*.*.*.*.html, markup.quote.blockquote.tiddlywiki5, markup.inline.raw)": {
+		"R:text.html - (comment.block, text.html meta.embedded, meta.tag, meta.filter.tiddlywiki5, meta.transclusion.tiddlywiki5, meta.variable.macrocallinline.tiddlywiki5, meta.variable.macrocallblock.tiddlywiki5, markup.quote.blockquote.tiddlywiki5, markup.inline.raw)": {
 			"comment": "Uses R: to ensure this matches after any other injections.",
 			"patterns": [
 				{
@@ -1138,7 +1138,7 @@
 					"begin": "(align|bgcolor|border)(?![\\w:-])",
 					"beginCaptures": {
 						"0": {
-							"name": "invalid.deprecated.entity.other.attribute-name.html.tiddlywiki5"
+							"name": "entity.other.attribute-name.html.tiddlywiki5"
 						}
 					},
 					"comment": "HTML attributes, deprecated",
@@ -2438,7 +2438,7 @@
 									"name": "entity.name.tag.html.tiddlywiki5"
 								},
 								"3": {
-									"name": "invalid.deprecated.html.tiddlywiki5"
+									"name": "entity.name.tag.html.tiddlywiki5"
 								},
 								"4": {
 									"patterns": [
@@ -2467,7 +2467,7 @@
 									"name": "entity.name.tag.html.tiddlywiki5"
 								},
 								"3": {
-									"name": "invalid.deprecated.html.tiddlywiki5"
+									"name": "entity.name.tag.html.tiddlywiki5"
 								},
 								"4": {
 									"patterns": [
@@ -2492,7 +2492,7 @@
 									"name": "entity.name.tag.html.tiddlywiki5"
 								},
 								"3": {
-									"name": "invalid.deprecated.html.tiddlywiki5"
+									"name": "entity.name.tag.html.tiddlywiki5"
 								},
 								"4": {
 									"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3244,7 +3244,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						},
 						"3": {
-							"name": "invalid.deprecated.html.tiddlywiki5"
+							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
 					"end": "/?>",
@@ -3270,7 +3270,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						},
 						"3": {
-							"name": "invalid.deprecated.html.tiddlywiki5"
+							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
 					"end": ">",
@@ -3296,7 +3296,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						},
 						"3": {
-							"name": "invalid.deprecated.html.tiddlywiki5"
+							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
 					"end": ">",
@@ -3322,7 +3322,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						},
 						"3": {
-							"name": "invalid.deprecated.html.tiddlywiki5"
+							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
 					"end": ">",
@@ -3348,7 +3348,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						},
 						"3": {
-							"name": "invalid.deprecated.html.tiddlywiki5"
+							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
 					"end": ">",
@@ -3374,7 +3374,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						},
 						"3": {
-							"name": "invalid.deprecated.html.tiddlywiki5"
+							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
 					"end": "/?>",
@@ -3400,7 +3400,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						},
 						"3": {
-							"name": "invalid.deprecated.html.tiddlywiki5"
+							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
 					"end": ">",
@@ -3426,7 +3426,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						},
 						"3": {
-							"name": "invalid.deprecated.html.tiddlywiki5"
+							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
 					"end": ">",
@@ -3452,7 +3452,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						},
 						"3": {
-							"name": "invalid.illegal.no-longer-supported.html.tiddlywiki5"
+							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
 					"end": ">",
@@ -3478,7 +3478,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						},
 						"3": {
-							"name": "invalid.illegal.no-longer-supported.html.tiddlywiki5"
+							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
 					"end": ">",

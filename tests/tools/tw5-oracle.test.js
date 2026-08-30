@@ -52,7 +52,9 @@ test('flatten walks a tree depth-first and keeps every span', () => {
 
 test('a node the parser built reads as built, and names its rule', () => {
   const spans = flatten([{ type: 'link', rule: 'wikilink', start: 2, end: 13, children: [] }]);
-  assert.deepStrictEqual(verdictAt(spans, 2, 13), { kind: 'built', rule: 'wikilink', start: 2, end: 13 });
+  assert.deepStrictEqual(verdictAt(spans, 2, 13), {
+    kind: 'built', innermost: 'built', rule: 'wikilink', start: 2, end: 13
+  });
 });
 
 // TiddlyWiki records a REFUSAL by returning a text node that still carries the rule's
@@ -60,7 +62,9 @@ test('a node the parser built reads as built, and names its rule', () => {
 // `rule` would call that a construct; only `type` separates built from refused.
 test('a text node carrying a rule name reads as refused, never as built', () => {
   const spans = flatten([{ type: 'text', rule: 'wikilink', text: 'HelloThere', start: 4, end: 14 }]);
-  assert.deepStrictEqual(verdictAt(spans, 4, 14), { kind: 'text', rule: 'wikilink', start: 4, end: 14 });
+  assert.deepStrictEqual(verdictAt(spans, 4, 14), {
+    kind: 'text', innermost: 'text', rule: 'wikilink', start: 4, end: 14
+  });
 });
 
 test('the tightest covering node decides, so a construct inside a paragraph answers for itself', () => {
@@ -107,7 +111,9 @@ test('a built node outranks the text of its own extent', () => {
       children: [{ type: 'text', text: 'https://ex.com/a', start: 4, end: 24 }]
     }
   ]);
-  assert.deepStrictEqual(verdictAt(spans, 4, 24), { kind: 'built', rule: 'extlink', start: 4, end: 24 });
+  assert.deepStrictEqual(verdictAt(spans, 4, 24), {
+    kind: 'built', innermost: 'built', rule: 'extlink', start: 4, end: 24
+  });
 });
 
 // A grammar under-reaching by one character still sits inside the node TiddlyWiki built,
@@ -128,11 +134,35 @@ test('a widget calling itself text never reads as plain text', () => {
   assert.strictEqual(isPlainText({ type: 'text', text: 'hello' }), true);
   assert.strictEqual(isPlainText({ type: 'text', tag: '$text', rule: 'html' }), false);
   const spans = flatten([{ type: 'text', tag: '$text', rule: 'html', start: 0, end: 22, children: [] }]);
-  assert.deepStrictEqual(verdictAt(spans, 0, 22), { kind: 'built', rule: 'html', start: 0, end: 22 });
+  assert.deepStrictEqual(verdictAt(spans, 0, 22), {
+    kind: 'built', innermost: 'built', rule: 'html', start: 0, end: 22
+  });
 });
 
 test('a span no node covers reads as none', () => {
-  assert.deepStrictEqual(verdictAt(flatten([]), 0, 5), { kind: 'none', rule: null, start: null, end: null });
+  assert.deepStrictEqual(verdictAt(flatten([]), 0, 5), {
+    kind: 'none', innermost: 'none', rule: null, start: null, end: null
+  });
+});
+
+// A claim and a verdict ask opposite questions of one span. `!! Avertissement<<:>>` builds a
+// heading, and `<<:>>` inside it stays text TiddlyWiki refused — so a scope CLAIMING a
+// construct there reads correct off the heading, while a scope CONDEMNING the brackets reads
+// correct off the text. One covering rule cannot serve both.
+test('a claim reads the widest cover and a verdict reads the tightest', () => {
+  const spans = flatten([
+    {
+      type: 'element',
+      tag: 'h2',
+      rule: 'heading',
+      start: 0,
+      end: 20,
+      children: [{ type: 'text', text: 'Avertissement<<:>>', start: 2, end: 20 }]
+    }
+  ]);
+  const v = verdictAt(spans, 15, 16);
+  assert.strictEqual(v.kind, 'built', 'a construct covers the span');
+  assert.strictEqual(v.innermost, 'text', 'the parser built nothing at the span itself');
 });
 
 // ── the live half ────────────────────────────────────────────────────────────

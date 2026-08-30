@@ -56,7 +56,8 @@ test('a span carrying only base scopes claims nothing', () => {
 
 // review() asks the oracle; a stub oracle keeps the decider under test without a boot.
 const stubOracle = (answers) => ({
-  readAt: (_source, start, end) => answers[`${start}-${end}`] || { kind: 'built', rule: 'stub', start, end }
+  readAt: (_source, start, end) =>
+    answers[`${start}-${end}`] || { kind: 'built', innermost: 'built', rule: 'stub', start, end }
 });
 
 // A verdict runs OPPOSITE to a claim: it says nothing works here, so it answers to whether
@@ -70,24 +71,35 @@ test('a verdict counts as a verdict, never as a claim', () => {
 test('a verdict standing where TiddlyWiki refuses reports nothing', () => {
   const source = 'NDT<<:>> here';
   const snap = `>${source}\n#  ^ text.html.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5\n`;
-  const refuse = { readAt: (_s, start, end) => ({ kind: 'text', rule: null, start, end }) };
+  const refuse = { readAt: (_s, start, end) => ({ kind: 'text', innermost: 'text', rule: null, start, end }) };
   assert.deepStrictEqual(review(source, snap, refuse), []);
 });
 
 test('a verdict standing where TiddlyWiki builds reports as an invention', () => {
   const source = 'see [[A Tiddler]] here';
   const snap = `>${source}\n#   ^ text.html.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5\n`;
-  const build = { readAt: (_s, start, end) => ({ kind: 'built', rule: 'prettylink', start, end }) };
+  const build = { readAt: (_s, start, end) => ({ kind: 'built', innermost: 'built', rule: 'prettylink', start, end }) };
   const found = review(source, snap, build);
   assert.strictEqual(found.length, 1);
   assert.strictEqual(found[0].kind, 'invention');
   assert.strictEqual(found[0].rule, 'prettylink');
 });
 
+// A verdict on text standing INSIDE a construct the parser built still reads correct: the
+// parser built nothing at the span itself.
+test('a verdict inside a built block reports nothing when the span itself stays text', () => {
+  const source = '!! Avertissement<<:>>';
+  const snap = `>${source}\n#                ^ text.html.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5\n`;
+  const inHeading = {
+    readAt: (_s, start, end) => ({ kind: 'built', innermost: 'text', rule: 'heading', start, end })
+  };
+  assert.deepStrictEqual(review(source, snap, inHeading), []);
+});
+
 test('a claimed span TiddlyWiki refuses reports, and names what it painted', () => {
   const source = 'A x1HelloThere here';
   const snap = `>${source}\n#    ^^^^^^^^^^ text.html.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5\n`;
-  const found = review(source, snap, stubOracle({ '4-14': { kind: 'text', rule: 'wikilink', start: 4, end: 14 } }));
+  const found = review(source, snap, stubOracle({ '4-14': { kind: 'text', innermost: 'text', rule: 'wikilink', start: 4, end: 14 } }));
   assert.deepStrictEqual(found, [
     {
       kind: 'overreach',
@@ -111,7 +123,7 @@ test('a claimed span TiddlyWiki builds reports nothing', () => {
 test('unclaimed prose never reports, however TiddlyWiki reads it', () => {
   const source = 'just a sentence.';
   const snap = `>${source}\n#^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5\n`;
-  const refuseEverything = { readAt: (_s, start, end) => ({ kind: 'text', rule: null, start, end }) };
+  const refuseEverything = { readAt: (_s, start, end) => ({ kind: 'text', innermost: 'text', rule: null, start, end }) };
   assert.deepStrictEqual(review(source, snap, refuseEverything), []);
 });
 
@@ -119,7 +131,7 @@ test('a span on the second line reports its own line number', () => {
   const source = 'first line\nA &Ridiculous; here';
   const snap = ['>first line', '>A &Ridiculous; here', '#  ^^^^^^^^^^^^ text.html.tiddlywiki5 constant.character.entity.named.x', ''].join('\n');
   const start = source.indexOf('&Ridiculous;');
-  const found = review(source, snap, stubOracle({ [`${start}-${start + 12}`]: { kind: 'text', rule: null } }));
+  const found = review(source, snap, stubOracle({ [`${start}-${start + 12}`]: { kind: 'text', innermost: 'text', rule: null } }));
   assert.strictEqual(found.length, 1);
   assert.strictEqual(found[0].line, 2);
   assert.strictEqual(found[0].span, '&Ridiculous;');

@@ -1,0 +1,25 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A verdict stands only where TiddlyWiki refuses"
+
+# TiddlyWiki parses any tag name and any attribute name into a node — html.js accepts
+# /<([a-zA-Z\-\$\.]+)/ and rejects only a leading dash. HTML deprecation says nothing about
+# what TiddlyWiki builds, and the naming standard holds `invalid.deprecated` to "very rarely",
+# so the tags and attributes HTML retired carry their ordinary names here.
+
+! A tag HTML deprecated still builds a node
+
+<center>x</center>
+#^ entity.name.tag.html.tiddlywiki5
+#^ - invalid.deprecated.html.tiddlywiki5
+
+! A tag HTML dropped altogether still builds a node
+
+<dir>z</dir>
+#^ entity.name.tag.html.tiddlywiki5
+#^ - invalid.illegal.no-longer-supported.html.tiddlywiki5
+
+! An attribute HTML deprecated reads as an attribute name
+
+<table align="left">y</table>
+#      ^ entity.other.attribute-name.html.tiddlywiki5
+#      ^ - invalid.deprecated.entity.other.attribute-name.html.tiddlywiki5
+

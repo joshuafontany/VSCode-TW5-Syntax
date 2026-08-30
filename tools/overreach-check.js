@@ -67,8 +67,13 @@ function offsetAt(source, line, col) {
  *
  * - `overreach` — the grammar CLAIMS a construct and the parser yields plain text. The
  *   grammar coloured markup that does not work.
- * - `invention` — the grammar passes a VERDICT and the parser BUILDS a node. The grammar
- *   condemned markup that does.
+ * - `invention` — the grammar passes a VERDICT and the parser BUILDS a node HERE. The
+ *   grammar condemned markup that does.
+ *
+ * The two read different evidence, because they ask opposite questions. A claim answers to
+ * whether ANY construct covers the span, since a grammar names a construct's parts as well
+ * as its whole. A verdict answers to the TIGHTEST cover: a verdict says the parser built
+ * nothing here, and text standing inside a heading TiddlyWiki built remains text it refused.
  *
  * A verdict over refused text and a claim over a built construct both read correct, and
  * neither reports.
@@ -91,7 +96,7 @@ function review(source, snapText, oracle) {
     if (claimed.length > 0 && read.kind === 'text') {
       findings.push({ kind: 'overreach', ...at, scope: claimed[claimed.length - 1] });
     }
-    if (condemned.length > 0 && read.kind === 'built') {
+    if (condemned.length > 0 && read.innermost === 'built') {
       findings.push({ kind: 'invention', ...at, scope: condemned[condemned.length - 1] });
     }
   }

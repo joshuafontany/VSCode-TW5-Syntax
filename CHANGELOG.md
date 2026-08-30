@@ -7,6 +7,17 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- HTML's deprecations carry no verdict. TiddlyWiki parses any tag name and any attribute name
+  into a node, so `<center>`, `<dir>` and `align=` build and render; a verdict answers to what
+  TiddlyWiki refuses, never to what a different language retired. `invalid.deprecated` and
+  `invalid.illegal.no-longer-supported` removed at all fourteen sites, and the tags and
+  attributes keep their ordinary `entity.name.tag` and `entity.other.attribute-name` names.
+  The naming standard holds `invalid.deprecated` to "very rarely used".
+- The stray-bracket verdict spares the contexts it names. Its injection selector carried
+  HTML's own `meta.tag.*.*.html` wildcards, which match nothing once a scope ends
+  `.html.tiddlywiki5`, so a `<` inside a tag, a widget attribute or a filter run drew a verdict
+  where TiddlyWiki reads a variable reference. The selector now names this grammar's own
+  scopes, and a genuinely stray `<` still carries the verdict.
 - CamelCase links read quiet, matching the wiki TiddlyWiki ships. TiddlyWiki ships
   `$:/config/WikiParserRules/Inline/wikilink` as `disable`, so `HelloWorld` builds no link in a
   new wiki, and the construct now reads `meta.link.wikilink.tiddlywiki5` — a scope few themes

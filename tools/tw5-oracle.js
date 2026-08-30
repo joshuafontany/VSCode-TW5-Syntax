@@ -82,10 +82,16 @@ function isPlainText(node) {
  * The verdict carries the covering node's own extent, so a scope stopping one character
  * short of what TiddlyWiki linked stays visible to the caller.
  *
+ * TWO READINGS COME BACK, because a claim and a verdict ask opposite questions of the same
+ * span. `kind` reads the WIDEST evidence — does any construct cover this? — which suits a
+ * claim, since a grammar names a construct's parts as well as its whole. `innermost` reads
+ * the TIGHTEST cover, which suits a verdict: a verdict says the parser built nothing HERE,
+ * and `<<:>>` standing inside a heading TiddlyWiki built is still text TiddlyWiki refused.
+ *
  * @param {object[]} spans  flatten()'s output
  * @param {number} start
  * @param {number} end
- * @returns {{kind:'built'|'text'|'none', rule:string|null, start:number|null, end:number|null}}
+ * @returns {{kind:'built'|'text'|'none', innermost:'built'|'text'|'none', rule:string|null, start:number|null, end:number|null}}
  */
 function verdictAt(spans, start, end) {
   const covers = spans.filter(
@@ -96,12 +102,14 @@ function verdictAt(spans, start, end) {
       n.end >= end &&
       n.rule !== 'parseblock'
   );
-  if (covers.length === 0) return { kind: 'none', rule: null, start: null, end: null };
+  if (covers.length === 0) return { kind: 'none', innermost: 'none', rule: null, start: null, end: null };
+  const tightest = covers.reduce((a, b) => (b.end - b.start < a.end - a.start ? b : a));
   const built = covers.filter((n) => !isPlainText(n));
   const pool = built.length > 0 ? built : covers;
   const best = pool.reduce((a, b) => (b.end - b.start < a.end - a.start ? b : a));
   return {
     kind: built.length > 0 ? 'built' : 'text',
+    innermost: isPlainText(tightest) ? 'text' : 'built',
     rule: best.rule || null,
     start: best.start,
     end: best.end

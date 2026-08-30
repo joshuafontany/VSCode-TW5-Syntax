@@ -57,10 +57,11 @@ content
 @@ trailing words
 #  ^ - invalid.illegal.tiddlywiki5
 
-# The HTML claim stands where TiddlyWiki's does not. The align attribute parses and renders;
-# the verdict names HTML's own deprecation, never a refusal by this parser.
+# HTML's own deprecation carries no verdict here. The align attribute parses and renders, and
+# a verdict answers to what TiddlyWiki refuses, never to what a different language retired.
 <div align="left">x</div>
-#    ^^^^^ text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 meta.attribute.align.html.tiddlywiki5 invalid.deprecated.entity.other.attribute-name.html.tiddlywiki5
+#    ^^^^^ text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 meta.attribute.align.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#    ^ - invalid.deprecated.entity.other.attribute-name.html.tiddlywiki5
 
 # A self-closing tag with a name TiddlyWiki does not know still builds a node.
 <mytag />
