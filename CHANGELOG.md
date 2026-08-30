@@ -7,6 +7,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Added
+- The parser's configurable surface, derived from TiddlyWiki. Every wikitext rule answers to
+  `$:/config/WikiParserRules/<Type>/<name>`, and `setupRules` deletes a rule whose tiddler
+  holds anything but `enable`. `tools/rule-inventory.js` reads the rule modules and the
+  shipped config tiddlers and reports the whole surface — **44 rules, 47 config keys, exactly
+  one shipped switched off** — and `--configuration` emits the settings block from it, so a
+  rule added upstream reaches the settings without anyone amending a list.
 - The grammar answers to TiddlyWiki's own parser. `tools/tw5-oracle.js` boots TiddlyWiki and
   reports what it BUILDS at a span; `tools/overreach-check.js` takes every scope the grammar
   paints back to that parser and reports each one standing over text TiddlyWiki refused. The
