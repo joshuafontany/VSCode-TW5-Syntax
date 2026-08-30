@@ -58,6 +58,33 @@
 		"wikitext": {
 			"patterns": [
 				{
+					"comment": "An inline parser mode. The pragma sets parseAsInline for the whole tiddler, so TiddlyWiki parses one inline run from here on and every block marker after it yields plain text. The region carries no name of its own: it marks a mode, not a construct, and a scope nothing declares is a scope nothing has to reach.",
+					"begin": "^[ \\t]*(\\\\)(parsermode)[ \\t]+(inline)[ \\t]*$",
+					"beginCaptures": {
+						"0": {
+							"name": "meta.directive.parsermode.tiddlywiki5"
+						},
+						"1": {
+							"name": "punctuation.definition.directive.tiddlywiki5"
+						},
+						"2": {
+							"name": "keyword.control.directive.parsermode.tiddlywiki5"
+						},
+						"3": {
+							"name": "keyword.operator.inline.tiddlywiki5"
+						}
+					},
+					"end": "(?!)",
+					"patterns": [
+						{
+							"include": "#pragma"
+						},
+						{
+							"include": "#inline"
+						}
+					]
+				},
+				{
 					"include": "#pragma"
 				},
 				{
@@ -273,7 +300,7 @@
 				},
 				{
 					"comment": "Parse formal argument definition.",
-					"match": "[\\w\\-]+",
+					"match": "([\\w\\-]+)",
 					"name": "meta.variable.pragma.parameter.tw-$1.tiddlywiki5",
 					"captures": {
 						"0": {
@@ -1302,7 +1329,7 @@
 									"end": "(`{3})",
 									"beginCaptures": {
 										"1": {
-											"name": "punctuation.definition.substituted.triple..attribute.begin.tiddlywiki5"
+											"name": "punctuation.definition.substituted.triple.attribute.begin.tiddlywiki5"
 										}
 									},
 									"endCaptures": {
@@ -2656,24 +2683,48 @@
 					"end": "(<\\/)(\\$)(\\3)(>)|$",
 					"name": "meta.tag.widget.$3.html.tiddlywiki5",
 					"beginCaptures": {
-						"1": { "name": "punctuation.definition.tag.begin.html.tiddlywiki5" },
-						"2": { "name": "entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5" },
-						"3": { "name": "entity.name.tag.html.tiddlywiki5" }
+						"1": {
+							"name": "punctuation.definition.tag.begin.html.tiddlywiki5"
+						},
+						"2": {
+							"name": "entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5"
+						},
+						"3": {
+							"name": "entity.name.tag.html.tiddlywiki5"
+						}
 					},
 					"endCaptures": {
-						"1": { "name": "punctuation.definition.tag.begin.html.tiddlywiki5" },
-						"2": { "name": "entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5" },
-						"3": { "name": "entity.name.tag.html.tiddlywiki5" },
-						"4": { "name": "punctuation.definition.tag.end.html.tiddlywiki5" }
+						"1": {
+							"name": "punctuation.definition.tag.begin.html.tiddlywiki5"
+						},
+						"2": {
+							"name": "entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5"
+						},
+						"3": {
+							"name": "entity.name.tag.html.tiddlywiki5"
+						},
+						"4": {
+							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
+						}
 					},
 					"patterns": [
 						{
 							"begin": "\\G",
 							"end": ">",
-							"endCaptures": { "0": { "name": "punctuation.definition.tag.end.html.tiddlywiki5" } },
-							"patterns": [ { "include": "#htmlwidget-attribute" } ]
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.definition.tag.end.html.tiddlywiki5"
+								}
+							},
+							"patterns": [
+								{
+									"include": "#htmlwidget-attribute"
+								}
+							]
 						},
-						{ "include": "#inline" }
+						{
+							"include": "#inline"
+						}
 					]
 				},
 				{
@@ -3844,7 +3895,7 @@
 			"begin": "\\s*(?=@@((?:[^\\s]+?\\:.+?;)+)?((?:\\.[^\\s\\.]+)+)?$)",
 			"end": "(?<=^\\s*@@)\\s*(.*)$",
 			"contentName": "markup.other.style.styleblock.tiddlywiki5",
-						"patterns": [
+			"patterns": [
 				{
 					"comment": "Tokenize markers, styles and classes.",
 					"match": "(?:^|\\G)(@@)((?:[^\\s]+?\\:.+?;)+)?((?:\\.[^\\s\\.]+)+)?\\r?\\n",
@@ -4375,62 +4426,74 @@
 		},
 		"tableRow": {
 			"patterns": [
-			{
-				"comment": "A heading cell. TiddlyWiki builds a th rather than a td (core/rules/table.js).",
-				"match": "(?:(?<=\\|)|^)[ \\t]*(!)",
-				"name": "heading.th.meta.cell.tiddlywiki5",
-				"captures": {
-					"1": { "name": "punctuation.definition.cell.heading.th.tiddlywiki5" }
+				{
+					"comment": "A heading cell. TiddlyWiki builds a th rather than a td (core/rules/table.js).",
+					"match": "(?:(?<=\\|)|^)[ \\t]*(!)",
+					"name": "heading.th.meta.cell.tiddlywiki5",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.cell.heading.th.tiddlywiki5"
+						}
+					}
+				},
+				{
+					"comment": "A cell holding only ~ carries the row above it down (rowspan).",
+					"match": "(?:(?<=\\|)|^)(~)(?=\\||$)",
+					"name": "rowspan.down.meta.cell.td.tiddlywiki5",
+					"captures": {
+						"1": {
+							"name": "rowspan.down.punctuation.definition.cell.tiddlywiki5"
+						}
+					}
+				},
+				{
+					"comment": "A cell holding only > joins the cell to its right (colspan).",
+					"match": "(?:(?<=\\|)|^)(>)(?=\\||$)",
+					"name": "colspan.right.meta.cell.td.tiddlywiki5",
+					"captures": {
+						"1": {
+							"name": "colspan.right.punctuation.definition.cell.tiddlywiki5"
+						}
+					}
+				},
+				{
+					"comment": "A cell holding only < joins the cell to its left (colspan).",
+					"match": "(?:(?<=\\|)|^)(<)(?=\\||$)",
+					"name": "colspan.left.meta.cell.td.tiddlywiki5",
+					"captures": {
+						"1": {
+							"name": "colspan.left.punctuation.definition.cell.tiddlywiki5"
+						}
+					}
+				},
+				{
+					"comment": "A leading ^ aligns the cell to the top. Two carry superscript instead.",
+					"match": "(?:(?<=\\|)|^)(\\^)(?!\\^)",
+					"name": "meta.cell.valign.tiddlywiki5",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.cell.valign.top.tiddlywiki5"
+						}
+					}
+				},
+				{
+					"comment": "A leading , aligns the cell to the bottom. Two carry subscript instead.",
+					"match": "(?:(?<=\\|)|^)(,)(?!,)",
+					"name": "meta.cell.valign.tiddlywiki5",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.cell.valign.bottom.tiddlywiki5"
+						}
+					}
+				},
+				{
+					"match": "\\|",
+					"name": "punctuation.separator.cell.pipe.inner.tiddlywiki5"
+				},
+				{
+					"comment": "TiddlyWiki parses a cell with parseInlineRun (core/rules/table.js), so whatever the marks above leave reads as inline wikitext. The marks stand as their own rules rather than inside a splitting capture: a rule reached through two nested captures loses its own name.",
+					"include": "#inline"
 				}
-			},
-			{
-				"comment": "A cell holding only ~ carries the row above it down (rowspan).",
-				"match": "(?:(?<=\\|)|^)(~)(?=\\||$)",
-				"name": "rowspan.down.meta.cell.td.tiddlywiki5",
-				"captures": {
-					"1": { "name": "rowspan.down.punctuation.definition.cell.tiddlywiki5" }
-				}
-			},
-			{
-				"comment": "A cell holding only > joins the cell to its right (colspan).",
-				"match": "(?:(?<=\\|)|^)(>)(?=\\||$)",
-				"name": "colspan.right.meta.cell.td.tiddlywiki5",
-				"captures": {
-					"1": { "name": "colspan.right.punctuation.definition.cell.tiddlywiki5" }
-				}
-			},
-			{
-				"comment": "A cell holding only < joins the cell to its left (colspan).",
-				"match": "(?:(?<=\\|)|^)(<)(?=\\||$)",
-				"name": "colspan.left.meta.cell.td.tiddlywiki5",
-				"captures": {
-					"1": { "name": "colspan.left.punctuation.definition.cell.tiddlywiki5" }
-				}
-			},
-			{
-				"comment": "A leading ^ aligns the cell to the top. Two carry superscript instead.",
-				"match": "(?:(?<=\\|)|^)(\\^)(?!\\^)",
-				"name": "meta.cell.valign.tiddlywiki5",
-				"captures": {
-					"1": { "name": "punctuation.definition.cell.valign.top.tiddlywiki5" }
-				}
-			},
-			{
-				"comment": "A leading , aligns the cell to the bottom. Two carry subscript instead.",
-				"match": "(?:(?<=\\|)|^)(,)(?!,)",
-				"name": "meta.cell.valign.tiddlywiki5",
-				"captures": {
-					"1": { "name": "punctuation.definition.cell.valign.bottom.tiddlywiki5" }
-				}
-			},
-			{
-				"match": "\\|",
-				"name": "punctuation.separator.cell.pipe.inner.tiddlywiki5"
-			},
-			{
-				"comment": "TiddlyWiki parses a cell with parseInlineRun (core/rules/table.js), so whatever the marks above leave reads as inline wikitext. The marks stand as their own rules rather than inside a splitting capture: a rule reached through two nested captures loses its own name.",
-				"include": "#inline"
-			}
 			]
 		},
 		"list": {
@@ -5874,7 +5937,7 @@
 						{
 							"comment": "Match string filter operator (step).",
 							"match": "(!?)([^\\[\\{<]*?)(?:(:)([^\\[\\{<]*?))?((\\[)(.*?)(\\]))",
-							"name": "meta.filter.operator.step.tw-$2.tw-suffix-$4.tiddlywiki5",
+							"name": "meta.filter.operator.step.tiddlywiki5",
 							"captures": {
 								"1": {
 									"name": "keyword.control.operator.prefix.negation.tiddlywiki5"
@@ -5916,7 +5979,7 @@
 						{
 							"comment": "Match variable filter operator (step).",
 							"match": "(!?)([^\\[\\{<]*?)(?:(:)([^\\[\\{<]*?))?((<)(.*?)(>))",
-							"name": "meta.filter.operator.step.tw-$2.tw-suffix-$4.tiddlywiki5",
+							"name": "meta.filter.operator.step.tiddlywiki5",
 							"captures": {
 								"1": {
 									"name": "keyword.control.operator.prefix.negation.tiddlywiki5"
@@ -5947,7 +6010,7 @@
 						{
 							"comment": "Match text reference filter operator (step).",
 							"match": "(!?)([^\\[\\{<]*?)(?:(:)([^\\[\\{<]*?))?((\\{)(.*?)(\\}))",
-							"name": "meta.filter.operator.step.tw-$2.tw-suffix-$4.tiddlywiki5",
+							"name": "meta.filter.operator.step.tiddlywiki5",
 							"captures": {
 								"1": {
 									"name": "keyword.control.operator.prefix.negation.tiddlywiki5"
@@ -6126,7 +6189,7 @@
 					"name": "entity.name.tiddler.field.tiddlywiki5"
 				},
 				"4": {
-					"name": "punctuation.definition.text-reference.index..tiddlywiki5"
+					"name": "punctuation.definition.text-reference.index.tiddlywiki5"
 				},
 				"5": {
 					"name": "entity.name.tiddler.index.tiddlywiki5"

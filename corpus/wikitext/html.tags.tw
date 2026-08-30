@@ -31,3 +31,11 @@ preformatted
 Block content.
 
 </section>
+
+<style>
+.embedded { color: blue; }
+</style>   
+
+<script>
+var embedded = 1;
+</script>

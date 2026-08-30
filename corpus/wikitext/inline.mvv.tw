@@ -7,3 +7,5 @@
 ((( [tag[x]] ||separator)))
 
 <$text text=((aVariable))/>
+
+A variable with a default: ((varname||, )) and a filter form (((  [all[current]]  ))).

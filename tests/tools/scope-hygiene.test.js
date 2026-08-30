@@ -18,10 +18,35 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { readSnapshot } = require('../../tools/snapshot-format.js');
 
-// A scope name: dot-separated segments of word characters, dashes and plus signs. The
-// TextMate convention allows nothing else, and every well-formed scope in this repo's
-// snapshots satisfies it.
-const WELL_FORMED = /^[A-Za-z0-9][A-Za-z0-9+_-]*(\.[A-Za-z0-9+_-]+)*$/;
+// A scope name: dot-separated segments, none of them empty. A segment may hold whatever an
+// interpolated capture legitimately holds — VS Code's own HTML grammar emits
+// `meta.attribute.$1.html`, and a TiddlyWiki widget attribute is named `$tiddler`, so a
+// dollar inside a segment reads as the host's own practice rather than as damage.
+//
+// Two things are damage, and both are invisible downstream. WHITESPACE splits one name into
+// two, so a theme matches neither half. An EMPTY SEGMENT means an interpolation matched
+// nothing, and no selector can name the result.
+const WELL_FORMED = /^[^\s.]+(\.[^\s.]+)*$/;
+
+// An interpolation that never resolved. `$1` standing in an emitted name means the pattern
+// declared no such capture group, so the name says `tw-$1` for every parameter it ever marks.
+const DEAD_INTERPOLATION = /\$\d/;
+
+// Two predicates, and no third. A name whose interpolated segment held a space splits into a
+// head and a tail, and the tail carries a leading dot that the first predicate already names.
+// Judging the HEAD would mean deciding which suffixes a scope may end in, and the corpus
+// carries scopes from every embedded grammar it fences — a list nobody can keep true.
+/**
+ * Why a scope reads as damaged, or null.
+ *
+ * @param {string} scope
+ * @returns {string|null}
+ */
+function damage(scope) {
+  if (!WELL_FORMED.test(scope)) return 'empty segment or whitespace';
+  if (DEAD_INTERPOLATION.test(scope)) return 'an interpolation that never resolved';
+  return null;
+}
 
 /**
  * Every scope token standing in a snapshot, with the file and line it came from.
@@ -46,11 +71,15 @@ function scopesInSnapshots(dir) {
 test('a well-formed scope passes and a mangled one fails', () => {
   assert.ok(WELL_FORMED.test('meta.tag.structure.div.start.html.tiddlywiki5'));
   assert.ok(WELL_FORMED.test('markup.underline.link.external.https.tiddlywiki5'));
-  assert.ok(WELL_FORMED.test('meta.variable.macro.parameter.tw-$1.tiddlywiki5'.replace('$1', 'name')));
-  // The shapes an interpolated capture produces when it swallows more than a name.
-  assert.ok(!WELL_FORMED.test('meta.filter.operator.step.tw-(importTitles)]'), 'brackets and parens');
+  // The host's own practice: an interpolated attribute name, dollar and all.
+  assert.ok(WELL_FORMED.test('meta.attribute.unrecognized.$tiddler.html.tiddlywiki5'));
+  // The two shapes that are damage.
+  assert.ok(!WELL_FORMED.test('meta.filter.operator.step.tw-a b.tiddlywiki5'), 'whitespace splits a name');
   assert.ok(!WELL_FORMED.test('.tw-suffix-map.tiddlywiki5'), 'a leading dot, left by a split');
   assert.ok(!WELL_FORMED.test('meta.attribute..html'), 'an empty segment');
+  assert.strictEqual(damage('meta.variable.pragma.parameter.tw-$1.tiddlywiki5'), 'an interpolation that never resolved');
+  assert.strictEqual(damage('source.css'), null, 'an embedded grammar names its own scopes');
+  assert.strictEqual(damage('meta.tiddle.field.text.tiddlywiki5.multids-file'), null, 'so does a sibling grammar');
 });
 
 const SAMPLES = path.resolve(__dirname, '..', 'samples');
@@ -62,25 +91,26 @@ test('the pinned snapshots carry scopes to check', live, () => {
 });
 
 // A FLOOR, in the shape corpus-check already uses: the count may fall and may never rise.
-// Three shapes stand behind it, each an interpolation that took more or less than a name:
 //
-//   meta.filter.operator.step.tw-,.tw-suffix-.tiddlywiki5   a capture holding punctuation
-//   punctuation.definition.substituted.triple..attribute…   a capture matching nothing
-//   meta.variable.pragma.parameter.tw-$1.tiddlywiki5        a capture group that never existed
+// What stands behind it: an SVG element that closes with a self-closing slash takes the `/>`
+// branch of its own end pattern, where the group carrying the tag name never participates, so
+// the interpolated segment arrives empty. The same name resolves correctly on every element
+// that closes with a closing tag, and dropping the interpolation would cost every closing tag
+// its name to spare this one shape.
 //
 // Lower this number when a fix lands. Never raise it.
-const FLOOR = 214;
+const FLOOR = 3;
 
 test('malformed scope names stay at or below the floor', live, () => {
-  const mangled = snapshots.filter(({ scope }) => !WELL_FORMED.test(scope));
-  const shapes = [...new Set(mangled.map(({ scope }) => scope))].slice(0, 6);
+  const mangled = snapshots.filter(({ scope }) => damage(scope));
+  const shapes = [...new Set(mangled.map(({ scope }) => `${scope}  (${damage(scope)})`))].slice(0, 8);
   const report = shapes.map((s) => `\n  ${JSON.stringify(s)}`).join('');
   assert.ok(
     mangled.length <= FLOOR,
     `${mangled.length} malformed scope name(s), floor ${FLOOR}:${report}`
   );
   assert.ok(
-    mangled.length >= FLOOR - 40,
+    mangled.length >= FLOOR - 2,
     `${mangled.length} malformed, well under the floor of ${FLOOR} — lower FLOOR to pin the gain`
   );
 });

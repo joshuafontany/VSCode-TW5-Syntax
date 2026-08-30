@@ -413,7 +413,7 @@
 #             ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5
 #              ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 meta.attribute.unrecognized.test.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 #                  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 meta.attribute.unrecognized.test.html.tiddlywiki5 punctuation.separator.key-value.html.tiddlywiki5
-#                   ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 meta.attribute.unrecognized.test.html.tiddlywiki5 text.substituted.triple.attribute.html.tiddlywiki5 punctuation.definition.substituted.triple..attribute.begin.tiddlywiki5
+#                   ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 meta.attribute.unrecognized.test.html.tiddlywiki5 text.substituted.triple.attribute.html.tiddlywiki5 punctuation.definition.substituted.triple.attribute.begin.tiddlywiki5
 #                      ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 meta.attribute.unrecognized.test.html.tiddlywiki5 text.substituted.triple.attribute.html.tiddlywiki5
 #                        ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 meta.attribute.unrecognized.test.html.tiddlywiki5 text.substituted.triple.attribute.html.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.begin.tiddlywiki5
 #                         ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 meta.attribute.unrecognized.test.html.tiddlywiki5 text.substituted.triple.attribute.html.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.begin.tiddlywiki5
@@ -656,7 +656,7 @@
 #^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5
 #    ^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 meta.attribute.unrecognized.string-replaced-block.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 #                         ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 meta.attribute.unrecognized.string-replaced-block.html.tiddlywiki5 punctuation.separator.key-value.html.tiddlywiki5
-#                          ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 meta.attribute.unrecognized.string-replaced-block.html.tiddlywiki5 text.substituted.triple.attribute.html.tiddlywiki5 punctuation.definition.substituted.triple..attribute.begin.tiddlywiki5
+#                          ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 meta.attribute.unrecognized.string-replaced-block.html.tiddlywiki5 text.substituted.triple.attribute.html.tiddlywiki5 punctuation.definition.substituted.triple.attribute.begin.tiddlywiki5
 >
 >    !!! `header` doesn't highlight here
 #^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 meta.attribute.unrecognized.string-replaced-block.html.tiddlywiki5 text.substituted.triple.attribute.html.tiddlywiki5

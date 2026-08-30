@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<?xml version="1.0" encoding="utf-8"?>
+<![CDATA[raw characters here]]>
+
+<my-custom attr="x">custom element content</my-custom>
+
+<% if [[a]match[a]] %>taken<% else %>not taken<% endif %>
+
+<% unknownshortcut %>
+
+An en dash -- here.

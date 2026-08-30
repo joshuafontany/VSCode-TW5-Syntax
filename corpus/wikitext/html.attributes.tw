@@ -19,3 +19,13 @@
 <$widget boolean/>
 
 <$action-sendmessage $message="tm-notify" $param="value"/>
+
+<$button attr=[[bracket quoted]] other=[[another]]>bracket-quoted attribute values</$button>
+
+<$link to="""triple quoted $param$ value""">a triple-quoted attribute</$link>
+
+  <style>
+    .indented { color: red; }
+  </style>
+
+<$macrocall $name="m" one="a" two="b"/>

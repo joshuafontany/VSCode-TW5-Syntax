@@ -1,0 +1,27 @@
+\define macro-inline() one line
+\procedure proc-inline() one line
+\widget $my.widget() one line
+
+\function fn-block()
+[[body]]
+\end
+
+\procedure subs(a:"one", b:"two")
+$a$ and $(b)$ and ${ [all[current]] }$
+\end
+
+\procedure defaults(a:"one")
+<<defaults a:"two">>
+\end
+
+Body text after every definition above.
+
+\procedure mvv-default(a:((varname)))
+body
+\end
+
+\procedure fenced-attribute()
+<$codeblock code=```
+raw fenced attribute value
+```/>
+\end

@@ -1,0 +1,17 @@
+Filter prefixes, one per run.
+
+{{{ =[all[tiddlers]] }}}
+{{{ -[tag[done]] }}}
+{{{ ~[[fallback]] }}}
+{{{ :filter[all[current]] }}}
+
+Negation, suffixes and every operand form.
+
+{{{ [!has[draft.of]] }}}
+{{{ [search:title[term]] }}}
+{{{ [search:title:casesensitive[term]] }}}
+{{{ [get{!!field}] }}}
+{{{ [field:name<var>] }}}
+{{{ [tag[a]] [tag[b]] }}}
+
+An inline filtered transclusion {{{ [all[current]] ||Template }}} stands mid-sentence.

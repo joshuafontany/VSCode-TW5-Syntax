@@ -46,5 +46,8 @@ widget body
 
 
 
+# This file declares an inline parser mode above, so TiddlyWiki parses one inline run and
+# builds no paragraph node here. Measured: a void parsermode node with a text child.
 The body begins here, after every pragma above.
-#   ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#   ^^^^ text.html.tiddlywiki5
+#   ^ - meta.paragraph.tiddlywiki5

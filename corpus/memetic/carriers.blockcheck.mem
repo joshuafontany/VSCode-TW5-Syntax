@@ -1,0 +1,17 @@
+<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext >>
+
+<<^ code="&#x0001;" namespace="example" from=? -> to=lar:///ha.ka.ba/lares/api/example >>
+
+<<^ code="&#x0002;" >>
+
+A body whose close carries a block check.
+
+<<^ code="&#x0003;" >> ni:///sha-256;zrEB193tdbg1vRQfICU5Ja_hLusyqw9aFnaZFTP34es
+
+<<^ code="&#x0017;" >> ni:///sha-256;AAAA1234BBBB5678CCCC9012DDDD3456EEEE7890FFFF
+
+<<^ >>
+
+<<~ sigil bracket=[[a bracketed value]] single='a single quoted value' >>
+
+<<^ code="&#x0004;" -> to=? >>

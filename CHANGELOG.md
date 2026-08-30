@@ -7,6 +7,18 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- Under an inline parser mode no block rule stands. `\parsermode inline` sets parseAsInline for
+  the whole tiddler, so TiddlyWiki parses one inline run and every block marker after it yields
+  plain text — and a heading marker, a list marker and the rest kept their block scopes. An
+  inline mode now opens a region admitting pragmas and inline rules alone, and the body under it
+  carries no paragraph node, as the parser builds none.
+- A scope name says what it means. Four templates emitted names no selector could reach: a
+  parameter name interpolated a capture group its own pattern never declared, so every pragma
+  parameter read `tw-$1`; a text-reference index and a triple-quoted substitution each carried a
+  literal double dot, leaving an empty segment; and a filter step interpolated an operator name
+  and suffix that may hold a space, a comma or nothing at all, splitting one name into two that
+  no theme matches. The filter step keeps its own captures, which name the operator and suffix
+  already.
 - A pretty link opens only where it can close on the same line. TiddlyWiki reads one with
   `/\[\[(.*?)(?:\|(.*?))?\]\]/`, whose dot crosses no newline, so halves on two lines yield
   plain text. Without that guard the double bracket opening a filter's title operand — as in

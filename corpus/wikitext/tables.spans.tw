@@ -1,0 +1,16 @@
+|A caption |c
+|!Header |!Second |h
+|left |right |
+|<|spanned left |
+|>|spanned right |
+|~|spanned down |
+|Body |Cell |
+|Footer |Cell |f
+
+|Second table caption |c
+|body row |only |
+
+|Caption|c
+|head |cell |h
+|body |cell |b
+|foot |cell |f
