@@ -7,19 +7,19 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
-- Every scope name the grammar emits reads as a scope. An element closing with `/>` took the
+- Every scope name the grammar emits reads as a scope. A scope name interpolates a capture only
+  where every branch emitting that name fills it: an element closing with `/>` takes the
   self-closing branch of its end pattern, where the group carrying the tag name never
-  participates, so the name arrived with an empty segment — `meta.tag.object.svg..end` — which no
-  theme matches and no injection selector spares, while every gate read green because a token
-  stood there. These end tags take their name plainly, and the enclosing element scope carries
-  the tag name beside them.
+  participates, and the name arrives with an empty segment — `meta.tag.object.svg..end` — which no
+  theme matches and no injection selector spares. Such end tags take their name plainly; the
+  enclosing element scope carries the tag name beside them on every span.
 - A single-line `\define` ends where its line ends, whatever its body closes with. A body ending
-  in a closing parenthesis left the cursor after a `)` at end of line, which is exactly where the
-  multiline form waits, so the definition opened a block there and swallowed the rest of the file
-  hunting an `\end` that never came. TiddlyWiki's own documentation carries the shape — a
-  regular-expression macro whose body reads as a group — and every line of prose below it coloured
-  as macro body. The line now names the form before either branch can open, and the parameter list
-  ends at the FIRST closing parenthesis, balanced or not, because `macrodef.js` ends it there.
+  in a closing parenthesis leaves the cursor after a `)` at end of line, exactly where the
+  multiline form waits, and a definition that opened a block there swallowed the rest of the file
+  hunting an `\end` that never came — the shape TiddlyWiki's own documentation carries in a
+  regular-expression macro whose body reads as a group. The line names which form it holds before
+  either branch opens, reading past a parameter list that ends at the FIRST closing parenthesis,
+  balanced or not, as `macrodef.js` ends it there.
 - Only tiddlers TiddlyWiki parses as wikitext answer to the grammar. A `.tid` declares its type
   in its header, and the corpus sweep stripped that header and asked about every tiddler alike —
   comparing the grammar against a parser that would never have run on a `text/plain` config file

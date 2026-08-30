@@ -3,14 +3,16 @@
 # TiddlyWiki reads a define with no closing pragma as a one-line definition; the body runs to the
 # end of the line and the tiddler continues beneath it.
 #
-# A body ENDING IN A CLOSING PARENTHESIS leaves the cursor after a parenthesis at end of line,
-# which the multiline branch waits for — its begin reads (?<=\))\s*$ — so a single rule holding
-# both forms opened a block there and swallowed the rest of the file hunting an \end that never
-# came. TiddlyWiki own documentation carries the shape: filters/examples/search-replace Operator
-# (Examples) defines a regular-expression macro whose body reads as a group.
+# A body ENDING IN A CLOSING PARENTHESIS leaves the cursor after a parenthesis at end of line —
+# exactly what the multiline branch waits for, its begin reading (?<=\))\s*$. A rule holding both
+# forms at once therefore opens a block on a one-line define and swallows the rest of the file
+# hunting an \end that never comes. TiddlyWiki's own documentation carries the shape:
+# filters/examples/search-replace Operator (Examples) defines a regular-expression macro whose
+# body reads as a group.
 #
-# The line names the form before either branch can open. The parameter list ends at the FIRST
-# closing parenthesis, balanced or not, because macrodef.js ends it there.
+# So the LINE names which form it holds, before either branch opens. Its lookahead reads past a
+# parameter list that ends at the FIRST closing parenthesis, balanced or not, because macrodef.js
+# ends it there — its own regexp reads \(\s*([^)]*)\).
 
 ! A body of plain text ends at the line
 
