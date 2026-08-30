@@ -1,0 +1,33 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A tilde suppresses the link families TiddlyWiki suppresses"
+
+# TiddlyWiki reads a leading tilde as a suppressor for three link families: wikilinkprefix
+# hands back plain text for a CamelCase word, and extlink and syslink each return the text
+# of the link they declined to make. A pretty link takes no suppressor — the parser builds
+# the link and leaves the tilde standing as content.
+
+! A CamelCase word links, and a suppressed one does not
+
+A CamelCaseLink and a ~CamelCaseSuppressed here.
+# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.link.wikilink.tiddlywiki5
+#                      ^ - meta.link.wikilink.tiddlywiki5
+#                      ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.link.suppressed.wikilink.tiddlywiki5
+
+! An external link, suppressed
+
+See https://example.com/a and ~https://example.com/b here.
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.external.tiddlywiki5
+#                              ^ - markup.underline.link.external.tiddlywiki5
+#                              ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.link.suppressed.external.tiddlywiki5
+
+! A system link, suppressed
+
+See $:/a/link and ~$:/b/link here.
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.syslink.tiddlywiki5
+#                  ^ - markup.underline.link.syslink.tiddlywiki5
+#                  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.link.suppressed.syslink.tiddlywiki5
+
+! A pretty link takes no suppressor, and keeps its own reading
+
+A ~[[Pretty Link]] stands linked.
+#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.begin.tiddlywiki5
+

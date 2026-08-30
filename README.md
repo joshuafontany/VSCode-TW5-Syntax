@@ -63,6 +63,8 @@ Based primarily on the grammars found below, with heavy tweaking and editing.
 * `npm run tw5-oracle -- '<wikitext>'` — the tree TiddlyWiki builds, and `-- --rules` the rules it stands
 * `npm run rule-inventory` — every parser rule, the config tiddlers it answers to, and what TiddlyWiki ships for each
 * `npm run theme-paint -- <scope>` — how many bundled themes paint a scope, and `-- --families` the whole grammar ranked
+* `npm run overreach-corpus-files` / `overreach-corpus-memetic` — the corpus, in both dialects, against the parser and the written rulings
+* `npm run compose-memes` — composition over whatever memetic writing stands beside this checkout; set `MEMES` to one or more directories
 * `npm run package-contents` — every path the manifest names, checked inside the built package
 * `npm run bench` — a disposable editor in a container, so you can look at the grammar with your own eyes
 

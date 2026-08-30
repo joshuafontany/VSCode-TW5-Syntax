@@ -13,7 +13,7 @@
 //   the parser returns a node    -> the construct works -> a scope may stand
 //   the parser yields plain text -> the author reached for markup and missed
 //
-//   node tools/overreach-check.js '<glob>' [--camelcase] [--verbose]
+//   node tools/overreach-check.js '<glob>' [--camelcase] [--verbose] [--expected=<file>] [--scope=<scopeName>]
 //   node tools/overreach-check.js --corpus [count] [--exclude=<path fragment>]...
 //
 // --corpus builds its specimens rather than looking for them: every Nth tiddler across
@@ -32,7 +32,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
-const { BASE, readSnapshot, claims, verdicts } = require('./snapshot-format.js');
+const { BASE, readSnapshot, claims, verdicts, declines } = require('./snapshot-format.js');
 
 /**
  * The spans a snapshot annotates, flattened across its lines.
@@ -60,6 +60,69 @@ function offsetAt(source, line, col) {
 }
 
 /**
+ * The rulings that explain a divergence, read from a file.
+ *
+ * Some spans stand where TiddlyWiki refuses BY RULING: a scope the host ships disabled, a
+ * `\rules` run narrowing a rule set no TextMate grammar can follow, a fixture written to be
+ * malformed. Counting those beside a genuine over-reach gives a tally that can never reach
+ * zero and teaches a reader nothing.
+ *
+ * Each line names a scope prefix, optionally scoped to one file, and a reason after `#`. A
+ * line carrying no reason is not a ruling — it is a number somebody wanted smaller.
+ *
+ * @param {string} text
+ * @returns {{file:string|null, scope:string, reason:string}[]}
+ */
+function readExpected(text) {
+  const out = [];
+  for (const raw of text.split('\n')) {
+    const line = raw.trim();
+    if (!line || line.startsWith('#')) continue;
+    const cut = line.indexOf('#');
+    if (cut < 0) throw new Error(`ruling carries no reason: ${line}`);
+    const reason = line.slice(cut + 1).trim();
+    if (!reason) throw new Error(`ruling carries no reason: ${line}`);
+    const target = line.slice(0, cut).trim();
+    const colon = target.lastIndexOf(':');
+    const named = colon < 0 ? { file: null, scope: target } : { file: target.slice(0, colon), scope: target.slice(colon + 1) };
+    if (!named.file && !named.scope) throw new Error(`ruling names neither a file nor a scope: ${line}`);
+    out.push(
+      colon < 0
+        ? { file: null, scope: target, reason }
+        : { file: target.slice(0, colon), scope: target.slice(colon + 1), reason }
+    );
+  }
+  return out;
+}
+
+/**
+ * Whether a ruling explains this span.
+ *
+ * A ruling matches a scope by dotted prefix, or by suffix where it opens with `*.` — a dialect
+ * names its whole vocabulary that way while every scope it INHERITS keeps the base suffix and
+ * still answers. A file matches where the path ends in the fragment the ruling names — so a ruling written for one fixture never quietly excuses another. An EMPTY scope
+ * covers every span in the file it names, which a fixture written to be malformed earns and
+ * nothing else does: a ruling with neither a file nor a scope explains everything, and
+ * readExpected refuses it.
+ *
+ * @param {{file:string|null, scope:string}[]} rules
+ * @param {string} file
+ * @param {string} scope
+ * @returns {boolean}
+ */
+function isExpected(rules, file, scope) {
+  return rules.some(
+    (r) =>
+      (r.scope === ''
+        ? true
+        : r.scope.startsWith('*.')
+          ? scope.endsWith(r.scope.slice(1))
+          : scope === r.scope || scope.startsWith(`${r.scope}.`)) &&
+      (r.file === null || file === r.file || file.endsWith(`/${r.file}`))
+  );
+}
+
+/**
  * Every span where the grammar and TiddlyWiki disagree, in both directions.
  *
  * A span answers for itself: the grammar painted THIS stretch, so TiddlyWiki gets asked
@@ -67,8 +130,8 @@ function offsetAt(source, line, col) {
  *
  * - `overreach` — the grammar CLAIMS a construct and the parser yields plain text. The
  *   grammar coloured markup that does not work.
- * - `invention` — the grammar passes a VERDICT and the parser BUILDS a node HERE. The
- *   grammar condemned markup that does.
+ * - `invention` — the grammar passes a VERDICT, or marks a SUPPRESSION, and the parser
+ *   BUILDS a node HERE. The grammar denied markup that works.
  *
  * The two read different evidence, because they ask opposite questions. A claim answers to
  * whether ANY construct covers the span, since a grammar names a construct's parts as well
@@ -88,7 +151,7 @@ function review(source, snapText, oracle) {
   const findings = [];
   for (const ann of parseSnapshot(snapText)) {
     const claimed = claims(ann.scopes);
-    const condemned = verdicts(ann.scopes);
+    const condemned = declines(ann.scopes);
     if (claimed.length === 0 && condemned.length === 0) continue;
     const start = offsetAt(source, ann.line, ann.start);
     const end = offsetAt(source, ann.line, ann.end);
@@ -106,13 +169,18 @@ function review(source, snapText, oracle) {
   return findings;
 }
 
-module.exports = { BASE, parseSnapshot, offsetAt, claims, verdicts, review };
+module.exports = { BASE, parseSnapshot, offsetAt, claims, verdicts, declines, readExpected, isExpected, review };
 
 if (require.main === module) {
   const args = process.argv.slice(2);
   const verbose = args.includes('--verbose');
+  const expectedFile = (args.find((a) => a.startsWith('--expected=')) || '').slice('--expected='.length);
+  const rulings = expectedFile ? readExpected(fs.readFileSync(expectedFile, 'utf8')) : [];
   const camelcase = args.includes('--camelcase');
   const pattern = args.find((a) => !a.startsWith('--')) || './tests/samples/*.tw';
+  // The dialect answers to the same parser: memetic-wikitext includes the whole base grammar,
+  // so every reading below carries into a .mem file and must be asked there too.
+  const scope = (args.find((a) => a.startsWith('--scope=')) || '--scope=text.html.tiddlywiki5').slice('--scope='.length);
 
   const tw = resolveTiddlyWiki();
   if (!tw) {
@@ -184,12 +252,13 @@ if (require.main === module) {
     .trim()
     .split('\n')
     .filter(Boolean);
-  execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', 'text.html.tiddlywiki5', '-u', ...copies], {
+  execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', ...copies], {
     stdio: ['ignore', 'ignore', 'inherit'],
     shell: process.platform === 'win32'
   });
 
   const byScope = { overreach: new Map(), invention: new Map() };
+  let ruled = 0;
   let scanned = 0;
   copies.forEach((copy, i) => {
     const snap = `${copy}.snap`;
@@ -197,6 +266,10 @@ if (require.main === module) {
     scanned += 1;
     const source = fs.readFileSync(copy, 'utf8');
     for (const f of review(source, fs.readFileSync(snap, 'utf8'), oracle)) {
+      if (isExpected(rulings, files[i], f.scope)) {
+        ruled += 1;
+        continue;
+      }
       const bucket = byScope[f.kind];
       if (!bucket.has(f.scope)) bucket.set(f.scope, []);
       bucket.get(f.scope).push({ ...f, file: files[i] });
@@ -206,7 +279,10 @@ if (require.main === module) {
 
   const count = (m) => [...m.values()].reduce((n, v) => n + v.length, 0);
   const total = count(byScope.overreach) + count(byScope.invention);
-  console.log(`overreach-check  ${scanned} file(s)${camelcase ? '  [CamelCase forced on]' : ''}`);
+  console.log(
+    `overreach-check  ${scanned} file(s)${camelcase ? '  [CamelCase forced on]' : ''}` +
+      (rulings.length ? `  ${ruled} span(s) explained by ${rulings.length} ruling(s)` : '')
+  );
   const section = (kind, headline) => {
     const map = byScope[kind];
     console.log(`\n  ${String(count(map)).padStart(4)}  ${headline}`);

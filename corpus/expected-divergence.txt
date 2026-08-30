@@ -1,0 +1,34 @@
+# Divergences that stand by ruling.
+#
+# Each line names a scope prefix, optionally scoped to one fixture, and the reason it stands.
+# A line carrying no reason is not a ruling. Every span these explain is one where TiddlyWiki
+# refuses and the grammar reads on anyway, deliberately.
+
+meta.link.wikilink                            # TiddlyWiki ships CamelCase linking disabled; the scope stands quiet so a wiki that enables it can colour it back
+meta.tag.metadata.doctype                     # a .tid may hold a whole TiddlyWiki HTML document, where a doctype reads; wikitext builds no node for one
+meta.tag.metadata.cdata                       # the same reading, for a CDATA section
+meta.tag.metadata.processing.xml              # the same reading, for an XML declaration
+metadata.tags.tw:punctuation.definition.tag   # the fixture exists to exercise the three metadata families above
+metadata.tags.tw:entity.name.tag              # the same fixture
+metadata.tags.tw:entity.other.attribute-name  # the same fixture
+metadata.tags.tw:punctuation.separator.key-value # the same fixture
+metadata.tags.tw:punctuation.definition.string   # the same fixture
+metadata.tags.tw:string.quoted                # the same fixture
+metadata.tags.tw:meta.tag.other               # the same fixture
+metadata.tags.tw:keyword.control.shortcut     # the same fixture
+metadata.tags.tw:meta.shortcut                # the same fixture
+metadata.tags.tw:constant.character.dash      # the same fixture
+metadata.tags.tw:string.other.inline-data     # the CDATA section's own content, in the same fixture
+pragmas.tw:punctuation.definition.directive   # a \rules run above narrows the active rule set, and no TextMate grammar can follow it
+pragmas.tw:keyword.control.directive          # the same \rules run
+pragmas.tw:meta.directive                     # the same \rules run
+pragmas.tw:keyword.operator                   # the argument of a pragma the same \rules run removed
+degenerate.illegal.tw:                        # a fixture written to be malformed
+degenerate.unterminated.tw:                   # a fixture written to leave constructs open
+degenerate.nesting.tw:                        # a fixture written to nest wrongly
+
+# The dialect. memetic-wikitext+tiddlywiki includes the whole base grammar and adds a
+# vocabulary of its own — carriers, sigils, lar: addresses, block checks — which TiddlyWiki's
+# parser does not read and never will. Every scope carrying the dialect's suffix diverges by
+# construction; every scope it INHERITS keeps the base suffix and answers like any other.
+*.memetic-wikitext                            # the dialect's own vocabulary, unread by the host parser

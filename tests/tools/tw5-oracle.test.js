@@ -13,6 +13,8 @@
 
 const test = require('node:test');
 const assert = require('node:assert');
+const fs = require('node:fs');
+const path = require('node:path');
 const { flatten, isPlainText, verdictAt, resolveTiddlyWiki, boot } = require('../../tools/tw5-oracle.js');
 
 /** The span of `part` inside `text`, so no test carries a hand-counted column. */
@@ -200,11 +202,26 @@ test('a definition carrying the whole document as children still reads opaque in
       rule: 'macrodef',
       start: 0,
       end: 40,
-      children: [{ type: 'link', rule: 'prettylink', start: 42, end: 60, children: [] }]
+      children: [
+        {
+          type: 'link',
+          rule: 'prettylink',
+          start: 42,
+          end: 60,
+          children: [{ type: 'text', text: 'the link text', start: 44, end: 58 }]
+        }
+      ]
     }
   ]);
   assert.strictEqual(verdictAt(spans, 12, 13).innermost, 'opaque', 'inside the definition');
-  assert.strictEqual(verdictAt(spans, 45, 46).innermost, 'built', 'in the document beneath it');
+  assert.strictEqual(verdictAt(spans, 42, 43).innermost, 'built', 'where the link beneath it begins');
+});
+
+// A macro invocation stores every parameter as an attribute and builds no children, so a span
+// inside one answers to neither question, exactly as a definition body does.
+test('a span inside a macro invocation reads as opaque', () => {
+  const spans = flatten([{ type: 'transclude', rule: 'macrocallinline', start: 2, end: 26, children: [] }]);
+  assert.strictEqual(verdictAt(spans, 10, 20).innermost, 'opaque');
 });
 
 test('a construct that simply carries no children stays judgeable', () => {
@@ -294,6 +311,38 @@ test('TiddlyWiki looks inside no definition body, and the oracle says so', live,
   const src = '\\define m()\nbody with < here\n\\end';
   const at = src.indexOf('<');
   assert.strictEqual(boot(TW).readAt(src, at, at + 1).innermost, 'opaque');
+});
+
+// The discriminator rests on every rule, not on the collisions that happened to surface.
+// TiddlyWiki's rule modules return `type: "text"` from twenty-two sites; twenty-one carry the
+// content in a `text` string, and mvvdisplayinline carries it in attributes. A rule added
+// upstream that types a node "text" without a text string opens a fourth door onto the same
+// collision, and this reads the modules rather than waiting for a count to look wrong.
+test('every text-typed node the parser builds carries a text string, or names itself a widget', live, () => {
+  const dir = path.join(TW, 'core/modules/parsers/wikiparser/rules');
+  const walk = (d) =>
+    fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => {
+      const p = path.join(d, e.name);
+      return e.isDirectory() ? walk(p) : e.name.endsWith('.js') ? [p] : [];
+    });
+  // mvvdisplayinline builds a text WIDGET, content in attributes.text; isPlainText knows it.
+  const KNOWN_WIDGETS = new Set(['mvvdisplayinline.js']);
+  const bare = [];
+  let sites = 0;
+  for (const file of walk(dir)) {
+    const src = fs.readFileSync(file, 'utf8');
+    for (const m of src.matchAll(/type:\s*"text"/g)) {
+      sites += 1;
+      const after = src.slice(m.index, m.index + 400);
+      const filledLater = /textNode\.text\s*=/.test(src);
+      if (/\btext\s*:/.test(after.split(/}\s*[,;)]/)[0]) || filledLater) continue;
+      if (KNOWN_WIDGETS.has(path.basename(file))) continue;
+      bare.push(`${path.basename(file)}:${src.slice(0, m.index).split('\n').length}`);
+    }
+  }
+  // A sweep that reached nothing would report nothing, and pass as quietly as a clean one.
+  assert.ok(sites >= 20, `the sweep reached ${sites} text-typed sites`);
+  assert.deepStrictEqual(bare, [], `text-typed nodes carrying no text string: ${bare.join(' ')}`);
 });
 
 test('TiddlyWiki builds a variable display, and the oracle reads it as built', live, () => {

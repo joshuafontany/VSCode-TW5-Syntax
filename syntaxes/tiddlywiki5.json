@@ -979,7 +979,7 @@
 					"begin": "on(s(croll|t(orage|alled)|u(spend|bmit)|e(curitypolicyviolation|ek(ing|ed)|lect))|hashchange|c(hange|o(ntextmenu|py)|u(t|echange)|l(ick|ose)|an(cel|play(through)?))|t(imeupdate|oggle)|in(put|valid)|o(nline|ffline)|d(urationchange|r(op|ag(start|over|e(n(ter|d)|xit)|leave)?)|blclick)|un(handledrejection|load)|p(opstate|lay(ing)?|a(ste|use|ge(show|hide))|rogress)|e(nded|rror|mptied)|volumechange|key(down|up|press)|focus|w(heel|aiting)|l(oad(start|e(nd|d(data|metadata)))?|anguagechange)|a(uxclick|fterprint|bort)|r(e(s(ize|et)|jectionhandled)|atechange)|m(ouse(o(ut|ver)|down|up|enter|leave|move)|essage(error)?)|b(efore(unload|print)|lur))(?![\\w:-])",
 					"beginCaptures": {
 						"0": {
-							"name": "invalid.illegal.event-handler-in-wikitext.html.tiddlywiki5"
+							"name": "meta.attribute.event-handler.html.tiddlywiki5"
 						},
 						"1": {
 							"name": "entity.other.attribute-name.html.tiddlywiki5"
@@ -1413,20 +1413,8 @@
 			},
 			"end": "-->",
 			"name": "comment.block.html.tiddlywiki5",
-			"patterns": [
-				{
-					"match": "\\G-?>",
-					"name": "invalid.illegal.characters-not-allowed-here.html.tiddlywiki5"
-				},
-				{
-					"match": "<!--(?!>)|<!-(?=-->)",
-					"name": "invalid.illegal.characters-not-allowed-here.html.tiddlywiki5"
-				},
-				{
-					"match": "--!>",
-					"name": "invalid.illegal.characters-not-allowed-here.html.tiddlywiki5"
-				}
-			]
+			"patterns": [],
+			"comment": "TiddlyWiki scans from <!-- to the next --> and builds a comment across whatever stands between; HTML's rules about a comment's contents are not its rules, so nothing inside carries a verdict."
 		},
 		"htmlwidget-doctype": {
 			"begin": "<!(?=(?i:DOCTYPE\\s))",
@@ -5725,37 +5713,68 @@
 			]
 		},
 		"extlink": {
-			"match": "(~)?(file|http|https|mailto|ftp|irc|news|data|skype):[^\\s<>{}\\[\\]`|'\"\\\\^]+(?:/|\\b)",
-			"name": "markup.underline.link.external.tiddlywiki5",
-			"captures": {
-				"1": {
-					"name": "punctuation.definition.suppress.link.external.tiddlywiki5"
+			"patterns": [
+				{
+					"comment": "A tilde suppresses this family: TiddlyWiki hands back the text of the link it declined to make, so the span carries a quiet name and the tilde keeps its own punctuation.",
+					"match": "(~)(file|http|https|mailto|ftp|irc|news|data|skype):[^\\s<>{}\\[\\]`|'\"\\\\^]+(?:/|\\b)",
+					"name": "meta.link.suppressed.external.tiddlywiki5",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.suppress.link.external.tiddlywiki5"
+						}
+					}
 				},
-				"2": {
-					"name": "markup.underline.link.external.$2.tiddlywiki5"
+				{
+					"match": "(file|http|https|mailto|ftp|irc|news|data|skype):[^\\s<>{}\\[\\]`|'\"\\\\^]+(?:/|\\b)",
+					"name": "markup.underline.link.external.tiddlywiki5",
+					"captures": {
+						"1": {
+							"name": "markup.underline.link.external.$1.tiddlywiki5"
+						}
+					}
 				}
-			}
+			]
 		},
 		"syslink": {
-			"match": "(~)?(\\$:\\/)[\\w\\/\\.\\-]+",
-			"name": "markup.underline.link.syslink.tiddlywiki5",
-			"captures": {
-				"1": {
-					"name": "punctuation.definition.suppress.syslink.tiddlywiki5"
+			"patterns": [
+				{
+					"comment": "A tilde suppresses this family: TiddlyWiki hands back the text of the link it declined to make, so the span carries a quiet name and the tilde keeps its own punctuation.",
+					"match": "(~)(\\$:\\/)[\\w\\/\\.\\-]+",
+					"name": "meta.link.suppressed.syslink.tiddlywiki5",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.suppress.syslink.tiddlywiki5"
+						}
+					}
 				},
-				"2": {
-					"name": "punctuation.definition.link.syslink.tiddlywiki5"
+				{
+					"match": "(\\$:\\/)[\\w\\/\\.\\-]+",
+					"name": "markup.underline.link.syslink.tiddlywiki5",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.link.syslink.tiddlywiki5"
+						}
+					}
 				}
-			}
+			]
 		},
 		"wikilink": {
-			"match": "(~)?(?<!(?:(?:[a-zß-öø-ÿőű])|(?:[A-ZÀ-ÖØ-ÞŐŰ]))|\\-|_)(?:(?:[A-ZÀ-ÖØ-ÞŐŰ])+(?:[a-zß-öø-ÿőű])+(?:[A-ZÀ-ÖØ-ÞŐŰ])(?:(?:[a-zß-öø-ÿőű])|(?:[A-ZÀ-ÖØ-ÞŐŰ]))*)",
-			"name": "meta.link.wikilink.tiddlywiki5",
-			"captures": {
-				"1": {
-					"name": "punctuation.definition.suppress.wikilink.tiddlywiki5"
+			"patterns": [
+				{
+					"comment": "A tilde suppresses this family: TiddlyWiki hands back the text of the link it declined to make, so the span carries a quiet name and the tilde keeps its own punctuation.",
+					"match": "(~)(?<!(?:(?:[a-zß-öø-ÿőű])|(?:[A-ZÀ-ÖØ-ÞŐŰ]))|\\-|_)(?:(?:[A-ZÀ-ÖØ-ÞŐŰ])+(?:[a-zß-öø-ÿőű])+(?:[A-ZÀ-ÖØ-ÞŐŰ])(?:(?:[a-zß-öø-ÿőű])|(?:[A-ZÀ-ÖØ-ÞŐŰ]))*)",
+					"name": "meta.link.suppressed.wikilink.tiddlywiki5",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.suppress.wikilink.tiddlywiki5"
+						}
+					}
+				},
+				{
+					"match": "(?<!(?:(?:[a-zß-öø-ÿőű])|(?:[A-ZÀ-ÖØ-ÞŐŰ]))|\\-|_)(?:(?:[A-ZÀ-ÖØ-ÞŐŰ])+(?:[a-zß-öø-ÿőű])+(?:[A-ZÀ-ÖØ-ÞŐŰ])(?:(?:[a-zß-öø-ÿőű])|(?:[A-ZÀ-ÖØ-ÞŐŰ]))*)",
+					"name": "meta.link.wikilink.tiddlywiki5"
 				}
-			}
+			]
 		},
 		"dash": {
 			"patterns": [

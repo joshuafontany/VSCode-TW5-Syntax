@@ -8,6 +8,8 @@
 const test = require('node:test');
 const assert = require('node:assert');
 const { parseSnapshot, offsetAt, claims, verdicts, review } = require('../../tools/overreach-check.js');
+const { declines } = require('../../tools/snapshot-format.js');
+const { readExpected, isExpected } = require('../../tools/overreach-check.js');
 
 test('a snapshot reads back as the spans it annotates', () => {
   const snap = ['>A x1HelloThere here', '#    ^^^^^^^^^^ text.html.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5', '>'].join('\n');
@@ -66,6 +68,22 @@ test('a verdict counts as a verdict, never as a claim', () => {
   const scopes = ['text.html.tiddlywiki5', 'invalid.illegal.bad-angle-bracket.html.tiddlywiki5'];
   assert.deepStrictEqual(claims(scopes), []);
   assert.deepStrictEqual(verdicts(scopes), ['invalid.illegal.bad-angle-bracket.html.tiddlywiki5']);
+});
+
+// A suppression scope asserts the same thing a verdict does — the parser declined here — so
+// it answers to refusal, not to construction. `meta.link.suppressed.wikilink` marks a tilde
+// TiddlyWiki honoured; counting it as a claim reports every honoured suppressor as over-reach.
+test('a suppression counts with the verdicts, never with the claims', () => {
+  const scopes = ['text.html.tiddlywiki5', 'meta.link.suppressed.wikilink.tiddlywiki5'];
+  assert.deepStrictEqual(claims(scopes), []);
+  assert.deepStrictEqual(declines(scopes), ['meta.link.suppressed.wikilink.tiddlywiki5']);
+});
+
+test('a suppression standing where TiddlyWiki refuses reports nothing', () => {
+  const source = 'a ~CamelCaseLink b';
+  const snap = `>${source}\n#  ^ text.html.tiddlywiki5 meta.link.suppressed.wikilink.tiddlywiki5\n`;
+  const refuse = { readAt: (_s, start, end) => ({ kind: 'text', innermost: 'text', rule: 'wikilinkprefix', start, end }) };
+  assert.deepStrictEqual(review(source, snap, refuse), []);
 });
 
 test('a verdict standing where TiddlyWiki refuses reports nothing', () => {
@@ -147,4 +165,62 @@ test('a span on the second line reports its own line number', () => {
   assert.strictEqual(found.length, 1);
   assert.strictEqual(found[0].line, 2);
   assert.strictEqual(found[0].span, '&Ridiculous;');
+});
+
+// ── ruled divergences ────────────────────────────────────────────────────────
+//
+// Some spans stand where TiddlyWiki refuses BY RULING: CamelCase carries a scope the host
+// ships disabled, `\rules only` narrows a rule set no TextMate grammar can follow, and a
+// fixture written to be malformed is malformed on purpose. A tally that counts those beside
+// a genuine over-reach can never reach zero, and a reader learns nothing from the number.
+//
+// Each ruling stands written with its reason. A line carrying no reason is not a ruling.
+
+test('a ruling names a scope and a reason', () => {
+  const text = [
+    '# The corpus ruling file',
+    'meta.link.wikilink  # TiddlyWiki ships CamelCase linking disabled',
+    '',
+    'pragmas.tw:punctuation.definition.directive  # a \\rules run narrows the rule set'
+  ].join('\n');
+  assert.deepStrictEqual(readExpected(text), [
+    { file: null, scope: 'meta.link.wikilink', reason: 'TiddlyWiki ships CamelCase linking disabled' },
+    { file: 'pragmas.tw', scope: 'punctuation.definition.directive', reason: 'a \\rules run narrows the rule set' }
+  ]);
+});
+
+test('a line carrying no reason reads as no ruling at all', () => {
+  assert.throws(() => readExpected('meta.link.wikilink'), /reason/);
+});
+
+// A fixture written to be malformed diverges wholesale, and says so with an empty scope. A
+// ruling naming neither a file nor a scope would excuse the whole corpus, and is refused.
+test('an empty scope covers one named file, and nothing wider', () => {
+  const rules = readExpected('degenerate.illegal.tw:  # a fixture written to be malformed');
+  assert.ok(isExpected(rules, 'corpus/wikitext/degenerate.illegal.tw', 'anything.at.all'));
+  assert.ok(!isExpected(rules, 'corpus/wikitext/inline.links.tw', 'anything.at.all'));
+  assert.throws(() => readExpected(': # excuse everything'), /neither a file nor a scope/);
+  assert.throws(() => readExpected('  x  '), /reason/);
+});
+
+// A dialect extends wikitext with a vocabulary the host parser cannot know, and names it with
+// its own scope suffix. One ruling covers the vocabulary; every scope the dialect INHERITS
+// still ends in the base suffix and still answers.
+test('a ruling may name a scope suffix, and covers only what carries it', () => {
+  const rules = readExpected('*.memetic-wikitext  # the dialect\'s own vocabulary, unread by the host parser');
+  assert.ok(isExpected(rules, 'corpus/memetic/lar-uris.mem', 'keyword.other.scheme.lar.memetic-wikitext'));
+  assert.ok(isExpected(rules, 'corpus/memetic/sigils.mem', 'meta.carrier.control.memetic-wikitext'));
+  assert.ok(!isExpected(rules, 'corpus/memetic/sigils.mem', 'markup.bold.tiddlywiki5'), 'an inherited reading still answers');
+});
+
+test('a ruling matches by scope prefix, and by file where it names one', () => {
+  const rules = readExpected([
+    'meta.link.wikilink  # ships disabled',
+    'pragmas.tw:punctuation.definition.directive  # narrows the rule set'
+  ].join('\n'));
+  assert.ok(isExpected(rules, 'corpus/wikitext/inline.links.tw', 'meta.link.wikilink.tiddlywiki5'));
+  assert.ok(isExpected(rules, 'corpus/wikitext/pragmas.tw', 'punctuation.definition.directive.tiddlywiki5'));
+  // The same scope in a file the ruling does not name stays unexplained.
+  assert.ok(!isExpected(rules, 'corpus/wikitext/other.tw', 'punctuation.definition.directive.tiddlywiki5'));
+  assert.ok(!isExpected(rules, 'corpus/wikitext/inline.links.tw', 'markup.bold.tiddlywiki5'));
 });

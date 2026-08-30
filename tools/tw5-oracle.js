@@ -60,10 +60,11 @@ function isPlainText(node) {
   return node.type === 'text' && typeof node.text === 'string';
 }
 
-// A pragma whose body TiddlyWiki stores rather than parses. macrodef and fnprocdef both build
-// a `set` node carrying the body in attributes.value, which TiddlyWiki examines at the CALL,
-// in whatever context the call stands, never at the definition.
-const UNPARSED_BODY = new Set(['macrodef', 'fnprocdef']);
+// Constructs TiddlyWiki stores rather than parses. macrodef and fnprocdef build a `set` node
+// carrying the body in attributes.value, which TiddlyWiki examines at the CALL, in whatever
+// context the call stands, never at the definition. A macro invocation does the same with its
+// parameters: it builds a `transclude` node with NO children, every parameter an attribute.
+const UNPARSED_BODY = new Set(['macrodef', 'fnprocdef', 'macrocallinline', 'macrocallblock']);
 
 /**
  * A region the parser reached and did not look inside.
@@ -138,7 +139,14 @@ function verdictAt(spans, start, end) {
   const built = covers.filter((n) => !isPlainText(n));
   const pool = built.length > 0 ? built : covers;
   const best = pool.reduce((a, b) => (b.end - b.start < a.end - a.start ? b : a));
-  const innermost = isOpaqueBody(tightest) ? 'opaque' : isPlainText(tightest) ? 'text' : 'built';
+  // A span the tree cannot speak for. TiddlyWiki records an attribute, a suppressing mark and a
+  // macro parameter without emitting a node over them — wikilinkprefix hands back a node that
+  // BEGINS after the tilde — so a span sitting inside a construct, starting nowhere a node
+  // starts and covered by none of that construct's children, has no reading here either way.
+  const childCovers = (spans.some((n) => n.start === start) === false) &&
+    !covers.some((n) => n !== tightest && n.start > tightest.start && n.start <= start && n.end >= end);
+  const unreachable = !isPlainText(tightest) && tightest.start !== start && childCovers;
+  const innermost = isOpaqueBody(tightest) || unreachable ? 'opaque' : isPlainText(tightest) ? 'text' : 'built';
   return {
     kind: built.length > 0 ? 'built' : 'text',
     innermost,

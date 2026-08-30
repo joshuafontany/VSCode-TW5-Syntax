@@ -791,8 +791,8 @@
 #^ text.html.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
 # ^^^^^^ text.html.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
 #       ^ text.html.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5
-#        ^^ text.html.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 invalid.illegal.event-handler-in-wikitext.html.tiddlywiki5
-#          ^^^^^ text.html.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 invalid.illegal.event-handler-in-wikitext.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#        ^^ text.html.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 meta.attribute.event-handler.html.tiddlywiki5
+#          ^^^^^ text.html.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 meta.attribute.event-handler.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 #               ^ text.html.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 punctuation.separator.key-value.html.tiddlywiki5
 #                ^ text.html.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 meta.embedded.line.js string.quoted.double.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
 #                 ^^^^^^^^^^ text.html.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 meta.embedded.line.js string.quoted.double.html.tiddlywiki5 source.js meta.function-call.js entity.name.function.js
@@ -1311,8 +1311,8 @@
 #  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
 #   ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
 #         ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5
-#          ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 invalid.illegal.event-handler-in-wikitext.html.tiddlywiki5
-#            ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 invalid.illegal.event-handler-in-wikitext.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#          ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 meta.attribute.event-handler.html.tiddlywiki5
+#            ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 meta.attribute.event-handler.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 #                 ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 punctuation.separator.key-value.html.tiddlywiki5
 #                  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 meta.embedded.line.js string.quoted.single.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
 #                   ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 meta.embedded.line.js string.quoted.single.html.tiddlywiki5 source.js meta.function-call.js variable.other.object.js
@@ -1338,8 +1338,8 @@
 #    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
 #     ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
 #           ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5
-#            ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 invalid.illegal.event-handler-in-wikitext.html.tiddlywiki5
-#              ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 invalid.illegal.event-handler-in-wikitext.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#            ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 meta.attribute.event-handler.html.tiddlywiki5
+#              ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 meta.attribute.event-handler.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 #                   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 punctuation.separator.key-value.html.tiddlywiki5
 #                    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 meta.embedded.line.js string.quoted.single.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
 #                     ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.button.start.html.tiddlywiki5 meta.attribute.event-handler.click.html.tiddlywiki5 meta.embedded.line.js string.quoted.single.html.tiddlywiki5 source.js meta.function-call.js variable.other.object.js

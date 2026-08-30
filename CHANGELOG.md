@@ -7,6 +7,17 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A tilde suppresses the link families TiddlyWiki suppresses. `wikilinkprefix` hands back plain
+  text for a CamelCase word, and `extlink` and `syslink` each return the text of the link they
+  declined to make; the grammar linked all three anyway. Each family now reads a suppressed
+  branch under a quiet `meta.link.suppressed.*` name, and the tilde keeps its own punctuation. A
+  pretty link takes no suppressor — TiddlyWiki builds the link and leaves the tilde as content —
+  and reads unchanged.
+- A comment's contents carry no verdict. TiddlyWiki scans from `<!--` to the next `-->` and
+  builds a comment across whatever stands between; HTML's rules about what may appear inside one
+  are not its rules, and three inherited verdicts condemned markup TiddlyWiki reads.
+- An event-handler attribute reads as an attribute. TiddlyWiki parses `onclick=` into a node like
+  any other attribute, so the span carries `meta.attribute.event-handler` rather than a verdict.
 - Under an inline parser mode no block rule stands. `\parsermode inline` sets parseAsInline for
   the whole tiddler, so TiddlyWiki parses one inline run and every block marker after it yields
   plain text — and a heading marker, a list marker and the rest kept their block scopes. An
@@ -69,6 +80,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses
+  deliberately — a scope the host ships disabled, a `\rules` run narrowing a rule set no
+  TextMate grammar can follow, a fixture written to be malformed, and the memetic dialect's own
+  vocabulary. `corpus/expected-divergence.txt` names each with its reason, and a line carrying no
+  reason is not a ruling. Over the corpus, in both dialects, nothing now diverges unexplained.
 - A second memetic sample, so the composition gate over that dialect can run. It compares
   neighbouring samples and needs two; the dialect carried one, so the check reported a missing
   source rather than a result every time it was asked.

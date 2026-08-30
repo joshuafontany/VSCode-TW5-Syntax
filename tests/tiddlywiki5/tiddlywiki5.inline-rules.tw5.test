@@ -44,7 +44,7 @@ A system link $:/core/ui/Thing here.
 A CamelCaseLink and a ~SuppressedLink here.
 # ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.link.wikilink.tiddlywiki5
 # ^ - markup.underline.link.wikilink.tiddlywiki5
-#                     ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.link.wikilink.tiddlywiki5 punctuation.definition.suppress.wikilink.tiddlywiki5
+#                     ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.link.suppressed.wikilink.tiddlywiki5 punctuation.definition.suppress.wikilink.tiddlywiki5
 
 An image [img[alt|file.png]] here.
 #         ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.image.tiddlywiki5 keyword.other.img.tiddlywiki5

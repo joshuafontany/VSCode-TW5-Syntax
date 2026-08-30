@@ -70,14 +70,32 @@ function isVerdict(scope) {
 }
 
 /**
+ * A suppression: a scope saying the author wrote a marker that STOPS a construct, and the
+ * parser honoured it.
+ *
+ * A suppression runs the same way a verdict does. `meta.link.suppressed.wikilink` marks a
+ * tilde TiddlyWiki obeyed, so it answers to whether the parser REFUSED — counting it with
+ * the claims reports every honoured suppressor as an over-reach.
+ *
+ * @param {string} scope
+ * @returns {boolean}
+ */
+function isSuppression(scope) {
+  // The REGION only. The suppressing character itself answers to nothing: TiddlyWiki consumes
+  // it and emits a node beginning AFTER it, so no node in the tree covers that column and no
+  // reading of the tree can say whether the mark was honoured there.
+  return scope.includes('.suppressed.');
+}
+
+/**
  * The scopes on a span that CLAIM a construct works — past the base scopes every span
- * carries, and past the verdicts, which claim the reverse.
+ * carries, and past the scopes that say the reverse.
  *
  * @param {string[]} scopes
  * @returns {string[]}
  */
 function claims(scopes) {
-  return scopes.filter((s) => !BASE.has(s) && !isVerdict(s));
+  return scopes.filter((s) => !BASE.has(s) && !isVerdict(s) && !isSuppression(s));
 }
 
 /**
@@ -90,4 +108,14 @@ function verdicts(scopes) {
   return scopes.filter(isVerdict);
 }
 
-module.exports = { BASE, readSnapshot, claims, verdicts, isVerdict };
+/**
+ * Every scope on a span asserting the parser declined — verdicts and suppressions together.
+ *
+ * @param {string[]} scopes
+ * @returns {string[]}
+ */
+function declines(scopes) {
+  return scopes.filter((s) => isVerdict(s) || isSuppression(s));
+}
+
+module.exports = { BASE, readSnapshot, claims, verdicts, declines, isVerdict, isSuppression };
