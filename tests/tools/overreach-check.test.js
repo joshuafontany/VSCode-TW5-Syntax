@@ -9,7 +9,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const { parseSnapshot, offsetAt, claims, verdicts, review } = require('../../tools/overreach-check.js');
 const { declines } = require('../../tools/snapshot-format.js');
-const { readExpected, isExpected } = require('../../tools/overreach-check.js');
+const { readExpected, isExpected, parsesAsWikitext } = require('../../tools/overreach-check.js');
 
 test('a snapshot reads back as the spans it annotates', () => {
   const snap = ['>A x1HelloThere here', '#    ^^^^^^^^^^ text.html.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5', '>'].join('\n');
@@ -224,4 +224,29 @@ test('a ruling matches by scope prefix, and by file where it names one', () => {
   // The same scope in a file the ruling does not name stays unexplained.
   assert.ok(!isExpected(rules, 'corpus/wikitext/other.tw', 'punctuation.definition.directive.tiddlywiki5'));
   assert.ok(!isExpected(rules, 'corpus/wikitext/inline.links.tw', 'markup.bold.tiddlywiki5'));
+});
+
+// ── which tiddlers the question even applies to ──────────────────────────────
+//
+// A .tid carries a `type` field, and TiddlyWiki parses as wikitext only those whose type says
+// so. Asking what its parser builds from a tiddler typed text/plain, or from TiddlyWiki
+// Classic markup, compares the grammar against a parser that would never have run.
+
+test('a tiddler with no type reads as wikitext, which is TiddlyWiki own default', () => {
+  assert.strictEqual(parsesAsWikitext('title: X\n\nsome text\n'), true);
+});
+
+test('a tiddler typed as wikitext reads as wikitext', () => {
+  assert.strictEqual(parsesAsWikitext('title: X\ntype: text/vnd.tiddlywiki\n\nsome text\n'), true);
+});
+
+test('a tiddler carrying another language does not', () => {
+  assert.strictEqual(parsesAsWikitext('title: X\ntype: text/plain\n\nsome text\n'), false);
+  assert.strictEqual(parsesAsWikitext('title: X\ntype: text/x-tiddlywiki\n\nsome text\n'), false);
+  assert.strictEqual(parsesAsWikitext('title: X\ntype: application/javascript\n\nvar x = 1;\n'), false);
+});
+
+// A `type:` standing in the BODY names nothing; only the header block declares a tiddler's type.
+test('a type named below the header does not change what the tiddler is', () => {
+  assert.strictEqual(parsesAsWikitext('title: X\n\ntype: text/plain\n'), true);
 });

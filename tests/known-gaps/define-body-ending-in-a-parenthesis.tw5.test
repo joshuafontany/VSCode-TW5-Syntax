@@ -1,0 +1,43 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A single-line define ends at its line, parentheses or not"
+
+# TiddlyWiki reads a define with no closing pragma as a one-line definition; the body runs to the
+# end of the line and the tiddler continues beneath it.
+#
+# A body ENDING IN A CLOSING PARENTHESIS leaves the cursor after a parenthesis at end of line,
+# which is exactly what the multiline branch waits for — its begin reads (?<=\))\s*$ — so that
+# branch opens there and swallows the rest of the file hunting an \end that never comes.
+# TiddlyWiki own documentation carries the shape: filters/examples/search-replace Operator
+# (Examples) defines a regular-expression macro whose body reads as a group, and every line of
+# prose below it colours as macro body.
+#
+# Anchoring the multiline branch to the parameter list with \G cures this specimen and breaks
+# the genuine block form, whose parameter close is not always the match immediately preceding.
+# The cure wants a discriminator made at the define opener, where the whole line can be read at
+# once, rather than a guard on the branch.
+
+! A body of plain text ends at the line
+
+\define plain() e|o
+
+Prose after a plain body.
+#<- text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#<- - meta.variable.macro.body.tiddlywiki5
+
+! A body ending in a closing parenthesis ends there too
+
+\define grouped() (abc)(def)
+
+Prose after a grouped body.
+#<- text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#<- - meta.variable.macro.body.tiddlywiki5
+
+! And a define with no body on its line still opens a block
+
+\define blockform()
+the body
+\end
+
+Prose after the block.
+#<- text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#<- - meta.variable.macro.body.tiddlywiki5
+

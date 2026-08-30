@@ -7,6 +7,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- Only tiddlers TiddlyWiki parses as wikitext answer to the grammar. A `.tid` declares its type
+  in its header, and the corpus sweep had been stripping that header and asking about every
+  tiddler alike — comparing the grammar against a parser that would never have run on a
+  `text/plain` config file or on TiddlyWiki Classic markup. Twenty-nine of the forty-two
+  unexplained divergences were tiddlers of another language.
 - A tilde suppresses the link families TiddlyWiki suppresses. `wikilinkprefix` hands back plain
   text for a CamelCase word, and `extlink` and `syslink` each return the text of the link they
   declined to make; the grammar linked all three anyway. Each family now reads a suppressed
@@ -80,6 +85,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing now diverges
+  unexplained: 243 spans stand explained by 26 written rulings, and none by a number somebody
+  wanted smaller. Two of those rulings name faults rather than intentions — a hardlinebreaks
+  block emits no container node, and a define whose body ends in a closing parenthesis swallows
+  what follows it, the second recorded as a known gap with its specimen.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses
   deliberately — a scope the host ships disabled, a `\rules` run narrowing a rule set no
   TextMate grammar can follow, a fixture carrying deliberate faults, and the memetic dialect's own

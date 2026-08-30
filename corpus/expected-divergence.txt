@@ -32,3 +32,9 @@ degenerate.nesting.tw:                        # a fixture written to nest wrongl
 # parser does not read and never will. Every scope carrying the dialect's suffix diverges by
 # construction; every scope it INHERITS keeps the base suffix and answers like any other.
 *.memetic-wikitext                            # the dialect's own vocabulary, unread by the host parser
+
+# Divergences on TiddlyWiki's own tiddlers, each traced to its cause.
+
+markup.other.preformatted.hardlinebreaks  # TiddlyWiki builds no container node for a hardlinebreaks block — its text nodes and line breaks are all it emits — so a scope over the block's content stands over text by construction
+search-replace Operator (Examples).tid:meta.variable.macro  # a define whose body ends in a closing parenthesis swallows what follows it; recorded at tests/known-gaps/define-body-ending-in-a-parenthesis.tw5.test
+RangeWidget Example.tid:meta.transclusion  # a transclusion opening at the end of a widget tag that continues onto the next line

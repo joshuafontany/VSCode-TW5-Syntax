@@ -60,6 +60,28 @@ function offsetAt(source, line, col) {
 }
 
 /**
+ * Whether TiddlyWiki would parse this tiddler's text as wikitext at all.
+ *
+ * A `.tid` carries a `type` field in its header, and only some types reach the wikitext
+ * parser. Asking what that parser builds from a tiddler typed `text/plain`, or from TiddlyWiki
+ * Classic markup, compares the grammar against a parser that would never have run — and the
+ * answer is a divergence in every span, saying nothing about either.
+ *
+ * An absent type reads as wikitext, which is TiddlyWiki's own default. Only the header block
+ * declares a type: a `type:` line standing in the body is content.
+ *
+ * @param {string} tid  the whole file, header and all
+ * @returns {boolean}
+ */
+function parsesAsWikitext(tid) {
+  const blank = tid.indexOf('\n\n');
+  const header = blank < 0 ? tid : tid.slice(0, blank);
+  const declared = /^type:[ \t]*(\S+)/m.exec(header);
+  if (!declared) return true;
+  return declared[1] === 'text/vnd.tiddlywiki';
+}
+
+/**
  * The rulings that explain a divergence, read from a file.
  *
  * Some spans stand where TiddlyWiki refuses BY RULING: a scope the host ships disabled, a
@@ -169,7 +191,7 @@ function review(source, snapText, oracle) {
   return findings;
 }
 
-module.exports = { BASE, parseSnapshot, offsetAt, claims, verdicts, declines, readExpected, isExpected, review };
+module.exports = { BASE, parseSnapshot, offsetAt, claims, verdicts, declines, readExpected, isExpected, parsesAsWikitext, review };
 
 if (require.main === module) {
   const args = process.argv.slice(2);
@@ -214,14 +236,18 @@ if (require.main === module) {
       .sort();
     const stride = Math.max(1, Math.floor(all.length / count));
     const picked = all.filter((_, i) => i % stride === 0).slice(0, count);
-    return picked.map((src, i) => {
-      // A .tid carries a header block, then a blank line, then the wikitext.
-      const text = fs.readFileSync(src, 'utf8');
-      const blank = text.indexOf('\n\n');
-      const dest = path.join(scratch, `w${String(i).padStart(4, '0')}.tw`);
-      fs.writeFileSync(dest, blank < 0 ? '' : text.slice(blank + 2));
-      return { src, dest };
-    });
+    return picked
+      .map((src) => ({ src, tid: fs.readFileSync(src, 'utf8') }))
+      // Only tiddlers TiddlyWiki would hand to the wikitext parser. The rest carry another
+      // language, and the question has no meaning for them.
+      .filter(({ tid }) => parsesAsWikitext(tid))
+      .map(({ src, tid }, i) => {
+        // A .tid carries a header block, then a blank line, then the wikitext.
+        const blank = tid.indexOf('\n\n');
+        const dest = path.join(scratch, `w${String(i).padStart(4, '0')}.tw`);
+        fs.writeFileSync(dest, blank < 0 ? '' : tid.slice(blank + 2));
+        return { src, dest };
+      });
   };
 
   let files;
