@@ -1,0 +1,28 @@
+<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/sigils >>
+
+<<^ code="&#x0001;" namespace="⊙" from=? -> to=lar:///ha.ka.ba/lares/api/pono/sigils >>
+```toml meta
+register = "Synthesis"
+uri-path = "ha.ka.ba/lares/api/pono/sigils"
+```
+
+<<^ code="&#x0002;" >>
+
+<<~ ahu #sigils >>
+
+!! Sigils, each on its own line
+
+<<~ confidence 14/20 >>
+<<~ syad 🏛️ 🗡️ >>
+<<~ mu Wand "ascii/* glyph/🜂 element/Fire" >>
+<<~ moves identity/predication -> scoped-carry on/lit-ward >>
+<<~ aka https://www.rfc-editor.org/rfc/rfc2119 >>
+
+An address in prose: lar://alias:grant@host/heading.angle.dynamic/path#/fragment and one
+without an authority: lar:///ha.ka.ba/lares/docs/handoff#shift-grammar-watch.
+
+<<~/ahu >>
+
+<<^ code="&#x0003;" >>
+
+<<^ code="&#x0004;" -> to=? >>

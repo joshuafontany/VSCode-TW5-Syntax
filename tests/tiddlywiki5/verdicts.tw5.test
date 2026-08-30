@@ -40,7 +40,7 @@ a &verylongname; b
 A stray < in prose.
 #       ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
 
-# html.js reads any [a-zA-Z0-9\-\$\.]+ as a tag name, so a custom element is ordinary markup.
+# html.js reads any [a-zA-Z0-9\-\$\.]+ as a tag name, so a custom element reads as ordinary markup.
 <mytag>x</mytag>
 #^^^^^ - invalid.illegal.unrecognized-tag.html.tiddlywiki5
 

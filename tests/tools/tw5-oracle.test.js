@@ -168,8 +168,8 @@ test('a claim reads the widest cover and a verdict reads the tightest', () => {
 // A \\define or \\procedure builds a `set` node carrying its body as an ATTRIBUTE STRING —
 // zero children, no text. TiddlyWiki parses nothing inside it at definition time; the body
 // parses later, at call time, in whatever context the call stands. So neither a claim nor a
-// verdict about a span in there can be judged from this parse, and the reading says so
-// rather than guessing.
+// verdict about a span in there stands on this parse, and the reading says so rather than
+// guessing.
 test('a span inside an unparsed definition body reads as opaque', () => {
   const spans = flatten([
     { type: 'set', rule: 'macrodef', start: 0, end: 40, children: [], attributes: { name: {}, value: {} } }

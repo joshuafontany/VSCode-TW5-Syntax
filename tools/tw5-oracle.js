@@ -15,7 +15,8 @@
 //   node tools/tw5-oracle.js '<wikitext>'   dump the tree TiddlyWiki builds
 //   node tools/tw5-oracle.js --rules        list the rules TiddlyWiki stands
 //
-// The deciding half — flatten, verdictAt — stands under test in tests/tools/tw5-oracle.test.js.
+// The deciding half — flatten, isPlainText, isOpaqueBody, verdictAt — stands under test in
+// tests/tools/tw5-oracle.test.js.
 
 const fs = require('node:fs');
 const path = require('node:path');
@@ -54,8 +55,8 @@ function isPlainText(node) {
 }
 
 // A pragma whose body TiddlyWiki stores rather than parses. macrodef and fnprocdef both build
-// a `set` node carrying the body in attributes.value, examined only when the definition is
-// CALLED, in whatever context the call stands.
+// a `set` node carrying the body in attributes.value, which TiddlyWiki examines at the CALL,
+// in whatever context the call stands, never at the definition.
 const UNPARSED_BODY = new Set(['macrodef', 'fnprocdef']);
 
 /**
@@ -110,7 +111,7 @@ function isOpaqueBody(node) {
  * span. `kind` reads the WIDEST evidence — does any construct cover this? — which suits a
  * claim, since a grammar names a construct's parts as well as its whole. `innermost` reads
  * the TIGHTEST cover, which suits a verdict: a verdict says the parser built nothing HERE,
- * and `<<:>>` standing inside a heading TiddlyWiki built is still text TiddlyWiki refused.
+ * and `<<:>>` standing inside a heading TiddlyWiki built remains text TiddlyWiki refused.
  *
  * @param {object[]} spans  flatten()'s output
  * @param {number} start

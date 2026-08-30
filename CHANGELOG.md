@@ -69,6 +69,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- A second memetic sample, so the composition gate over that dialect can run. It compares
+  neighbouring samples and needs two; the dialect carried one, so the check reported a missing
+  source rather than a result every time it was asked.
 - A `lar:` URI reads its own structure. The path, each `?key=value` in the query, the `&` between
   them and a `#/fragment` now carry their own scopes instead of riding in one unbroken string, so
   an address colours the way the rest of a call does.

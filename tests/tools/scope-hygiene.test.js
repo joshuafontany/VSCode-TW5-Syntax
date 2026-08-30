@@ -6,11 +6,11 @@
 // arrives as two tokens, and the second one usually starts with a dot.
 //
 // Nothing downstream complains. A theme simply never matches it, a `-` exclusion in an
-// injection selector never spares it, and every gate reads green because the token is
-// present — just not the token the grammar meant to emit.
+// injection selector never spares it, and every gate reads green because a token stands
+// there — just not the token the grammar meant to emit.
 //
 // The pinned snapshots carry every scope the corpus reaches, so they answer this without
-// any grammar being run again.
+// running a grammar again.
 
 const test = require('node:test');
 const assert = require('node:assert');
@@ -20,12 +20,12 @@ const { readSnapshot } = require('../../tools/snapshot-format.js');
 
 // A scope name: dot-separated segments, none of them empty. A segment may hold whatever an
 // interpolated capture legitimately holds — VS Code's own HTML grammar emits
-// `meta.attribute.$1.html`, and a TiddlyWiki widget attribute is named `$tiddler`, so a
+// `meta.attribute.$1.html`, and a TiddlyWiki widget attribute carries the name `$tiddler`, so a
 // dollar inside a segment reads as the host's own practice rather than as damage.
 //
-// Two things are damage, and both are invisible downstream. WHITESPACE splits one name into
-// two, so a theme matches neither half. An EMPTY SEGMENT means an interpolation matched
-// nothing, and no selector can name the result.
+// Two shapes count as damage, and both pass downstream unseen. WHITESPACE splits one name
+// into two, so a theme matches neither half. An EMPTY SEGMENT marks an interpolation that
+// matched nothing, and no selector reaches the result.
 const WELL_FORMED = /^[^\s.]+(\.[^\s.]+)*$/;
 
 // An interpolation that never resolved. `$1` standing in an emitted name means the pattern
@@ -73,7 +73,7 @@ test('a well-formed scope passes and a mangled one fails', () => {
   assert.ok(WELL_FORMED.test('markup.underline.link.external.https.tiddlywiki5'));
   // The host's own practice: an interpolated attribute name, dollar and all.
   assert.ok(WELL_FORMED.test('meta.attribute.unrecognized.$tiddler.html.tiddlywiki5'));
-  // The two shapes that are damage.
+  // The two shapes that read as damage.
   assert.ok(!WELL_FORMED.test('meta.filter.operator.step.tw-a b.tiddlywiki5'), 'whitespace splits a name');
   assert.ok(!WELL_FORMED.test('.tw-suffix-map.tiddlywiki5'), 'a leading dot, left by a split');
   assert.ok(!WELL_FORMED.test('meta.attribute..html'), 'an empty segment');
