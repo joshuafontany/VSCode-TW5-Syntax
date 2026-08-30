@@ -55,7 +55,7 @@
 >
 >And a rule line carrying trailing text, which TiddlyWiki reads as a dash and text:
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
-#                                              ^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5
+#                                              ^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.link.wikilink.tiddlywiki5
 #                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >
 >--- trailing text

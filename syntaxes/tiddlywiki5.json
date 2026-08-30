@@ -5687,7 +5687,7 @@
 		},
 		"wikilink": {
 			"match": "(~)?(?<!(?:(?:[a-zß-öø-ÿőű])|(?:[A-ZÀ-ÖØ-ÞŐŰ]))|\\-|_)(?:(?:[A-ZÀ-ÖØ-ÞŐŰ])+(?:[a-zß-öø-ÿőű])+(?:[A-ZÀ-ÖØ-ÞŐŰ])(?:(?:[a-zß-öø-ÿőű])|(?:[A-ZÀ-ÖØ-ÞŐŰ]))*)",
-			"name": "markup.underline.link.wikilink.tiddlywiki5",
+			"name": "meta.link.wikilink.tiddlywiki5",
 			"captures": {
 				"1": {
 					"name": "punctuation.definition.suppress.wikilink.tiddlywiki5"

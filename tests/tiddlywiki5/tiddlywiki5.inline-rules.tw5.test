@@ -37,9 +37,14 @@ An unknown scheme zzz://example.com/a reads as text.
 A system link $:/core/ui/Thing here.
 #                ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.syslink.tiddlywiki5
 
+# TiddlyWiki ships CamelCase linking DISABLED (core/wiki/config/wikilink.tid, PR #7513), so
+# the construct reads under `meta.`, which 4 of 45 bundled themes paint, rather than under
+# `markup.underline.link.`, which 31 of them do. The scope still names the construct, so a
+# reader who enables CamelCase in their wiki colours it in one settings rule.
 A CamelCaseLink and a ~SuppressedLink here.
-# ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5
-#                     ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5 punctuation.definition.suppress.wikilink.tiddlywiki5
+# ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.link.wikilink.tiddlywiki5
+# ^ - markup.underline.link.wikilink.tiddlywiki5
+#                     ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.link.wikilink.tiddlywiki5 punctuation.definition.suppress.wikilink.tiddlywiki5
 
 An image [img[alt|file.png]] here.
 #         ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.image.tiddlywiki5 keyword.other.img.tiddlywiki5

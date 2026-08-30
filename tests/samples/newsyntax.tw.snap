@@ -86,7 +86,7 @@
 >
 >Behind the scenes, the conditional shortcut syntax is rendered as the equivalent ListWidgets.
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
-#                                                                                 ^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5
+#                                                                                 ^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.link.wikilink.tiddlywiki5
 #                                                                                            ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >
 ><!-- #endregion -->

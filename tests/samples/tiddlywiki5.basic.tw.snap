@@ -2051,7 +2051,7 @@
 >
 >```CoFfEe
 #^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
-#   ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5
+#   ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.link.wikilink.tiddlywiki5
 >1 << i for i in [0..31] when i % 2
 #^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
 #  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
@@ -2237,7 +2237,7 @@
 >
 >Behind the scenes, the conditional shortcut syntax is rendered as the equivalent ListWidgets.
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
-#                                                                                 ^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5
+#                                                                                 ^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.link.wikilink.tiddlywiki5
 #                                                                                            ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
 >
 ><!-- #endregion -->

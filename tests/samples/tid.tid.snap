@@ -1583,12 +1583,12 @@
 >* WikiLink
 #^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
 # ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
-#  ^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5
+#  ^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.link.wikilink.tiddlywiki5
 >* ~NotWikiLink
 #^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
 # ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
-#  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5 punctuation.definition.suppress.wikilink.tiddlywiki5
-#   ^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5
+#  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.link.wikilink.tiddlywiki5 punctuation.definition.suppress.wikilink.tiddlywiki5
+#   ^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 meta.link.wikilink.tiddlywiki5
 >* notWikiLink
 #^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
 # ^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
@@ -4901,7 +4901,7 @@
 >
 >```CoFfEe
 #^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
-#   ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5
+#   ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.link.wikilink.tiddlywiki5
 >  1 << i for i in [0..31] when i % 2
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
 >```
@@ -5140,7 +5140,7 @@
 >
 >Behind the scenes, the conditional shortcut syntax is rendered as the equivalent ListWidgets.
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
-#                                                                                 ^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5
+#                                                                                 ^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.link.wikilink.tiddlywiki5
 #                                                                                            ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
 >
 ><!-- #endregion -->

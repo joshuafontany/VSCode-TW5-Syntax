@@ -7,6 +7,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Added
+- How loudly a scope reads, as a number. A theme paints a scope when one of its own rules is
+  that scope or a dotted prefix of it, so the scope name IS the default a grammar gets to
+  choose. `tools/theme-paint.js` measures any scope against the 45 bundled themes and
+  `--families` ranks every family the grammar emits, so a default is argued from a
+  measurement rather than from a sense of convention.
 - The parser's configurable surface, derived from TiddlyWiki. Every wikitext rule answers to
   `$:/config/WikiParserRules/<Type>/<name>`, and `setupRules` deletes a rule whose tiddler
   holds anything but `enable`. `tools/rule-inventory.js` reads the rule modules and the
@@ -25,6 +30,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   an address colours the way the rest of a call does.
 
 ### Fixed
+- CamelCase linking reads quiet, matching the wiki TiddlyWiki ships. TiddlyWiki has shipped
+  `$:/config/WikiParserRules/Inline/wikilink` as `disable` since 5.3.0, so `HelloWorld` builds
+  no link in a new wiki — and the grammar coloured one anyway, 309 times across 400 of
+  TiddlyWiki's own tiddlers. The construct now reads `meta.link.wikilink.tiddlywiki5`, which
+  4 of 45 bundled themes paint where the old scope drew 31. It keeps its own name, so a wiki
+  that enables CamelCase colours it back in one settings rule; see **Colour toggles** in the
+  README. The suppressing `~` keeps its punctuation colour, because `wikilinkprefix` is a
+  separate rule TiddlyWiki ships enabled and consumes the character either way.
 - A macro name ends where the host's own name regexp ends it. TiddlyWiki reads a name with
   `/([^\s>"'=:]+)/y`, so a colon, quote or equals sign closes it and a call carrying no name
   at all builds nothing; the grammar took any run of non-space, non-`>` characters. `<<:>>`
