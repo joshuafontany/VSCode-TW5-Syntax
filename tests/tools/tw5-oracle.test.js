@@ -165,6 +165,40 @@ test('a claim reads the widest cover and a verdict reads the tightest', () => {
   assert.strictEqual(v.innermost, 'text', 'the parser built nothing at the span itself');
 });
 
+// A \\define or \\procedure builds a `set` node carrying its body as an ATTRIBUTE STRING —
+// zero children, no text. TiddlyWiki parses nothing inside it at definition time; the body
+// parses later, at call time, in whatever context the call stands. So neither a claim nor a
+// verdict about a span in there can be judged from this parse, and the reading says so
+// rather than guessing.
+test('a span inside an unparsed definition body reads as opaque', () => {
+  const spans = flatten([
+    { type: 'set', rule: 'macrodef', start: 0, end: 40, children: [], attributes: { name: {}, value: {} } }
+  ]);
+  assert.strictEqual(verdictAt(spans, 12, 13).innermost, 'opaque');
+  assert.strictEqual(verdictAt(spans, 12, 13).rule, 'macrodef');
+});
+
+// parsePragmas nests the rest of the document beneath each pragma, so a definition in a real
+// file always carries children. Its own extent still spans the definition alone.
+test('a definition carrying the whole document as children still reads opaque inside itself', () => {
+  const spans = flatten([
+    {
+      type: 'set',
+      rule: 'macrodef',
+      start: 0,
+      end: 40,
+      children: [{ type: 'link', rule: 'prettylink', start: 42, end: 60, children: [] }]
+    }
+  ]);
+  assert.strictEqual(verdictAt(spans, 12, 13).innermost, 'opaque', 'inside the definition');
+  assert.strictEqual(verdictAt(spans, 45, 46).innermost, 'built', 'in the document beneath it');
+});
+
+test('a construct that simply carries no children stays judgeable', () => {
+  const spans = flatten([{ type: 'entity', rule: 'entity', start: 2, end: 10, children: [] }]);
+  assert.strictEqual(verdictAt(spans, 2, 10).innermost, 'built');
+});
+
 // ── the live half ────────────────────────────────────────────────────────────
 
 const TW = resolveTiddlyWiki();
@@ -241,6 +275,12 @@ test('TiddlyWiki carries an apostrophe inside an external link', live, () => {
 test('the <$text> widget in TiddlyWiki own templates reads as built', live, () => {
   const src = '<$text text=<<join>>/><$jsontiddler tiddler=<<currentTiddler>>/>';
   assert.strictEqual(boot(TW).readAt(src, ...span(src, '<$text text=<<join>>/>')).kind, 'built');
+});
+
+test('TiddlyWiki looks inside no definition body, and the oracle says so', live, () => {
+  const src = '\\define m()\nbody with < here\n\\end';
+  const at = src.indexOf('<');
+  assert.strictEqual(boot(TW).readAt(src, at, at + 1).innermost, 'opaque');
 });
 
 test('TiddlyWiki reads a pragma only before the body begins', live, () => {

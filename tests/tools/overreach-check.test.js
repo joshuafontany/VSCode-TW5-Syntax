@@ -96,6 +96,18 @@ test('a verdict inside a built block reports nothing when the span itself stays 
   assert.deepStrictEqual(review(source, snap, inHeading), []);
 });
 
+// Inside a definition body the parser looked at nothing, so neither direction has grounds.
+test('nothing reports inside an unparsed definition body', () => {
+  const source = '\\define m()\nbody with < here\n\\end';
+  const at = source.indexOf('<');
+  const claim = `>body with < here\n#          ^ text.html.tiddlywiki5 markup.bold.tiddlywiki5\n`;
+  const opaque = { readAt: (_s, start, end) => ({ kind: 'built', innermost: 'opaque', rule: 'macrodef', start, end }) };
+  assert.deepStrictEqual(review(source, claim, opaque), []);
+  const verdict = `>body with < here\n#          ^ text.html.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5\n`;
+  assert.deepStrictEqual(review(source, verdict, opaque), []);
+  assert.ok(at > 0);
+});
+
 test('a claimed span TiddlyWiki refuses reports, and names what it painted', () => {
   const source = 'A x1HelloThere here';
   const snap = `>${source}\n#    ^^^^^^^^^^ text.html.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5\n`;

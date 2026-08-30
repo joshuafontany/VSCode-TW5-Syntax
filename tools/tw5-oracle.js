@@ -53,6 +53,30 @@ function isPlainText(node) {
   return node.type === 'text' && !node.tag;
 }
 
+// A pragma whose body TiddlyWiki stores rather than parses. macrodef and fnprocdef both build
+// a `set` node carrying the body in attributes.value, examined only when the definition is
+// CALLED, in whatever context the call stands.
+const UNPARSED_BODY = new Set(['macrodef', 'fnprocdef']);
+
+/**
+ * A region the parser reached and did not look inside.
+ *
+ * Asking what TiddlyWiki built at a span within a definition body has no answer from this
+ * parse — the body parses later, somewhere else. A reading that called such a span built
+ * would credit the definition's own node for text nobody has parsed; one that called it text
+ * would claim a refusal nobody made.
+ *
+ * The node's own EXTENT decides, never its children. parsePragmas nests everything after a
+ * pragma beneath it, so a definition in a real file always carries children — the document
+ * that follows it — while its own start..end still spans the definition alone.
+ *
+ * @param {object} node
+ * @returns {boolean}
+ */
+function isOpaqueBody(node) {
+  return UNPARSED_BODY.has(node.rule);
+}
+
 /**
  * What TiddlyWiki made of the source between two offsets.
  *
@@ -91,7 +115,7 @@ function isPlainText(node) {
  * @param {object[]} spans  flatten()'s output
  * @param {number} start
  * @param {number} end
- * @returns {{kind:'built'|'text'|'none', innermost:'built'|'text'|'none', rule:string|null, start:number|null, end:number|null}}
+ * @returns {{kind:'built'|'text'|'none', innermost:'built'|'text'|'opaque'|'none', rule:string|null, start:number|null, end:number|null}}
  */
 function verdictAt(spans, start, end) {
   const covers = spans.filter(
@@ -107,9 +131,10 @@ function verdictAt(spans, start, end) {
   const built = covers.filter((n) => !isPlainText(n));
   const pool = built.length > 0 ? built : covers;
   const best = pool.reduce((a, b) => (b.end - b.start < a.end - a.start ? b : a));
+  const innermost = isOpaqueBody(tightest) ? 'opaque' : isPlainText(tightest) ? 'text' : 'built';
   return {
     kind: built.length > 0 ? 'built' : 'text',
-    innermost: isPlainText(tightest) ? 'text' : 'built',
+    innermost,
     rule: best.rule || null,
     start: best.start,
     end: best.end
@@ -209,7 +234,7 @@ function boot(twPath, options = {}) {
   return oracle;
 }
 
-module.exports = { flatten, isPlainText, verdictAt, resolveTiddlyWiki, boot };
+module.exports = { flatten, isPlainText, isOpaqueBody, verdictAt, resolveTiddlyWiki, boot };
 
 if (require.main === module) {
   const tw = resolveTiddlyWiki();

@@ -76,7 +76,8 @@ function offsetAt(source, line, col) {
  * nothing here, and text standing inside a heading TiddlyWiki built remains text it refused.
  *
  * A verdict over refused text and a claim over a built construct both read correct, and
- * neither reports.
+ * neither reports. A span inside a definition body reports on neither count: TiddlyWiki
+ * stores that body rather than parsing it, so this parse holds no answer about the span.
  *
  * @param {string} source    the file the grammar read
  * @param {string} snapText  its .snap
@@ -93,6 +94,8 @@ function review(source, snapText, oracle) {
     const end = offsetAt(source, ann.line, ann.end);
     const read = oracle.readAt(source, start, end);
     const at = { line: ann.line + 1, col: ann.start + 1, span: source.slice(start, end), rule: read.rule };
+    // A span inside an unparsed definition body answers to neither question.
+    if (read.innermost === 'opaque') continue;
     if (claimed.length > 0 && read.kind === 'text') {
       findings.push({ kind: 'overreach', ...at, scope: claimed[claimed.length - 1] });
     }
