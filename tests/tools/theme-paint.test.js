@@ -36,7 +36,7 @@ test('a longer selector than the scope paints nothing', () => {
   assert.strictEqual(paints('meta.link', ['meta.link.wikilink']), null);
 });
 
-// A descendant selector names a context and then a target; only the target is compared.
+// A descendant selector names a context and then a target; only the target answers.
 test('a descendant selector answers for its last element', () => {
   assert.strictEqual(paints('entity.name.tag.html', ['meta.tag entity.name']), 'entity.name');
   assert.strictEqual(paints('meta.tag.html', ['meta.tag entity.name']), null);

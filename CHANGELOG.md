@@ -8,10 +8,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Fixed
 - Only tiddlers TiddlyWiki parses as wikitext answer to the grammar. A `.tid` declares its type
-  in its header, and the corpus sweep had been stripping that header and asking about every
-  tiddler alike — comparing the grammar against a parser that would never have run on a
-  `text/plain` config file or on TiddlyWiki Classic markup. Twenty-nine of the forty-two
-  unexplained divergences were tiddlers of another language.
+  in its header, and the corpus sweep stripped that header and asked about every tiddler alike —
+  comparing the grammar against a parser that would never have run on a `text/plain` config file
+  or on TiddlyWiki Classic markup. Twenty-nine of the forty-two unexplained divergences carried
+  another language entirely.
 - A tilde suppresses the link families TiddlyWiki suppresses. `wikilinkprefix` hands back plain
   text for a CamelCase word, and `extlink` and `syslink` each return the text of the link they
   declined to make; the grammar linked all three anyway. Each family now reads a suppressed

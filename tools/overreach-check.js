@@ -67,8 +67,8 @@ function offsetAt(source, line, col) {
  * Classic markup, compares the grammar against a parser that would never have run — and the
  * answer is a divergence in every span, saying nothing about either.
  *
- * An absent type reads as wikitext, which is TiddlyWiki's own default. Only the header block
- * declares a type: a `type:` line standing in the body is content.
+ * An absent type reads as wikitext, TiddlyWiki's own default. Only the header block declares a
+ * type; a `type:` line standing in the body carries content.
  *
  * @param {string} tid  the whole file, header and all
  * @returns {boolean}

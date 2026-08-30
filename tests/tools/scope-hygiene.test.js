@@ -2,8 +2,8 @@
 //
 // A scope name interpolating a capture — `meta.attribute.$1.html` — takes whatever the
 // capture matched. Where that capture can hold a space, a bracket or a paren, the emitted
-// name stops being one name: a snapshot splits scopes on whitespace, so a mangled name
-// arrives as two tokens, and the second one usually starts with a dot.
+// name stops being one name: a snapshot splits scopes on whitespace, so a mangled name arrives
+// as two tokens, the second usually opening with a dot.
 //
 // Nothing downstream complains. A theme simply never matches it, a `-` exclusion in an
 // injection selector never spares it, and every gate reads green because a token stands

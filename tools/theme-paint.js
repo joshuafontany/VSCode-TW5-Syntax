@@ -4,7 +4,7 @@
 // A TextMate grammar cannot switch a rule off — nothing in the VS Code API registers,
 // edits or unregisters a grammar at runtime. What a grammar DOES choose: how loudly a
 // construct reads by default, because a theme paints a scope only when one of its own
-// rules is that scope or a dotted PREFIX of it. `markup.underline.link.…` inherits every
+// rules names that scope or a dotted PREFIX of it. `markup.underline.link.…` inherits every
 // theme's link colour; `meta.…` inherits almost nothing.
 //
 // So the scope name IS the default. This measures it against the bundled theme set rather
