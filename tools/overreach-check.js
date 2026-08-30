@@ -14,12 +14,21 @@
 //   the parser yields plain text -> the author reached for markup and missed
 //
 //   node tools/overreach-check.js '<glob>' [--camelcase] [--verbose] [--expected=<file>] [--scope=<scopeName>]
-//   node tools/overreach-check.js --corpus [count] [--exclude=<path fragment>]...
+//   node tools/overreach-check.js --corpus [count] [--exclude=<path fragment>]... [--truncate[=seed]]
 //
 // --corpus builds its specimens rather than looking for them: every Nth tiddler across
 // editions, core, plugins and themes, header stripped, one file each. A corpus that lives
 // in a scratchpad does not survive a session, and a corpus somebody curated answers to
 // whoever curated it.
+//
+// --truncate cuts every specimen short at a seeded offset, so the corpus stops being
+// well-formed. TiddlyWiki's own tiddlers were written by people who know the parser, in house
+// style, to document the parser — the best-formed wikitext in existence, and the easy end of the
+// distribution a learner writes from. Truncation manufactures the other end: an opener with no
+// close, a table missing its last row, a macro body cut mid-parameter. Both sides read the same
+// bytes, so the law holds unchanged; only the ground gets harder.
+//
+// The seed makes a finding reproducible. Nothing here is random at run time.
 //
 // Neither side of the comparison comes from anybody's reading of the format: the grammar
 // supplies the claims and TiddlyWiki's parser supplies the verdicts.
@@ -178,7 +187,7 @@ function review(source, snapText, oracle) {
     const start = offsetAt(source, ann.line, ann.start);
     const end = offsetAt(source, ann.line, ann.end);
     const read = oracle.readAt(source, start, end);
-    const at = { line: ann.line + 1, col: ann.start + 1, span: source.slice(start, end), rule: read.rule };
+    const at = { line: ann.line + 1, col: ann.start + 1, start, end, span: source.slice(start, end), rule: read.rule };
     // A span inside an unparsed definition body answers to neither question.
     if (read.innermost === 'opaque') continue;
     if (claimed.length > 0 && read.kind === 'text') {
@@ -199,6 +208,9 @@ if (require.main === module) {
   const expectedFile = (args.find((a) => a.startsWith('--expected=')) || '').slice('--expected='.length);
   const rulings = expectedFile ? readExpected(fs.readFileSync(expectedFile, 'utf8')) : [];
   const camelcase = args.includes('--camelcase');
+  const truncateArg = args.find((a) => a === '--truncate' || a.startsWith('--truncate='));
+  const truncating = Boolean(truncateArg);
+  const seed = Number((truncateArg || '').split('=')[1] || 1);
   const pattern = args.find((a) => !a.startsWith('--')) || './tests/samples/*.tw';
   // The dialect answers to the same parser: memetic-wikitext includes the whole base grammar,
   // so every reading below carries into a .mem file, and the gate asks it there too.
@@ -213,6 +225,27 @@ if (require.main === module) {
 
   // A snapshot per file, taken into scratch so a run never disturbs the pinned ones.
   const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-overreach-'));
+
+  // A seeded generator, so a run that finds something can be run again and find it again.
+  const seeded = (seed) => () => {
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  const rand = seeded(seed);
+
+  /**
+   * A specimen cut short, between a tenth and nine tenths of its length.
+   *
+   * The band leaves both ends out: a cut at the very start yields nothing to read, and a cut at
+   * the very end leaves the specimen effectively whole, and neither asks the question.
+   *
+   * @param {string} text
+   * @param {() => number} rand
+   * @returns {string}
+   */
+  const truncate = (text, rand) => text.slice(0, Math.max(1, Math.floor(text.length * (0.1 + rand() * 0.8))));
 
   /** Every Nth tiddler across TiddlyWiki's own wikis, body only, one file each. */
   const buildCorpus = (count) => {
@@ -245,18 +278,21 @@ if (require.main === module) {
         // A .tid carries a header block, then a blank line, then the wikitext.
         const blank = tid.indexOf('\n\n');
         const dest = path.join(scratch, `w${String(i).padStart(4, '0')}.tw`);
-        fs.writeFileSync(dest, blank < 0 ? '' : tid.slice(blank + 2));
-        return { src, dest };
+        const body = blank < 0 ? '' : tid.slice(blank + 2);
+        fs.writeFileSync(dest, truncating ? truncate(body, rand) : body);
+        return { src, dest, whole: body };
       });
   };
 
   let files;
   let copies;
+  let whole = [];
   if (args.includes('--corpus')) {
     const count = Number(args.find((a) => /^\d+$/.test(a)) || 400);
     const built = buildCorpus(count);
     files = built.map((b) => path.relative(process.cwd(), b.src));
     copies = built.map((b) => b.dest);
+    whole = built.map((b) => b.whole);
   } else {
     files = execFileSync('bash', ['-c', `ls ${pattern}`], { encoding: 'utf8' })
       .trim()
@@ -285,6 +321,8 @@ if (require.main === module) {
 
   const byScope = { overreach: new Map(), invention: new Map() };
   let ruled = 0;
+  let cutOnly = 0;
+  let unanswerable = 0;
   let scanned = 0;
   copies.forEach((copy, i) => {
     const snap = `${copy}.snap`;
@@ -295,6 +333,32 @@ if (require.main === module) {
       if (isExpected(rulings, files[i], f.scope)) {
         ruled += 1;
         continue;
+      }
+      // On cut ground, a claim answers to the WHOLE tiddler before it answers here.
+      //
+      // The law reads: the parser yields plain text, so the author reached for markup and
+      // missed. A cut file carries no author who missed — an opener whose close lies past the
+      // cut refuses for that reason alone, and an editor that waited for the close would go
+      // dark on every keystroke a construct takes to type.
+      //
+      // Truncation takes a PREFIX, so an offset means the same thing in both texts. Ask the
+      // parser about the same stretch of the uncut tiddler: a node there names the cut as the
+      // whole reason, and the claim stands. Plain text there names a claim that would over-reach
+      // whether or not anybody cut the file.
+      if (truncating && f.kind === 'overreach' && whole[i] !== undefined) {
+        const uncut = oracle.readAt(whole[i], f.start, f.end);
+        // The same law review holds: a span the whole tiddler stores rather than parses carries
+        // no answer either way. A macro body is stored verbatim, so the parser never rules on the
+        // widgets inside it, and reading "not plain text" there as "the construct works" would
+        // let the cut explain a span nothing ever examined.
+        if (uncut.innermost === 'opaque') {
+          unanswerable += 1;
+          continue;
+        }
+        if (uncut.kind !== 'text') {
+          cutOnly += 1;
+          continue;
+        }
       }
       const bucket = byScope[f.kind];
       if (!bucket.has(f.scope)) bucket.set(f.scope, []);
@@ -307,8 +371,13 @@ if (require.main === module) {
   const total = count(byScope.overreach) + count(byScope.invention);
   console.log(
     `overreach-check  ${scanned} file(s)${camelcase ? '  [CamelCase forced on]' : ''}` +
+      (truncating ? `  [cut at seed ${seed}]` : '') +
       (rulings.length ? `  ${ruled} span(s) explained by ${rulings.length} ruling(s)` : '')
   );
+  if (truncating) {
+    console.log(`  ${String(cutOnly).padStart(4)}  span(s) the cut alone refused — the uncut tiddler builds there`);
+    console.log(`  ${String(unanswerable).padStart(4)}  span(s) the uncut tiddler STORES rather than parses — no answer either way`);
+  }
   const section = (kind, headline) => {
     const map = byScope[kind];
     console.log(`\n  ${String(count(map)).padStart(4)}  ${headline}`);

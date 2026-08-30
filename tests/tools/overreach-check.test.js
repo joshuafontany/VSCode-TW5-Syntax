@@ -135,6 +135,10 @@ test('a claimed span TiddlyWiki refuses reports, and names what it painted', () 
       kind: 'overreach',
       line: 1,
       col: 5,
+      // The absolute offsets travel with the finding: truncation takes a prefix, so a caller
+      // can re-ask the parser about the same stretch of the uncut text.
+      start: 4,
+      end: 14,
       span: 'HelloThere',
       rule: 'wikilink',
       scope: 'markup.underline.link.wikilink.tiddlywiki5'

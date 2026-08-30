@@ -98,6 +98,16 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- The grammar answers on cut ground as well as whole. TiddlyWiki's own tiddlers carry the
+  best-formed wikitext in existence, and a learner writes from the other end of that
+  distribution. `overreach-check --truncate=<seed>` cuts every specimen short at a seeded offset —
+  an opener with no close, a table missing its last row, a macro body cut mid-parameter — and asks
+  the same question there. Two readings of the result flatter the grammar and the check refuses
+  both: a construct whose close lies past the cut refuses for that reason alone, and the whole
+  tiddler settles whether the cut is the entire reason, since truncation takes a prefix and an
+  offset means the same in both texts; a macro body is stored rather than parsed, so the parser
+  rules on nothing inside it and the check reports those spans as unanswered rather than clear.
+  Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
   unexplained: 236 spans stand explained by 25 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
