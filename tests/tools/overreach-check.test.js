@@ -2,7 +2,7 @@
 // a column in the file, and deciding where the grammar and the parser disagree.
 //
 // The column arithmetic carries the whole tool. A reading off by one moves every finding
-// onto its neighbour — silently, because the neighbour is usually scoped too. The `.snap`
+// onto its neighbour — silently, because the neighbour usually carries a scope too. The `.snap`
 // convention itself lives in tools/snapshot-format.js.
 
 const test = require('node:test');

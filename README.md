@@ -59,6 +59,10 @@ Based primarily on the grammars found below, with heavy tweaking and editing.
 * `npm run canary` — an ordinary sentence appended to every sample, which must stay ordinary
 * `npm run corpus` — broad ground, gated on every declared scope being reached and nothing bleeding
 * `npm run upstream-coverage -- <path-to-TiddlyWiki5>` — TiddlyWiki's own rule regexes, taken to its own tiddlers
+* `npm run overreach -- --corpus` — every scope the grammar paints, handed back to TiddlyWiki's parser: a claim over text it refuses, and a verdict over a construct it builds
+* `npm run tw5-oracle -- '<wikitext>'` — the tree TiddlyWiki builds, and `-- --rules` the rules it stands
+* `npm run rule-inventory` — every parser rule, the config tiddlers it answers to, and what TiddlyWiki ships for each
+* `npm run theme-paint -- <scope>` — how many bundled themes paint a scope, and `-- --families` the whole grammar ranked
 * `npm run package-contents` — every path the manifest names, checked inside the built package
 * `npm run bench` — a disposable editor in a container, so you can look at the grammar with your own eyes
 
@@ -66,39 +70,53 @@ Based primarily on the grammars found below, with heavy tweaking and editing.
 
 A TextMate grammar cannot switch a parser rule off — nothing in the VS Code API reaches a
 grammar at runtime — so what a grammar chooses is how loudly a construct reads. A theme
-paints a scope when one of its own rules is that scope or a dotted prefix of it, which makes
+paints a scope when one of its own rules names that scope or a dotted prefix of it, which makes
 the scope name the default. `npm run theme-paint -- <scope>` measures any scope against the
-45 bundled themes.
+bundled theme set, and `-- --families` ranks every family this grammar emits.
 
 Two groups are worth turning, and both turn from `editor.tokenColorCustomizations` in your
-own settings. Nothing else needs a switch: about sixty of the grammar's structural scopes
-already read at 0 of 45.
+own settings. Nothing else needs a switch: the grammar's structural families already read
+quiet in every bundled theme.
 
 ### CamelCase links — off by default
 
 TiddlyWiki has shipped CamelCase linking **disabled** since 5.3.0
 (`$:/config/WikiParserRules/Inline/wikilink`), so `HelloWorld` builds no link in a new wiki
-and the grammar reads it quiet — `meta.link.wikilink.tiddlywiki5`, painted by 4 of 45 themes
-rather than 31. The construct still carries its own scope, so a wiki that enables CamelCase
-in Control Panel → Settings colours it back with one rule:
+and the grammar reads it quiet — `meta.link.wikilink.tiddlywiki5`, which few themes paint
+where a `markup.underline.link.` scope inherits nearly every theme's link colour. The
+construct still carries its own scope, so a wiki that enables CamelCase in
+Control Panel → Settings colours it back with one rule:
 
 ```json
 "editor.tokenColorCustomizations": {
   "textMateRules": [
-    { "scope": "meta.link.wikilink.tiddlywiki5",
-      "settings": { "foreground": "#4a9eff", "fontStyle": "underline" } }
+    { "scope": "meta.link.wikilink.tiddlywiki5", "settings": { "fontStyle": "underline" } }
   ]
 }
 ```
 
-The suppressing `~` keeps its punctuation colour either way: `wikilinkprefix` is a separate
+A rule carrying only `fontStyle` leaves the colour to your theme. A `foreground` holds one
+literal colour across every theme you switch to, so give each theme its own block when you
+want one:
+
+```json
+"editor.tokenColorCustomizations": {
+  "[Default Dark+]": { "textMateRules": [
+    { "scope": "meta.link.wikilink.tiddlywiki5", "settings": { "foreground": "#4fc1ff" } } ] },
+  "[Default Light+]": { "textMateRules": [
+    { "scope": "meta.link.wikilink.tiddlywiki5", "settings": { "foreground": "#0451a5" } } ] }
+}
+```
+
+The suppressing `~` keeps its punctuation colour either way: `wikilinkprefix` carries its own
 rule, TiddlyWiki ships it enabled, and it consumes the `~` whether or not CamelCase stands.
 
 ### Verdicts — on by default
 
-The grammar marks markup TiddlyWiki refuses to parse with `invalid.*` scopes, which about 31
-of 45 themes paint as errors. Where TiddlyWiki genuinely refuses, a verdict earns its place;
-some still stand where it does not. To read them quietly while that settles:
+The grammar marks markup TiddlyWiki refuses to parse with `invalid.*` scopes, which most
+themes paint as errors — the two VS Code ships among them. Where TiddlyWiki genuinely
+refuses, a verdict earns its place; some still stand where it does not. To read them quietly
+while that settles:
 
 ```json
 "editor.tokenColorCustomizations": {
@@ -112,9 +130,9 @@ some still stand where it does not. To read them quietly while that settles:
 Both blocks work per workspace folder in `.vscode/settings.json`, so one wiki can answer
 differently from another.
 
-Per-rule switching — one toggle for each of TiddlyWiki's 44 parser rules, resolved down a
-bag stack — waits on the tree-sitter and language-server work, where a live parser can
-answer for the file in front of it. `npm run rule-inventory` reports that surface today.
+Per-rule switching — one toggle for each of TiddlyWiki's parser rules, resolved down a bag
+stack — waits on the tree-sitter and language-server work, where a live parser can answer
+for the file in front of it. `npm run rule-inventory` reports that surface today.
 
 ## Known Issues
 

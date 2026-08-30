@@ -2,7 +2,7 @@
 // How loudly a scope reads, measured across the themes people actually use.
 //
 // A TextMate grammar cannot switch a rule off — nothing in the VS Code API registers,
-// edits or unregisters a grammar at runtime. What a grammar CAN choose is how loudly a
+// edits or unregisters a grammar at runtime. What a grammar DOES choose: how loudly a
 // construct reads by default, because a theme paints a scope only when one of its own
 // rules is that scope or a dotted PREFIX of it. `markup.underline.link.…` inherits every
 // theme's link colour; `meta.…` inherits almost nothing.
@@ -46,7 +46,7 @@ function themeRules(theme) {
  * TextMate matches by dotted prefix: `markup.underline` paints
  * `markup.underline.link.wikilink.tiddlywiki5`, and `markup.underlines` paints nothing.
  * A descendant selector — `meta.tag entity.name` — targets its LAST element, so only that
- * element is compared.
+ * element carries the comparison.
  *
  * @param {string} scope
  * @param {string[]} rules  themeRules() output

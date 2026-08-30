@@ -28,8 +28,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { resolveTiddlyWiki } = require('./tw5-oracle.js');
 
-// wikiparser.js reads one prefix per rule type. The pragma prefix is PLURAL and the other
-// two are singular; nothing derives that, so it is transcribed and pinned by a test.
+// wikiparser.js reads one prefix per rule type. The pragma prefix reads PLURAL where the
+// other two read singular; nothing derives that, so a test pins the three transcribed.
 const PREFIX = { pragma: 'Pragmas', block: 'Block', inline: 'Inline' };
 
 /**

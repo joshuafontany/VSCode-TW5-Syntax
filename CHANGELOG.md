@@ -6,44 +6,19 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## 2.3.0 — unreleased
 
-### Added
-- How loudly a scope reads, as a number. A theme paints a scope when one of its own rules is
-  that scope or a dotted prefix of it, so the scope name IS the default a grammar gets to
-  choose. `tools/theme-paint.js` measures any scope against the 45 bundled themes and
-  `--families` ranks every family the grammar emits, so a default is argued from a
-  measurement rather than from a sense of convention.
-- The parser's configurable surface, derived from TiddlyWiki. Every wikitext rule answers to
-  `$:/config/WikiParserRules/<Type>/<name>`, and `setupRules` deletes a rule whose tiddler
-  holds anything but `enable`. `tools/rule-inventory.js` reads the rule modules and the
-  shipped config tiddlers and reports the whole surface — **44 rules, 47 config keys, exactly
-  one shipped switched off** — and `--configuration` emits the settings block from it, so a
-  rule added upstream reaches the settings without anyone amending a list.
-- The grammar answers to TiddlyWiki's own parser. `tools/tw5-oracle.js` boots TiddlyWiki and
-  reports what it BUILDS at a span; `tools/overreach-check.js` takes every scope the grammar
-  paints back to that parser and reports each one standing over text TiddlyWiki refused. The
-  standing coverage sweep asks whether the grammar READS what TiddlyWiki reads; nothing asked
-  the other direction, where a scope over unparsed text looks exactly like a scope doing its
-  job. `npm run overreach` runs it over the samples, `npm run overreach-corpus` over
-  TiddlyWiki's own tiddlers — a corpus the tool builds rather than looks for.
-- A `lar:` URI reads its own structure. The path, each `?key=value` in the query, the `&` between
-  them and a `#/fragment` now carry their own scopes instead of riding in one unbroken string, so
-  an address colours the way the rest of a call does.
-
 ### Fixed
-- CamelCase linking reads quiet, matching the wiki TiddlyWiki ships. TiddlyWiki has shipped
-  `$:/config/WikiParserRules/Inline/wikilink` as `disable` since 5.3.0, so `HelloWorld` builds
-  no link in a new wiki — and the grammar coloured one anyway, 309 times across 400 of
-  TiddlyWiki's own tiddlers. The construct now reads `meta.link.wikilink.tiddlywiki5`, which
-  4 of 45 bundled themes paint where the old scope drew 31. It keeps its own name, so a wiki
-  that enables CamelCase colours it back in one settings rule; see **Colour toggles** in the
-  README. The suppressing `~` keeps its punctuation colour, because `wikilinkprefix` is a
-  separate rule TiddlyWiki ships enabled and consumes the character either way.
+- CamelCase links read quiet, matching the wiki TiddlyWiki ships. TiddlyWiki ships
+  `$:/config/WikiParserRules/Inline/wikilink` as `disable`, so `HelloWorld` builds no link in a
+  new wiki, and the construct now reads `meta.link.wikilink.tiddlywiki5` — a scope few themes
+  paint, where the link family inherits nearly every theme's link colour. It keeps its own
+  name, so a wiki that enables CamelCase colours it back with one settings rule; see
+  **Colour toggles** in the README. The suppressing `~` keeps its punctuation colour, because
+  `wikilinkprefix` carries its own rule, ships enabled, and consumes the character either way.
 - A macro name ends where the host's own name regexp ends it. TiddlyWiki reads a name with
-  `/([^\s>"'=:]+)/y`, so a colon, quote or equals sign closes it and a call carrying no name
-  at all builds nothing; the grammar took any run of non-space, non-`>` characters. `<<:>>`
-  standing in the fr-FR edition's prose about camel case read as a macro call, and `<<a:b>>`
-  carried the name scope across a parameter. Thirty calls across 400 of TiddlyWiki's own
-  tiddlers coloured as macro calls the parser refuses. Every other attribute already admitted one; the
+  `/([^\s>"'=:]+)/y`, so a colon, quote or equals sign closes the name and a call carrying no
+  name at all builds nothing. `<<:>>` read as a macro call, and `<<a:b>>` carried the name
+  scope across a parameter.
+- A macro call stands as a `style` attribute value. Every other attribute already admitted one; the
   CSS-embedding branch excluded the angle bracket, so `<div style=<<tag-pill-style>>>` read as a
   stray bracket where TiddlyWiki parses a value of type macro.
 - A slash before the closing bracket marks a tag self-closing, for any tag. Four attribute catch-alls
@@ -59,23 +34,16 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Only `=` introduces a parameter value. The value rule looked behind a colon as well, so a scheme's
   own path read as an unquoted parameter value — `ni:///sha-256;abc` and `https://example.com` both
   coloured as though a parameter had claimed them.
-- The coverage sweep names the rules it never reached. Seventeen rules carry a literal regex
-  and collect no case from the corpus — a construct written only in punctuation cannot pass the
-  alphanumeric filter — and each one simply vanished from the report, leaving `rules with an
-  unscoped case: 0` speaking for rules nothing had measured.
 - The corpus and samples carry the framing form the graph now writes: a control sigil names its ends,
   `from=? -> to=lar:///…`, with the bearing arrow riding between them as an unnamed positional. The
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
-### Changed
-- A verdict answers to refusal, a claim answers to construction. `invalid.*` scopes say the
-  author reached for markup and missed, so they read correct exactly where TiddlyWiki refuses
-  — the reverse of every other scope. The over-reach gate now reports both directions: a
-  claim standing over refused text, and a verdict standing over a construct the parser built.
-- One reader for the `.snap` format. Four tools each parsed it by hand, each carrying its own
-  reading of the caret-column convention — the annotation's `#` holds column 0, so a caret at
-  index N names source column N, and the assertion format counts differently. `tools/snapshot-format.js`
-  now states that once.
+### Added
+- A `lar:` URI reads its own structure. The path, each `?key=value` in the query, the `&` between
+  them and a `#/fragment` now carry their own scopes instead of riding in one unbroken string, so
+  an address colours the way the rest of a call does.
+- **Colour toggles** in the README: the two scope groups worth turning, and the
+  `editor.tokenColorCustomizations` block that turns each, per workspace folder.
 
 ### Removed
 - A bare `?` carries no bearing scope. An end names itself — `from=?`, `to=?` — so the glyph rides as

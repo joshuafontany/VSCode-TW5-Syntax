@@ -1,6 +1,6 @@
 // The configurable surface of TiddlyWiki's parser, derived rather than transcribed.
 //
-// A hand-written table of rules and their defaults would be a second claim about
+// A hand-written table of rules and their defaults would make a second claim about
 // TiddlyWiki, drifting quietly the moment upstream adds a rule or flips a default. These
 // tests hold the derivation to the host: the prefixes wikiparser.js actually reads, the
 // absence that means "enabled", and the one rule TiddlyWiki ships switched off.
@@ -37,7 +37,7 @@ test('a type wikiparser reads no prefix for contributes no key', () => {
   assert.deepStrictEqual(configKeysFor('imaginary', ['sideways']), []);
 });
 
-// setupRules reads getTiddlerText(key,"enable"), so the ABSENCE of a tiddler is the answer
+// setupRules reads getTiddlerText(key,"enable"), so the ABSENCE of a tiddler answers
 // "enabled" — and any value other than "enable" deletes the rule, "disable" holding no
 // special standing.
 test('an absent tiddler leaves a rule standing; any value but enable removes it', () => {
@@ -68,7 +68,7 @@ test('the settings surface defaults each key to what TiddlyWiki ships', () => {
 const TW = resolveTiddlyWiki();
 const live = { skip: TW ? false : 'no TiddlyWiki checkout resolved (set TW5_PATH)' };
 
-// The pragma prefix is PLURAL and the other two are singular. Nothing derives that, so the
+// The pragma prefix reads PLURAL where the other two read singular. Nothing derives that, so the
 // three strings are transcribed — and this test reads them back out of wikiparser.js so a
 // rename upstream fails here rather than in a settings key nobody notices.
 test('the three prefixes match the ones wikiparser.js reads', live, () => {
@@ -86,7 +86,7 @@ test('every rule module carries a name, and the sweep finds the whole family', l
 });
 
 // TiddlyWiki ships exactly one WikiParserRules tiddler. Every other rule stands by absence,
-// so a table listing 44 defaults would be 43 restatements of one law and one fact.
+// so a table of per-rule defaults would restate one law once per rule and carry one fact.
 test('TiddlyWiki ships exactly one rule switched off, and it is CamelCase linking', live, () => {
   const shipped = readShippedDefaults(TW);
   const off = [...shipped].filter(([, value]) => value !== 'enable');
@@ -109,7 +109,7 @@ test('a rule declaring two types carries two independent keys', live, () => {
 });
 
 // The settings surface and the parser must name the same rules. A key the parser never
-// reads is a switch wired to nothing, and a rule with no key is a switch nobody can reach.
+// reads names a switch wired to nothing, and a rule with no key hides one nobody can reach.
 test('the generated settings surface covers every key the inventory names, and no others', live, () => {
   const inventory = buildInventory(TW);
   const props = configurationProperties(inventory);

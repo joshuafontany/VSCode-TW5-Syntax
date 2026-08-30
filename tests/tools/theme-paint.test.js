@@ -25,7 +25,7 @@ test('a selector paints a scope it prefixes on a dot boundary', () => {
   assert.strictEqual(paints('markup.underline', ['markup.underline']), 'markup.underline');
 });
 
-// The boundary is the whole point: without it, `markup.underlines` would claim a scope it
+// The boundary carries the whole tool: without it, `markup.underlines` claims a scope it
 // has nothing to do with, and every quiet family would report as painted.
 test('a selector that merely shares a prefix of characters paints nothing', () => {
   assert.strictEqual(paints('markup.underline.link.tiddlywiki5', ['markup.underlines']), null);
@@ -65,7 +65,7 @@ test('the bundled theme set loads', live, () => {
 
 // The measurement this repo acts on: a link-family scope inherits nearly every theme's link
 // colour, and a meta-family scope inherits almost none. That gap IS the default switch a
-// TextMate grammar has, and these numbers are the grounds for using it.
+// TextMate grammar holds, and these numbers ground the choice.
 test('the link family reads loud and the meta family reads quiet', live, () => {
   const loud = paintRate('markup.underline.link.wikilink.tiddlywiki5', themes).painted.length;
   const quiet = paintRate('meta.link.wikilink.tiddlywiki5', themes).painted.length;
@@ -82,7 +82,7 @@ test('the grammar emits its scopes where the measurement can reach them', live, 
 });
 
 // TiddlyWiki ships CamelCase linking disabled, so the LINK reads quiet by default. A theme
-// that paints it anyway is fine; a majority that did would undo the default.
+// that paints it anyway does no harm; a majority that did would undo the default.
 test('the CamelCase link reads quiet in this grammar', live, () => {
   const scopes = grammarScopes('syntaxes/tiddlywiki5.json').filter(
     (s) => s.includes('wikilink') && !s.startsWith('punctuation.')
@@ -94,8 +94,8 @@ test('the CamelCase link reads quiet in this grammar', live, () => {
   }
 });
 
-// The suppressing `~` keeps its punctuation scope, and it earns it: wikilinkprefix is a
-// SEPARATE rule with its own config key, TiddlyWiki ships it enabled, and it consumes the
+// The suppressing `~` keeps its punctuation scope, and it earns it: wikilinkprefix carries
+// its OWN config key, TiddlyWiki ships it enabled, and it consumes the
 // `~` whether or not CamelCase linking stands. Quieting it alongside the link would hide
 // markup the parser genuinely reads.
 test('the suppressing tilde keeps a punctuation scope, because TiddlyWiki still consumes it', live, () => {

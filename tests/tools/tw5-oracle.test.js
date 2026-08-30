@@ -9,7 +9,7 @@
 // and skips itself where no TiddlyWiki checkout resolves.
 //
 // Every offset below comes from indexOf over the probe's own text. A hand-counted column
-// is a second, unwitnessed claim about the source, and it fails silently.
+// makes a second, unwitnessed claim about the source, and it fails silently.
 
 const test = require('node:test');
 const assert = require('node:assert');
@@ -120,9 +120,10 @@ test('a verdict carries the built extent, so a short scope stays visible', () =>
 });
 
 // html.js sets a widget's node type from its own tag — node.type = node.tag.substr(1) —
-// so the <$text> widget builds a node of type "text". Reading type alone reported 131
-// spans across 400 of TiddlyWiki's own tiddlers as prose the parser refused, every one of
-// them a widget the parser had built.
+// so the <$text> widget builds a node of type "text". A node's type therefore does not
+// identify plain text on its own; only a node with text and no tag does. TiddlyWiki's own
+// templates use <$text> throughout, so reading type alone calls a great many built widgets
+// prose the parser refused.
 test('a widget calling itself text never reads as plain text', () => {
   assert.strictEqual(isPlainText({ type: 'text', text: 'hello' }), true);
   assert.strictEqual(isPlainText({ type: 'text', tag: '$text', rule: 'html' }), false);

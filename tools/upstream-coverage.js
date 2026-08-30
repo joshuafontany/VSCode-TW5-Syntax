@@ -205,7 +205,7 @@ function main() {
     console.log(`\n  cases the snapshot never reported on: ${unseen.length}`);
     for (const u of unseen.slice(0, 5)) console.log(`     ${JSON.stringify(u).slice(0, 84)}`);
   }
-  // A rule that collected no case is not a rule that passed. Dropping it from the report
+  // A rule that collected no case never passed. Dropping it from the report
   // leaves the closing tally speaking for rules it never measured — the corpus filters
   // below carry no alphanumeric, so the emphasis family, dash, codeinline, hardlinebreaks
   // and the comment rules reach this line every run.

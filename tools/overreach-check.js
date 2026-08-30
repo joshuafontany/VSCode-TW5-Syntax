@@ -128,9 +128,9 @@ if (require.main === module) {
       return out;
     };
     // Deliberately malformed content answers to its own tests, never to a grammar —
-    // editions/test/tiddlers/tests/data holds parse fixtures written to be wrong. Excluding
-    // a path RESAMPLES the corpus rather than trimming it: the stride recomputes over what
-    // is left, so two runs with different exclusions compare their totals only loosely.
+    // editions/test/tiddlers/tests/data holds parse fixtures that carry deliberate faults.
+    // Excluding a path RESAMPLES the corpus rather than trimming it: the stride recomputes
+    // over what remains, so two runs with different exclusions compare totals only loosely.
     const excluded = args.filter((a) => a.startsWith('--exclude=')).map((a) => a.slice('--exclude='.length));
     const all = ['editions', 'core', 'plugins', 'themes']
       .flatMap((d) => walk(path.join(tw, d)))
