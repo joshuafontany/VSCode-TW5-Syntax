@@ -98,11 +98,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
-- Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing now diverges
-  unexplained: 243 spans stand explained by 26 written rulings, and none by a number somebody
-  wanted smaller. Two of those rulings name faults rather than intentions — a hardlinebreaks
-  block emits no container node, and a define whose body ends in a closing parenthesis swallows
-  what follows it — the second now fixed, its specimen standing in the suite.
+- Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
+  unexplained: 236 spans stand explained by 25 written rulings, and none by a number somebody
+  wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
+  emits no container node, so a scope over its content stands over text by construction.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses
   deliberately — a scope the host ships disabled, a `\rules` run narrowing a rule set no
   TextMate grammar can follow, a fixture carrying deliberate faults, and the memetic dialect's own
