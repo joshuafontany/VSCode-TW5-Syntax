@@ -1592,7 +1592,7 @@
 							"end": "(?i)(</)(\\2)\\s*(>)|(/>)|(?=</\\w+)",
 							"endCaptures": {
 								"0": {
-									"name": "meta.tag.structure.math.$2.end.html.tiddlywiki5"
+									"name": "meta.tag.structure.math.end.html.tiddlywiki5"
 								},
 								"1": {
 									"name": "punctuation.definition.tag.begin.html.tiddlywiki5"
@@ -1680,7 +1680,7 @@
 							"end": "(?i)(</)(\\2)\\s*(>)|(/>)|(?=</\\w+)",
 							"endCaptures": {
 								"0": {
-									"name": "meta.tag.inline.math.$2.end.html.tiddlywiki5"
+									"name": "meta.tag.inline.math.end.html.tiddlywiki5"
 								},
 								"1": {
 									"name": "punctuation.definition.tag.begin.html.tiddlywiki5"
@@ -1768,7 +1768,7 @@
 							"end": "(?i)(</)(\\2)\\s*(>)|(/>)|(?=</\\w+)",
 							"endCaptures": {
 								"0": {
-									"name": "meta.tag.object.math.$2.end.html.tiddlywiki5"
+									"name": "meta.tag.object.math.end.html.tiddlywiki5"
 								},
 								"1": {
 									"name": "punctuation.definition.tag.begin.html.tiddlywiki5"
@@ -2065,7 +2065,7 @@
 							"end": "(?i)(</)(\\2)\\s*((?<!>)>(?!>))|(/>)|(?=</\\w+)",
 							"endCaptures": {
 								"0": {
-									"name": "meta.tag.metadata.svg.$2.end.html.tiddlywiki5"
+									"name": "meta.tag.metadata.svg.end.html.tiddlywiki5"
 								},
 								"1": {
 									"name": "punctuation.definition.tag.begin.html.tiddlywiki5"
@@ -2153,7 +2153,7 @@
 							"end": "(?i)(</)(\\2)\\s*((?<!>)>(?!>))|(/>)|(?=</\\w+)",
 							"endCaptures": {
 								"0": {
-									"name": "meta.tag.structure.svg.$2.end.html.tiddlywiki5"
+									"name": "meta.tag.structure.svg.end.html.tiddlywiki5"
 								},
 								"1": {
 									"name": "punctuation.definition.tag.begin.html.tiddlywiki5"
@@ -2241,7 +2241,7 @@
 							"end": "(?i)(</)(\\2)\\s*((?<!>)>(?!>))|(/>)|(?=</\\w+)",
 							"endCaptures": {
 								"0": {
-									"name": "meta.tag.inline.svg.$2.end.html.tiddlywiki5"
+									"name": "meta.tag.inline.svg.end.html.tiddlywiki5"
 								},
 								"1": {
 									"name": "punctuation.definition.tag.begin.html.tiddlywiki5"
@@ -2329,7 +2329,7 @@
 							"end": "(?i)(</)(\\2)\\s*((?<!>)>(?!>))|(/>)|(?=</\\w+)",
 							"endCaptures": {
 								"0": {
-									"name": "meta.tag.object.svg.$2.end.html.tiddlywiki5"
+									"name": "meta.tag.object.svg.end.html.tiddlywiki5"
 								},
 								"1": {
 									"name": "punctuation.definition.tag.begin.html.tiddlywiki5"
@@ -2423,7 +2423,7 @@
 							"end": "(?i)(</)((\\2))\\s*((?<!>)>(?!>))|(/>)|(?=</\\w+)",
 							"endCaptures": {
 								"0": {
-									"name": "meta.tag.other.svg.$2.end.html.tiddlywiki5"
+									"name": "meta.tag.other.svg.end.html.tiddlywiki5"
 								},
 								"1": {
 									"name": "punctuation.definition.tag.begin.html.tiddlywiki5"

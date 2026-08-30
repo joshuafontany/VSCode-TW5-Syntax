@@ -7,6 +7,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- Every scope name the grammar emits reads as a scope. An element closing with `/>` took the
+  self-closing branch of its end pattern, where the group carrying the tag name never
+  participates, so the name arrived with an empty segment — `meta.tag.object.svg..end` — which no
+  theme matches and no injection selector spares, while every gate read green because a token
+  stood there. These end tags take their name plainly, and the enclosing element scope carries
+  the tag name beside them.
 - A single-line `\define` ends where its line ends, whatever its body closes with. A body ending
   in a closing parenthesis left the cursor after a `)` at end of line, which is exactly where the
   multiline form waits, so the definition opened a block there and swallowed the rest of the file

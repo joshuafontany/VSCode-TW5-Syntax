@@ -90,16 +90,14 @@ test('the pinned snapshots carry scopes to check', live, () => {
   assert.ok(snapshots.length > 1000, `${snapshots.length} scope tokens`);
 });
 
-// A FLOOR, in the shape corpus-check already uses: the count may fall and may never rise.
+// Zero, and it stays zero.
 //
-// What stands behind it: an SVG element that closes with a self-closing slash takes the `/>`
-// branch of its own end pattern, where the group carrying the tag name never participates, so
-// the interpolated segment arrives empty. The same name resolves correctly on every element
-// that closes with a closing tag, and dropping the interpolation would cost every closing tag
-// its name to spare this one shape.
-//
-// Lower this number when a fix lands. Never raise it.
-const FLOOR = 3;
+// A scope name may interpolate a capture only where every branch that emits the name fills that
+// capture. An end pattern offering a self-closing branch alongside a closing tag does not: the
+// group carrying the tag name stands empty on `/>`, and the emitted name arrives with a hole in
+// it. Such an end tag takes its name plainly; the enclosing element scope carries the tag name
+// beside it on every span, and the start tag reads the same way.
+const FLOOR = 0;
 
 test('malformed scope names stay at or below the floor', live, () => {
   const mangled = snapshots.filter(({ scope }) => damage(scope));
