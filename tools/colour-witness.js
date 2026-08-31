@@ -30,6 +30,16 @@ const THEMES = path.join(ROOT, 'node_modules', 'tm-themes', 'themes');
 // Distinctions a reader needs to see, and how many themes must show each. A theme paints from its
 // own palette and none carries a colour for every family, so a relation asks for a majority
 // rather than for all.
+// Constructs a reader meets as one thing and must therefore read as one colour. Each names a
+// SPECIMEN and the words inside it that play one part, because a relation over scope NAMES stays
+// true when a rule swaps which capture carries which name, and such a swap makes a
+// link's visible text change colour with the presence of a caption.
+const TOGETHER = [
+  { what: "a link's visible text, captioned or not",
+    specimen: 'A [[Plain]] and a [[Caption|Target]] link.\nAn [ext[Ecaption|https://example.com]] and https://example.org here.\n',
+    words: ['Plain', 'Caption', 'Ecaption'] }
+];
+
 const APART = [
   { what: 'a lar: root — heading, angle of approach, carried dynamic',
     scopes: ['entity.name.tag.heading.lar.memetic-wikitext',
@@ -81,10 +91,42 @@ function openerCloserPairs(scopes) {
   return pairs;
 }
 
+/**
+ * The innermost scope each word carries, read from a snapshot of the specimen holding them.
+ *
+ * @param {string} specimen
+ * @param {string[]} words
+ * @returns {Record<string,string>}
+ */
+function scopesOverWords(specimen, words) {
+  const { execFileSync } = require('node:child_process');
+  const os = require('node:os');
+  const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-colour-'));
+  const file = path.join(scratch, 'probe.tw');
+  fs.writeFileSync(file, specimen);
+  const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'],
+    { cwd: ROOT, encoding: 'utf8' }).trim().split('\n').filter(Boolean);
+  execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', 'text.html.tiddlywiki5', '-u', file],
+    { cwd: ROOT, stdio: ['ignore', 'ignore', 'ignore'] });
+  const out = {};
+  let line = null;
+  for (const text of fs.readFileSync(`${file}.snap`, 'utf8').split('\n')) {
+    if (text.startsWith('>')) { line = text.slice(1); continue; }
+    const m = text.match(/^#(\s*)(\^+) (.*)/);
+    if (!m || line === null) continue;
+    const span = line.slice(m[1].length, m[1].length + m[2].length);
+    if (words.includes(span)) out[span] = m[3].split(/\s+/).pop();
+  }
+  fs.rmSync(scratch, { recursive: true, force: true });
+  return out;
+}
+
+exports.scopesOverWords = scopesOverWords;
 exports.colourOf = colourOf;
 exports.declaredScopes = declaredScopes;
 exports.openerCloserPairs = openerCloserPairs;
 exports.APART = APART;
+exports.TOGETHER = TOGETHER;
 
 if (require.main === module) {
   const verbose = process.argv.includes('--verbose');
@@ -112,6 +154,16 @@ if (require.main === module) {
     if (differ) split.push(`${differ}/${themes.length}  ${opener}  vs  ${closer}`);
   }
 
+  const parted = [];
+  for (const relation of TOGETHER) {
+    const found = scopesOverWords(relation.specimen, relation.words);
+    const missing = relation.words.filter((w) => !found[w]);
+    if (missing.length) { parted.push(`${relation.what}: the specimen colours nothing over ${missing.join(', ')}`); continue; }
+    const carried = relation.words.map((w) => found[w]);
+    const differ = themes.filter((t) => new Set(carried.map((sc) => colourOf(t, sc))).size > 1).length;
+    if (differ) parted.push(`${differ}/${themes.length} themes read apart what a reader meets as one: ${relation.what} (${carried.join(' vs ')})`);
+  }
+
   const flattened = [];
   for (const relation of APART) {
     // A scope no rule reaches paints as the editor's own foreground, which a reader sees as a
@@ -122,9 +174,9 @@ if (require.main === module) {
   }
 
   console.log(`colour-witness  ${scopes.size} scope(s) over ${themes.length} theme(s)`);
-  console.log(`  ${String(split.length).padStart(4)}  opener/closer pair(s) a theme paints apart, of ${pairs.length}`);
+  console.log(`  ${String(split.length + parted.length).padStart(4)}  thing(s) a reader meets as one and a theme paints apart, of ${pairs.length + TOGETHER.length}`);
   console.log(`  ${String(flattened.length).padStart(4)}  declared distinction(s) too few themes can show, of ${APART.length}`);
   console.log(`  ${String(missing.length + shrunk.length).padStart(4)}  relation(s) that stopped checking anything`);
-  for (const line of [...split, ...flattened, ...missing, ...shrunk].slice(0, verbose ? 12 : 3)) console.log(`     ${line}`);
-  process.exit(split.length || flattened.length || missing.length || shrunk.length ? 1 : 0);
+  for (const line of [...split, ...parted, ...flattened, ...missing, ...shrunk].slice(0, verbose ? 12 : 3)) console.log(`     ${line}`);
+  process.exit(split.length || parted.length || flattened.length || missing.length || shrunk.length ? 1 : 0);
 }

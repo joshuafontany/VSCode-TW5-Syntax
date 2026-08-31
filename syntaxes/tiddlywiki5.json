@@ -5583,16 +5583,25 @@
 			},
 			"patterns": [
 				{
-					"comment": "Match links with optional tooltip: [ext[Tooltip|URL]]",
-					"match": "\\s*(?:([^|\\]]*?)\\s*(\\|))?\\s*([^\\]]+?)\\s*(?=\\]\\])",
+					"comment": "A captioned external link. The caption reads as the link because a reader clicks it; the address reads as the address.",
+					"match": "\\s*([^|\\]]*?)\\s*(\\|)\\s*([^\\]]+?)\\s*(?=\\]\\])",
 					"captures": {
 						"1": {
-							"name": "string.entity.other.title.link.tiddlywiki5"
+							"name": "markup.underline.link.external.tiddlywiki5"
 						},
 						"2": {
 							"name": "punctuation.definition.link.title.tiddlywiki5"
 						},
 						"3": {
+							"name": "string.entity.other.title.link.tiddlywiki5"
+						}
+					}
+				},
+				{
+					"comment": "A plain external link, whose one segment serves as the text a reader sees and as the address it reaches.",
+					"match": "\\s*([^\\]]+?)\\s*(?=\\]\\])",
+					"captures": {
+						"1": {
 							"name": "markup.underline.link.external.tiddlywiki5"
 						}
 					}

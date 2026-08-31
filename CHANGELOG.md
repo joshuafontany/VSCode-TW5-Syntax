@@ -177,8 +177,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   Neither shows in a snapshot and both show at a glance. `npm run colour-witness` resolves every
   scope against each bundled theme and holds two relations — an opener and its closer read alike,
   taken from the names themselves so a construct added later joins the check; and a declared
-  distinction reaches enough themes to show, declared because whether a difference SHOULD show
-  asks a judgement no measurement settles. It fails when a relation stops checking anything: a
+  distinction reaches enough themes to show, and a thing a reader meets as one reads as one
+  colour. The last two stand declared, because whether a difference should show asks a judgement
+  no measurement settles — and the last names a specimen and the words inside it rather than two
+  scope names, since a relation over names stays true when a rule swaps which capture carries
+  which. It fails when a relation stops checking anything: a
   scope no grammar emits, or a pair list that shrinks below its floor.
 - A witness for what a half-typed construct costs. A grammar meets unfinished input on every
   keystroke, and a pattern reading cheaply on a finished construct can read expensively on an
