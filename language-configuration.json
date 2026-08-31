@@ -4,6 +4,10 @@
     },
     // symbols used as brackets
     "brackets": [
+        // A macro call and a bracketed title, which wikitext writes far more often than a
+        // bare angle bracket. Longest match wins, so << and [[ pair before < and [.
+        ["<<", ">>"],
+        ["[[", "]]"],
         ["<!--", "-->"],
         ["{", "}"],
         ["[", "]"],
@@ -12,6 +16,9 @@
     ],
     // symbols that are auto closed when typing
     "autoClosingPairs": [
+        // A bare < opens an html tag and closes nothing; << opens a macro call and closes.
+        { "open": "<<", "close": ">>" },
+        { "open": "[[", "close": "]]" },
         { "open": "{", "close": "}"},
 		{ "open": "[", "close": "]"},
 		{ "open": "(", "close": ")" },
@@ -21,6 +28,8 @@
     "autoCloseBefore": ";:.,=}])>` \n\t",
     // symbols that can be used to surround a selection
     "surroundingPairs": [
+        ["<<", ">>"],
+        ["[[", "]]"],
         ["{", "}"],
         ["[", "]"],
         ["<", ">"],

@@ -103,6 +103,25 @@ test('no language folds on the off-side rule', () => {
   }
 });
 
+// Every language colouring wikitext offers bracket matching for the constructs wikitext writes.
+// A macro call and a bracketed title outnumber the bare angle bracket by a wide margin, and the
+// base configuration named neither while the dialect wrapping it named both — so typing `[[` in a
+// `.tw` file closed nothing and `<<` matched nothing, in the format's own link and macro syntax.
+const WIKITEXT_PAIRS = [['<<', '>>'], ['[[', ']]'], ['{', '}'], ['[', ']'], ['(', ')']];
+
+test('every wikitext language brackets the constructs wikitext writes', () => {
+  for (const lang of pkg.contributes.languages || []) {
+    if (!lang.configuration) continue;
+    const config = parseJsonc(fs.readFileSync(path.join(ROOT, lang.configuration.replace(/^\.\//, '')), 'utf8'));
+    const has = (list, [open, close]) =>
+      (list || []).some((p) => (Array.isArray(p) ? p[0] === open && p[1] === close : p.open === open && p.close.trim() === close));
+    for (const pair of WIKITEXT_PAIRS) {
+      assert.ok(has(config.brackets, pair), `${lang.id} brackets no ${pair[0]}${pair[1]}`);
+      assert.ok(has(config.autoClosingPairs, pair), `${lang.id} does not close ${pair[0]} for you`);
+    }
+  }
+});
+
 test('every declared grammar and snippet file stands and reads', () => {
   for (const g of pkg.contributes.grammars || []) {
     const file = path.join(ROOT, g.path.replace(/^\.\//, ''));

@@ -171,6 +171,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- Typing `[[` or `<<` closes itself, and both pairs match. Wikitext writes a bracketed title and a
+  macro call far more often than it writes a bare angle bracket, and the base configuration named
+  neither as a bracket nor as a closing pair — while the memetic dialect that wraps it named both.
+  Longest match wins, so `<<` and `[[` pair before `<` and `[`, and a bare `<` still opens an HTML
+  tag and closes nothing. The dialect gains `<%` `%>` in return, which belongs to the wikitext it
+  wraps.
 - A double-click takes a TiddlyWiki word. VS Code's default word pattern breaks a system title at
   its first character — `$:/core/ui/ViewTemplate` selects as `$` — and halves a hyphenated
   variable name, so `tv-config-toolbar` selects as `tv`. Both stand among the commonest tokens an
