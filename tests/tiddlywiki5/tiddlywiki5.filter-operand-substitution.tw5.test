@@ -1,0 +1,30 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A filter operand substitutes only inside a define body"
+
+# TiddlyWiki substitutes $name$ and $(name)$ where widget.js finds isMacroDefinition — in a
+# \define body — and inside substituted attribute values. A \function body reaches the filter
+# engine untouched, so a filter operand there takes its dollars literally, and so does a filter
+# standing in ordinary wikitext.
+#
+# A CAPTURE matches a filter operand, and a capture carrying no patterns reads as a leaf:
+# nothing sub-tokenizes inside it, so no injection reaches it either. The operand keeps an open
+# capture with an empty pattern list, which sub-tokenizes without painting anything of its own —
+# and the macro-body injection then reaches the operand exactly where TiddlyWiki substitutes.
+
+! A filter operand inside a function body leaves the dollars alone
+
+\function f.subs(a)
+[tag[$a$]]
+#    ^^^ - markup.other.variable.substitute-parameter.tiddlywiki5
+\end
+
+! A filter operand inside a define body substitutes, because the whole body does
+
+\define d.subs(a)
+{{{ [tag[$a$]] }}}
+#        ^^^ markup.other.variable.substitute-parameter.tiddlywiki5
+\end
+
+! A filter standing outside any definition substitutes nothing
+
+{{{ [tag[$a$]] }}}
+#        ^^^ - markup.other.variable.substitute-parameter.tiddlywiki5

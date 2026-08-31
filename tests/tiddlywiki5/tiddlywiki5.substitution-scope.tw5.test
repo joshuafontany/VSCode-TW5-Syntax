@@ -9,8 +9,8 @@
 # Painting $a$ as a substitution there tells an author a construct fires where the text stays
 # literal, and the wiki renders the dollars.
 #
-# A filter OPERAND reaches this by a second road, and one shape of it stands as a known gap —
-# see tests/known-gaps/substitution-inside-a-function-body-filter.tw5.test.
+# A filter OPERAND reaches this by a second road, which answers to a capture rather than to the
+# injection — see tiddlywiki5.filter-operand-substitution.tw5.test.
 
 ! A define body substitutes a parameter and a variable
 

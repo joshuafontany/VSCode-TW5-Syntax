@@ -6,7 +6,7 @@
 # broken run; a gate that swallows it reports a standing gap as no gap at all.
 #
 # Both readings hide the one event worth catching. tests/known-gaps/README.md names two ways a gap
-# leaves the directory, and the first is that the grammar grows to meet it — at which point the
+# leaves the directory, and the first has the grammar growing to meet it — at which point the
 # specimen PASSES and wants moving to tests/tiddlywiki5/. That moment reports here.
 set -uo pipefail
 cd "$(dirname "$0")/.."
@@ -30,16 +30,17 @@ done
 
 echo "known-gaps  ${#gaps[@]} specimen(s), $standing still standing"
 
+if [ ${#closed[@]} -gt 0 ]; then
+  echo "  ${#closed[@]} gap(s) the grammar now MEETS — move each to tests/tiddlywiki5/ with its specification:"
+  printf '    %s\n' "${closed[@]}"
+  exit 1
+fi
+
 # The README states the count in prose, and prose does not move when a gap opens or closes.
 readme="./tests/known-gaps/README.md"
 claimed=$(grep -oE '\*\*[0-9]+ gaps? stands?\.\*\*|\*\*No gap stands open\.\*\*' "$readme" | head -1)
 expected="**$standing gap$([ "$standing" -eq 1 ] || echo s) stand$([ "$standing" -eq 1 ] && echo s).**"
 if [ "$claimed" != "$expected" ]; then
   echo "  the README states ${claimed:-no count}; the directory carries $expected"
-  exit 1
-fi
-if [ ${#closed[@]} -gt 0 ]; then
-  echo "  ${#closed[@]} gap(s) the grammar now MEETS — move each to tests/tiddlywiki5/ with its specification:"
-  printf '    %s\n' "${closed[@]}"
   exit 1
 fi

@@ -6,10 +6,10 @@
 // WHOLE tag. tests/known-gaps/an-unparseable-attribute-refuses-the-tag.tw5.test records three
 // shapes that reach this, and the grammar paints all three as working tags.
 //
-// A TextMate begin pattern CAN express the law. An attribute list is alternation, not recursion,
+// A TextMate begin pattern CAN express the law. An attribute list carries alternation rather than recursion,
 // so a lookahead over the value forms parseutils.js declares decides the same question. What it
-// cannot express is NESTING — a macro value carrying a macro, a filter value carrying a
-// transclusion — and that is where the guard and the parser part.
+// cannot express reaches NESTING — a macro value carrying a macro, a filter value carrying a
+// transclusion — and there the guard and the parser part.
 //
 // This takes both to every tag in TiddlyWiki's own tiddlers and reports the split, because the
 // decision turns on a ratio nobody should freeze into prose:
@@ -17,7 +17,7 @@
 //   TOO LOOSE   the guard admits what the parser refuses. The grammar already does this, so
 //               adopting the guard changes nothing here.
 //   TOO TIGHT   the guard refuses what the parser BUILDS. Adopting it stops colouring valid
-//               content, which is the cost.
+//               content, and that cost decides the matter.
 //
 //   node tools/attribute-guard.js [--verbose]
 
@@ -121,6 +121,6 @@ if (require.main === module) {
   }
   console.log(`attribute-guard  ${checked} tag(s), ${agree} agreed (${((100 * agree) / checked).toFixed(2)}%)`);
   console.log(`  ${String(loose).padStart(4)}  the guard admits and the parser refuses — the grammar already does this`);
-  console.log(`  ${String(tight).padStart(4)}  the guard refuses and the parser BUILDS — this is what adopting it costs`);
+  console.log(`  ${String(tight).padStart(4)}  the guard refuses and the parser BUILDS — adopting it costs this`);
   if (verbose) for (const c of tightCases) console.log(`        ${JSON.stringify(c)}`);
 }
