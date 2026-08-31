@@ -52,7 +52,7 @@ function cutRun(seed) {
   };
 }
 
-test('a cut corpus reads as cut', live, { timeout: 600000 }, () => {
+test('a cut corpus reads as cut', { ...live, timeout: 600000 }, () => {
   const r = cutRun(1);
   // The run must actually degrade. A cut that changed nothing would report the well-formed
   // numbers and pass this file while measuring nothing.
@@ -60,7 +60,7 @@ test('a cut corpus reads as cut', live, { timeout: 600000 }, () => {
   assert.ok(r.stored > 0, 'no stored-body span — the opaque law had nothing to hold');
 });
 
-test('no claim stands over text the whole tiddler also refuses', live, { timeout: 600000 }, () => {
+test('no claim stands over text the whole tiddler also refuses', { ...live, timeout: 600000 }, () => {
   const r = cutRun(1);
   assert.strictEqual(
     r.overreach,

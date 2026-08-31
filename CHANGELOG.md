@@ -171,6 +171,17 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- The memetic dialect holds wikitext entire, by measurement. It includes the wikitext grammar
+  rather than reimplementing it, which makes the superset claim look structural — and a TextMate
+  injection keys on a scope name, so a wrapper fires none of the wrapped grammar's. A wikitext
+  file read under the dialect lost 34 spans until the dialect carried those injections itself. A
+  gate reads every wikitext corpus file under both grammars and holds the dialect to losing no
+  span and stripping no scope, since a superset may only add.
+- Three gates ran nothing and reported green. `test(name, options, fn)` takes one options object,
+  and each of these passed two — so the runner took the second as the test body and the real body
+  never ran. Two of them had stood that way since they were written, including both readings over
+  cut ground. Each now runs for seconds rather than a millisecond, and each fails when its subject
+  breaks.
 - Typing `[[` or `<<` closes itself, and both pairs match. Wikitext writes a bracketed title and a
   macro call far more often than it writes a bare angle bracket, and the base configuration named
   neither as a bracket nor as a closing pair — while the memetic dialect that wraps it named both.
