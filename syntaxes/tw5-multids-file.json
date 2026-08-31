@@ -32,7 +32,7 @@
   ],
   "injections": {
     "L:meta.variable.macro.body.tiddlywiki5": {
-      "comment": "Text replacement, which a define body takes and the other three definition bodies do not. A grammar wrapping another keys its injections on its own scope, so the wrapped grammar own never fire here.",
+      "comment": "Text replacement, which a define body takes and the other three definition bodies do not. A grammar wrapping another keys its injections on its own scope, so the wrapped grammar own never fire here. This format carries one line per tiddler and a pragma anchors on ^, so no definition body stands here — yet removing this block moves the colouring of an ordinary text field, by a route nobody has traced. It stays until somebody can say why.",
       "patterns": [
         {
           "include": "text.html.tiddlywiki5#substitute-filter"
@@ -72,7 +72,8 @@
             {
               "include": "text.html.tiddlywiki5"
             }
-          ]
+          ],
+          "comment": "A tiddler text field, one line of it. A pragma anchors on ^ and this capture opens mid-line, so no definition stands here and no definition body follows."
         }
       },
       "comment": "boot.js takes the first colon on the line: the title runs up to it and the text follows. A line with no value defines a tiddler with empty text."
