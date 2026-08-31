@@ -48,7 +48,7 @@ Based primarily on the grammars found below, with heavy tweaking and editing.
 * https://github.com/PaulPorfiroff/atom-language-tiddlywiki5
 * https://github.com/roma0104/sublime-tid
 
-`*.tid` and `*.meta` files have syntaxes that parse the metadata field "block" (and illegal characters detected). All field content (text field included) is parsed as `text.html.tiddlywiki5` (defined in `./syntaxes/tiddlywiki5.json`).
+`*.tid` and `*.meta` files have syntaxes that parse the metadata field "block" (and illegal characters detected). Every field's content, the text field included, parses as `text.html.tiddlywiki5` (defined in `./syntaxes/tiddlywiki5.json`).
 
 ## For contributors
 
@@ -58,13 +58,13 @@ Based primarily on the grammars found below, with heavy tweaking and editing.
 * `npm run test-tools` — the tools themselves, which the gates read through
 * `npm run snap` — every sample's whole tokenization, pinned beside it
 * `npm run canary` — an ordinary sentence appended to every sample, which must stay ordinary
-* `npm run corpus` — broad ground, gated on every declared scope being reached and nothing bleeding
+* `npm run corpus` — broad ground, gated on the corpus reaching every declared scope and on nothing bleeding
 * `npm run upstream-coverage -- <path-to-TiddlyWiki5>` — TiddlyWiki's own rule regexes, taken to its own tiddlers
 * `npm run overreach -- --corpus` — every scope the grammar paints, handed back to TiddlyWiki's parser: a claim over text it refuses, and a verdict over a construct it builds
 * `npm run overreach-host` — the same question over TiddlyWiki's own tiddlers, against the written rulings
-* `npm run overreach-cut` — the same tiddlers cut short at a seeded offset, so the ground stops being well-formed
+* `npm run overreach-cut` — the same tiddlers cut short at a seeded offset, so the ground leaves well-formed input behind
 * `npm run tests-known-gaps` — the specimens stating what the grammar does not yet do, which fails when one of them starts passing
-* `npm run attribute-guard` — what an attribute-list guard would cost, taken to TiddlyWiki's own tags: how many it would refuse that the parser builds
+* `npm run attribute-guard` — what an attribute-list guard would cost, taken to TiddlyWiki's own tags: how many it would refuse that the parser builds. `-- --cut` cuts each tag short first, matching the input such a guard would actually meet
 * `npm run tw5-oracle -- '<wikitext>'` — the tree TiddlyWiki builds, and `-- --rules` the rules it stands
 * `npm run rule-inventory` — every parser rule, the config tiddlers it answers to, and what TiddlyWiki ships for each
 * `npm run theme-paint -- <scope>` — how many bundled themes paint a scope, and `-- --families` the whole grammar ranked
@@ -76,7 +76,7 @@ Based primarily on the grammars found below, with heavy tweaking and editing.
 ## Colour toggles
 
 A TextMate grammar cannot switch a parser rule off — nothing in the VS Code API reaches a
-grammar at runtime — so what a grammar chooses is how loudly a construct reads. A theme
+grammar at runtime — so a grammar chooses only how loudly a construct reads. A theme
 paints a scope when one of its own rules names that scope or a dotted prefix of it, which makes
 the scope name the default. `npm run theme-paint -- <scope>` measures any scope against the
 bundled theme set, and `-- --families` ranks every family this grammar emits.

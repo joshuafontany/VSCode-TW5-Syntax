@@ -5,7 +5,7 @@
 # neither — so a single stretch of text that parses as no attribute refuses the WHOLE tag, and
 # TiddlyWiki yields plain text for all of it.
 #
-# Most junk escapes this, because parseAttribute is generous: reAttributeName reads
+# Most junk escapes this, because parseAttribute takes so much: reAttributeName reads
 # ([^\/\s>"'`=:]+) and an attribute needs no value, so <$link ###> binds ### as a valueless
 # attribute and the tag stands. Three shapes measured against the parser do not escape it:
 #
@@ -24,15 +24,24 @@
 # nothing to run: forty attributes with no close return in under a millisecond, falling rather
 # than rising with length.
 #
-# What such a guard cannot express is NESTING — a macro value carrying a macro, a filter value
-# carrying a transclusion — and that decides the matter. `npm run attribute-guard` takes both the
+# Nesting costs it a little: a macro value carrying a macro, a filter value carrying a
+# transclusion. Oniguruma takes recursive subexpressions, so a guard can follow most of that, and
+# hand-writing the filter grammar to follow the rest reads WORSE than a permissive pattern does.
+#
+# Cut ground decides the matter. `npm run attribute-guard --cut` shortens each tag at a seeded
+# offset — what an author holds mid-keystroke — and there the guard refuses several times more
+# constructs that TiddlyWiki BUILDS than it does on whole tags. A tag cut mid-macro,
+# `<$text text=<<caption>`, closes for the parser and not for the guard: TiddlyWiki recovers where
+# a guard demanding a complete value cannot. A grammar that reads worse the more unfinished its
+# input stands against the gradient it exists to colour. `npm run attribute-guard` takes both the
 # guard and the parser to every tag in TiddlyWiki's own tiddlers and reports the split. The guard
 # refuses a handful of tags the parser BUILDS, every one of them nested, and each would stop
 # colouring; it admits a handful the parser refuses, which the grammar already does. Adopting it
 # trades valid content that colours today for the three malformed shapes below.
 #
-# Run the tool before reopening this: the ratio decides it, and the ratio answers to TiddlyWiki's
-# tree rather than to anything written here.
+# Run the tool both ways before reopening this. The ratio decides it, the ratio answers to
+# TiddlyWiki's tree rather than to anything written here, and the cut reading answers for the
+# input a guard would actually meet.
 
 <$link to=<<>>>go</$link>
 # ^^^^ - entity.name.tag.html.tiddlywiki5

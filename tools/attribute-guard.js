@@ -19,7 +19,12 @@
 //   TOO TIGHT   the guard refuses what the parser BUILDS. Adopting it stops colouring valid
 //               content, and that cost decides the matter.
 //
-//   node tools/attribute-guard.js [--verbose]
+// --cut takes the same tags degraded. Every measurement above reads WELL-FORMED tags, the easy
+// end of the distribution: a guard that never wrongly admits there says nothing about what an
+// author holds mid-keystroke. Each tag takes a cut at a seeded offset inside itself and
+// both sides read the shortened bytes, so the guard answers for the input it exists to refuse.
+//
+//   node tools/attribute-guard.js [--verbose] [--cut[=seed]]
 
 const fs = require('node:fs');
 const path = require('node:path');
@@ -80,6 +85,16 @@ exports.extract = extract;
 
 if (require.main === module) {
   const verbose = process.argv.includes('--verbose');
+  const cutArg = process.argv.find((a) => a === '--cut' || a.startsWith('--cut='));
+  const cutting = Boolean(cutArg);
+  let seed = Number((cutArg || '').split('=')[1] || 1);
+  // A seeded generator, so a reading reproduces.
+  const rand = () => {
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
   const tw = resolveTiddlyWiki();
   if (!tw) {
     console.error('no TiddlyWiki checkout resolved — set TW5_PATH');
@@ -108,8 +123,9 @@ if (require.main === module) {
     if (blank < 0) continue;
     const body = text.slice(blank + 2);
     for (const m of body.matchAll(/<\$?[A-Za-z]/g)) {
-      const tag = extract(body, m.index);
+      let tag = extract(body, m.index);
       if (!tag || tag.length > 200) continue;
+      if (cutting) tag = tag.slice(0, Math.max(2, Math.floor(tag.length * (0.2 + rand() * 0.7))));
       checked += 1;
       const guarded = GUARD.test(tag);
       const read = oracle.readAt(tag, 0, tag.length);
@@ -119,7 +135,7 @@ if (require.main === module) {
       else { tight += 1; tightCases.add(tag.slice(0, 96)); }
     }
   }
-  console.log(`attribute-guard  ${checked} tag(s), ${agree} agreed (${((100 * agree) / checked).toFixed(2)}%)`);
+  console.log(`attribute-guard${cutting ? '  [cut]' : ''}  ${checked} tag(s), ${agree} agreed (${((100 * agree) / checked).toFixed(2)}%)`);
   console.log(`  ${String(loose).padStart(4)}  the guard admits and the parser refuses — the grammar already does this`);
   console.log(`  ${String(tight).padStart(4)}  the guard refuses and the parser BUILDS — adopting it costs this`);
   if (verbose) for (const c of tightCases) console.log(`        ${JSON.stringify(c)}`);
