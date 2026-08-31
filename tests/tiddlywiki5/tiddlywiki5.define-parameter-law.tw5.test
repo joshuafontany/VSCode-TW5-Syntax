@@ -1,0 +1,38 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A define parameter list ends at the first closing paren"
+
+# The two definition rules declare their parameter lists differently, and the difference decides
+# where the body starts.
+#
+#   macrodef.js    \\define\s+([^(\s]+)\(\s*([^)]*)\)          the list ends at the FIRST )
+#   fnprocdef.js   \\(function|procedure|widget)\s+([^(\s]+)\((\s*([^)]*(?:\)\)[^)]*)*))?\)
+#                                                              the list may carry )) pairs
+#
+# So a multi-valued-variable default, a:((var)), holds in a procedure, function or widget and
+# does NOT hold in a define. Measured on TiddlyWiki's own parser:
+#
+#   \procedure p(a:((var))) body    param a, defaultType multivalue-variable, body "body"
+#   \define    d(a:((var))) body    param a, default "((var",                 body ")) body"
+#
+# The define takes two literal parens into its default string and the body starts four characters
+# earlier than the doubled form suggests. Painting an mvv default there invents a construct
+# TiddlyWiki does not build, and moves the body with it.
+#
+# No parse-tree check can see this: a definition is stored rather than parsed, so the parser holds
+# no opinion about any span inside it.
+
+! A procedure takes a multi-valued-variable default
+
+\procedure p.mvv(a:((var))) body
+#                  ^^ punctuation.definition.mvv.default.begin.tiddlywiki5
+#                    ^^^ variable.name.mvv.default.tiddlywiki5
+#                       ^^ punctuation.definition.mvv.default.end.tiddlywiki5
+#                         ^ punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
+#                           ^^^^ meta.variable.procedure.body.tiddlywiki5
+
+! A define does not, and its body starts at the first closing paren
+
+\define d.mvv(a:((var))) body
+#               ^^ - punctuation.definition.mvv.default.begin.tiddlywiki5
+#                    ^ punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
+#                     ^^ meta.variable.macro.body.tiddlywiki5
+#                        ^^^^ meta.variable.macro.body.tiddlywiki5

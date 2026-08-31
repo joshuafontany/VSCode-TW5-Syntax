@@ -7,6 +7,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A `\define` parameter list ends at its first closing parenthesis, and a multi-valued-variable
+  default belongs to the other three pragmas. The two definition rules declare their lists
+  differently — `macrodef.js` reads `\(\s*([^)]*)\)` while `fnprocdef.js` admits `))` pairs — so
+  `a:((var))` names a multi-valued variable in a `\procedure`, `\function` or `\widget` and names
+  nothing in a `\define`. TiddlyWiki takes the literal string `((var` as that parameter's default
+  and starts the body at `)) `, four characters before the doubled form suggests. The two rules
+  keep their own parameter laws, so the grammar's body and TiddlyWiki's stored body begin at the
+  same character.
 - Parameter substitution belongs to the define body alone. `widget.js` gates both placeholder
   forms behind one test — `isMacroDefinition` — so `$name$` for a declared parameter and
   `$(name)$` for a variable fire in a `\define` body and in a substituted attribute value, and
