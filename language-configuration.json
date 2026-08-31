@@ -30,6 +30,12 @@
         ["'", "'"],
         ["`", "`"]
     ],
+	// A TiddlyWiki word. VS Code's default breaks a system title at its first character —
+	// $:/core/ui/ViewTemplate selects as "$" — and halves a hyphenated variable name, so
+	// tv-config-toolbar selects as "tv". Both stand among the commonest things an author
+	// double-clicks. This takes a system title whole with its slashes, a pragma with its
+	// backslash, a hyphenated name entire, and a number.
+	"wordPattern": "(\\$:\\/[^\\s\\|\\[\\]\\{\\}<>\"'`]+)|(-?\\d*\\.\\d\\w*)|(\\\\?[A-Za-z_$][A-Za-z0-9_$-]*)",
 	"folding": {
 		"offSide": true,
 		"markers": {

@@ -68,6 +68,25 @@ test('every declared language configuration reads', () => {
   }
 });
 
+// A word pattern decides what a double-click takes, what a word-wise cursor step crosses and
+// what Ctrl+D matches. VS Code's default breaks a TiddlyWiki system title at its first character
+// and halves a hyphenated variable name, so the two commonest tokens an author touches select
+// wrongly without one.
+test('a word pattern takes a system title and a hyphenated name whole', () => {
+  for (const lang of pkg.contributes.languages || []) {
+    if (!lang.configuration) continue;
+    const config = parseJsonc(fs.readFileSync(path.join(ROOT, lang.configuration.replace(/^\.\//, '')), 'utf8'));
+    if (!config.wordPattern) continue;
+    let pattern;
+    assert.doesNotThrow(() => { pattern = new RegExp(config.wordPattern, 'g'); },
+      `${lang.id} declares a wordPattern that does not compile`);
+    const takes = (text) => { pattern.lastIndex = 0; const m = pattern.exec(text); return m && m[0]; };
+    for (const token of ['tv-config-toolbar', 'MyTiddlerTitle']) {
+      assert.strictEqual(takes(token), token, `${lang.id} does not take ${token} as one word`);
+    }
+  }
+});
+
 test('every declared grammar and snippet file stands and reads', () => {
   for (const g of pkg.contributes.grammars || []) {
     const file = path.join(ROOT, g.path.replace(/^\.\//, ''));

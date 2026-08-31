@@ -171,6 +171,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- A double-click takes a TiddlyWiki word. VS Code's default word pattern breaks a system title at
+  its first character — `$:/core/ui/ViewTemplate` selects as `$` — and halves a hyphenated
+  variable name, so `tv-config-toolbar` selects as `tv`. Both stand among the commonest tokens an
+  author touches, and the same pattern decides word-wise cursor movement and what Ctrl+D matches.
+  A system title travels whole with its slashes, a pragma with its backslash, a hyphenated name
+  entire, and each stops at the delimiter around it: `<<myMacro>>` gives `myMacro`, `{{$:/foo}}`
+  gives `$:/foo`. The memetic dialect already carried one; wikitext, `.tid` and `.multids` did not.
 - Twelve scopes the corpus never reached now stand exercised. Each element family names its own
   continuation region — the one a start tag opens when its attributes span lines, and a
   single-line tag never opens — so reaching them wanted one element per family, and the families
