@@ -65,6 +65,7 @@ Based primarily on the grammars found below, with heavy tweaking and editing.
 * `npm run overreach-host` — the same question over TiddlyWiki's own tiddlers, against the written rulings
 * `npm run overreach-cut` — the same tiddlers cut short at a seeded offset, so the ground leaves well-formed input behind
 * `npm run tests-known-gaps` — the specimens stating what the grammar does not yet do, which fails when one of them starts passing
+* `npm run colour-witness` — what a reader sees rather than what a scope name says: an opener and its closer read alike in every bundled theme, and a declared distinction reaches enough of them to show
 * `npm run backtrack-witness` — what a half-typed construct costs the tokenizer, over every pattern in every grammar
 * `npm run attribute-guard` — what an attribute-list guard would cost, taken to TiddlyWiki's own tags: how many it would refuse that the parser builds. `-- --cut` cuts each tag short first, matching the input such a guard would actually meet
 * `npm run tw5-oracle -- '<wikitext>'` — the tree TiddlyWiki builds, and `-- --rules` the rules it stands

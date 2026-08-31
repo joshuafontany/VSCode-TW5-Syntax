@@ -171,6 +171,15 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- A witness for what a reader sees. Every other gate reads scope names, and a name comes apart
+  from a colour in both directions: two names paint alike when no theme rule reaches past their
+  shared family, and one construct paints two ways when its parts sit in different families.
+  Neither shows in a snapshot and both show at a glance. `npm run colour-witness` resolves every
+  scope against each bundled theme and holds two relations — an opener and its closer read alike,
+  taken from the names themselves so a construct added later joins the check; and a declared
+  distinction reaches enough themes to show, declared because whether a difference SHOULD show
+  asks a judgement no measurement settles. It fails when a relation stops checking anything: a
+  scope no grammar emits, or a pair list that shrinks below its floor.
 - A witness for what a half-typed construct costs. A grammar meets unfinished input on every
   keystroke, and a pattern reading cheaply on a finished construct can read expensively on an
   unfinished one. `npm run backtrack-witness` takes every pattern in every grammar to openers this
