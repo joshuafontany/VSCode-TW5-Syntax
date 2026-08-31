@@ -1,0 +1,15 @@
+16
+# Scopes this grammar emits that no corpus file reaches. The count may fall and may never rise.
+#
+# A coverage FLOOR counts what the corpus reaches, over every name a grammar declares — including
+# the names it hands to another grammar, source.python and text.html.php and comment.block.js
+# among them. Reaching those wants a specimen carrying that language, and this corpus holds
+# wikitext rather than everything wikitext can embed, so a single count answered for two
+# populations and for neither.
+#
+# This counts only the first population. `npm run corpus-verbose` names them: most want a start
+# tag whose attributes span lines, which opens a continuation region a single-line tag never does;
+# two carry a near-sibling that claims the same text first, and no constructed input has reached
+# either.
+#
+# Lower this when a specimen reaches one. Never raise it.

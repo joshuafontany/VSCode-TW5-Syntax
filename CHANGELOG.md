@@ -137,6 +137,15 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- Coverage counts two populations separately. A scope this grammar emits and a scope it hands to
+  another grammar — `source.python`, `text.html.php`, `comment.block.js` — answered to one floor,
+  and reaching the second kind wants a specimen carrying that language, which a wikitext corpus
+  holds no reason to keep. The check reports each, and the count of this grammar's own unreached
+  scopes carries a ceiling that may fall and never rise. Most of them want a start tag whose
+  attributes span lines, which opens a continuation region a single-line tag never does.
+- The corpus reads specimens, named by the extensions the manifest claims rather than by a list of
+  what to skip. That list held two names and let a third control file through: the divergence
+  rulings answered every corpus run as though they were wikitext.
 - Every scope the memetic dialect declares stands exercised. The base grammar answers to
   twenty-seven corpus files and a coverage floor; the dialect carried a fraction of that, and six
   of its scopes had no specimen at all — a carrier naming no control code, a query separator

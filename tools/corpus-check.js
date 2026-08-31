@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 // The corpus, gated on invariants rather than on pinned tokens.
 //
-// tests/samples holds frozen specimens whose every token is pinned, so a snapshot moves only
+// tests/samples holds frozen specimens pinning every token, so a snapshot moves only
 // in a commit that moves the sample. This asks a different question of broader ground:
 //
-//   COVERAGE    — every scope the grammar DECLARES is reached by some corpus file. A scope
-//                 nothing reaches is a rule no test exercises, read from the grammar itself
+//   COVERAGE    — some corpus file reaches every scope the grammar DECLARES. A scope nothing
+//                 reaches marks a rule no test exercises, read from the grammar itself
 //                 so no hand-kept list can drift.
 //   CONTAINMENT — a file that closes its constructs does not colour what follows it. The
-//                 degenerate.* files carry unterminated constructs on purpose and are exempt.
+//                 degenerate.* files carry unterminated constructs on purpose and stand exempt.
 //
 //   node tools/corpus-check.js [--verbose]
 
@@ -37,12 +37,19 @@ function declaredScopes(file) {
   return out;
 }
 
+// The extensions the manifest claims. A corpus specimen carries one of them; a readme, a floor
+// and a ceiling carry none, and naming those one by one lets the next control file join the
+// corpus unnoticed.
+const SPECIMEN = new Set(
+  (require(path.resolve(__dirname, '..', 'package.json')).contributes.languages || [])
+    .flatMap((l) => l.extensions || [])
+);
+
 function files(dir, out = []) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
     const p = path.join(dir, e.name);
     if (e.isDirectory()) files(p, out);
-    // The corpus is its samples; the readme and the floor are not among them.
-    else if (!e.name.endsWith('.snap') && !/^(README\.md|coverage-floor\.txt)$/.test(e.name)) out.push(p);
+    else if (!e.name.endsWith('.snap') && [...SPECIMEN].some((x) => e.name.endsWith(x))) out.push(p);
   }
   return out;
 }
@@ -70,7 +77,7 @@ for (const f of corpus) {
   byScope.get(s).push({ src: f, copy });
 }
 for (const [scope, entries] of byScope) {
-  // A control carrying the sentinel and nothing else. Whatever scopes it takes are the
+  // A control carrying the sentinel and nothing else. Whatever scopes it takes mark the
   // baseline for this file type, so nothing here guesses at what a clean line looks like.
   const control = path.join(scratch, 'control-' + scope.replace(/\./g, '_') + path.extname(entries[0].src));
   fs.writeFileSync(control, (path.extname(control) === '.tid' || path.extname(control) === '.meta'
@@ -108,18 +115,40 @@ for (const g of ['syntaxes/tiddlywiki5.json', 'syntaxes/memetic-wikitext.json'])
 }
 const unreached = [...declared].filter((s) => !reached.has(s)).sort();
 
+// One count over two populations answers for neither. A scope THIS grammar emits ends in its own
+// suffix; every other name here hands a region to another grammar — source.python, text.html.php,
+// comment.block.js — and reaching those wants a specimen carrying that language, which the corpus
+// exists to hold for wikitext rather than for everything wikitext can embed.
+const OURS = /\.(tiddlywiki5|memetic-wikitext)$/;
+const unreachedOurs = unreached.filter((s) => OURS.test(s));
+const unreachedHandoffs = unreached.length - unreachedOurs.length;
+
 const reachedCount = declared.size - unreached.length;
 const floorFile = path.join('corpus', 'coverage-floor.txt');
 const floor = fs.existsSync(floorFile) ? Number(fs.readFileSync(floorFile, 'utf8').trim()) : 0;
 
+// A ceiling, not a floor: the count of OUR OWN unreached scopes may fall and may never rise.
+const ceilingFile = path.join('corpus', 'unreached-ceiling.txt');
+// The number stands on the first line; what follows it explains the number.
+const ceiling = fs.existsSync(ceilingFile)
+  ? Number(fs.readFileSync(ceilingFile, 'utf8').split('\n')[0].trim())
+  : Infinity;
+
 console.log(`corpus-check  ${corpus.length} files, ${declared.size} scopes declared, ${reachedCount} reached (floor ${floor})`);
+console.log(`  unreached: ${unreachedOurs.length} this grammar emits (ceiling ${ceiling}), ${unreachedHandoffs} handed to another grammar`);
 if (reachedCount < floor) {
   console.error(`  coverage fell from ${floor} to ${reachedCount}; a rule the corpus used to reach now goes unexercised`);
 }
-if (VERBOSE) for (const s of unreached) console.log(`  unreached  ${s}`);
+if (unreachedOurs.length > ceiling) {
+  console.error(`  ${unreachedOurs.length} of this grammar's own scopes go unexercised, above the ceiling of ${ceiling}`);
+}
+if (VERBOSE) {
+  for (const s of unreachedOurs) console.log(`  unreached  ${s}`);
+  for (const s of unreached) if (!OURS.test(s)) console.log(`  handoff    ${s}`);
+}
 if (bleeding.length) {
   console.error(`\n  files whose constructs colour the sentinel after them:`);
   for (const b of [...new Set(bleeding)]) console.error(`    ${b}`);
 }
 console.log(`  containment: ${new Set(bleeding.map((b) => b.split('  ->')[0])).size} of ${corpus.length} files bleed`);
-process.exit(bleeding.length || reachedCount < floor ? 1 : 0);
+process.exit(bleeding.length || reachedCount < floor || unreachedOurs.length > ceiling ? 1 : 0);
