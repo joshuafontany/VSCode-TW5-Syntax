@@ -4,10 +4,6 @@
     },
     // symbols used as brackets
     "brackets": [
-        // A macro call and a bracketed title, which wikitext writes far more often than a
-        // bare angle bracket. Longest match wins, so << and [[ pair before < and [.
-        ["<<", ">>"],
-        ["[[", "]]"],
         ["<!--", "-->"],
         ["{", "}"],
         ["[", "]"],

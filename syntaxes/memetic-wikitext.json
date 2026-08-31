@@ -381,19 +381,19 @@
 									"name": "punctuation.separator.path.lar.memetic-wikitext"
 								},
 								"2": {
-									"name": "entity.name.heading.lar.memetic-wikitext"
+									"name": "entity.name.tag.heading.lar.memetic-wikitext"
 								},
 								"3": {
 									"name": "punctuation.separator.root.lar.memetic-wikitext"
 								},
 								"4": {
-									"name": "entity.name.angle.lar.memetic-wikitext"
+									"name": "entity.other.attribute-name.angle.lar.memetic-wikitext"
 								},
 								"5": {
 									"name": "punctuation.separator.root.lar.memetic-wikitext"
 								},
 								"6": {
-									"name": "entity.name.dynamic.lar.memetic-wikitext"
+									"name": "entity.name.function.dynamic.lar.memetic-wikitext"
 								}
 							}
 						},

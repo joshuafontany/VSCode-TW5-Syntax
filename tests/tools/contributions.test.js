@@ -103,19 +103,27 @@ test('no language folds on the off-side rule', () => {
   }
 });
 
-// Every language colouring wikitext offers bracket matching for the constructs wikitext writes.
-// A macro call and a bracketed title outnumber the bare angle bracket by a wide margin, and the
-// base configuration named neither while the dialect wrapping it named both — so typing `[[` in a
-// `.tw` file closed nothing and `<<` matched nothing, in the format's own link and macro syntax.
-const WIKITEXT_PAIRS = [['<<', '>>'], ['[[', ']]'], ['{', '}'], ['[', ']'], ['(', ')']];
+// Typing `[[` or `<<` closes itself, and neither stands as a matched BRACKET.
+//
+// Auto-closing saves a keystroke. Matching draws a line between an opener and its closer and
+// paints an unmatched one as an error — and wikitext defeats both pairs. A blockquote opens `<<<`
+// and closes `<<<`, so with `<<` a pair every blockquote leaves two openers and no closer. A
+// filter operand closes `]]` whose two `[` never stood adjacent, so that closer stands unmatched.
+// Both read to a reader as red.
+const AUTO_CLOSED = [['<<', '>>'], ['[[', ']]']];
+const MATCHED = [['{', '}'], ['[', ']'], ['(', ')']];
 
-test('every wikitext language brackets the constructs wikitext writes', () => {
+test('a macro call and a bracketed title close themselves and match nothing', () => {
   for (const lang of pkg.contributes.languages || []) {
     if (!lang.configuration) continue;
     const config = parseJsonc(fs.readFileSync(path.join(ROOT, lang.configuration.replace(/^\.\//, '')), 'utf8'));
     const has = (list, [open, close]) =>
       (list || []).some((p) => (Array.isArray(p) ? p[0] === open && p[1] === close : p.open === open && p.close.trim() === close));
-    for (const pair of WIKITEXT_PAIRS) {
+    for (const pair of AUTO_CLOSED) {
+      assert.ok(has(config.autoClosingPairs, pair), `${lang.id} does not close ${pair[0]} for you`);
+      assert.ok(!has(config.brackets, pair), `${lang.id} matches ${pair[0]}${pair[1]} as a bracket, which wikitext leaves unmatched`);
+    }
+    for (const pair of MATCHED) {
       assert.ok(has(config.brackets, pair), `${lang.id} brackets no ${pair[0]}${pair[1]}`);
       assert.ok(has(config.autoClosingPairs, pair), `${lang.id} does not close ${pair[0]} for you`);
     }

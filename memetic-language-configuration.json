@@ -7,9 +7,7 @@
     // "<<" and ">>" bracket every sigil, so bracket matching and jump-to-pair follow
     // the grammar rather than the HTML underneath it.
     "brackets": [
-        ["<<", ">>"],
         ["<!--", "-->"],
-        ["[[", "]]"],
         ["{", "}"],
         ["[", "]"],
         ["(", ")"]

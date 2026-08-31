@@ -303,6 +303,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   an ordinary value, and standing alone it reads as content like any other character.
 
 ### Changed
+- A macro call and a bracketed title close themselves and match nothing. Auto-closing saves a
+  keystroke; matching draws a line between an opener and a closer and paints an unmatched one as
+  an error — and wikitext defeats both pairs. A blockquote opens `<<<` and closes `<<<`, so with
+  `<<` matched every blockquote leaves two openers and no closer. A filter operand closes `]]`
+  whose two `[` never stood adjacent, so that closer stands unmatched. Both read to a reader as
+  red, and the corpus carries eleven of the first and twenty-seven of the second.
 - Folding stops treating a blank line as part of the block above it. The off-side rule says an
   indented block continues across blank lines, and TiddlyWiki ends a block AT one —
   `wikiparser.js` takes `/\r?\n\r?\n/` as the boundary. Of the indented lines in TiddlyWiki's own
