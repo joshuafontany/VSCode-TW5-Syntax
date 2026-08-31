@@ -231,6 +231,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - A bare `?` carries no bearing scope. An end names itself — `from=?`, `to=?` — so the glyph rides as
   an ordinary value, and standing alone it reads as content like any other character.
 
+### Changed
+- The manifest registers six grammars. The seventh declared a scope nothing referenced and no
+  language claimed, so VS Code loaded it and no document ever reached it: a `.meta` sidecar
+  carries fields and no body, and the `tid` language already lists `.meta` among its extensions
+  and colours one correctly.
+
 ## 2.2.1
 
 ### Fixed
@@ -404,10 +410,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - `LICENSE` (BSD 3-Clause, following TiddlyWiki5's own) and `contributing.md`.
 
 ### Changed
-- The manifest registers six grammars. The seventh declared a scope nothing referenced and no
-  language claimed, so VS Code loaded it and no document ever reached it: a `.meta` sidecar
-  carries fields and no body, and the `tid` language already lists `.meta` among its extensions
-  and colours one correctly.
 - Snippets reach the languages they serve. The three tiddler-metadata snippets move to
   `snippets/tiddler-fields.json`, registered for `tid` and `multids`, where a field header
   exists to write into; the remaining 125 stay registered for every language this extension
