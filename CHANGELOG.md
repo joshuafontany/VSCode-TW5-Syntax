@@ -7,7 +7,15 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
-- A syntax-test file colours the wikitext it tests. The test-file grammar carries its own
+- A syntax-test file colours the wikitext it tests. Its grammar carries injections of its own,
+  because a TextMate injection keys on a scope name and no grammar inherits another's — so two
+  selectors stand written twice and a copy drifts silently. Both had. The one painting parameter
+  substitution named all four definition body scopes, so a `\procedure` body substituted inside a
+  `.tw5.test` file and not inside a `.tw` file. The one excluding the bad-angle verdict named an
+  earlier revision's regions, so identical bytes carried two verdicts inside a `.tw5.test` file
+  and none inside a `.tw` file — on a filter operand and a transclusion, which legitimately hold a
+  `<`. Both selectors match the wikitext grammar, a gate holds them equal, and a pinned snapshot
+  covers this grammar, which had none. The test-file grammar carries its own
   injections, and the one painting parameter substitution named all four definition body scopes —
   so a `\procedure` body substituted inside a `.tw5.test` file and not inside a `.tw` file, and
   the specimens stating what the grammar does read differently from the thing they state it
@@ -232,6 +240,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   an ordinary value, and standing alone it reads as content like any other character.
 
 ### Changed
+- No pattern carries a key TextMate never reads. One container declared `start` where TextMate
+  reads `begin`, so it named nothing, its `contentName` never applied, and the pattern worked only
+  by falling through to what it included. A gate reads every grammar against the vocabulary
+  TextMate accepts.
 - The manifest registers six grammars. The seventh declared a scope nothing referenced and no
   language claimed, so VS Code loaded it and no document ever reached it: a `.meta` sidecar
   carries fields and no body, and the `tid` language already lists `.meta` among its extensions
