@@ -1,0 +1,330 @@
+>\define regexp-macro() (\w+)
+#^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 keyword.control.directive.define.tiddlywiki5
+#       ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5
+#        ^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 entity.name.variable.macro.tiddlywiki5
+#                    ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
+#                     ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
+#                      ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-inline.tiddlywiki5
+#                       ^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-inline.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 meta.paragraph.tiddlywiki5
+>\function f.inline(a) [tag[Task]] :filter[get[x]]
+#^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.html.tiddlywiki5
+#         ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5
+#          ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 entity.name.variable.function.tiddlywiki5
+#                  ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
+#                   ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 meta.variable.pragma.parameter.tw-a.tiddlywiki5 variable.parameter.tiddlywiki5
+#                    ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
+#                     ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-inline.tiddlywiki5
+#                      ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-inline.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#                       ^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-inline.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.operator.filter.tiddlywiki5
+#                          ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-inline.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 string.punctuation.definition.operand.begin.tiddlywiki5
+#                           ^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-inline.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
+#                               ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-inline.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 string.punctuation.definition.operand.end.tiddlywiki5
+#                                ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-inline.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                                 ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-inline.tiddlywiki5 meta.variable.function.body.tiddlywiki5
+#                                  ^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-inline.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.colon.named.filter.tiddlywiki5
+#                                         ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-inline.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#                                          ^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-inline.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.operator.filter.tiddlywiki5
+#                                             ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-inline.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 string.punctuation.definition.operand.begin.tiddlywiki5
+#                                              ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-inline.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
+#                                               ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-inline.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 string.punctuation.definition.operand.end.tiddlywiki5
+#                                                ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-inline.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+>\procedure p.inline(a) go
+#^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+#          ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5
+#           ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 entity.name.variable.procedure.tiddlywiki5
+#                   ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
+#                    ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 meta.variable.pragma.parameter.tw-a.tiddlywiki5 variable.parameter.tiddlywiki5
+#                     ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
+#                      ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-inline.tiddlywiki5
+#                       ^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-inline.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.paragraph.tiddlywiki5
+>\widget $my.inline(a) go
+#^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^^^^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 keyword.control.directive.widget.html.tiddlywiki5
+#       ^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5
+#        ^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 entity.name.variable.widget.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
+#         ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 entity.name.variable.widget.tiddlywiki5
+#                  ^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
+#                   ^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 meta.variable.pragma.parameter.tw-a.tiddlywiki5 variable.parameter.tiddlywiki5
+#                    ^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
+#                     ^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-inline.tiddlywiki5
+#                      ^^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-inline.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.paragraph.tiddlywiki5
+>\define d.inline(a) go
+#^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 keyword.control.directive.define.tiddlywiki5
+#       ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5
+#        ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 entity.name.variable.macro.tiddlywiki5
+#                ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
+#                 ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 meta.variable.pragma.parameter.tw-a.tiddlywiki5 variable.parameter.tiddlywiki5
+#                  ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
+#                   ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-inline.tiddlywiki5
+#                    ^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-inline.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 meta.paragraph.tiddlywiki5
+>\define $dollar.macro() one line
+#^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 keyword.control.directive.define.tiddlywiki5
+#       ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5
+#        ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 entity.name.variable.macro.tiddlywiki5
+#                     ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
+#                      ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
+#                       ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-inline.tiddlywiki5
+#                        ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-inline.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 meta.paragraph.tiddlywiki5
+>\widget $my.widget() a widget name requires a dollar
+#^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^^^^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 keyword.control.directive.widget.html.tiddlywiki5
+#       ^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5
+#        ^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 entity.name.variable.widget.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
+#         ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 entity.name.variable.widget.tiddlywiki5
+#                  ^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
+#                   ^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
+#                    ^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-inline.tiddlywiki5
+#                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-inline.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.paragraph.tiddlywiki5
+>\procedure p.mvv(a:((var))) a multi-valued default stands here
+#^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+#          ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5
+#           ^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 entity.name.variable.procedure.tiddlywiki5
+#                ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
+#                 ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 meta.variable.pragma.parameter.tw-a.tiddlywiki5 variable.parameter.tiddlywiki5
+#                  ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 meta.variable.pragma.parameter.tw-a.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#                   ^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 meta.variable.pragma.parameter.tw-a.tiddlywiki5 mvv.default.parameter.tiddlywiki5 punctuation.definition.mvv.default.begin.tiddlywiki5
+#                     ^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 meta.variable.pragma.parameter.tw-a.tiddlywiki5 mvv.default.parameter.tiddlywiki5 variable.name.mvv.default.tiddlywiki5
+#                        ^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 meta.variable.pragma.parameter.tw-a.tiddlywiki5 mvv.default.parameter.tiddlywiki5 punctuation.definition.mvv.default.end.tiddlywiki5
+#                          ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
+#                           ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-inline.tiddlywiki5
+#                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-inline.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.paragraph.tiddlywiki5
+>\define d.mvv(a:((var))) and here the brackets belong to the body
+#^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 keyword.control.directive.define.tiddlywiki5
+#       ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5
+#        ^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 entity.name.variable.macro.tiddlywiki5
+#             ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
+#              ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 meta.variable.pragma.parameter.tw-a.tiddlywiki5 variable.parameter.tiddlywiki5
+#               ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 meta.variable.pragma.parameter.tw-a.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#                ^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 meta.variable.pragma.parameter.tw-a.tiddlywiki5 entity.other.default.value.tiddlywiki5 string.unquoted.html.tiddlywiki5
+#                     ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
+#                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-inline.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+>\function f.block(a)
+#^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.html.tiddlywiki5
+#         ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5
+#          ^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 entity.name.variable.function.tiddlywiki5
+#                 ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
+#                  ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 meta.variable.pragma.parameter.tw-a.tiddlywiki5 variable.parameter.tiddlywiki5
+#                   ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
+>[tag[Task]] +[sort[title]]
+#^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-block.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+# ^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-block.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.operator.filter.tiddlywiki5
+#    ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-block.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 string.punctuation.definition.operand.begin.tiddlywiki5
+#     ^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-block.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
+#         ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-block.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 string.punctuation.definition.operand.end.tiddlywiki5
+#          ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-block.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#           ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-block.tiddlywiki5 meta.variable.function.body.tiddlywiki5
+#            ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-block.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
+#             ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-block.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#              ^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-block.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.operator.filter.tiddlywiki5
+#                  ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-block.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 string.punctuation.definition.operand.begin.tiddlywiki5
+#                   ^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-block.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
+#                        ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-block.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 string.punctuation.definition.operand.end.tiddlywiki5
+#                         ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-block.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+>\end
+#^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-block.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-block.tiddlywiki5 keyword.control.directive.end.tiddlywiki5
+>
+>\define substitutes(a)
+#^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 keyword.control.directive.define.tiddlywiki5
+#       ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5
+#        ^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 entity.name.variable.macro.tiddlywiki5
+#                   ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
+#                    ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 meta.variable.pragma.parameter.tw-a.tiddlywiki5 variable.parameter.tiddlywiki5
+#                     ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
+>before $a$ and $(currentTiddler)$ and {{{ [tag[$a$]] }}} after
+#^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5
+#       ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.other.variable.substitute-parameter.tiddlywiki5 keyword.other.variable.substitute-parameter.begin.tiddlywiki5
+#        ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.other.variable.substitute-parameter.tiddlywiki5 entity.name.substitute-parameter.tiddlywiki5
+#         ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.other.variable.substitute-parameter.tiddlywiki5 keyword.other.variable.substitute-parameter.end.tiddlywiki5
+#          ^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5
+#               ^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.other.variable.substitute-variable.tiddlywiki5 keyword.other.variable.substitute-variable.begin.tiddlywiki5
+#                 ^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.other.variable.substitute-variable.tiddlywiki5 variable.name.substitute-variable.tiddlywiki5
+#                               ^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.other.variable.substitute-variable.tiddlywiki5 keyword.other.variable.substitute-variable.end.tiddlywiki5
+#                                 ^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5
+#                                      ^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeinline.begin.tiddlywiki5
+#                                         ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5
+#                                          ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#                                           ^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.operator.filter.tiddlywiki5
+#                                              ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 string.punctuation.definition.operand.begin.tiddlywiki5
+#                                               ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5 markup.other.variable.substitute-parameter.tiddlywiki5 keyword.other.variable.substitute-parameter.begin.tiddlywiki5
+#                                                ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5 markup.other.variable.substitute-parameter.tiddlywiki5 entity.name.substitute-parameter.tiddlywiki5
+#                                                 ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5 markup.other.variable.substitute-parameter.tiddlywiki5 keyword.other.variable.substitute-parameter.end.tiddlywiki5
+#                                                  ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 string.punctuation.definition.operand.end.tiddlywiki5
+#                                                   ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                                                    ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5
+#                                                     ^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeinline.end.tiddlywiki5
+#                                                        ^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5
+>\end
+#^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 keyword.control.directive.end.tiddlywiki5
+>
+>\procedure leaves-them-literal(a)
+#^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+#          ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5
+#           ^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 entity.name.variable.procedure.tiddlywiki5
+#                              ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
+#                               ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 meta.variable.pragma.parameter.tw-a.tiddlywiki5 variable.parameter.tiddlywiki5
+#                                ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
+>before $a$ and $(currentTiddler)$ after
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5
+>\end
+#^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 keyword.control.directive.end.tiddlywiki5
+>
+>! What this release changed, in one file
+#^ text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5
+>
+>Every pragma above stands before any content, because TiddlyWiki reads pragmas only there.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                                                      ^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.link.wikilink.tiddlywiki5
+#                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+>!! A define body ending in a closing parenthesis
+#^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5
+>
+>The first pragma closes on its own line. This paragraph, and the rest of the file, read as prose.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+>!! The four pragmas carry three languages
+#^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5
+>
+>A function body reaches the filter engine. A procedure and a widget body read as wikitext with
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>their parameters arriving as variables. A define body reads as wikitext after substitution. The
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>one-line forms name their own kind, as the block forms already did.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+>!! Substitution belongs to the define body alone
+#^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5
+>
+>Inside `substitutes` the dollars fire; inside `leaves-them-literal` they stay literal. Outside any
+#^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#       ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
+#        ^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.inline.raw.single.tiddlywiki5
+#                   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
+#                    ^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                                              ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
+#                                               ^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.inline.raw.single.tiddlywiki5
+#                                                                  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
+#                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>definition they stay literal too:
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+>{{{ [tag[$a$]] }}}
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
+#   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
+#    ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#     ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.operator.filter.tiddlywiki5
+#        ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 string.punctuation.definition.operand.begin.tiddlywiki5
+#         ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
+#            ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 string.punctuation.definition.operand.end.tiddlywiki5
+#             ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#              ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
+#               ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+>
+>!! A tag name takes what TiddlyWiki takes
+#^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5
+#                         ^^^^^^^^^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 meta.link.wikilink.tiddlywiki5
+#                                   ^^^^^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5
+>
+><my-tag>a hyphen</my-tag> and <my.tag>a period</my.tag> stand as tags.
+#^ text.html.tiddlywiki5 meta.tag.custom.start.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+# ^^^^^^ text.html.tiddlywiki5 meta.tag.custom.start.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#       ^ text.html.tiddlywiki5 meta.tag.custom.start.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+#        ^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.custom.end.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#                  ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.custom.end.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#                        ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.custom.end.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+#                         ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                              ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#                               ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#                                     ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+#                                      ^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                                              ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#                                                ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#                                                      ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+#                                                       ^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+><my_tag>an underscore</my_tag> and <my:tag>a colon</my:tag> read as prose.
+#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+# ^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                     ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#                      ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                                   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#                                    ^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                                                  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#                                                   ^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+>!! A tilde suppresses the link families TiddlyWiki suppresses
+#^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5
+#                                        ^^^^^^^^^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 meta.link.wikilink.tiddlywiki5
+#                                                  ^^^^^^^^^^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5
+>
+>~CamelCase and ~[[a pretty link]] and ~https://example.com read suppressed.
+#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.link.suppressed.wikilink.tiddlywiki5 punctuation.definition.suppress.wikilink.tiddlywiki5
+# ^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.link.suppressed.wikilink.tiddlywiki5
+#          ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.begin.tiddlywiki5
+#                 ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.begin.tiddlywiki5
+#                  ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
+#                               ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.end.tiddlywiki5
+#                                ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.end.tiddlywiki5
+#                                 ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#                                      ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.link.suppressed.external.tiddlywiki5 punctuation.definition.suppress.link.external.tiddlywiki5
+#                                       ^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.link.suppressed.external.tiddlywiki5
+#                                                          ^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>
+>!! Namespaced markup answers to the XML grammar
+#^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5
+>
+>$$$image/svg+xml
+#^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 keyword.control.raw.typedblock.tiddlywiki5 punctuation.definition.typedblock.begin.tiddlywiki5
+#   ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 entity.other.attribute-name.parse.tiddlywiki5
+><svg xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:date>2012-05-10</dc:date></svg>
+#^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml punctuation.definition.tag.xml
+# ^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.name.tag.localname.xml
+#    ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml
+#     ^^^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.other.attribute-name.namespace.xml
+#          ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.other.attribute-name.xml punctuation.separator.namespace.xml
+#           ^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.other.attribute-name.localname.xml
+#             ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml
+#              ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml string.quoted.double.xml punctuation.definition.string.begin.xml
+#               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml string.quoted.double.xml
+#                                               ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml string.quoted.double.xml punctuation.definition.string.end.xml
+#                                                ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml punctuation.definition.tag.xml
+#                                                 ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml punctuation.definition.tag.xml
+#                                                  ^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.name.tag.namespace.xml
+#                                                    ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.name.tag.xml punctuation.separator.namespace.xml
+#                                                     ^^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.name.tag.localname.xml
+#                                                         ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml punctuation.definition.tag.xml
+#                                                          ^^^^^^^^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml
+#                                                                    ^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml punctuation.definition.tag.xml
+#                                                                      ^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.name.tag.namespace.xml
+#                                                                        ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.name.tag.xml punctuation.separator.namespace.xml
+#                                                                         ^^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.name.tag.localname.xml
+#                                                                             ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml punctuation.definition.tag.xml
+#                                                                              ^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml punctuation.definition.tag.xml
+#                                                                                ^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.name.tag.localname.xml
+#                                                                                   ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml punctuation.definition.tag.xml
+>$$$
+#^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 keyword.control.raw.typedblock.tiddlywiki5 punctuation.definition.typedblock.end.tiddlywiki5
+>

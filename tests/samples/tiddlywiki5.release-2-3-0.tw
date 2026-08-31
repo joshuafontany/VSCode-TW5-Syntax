@@ -1,0 +1,58 @@
+\define regexp-macro() (\w+)
+\function f.inline(a) [tag[Task]] :filter[get[x]]
+\procedure p.inline(a) go
+\widget $my.inline(a) go
+\define d.inline(a) go
+\define $dollar.macro() one line
+\widget $my.widget() a widget name requires a dollar
+\procedure p.mvv(a:((var))) a multi-valued default stands here
+\define d.mvv(a:((var))) and here the brackets belong to the body
+
+\function f.block(a)
+[tag[Task]] +[sort[title]]
+\end
+
+\define substitutes(a)
+before $a$ and $(currentTiddler)$ and {{{ [tag[$a$]] }}} after
+\end
+
+\procedure leaves-them-literal(a)
+before $a$ and $(currentTiddler)$ after
+\end
+
+! What this release changed, in one file
+
+Every pragma above stands before any content, because TiddlyWiki reads pragmas only there.
+
+!! A define body ending in a closing parenthesis
+
+The first pragma closes on its own line. This paragraph, and the rest of the file, read as prose.
+
+!! The four pragmas carry three languages
+
+A function body reaches the filter engine. A procedure and a widget body read as wikitext with
+their parameters arriving as variables. A define body reads as wikitext after substitution. The
+one-line forms name their own kind, as the block forms already did.
+
+!! Substitution belongs to the define body alone
+
+Inside `substitutes` the dollars fire; inside `leaves-them-literal` they stay literal. Outside any
+definition they stay literal too:
+
+{{{ [tag[$a$]] }}}
+
+!! A tag name takes what TiddlyWiki takes
+
+<my-tag>a hyphen</my-tag> and <my.tag>a period</my.tag> stand as tags.
+
+<my_tag>an underscore</my_tag> and <my:tag>a colon</my:tag> read as prose.
+
+!! A tilde suppresses the link families TiddlyWiki suppresses
+
+~CamelCase and ~[[a pretty link]] and ~https://example.com read suppressed.
+
+!! Namespaced markup answers to the XML grammar
+
+$$$image/svg+xml
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:date>2012-05-10</dc:date></svg>
+$$$
