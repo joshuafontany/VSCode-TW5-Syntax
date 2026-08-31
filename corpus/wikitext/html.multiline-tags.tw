@@ -1,0 +1,38 @@
+A start tag whose attributes span lines opens a continuation region a single-line tag never
+opens, and each element family names that region for itself. These carry one element of each.
+
+<div
+  class="a"
+  id="b">the structure family</div>
+
+<abbr
+  class="a">the inline family</abbr>
+
+<object
+  data="a">the object family</object>
+
+<title
+  class="a">the metadata family</title>
+
+<madeuptag
+  class="a">an element no family names</madeuptag>
+
+<svg><metadata
+  class="a">svg metadata</metadata><tspan
+  class="a">svg inline</tspan><altGlyph
+  class="a">the svg other family</altGlyph><circle
+  cx="1"
+  cy="2">svg object</circle><g
+  class="a">svg structure</g></svg>
+
+<math><mi
+  class="a">math inline</mi><mrow
+  class="a">math structure</mrow><mglyph
+  class="a">math object</mglyph></math>
+
+A table caption stands above its rows.
+
+|A caption|c
+|!head|!two|h
+|body|row|
+|foot|two|f

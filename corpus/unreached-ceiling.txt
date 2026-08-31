@@ -1,15 +1,21 @@
-16
+4
 # Scopes this grammar emits that no corpus file reaches. The count may fall and may never rise.
 #
-# A coverage FLOOR counts what the corpus reaches, over every name a grammar declares — including
-# the names it hands to another grammar, source.python and text.html.php and comment.block.js
-# among them. Reaching those wants a specimen carrying that language, and this corpus holds
-# wikitext rather than everything wikitext can embed, so a single count answered for two
-# populations and for neither.
+# A coverage FLOOR counts what the corpus reaches over every name a grammar declares, including
+# the names it hands to another grammar — source.python, text.html.php, comment.block.js. Reaching
+# those wants a specimen carrying that language, and this corpus holds wikitext rather than
+# everything wikitext can embed, so one count answered for two populations and for neither.
 #
-# This counts only the first population. `npm run corpus-verbose` names them: most want a start
-# tag whose attributes span lines, which opens a continuation region a single-line tag never does;
-# two carry a near-sibling that claims the same text first, and no constructed input has reached
-# either.
+# This counts the first population alone. `npm run corpus-verbose` names them.
+#
+# Twelve came down at once when a specimen carried a start tag whose attributes span lines: that
+# opens a continuation region a single-line tag never opens, and each element family names the
+# region for itself. Reaching all of them wanted one element per family, and the families run
+# narrow — the math object family holds mglyph and nothing else.
+#
+# The four that remain each carry a NEAR-SIBLING that claims the same text first. A table caption
+# and a table body row, a macro-call parameter separator, and a square-bracket string each have a
+# name that fires and a name beside it that does not, and no constructed input has reached the
+# second.
 #
 # Lower this when a specimen reaches one. Never raise it.

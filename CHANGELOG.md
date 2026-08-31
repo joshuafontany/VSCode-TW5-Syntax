@@ -163,6 +163,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- Twelve scopes the corpus never reached now stand exercised. Each element family names its own
+  continuation region — the one a start tag opens when its attributes span lines, and a
+  single-line tag never opens — so reaching them wanted one element per family, and the families
+  run narrow: the math object family holds `mglyph` and nothing else. Four remain, each carrying a
+  near-sibling that claims the same text first, and the ceiling holds them from growing.
 - Coverage counts two populations separately. A scope this grammar emits and a scope it hands to
   another grammar — `source.python`, `text.html.php`, `comment.block.js` — answered to one floor,
   and reaching the second kind wants a specimen carrying that language, which a wikitext corpus

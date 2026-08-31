@@ -15,3 +15,8 @@ A body whose close carries a block check.
 <<~ sigil bracket=[[a bracketed value]] single='a single quoted value' >>
 
 <<^ code="&#x0004;" -> to=? >>
+
+A parameter takes the colon spelling as well as the equals spelling, and only after a colon does
+a bracketed value read as a string: an equals hands its value to the unquoted rule first.
+
+<<~ kue voice:Mischief-Muse key:"a value carrying spaces" held:[[a bracketed value]] >>
