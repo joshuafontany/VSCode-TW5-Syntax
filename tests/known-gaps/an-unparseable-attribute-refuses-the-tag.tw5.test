@@ -1,0 +1,37 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "Anything between a tag name and its close must parse as an attribute"
+
+# html.js takes attributes in a loop and stops at the first one parseAttribute declines. It then
+# demands a closing slash or a greater-than at that position, and returns null when it finds
+# neither — so a single stretch of text that parses as no attribute refuses the WHOLE tag, and
+# TiddlyWiki yields plain text for all of it.
+#
+# Most junk escapes this, because parseAttribute is generous: reAttributeName reads
+# ([^\/\s>"'`=:]+) and an attribute needs no value, so <$link ###> binds ### as a valueless
+# attribute and the tag stands. Three shapes measured against the parser do not escape it:
+#
+#   <$link to=<<>>>       a << with a >> ahead that names no macro. parseutils.js returns null
+#                         deliberately here, its comment naming the intent: the enclosing tag
+#                         fails rather than silently binding the attribute to true and reading the
+#                         remainder as further attributes. Restores v5.3.8 behaviour.
+#   <$link a/b="x">       a slash stands outside the attribute name class, and it reads as the
+#                         self-closing slash instead, after which b="x" satisfies no closer.
+#   <$link to: "x">       to: and a quote. The colon carries no assignment — TiddlyWiki binds
+#                         valueless attributes here, and <$text text: word/> binds two of them —
+#                         so the quote opens nothing the loop can take.
+#
+# The tag-name law next door narrows by a character class, which a begin pattern can express.
+# This one narrows by whether a LATER region parses, over an unbounded attribute list where any
+# value may itself carry quotes, braces, backticks or nested angle brackets. A begin pattern
+# cannot look that far.
+#
+# Cost of leaving it: three shapes a wiki reaches mid-keystroke or by mistake, each of which
+# colours as a working tag until the author renders it.
+
+<$link to=<<>>>go</$link>
+# ^^^^ - entity.name.tag.html.tiddlywiki5
+
+<$link a/b="x">go</$link>
+# ^^^^ - entity.name.tag.html.tiddlywiki5
+
+<$link to: "x">go</$link>
+# ^^^^ - entity.name.tag.html.tiddlywiki5
