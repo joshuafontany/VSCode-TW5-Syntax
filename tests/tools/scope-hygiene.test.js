@@ -99,6 +99,21 @@ test('the pinned snapshots carry scopes to check', live, () => {
 // beside it on every span, and the start tag reads the same way.
 const FLOOR = 0;
 
+// A theme writes its rules against a scope's OPENING segments, so a name opening on anything but
+// a TextMate root reaches no rule at all. Measured: an emphasis mark named
+// `bold.punctuation.definition.markup.begin` painted in two of sixty-five themes and in neither of
+// the two a reader is likely to run; opening on `punctuation` it paints in forty.
+const ROOTS = new Set(['comment', 'constant', 'entity', 'invalid', 'keyword', 'markup', 'meta',
+  'punctuation', 'source', 'storage', 'string', 'support', 'text', 'variable']);
+
+test('every scope opens on a root a theme writes rules against', live, () => {
+  const strays = [...new Set(snapshots.map(({ scope }) => scope))]
+    .filter((scope) => !ROOTS.has(scope.split('.')[0]))
+    .sort();
+  assert.deepStrictEqual(strays.slice(0, 8), [],
+    `${strays.length} scope(s) opening on no TextMate root, which no theme rule reaches`);
+});
+
 test('malformed scope names stay at or below the floor', live, () => {
   const mangled = snapshots.filter(({ scope }) => damage(scope));
   const shapes = [...new Set(mangled.map(({ scope }) => `${scope}  (${damage(scope)})`))].slice(0, 8);

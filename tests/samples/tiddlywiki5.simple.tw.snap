@@ -35,11 +35,11 @@
 #            ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.end.tiddlywiki5
 >
 >: test
-#^ text.html.tiddlywiki5 unnumbered.description.dl.dd.markup.list.tiddlywiki5 punctuation.definition.unnumbered.description.dl.dd.list.markup.tiddlywiki5
-# ^^^^^ text.html.tiddlywiki5 unnumbered.description.dl.dd.markup.list.tiddlywiki5
+#^ text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5 punctuation.definition.unnumbered.description.dl.dd.list.markup.tiddlywiki5
+# ^^^^^ text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5
 >; this
-#^ text.html.tiddlywiki5 unnumbered.term.dl.dt.markup.list.tiddlywiki5 punctuation.definition.unnumbered.term.dl.dt.list.markup.tiddlywiki5
-# ^^^^^ text.html.tiddlywiki5 unnumbered.term.dl.dt.markup.list.tiddlywiki5
+#^ text.html.tiddlywiki5 markup.list.unnumbered.term.dl.dt.tiddlywiki5 punctuation.definition.unnumbered.term.dl.dt.list.markup.tiddlywiki5
+# ^^^^^ text.html.tiddlywiki5 markup.list.unnumbered.term.dl.dt.tiddlywiki5
 >
 >"""
 #^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 punctuation.definition.hardlinebreaks.begin.tiddlywiki5

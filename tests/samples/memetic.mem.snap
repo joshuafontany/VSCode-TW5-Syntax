@@ -163,9 +163,9 @@
 #                                           ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
 #                                            ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
 #                                                 ^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
-#                                                    ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 bold.punctuation.definition.markup.begin.tiddlywiki5
+#                                                    ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 punctuation.definition.markup.begin.bold.tiddlywiki5
 #                                                      ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.bold.tiddlywiki5
-#                                                              ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 bold.punctuation.definition.markup.end.tiddlywiki5
+#                                                              ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 punctuation.definition.markup.end.bold.tiddlywiki5
 #                                                                ^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
 #                                                                       ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
 #                                                                        ^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.inline.raw.single.tiddlywiki5

@@ -3,16 +3,16 @@
 <$text text=((myvar))/>
 #      ^ entity.other.attribute-name.html.tiddlywiki5
 #          ^ punctuation.separator.key-value.html.tiddlywiki5
-#           ^^ mvv.attribute.html.tiddlywiki5 punctuation.definition.mvv.attribute.begin.tiddlywiki5
-#             ^ mvv.attribute.html.tiddlywiki5 variable.name.mvv.attribute.tiddlywiki5
-#                  ^^ mvv.attribute.html.tiddlywiki5 punctuation.definition.mvv.attribute.end.tiddlywiki5
+#           ^^ meta.attribute.mvv.html.tiddlywiki5 punctuation.definition.mvv.attribute.begin.tiddlywiki5
+#             ^ meta.attribute.mvv.html.tiddlywiki5 variable.name.mvv.attribute.tiddlywiki5
+#                  ^^ meta.attribute.mvv.html.tiddlywiki5 punctuation.definition.mvv.attribute.end.tiddlywiki5
 
 <$list filter=((myfilter))>
 #      ^ entity.other.attribute-name.html.tiddlywiki5
 #            ^ punctuation.separator.key-value.html.tiddlywiki5
-#             ^^ mvv.attribute.html.tiddlywiki5 punctuation.definition.mvv.attribute.begin.tiddlywiki5
-#               ^ mvv.attribute.html.tiddlywiki5 variable.name.mvv.attribute.tiddlywiki5
-#                       ^^ mvv.attribute.html.tiddlywiki5 punctuation.definition.mvv.attribute.end.tiddlywiki5
+#             ^^ meta.attribute.mvv.html.tiddlywiki5 punctuation.definition.mvv.attribute.begin.tiddlywiki5
+#               ^ meta.attribute.mvv.html.tiddlywiki5 variable.name.mvv.attribute.tiddlywiki5
+#                       ^^ meta.attribute.mvv.html.tiddlywiki5 punctuation.definition.mvv.attribute.end.tiddlywiki5
 </$list>
 
 <$text text=[[value with spaces]]/>

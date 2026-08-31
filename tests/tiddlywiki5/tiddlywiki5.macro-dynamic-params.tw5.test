@@ -6,7 +6,7 @@ text <<myproc param={{{[tag[test]]}}}>>
 #             ^ meta.variable.macrocallinline.tiddlywiki5 variable.parameter.tiddlywiki5
 #                  ^ meta.variable.macrocallinline.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
 #                   ^^^ meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.filtered.attribute.begin.tiddlywiki5
-#                      ^ meta.variable.macrocallinline.tiddlywiki5 filtered.attribute.html.tiddlywiki5
+#                      ^ meta.variable.macrocallinline.tiddlywiki5 meta.attribute.filtered.html.tiddlywiki5
 #                                 ^^^ meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.filtered.attribute.end.tiddlywiki5
 #                                    ^^ meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5
 
@@ -18,8 +18,8 @@ text <<myproc param={{tiddler!!field}}>>
 text <<myproc param=((myvar))>>
 #             ^ meta.variable.macrocallinline.tiddlywiki5 variable.parameter.tiddlywiki5
 #                  ^ meta.variable.macrocallinline.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
-#                   ^^ meta.variable.macrocallinline.tiddlywiki5 mvv.attribute.html.tiddlywiki5 punctuation.definition.mvv.attribute.begin.tiddlywiki5
-#                     ^ meta.variable.macrocallinline.tiddlywiki5 mvv.attribute.html.tiddlywiki5 variable.name.mvv.attribute.tiddlywiki5
+#                   ^^ meta.variable.macrocallinline.tiddlywiki5 meta.attribute.mvv.html.tiddlywiki5 punctuation.definition.mvv.attribute.begin.tiddlywiki5
+#                     ^ meta.variable.macrocallinline.tiddlywiki5 meta.attribute.mvv.html.tiddlywiki5 variable.name.mvv.attribute.tiddlywiki5
 
 text <<myproc param=`text with $(var)$`>>
 #             ^ meta.variable.macrocallinline.tiddlywiki5 variable.parameter.tiddlywiki5
@@ -78,7 +78,7 @@ text <<myproc param=[[value with spaces]]>>
 #   ^^ meta.variable.macrocallblock.tiddlywiki5 variable.parameter.tiddlywiki5
 #     ^ meta.variable.macrocallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
 #      ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.text-reference.begin.tiddlywiki5
-#        ^ meta.variable.macrocallblock.tiddlywiki5 indirect.attribute.html.tiddlywiki5
+#        ^ meta.variable.macrocallblock.tiddlywiki5 meta.attribute.indirect.html.tiddlywiki5
 #                  ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.text-reference.end.tiddlywiki5
 #                    ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
 #                      ^ -meta.variable.macrocallblock.tiddlywiki5
@@ -88,7 +88,7 @@ text <<myproc param=[[value with spaces]]>>
 #   ^^ meta.variable.macrocallblock.tiddlywiki5 variable.parameter.tiddlywiki5
 #     ^ meta.variable.macrocallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
 #      ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.text-reference.begin.tiddlywiki5
-#        ^ meta.variable.macrocallblock.tiddlywiki5 indirect.attribute.html.tiddlywiki5
+#        ^ meta.variable.macrocallblock.tiddlywiki5 meta.attribute.indirect.html.tiddlywiki5
 #                           ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.text-reference.end.tiddlywiki5
 #                             ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
 #                               ^ -meta.variable.macrocallblock.tiddlywiki5
@@ -98,7 +98,7 @@ text <<myproc param=[[value with spaces]]>>
 #   ^^ meta.variable.macrocallblock.tiddlywiki5 variable.parameter.tiddlywiki5
 #     ^ meta.variable.macrocallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
 #      ^^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.filtered.attribute.begin.tiddlywiki5
-#         ^ meta.variable.macrocallblock.tiddlywiki5 filtered.attribute.html.tiddlywiki5
+#         ^ meta.variable.macrocallblock.tiddlywiki5 meta.attribute.filtered.html.tiddlywiki5
 #                              ^^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.filtered.attribute.end.tiddlywiki5
 #                                 ^^ meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
 

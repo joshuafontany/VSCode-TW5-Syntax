@@ -12,7 +12,7 @@
 <<<
 
 * an item with ''strong'' in it
-#                ^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.bold.tiddlywiki5
+#                ^^^^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 markup.bold.tiddlywiki5
 
 ! a heading with {{Some/Tiddler}}
 #                ^^ text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5

@@ -22,22 +22,22 @@
 #<- text.html.tiddlywiki5 meta.heading.heading-6.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
 
 * list star
-#<- text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+#<- text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
 
 # list number
-#<- text.html.tiddlywiki5 numbered.ordered.ol.li.markup.list.tiddlywiki5 punctuation.definition.numbered.ordered.ol.li.list.markup.tiddlywiki5
+#<- text.html.tiddlywiki5 markup.list.numbered.ordered.ol.li.tiddlywiki5 punctuation.definition.numbered.ordered.ol.li.list.markup.tiddlywiki5
 
 ; list term
-#<- text.html.tiddlywiki5 unnumbered.term.dl.dt.markup.list.tiddlywiki5 punctuation.definition.unnumbered.term.dl.dt.list.markup.tiddlywiki5
+#<- text.html.tiddlywiki5 markup.list.unnumbered.term.dl.dt.tiddlywiki5 punctuation.definition.unnumbered.term.dl.dt.list.markup.tiddlywiki5
 
 : list definition
-#<- text.html.tiddlywiki5 unnumbered.description.dl.dd.markup.list.tiddlywiki5 punctuation.definition.unnumbered.description.dl.dd.list.markup.tiddlywiki5
+#<- text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5 punctuation.definition.unnumbered.description.dl.dd.list.markup.tiddlywiki5
 
 > list quote
-#<- text.html.tiddlywiki5 listquote.quote.markup.list.tiddlywiki5 punctuation.definition.listquote.quote.list.markup.tiddlywiki5
+#<- text.html.tiddlywiki5 markup.list.listquote.quote.tiddlywiki5 punctuation.definition.listquote.quote.list.markup.tiddlywiki5
 
 |cell|cell|
-#<- text.html.tiddlywiki5 markup.other.table.tiddlywiki5 row.tbody.body.meta.table.tiddlywiki5 punctuation.definition.table.pipe.outer.begin.tiddlywiki5
+#<- text.html.tiddlywiki5 markup.other.table.tiddlywiki5 meta.table.row.tbody.body.tiddlywiki5 punctuation.definition.table.pipe.outer.begin.tiddlywiki5
 
 $$$text/plain
 #<- text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 punctuation.definition.typedblock.begin.tiddlywiki5
