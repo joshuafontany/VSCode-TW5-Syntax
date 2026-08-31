@@ -137,6 +137,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- Every declared contribution packs. The ignore list names directories rather than contributions,
+  so an edit there can drop a grammar the manifest still declares — and VS Code then loads that
+  language, finds no grammar, and colours nothing without saying so. A gate takes every grammar,
+  snippet file and language configuration the manifest names and asks the packager whether it
+  ships. Compared file by file, what a release carries stands byte-identical to what the gates
+  read, apart from the two transformations the packager performs: a licence renamed, and bare
+  issue references rewritten as links.
 - The gates answer to a TiddlyWiki that always resolves. They take their verdicts from
   TiddlyWiki's own parser, and without one they skipped politely while the suite still reported no
   failures — so a contributor could break every divergence gate and read green. `tiddlywiki`

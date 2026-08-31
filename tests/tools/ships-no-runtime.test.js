@@ -3,7 +3,7 @@
 // A TextMate grammar decides how loudly a construct reads and never which parser rules a wiki
 // stands — nothing in the VS Code API hands a grammar to an extension at runtime. So the
 // configuration this extension offers works by scope naming and theme rules, and a release that
-// quietly grew an activation path would be answering a different design.
+// quietly grew an activation path would answer a different design.
 //
 // That claim about the API answers to Microsoft's tree rather than to this one, and no test here
 // can hold it. Its CONSEQUENCE lives here and this holds that: the package declares no entry
@@ -37,6 +37,27 @@ test('the package contributes only declarative surfaces', () => {
 
 test('the package carries no runtime dependency', () => {
   assert.deepStrictEqual(Object.keys(pkg.dependencies || {}), [], 'a runtime dependency ships with the extension');
+});
+
+// The ignore list decides what packs, and it names directories rather than contributions — so an
+// edit there can drop a declared grammar and nothing downstream complains. VS Code loads a
+// language whose grammar file went missing and colours nothing, silently.
+test('every declared contribution packs', { timeout: 120000 }, (t) => {
+  let listing;
+  try {
+    listing = execFileSync('npx', ['--no-install', 'vsce', 'ls'], { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
+  } catch {
+    t.skip('vsce unavailable — the ignore list stands unread');
+    return;
+  }
+  const packed = new Set(listing.split('\n').map((l) => l.trim()).filter(Boolean));
+  const declared = [
+    ...(pkg.contributes.grammars || []).map((g) => g.path),
+    ...(pkg.contributes.snippets || []).map((s) => s.path),
+    ...(pkg.contributes.languages || []).filter((l) => l.configuration).map((l) => l.configuration)
+  ].map((p) => p.replace(/^\.\//, ''));
+  const absent = [...new Set(declared)].filter((f) => !packed.has(f));
+  assert.deepStrictEqual(absent, [], `declared but never packed, so VS Code loads it and colours nothing: ${absent.join(', ')}`);
 });
 
 // The manifest decides what packs. A file the ignore list misses ships whatever it holds.
