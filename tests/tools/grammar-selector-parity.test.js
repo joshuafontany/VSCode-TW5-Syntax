@@ -112,3 +112,26 @@ test('no pattern carries a key TextMate never reads', () => {
     assert.deepStrictEqual([...seen], [], `${file} carries key(s) TextMate never reads: ${[...seen].join(', ')}`);
   }
 });
+
+// A rule standing inside a capture begins where the capture begins, which stands mid-line. An
+// anchor there matches nothing: `^` wants a line start and `$` a line end, and the capture offers
+// neither. Three rules carried `^.*$` inside a capture and matched nothing at all, so a table
+// caption and a table's class row went uncoloured while the grammar declared names for both.
+test('no rule inside a capture anchors to a line boundary', () => {
+  for (const file of fs.readdirSync(path.join(ROOT, 'syntaxes')).filter((f) => f.endsWith('.json'))) {
+    const grammar = read(file);
+    const anchored = [];
+    const walk = (node, insideCapture) => {
+      if (!node || typeof node !== 'object') return;
+      if (insideCapture && typeof node.match === 'string' && /^\^|\$$/.test(node.match)) {
+        anchored.push(`${file}: ${node.match}`);
+      }
+      for (const key of Object.keys(node)) {
+        const nested = insideCapture || ['captures', 'beginCaptures', 'endCaptures'].includes(key);
+        walk(node[key], nested);
+      }
+    };
+    walk(grammar, false);
+    assert.deepStrictEqual(anchored, [], `rule(s) anchored to a line boundary inside a capture, which matches nothing: ${anchored.join(', ')}`);
+  }
+});

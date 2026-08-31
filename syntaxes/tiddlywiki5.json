@@ -4207,7 +4207,7 @@
 						"2": {
 							"patterns": [
 								{
-									"match": "^.*$",
+									"match": ".*",
 									"name": "meta.support.classes.tiddlywiki5",
 									"captures": {
 										"0": {
@@ -4238,7 +4238,7 @@
 						"2": {
 							"patterns": [
 								{
-									"match": "^.*$",
+									"match": ".*",
 									"name": "entity.other.name.caption.tiddlywiki5",
 									"captures": {
 										"0": {
@@ -6053,7 +6053,7 @@
 						"2": {
 							"patterns": [
 								{
-									"match": "^.*$",
+									"match": ".*",
 									"name": "entity.filter.operator.title.tiddlywiki5",
 									"captures": {
 										"0": {

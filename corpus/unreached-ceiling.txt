@@ -1,4 +1,4 @@
-4
+3
 # Scopes this grammar emits that no corpus file reaches. The count may fall and may never rise.
 #
 # A coverage FLOOR counts what the corpus reaches over every name a grammar declares, including
@@ -13,9 +13,11 @@
 # region for itself. Reaching all of them wanted one element per family, and the families run
 # narrow — the math object family holds mglyph and nothing else.
 #
-# The four that remain each carry a NEAR-SIBLING that claims the same text first. A table caption
-# and a table body row, a macro-call parameter separator, and a square-bracket string each have a
-# name that fires and a name beside it that does not, and no constructed input has reached the
-# second.
+# The three that remain each carry a NEAR-SIBLING that claims the same text first. A table body
+# row, a macro-call parameter separator and a square-bracket string each have a name that fires
+# and a name beside it that does not, and no constructed input has reached the second.
+#
+# A fourth left this list when its cause turned out to sit elsewhere: a rule inside a capture
+# matched ^.*$, and a capture opens mid-line where ^ matches nothing.
 #
 # Lower this when a specimen reaches one. Never raise it.
