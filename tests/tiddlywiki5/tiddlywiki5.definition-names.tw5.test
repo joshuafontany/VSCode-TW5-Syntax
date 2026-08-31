@@ -1,0 +1,36 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A definition name admits what TiddlyWiki admits"
+
+# Both definition rules read the same name class — [^(\s]+ — so a dollar stands in a name of any
+# of the four kinds, and TiddlyWiki builds each one:
+#
+#   \define $foo() body        name "$foo"       body "body"
+#   \procedure $p() body       name "$p"         body "body"
+#   \widget $my.thing() body   name "$my.thing"  body "body"
+#
+# A name the grammar refuses reads as paragraph text, and an author writing tiddlers on disk sees
+# prose where a definition stands.
+#
+# The widget keeps its dollar REQUIRED, and that narrowing earns its place from the host rather
+# than from taste: widget.js resolves a custom widget by looking up "$" + the element's type, so a
+# widget declared without the dollar defines a variable no element can ever reach.
+
+! A define takes a dollar in its name
+
+\define $foo() body
+#       ^^^^ entity.name.variable.macro.tiddlywiki5
+#              ^^^^ meta.variable.macro.body.tiddlywiki5
+
+! So does a procedure
+
+\procedure $p() body
+#          ^^ entity.name.variable.procedure.tiddlywiki5
+
+! So does a function
+
+\function $f() [tag[Task]]
+#         ^^ entity.name.variable.function.tiddlywiki5
+
+! A widget requires one, because a widget without it resolves to nothing
+
+\widget $my.thing() body
+#       ^^^^^^^^^ entity.name.variable.widget.tiddlywiki5

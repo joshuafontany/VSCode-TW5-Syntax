@@ -333,7 +333,7 @@
 			"patterns": [
 				{
 					"comment": "Single and Multi-line function definition",
-					"begin": "^\\s*(\\\\)(function)\\s+([^\\s\\$\\(]+)(?=\\s*\\()",
+					"begin": "^\\s*(\\\\)(function)\\s+([^\\s\\(]+)(?=\\s*\\()",
 					"end": "^",
 					"name": "meta.directive.variable.function.tiddlywiki5",
 					"beginCaptures": {
@@ -471,7 +471,7 @@
 			"patterns": [
 				{
 					"comment": "Single and Multi-line procedure definition",
-					"begin": "^\\s*(\\\\)(procedure)\\s+([^\\s\\$\\(]+)(?=\\s*\\()",
+					"begin": "^\\s*(\\\\)(procedure)\\s+([^\\s\\(]+)(?=\\s*\\()",
 					"end": "^",
 					"name": "meta.directive.variable.procedure.tiddlywiki5",
 					"beginCaptures": {
@@ -6639,7 +6639,7 @@
 		},
 		"define-block": {
 			"comment": "A define whose parameter list ends its line: the body runs to \\end.",
-			"begin": "^\\s*(\\\\)(define)\\s+([^\\s\\$\\(]+)(?=\\s*\\([^)]*\\)\\s*$)",
+			"begin": "^\\s*(\\\\)(define)\\s+([^\\s\\(]+)(?=\\s*\\([^)]*\\)\\s*$)",
 			"beginCaptures": {
 				"1": {
 					"name": "punctuation.definition.directive.tiddlywiki5"
@@ -6712,7 +6712,7 @@
 		},
 		"define-inline": {
 			"comment": "A define carrying its body on the same line: the definition ends where the line does.",
-			"begin": "^\\s*(\\\\)(define)\\s+([^\\s\\$\\(]+)(?=\\s*\\([^)]*\\)\\s*\\S)",
+			"begin": "^\\s*(\\\\)(define)\\s+([^\\s\\(]+)(?=\\s*\\([^)]*\\)\\s*\\S)",
 			"beginCaptures": {
 				"1": {
 					"name": "punctuation.definition.directive.tiddlywiki5"
@@ -6751,7 +6751,7 @@
 		},
 		"define-open-params": {
 			"comment": "A define whose parameter list opens on this line and closes on a later one. The line names no form, so both stand.",
-			"begin": "^\\s*(\\\\)(define)\\s+([^\\s\\$\\(]+)(?=\\s*\\([^)]*$)",
+			"begin": "^\\s*(\\\\)(define)\\s+([^\\s\\(]+)(?=\\s*\\([^)]*$)",
 			"beginCaptures": {
 				"1": {
 					"name": "punctuation.definition.directive.tiddlywiki5"

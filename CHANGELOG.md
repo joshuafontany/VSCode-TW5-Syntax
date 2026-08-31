@@ -7,6 +7,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A definition name admits what TiddlyWiki admits. Both definition rules read the same name class,
+  `[^(\s]+`, so a dollar stands in the name of any of the four kinds and the parser builds each
+  one — `\define $foo()` defines a macro named `$foo`. Three of the four rules refused it, and a
+  refused definition reads as paragraph text, which is what an author writing tiddlers on disk
+  sees where a definition stands. The `\widget` pragma keeps its dollar required, earned from
+  `widget.js`: a custom widget resolves by looking up `"$"` plus the element's type, so a widget
+  declared without one defines a variable no element can reach.
 - A `\define` parameter list ends at its first closing parenthesis, and a multi-valued-variable
   default belongs to the other three pragmas. The two definition rules declare their lists
   differently — `macrodef.js` reads `\(\s*([^)]*)\)` while `fnprocdef.js` admits `))` pairs — so
