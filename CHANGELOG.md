@@ -7,6 +7,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- Every grammar wrapping the wikitext grammar paints a definition body the same way. A wrapper
+  keys its injections on its own scope name, so the wrapped grammar's never fire, and each wrapper
+  writes the selector and the rules beneath it again. Both wrappers omitted one rule of three: a
+  `${ filter }$` placeholder inside a `\define` body coloured ten spans in a `.tw` file and none
+  in a `.mem` or `.tw5.test` file. The gate compares the rules a wrapper injects, not only the
+  selector it injects them on, since a wrapper spells a rule by the grammar holding it.
 - The memetic dialect colours a definition body and a stray angle bracket the way wikitext does. A
   grammar wrapping another keys its injections on its own scope name, so the wrapped grammar's
   never fire — and this one carried none of them. Inside a `.mem` file a `\define` body left its

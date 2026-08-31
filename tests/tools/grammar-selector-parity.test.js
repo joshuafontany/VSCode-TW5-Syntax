@@ -43,6 +43,26 @@ test('the late-ordered exclusion selector matches the wikitext grammar', () => {
   }
 });
 
+// A matching selector over different patterns paints differently under the same name. A wrapper
+// writes `text.html.tiddlywiki5#rule` where the wikitext grammar writes `#rule`, because a
+// wrapper reaches the rule through the grammar holding it — so the RULES compare, never the
+// spelling. Measured before this stood: both wrappers omitted substitute-filter, and a
+// `${ filter }$` placeholder inside a define body coloured ten spans in a .tw file and none in
+// either wrapper.
+test('every wrapper injects the same rules the wikitext grammar injects', () => {
+  const rules = (grammar, selector) =>
+    (grammar.injections[selector].patterns || []).map((p) => String(p.include).split('#').pop()).sort();
+  const bodySelector = (g) => selectors(g, 'L:').find((k) => k.includes('meta.variable.macro.body'));
+  const wanted = rules(wikitext, bodySelector(wikitext));
+  for (const [name, grammar] of Object.entries(WRAPPERS)) {
+    assert.deepStrictEqual(
+      rules(grammar, bodySelector(grammar)),
+      wanted,
+      `${name} injects different rules under the same selector, so a placeholder paints in one grammar and not the other`
+    );
+  }
+});
+
 test('substitution injects on the macro body alone, in every wrapper', () => {
   const bodySelector = (g) => selectors(g, 'L:').find((k) => k.includes('meta.variable.macro.body'));
   const inWikitext = bodySelector(wikitext);

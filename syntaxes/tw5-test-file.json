@@ -35,6 +35,9 @@
       "comment": "Text replacement, which a define body takes and the other three definition bodies do not. This selector answers to the same law the wikitext grammar holds: widget.js gates both placeholder forms behind isMacroDefinition.",
       "patterns": [
         {
+          "include": "text.html.tiddlywiki5#substitute-filter"
+        },
+        {
           "include": "text.html.tiddlywiki5#substitute-param"
         },
         {
