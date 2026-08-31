@@ -75,8 +75,11 @@ Based primarily on the grammars found below, with heavy tweaking and editing.
 
 ## Colour toggles
 
-A TextMate grammar cannot switch a parser rule off — nothing in the VS Code API reaches a
-grammar at runtime — so a grammar chooses only how loudly a construct reads. A theme
+A TextMate grammar decides how loudly a construct reads and never which parser rules a wiki
+stands — nothing in the VS Code API hands a grammar to an extension at runtime. That claim
+answers to Microsoft's tree; its consequence answers here, and
+`tests/tools/ships-no-runtime.test.js` holds it: no entry point, no activation events, only
+declarative contributions, no runtime dependency, and nothing executable in the package. A theme
 paints a scope when one of its own rules names that scope or a dotted prefix of it, which makes
 the scope name the default. `npm run theme-paint -- <scope>` measures any scope against the
 bundled theme set, and `-- --families` ranks every family this grammar emits.

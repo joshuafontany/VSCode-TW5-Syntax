@@ -137,6 +137,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- The extension ships colouring and nothing that runs, by measurement. A TextMate grammar decides
+  how loudly a construct reads and never which parser rules a wiki stands, so the configuration
+  offered here works by scope naming and theme rules. That reading of the VS Code API answers to
+  Microsoft's tree; its consequence answers to this one, and a gate holds it — no entry point, no
+  activation events, only contributions VS Code reads without running anything, no runtime
+  dependency, and nothing executable packed into the release.
 - The four definition kinds carry ground that reports a regression. Each of them differs from the
   others in what its body means, what its parameter list admits and what its name admits, and none
   of those shapes stood in any sample or corpus file — so a fix to one could be lost silently.
