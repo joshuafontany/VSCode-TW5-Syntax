@@ -137,6 +137,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- The gates answer to a TiddlyWiki that always resolves. They take their verdicts from
+  TiddlyWiki's own parser, and without one they skipped politely while the suite still reported no
+  failures — so a contributor could break every divergence gate and read green. `tiddlywiki`
+  stands as an exactly pinned devDependency, and resolution puts a checkout beside this repository
+  ahead of it: parser work happens in a checkout, and a released parser answering for gates aimed
+  at unreleased work would report agreement with something nobody is editing. `TW5_PATH` outranks
+  both. The pin ships to nobody — the package carries no runtime dependency, and nothing
+  executable packs.
 - The extension ships colouring and nothing that runs, by measurement. A TextMate grammar decides
   how loudly a construct reads and never which parser rules a wiki stands, so the configuration
   offered here works by scope naming and theme rules. That reading of the VS Code API answers to

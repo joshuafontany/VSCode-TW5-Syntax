@@ -189,13 +189,18 @@ function verdictAt(spans, start, end) {
  */
 function resolveTiddlyWiki() {
   const candidates = [];
+  // TW5_PATH names a checkout outright and outranks everything.
   if (process.env.TW5_PATH) candidates.push(process.env.TW5_PATH);
+  // A checkout beside this one outranks the pinned package. Parser work happens in a checkout,
+  // and the released package would answer for a parser that work has already moved past —
+  // silently, since both resolve and both boot.
+  candidates.push(path.resolve(__dirname, '..', '..', 'TiddlyWiki5'));
+  // The devDependency, so a contributor holding only this repository still runs every gate.
   try {
     candidates.push(path.dirname(require.resolve('tiddlywiki/package.json')));
   } catch {
     /* not installed */
   }
-  candidates.push(path.resolve(__dirname, '..', '..', 'TiddlyWiki5'));
   for (const c of candidates) {
     if (c && fs.existsSync(path.join(c, 'boot', 'boot.js'))) return c;
   }

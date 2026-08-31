@@ -195,13 +195,13 @@
             }
         }
     },
-    "dependencies": {},
     "devDependencies": {
-        "vscode-tmgrammar-test": "^0.1.3",
+        "language-gfm": "https://github.com/atom/language-gfm",
+        "tiddlywiki": "5.4.1",
         "tm-grammars": "^1.7.2",
         "tm-themes": "^1.4.1",
-        "language-gfm": "https://github.com/atom/language-gfm",
-        "vscode-jsp": "https://github.com/pthorsson/vscode-jsp"
+        "vscode-jsp": "https://github.com/pthorsson/vscode-jsp",
+        "vscode-tmgrammar-test": "^0.1.3"
     },
     "scripts": {
         "echo-test": "bash -c 'echo $(pwd) && echo ./tests/tiddlywiki5/*.tw5.test'",
@@ -227,7 +227,7 @@
         "overreach-host": "node ./tools/overreach-check.js --corpus 400 --exclude=editions/test/tiddlers/tests/data --exclude=editions/text-slicer --expected=corpus/expected-divergence.txt",
         "overreach-cut": "node ./tools/overreach-check.js --corpus 400 --exclude=editions/test/tiddlers/tests/data --exclude=editions/text-slicer --expected=corpus/expected-divergence.txt --truncate=1",
         "attribute-guard": "node ./tools/attribute-guard.js",
-        "compose-memes": "bash -c 'ok=0; for d in ${MEMES:-../bags/lares/ha.ka.ba/lares/docs ../bags/lares/ha.ka.ba/lares/api ../bags/lares/latent.attention.relation/agents/api}; do if compgen -G \"$d/*.mem\" >/dev/null; then ok=1; node ./tools/composition-check.js text.html.tiddlywiki5.memetic-wikitext \"$d/*.mem\"; fi; done; [ $ok = 1 ] || echo \"no memes beside this checkout \u2014 set MEMES to one or more directories\"'",
+        "compose-memes": "bash -c 'ok=0; for d in ${MEMES:-../bags/lares/ha.ka.ba/lares/docs ../bags/lares/ha.ka.ba/lares/api ../bags/lares/latent.attention.relation/agents/api}; do if compgen -G \"$d/*.mem\" >/dev/null; then ok=1; node ./tools/composition-check.js text.html.tiddlywiki5.memetic-wikitext \"$d/*.mem\"; fi; done; [ $ok = 1 ] || echo \"no memes beside this checkout — set MEMES to one or more directories\"'",
         "overreach-corpus": "node ./tools/overreach-check.js --corpus 400",
         "nesting-coverage": "node ./tools/nesting-coverage.js",
         "corpus": "node ./tools/corpus-check.js",

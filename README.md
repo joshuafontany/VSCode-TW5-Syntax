@@ -59,6 +59,7 @@ Based primarily on the grammars found below, with heavy tweaking and editing.
 * `npm run snap` — every sample's whole tokenization, pinned beside it
 * `npm run canary` — an ordinary sentence appended to every sample, which must stay ordinary
 * `npm run corpus` — broad ground, gated on the corpus reaching every declared scope and on nothing bleeding
+* `npm run test-tools` also pins WHICH TiddlyWiki answers: a checkout beside this repository outranks the pinned `tiddlywiki` devDependency, and `TW5_PATH` outranks both. Parser work happens in a checkout; the package exists so a contributor holding only this repository runs every gate rather than skipping them
 * `npm run upstream-coverage -- <path-to-TiddlyWiki5>` — TiddlyWiki's own rule regexes, taken to its own tiddlers
 * `npm run overreach -- --corpus` — every scope the grammar paints, handed back to TiddlyWiki's parser: a claim over text it refuses, and a verdict over a construct it builds
 * `npm run overreach-host` — the same question over TiddlyWiki's own tiddlers, against the written rulings
