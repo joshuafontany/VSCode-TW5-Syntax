@@ -41,7 +41,7 @@ test('every wrapper stands found', () => {
 });
 
 // A wrapper carrying the bad-angle exclusion carries the current one. A wrapper omitting it
-// leaves the verdict to whatever it wraps, which is its own choice; a stale COPY is not.
+// leaves the verdict to whatever it wraps, which stands as its own choice; a stale COPY does not.
 test('any late-ordered exclusion selector matches the wikitext grammar', () => {
   for (const [name, grammar] of Object.entries(WRAPPERS)) {
     const own = selectors(grammar, 'R:');
