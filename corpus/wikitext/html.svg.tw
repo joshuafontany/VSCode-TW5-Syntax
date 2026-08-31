@@ -1,6 +1,6 @@
-Inline SVG stands in wikitext with plain names, which is how a wiki carries it: of the
-tiddlers TiddlyWiki ships with an svg element in a wikitext body, one carries a namespaced tag
-and that one declares itself image/svg+xml.
+Inline SVG stands in wikitext with plain names. A tag name reaches only as far as
+[a-zA-Z0-9$.-], so a colon ends it and refuses the tag, and namespaced markup travels instead as
+content declaring its own type.
 
 <svg viewBox="0 0 100 100" width="100" height="100">
 <metadata>a metadata element</metadata>
@@ -19,8 +19,8 @@ and that one declares itself image/svg+xml.
 
 <madeuptag/>
 
-A namespaced tag reaches the XML grammar by declaring its own type, where a prefix, its separator
-and its local name each take a scope of their own.
+A typed block hands its content to the grammar that content names. The XML grammar gives a
+prefix, its separator and its local name a scope each.
 
 $$$image/svg+xml
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="34 107 510 317" width="510pt" height="317pt"><metadata xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:date>2012-05-10 07:32Z</dc:date><!
