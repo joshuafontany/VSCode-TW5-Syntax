@@ -1,0 +1,46 @@
+<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/carriers >>
+
+<<^ code="&#x0001;" namespace="⊙" from=? -> to=lar:///ha.ka.ba/lares/api/pono/carriers >>
+```toml meta
+register = "Synthesis"
+uri-path = "ha.ka.ba/lares/api/pono/carriers"
+```
+
+<<^ code="&#x0002;" >>
+
+<<~ ahu #carriers >>
+
+!! A carrier naming no control code
+
+A carrier opens on the sharktooth and the caret, and one carrying no recognised code still
+opens a carrier:
+
+<<^ >>
+
+<<^ from=lar:///ha.ka.ba/lares/api/pono/carriers >>
+
+!! A lar URI carrying a query and a fragment
+
+<<~ loulou lar:///ha.ka.ba/lares/docs/handoff?key=value&other=second#/fragment >>
+
+<<~ loulou lar://mara:operator@crossroads/operator.reads.the-record?a=1&b=2 >>
+
+!! Strings in each quoting the dialect takes
+
+<<~ ranks name='a single-quoted value' other="a double-quoted value" >>
+
+<<~ ranks title=[[a bracketed value]] other='second' >>
+
+<<~ ranks bare=unquoted spaced = "value after spaces" >>
+
+The colon spelling names a parameter too, and it takes a quoted or a bracketed value:
+
+<<~ kue voice:Mischief-Muse key:"a floor recites the bearings instead of inhabiting them" >>
+
+<<~ hoike held:[[a bracketed value carrying spaces]] voice:'a single-quoted value' >>
+
+<<~/ahu >>
+
+<<^ code="&#x0003;" >>
+
+<<^ code="&#x0004;" -> ? >>

@@ -137,6 +137,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- Every scope the memetic dialect declares stands exercised. The base grammar answers to
+  twenty-seven corpus files and a coverage floor; the dialect carried a fraction of that, and six
+  of its scopes had no specimen at all — a carrier naming no control code, a query separator
+  inside a `lar:` URI, and two of the three quotings a parameter value takes. Two of those hid for
+  one reason: they answer to the colon spelling, `key:"value"`, and every specimen wrote the
+  equals spelling, which hands its value to the unquoted rule before the string rule sees it. A
+  specimen carries all six and a gate holds the set.
 - Every declared contribution packs. The ignore list names directories rather than contributions,
   so an edit there can drop a grammar the manifest still declares — and VS Code then loads that
   language, finds no grammar, and colours nothing without saying so. A gate takes every grammar,
