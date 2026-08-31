@@ -147,10 +147,6 @@
                 "path": "./syntaxes/tw5-fields.json"
             },
             {
-                "scopeName": "source.tiddlywiki5.meta-file",
-                "path": "./syntaxes/tw5-meta-file.json"
-            },
-            {
                 "language": "multids",
                 "scopeName": "source.tiddlywiki5.multids-file",
                 "path": "./syntaxes/tw5-multids-file.json"
@@ -227,7 +223,7 @@
         "overreach-host": "node ./tools/overreach-check.js --corpus 400 --exclude=editions/test/tiddlers/tests/data --exclude=editions/text-slicer --expected=corpus/expected-divergence.txt",
         "overreach-cut": "node ./tools/overreach-check.js --corpus 400 --exclude=editions/test/tiddlers/tests/data --exclude=editions/text-slicer --expected=corpus/expected-divergence.txt --truncate=1",
         "attribute-guard": "node ./tools/attribute-guard.js",
-        "compose-memes": "bash -c 'ok=0; for d in ${MEMES:-../bags/lares/ha.ka.ba/lares/docs ../bags/lares/ha.ka.ba/lares/api ../bags/lares/latent.attention.relation/agents/api}; do if compgen -G \"$d/*.mem\" >/dev/null; then ok=1; node ./tools/composition-check.js text.html.tiddlywiki5.memetic-wikitext \"$d/*.mem\"; fi; done; [ $ok = 1 ] || echo \"no memes beside this checkout — set MEMES to one or more directories\"'",
+        "compose-memes": "bash -c 'ok=0; for d in ${MEMES:-../bags/lares/ha.ka.ba/lares/docs ../bags/lares/ha.ka.ba/lares/api ../bags/lares/latent.attention.relation/agents/api}; do if compgen -G \"$d/*.mem\" >/dev/null; then ok=1; node ./tools/composition-check.js text.html.tiddlywiki5.memetic-wikitext \"$d/*.mem\"; fi; done; [ $ok = 1 ] || echo \"no memes beside this checkout \u2014 set MEMES to one or more directories\"'",
         "overreach-corpus": "node ./tools/overreach-check.js --corpus 400",
         "nesting-coverage": "node ./tools/nesting-coverage.js",
         "corpus": "node ./tools/corpus-check.js",
@@ -242,12 +238,13 @@
         "snap-meta": "node ./tools/snapshot-check.js source.tiddlywiki5.tid-file './tests/samples/*.meta'",
         "snap-multids": "node ./tools/snapshot-check.js source.tiddlywiki5.multids-file './tests/samples/*.multids'",
         "snap-memetic": "node ./tools/snapshot-check.js text.html.tiddlywiki5.memetic-wikitext './tests/samples/*.mem'",
+        "snap-testfile": "node ./tools/snapshot-check.js text.html.tiddlywiki5.test './tests/samples/*.tw5.test'",
         "canary-wikitext": "node ./tools/bleed-canary.js text.html.tiddlywiki5 './tests/samples/*.tw'",
         "canary-memetic": "node ./tools/bleed-canary.js text.html.tiddlywiki5.memetic-wikitext './tests/samples/*.mem'",
         "canary-tid": "node ./tools/bleed-canary.js source.tiddlywiki5.tid-file \"./tests/samples/*.tid\"",
         "canary": "npm run canary-wikitext && npm run canary-tid && npm run canary-memetic",
-        "snap": "npm run snap-wikitext && npm run snap-tid && npm run snap-meta && npm run snap-multids && npm run snap-memetic",
-        "snap-update": "npm run snap-wikitext -- --update && npm run snap-tid -- --update && npm run snap-meta -- --update && npm run snap-multids -- --update && npm run snap-memetic -- --update"
+        "snap": "npm run snap-wikitext && npm run snap-tid && npm run snap-meta && npm run snap-multids && npm run snap-memetic && npm run snap-testfile",
+        "snap-update": "npm run snap-wikitext -- --update && npm run snap-tid -- --update && npm run snap-meta -- --update && npm run snap-multids -- --update && npm run snap-memetic -- --update && npm run snap-testfile -- --update"
     },
     "npmConfig": {
         "script-shell": "/bin/bash"

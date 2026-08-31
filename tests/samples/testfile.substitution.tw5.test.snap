@@ -1,0 +1,35 @@
+># SYNTAX TEST "text.html.tiddlywiki5.test" "a test file colours the wikitext it tests"
+#^ text.html.tiddlywiki5.test punctuation.definition.comment.block.test.tiddlywiki5
+# ^ text.html.tiddlywiki5.test
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.test comment.block.test.tiddlywiki5
+>\define d.subs(a)
+#^ text.html.tiddlywiki5.test meta.directive.variable.macro.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^^^^ text.html.tiddlywiki5.test meta.directive.variable.macro.tiddlywiki5 keyword.control.directive.define.tiddlywiki5
+#       ^ text.html.tiddlywiki5.test meta.directive.variable.macro.tiddlywiki5
+#        ^^^^^^ text.html.tiddlywiki5.test meta.directive.variable.macro.tiddlywiki5 entity.name.variable.macro.tiddlywiki5
+#              ^ text.html.tiddlywiki5.test meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
+#               ^ text.html.tiddlywiki5.test meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 meta.variable.pragma.parameter.tw-a.tiddlywiki5 variable.parameter.tiddlywiki5
+#                ^ text.html.tiddlywiki5.test meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
+>before $a$ after
+#^^^^^^^ text.html.tiddlywiki5.test meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5
+#       ^ text.html.tiddlywiki5.test meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.other.variable.substitute-parameter.tiddlywiki5 keyword.other.variable.substitute-parameter.begin.tiddlywiki5
+#        ^ text.html.tiddlywiki5.test meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.other.variable.substitute-parameter.tiddlywiki5 entity.name.substitute-parameter.tiddlywiki5
+#         ^ text.html.tiddlywiki5.test meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.other.variable.substitute-parameter.tiddlywiki5 keyword.other.variable.substitute-parameter.end.tiddlywiki5
+#          ^^^^^^^ text.html.tiddlywiki5.test meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5
+>\end
+#^ text.html.tiddlywiki5.test meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^ text.html.tiddlywiki5.test meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 keyword.control.directive.end.tiddlywiki5
+>\procedure p.subs(a)
+#^ text.html.tiddlywiki5.test meta.directive.variable.procedure.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^^^^^^^ text.html.tiddlywiki5.test meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+#          ^ text.html.tiddlywiki5.test meta.directive.variable.procedure.tiddlywiki5
+#           ^^^^^^ text.html.tiddlywiki5.test meta.directive.variable.procedure.tiddlywiki5 entity.name.variable.procedure.tiddlywiki5
+#                 ^ text.html.tiddlywiki5.test meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
+#                  ^ text.html.tiddlywiki5.test meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 meta.variable.pragma.parameter.tw-a.tiddlywiki5 variable.parameter.tiddlywiki5
+#                   ^ text.html.tiddlywiki5.test meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
+>before $a$ after
+#^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.test meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5
+>\end
+#^ text.html.tiddlywiki5.test meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
+# ^^^ text.html.tiddlywiki5.test meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 keyword.control.directive.end.tiddlywiki5
+>

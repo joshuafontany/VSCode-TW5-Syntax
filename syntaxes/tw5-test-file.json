@@ -28,8 +28,8 @@
         }
       ]
     },
-		"L:meta.variable.macro.body.tiddlywiki5, meta.variable.function.body.tiddlywiki5, meta.variable.procedure.body.tiddlywiki5, meta.variable.widget.body.tiddlywiki5": {
-			"comment": "Text replacement in macro body contexts.",
+		"L:meta.variable.macro.body.tiddlywiki5": {
+			"comment": "Text replacement, which a define body takes and the other three definition bodies do not. This selector answers to the same law the wikitext grammar holds: widget.js gates both placeholder forms behind isMacroDefinition.",
 			"patterns": [
 				{ "include": "text.html.tiddlywiki5#substitute-param"},
 				{ "include": "text.html.tiddlywiki5#substitute-variable"}

@@ -7,6 +7,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A syntax-test file colours the wikitext it tests. The test-file grammar carries its own
+  injections, and the one painting parameter substitution named all four definition body scopes —
+  so a `\procedure` body substituted inside a `.tw5.test` file and not inside a `.tw` file, and
+  the specimens stating what the grammar does read differently from the thing they state it
+  about. It names the macro body alone, as the wikitext grammar does. A pinned snapshot covers
+  this grammar, which had none.
 - A tag name admits what TiddlyWiki's tag name admits. `html.js` reads
   `reTagName = /([a-zA-Z0-9\-\$\.]+)/y` and then requires whitespace, a slash or a close, so a
   name the parser stops short in refuses the whole tag: `<my_tag>`, `<my:tag>` and
@@ -398,6 +404,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - `LICENSE` (BSD 3-Clause, following TiddlyWiki5's own) and `contributing.md`.
 
 ### Changed
+- The manifest registers six grammars. The seventh declared a scope nothing referenced and no
+  language claimed, so VS Code loaded it and no document ever reached it: a `.meta` sidecar
+  carries fields and no body, and the `tid` language already lists `.meta` among its extensions
+  and colours one correctly.
 - Snippets reach the languages they serve. The three tiddler-metadata snippets move to
   `snippets/tiddler-fields.json`, registered for `tid` and `multids`, where a field header
   exists to write into; the remaining 125 stay registered for every language this extension

@@ -1,0 +1,7 @@
+# SYNTAX TEST "text.html.tiddlywiki5.test" "a test file colours the wikitext it tests"
+\define d.subs(a)
+before $a$ after
+\end
+\procedure p.subs(a)
+before $a$ after
+\end
