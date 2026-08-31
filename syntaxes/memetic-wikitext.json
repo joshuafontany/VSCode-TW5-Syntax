@@ -452,17 +452,47 @@
 				{
 					"name": "string.quoted.double.memetic-wikitext",
 					"begin": "\"",
-					"end": "\"|$"
+					"end": "\"|$",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.memetic-wikitext"
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.memetic-wikitext"
+						}
+					}
 				},
 				{
 					"name": "string.quoted.single.memetic-wikitext",
 					"begin": "'",
-					"end": "'|$"
+					"end": "'|$",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.memetic-wikitext"
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.memetic-wikitext"
+						}
+					}
 				},
 				{
 					"name": "string.quoted.bracket.memetic-wikitext",
 					"begin": "\\[\\[",
-					"end": "\\]\\]|$"
+					"end": "\\]\\]|$",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.memetic-wikitext"
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.memetic-wikitext"
+						}
+					}
 				}
 			]
 		},

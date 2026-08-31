@@ -28,15 +28,15 @@
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext
 #    ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext entity.other.attribute-name.memetic-wikitext
 #        ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext keyword.operator.assignment.memetic-wikitext
-#         ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext string.quoted.double.memetic-wikitext
+#         ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext string.quoted.double.memetic-wikitext punctuation.definition.string.begin.memetic-wikitext
 #          ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext string.quoted.double.memetic-wikitext
-#                  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext string.quoted.double.memetic-wikitext
+#                  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext string.quoted.double.memetic-wikitext punctuation.definition.string.end.memetic-wikitext
 #                   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext
 #                    ^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext entity.other.attribute-name.memetic-wikitext
 #                             ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext keyword.operator.assignment.memetic-wikitext
-#                              ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext string.quoted.double.memetic-wikitext
+#                              ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext string.quoted.double.memetic-wikitext punctuation.definition.string.begin.memetic-wikitext
 #                               ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext string.quoted.double.memetic-wikitext
-#                                ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext string.quoted.double.memetic-wikitext
+#                                ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext string.quoted.double.memetic-wikitext punctuation.definition.string.end.memetic-wikitext
 #                                 ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext
 #                                  ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext entity.other.attribute-name.memetic-wikitext
 #                                      ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext keyword.operator.assignment.memetic-wikitext
@@ -94,9 +94,9 @@
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext
 #    ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext entity.other.attribute-name.memetic-wikitext
 #        ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext keyword.operator.assignment.memetic-wikitext
-#         ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext string.quoted.double.memetic-wikitext
+#         ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext string.quoted.double.memetic-wikitext punctuation.definition.string.begin.memetic-wikitext
 #          ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext string.quoted.double.memetic-wikitext
-#                  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext string.quoted.double.memetic-wikitext
+#                  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext string.quoted.double.memetic-wikitext punctuation.definition.string.end.memetic-wikitext
 #                   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext
 #                    ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
 >
@@ -135,9 +135,9 @@
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext
 #    ^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext entity.name.function.sigil.memetic-wikitext
 #      ^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext
-#            ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext string.quoted.double.memetic-wikitext
+#            ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext string.quoted.double.memetic-wikitext punctuation.definition.string.begin.memetic-wikitext
 #             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext string.quoted.double.memetic-wikitext
-#                                          ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext string.quoted.double.memetic-wikitext
+#                                          ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext string.quoted.double.memetic-wikitext punctuation.definition.string.end.memetic-wikitext
 #                                           ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext
 #                                            ^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
 ><<~ moves identity/predication -> scoped-carry on/lit-ward >>
@@ -212,9 +212,9 @@
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext
 #    ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext entity.other.attribute-name.memetic-wikitext
 #        ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext keyword.operator.assignment.memetic-wikitext
-#         ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext string.quoted.double.memetic-wikitext
+#         ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext string.quoted.double.memetic-wikitext punctuation.definition.string.begin.memetic-wikitext
 #          ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext string.quoted.double.memetic-wikitext
-#                  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext string.quoted.double.memetic-wikitext
+#                  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext string.quoted.double.memetic-wikitext punctuation.definition.string.end.memetic-wikitext
 #                   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext
 #                    ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
 >
@@ -224,9 +224,9 @@
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext
 #    ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext entity.other.attribute-name.memetic-wikitext
 #        ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext keyword.operator.assignment.memetic-wikitext
-#         ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext string.quoted.double.memetic-wikitext
+#         ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext string.quoted.double.memetic-wikitext punctuation.definition.string.begin.memetic-wikitext
 #          ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext string.quoted.double.memetic-wikitext
-#                  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext string.quoted.double.memetic-wikitext
+#                  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext string.quoted.double.memetic-wikitext punctuation.definition.string.end.memetic-wikitext
 #                   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext
 #                    ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext keyword.operator.bearing.arrow.memetic-wikitext
 #                      ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext
