@@ -107,6 +107,18 @@ This is the widget, and the attribute is <<attribute>>.
 This is the widget, and the attribute is <<attribute>>.
 \end
 
+\function fn-inline() [tag[Task]]
+\define $dollar.macro() one line
+\procedure $dollar.proc() one line
+\function $dollar.fn() [tag[Task]]
+\define macro-first-paren-wins(a:((var))) )) belongs to the body
+\procedure mvv-inline(a:((var))) body
+\procedure dollars-stay-literal(a) $a$ and $(b)$ stay literal here
+
+\widget $my.block.widget()
+one line
+\end
+
 \define macroName (param: "default")
 $param$ $(extVar)$ $:/core/system/tiddler/title
 \end

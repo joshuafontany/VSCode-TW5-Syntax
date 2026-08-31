@@ -129,6 +129,15 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- The four definition kinds carry ground that reports a regression. Each of them differs from the
+  others in what its body means, what its parameter list admits and what its name admits, and none
+  of those shapes stood in any sample or corpus file — so a fix to one could be lost silently.
+  The pragma sample carries a one-line body of each kind, a doubled-paren default under both
+  parameter laws, a dollar-named definition of each kind, and a body whose dollars stay literal.
+  Reverting each fix in turn moves the pinned snapshot; leaving them all in place moves nothing.
+  Coverage and divergence cannot stand in for this: a definition is stored rather than parsed, so
+  no parse-tree check holds an opinion inside one, and a refused definition reaches the same scopes
+  as the prose it reads as.
 - A gap that closes reports itself. A known-gap specimen asserts what the grammar does not yet do,
   so it fails, and the gate that ran it read that failure as an absence and announced no gap
   standing. `tests/known-gaps/README.md` names the moment worth catching — the grammar grows to

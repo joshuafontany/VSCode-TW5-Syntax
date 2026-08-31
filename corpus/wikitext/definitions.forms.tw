@@ -1,12 +1,24 @@
 \define macro-inline() one line
 \procedure proc-inline() one line
+\function fn-inline() [tag[Task]]
 \widget $my.widget() one line
+
+\widget $my.block.widget()
+one line
+\end
+
+\define macro-first-paren-wins(a:((var))) )) belongs to the body
+\procedure mvv-inline(a:((var))) body
+
+\define $dollar.macro() one line
+\procedure $dollar.proc() one line
+\function $dollar.fn() [tag[Task]]
 
 \function fn-block()
 [[body]]
 \end
 
-\procedure subs(a:"one", b:"two")
+\procedure dollars-stay-literal(a:"one", b:"two")
 $a$ and $(b)$ and ${ [all[current]] }$
 \end
 
