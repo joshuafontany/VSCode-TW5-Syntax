@@ -1,44 +1,35 @@
 {
-  "name": "TiddlyWiki5 test file",
-  "scopeName": "text.html.tiddlywiki5.test",
-  "fileTypes": [
-    "tw5.test"
-  ],
-  "patterns": [
-    {
-      "comment": "Every line reads as wikitext. The container carries no begin, so the include below claims the whole file.",
-      "patterns": [
-        {
-          "include": "text.html.tiddlywiki5"
-        }
-      ]
-    }
-  ],
-  "injections": {
-    "L:text.html.tiddlywiki5": {
-      "comment": "Comment out test lines",
-      "patterns": [
-        {
-          "comment": "Tokenize test comment text.",
-          "begin": "^(#)\\s*",
-          "end": "$",
-          "contentName": "comment.block.test.tiddlywiki5",
-          "captures": {
-            "1": {
-              "name": "punctuation.definition.comment.block.test.tiddlywiki5"
-            }
-          }
-        }
-      ]
-    },
-    "R:text.html - (comment.block, text.html meta.embedded, meta.tag, meta.filter.tiddlywiki5, meta.variable.macrocallinline.tiddlywiki5, meta.variable.macrocallblock.tiddlywiki5, markup.inline.raw)": {
-      "comment": "Uses R: to ensure this matches after any other injections.",
-      "patterns": [
-        {
-          "match": "<{1}",
-          "name": "invalid.illegal.bad-angle-bracket.html.tiddlywiki5"
-        }
-      ]
-    }
-  }
+	"name": "TiddlyWiki5 test file",
+	"scopeName": "text.html.tiddlywiki5.test",
+	"fileTypes": [
+		"tw5.test"
+	],
+	"patterns": [
+		{
+			"comment": "Every line reads as wikitext. The container carries no begin, so the include below claims the whole file.",
+			"patterns": [
+				{
+					"include": "text.html.tiddlywiki5"
+				}
+			]
+		}
+	],
+	"injections": {
+		"L:text.html.tiddlywiki5": {
+			"comment": "Comment out test lines",
+			"patterns": [
+				{
+					"comment": "Tokenize test comment text.",
+					"begin": "^(#)\\s*",
+					"end": "$",
+					"contentName": "comment.block.test.tiddlywiki5",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.comment.block.test.tiddlywiki5"
+						}
+					}
+				}
+			]
+		}
+	}
 }

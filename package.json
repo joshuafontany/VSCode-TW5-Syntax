@@ -179,6 +179,18 @@
                     "source.tiddlywiki5.multids-file",
                     "text.html.tiddlywiki5.memetic-wikitext"
                 ]
+            },
+            {
+                "path": "./syntaxes/tw5-stray-angle-injection.json",
+                "scopeName": "text.html.tiddlywiki5.stray-angle",
+                "injectTo": [
+                    "text.html.tiddlywiki5",
+                    "text.html.tiddlywiki5.test",
+                    "source.tiddlywiki5.tid-file",
+                    "source.tiddlywiki5.fields",
+                    "source.tiddlywiki5.multids-file",
+                    "text.html.tiddlywiki5.memetic-wikitext"
+                ]
             }
         ],
         "snippets": [
@@ -247,6 +259,7 @@
         "overreach-host": "node ./tools/overreach-check.js --corpus 400 --exclude=editions/test/tiddlers/tests/data --exclude=editions/text-slicer --expected=corpus/expected-divergence.txt",
         "overreach-cut": "node ./tools/overreach-check.js --corpus 400 --exclude=editions/test/tiddlers/tests/data --exclude=editions/text-slicer --expected=corpus/expected-divergence.txt --truncate=1",
         "attribute-guard": "node ./tools/attribute-guard.js",
+        "swallow-witness": "node ./tools/swallow-witness.js",
         "backtrack-witness": "node ./tools/backtrack-witness.js",
         "colour-witness": "node ./tools/colour-witness.js",
         "compose-memes": "bash -c 'ok=0; for d in ${MEMES:-../bags/lares/ha.ka.ba/lares/docs ../bags/lares/ha.ka.ba/lares/api ../bags/lares/latent.attention.relation/agents/api}; do if compgen -G \"$d/*.mem\" >/dev/null; then ok=1; node ./tools/composition-check.js text.html.tiddlywiki5.memetic-wikitext \"$d/*.mem\"; fi; done; [ $ok = 1 ] || echo \"no memes beside this checkout \u2014 set MEMES to one or more directories\"'",

@@ -1,0 +1,30 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "An inline run stops at the block boundary"
+
+# TiddlyWiki closes a block at a blank line — wikiparser.js splits on /\r?\n\r?\n/ — so an inline
+# construct left open cannot reach the block after it. The parser renders the stray delimiter as
+# literal text and carries on: an unterminated `@@` earns a diagnostic and the next block parses
+# whole.
+#
+# A rule that runs past the boundary takes the rest of the file with it. Every construct after it
+# then colours as that rule's interior, and a stray-bracket verdict fires on markup standing in
+# plain sight.
+
+! An unterminated inline style stops at the blank line
+
+text @@unclosed style run
+
+<<<
+#^^^ markup.quote.quoteblock.tiddlywiki5 punctuation.definition.markup.quote.quoteblock.begin.tiddlywiki5
+#^^^ - markup.other.style.tiddlywiki5
+#^^^ - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+Quoted text
+#^^^^^^^^^^ - markup.other.style.tiddlywiki5
+<<<
+#^^^ markup.quote.quoteblock.tiddlywiki5 punctuation.definition.markup.quote.quoteblock.end.tiddlywiki5
+
+! A terminated inline style still closes on its own delimiter
+
+text @@styled@@ tail
+#    ^^ punctuation.definition.style.markup.begin.tiddlywiki5
+#      ^^^^^^ markup.other.style.tiddlywiki5
+#            ^^ punctuation.definition.style.markup.end.tiddlywiki5

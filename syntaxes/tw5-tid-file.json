@@ -8,7 +8,7 @@
     {
       "comment": "Tokenize tiddler text field.",
       "begin": "(?<=^$)",
-      "contentName": "meta.text.html.tiddlywiki5",
+      "contentName": "meta.text.html.tiddlywiki5 text.html.tiddlywiki5",
       "patterns": [
         {
           "include": "text.html.tiddlywiki5"

@@ -58,9 +58,22 @@ const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>
   encoding: 'utf8'
 }).trim().split('\n').filter(Boolean);
 
-const SCOPE_OF = { '.mem': 'text.html.tiddlywiki5.memetic-wikitext', '.tid': 'source.tiddlywiki5.tid-file',
-  '.meta': 'source.tiddlywiki5.tid-file', '.multids': 'source.tiddlywiki5.multids-file' };
-const scopeFor = (f) => SCOPE_OF[path.extname(f)] ?? 'text.html.tiddlywiki5';
+// The scope a file opens under, from the manifest's own language-to-grammar link. A map written
+// beside the manifest sends a file type to the wrong grammar the moment one more appears, and
+// coverage then reads that grammar's scopes as unreachable rather than unmeasured.
+//
+// Longest suffix wins: `.tw5.test` and `.test` both end a syntax-test file, and only one of them
+// names the grammar that colours it. path.extname reads the shorter.
+const EXTENSION_SCOPE = (() => {
+  const manifest = require(path.resolve(__dirname, '..', 'package.json')).contributes;
+  const scopeOfLanguage = new Map((manifest.grammars || [])
+    .filter((g) => g.language).map((g) => [g.language, g.scopeName]));
+  return (manifest.languages || []).flatMap((l) => (l.extensions || [])
+    .map((e) => [e, scopeOfLanguage.get(l.id)]))
+    .filter(([, scope]) => scope)
+    .sort((a, b) => b[0].length - a[0].length);
+})();
+const scopeFor = (f) => (EXTENSION_SCOPE.find(([e]) => f.endsWith(e)) ?? [, 'text.html.tiddlywiki5'])[1];
 
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-corpus-'));
 const corpus = files('corpus');
@@ -109,9 +122,12 @@ for (const [scope, entries] of byScope) {
 }
 fs.rmSync(scratch, { recursive: true, force: true });
 
+// Every grammar the manifest registers declares scopes this corpus must reach. Taking them from
+// a list beside the manifest leaves a grammar's scopes unmeasured the moment one more joins:
+// coverage then reads as a gain when a rule stops firing, because the rule left the count too.
 const declared = new Set();
-for (const g of ['syntaxes/tiddlywiki5.json', 'syntaxes/memetic-wikitext.json']) {
-  for (const s of declaredScopes(g)) declared.add(s);
+for (const g of require(path.resolve(__dirname, '..', 'package.json')).contributes.grammars) {
+  for (const s of declaredScopes(g.path.replace(/^\.\//, ''))) declared.add(s);
 }
 const unreached = [...declared].filter((s) => !reached.has(s)).sort();
 
@@ -137,7 +153,7 @@ const ceiling = fs.existsSync(ceilingFile)
 console.log(`corpus-check  ${corpus.length} files, ${declared.size} scopes declared, ${reachedCount} reached (floor ${floor})`);
 console.log(`  unreached: ${unreachedOurs.length} this grammar emits (ceiling ${ceiling}), ${unreachedHandoffs} handed to another grammar`);
 if (reachedCount < floor) {
-  console.error(`  coverage fell from ${floor} to ${reachedCount}; a rule the corpus used to reach now goes unexercised`);
+  console.error(`  coverage fell from ${floor} to ${reachedCount}; a rule the floor counts as reached now goes unexercised`);
 }
 if (unreachedOurs.length > ceiling) {
   console.error(`  ${unreachedOurs.length} of this grammar's own scopes go unexercised, above the ceiling of ${ceiling}`);

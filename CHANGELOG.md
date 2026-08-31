@@ -7,6 +7,21 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A construct left unterminated stops at the blank line that ends its block, the way TiddlyWiki
+  stops it. Eight rules named only their closing delimiter, so one unclosed opener took the rest
+  of the file: every construct after it coloured as that rule's interior and the stray-bracket
+  verdict fired on markup standing in plain sight. A single unclosed `@@` cost sixty-two
+  quoteblock spans their colouring and manufactured twenty-eight verdicts in one file. Hard line
+  breaks still run to the end of the source, which is where TiddlyWiki runs them.
+- A `.tid`, `.multids` or field value colours a stray angle bracket the way a `.tw` file does. An
+  injection written inside a grammar fires only where that grammar stands at the top, so a body
+  another grammar wraps took no verdict at all. The verdict stands in one grammar registered to
+  every scope, and each region handing text to the wikitext grammar now says so in its own scope
+  name, which is what lets one selector reach all of them.
+- Coverage counts every grammar the extension registers, and each file type opens under the
+  grammar the manifest gives it. Both came from lists kept beside the manifest: a `.tw5.test` file
+  opened under the wrong grammar, and a scope leaving one grammar for another dropped out of the
+  count entirely — so a rule that stopped firing could read as a coverage gain.
 - A backtick-quoted attribute value colours the substitutions TiddlyWiki expands in it. The
   rules name the quoting width in the middle of the emitted scope — `single` for one backtick,
   `triple` for three — and the injection selected a name carrying no width, which matches at dot

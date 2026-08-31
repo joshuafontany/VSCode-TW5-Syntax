@@ -51,7 +51,7 @@
           "name": "punctuation.separator.key-value.title-text.tiddlywiki5.multids-file"
         },
         "3": {
-          "name": "meta.tiddle.field.text.tiddlywiki5.multids-file",
+          "name": "meta.tiddle.field.text.tiddlywiki5.multids-file text.html.tiddlywiki5",
           "patterns": [
             {
               "include": "text.html.tiddlywiki5"

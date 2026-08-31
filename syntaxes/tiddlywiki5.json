@@ -13,17 +13,6 @@
 		"tiddlywiki5"
 	],
 	"firstLineMatch": "<!--\\s*tiddlywiki5\\s*-->",
-	"injections": {
-		"R:text.html - (comment.block, text.html meta.embedded, meta.tag, meta.filter.tiddlywiki5, meta.variable.macrocallinline.tiddlywiki5, meta.variable.macrocallblock.tiddlywiki5, markup.inline.raw)": {
-			"comment": "Uses R: to ensure this matches after any other injections.",
-			"patterns": [
-				{
-					"match": "<{1}",
-					"name": "invalid.illegal.bad-angle-bracket.html.tiddlywiki5"
-				}
-			]
-		}
-	},
 	"patterns": [
 		{
 			"include": "#wikitext"
@@ -805,7 +794,7 @@
 								},
 								{
 									"begin": "(?=[^\\s=<>`/]|/(?!>))",
-									"end": "(?!\\G)",
+									"end": "(?!\\G)|(?=^$)",
 									"name": "meta.embedded.line.css",
 									"patterns": [
 										{
@@ -865,7 +854,8 @@
 												}
 											]
 										}
-									]
+									],
+									"comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole."
 								},
 								{
 									"match": "=",
@@ -900,7 +890,7 @@
 							"patterns": [
 								{
 									"begin": "(?=[^\\s=<>`/]|/(?!>))",
-									"end": "(?!\\G)",
+									"end": "(?!\\G)|(?=^$)",
 									"name": "meta.embedded.line.js",
 									"patterns": [
 										{
@@ -1035,7 +1025,8 @@
 												}
 											]
 										}
-									]
+									],
+									"comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole."
 								},
 								{
 									"match": "=",
@@ -1084,8 +1075,8 @@
 							"name": "entity.other.attribute-name.html.tiddlywiki5"
 						}
 					},
-					"comment": "Anything else the parser accepts",
-					"end": "(?=\\s*+[^=\\s])",
+					"comment": "Anything else the parser accepts A run left open ends at the blank line that ends its block, so the block after it parses whole.",
+					"end": "(?=\\s*+[^=\\s])|(?=^$)",
 					"name": "meta.attribute.unrecognized.$1.html.tiddlywiki5",
 					"patterns": [
 						{
@@ -1493,8 +1484,8 @@
 									"name": "entity.other.attribute-name.html.tiddlywiki5"
 								}
 							},
-							"comment": "Anything else the parser accepts",
-							"end": "(?=\\s*+[^=\\s])",
+							"comment": "Anything else the parser accepts A run left open ends at the blank line that ends its block, so the block after it parses whole.",
+							"end": "(?=\\s*+[^=\\s])|(?=^$)",
 							"name": "meta.attribute.unrecognized.$1.html.tiddlywiki5",
 							"patterns": [
 								{
@@ -1966,8 +1957,8 @@
 									"name": "entity.other.attribute-name.html.tiddlywiki5"
 								}
 							},
-							"comment": "Anything else the parser accepts",
-							"end": "(?=\\s*+[^=\\s])",
+							"comment": "Anything else the parser accepts A run left open ends at the blank line that ends its block, so the block after it parses whole.",
+							"end": "(?=\\s*+[^=\\s])|(?=^$)",
 							"name": "meta.attribute.unrecognized.$1.html.tiddlywiki5",
 							"patterns": [
 								{
@@ -3487,7 +3478,7 @@
 				},
 				{
 					"begin": "(<\\/?)((\\$)(?!:\\/)([a-zA-Z0-9\\-\\$\\.]+))(?<!\\/)(?=\\s|\\/?>)",
-					"end": "(?: ?/)?>",
+					"end": "(?: ?/)?>|(?=^$)",
 					"name": "meta.tag.widget.$4.html.tiddlywiki5",
 					"beginCaptures": {
 						"1": {
@@ -3509,7 +3500,8 @@
 						{
 							"include": "#htmlwidget-attribute"
 						}
-					]
+					],
+					"comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole."
 				},
 				{
 					"begin": "(<)([a-zA-Z0-9$.-]+)(?=\\s*\\/>)",
@@ -4043,7 +4035,7 @@
 		},
 		"filteredtranscludeblock": {
 			"begin": "\\s*(\\{\\{\\{)",
-			"end": "(\\}\\}\\})",
+			"end": "(\\}\\}\\})|(?=^$)",
 			"name": "meta.transclusion.filteredtranscludeblock.tiddlywiki5",
 			"beginCaptures": {
 				"1": {
@@ -4085,19 +4077,21 @@
 				},
 				{
 					"begin": "\\G",
-					"end": "(?=\\|\\||\\}\\}\\})",
+					"end": "(?=\\|\\||\\}\\}\\})|(?=^$)",
 					"name": "meta.filter.tiddlywiki5",
 					"patterns": [
 						{
 							"include": "#filter"
 						}
-					]
+					],
+					"comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole."
 				}
-			]
+			],
+			"comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole."
 		},
 		"transcludeblock": {
 			"begin": "\\s*(\\{\\{)",
-			"end": "(\\}\\})",
+			"end": "(\\}\\})|(?=^$)",
 			"name": "meta.transclusion.transcludeblock.tiddlywiki5",
 			"beginCaptures": {
 				"1": {
@@ -4138,15 +4132,15 @@
 					]
 				},
 				{
-					"comment": "Tokenize text reference.",
+					"comment": "Tokenize text reference. A run left open ends at the blank line that ends its block, so the block after it parses whole.",
 					"name": "meta.transclusion.tokenize.tiddlywiki5",
 					"begin": "(?<=\\{\\{)",
-					"end": "(?=\\}\\}|\\|\\|)",
+					"end": "(?=\\}\\}|\\|\\|)|(?=^$)",
 					"patterns": [
 						{
-							"comment": "Allow dropping text reference.",
+							"comment": "Allow dropping text reference. A run left open ends at the blank line that ends its block, so the block after it parses whole.",
 							"begin": "(?<=\\{\\{)",
-							"end": "(?=\\}\\}|\\|\\|)|(\\S.*?)\\s*(?=$|\\}\\}|\\|\\|)",
+							"end": "(?=\\}\\}|\\|\\|)|(\\S.*?)\\s*(?=$|\\}\\}|\\|\\|)|(?=^$)",
 							"endCaptures": {
 								"1": {
 									"name": "meta.transclusion.text-reference.tiddlywiki5",
@@ -4165,7 +4159,8 @@
 						}
 					]
 				}
-			]
+			],
+			"comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole."
 		},
 		"table": {
 			"patterns": [
@@ -5254,7 +5249,7 @@
 		},
 		"styleinline": {
 			"begin": "(@@)((?:[^\\s:;]+:[^;]*;)+)?((?:\\.[^\\s\\.]+)+)?",
-			"end": "(@@)",
+			"end": "(@@)|(?=^$)",
 			"name": "markup.other.style.tiddlywiki5",
 			"beginCaptures": {
 				"1": {
@@ -5284,7 +5279,8 @@
 				{
 					"include": "#inline"
 				}
-			]
+			],
+			"comment": "An inline style run. TiddlyWiki closes a block at a blank line, so a run left open ends there and the stray delimiter renders as literal text; without that bound the run takes every block after it."
 		},
 		"hardlinebreaks": {
 			"begin": "\"\"\"",
@@ -5332,7 +5328,7 @@
 		},
 		"filteredtranscludeinline": {
 			"begin": "(\\{\\{\\{)",
-			"end": "(\\}\\}\\})",
+			"end": "(\\}\\}\\})|(?=^$)",
 			"name": "meta.transclusion.filteredtranscludeinline.tiddlywiki5",
 			"beginCaptures": {
 				"1": {
@@ -5374,19 +5370,21 @@
 				},
 				{
 					"begin": "\\G",
-					"end": "(?=\\|\\||\\}\\}\\})",
+					"end": "(?=\\|\\||\\}\\}\\})|(?=^$)",
 					"name": "meta.filter.tiddlywiki5",
 					"patterns": [
 						{
 							"include": "#filter"
 						}
-					]
+					],
+					"comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole."
 				}
-			]
+			],
+			"comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole."
 		},
 		"transcludeinline": {
 			"begin": "(\\{\\{)",
-			"end": "(\\}\\})",
+			"end": "(\\}\\})|(?=^$)",
 			"name": "meta.transclusion.transcludeinline.tiddlywiki5",
 			"beginCaptures": {
 				"1": {
@@ -5427,15 +5425,15 @@
 					]
 				},
 				{
-					"comment": "Tokenize text reference.",
+					"comment": "Tokenize text reference. A run left open ends at the blank line that ends its block, so the block after it parses whole.",
 					"name": "meta.transclusion.tokenize.tiddlywiki5",
 					"begin": "(?<=\\{\\{)",
-					"end": "(?=\\}\\}|\\|\\|)",
+					"end": "(?=\\}\\}|\\|\\|)|(?=^$)",
 					"patterns": [
 						{
-							"comment": "Allow dropping text reference.",
+							"comment": "Allow dropping text reference. A run left open ends at the blank line that ends its block, so the block after it parses whole.",
 							"begin": "(?<=\\{\\{)",
-							"end": "(?=\\}\\}|\\|\\|)|(\\S.*?)\\s*(?=$|\\}\\}|\\|\\|)",
+							"end": "(?=\\}\\}|\\|\\|)|(\\S.*?)\\s*(?=$|\\}\\}|\\|\\|)|(?=^$)",
 							"endCaptures": {
 								"1": {
 									"name": "meta.transclusion.text-reference.tiddlywiki5",
@@ -5454,11 +5452,12 @@
 						}
 					]
 				}
-			]
+			],
+			"comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole."
 		},
 		"image": {
 			"begin": "(\\[)(img)\\s*",
-			"end": "(\\])(\\])",
+			"end": "(\\])(\\])|(?=^$)",
 			"name": "markup.other.image.tiddlywiki5",
 			"beginCaptures": {
 				"1": {
@@ -5512,7 +5511,8 @@
 						}
 					}
 				}
-			]
+			],
+			"comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole."
 		},
 		"link": {
 			"patterns": [
@@ -5535,7 +5535,7 @@
 		},
 		"prettyextlink": {
 			"begin": "(\\[)(ext)(\\[)",
-			"end": "(\\])(\\])",
+			"end": "(\\])(\\])|(?=^$)",
 			"name": "markup.link.external.tiddlywiki5",
 			"beginCaptures": {
 				"1": {
@@ -5581,7 +5581,8 @@
 						}
 					}
 				}
-			]
+			],
+			"comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole."
 		},
 		"prettylink": {
 			"begin": "(\\[)(\\[)(?=[^\\n]*\\]\\])",
@@ -5847,9 +5848,9 @@
 		"filter": {
 			"patterns": [
 				{
-					"comment": "Match bracketed filter run.",
+					"comment": "Match bracketed filter run. A run left open ends at the blank line that ends its block, so the block after it parses whole.",
 					"begin": "((?:\\+|\\-|~|=|:[^\\[\"']+)?\\[)",
-					"end": "(\\])",
+					"end": "(\\])|(?=^$)",
 					"name": "meta.filter.run.tiddlywiki5",
 					"contentName": "entity.filter.operator.title.tiddlywiki5",
 					"beginCaptures": {

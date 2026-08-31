@@ -436,7 +436,7 @@
 			}
 		},
 		"named-param": {
-			"comment": "The memetic standard writes key=value. TiddlyWiki reads `=` as the new-style separator (parseMacroParameterAsAttribute in core/modules/parsers/parseutils.js), which is what admits a filtered, indirect or macro value; a colon admits neither and demands a strict identifier so $:/foo cannot mis-parse.",
+			"comment": "The memetic standard writes key=value. TiddlyWiki reads `=` as the new-style separator (parseMacroParameterAsAttribute in core/modules/parsers/parseutils.js), which admits a filtered, indirect or macro value; a colon admits neither and demands a strict identifier so $:/foo cannot mis-parse.",
 			"match": "\\b([A-Za-z0-9_-]+)\\s*(=)",
 			"captures": {
 				"1": {
@@ -520,15 +520,6 @@
 			"patterns": [
 				{
 					"include": "text.html.tiddlywiki5.memetic-wikitext#memetic"
-				}
-			]
-		},
-		"R:text.html - (comment.block, text.html meta.embedded, meta.tag, meta.filter.tiddlywiki5, meta.variable.macrocallinline.tiddlywiki5, meta.variable.macrocallblock.tiddlywiki5, markup.inline.raw)": {
-			"comment": "Uses R: to ensure this matches after any other injections.",
-			"patterns": [
-				{
-					"match": "<{1}",
-					"name": "invalid.illegal.bad-angle-bracket.html.tiddlywiki5"
 				}
 			]
 		}

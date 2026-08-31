@@ -33,7 +33,7 @@
               "name": "punctuation.separator.key-value.field.tiddlywiki5"
             },
             "3": {
-              "name": "meta.tiddler.field.value.wikitext.tiddlywiki5",
+              "name": "meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5",
               "patterns": [
                 {
                   "include": "text.html.tiddlywiki5"
@@ -50,7 +50,7 @@
               "name": "entity.other.attribute-name.field.tiddlywiki5",
               "patterns": [
                 {
-                  "comment": "Only control characters are illegal in field names since TW5 v5.2.x",
+                  "comment": "A control character alone breaks a field name; TW5 v5.2.x admits every other character in one.",
                   "match": "(?=[\\x00-\\x1f])(.*)",
                   "name": "invalid.illegal.field.name.tiddlywiki5"
                 }
@@ -60,7 +60,7 @@
               "name": "punctuation.separator.key-value.field.tiddlywiki5"
             },
             "3": {
-              "comment": "Field values are plain strings in the header",
+              "comment": "A header field value carries a plain string",
               "name": "string.unquoted.field.value.tiddlywiki5"
             }
           }

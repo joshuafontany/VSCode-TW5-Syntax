@@ -1,0 +1,12 @@
+{
+  "name": "TiddlyWiki5 stray angle bracket",
+  "scopeName": "text.html.tiddlywiki5.stray-angle",
+  "injectionSelector": "R:text.html - (comment.block, text.html meta.embedded, meta.tag, meta.filter.tiddlywiki5, meta.variable.macrocallinline.tiddlywiki5, meta.variable.macrocallblock.tiddlywiki5, markup.inline.raw)",
+  "comment": "An angle bracket standing where no construct opens. It carries a verdict in prose and stays clear of markup the parser consumes, so the exclusions name the regions that legitimately hold a `<` — a comment, an embedded language, a tag, a filter, a macro call, and raw markup.\n\nR: puts it after every other injection, so a rule that claims the bracket keeps it.\n\nThis stands as a grammar of its own so one registration reaches every scope that colours wikitext. An injection written inside a grammar fires only where that grammar stands at the top, so a body wrapped by another grammar took no verdict at all while identical bytes in a `.tw` file took one.",
+  "patterns": [
+    {
+      "match": "<{1}",
+      "name": "invalid.illegal.bad-angle-bracket.html.tiddlywiki5"
+    }
+  ]
+}
