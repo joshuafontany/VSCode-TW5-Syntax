@@ -4629,125 +4629,126 @@
 ><<<.class1.class2 Top cite
 #^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
 # ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#   ^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#   ^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#                 ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#                  ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.Top.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#                     ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#                      ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.cite.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 >Quoted text
-#^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.Quoted.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#      ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#       ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.text.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 ><<< Bottom cite
-#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#   ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#    ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.Bottom.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#           ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.cite.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 >
 ><<<.class1.class2 """
-#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#   ^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
-#                  ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.hardlinebreaks.begin.tiddlywiki5
+#^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#                 ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#                  ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 >''Inline'' run
-#^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 bold.punctuation.definition.markup.begin.tiddlywiki5
-#  ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 markup.bold.tiddlywiki5
-#        ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 bold.punctuation.definition.markup.end.tiddlywiki5
-#          ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
+#^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#           ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.run.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 >for the top cite
-#^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.for.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#    ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.the.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#       ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#        ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.top.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#           ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#            ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.cite.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 >"""
-#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.hardlinebreaks.end.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 >''Block'' run for the quote body
-#^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 bold.punctuation.definition.markup.begin.tiddlywiki5
-#  ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.bold.tiddlywiki5
-#       ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 bold.punctuation.definition.markup.end.tiddlywiki5
-#         ^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#         ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#          ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.run.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#             ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#              ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.for.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#                 ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#                  ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.the.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#                     ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#                      ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.quote.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#                           ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#                            ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.body.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 >
 ><<<< Nested top cite
-#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#    ^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#     ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.Nested.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#           ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#            ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.top.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#               ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#                ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.cite.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 >Nested quotation
-#^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.Nested.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#      ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#       ^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.quotation.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 ><<<< Nested bottom cite
-#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#    ^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#     ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.Nested.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#           ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#            ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.bottom.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#                  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#                   ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.cite.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 >
 ><<< """
-#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
-#    ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.hardlinebreaks.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#    ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 >''Inline'' run
-#^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 bold.punctuation.definition.markup.begin.tiddlywiki5
-#  ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 markup.bold.tiddlywiki5
-#        ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 bold.punctuation.definition.markup.end.tiddlywiki5
-#          ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
+#^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#           ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.run.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 >for the bottom cite
-#^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.for.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#    ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.the.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#       ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#        ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.bottom.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#              ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#               ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.cite.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 >"""
-#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.hardlinebreaks.end.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 >
 ><<<
-#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 >
 ><<<
-#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 >
 ><<<
-#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 ><<<
-#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 >
 >   <<<<<
-#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
-#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#     ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#      ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#       ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#   ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 >  <<<<
-#^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#     ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#  ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 > <<<
-#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
-# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+# ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 ><<<
-#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 ><<<<
-#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 ><<<<<
-#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 >
 ><!--#endregion -->
-#^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
-#    ^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 comment.block.html.tiddlywiki5
-#               ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
+#^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#              ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#               ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.--.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#                 ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 >
 ><!--#region Block Macro Wikitext -->
 #^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5

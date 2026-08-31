@@ -4601,78 +4601,127 @@
 #^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
 >
 ><<<.class1.class2 Top cite
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#   ^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#                 ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#                  ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.Top.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#                     ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#                      ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.cite.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 >Quoted text
-#^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.Quoted.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#      ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#       ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.text.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 ><<< Bottom cite
-#^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#   ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#    ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.Bottom.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#          ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#           ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.cite.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 >
 ><<<.class1.class2 """
-#^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
-#                  ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.hardlinebreaks.begin.tiddlywiki5
+#^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#                 ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#                  ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 >''Inline'' run
-#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 bold.punctuation.definition.markup.begin.tiddlywiki5
-#  ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 markup.bold.tiddlywiki5
-#        ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 bold.punctuation.definition.markup.end.tiddlywiki5
-#          ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
+#^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#          ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#           ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.run.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 >for the top cite
-#^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
+#^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.for.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#   ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#    ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.the.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#       ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#        ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.top.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#           ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#            ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.cite.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 >"""
-#^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.hardlinebreaks.end.tiddlywiki5
+#^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 >''Block'' run for the quote body
-#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 bold.punctuation.definition.markup.begin.tiddlywiki5
-#  ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.bold.tiddlywiki5
-#       ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 bold.punctuation.definition.markup.end.tiddlywiki5
-#         ^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#         ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#          ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.run.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#             ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#              ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.for.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#                 ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#                  ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.the.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#                     ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#                      ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.quote.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#                           ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#                            ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.body.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 >
 ><<<< Nested top cite
-#^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#    ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#     ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.Nested.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#           ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#            ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.top.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#               ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#                ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.cite.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 >Nested quotation
-#^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.Nested.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#      ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#       ^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.quotation.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 ><<<< Nested bottom cite
-#^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#    ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#     ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.Nested.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#           ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#            ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.bottom.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#                  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#                   ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.cite.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 >
 ><<< """
-#^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
-#    ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.hardlinebreaks.begin.tiddlywiki5
+#^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#   ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#    ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 >''Inline'' run
-#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 bold.punctuation.definition.markup.begin.tiddlywiki5
-#  ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 markup.bold.tiddlywiki5
-#        ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 bold.punctuation.definition.markup.end.tiddlywiki5
-#          ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
+#^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#          ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#           ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.run.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 >for the bottom cite
-#^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
+#^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.for.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#   ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#    ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.the.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#       ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#        ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.bottom.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#              ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#               ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.cite.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 >"""
-#^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.hardlinebreaks.end.tiddlywiki5
+#^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 >
 ><<<
-#^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 >
 ><<<
-#^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 >
 ><<<
-#^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 ><<<
-#^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 >
 >   <<<<<
-#^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#   ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 >  <<<<
-#^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#  ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 > <<<
-#^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+# ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 ><<<
-#^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 ><<<<
-#^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 ><<<<<
-#^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5
+#^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 >
 ><!--#endregion -->
-#^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
-#    ^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 comment.block.html.tiddlywiki5
-#               ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
+#^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#              ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5
+#               ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 meta.attribute.unrecognized.--.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#                 ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.tag.other.unrecognized.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 >
 ><!--#region Block Macro Wikitext -->
 #^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5

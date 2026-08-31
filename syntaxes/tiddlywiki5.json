@@ -1827,11 +1827,11 @@
 									"name": "punctuation.definition.tag.end.html.tiddlywiki5"
 								}
 							},
-							"match": "(?i)(<)(([\\w:]+))(?=\\s|/?>)(?:(([^\"'>]|\"[^\"]*\"|'[^']*')*)(/>))",
+							"match": "(?i)(<)(([a-zA-Z0-9$.-]+))(?=\\s|/?>)(?:(([^\"'>]|\"[^\"]*\"|'[^']*')*)(/>))",
 							"name": "meta.element.other.invalid.html.tiddlywiki5"
 						},
 						{
-							"begin": "(?i)(<)((\\w[^\\s>]*))(?=\\s|/?>)(?:(([^\"'>]|\"[^\"]*\"|'[^']*')*)((?<!>)>(?!>)))?",
+							"begin": "(?i)(<)(([a-zA-Z0-9$.-]+))(?=\\s|/?>)(?:(([^\"'>]|\"[^\"]*\"|'[^']*')*)((?<!>)>(?!>)))?",
 							"beginCaptures": {
 								"0": {
 									"name": "meta.tag.other.invalid.start.html.tiddlywiki5"
@@ -2485,11 +2485,11 @@
 									"name": "punctuation.definition.tag.end.html.tiddlywiki5"
 								}
 							},
-							"match": "(?i)(<)(([\\w:]+))(?=\\s|/?>)(?:(([^\"'>]|\"[^\"]*\"|'[^']*')*)(/>))",
+							"match": "(?i)(<)(([a-zA-Z0-9$.-]+))(?=\\s|/?>)(?:(([^\"'>]|\"[^\"]*\"|'[^']*')*)(/>))",
 							"name": "meta.element.other.invalid.html.tiddlywiki5"
 						},
 						{
-							"begin": "(?i)(<)((\\w[^\\s>]*))(?=\\s|/?>)(?:(([^\"'>]|\"[^\"]*\"|'[^']*')*)((?<!>)>(?!>)))?",
+							"begin": "(?i)(<)(([a-zA-Z0-9$.-]+))(?=\\s|/?>)(?:(([^\"'>]|\"[^\"]*\"|'[^']*')*)((?<!>)>(?!>)))?",
 							"beginCaptures": {
 								"0": {
 									"name": "meta.tag.other.invalid.start.html.tiddlywiki5"
@@ -2564,7 +2564,7 @@
 		"htmlwidget-tags-invalid": {
 			"patterns": [
 				{
-					"begin": "(</?)((\\w[^\\s>]*))(?<!/)",
+					"begin": "(</?)(([a-zA-Z0-9$.-]+))(?<!/)",
 					"beginCaptures": {
 						"1": {
 							"name": "punctuation.definition.tag.begin.html.tiddlywiki5"
@@ -3537,7 +3537,7 @@
 					]
 				},
 				{
-					"begin": "(<)(\\w[^\\s>]*)(?=\\s*\\/>)",
+					"begin": "(<)([a-zA-Z0-9$.-]+)(?=\\s*\\/>)",
 					"end": "\\/>",
 					"name": "meta.tag.other.unrecognized.html.tiddlywiki5",
 					"beginCaptures": {
@@ -3560,7 +3560,7 @@
 					]
 				},
 				{
-					"begin": "(<\\/?)(\\w[^\\s>]*)(?<!\\/)(?=\\s|>)",
+					"begin": "(<\\/?)([a-zA-Z0-9$.-]+)(?<!\\/)(?=\\s|>)",
 					"end": "(?: ?/)?>",
 					"name": "meta.tag.other.unrecognized.html.tiddlywiki5",
 					"beginCaptures": {

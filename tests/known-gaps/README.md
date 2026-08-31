@@ -18,4 +18,4 @@ way the specification travels with it.
 
 The count below answers to the directory, and the gate fails when the two disagree.
 
-**1 gap stands.**
+**2 gaps stand.**

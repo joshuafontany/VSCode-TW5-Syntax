@@ -1,0 +1,37 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A tag name admits what TiddlyWiki's tag name admits"
+
+# html.js reads reTagName = /([a-zA-Z0-9\-\$\.]+)/y and then requires whitespace, a slash or a
+# close. A name the parser stops short in leaves a character satisfying none of those, and the
+# whole tag refuses — TiddlyWiki yields plain text for it.
+#
+# So an underscore or a colon ends a name and refuses the tag, while a hyphen, a period and a
+# dollar stand inside one. VS Code's own HTML grammar excludes the colon the same way; TiddlyWiki
+# excludes the underscore as well.
+#
+# Namespaced markup has its own home. Content declaring itself as image/svg+xml — a typed block,
+# or a tiddler of that type — reaches the XML grammar, which names a prefix, its separator and its
+# local name separately. Painting a namespaced tag here would claim a construct the wikitext
+# parser refuses, in the one place better colouring already stands.
+
+! A hyphen and a period stand inside a tag name
+
+<my-tag>x</my-tag>
+#^^^^^^ entity.name.tag.html.tiddlywiki5
+
+<my.tag>x</my.tag>
+#^^^^^^ entity.name.tag.html.tiddlywiki5
+
+! An underscore ends the name, so the tag reads as text
+
+<my_tag>x</my_tag>
+#^^^^^^ - entity.name.tag.html.tiddlywiki5
+
+! So does a colon, and namespaced markup answers to the XML grammar instead
+
+<my:tag>x</my:tag>
+#^^^^^^ - entity.name.tag.html.tiddlywiki5
+
+! So does a name the parser stops short in
+
+<div"unspaced">x</div>
+#^^^ - entity.name.tag.html.tiddlywiki5

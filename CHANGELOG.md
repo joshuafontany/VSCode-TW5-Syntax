@@ -7,6 +7,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A tag name admits what TiddlyWiki's tag name admits. `html.js` reads
+  `reTagName = /([a-zA-Z0-9\-\$\.]+)/y` and then requires whitespace, a slash or a close, so a
+  name the parser stops short in refuses the whole tag: `<my_tag>`, `<my:tag>` and
+  `<div"unspaced">` are plain text to TiddlyWiki. VS Code's own HTML grammar excludes the colon
+  the same way, and TiddlyWiki excludes the underscore as well. Namespaced markup keeps a better
+  home than the wikitext grammar ever gave it: content declaring itself `image/svg+xml`, as a
+  typed block or a tiddler of that type, reaches the XML grammar, which names a prefix, its
+  separator and its local name separately.
 - A definition name admits what TiddlyWiki admits. Both definition rules read the same name class,
   `[^(\s]+`, so a dollar stands in the name of any of the four kinds and the parser builds each
   one — `\define $foo()` defines a macro named `$foo`. Three of the four rules refused it, and a
