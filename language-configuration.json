@@ -36,8 +36,12 @@
 	// double-clicks. This takes a system title whole with its slashes, a pragma with its
 	// backslash, a hyphenated name entire, and a number.
 	"wordPattern": "(\\$:\\/[^\\s\\|\\[\\]\\{\\}<>\"'`]+)|(-?\\d*\\.\\d\\w*)|(\\\\?[A-Za-z_$][A-Za-z0-9_$-]*)",
+	// No offSide. That rule says a blank line belongs to the indented block above it, and
+	// TiddlyWiki ends a block AT a blank line — wikiparser.js takes /\r?\n\r?\n/ as the
+	// boundary. Of the indented lines in TiddlyWiki own tiddlers three quarters carry prose,
+	// which nests nothing, so folding them across the blank lines that separate paragraphs
+	// offers a reader regions the format never had.
 	"folding": {
-		"offSide": true,
 		"markers": {
 			"start": "^\\s*<!--\\s*#?region\\b.*-->",
 			"end": "^\\s*<!--\\s*#?endregion\\b.*-->"

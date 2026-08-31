@@ -87,6 +87,22 @@ test('a word pattern takes a system title and a hyphenated name whole', () => {
   }
 });
 
+// The off-side rule says a blank line belongs to the indented block above it. TiddlyWiki ends a
+// block AT a blank line — wikiparser.js takes /\r?\n\r?\n/ as the boundary — and of the indented
+// lines in TiddlyWiki's own tiddlers three quarters carry prose, which nests nothing. Folding
+// those across the blank lines that separate them offers regions the format never had.
+test('no language folds on the off-side rule', () => {
+  for (const lang of pkg.contributes.languages || []) {
+    if (!lang.configuration) continue;
+    const config = parseJsonc(fs.readFileSync(path.join(ROOT, lang.configuration.replace(/^\.\//, '')), 'utf8'));
+    assert.notStrictEqual(
+      (config.folding || {}).offSide,
+      true,
+      `${lang.id} folds on indentation across blank lines, which end a block in this format`
+    );
+  }
+});
+
 test('every declared grammar and snippet file stands and reads', () => {
   for (const g of pkg.contributes.grammars || []) {
     const file = path.join(ROOT, g.path.replace(/^\.\//, ''));

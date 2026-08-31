@@ -272,6 +272,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   an ordinary value, and standing alone it reads as content like any other character.
 
 ### Changed
+- Folding stops treating a blank line as part of the block above it. The off-side rule says an
+  indented block continues across blank lines, and TiddlyWiki ends a block AT one —
+  `wikiparser.js` takes `/\r?\n\r?\n/` as the boundary. Of the indented lines in TiddlyWiki's own
+  tiddlers three quarters carry prose, which nests nothing, so the rule offered regions the format
+  never had. Region markers keep folding what an author marked.
 - No pattern carries a key TextMate never reads. One container declared `start` where TextMate
   reads `begin`, so it named nothing, its `contentName` never applied, and the pattern worked only
   by falling through to what it included. A gate reads every grammar against the vocabulary
