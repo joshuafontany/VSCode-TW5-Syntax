@@ -117,6 +117,11 @@ test('no pattern carries a key TextMate never reads', () => {
 // anchor there matches nothing: `^` wants a line start and `$` a line end, and the capture offers
 // neither. Three rules carried `^.*$` inside a capture and matched nothing at all, so a table
 // caption and a table's class row went uncoloured while the grammar declared names for both.
+//
+// This holds MATCH rules. Eight begin/end regions carry the same anchors inside a capture and
+// fire — the one-line definition bodies among them, which the suite asserts and the snapshots
+// pin. An isolated grammar reproducing that shape painted nothing, and nobody has traced the
+// difference, so the gate reaches as far as the measurement does and no further.
 test('no rule inside a capture anchors to a line boundary', () => {
   for (const file of fs.readdirSync(path.join(ROOT, 'syntaxes')).filter((f) => f.endsWith('.json'))) {
     const grammar = read(file);
