@@ -7,6 +7,16 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A backtick-quoted attribute value colours the substitutions TiddlyWiki expands in it. The
+  rules name the quoting width in the middle of the emitted scope — `single` for one backtick,
+  `triple` for three — and the injection selected a name carrying no width, which matches at dot
+  boundaries and so reached neither. A `$(name)$` or `${ filter }$` inside such a value stood as
+  flat text in every file type. It carries the two forms `getSubstitutedText` expands and leaves
+  `$name$` literal, which is what a widget attribute renders.
+- Every file type the extension colours loads every grammar it registers. The runners took our
+  grammars from a list kept beside the manifest rather than from the manifest, so a grammar
+  registered and not listed painted in the editor and nowhere else: it read as absent to every
+  gate, which reported green over whatever it carried.
 - A `.tid` file paints a definition body the way a `.tw` file does. Four grammars wrap the
   wikitext grammar and each keys its injections on its own scope, so the wrapped grammar's never
   fire. The `.tid` grammar carried a hand-written pattern in place of the shared rules, naming a

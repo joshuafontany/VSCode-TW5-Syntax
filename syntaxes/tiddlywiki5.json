@@ -14,18 +14,7 @@
 	],
 	"firstLineMatch": "<!--\\s*tiddlywiki5\\s*-->",
 	"injections": {
-		"text.substituted.attribute.html.tiddlywiki5": {
-			"comment": "Text replacement in text substiitution attributes.",
-			"patterns": [
-				{
-					"include": "#substitute-variable"
-				},
-				{
-					"include": "#substitute-filter"
-				}
-			]
-		},
-		"R:text.html - (comment.block, text.html meta.embedded, meta.tag, meta.filter.tiddlywiki5, meta.transclusion.tiddlywiki5, meta.variable.macrocallinline.tiddlywiki5, meta.variable.macrocallblock.tiddlywiki5, markup.quote.blockquote.tiddlywiki5, markup.inline.raw)": {
+		"R:text.html - (comment.block, text.html meta.embedded, meta.tag, meta.filter.tiddlywiki5, meta.variable.macrocallinline.tiddlywiki5, meta.variable.macrocallblock.tiddlywiki5, markup.inline.raw)": {
 			"comment": "Uses R: to ensure this matches after any other injections.",
 			"patterns": [
 				{

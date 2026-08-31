@@ -515,7 +515,7 @@
 		}
 	},
 	"injections": {
-		"L:meta.paragraph.tiddlywiki5, markup.quote.quoteblock.tiddlywiki5, meta.other.list.tiddlywiki5": {
+		"L:meta.paragraph.tiddlywiki5, markup.quote.quoteblock.tiddlywiki5, markup.list": {
 			"comment": "Sigils keep their reading inside base block contexts.",
 			"patterns": [
 				{
@@ -523,7 +523,7 @@
 				}
 			]
 		},
-		"R:text.html - (comment.block, text.html meta.embedded, meta.tag, meta.filter.tiddlywiki5, meta.transclusion.tiddlywiki5, meta.variable.macrocallinline.tiddlywiki5, meta.variable.macrocallblock.tiddlywiki5, markup.quote.blockquote.tiddlywiki5, markup.inline.raw)": {
+		"R:text.html - (comment.block, text.html meta.embedded, meta.tag, meta.filter.tiddlywiki5, meta.variable.macrocallinline.tiddlywiki5, meta.variable.macrocallblock.tiddlywiki5, markup.inline.raw)": {
 			"comment": "Uses R: to ensure this matches after any other injections.",
 			"patterns": [
 				{

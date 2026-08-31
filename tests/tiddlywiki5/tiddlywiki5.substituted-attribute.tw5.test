@@ -1,0 +1,31 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A backtick attribute value substitutes what getSubstitutedText expands"
+
+# A backtick-quoted attribute value reaches the parser as a substituted attribute, and
+# getSubstitutedText expands exactly two forms in it: `${ filter }$` and `$(name)$`. It reaches
+# the `$name$` form only for a caller supplying substitutions, and a widget attribute supplies
+# none — so the dollars stay literal there and take no colour.
+#
+# Both quoting widths carry the same two forms. The rules name the width in the middle of the
+# emitted scope, so an injection selecting a whole name reaches one width and leaves the other
+# painting nothing.
+
+! A single-backtick value substitutes a variable
+
+<$text text=`before $(now)$ after`/>
+#                   ^^ keyword.other.variable.substitute-variable.begin.tiddlywiki5
+#                     ^^^ variable.name.substitute-variable.tiddlywiki5
+#                        ^^ keyword.other.variable.substitute-variable.end.tiddlywiki5
+
+! A triple-backtick value substitutes a filter
+
+<$text text=```before ${ [tag[T]] }$ after```/>
+#                     ^^ keyword.other.variable.substitute-filter.begin.tiddlywiki5
+#                       ^ variable.name.substitute-filter.tiddlywiki5
+#                                ^ variable.name.substitute-filter.tiddlywiki5
+#                                 ^^ keyword.other.variable.substitute-filter.end.tiddlywiki5
+
+! The parameter form stays literal, since a widget attribute supplies no substitutions
+
+<$text text=`a $name$ stays literal`/>
+#              ^^^^^^ - markup.other.variable.substitute-parameter.tiddlywiki5
+#              ^^^^^^ text.substituted.single.attribute.html.tiddlywiki5

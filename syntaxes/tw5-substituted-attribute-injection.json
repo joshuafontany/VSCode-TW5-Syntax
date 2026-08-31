@@ -1,0 +1,10 @@
+{
+  "name": "TiddlyWiki5 substituted attribute",
+  "scopeName": "text.html.tiddlywiki5.substituted-attribute",
+  "injectionSelector": "L:text.substituted",
+  "comment": "A backtick-quoted attribute value, which getSubstitutedText expands. wiki.js takes exactly two forms there — an embedded filter and a variable reference — and reaches the parameter form only when a caller supplies substitutions, which a widget attribute never does.\n\nThe selector names the FAMILY rather than a member: the rules emit a width in the middle of the name, `single` for one backtick and `triple` for three, and a selector spelling out either one reaches only that one. Matching stops at dot boundaries, so a name carrying a segment the selector omits sits out of reach, paints nothing and reports nothing.\n\nThis stands as a grammar of its own so one registration reaches every scope that colours wikitext.",
+  "patterns": [
+    { "include": "text.html.tiddlywiki5#substitute-filter" },
+    { "include": "text.html.tiddlywiki5#substitute-variable" }
+  ]
+}

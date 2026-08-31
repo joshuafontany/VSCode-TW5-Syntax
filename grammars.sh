@@ -20,9 +20,16 @@ VSCODE_EXTROOT="${VSCODE_EXTROOT:-/nonexistent}"
 
 # Many grammars found here: https://www.npmjs.com/package/@wooorm/starry-night?activeTab=readme#languages
 
+# Our own grammars come from the manifest, never from a list kept beside it. A grammar the
+# manifest registers and this file omits loads in VS Code and nowhere else: every runner reads
+# it as absent, so an injection it carries paints nothing and every gate reports green.
+OWN_GRAMMARS=()
+while IFS= read -r _path; do
+    OWN_GRAMMARS+=("${_path}")
+done < <(node -e 'for (const g of require("./package.json").contributes.grammars) console.log(g.path);')
+
 GRAMMARS=(
-    "syntaxes/tiddlywiki5.json"
-    "syntaxes/tw5-substitution-injection.json"
+    "${OWN_GRAMMARS[@]}"
     "tests/asm.json"
     "tests/Asciidoctor.json"
     "tests/APIBlueprint.tmLanguage"
@@ -96,7 +103,6 @@ GRAMMARS=(
     "${TMGRAMMAR_ROOT}/xml.json"
     "${TMGRAMMAR_ROOT}/xsl.json"
     "${TMGRAMMAR_ROOT}/yaml.json"
-    "syntaxes/memetic-wikitext.json"
 )
 ARGS=()
 GRAMMARS_MISSING=0
