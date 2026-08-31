@@ -39,6 +39,10 @@ The colon spelling names a parameter too, and it takes a quoted or a bracketed v
 
 <<~ hoike held:[[a bracketed value carrying spaces]] voice:'a single-quoted value' >>
 
+The equals spelling takes a bracketed value too, whole rather than to its first space:
+
+<<~ sigil bracket=[[a bracketed value]] single='a single quoted value' bare=unquoted >>
+
 !! A stray angle bracket answers the same way it answers in wikitext
 
 A dialect wrapping the wikitext grammar carries its injections or loses what they paint, so a

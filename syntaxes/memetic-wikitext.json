@@ -309,10 +309,10 @@
 					"include": "#named-param-colon"
 				},
 				{
-					"include": "#param-value"
+					"include": "#string"
 				},
 				{
-					"include": "#string"
+					"include": "#param-value"
 				}
 			]
 		},
