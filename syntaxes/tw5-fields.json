@@ -1,17 +1,47 @@
 {
   "name": "TiddlyWiki5 fields",
   "scopeName": "source.tiddlywiki5.fields",
-  "patterns": [{ "include": "#comment" }, { "include": "#field" }],
+  "patterns": [
+    {
+      "include": "#comment"
+    },
+    {
+      "include": "#field"
+    }
+  ],
   "repository": {
     "comment": {
       "match": "^(#).*$",
       "name": "comment.line.number-sign.tiddlywiki5.fields",
       "captures": {
-        "1": { "name": "punctuation.definition.comment.tiddlywiki5.fields" }
+        "1": {
+          "name": "punctuation.definition.comment.tiddlywiki5.fields"
+        }
       }
     },
     "field": {
       "patterns": [
+        {
+          "comment": "A header field holds a string, and TiddlyWiki renders three of them as wikitext: text carries the tiddler body, and the core transcludes caption and description bare, which parses what they hold. A rule inside a capture opens mid-line, so the block rules anchored on ^ stand aside and the inline ones — a macro call, a transclusion, a link — reach the value as a reader meets it.",
+          "match": "^(text|caption|description)(:)(.*?)$",
+          "name": "meta.tiddler.field.tiddlywiki5",
+          "captures": {
+            "1": {
+              "name": "entity.other.attribute-name.field.wikitext.tiddlywiki5"
+            },
+            "2": {
+              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+            },
+            "3": {
+              "name": "meta.tiddler.field.value.wikitext.tiddlywiki5",
+              "patterns": [
+                {
+                  "include": "text.html.tiddlywiki5"
+                }
+              ]
+            }
+          }
+        },
         {
           "match": "^([^:]*?)(:)(.*?)$",
           "name": "meta.tiddler.field.tiddlywiki5",
@@ -22,8 +52,8 @@
                 {
                   "comment": "Only control characters are illegal in field names since TW5 v5.2.x",
                   "match": "(?=[\\x00-\\x1f])(.*)",
-                  "name":"invalid.illegal.field.name.tiddlywiki5"
-                 }
+                  "name": "invalid.illegal.field.name.tiddlywiki5"
+                }
               ]
             },
             "2": {
