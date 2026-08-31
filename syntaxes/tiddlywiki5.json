@@ -14,8 +14,8 @@
 	],
 	"firstLineMatch": "<!--\\s*tiddlywiki5\\s*-->",
 	"injections": {
-		"L:meta.variable.macro.body.tiddlywiki5, meta.variable.function.body.tiddlywiki5, meta.variable.procedure.body.tiddlywiki5, meta.variable.widget.body.tiddlywiki5": {
-			"comment": "Text replacement in macro body contexts.",
+		"L:meta.variable.macro.body.tiddlywiki5": {
+			"comment": "Text replacement, which a define body takes and the other three definition bodies do not. widget.js gates both forms behind one test, isMacroDefinition, so a procedure, widget or function body carries its parameters as variables and leaves the dollars literal.",
 			"patterns": [
 				{
 					"include": "#substitute-filter"
@@ -5687,7 +5687,7 @@
 			"patterns": [
 				{
 					"comment": "A tilde suppresses this family: TiddlyWiki hands back the text of the link it declined to make, so the span carries a quiet name and the tilde keeps its own punctuation.",
-					"match": "(~)(?<!(?:(?:[a-zß-öø-ÿőű])|(?:[A-ZÀ-ÖØ-ÞŐŰ]))|\\-|_)(?:(?:[A-ZÀ-ÖØ-ÞŐŰ])+(?:[a-zß-öø-ÿőű])+(?:[A-ZÀ-ÖØ-ÞŐŰ])(?:(?:[a-zß-öø-ÿőű])|(?:[A-ZÀ-ÖØ-ÞŐŰ]))*)",
+					"match": "(~)(?<!(?:(?:[a-z\u00df-\u00f6\u00f8-\u00ff\u0151\u0171])|(?:[A-Z\u00c0-\u00d6\u00d8-\u00de\u0150\u0170]))|\\-|_)(?:(?:[A-Z\u00c0-\u00d6\u00d8-\u00de\u0150\u0170])+(?:[a-z\u00df-\u00f6\u00f8-\u00ff\u0151\u0171])+(?:[A-Z\u00c0-\u00d6\u00d8-\u00de\u0150\u0170])(?:(?:[a-z\u00df-\u00f6\u00f8-\u00ff\u0151\u0171])|(?:[A-Z\u00c0-\u00d6\u00d8-\u00de\u0150\u0170]))*)",
 					"name": "meta.link.suppressed.wikilink.tiddlywiki5",
 					"captures": {
 						"1": {
@@ -5696,7 +5696,7 @@
 					}
 				},
 				{
-					"match": "(?<!(?:(?:[a-zß-öø-ÿőű])|(?:[A-ZÀ-ÖØ-ÞŐŰ]))|\\-|_)(?:(?:[A-ZÀ-ÖØ-ÞŐŰ])+(?:[a-zß-öø-ÿőű])+(?:[A-ZÀ-ÖØ-ÞŐŰ])(?:(?:[a-zß-öø-ÿőű])|(?:[A-ZÀ-ÖØ-ÞŐŰ]))*)",
+					"match": "(?<!(?:(?:[a-z\u00df-\u00f6\u00f8-\u00ff\u0151\u0171])|(?:[A-Z\u00c0-\u00d6\u00d8-\u00de\u0150\u0170]))|\\-|_)(?:(?:[A-Z\u00c0-\u00d6\u00d8-\u00de\u0150\u0170])+(?:[a-z\u00df-\u00f6\u00f8-\u00ff\u0151\u0171])+(?:[A-Z\u00c0-\u00d6\u00d8-\u00de\u0150\u0170])(?:(?:[a-z\u00df-\u00f6\u00f8-\u00ff\u0151\u0171])|(?:[A-Z\u00c0-\u00d6\u00d8-\u00de\u0150\u0170]))*)",
 					"name": "meta.link.wikilink.tiddlywiki5"
 				}
 			]

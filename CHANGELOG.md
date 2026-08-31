@@ -7,6 +7,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- Parameter substitution belongs to the define body alone. `widget.js` gates both placeholder
+  forms behind one test — `isMacroDefinition` — so `$name$` for a declared parameter and
+  `$(name)$` for a variable fire in a `\define` body and in a substituted attribute value, and
+  nowhere else. A `\procedure`, `\widget` or `\function` body carries its parameters as variables
+  and leaves the dollars literal, and the injection that paints substitution now names only the
+  macro body. One shape stands as a known gap: a filter operand is matched by a capture, and a
+  TextMate injection does not reach inside a capture, so a filter operand inside a `\function`
+  body still paints substitution — narrowing that road costs correct spans in `\define` bodies.
 - A definition body carries the kind of definition holding it. TiddlyWiki keeps four definition
   pragmas and stamps each stored body with its kind, and the kind decides what LANGUAGE the body
   carries: a `\function` body reaches the filter engine, a `\procedure` or `\widget` body reads as
@@ -106,6 +114,16 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- A gap that closes reports itself. A known-gap specimen asserts what the grammar does not yet do,
+  so it fails, and the gate that ran it read that failure as an absence and announced no gap
+  standing. `tests/known-gaps/README.md` names the moment worth catching — the grammar grows to
+  meet a gap, the specimen passes, and it wants moving to `tests/tiddlywiki5/` with its
+  specification. The gate reports standing gaps and fails on a closed one.
+- The corpus carries substitution where substitution holds. Its only ground for the placeholder
+  scopes stood inside procedure bodies, where TiddlyWiki performs none, so narrowing the
+  injection left eight scopes unexercised. A `\define` body now carries each placeholder form,
+  including one inside a filtered transclusion, and a substituted attribute value carries them
+  outside any definition.
 - The grammar answers on cut ground as well as whole. TiddlyWiki's own tiddlers carry the
   best-formed wikitext in existence, and a learner writes from the other end of that
   distribution. `overreach-check --truncate=<seed>` cuts every specimen short at a seeded offset —

@@ -1,0 +1,26 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A filter operand inside a function body still substitutes"
+
+# TiddlyWiki substitutes $name$ and $(name)$ only where widget.js finds isMacroDefinition — in a
+# \define body — and inside substituted attribute values. A \function body reaches the filter
+# engine untouched, so a filter operand there takes its dollars literally.
+#
+# Two roads carry substitution into a filter operand and only one of them can be narrowed.
+#
+# The INJECTION road answers to scope: narrowing its selector to meta.variable.macro.body stops
+# the substitution reaching a procedure, widget or function body, and that fix stands.
+#
+# The FILTER rule carries its own includes on the operand, and it must. A filter operand is
+# matched by `captures`, and a TextMate injection does not reach inside a captures context —
+# so a filtered transclusion standing in a \define body, {{{ [tag[$a$]] }}}, takes its
+# substitution from the filter rule alone. Measured: cutting those includes costs nine correct
+# spans in \define bodies to spare three wrong ones here.
+#
+# Closing this wants the filter operand parsed by a begin/end region rather than a capture, so an
+# injection can reach it — or a second filter rule for substituting contexts, included only where
+# substitution holds. Neither is a scope-name change, and both touch a rule included from many
+# places.
+
+\function f.subs(a)
+[tag[$a$]]
+#    ^^^ - markup.other.variable.substitute-parameter.tiddlywiki5
+\end

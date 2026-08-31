@@ -1,0 +1,47 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "Parameter substitution belongs to the define body alone"
+
+# A definition body substitutes only where TiddlyWiki substitutes. widget.js gates both forms
+# behind one test — `if(variable.isMacroDefinition)` — so a body opened by \define takes
+# $name$ for each DECLARED parameter and $(name)$ for any variable, and a body opened by
+# \procedure, \widget or \function takes neither.
+#
+# Those three carry their parameters as variables instead: a procedure reads <<a>>, never $a$.
+# Painting $a$ as a substitution there tells an author a construct fires where the text stays
+# literal, and the wiki renders the dollars.
+#
+# A filter OPERAND reaches this by a second road, and one shape of it stands as a known gap —
+# see tests/known-gaps/substitution-inside-a-function-body-filter.tw5.test.
+
+! A define body substitutes a parameter and a variable
+
+\define d.subs(a)
+before $a$ and $(now)$ after
+#      ^^^ markup.other.variable.substitute-parameter.tiddlywiki5
+#              ^^^^^^^ markup.other.variable.substitute-variable.tiddlywiki5
+\end
+
+! A procedure body leaves the dollars alone
+
+\procedure p.subs(a)
+before $a$ after
+#      ^^^ meta.variable.procedure.body.tiddlywiki5 - markup.other.variable.substitute-parameter.tiddlywiki5
+\end
+
+! A widget body leaves the dollars alone
+
+\widget $w.subs(a)
+before $a$ after
+#      ^^^ meta.variable.widget.body.tiddlywiki5 - markup.other.variable.substitute-parameter.tiddlywiki5
+\end
+
+! A filter standing in a widget attribute substitutes nothing
+
+<$list filter="[tag[$a$]]">x</$list>
+#                   ^^^ - markup.other.variable.substitute-parameter.tiddlywiki5
+
+! A filter INSIDE a define body still substitutes, because the whole body does
+
+\define d.filter(a)
+<$list filter="[tag[$a$]]">x</$list>
+#                   ^^^ markup.other.variable.substitute-parameter.tiddlywiki5
+\end

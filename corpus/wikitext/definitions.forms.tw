@@ -24,4 +24,30 @@ raw fenced attribute value
 ```/>
 \end
 
+\define substitutes-a-parameter(a)
+before $a$ after
+\end
+
+\define substitutes-a-variable()
+before $(currentTiddler)$ after
+\end
+
+\define substitutes-a-filter()
+before ${ [tag[Task]] }$ after
+\end
+
+\define substitutes-inside-a-filtered-transclusion(a)
+{{{ [tag[$a$]] }}}
+\end
+
+\procedure leaves-the-dollars-alone(a)
+before $a$ and $(currentTiddler)$ after
+\end
+
 Body text after every definition above.
+
+A substituted attribute value takes the same placeholders a define body takes, and takes them
+outside any definition, so it stands here below the pragmas.
+
+<$text text=`a variable $(currentTiddler)$ and a filter ${ [tag[Task]] }$ in a substituted attribute`/>
+
