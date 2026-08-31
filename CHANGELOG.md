@@ -171,6 +171,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- A witness for what a half-typed construct costs. A grammar meets unfinished input on every
+  keystroke, and a pattern reading cheaply on a finished construct can read expensively on an
+  unfinished one. `npm run backtrack-witness` takes every pattern in every grammar to openers this
+  format writes, followed by a repeating body and no close, and reports any whose cost a reader
+  would feel. It measures sizes a reader reaches while typing: past those a line stops being one
+  somebody wrote and becomes one somebody pasted.
 - A memetic construct leaves the paragraph after it alone. The bleed canary appends a sentence to
   the END of a sample, so it catches a construct swallowing to the end of a file and misses one
   that corrupts the next paragraph and recovers — and the dialect adds eleven opening constructs

@@ -3805,13 +3805,13 @@
 		},
 		"styleblock": {
 			"applyEndPatternLast": 1,
-			"begin": "\\s*(?=@@((?:[^\\s]+?\\:.+?;)+)?((?:\\.[^\\s\\.]+)+)?$)",
+			"begin": "\\s*(?=@@((?:[^\\s:;]+:[^;]*;)+)?((?:\\.[^\\s\\.]+)+)?$)",
 			"end": "(?<=^\\s*@@)\\s*(.*)$",
 			"contentName": "markup.other.style.styleblock.tiddlywiki5",
 			"patterns": [
 				{
 					"comment": "Tokenize markers, styles and classes.",
-					"match": "(?:^|\\G)(@@)((?:[^\\s]+?\\:.+?;)+)?((?:\\.[^\\s\\.]+)+)?\\r?\\n",
+					"match": "(?:^|\\G)(@@)((?:[^\\s:;]+:[^;]*;)+)?((?:\\.[^\\s\\.]+)+)?\\r?\\n",
 					"name": "meta.styleblock.definition.begin.top.tiddlywiki5",
 					"captures": {
 						"1": {
@@ -5278,7 +5278,7 @@
 			]
 		},
 		"styleinline": {
-			"begin": "(@@)((?:[^\\s]+?\\:.+?;)+)?((?:\\.[^\\s\\.]+)+)?",
+			"begin": "(@@)((?:[^\\s:;]+:[^;]*;)+)?((?:\\.[^\\s\\.]+)+)?",
 			"end": "(@@)",
 			"name": "markup.other.style.tiddlywiki5",
 			"beginCaptures": {
@@ -5820,7 +5820,7 @@
 			}
 		},
 		"styles": {
-			"match": "(?:[^\\s]+?\\:.+?;)+",
+			"match": "(?:[^\\s:;]+:[^;]*;)+",
 			"name": "meta.support.styles.tiddlywiki5",
 			"captures": {
 				"0": {
