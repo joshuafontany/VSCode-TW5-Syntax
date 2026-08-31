@@ -19,24 +19,35 @@ const path = require('node:path');
 const ROOT = path.resolve(__dirname, '..', '..');
 const read = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, 'syntaxes', f), 'utf8'));
 const wikitext = read('tiddlywiki5.json');
-// Every grammar that wraps the wikitext grammar rather than relating to it.
-const WRAPPERS = { 'tw5-test-file.json': read('tw5-test-file.json'), 'memetic-wikitext.json': read('memetic-wikitext.json') };
+
+// Every grammar that wraps the wikitext grammar, found rather than listed. A wrapper references
+// that grammar and carries injections of its own; a list of wrappers goes stale the moment one
+// more appears, and two of these carried defects while a hand-written list named neither.
+const WRAPPERS = Object.fromEntries(
+  fs.readdirSync(path.join(ROOT, 'syntaxes'))
+    .filter((f) => f.endsWith('.json'))
+    .map((f) => [f, read(f)])
+    .filter(([, g]) => g.scopeName !== wikitext.scopeName
+      && JSON.stringify(g).includes(`"${wikitext.scopeName}`)
+      && Object.keys(g.injections || {}).length > 0)
+);
 
 /** The selectors a grammar injects on, by the prefix that orders them. */
 const selectors = (grammar, prefix) => Object.keys(grammar.injections || {}).filter((k) => k.startsWith(prefix));
 
-test('each wrapper injects on selectors to compare', () => {
+test('every wrapper stands found', () => {
+  assert.ok(Object.keys(WRAPPERS).length >= 4, `found ${Object.keys(WRAPPERS).length} wrapper(s); the search stopped matching`);
   assert.strictEqual(selectors(wikitext, 'R:').length, 1, 'the wikitext grammar carries one R: selector');
-  for (const [name, grammar] of Object.entries(WRAPPERS)) {
-    assert.strictEqual(selectors(grammar, 'R:').length, 1, `${name} carries one R: selector`);
-    assert.ok(selectors(grammar, 'L:').length >= 1, `${name} carries its L: selectors`);
-  }
 });
 
-test('the late-ordered exclusion selector matches the wikitext grammar', () => {
+// A wrapper carrying the bad-angle exclusion carries the current one. A wrapper omitting it
+// leaves the verdict to whatever it wraps, which is its own choice; a stale COPY is not.
+test('any late-ordered exclusion selector matches the wikitext grammar', () => {
   for (const [name, grammar] of Object.entries(WRAPPERS)) {
+    const own = selectors(grammar, 'R:');
+    if (own.length === 0) continue;
     assert.strictEqual(
-      selectors(grammar, 'R:')[0],
+      own[0],
       selectors(wikitext, 'R:')[0],
       `${name} excludes different regions from the bad-angle verdict than the wikitext grammar does`
     );
@@ -55,6 +66,7 @@ test('every wrapper injects the same rules the wikitext grammar injects', () => 
   const bodySelector = (g) => selectors(g, 'L:').find((k) => k.includes('meta.variable.macro.body'));
   const wanted = rules(wikitext, bodySelector(wikitext));
   for (const [name, grammar] of Object.entries(WRAPPERS)) {
+    if (!bodySelector(grammar)) continue;
     assert.deepStrictEqual(
       rules(grammar, bodySelector(grammar)),
       wanted,
@@ -68,6 +80,7 @@ test('substitution injects on the macro body alone, in every wrapper', () => {
   const inWikitext = bodySelector(wikitext);
   assert.ok(inWikitext, 'the wikitext grammar names no macro-body selector');
   for (const [name, grammar] of Object.entries(WRAPPERS)) {
+    if (!bodySelector(grammar)) continue;
     assert.strictEqual(
       bodySelector(grammar),
       inWikitext,

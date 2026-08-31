@@ -7,6 +7,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A `.tid` file paints a definition body the way a `.tw` file does. Four grammars wrap the
+  wikitext grammar and each keys its injections on its own scope, so the wrapped grammar's never
+  fire. The `.tid` grammar carried a hand-written pattern in place of the shared rules, naming a
+  scope no other grammar emits: inside a `.tid` define body `$name$` and `${ filter }$` coloured
+  nothing at all, and `$(name)$` coloured under a name no theme reaches from the wikitext side.
+  The `.multids` grammar omitted one rule of three. Every wrapper carries the same three, and the
+  gate finds wrappers by what they reference rather than by a list, since a list named two while
+  two more carried defects.
 - Every grammar wrapping the wikitext grammar paints a definition body the same way. A wrapper
   keys its injections on its own scope name, so the wrapped grammar's never fire, and each wrapper
   writes the selector and the rules beneath it again. Both wrappers omitted one rule of three: a

@@ -1,52 +1,44 @@
 {
   "name": "TiddlyWiki5 tid file",
   "scopeName": "source.tiddlywiki5.tid-file",
-  "fileTypes": ["tid"],
+  "fileTypes": [
+    "tid"
+  ],
   "patterns": [
     {
       "comment": "Tokenize tiddler text field.",
       "begin": "(?<=^$)",
       "contentName": "meta.text.html.tiddlywiki5",
-      "patterns": [{ "include": "text.html.tiddlywiki5" }]
+      "patterns": [
+        {
+          "include": "text.html.tiddlywiki5"
+        }
+      ]
     },
     {
       "comment": "Tokenize mandatory tiddler metadata.",
       "begin": "^",
       "end": "^$",
       "contentName": "meta.text.tiddler.fields.tiddlywiki5",
-      "patterns": [{ "include": "source.tiddlywiki5.fields" }]
+      "patterns": [
+        {
+          "include": "source.tiddlywiki5.fields"
+        }
+      ]
     }
   ],
   "injections": {
     "L:meta.variable.macro.body.tiddlywiki5": {
+      "comment": "Text replacement, which a define body takes and the other three definition bodies do not. A grammar wrapping another keys its injections on its own scope, so the wrapped grammar own never fire here.",
       "patterns": [
         {
-          "comment": "Parse variable reference.",
-          "match": "(\\$\\()(.+?)(\\)\\$)",
-          "name": "markup.other.variable.variable-reference.tiddlywiki5",
-          "captures": {
-            "1": {
-              "name": "keyword.other.variable.variable-reference.begin.tiddlywiki5"
-            },
-            "2": { "name": "variable.name.variable-reference.tiddlywiki5" },
-            "3": {
-              "name": "keyword.other.variable.variable-reference.end.tiddlywiki5"
-            }
-          }
+          "include": "text.html.tiddlywiki5#substitute-filter"
         },
         {
-          "comment": "Parse variable parameter.",
-          "match": "(\\$)(?!:\\/)(.*?)(\\$)(?!:\\/)",
-          "name": "markup.other.variable.variable-parameter.tiddlywiki5",
-          "captures": {
-            "1": {
-              "name": "keyword.other.variable.variable-parameter.begin.tiddlywiki5"
-            },
-            "2": { "name": "entity.name.variable-parameter.tiddlywiki5" },
-            "3": {
-              "name": "keyword.other.variable.variable-parameter.end.tiddlywiki5"
-            }
-          }
+          "include": "text.html.tiddlywiki5#substitute-param"
+        },
+        {
+          "include": "text.html.tiddlywiki5#substitute-variable"
         }
       ]
     }

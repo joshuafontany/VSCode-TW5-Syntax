@@ -1,77 +1,81 @@
 {
- "name": "TiddlyWiki5 tid file",
- "scopeName": "source.tiddlywiki5.multids-file",
- "fileTypes": [
-  "multids"
- ],
- "patterns": [
-  {
-   "comment": "The body holds tiddler lines. Wikitext reads inside a value, never at line level, so an unmatched line cannot open a run that swallows the lines after it.",
-   "begin": "(?<=^$)",
-   "contentName": "meta.multids.text.html.tiddlywiki5",
-   "patterns": [
+  "name": "TiddlyWiki5 tid file",
+  "scopeName": "source.tiddlywiki5.multids-file",
+  "fileTypes": [
+    "multids"
+  ],
+  "patterns": [
     {
-     "include": "#comment"
+      "comment": "The body holds tiddler lines. Wikitext reads inside a value, never at line level, so an unmatched line cannot open a run that swallows the lines after it.",
+      "begin": "(?<=^$)",
+      "contentName": "meta.multids.text.html.tiddlywiki5",
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#titleline"
+        }
+      ]
     },
     {
-     "include": "#titleline"
+      "comment": "Tokenize mandatory tiddler metadata.",
+      "begin": "^",
+      "end": "^$",
+      "contentName": "meta.multids.tiddler.fields.tiddlywiki5",
+      "patterns": [
+        {
+          "include": "source.tiddlywiki5.fields"
+        }
+      ]
     }
-   ]
+  ],
+  "injections": {
+    "L:meta.variable.macro.body.tiddlywiki5": {
+      "comment": "Text replacement, which a define body takes and the other three definition bodies do not. A grammar wrapping another keys its injections on its own scope, so the wrapped grammar own never fire here.",
+      "patterns": [
+        {
+          "include": "text.html.tiddlywiki5#substitute-filter"
+        },
+        {
+          "include": "text.html.tiddlywiki5#substitute-param"
+        },
+        {
+          "include": "text.html.tiddlywiki5#substitute-variable"
+        }
+      ]
+    }
   },
-  {
-   "comment": "Tokenize mandatory tiddler metadata.",
-   "begin": "^",
-   "end": "^$",
-   "contentName": "meta.multids.tiddler.fields.tiddlywiki5",
-   "patterns": [
-    {
-     "include": "source.tiddlywiki5.fields"
-    }
-   ]
-  }
- ],
- "injections": {
-  "L:meta.variable.macro.body.tiddlywiki5": {
-   "patterns": [
-    {
-     "include": "text.html.tiddlywiki5#substitute-param"
-    },
-    {
-     "include": "text.html.tiddlywiki5#substitute-variable"
-    }
-   ]
-  }
- },
- "repository": {
-  "comment": {
-   "match": "^(#).*$",
-   "name": "comment.line.number-sign.tiddlywiki5.multids-file",
-   "captures": {
-    "1": {
-     "name": "punctuation.definition.comment.tiddlywiki5.multids-file"
-    }
-   }
-  },
-  "titleline": {
-   "match": "^([^:\\r\\n]*)(: ?)(.*)$",
-   "name": "meta.multids.tiddler.title.text.htmltiddlywiki5.multids-file",
-   "captures": {
-    "1": {
-     "name": "string.value.title.field.tiddlywiki5.multids-file"
-    },
-    "2": {
-     "name": "punctuation.separator.key-value.title-text.tiddlywiki5.multids-file"
-    },
-    "3": {
-     "name": "meta.tiddle.field.text.tiddlywiki5.multids-file",
-     "patterns": [
-      {
-       "include": "text.html.tiddlywiki5"
+  "repository": {
+    "comment": {
+      "match": "^(#).*$",
+      "name": "comment.line.number-sign.tiddlywiki5.multids-file",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.comment.tiddlywiki5.multids-file"
+        }
       }
-     ]
+    },
+    "titleline": {
+      "match": "^([^:\\r\\n]*)(: ?)(.*)$",
+      "name": "meta.multids.tiddler.title.text.htmltiddlywiki5.multids-file",
+      "captures": {
+        "1": {
+          "name": "string.value.title.field.tiddlywiki5.multids-file"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.title-text.tiddlywiki5.multids-file"
+        },
+        "3": {
+          "name": "meta.tiddle.field.text.tiddlywiki5.multids-file",
+          "patterns": [
+            {
+              "include": "text.html.tiddlywiki5"
+            }
+          ]
+        }
+      },
+      "comment": "boot.js takes the first colon on the line: the title runs up to it and the text follows. A line with no value defines a tiddler with empty text."
     }
-   },
-   "comment": "boot.js takes the first colon on the line: the title runs up to it and the text follows. A line with no value defines a tiddler with empty text."
   }
- }
 }
