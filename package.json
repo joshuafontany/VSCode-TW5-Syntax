@@ -194,8 +194,8 @@
     "devDependencies": {
         "language-gfm": "https://github.com/atom/language-gfm",
         "tiddlywiki": "5.4.1",
-        "tm-grammars": "^1.7.2",
-        "tm-themes": "^1.4.1",
+        "tm-grammars": "^1.32.9",
+        "tm-themes": "^1.12.9",
         "vscode-jsp": "https://github.com/pthorsson/vscode-jsp",
         "vscode-tmgrammar-test": "^0.1.3"
     },
