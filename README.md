@@ -64,6 +64,7 @@ Based primarily on the grammars found below, with heavy tweaking and editing.
 * `npm run overreach-host` — the same question over TiddlyWiki's own tiddlers, against the written rulings
 * `npm run overreach-cut` — the same tiddlers cut short at a seeded offset, so the ground stops being well-formed
 * `npm run tests-known-gaps` — the specimens stating what the grammar does not yet do, which fails when one of them starts passing
+* `npm run attribute-guard` — what an attribute-list guard would cost, taken to TiddlyWiki's own tags: how many it would refuse that the parser builds
 * `npm run tw5-oracle -- '<wikitext>'` — the tree TiddlyWiki builds, and `-- --rules` the rules it stands
 * `npm run rule-inventory` — every parser rule, the config tiddlers it answers to, and what TiddlyWiki ships for each
 * `npm run theme-paint -- <scope>` — how many bundled themes paint a scope, and `-- --families` the whole grammar ranked

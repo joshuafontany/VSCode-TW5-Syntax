@@ -19,13 +19,20 @@
 #                         valueless attributes here, and <$text text: word/> binds two of them —
 #                         so the quote opens nothing the loop can take.
 #
-# The tag-name law next door narrows by a character class, which a begin pattern can express.
-# This one narrows by whether a LATER region parses, over an unbounded attribute list where any
-# value may itself carry quotes, braces, backticks or nested angle brackets. A begin pattern
-# cannot look that far.
+# A begin pattern CAN express this law. An attribute list carries alternation, not recursion, so
+# a lookahead over the value forms parseutils.js declares decides the same question, and it costs
+# nothing to run: forty attributes with no close return in under a millisecond, falling rather
+# than rising with length.
 #
-# Cost of leaving it: three shapes a wiki reaches mid-keystroke or by mistake, each of which
-# colours as a working tag until the author renders it.
+# What such a guard cannot express is NESTING — a macro value carrying a macro, a filter value
+# carrying a transclusion — and that decides the matter. `npm run attribute-guard` takes both the
+# guard and the parser to every tag in TiddlyWiki's own tiddlers and reports the split. The guard
+# refuses a handful of tags the parser BUILDS, every one of them nested, and each would stop
+# colouring; it admits a handful the parser refuses, which the grammar already does. Adopting it
+# trades valid content that colours today for the three malformed shapes below.
+#
+# Run the tool before reopening this: the ratio decides it, and the ratio answers to TiddlyWiki's
+# tree rather than to anything written here.
 
 <$link to=<<>>>go</$link>
 # ^^^^ - entity.name.tag.html.tiddlywiki5
