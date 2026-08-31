@@ -92,7 +92,7 @@ npm run lint-closure   # no region admits a nested region that eats its terminat
 ```
 
 `npm run snap-update` re-pins the snapshots. Re-pin in the same commit that moves them,
-and read the diff before you do: a snapshot moving is the tokenization changing, which
+and read the diff before you do: a snapshot moving marks the tokenization changing, which
 either intends something or regresses something.
 
 Adding a file to `tests/samples/` extends both the snapshot set and the canary. No
