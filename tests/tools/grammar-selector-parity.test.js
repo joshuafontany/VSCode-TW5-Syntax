@@ -57,9 +57,9 @@ test('any late-ordered exclusion selector matches the wikitext grammar', () => {
 // A matching selector over different patterns paints differently under the same name. A wrapper
 // writes `text.html.tiddlywiki5#rule` where the wikitext grammar writes `#rule`, because a
 // wrapper reaches the rule through the grammar holding it — so the RULES compare, never the
-// spelling. Measured before this stood: both wrappers omitted substitute-filter, and a
-// `${ filter }$` placeholder inside a define body coloured ten spans in a .tw file and none in
-// either wrapper.
+// spelling. A wrapper omitting one rule of the three paints a placeholder the wikitext grammar
+// paints: a `${ filter }$` inside a define body colours ten spans where all three ride and none
+// where two do.
 test('every wrapper injects the same rules the wikitext grammar injects', () => {
   const rules = (grammar, selector) =>
     (grammar.injections[selector].patterns || []).map((p) => String(p.include).split('#').pop()).sort();

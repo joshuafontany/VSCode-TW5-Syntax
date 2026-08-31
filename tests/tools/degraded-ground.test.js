@@ -18,7 +18,8 @@
 //   THE STORED BODY. A macro body is stored verbatim, never parsed, so the parser rules on
 //   nothing inside it. Reading "not plain text" there as "the construct works" lets the cut
 //   explain a span nothing ever examined — 377 of 519 spans at seed 1, three quarters of the
-//   result, until the check carried the same opaque law `review` already held.
+//   result. The check carries the same opaque law `review` holds, so a stored body answers
+//   neither question here either.
 
 const test = require('node:test');
 const assert = require('node:assert');

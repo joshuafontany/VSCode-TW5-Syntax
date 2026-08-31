@@ -3,8 +3,8 @@
 // The dialect includes the wikitext grammar rather than reimplementing it, so the claim looks
 // structural — but a TextMate injection keys on a scope name, and a wrapper fires none of the
 // wrapped grammar's. Whatever an injection paints, a wrapper loses unless it carries the
-// injection too. Measured before the dialect carried them: a wikitext file read under the dialect
-// lost 34 spans, and the superset claim stood false while every gate read green.
+// injection too. A dialect missing them loses spans a wikitext file carries — 34 of them across
+// this corpus — and the superset claim reads false while every other gate reads green.
 //
 // A superset may ADD a span, since the dialect carries constructs wikitext has no rule for. It
 // may not lose one, and it may not drop a scope from one it keeps.
