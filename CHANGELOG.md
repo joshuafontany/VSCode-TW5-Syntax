@@ -171,6 +171,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- A memetic construct leaves the paragraph after it alone. The bleed canary appends a sentence to
+  the END of a sample, so it catches a construct swallowing to the end of a file and misses one
+  that corrupts the next paragraph and recovers — and the dialect adds eleven opening constructs
+  the wikitext grammar has no rule for. A gate puts an ordinary sentence after every one of them
+  and asks that each carry a paragraph and nothing else. The construct list comes from the
+  grammar's own top-level patterns, so a rule added later joins the probe and reports if nobody
+  writes it a specimen. Measured: none of the eleven bleeds, and an unterminated one recovers
+  rather than swallowing what follows.
 - The memetic dialect holds wikitext entire, by measurement. It includes the wikitext grammar
   rather than reimplementing it, which makes the superset claim look structural — and a TextMate
   injection keys on a scope name, so a wrapper fires none of the wrapped grammar's. A wikitext
