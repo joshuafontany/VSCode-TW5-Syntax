@@ -29,6 +29,15 @@ for gap in "${gaps[@]}"; do
 done
 
 echo "known-gaps  ${#gaps[@]} specimen(s), $standing still standing"
+
+# The README states the count in prose, and prose does not move when a gap opens or closes.
+readme="./tests/known-gaps/README.md"
+claimed=$(grep -oE '\*\*[0-9]+ gaps? stands?\.\*\*|\*\*No gap stands open\.\*\*' "$readme" | head -1)
+expected="**$standing gap$([ "$standing" -eq 1 ] || echo s) stand$([ "$standing" -eq 1 ] && echo s).**"
+if [ "$claimed" != "$expected" ]; then
+  echo "  the README states ${claimed:-no count}; the directory carries $expected"
+  exit 1
+fi
 if [ ${#closed[@]} -gt 0 ]; then
   echo "  ${#closed[@]} gap(s) the grammar now MEETS — move each to tests/tiddlywiki5/ with its specification:"
   printf '    %s\n' "${closed[@]}"

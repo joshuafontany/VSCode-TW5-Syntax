@@ -57,6 +57,17 @@ test('the section states a ruling count to weld', () => {
   assert.ok(stated('ruling').length > 0, 'the section states no ruling count — nothing to weld');
 });
 
+// The README names gates a contributor runs. A renamed or retired script leaves the name
+// standing in prose, where it reads as an instruction and fails only in the reader's terminal.
+test('every gate the README names exists', () => {
+  const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+  const scripts = require(path.join(ROOT, 'package.json')).scripts;
+  const named = [...readme.matchAll(/`npm run ([a-z0-9:-]+)/g)].map((m) => m[1]);
+  assert.ok(named.length > 5, `the README names ${named.length} gate(s) — the pattern stopped matching`);
+  const missing = [...new Set(named)].filter((name) => !(name in scripts));
+  assert.deepStrictEqual(missing, [], `the README names gate(s) package.json does not carry: ${missing.join(', ')}`);
+});
+
 test('every ruling count the record states matches the divergence file', () => {
   const onDisk = rulingsOnDisk();
   for (const figure of stated('ruling')) {
