@@ -155,6 +155,18 @@
                 "language": "memetic-wikitext",
                 "scopeName": "text.html.tiddlywiki5.memetic-wikitext",
                 "path": "./syntaxes/memetic-wikitext.json"
+            },
+            {
+                "path": "./syntaxes/tw5-substitution-injection.json",
+                "scopeName": "text.html.tiddlywiki5.substitution",
+                "injectTo": [
+                    "text.html.tiddlywiki5",
+                    "text.html.tiddlywiki5.test",
+                    "source.tiddlywiki5.tid-file",
+                    "source.tiddlywiki5.fields",
+                    "source.tiddlywiki5.multids-file",
+                    "text.html.tiddlywiki5.memetic-wikitext"
+                ]
             }
         ],
         "snippets": [

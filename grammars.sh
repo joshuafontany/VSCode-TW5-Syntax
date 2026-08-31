@@ -22,6 +22,7 @@ VSCODE_EXTROOT="${VSCODE_EXTROOT:-/nonexistent}"
 
 GRAMMARS=(
     "syntaxes/tiddlywiki5.json"
+    "syntaxes/tw5-substitution-injection.json"
     "tests/asm.json"
     "tests/Asciidoctor.json"
     "tests/APIBlueprint.tmLanguage"

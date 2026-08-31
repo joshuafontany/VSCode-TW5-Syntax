@@ -315,6 +315,15 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   an ordinary value, and standing alone it reads as content like any other character.
 
 ### Changed
+- A shared injection stands in one grammar and reaches every scope. A TextMate injection keys on a
+  scope name, and a grammar wrapping another carries a different one — so an injection written
+  inside the wikitext grammar fires only there, and each of the four wrappers had to copy it.
+  Every copy that drifted or went missing cost a dialect its colouring silently: a `.tid` body its
+  parameter placeholders, a `.mem` body all three, a `.tw5.test` body one of them. The substitution
+  injection ships as its own grammar, registered to inject into every scope the manifest declares.
+  Adding a scope means adding it to one list; forgetting one leaves the injection reaching nobody,
+  which a gate reads at once. Colouring stands identical across all four dialects, with no snapshot
+  moved.
 - A macro call and a bracketed title close themselves and match nothing. Auto-closing saves a
   keystroke; matching draws a line between an opener and a closer and paints an unmatched one as
   an error — and wikitext defeats both pairs. A blockquote opens `<<<` and closes `<<<`, so with

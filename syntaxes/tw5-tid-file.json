@@ -26,21 +26,5 @@
         }
       ]
     }
-  ],
-  "injections": {
-    "L:meta.variable.macro.body.tiddlywiki5": {
-      "comment": "Text replacement, which a define body takes and the other three definition bodies do not. A grammar wrapping another keys its injections on its own scope, so the wrapped grammar own never fire here.",
-      "patterns": [
-        {
-          "include": "text.html.tiddlywiki5#substitute-filter"
-        },
-        {
-          "include": "text.html.tiddlywiki5#substitute-param"
-        },
-        {
-          "include": "text.html.tiddlywiki5#substitute-variable"
-        }
-      ]
-    }
-  }
+  ]
 }

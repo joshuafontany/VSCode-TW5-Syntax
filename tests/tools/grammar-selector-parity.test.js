@@ -18,6 +18,7 @@ const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..', '..');
 const read = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, 'syntaxes', f), 'utf8'));
+const pkg = require(path.join(ROOT, 'package.json'));
 const wikitext = read('tiddlywiki5.json');
 
 // Every grammar that wraps the wikitext grammar, found rather than listed. A wrapper references
@@ -35,57 +36,59 @@ const WRAPPERS = Object.fromEntries(
 /** The selectors a grammar injects on, by the prefix that orders them. */
 const selectors = (grammar, prefix) => Object.keys(grammar.injections || {}).filter((k) => k.startsWith(prefix));
 
-test('every wrapper stands found', () => {
-  assert.ok(Object.keys(WRAPPERS).length >= 4, `found ${Object.keys(WRAPPERS).length} wrapper(s); the search stopped matching`);
-  assert.strictEqual(selectors(wikitext, 'R:').length, 1, 'the wikitext grammar carries one R: selector');
+// A shared injection stands in ONE grammar, registered to reach every scope that colours
+// wikitext. A TextMate injection keys on a scope name and a wrapper carries a different one, so an
+// injection written inside the base grammar fires only there — which is why each wrapper once
+// copied it, and why a wrapper that forgot the copy lost colouring silently. A registration
+// forgotten leaves the injection reaching nobody, which this reads at once.
+test('a shared injection stands in one grammar and reaches every scope', () => {
+  const injections = fs.readdirSync(path.join(ROOT, 'syntaxes'))
+    .filter((f) => f.endsWith('.json'))
+    .map((f) => [f, read(f)])
+    .filter(([, g]) => g.injectionSelector);
+  assert.ok(injections.length > 0, 'no grammar stands as an injection');
+
+  const declared = new Set(pkg.contributes.grammars.filter((g) => !g.injectTo).map((g) => g.scopeName));
+  for (const [file, grammar] of injections) {
+    const entry = pkg.contributes.grammars.find((g) => g.scopeName === grammar.scopeName);
+    assert.ok(entry, `${file} declares a scope the manifest never registers`);
+    assert.ok(Array.isArray(entry.injectTo) && entry.injectTo.length,
+      `${file} stands as an injection and reaches no scope`);
+    const unreached = [...declared].filter((s) => !entry.injectTo.includes(s));
+    assert.deepStrictEqual(unreached, [],
+      `${file} reaches every scope but ${unreached.join(', ')}, where the same construct would go uncoloured`);
+  }
 });
 
-// A wrapper carrying the bad-angle exclusion carries the current one. A wrapper omitting it
-// leaves the verdict to whatever it wraps, which stands as its own choice; a stale COPY does not.
+// A copy beside the registration paints twice or drifts apart. One or the other, never both.
+test('no grammar copies an injection a registered grammar already carries', () => {
+  const selectors = fs.readdirSync(path.join(ROOT, 'syntaxes'))
+    .filter((f) => f.endsWith('.json'))
+    .map((f) => read(f))
+    .filter((g) => g.injectionSelector)
+    .map((g) => g.injectionSelector);
+  for (const file of fs.readdirSync(path.join(ROOT, 'syntaxes')).filter((f) => f.endsWith('.json'))) {
+    const grammar = read(file);
+    if (grammar.injectionSelector) continue;
+    for (const own of Object.keys(grammar.injections || {})) {
+      assert.ok(!selectors.includes(own),
+        `${file} copies an injection a registered grammar already carries: ${own}`);
+    }
+  }
+});
+
+// The exclusion selector still stands copied, so the copies answer to each other.
 test('any late-ordered exclusion selector matches the wikitext grammar', () => {
-  for (const [name, grammar] of Object.entries(WRAPPERS)) {
+  const wrappers = fs.readdirSync(path.join(ROOT, 'syntaxes'))
+    .filter((f) => f.endsWith('.json'))
+    .map((f) => [f, read(f)])
+    .filter(([, g]) => g.scopeName !== wikitext.scopeName && !g.injectionSelector
+      && JSON.stringify(g).includes(`"${wikitext.scopeName}`) && Object.keys(g.injections || {}).length > 0);
+  for (const [name, grammar] of wrappers) {
     const own = selectors(grammar, 'R:');
     if (own.length === 0) continue;
-    assert.strictEqual(
-      own[0],
-      selectors(wikitext, 'R:')[0],
-      `${name} excludes different regions from the bad-angle verdict than the wikitext grammar does`
-    );
-  }
-});
-
-// A matching selector over different patterns paints differently under the same name. A wrapper
-// writes `text.html.tiddlywiki5#rule` where the wikitext grammar writes `#rule`, because a
-// wrapper reaches the rule through the grammar holding it — so the RULES compare, never the
-// spelling. A wrapper omitting one rule of the three paints a placeholder the wikitext grammar
-// paints: a `${ filter }$` inside a define body colours ten spans where all three ride and none
-// where two do.
-test('every wrapper injects the same rules the wikitext grammar injects', () => {
-  const rules = (grammar, selector) =>
-    (grammar.injections[selector].patterns || []).map((p) => String(p.include).split('#').pop()).sort();
-  const bodySelector = (g) => selectors(g, 'L:').find((k) => k.includes('meta.variable.macro.body'));
-  const wanted = rules(wikitext, bodySelector(wikitext));
-  for (const [name, grammar] of Object.entries(WRAPPERS)) {
-    if (!bodySelector(grammar)) continue;
-    assert.deepStrictEqual(
-      rules(grammar, bodySelector(grammar)),
-      wanted,
-      `${name} injects different rules under the same selector, so a placeholder paints in one grammar and not the other`
-    );
-  }
-});
-
-test('substitution injects on the macro body alone, in every wrapper', () => {
-  const bodySelector = (g) => selectors(g, 'L:').find((k) => k.includes('meta.variable.macro.body'));
-  const inWikitext = bodySelector(wikitext);
-  assert.ok(inWikitext, 'the wikitext grammar names no macro-body selector');
-  for (const [name, grammar] of Object.entries(WRAPPERS)) {
-    if (!bodySelector(grammar)) continue;
-    assert.strictEqual(
-      bodySelector(grammar),
-      inWikitext,
-      `${name} substitutes where the wikitext grammar does not, or fails to where it does`
-    );
+    assert.strictEqual(own[0], selectors(wikitext, 'R:')[0],
+      `${name} excludes different regions from the bad-angle verdict than the wikitext grammar does`);
   }
 });
 

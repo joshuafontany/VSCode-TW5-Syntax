@@ -523,20 +523,6 @@
 				}
 			]
 		},
-		"L:meta.variable.macro.body.tiddlywiki5": {
-			"comment": "Text replacement, which a define body takes and the other three definition bodies do not. This selector answers to the same law the wikitext grammar holds: widget.js gates both placeholder forms behind isMacroDefinition.",
-			"patterns": [
-				{
-					"include": "text.html.tiddlywiki5#substitute-filter"
-				},
-				{
-					"include": "text.html.tiddlywiki5#substitute-param"
-				},
-				{
-					"include": "text.html.tiddlywiki5#substitute-variable"
-				}
-			]
-		},
 		"R:text.html - (comment.block, text.html meta.embedded, meta.tag, meta.filter.tiddlywiki5, meta.transclusion.tiddlywiki5, meta.variable.macrocallinline.tiddlywiki5, meta.variable.macrocallblock.tiddlywiki5, markup.quote.blockquote.tiddlywiki5, markup.inline.raw)": {
 			"comment": "Uses R: to ensure this matches after any other injections.",
 			"patterns": [

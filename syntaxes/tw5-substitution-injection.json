@@ -1,0 +1,11 @@
+{
+  "name": "TiddlyWiki5 substitution",
+  "scopeName": "text.html.tiddlywiki5.substitution",
+  "injectionSelector": "L:meta.variable.macro.body.tiddlywiki5",
+  "comment": "Text replacement, which a define body takes and the other three definition bodies do not. widget.js gates both placeholder forms behind isMacroDefinition.\n\nThis stands as a grammar of its own so one registration reaches every scope that colours wikitext. A TextMate injection keys on a scope name, and a grammar wrapping another carries a different one — so an injection written inside the base grammar fires only there, and each wrapper had to copy it. A copy forgotten loses colouring and says nothing; a registration forgotten leaves this grammar reaching nobody, which a gate reads at once.",
+  "patterns": [
+    { "include": "text.html.tiddlywiki5#substitute-filter" },
+    { "include": "text.html.tiddlywiki5#substitute-param" },
+    { "include": "text.html.tiddlywiki5#substitute-variable" }
+  ]
+}

@@ -14,20 +14,6 @@
 	],
 	"firstLineMatch": "<!--\\s*tiddlywiki5\\s*-->",
 	"injections": {
-		"L:meta.variable.macro.body.tiddlywiki5": {
-			"comment": "Text replacement, which a define body takes and the other three definition bodies do not. widget.js gates both forms behind one test, isMacroDefinition, so a procedure, widget or function body carries its parameters as variables and leaves the dollars literal.",
-			"patterns": [
-				{
-					"include": "#substitute-filter"
-				},
-				{
-					"include": "#substitute-param"
-				},
-				{
-					"include": "#substitute-variable"
-				}
-			]
-		},
 		"text.substituted.attribute.html.tiddlywiki5": {
 			"comment": "Text replacement in text substiitution attributes.",
 			"patterns": [
