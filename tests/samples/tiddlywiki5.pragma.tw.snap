@@ -4,7 +4,7 @@
 #                 ^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
 >\procedure saveNewWikiActions()
 #^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.tiddlywiki5
 #          ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5
 #           ^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 entity.name.variable.procedure.tiddlywiki5
 #                             ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
@@ -12,7 +12,7 @@
 >    \procedure saveNewWikiCallback()
 #^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5
 #    ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-#     ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+#     ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.tiddlywiki5
 #              ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5
 #               ^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 entity.name.variable.procedure.tiddlywiki5
 #                                  ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
@@ -20,7 +20,7 @@
 >        \procedure failureHandler()
 #^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5
 #        ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-#         ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+#         ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.tiddlywiki5
 #                  ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5
 #                   ^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 entity.name.variable.procedure.tiddlywiki5
 #                                 ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
@@ -476,7 +476,7 @@
 >
 >\function my.function1(parameter:"2") [<parameter>multiply[1.5]]
 #^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.html.tiddlywiki5
+# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.tiddlywiki5
 #         ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5
 #          ^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 entity.name.variable.function.tiddlywiki5
 #                      ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
@@ -498,7 +498,7 @@
 #                                                               ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-inline.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
 >\function my.function2(parameter:"2")
 #^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.html.tiddlywiki5
+# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.tiddlywiki5
 #         ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5
 #          ^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 entity.name.variable.function.tiddlywiki5
 #                      ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
@@ -531,7 +531,7 @@
 #                ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
 >\function my.nested.function(parameter:"2")
 #^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.html.tiddlywiki5
+# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.tiddlywiki5
 #         ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5
 #          ^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 entity.name.variable.function.tiddlywiki5
 #                            ^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
@@ -771,7 +771,7 @@
 #                                                            ^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5 punctuation.definition.variable.parameters.end.tiddlywiki5
 >\function my-function(parameter:"2")
 #^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.html.tiddlywiki5
+# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.tiddlywiki5
 #         ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5
 #          ^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 entity.name.variable.function.tiddlywiki5
 #                     ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
@@ -801,14 +801,14 @@
 #                                  ^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
 >\procedure my.procedure()
 #^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.tiddlywiki5
 #          ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5
 #           ^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 entity.name.variable.procedure.tiddlywiki5
 #                       ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
 #                        ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
 >\function my-function(parameter:"2")
 #^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.html.tiddlywiki5
+# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.tiddlywiki5
 #         ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5
 #          ^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 entity.name.variable.function.tiddlywiki5
 #                     ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
@@ -834,7 +834,7 @@
 >
 >\procedure my.procedure2() [[test]] $test$ ${n}$ $(fnord)$ <!-- no substitute filters here -->
 #^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.tiddlywiki5
 #          ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5
 #           ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 entity.name.variable.procedure.tiddlywiki5
 #                        ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
@@ -851,7 +851,7 @@
 #                                                                                           ^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-inline.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.paragraph.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
 >\procedure my.procedure3()
 #^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.tiddlywiki5
 #          ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5
 #           ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 entity.name.variable.procedure.tiddlywiki5
 #                        ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
@@ -871,7 +871,7 @@
 #     ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 entity.name.variable.procedure.tiddlywiki5
 >\widget $my.widget1(attribute:"Default value")
 #^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 keyword.control.directive.widget.html.tiddlywiki5
+# ^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 keyword.control.directive.widget.tiddlywiki5
 #       ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5
 #        ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 entity.name.variable.widget.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
 #         ^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 entity.name.variable.widget.tiddlywiki5
@@ -884,7 +884,7 @@
 #                                             ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
 >\function my.function1(parameter:"2") [<parameter>multiply[1.5]]
 #^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.html.tiddlywiki5
+# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.tiddlywiki5
 #         ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5
 #          ^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 entity.name.variable.function.tiddlywiki5
 #                      ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
@@ -906,7 +906,7 @@
 #                                                               ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-inline.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
 >\function my-function(parameter:"2")
 #^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.html.tiddlywiki5
+# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.tiddlywiki5
 #         ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5
 #          ^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 entity.name.variable.function.tiddlywiki5
 #                     ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-block.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
@@ -963,7 +963,7 @@
 >
 >\widget $my.widget(attribute:"Default value")
 #^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 keyword.control.directive.widget.html.tiddlywiki5
+# ^^^^^^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 keyword.control.directive.widget.tiddlywiki5
 #       ^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5
 #        ^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 entity.name.variable.widget.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
 #         ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 entity.name.variable.widget.tiddlywiki5
@@ -977,7 +977,7 @@
 >
 >\widget $my.widget1(attribute:"Default value")
 #^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 keyword.control.directive.widget.html.tiddlywiki5
+# ^^^^^^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 keyword.control.directive.widget.tiddlywiki5
 #       ^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5
 #        ^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 entity.name.variable.widget.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
 #         ^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 meta.variable.widget-block.tiddlywiki5 meta.variable.widget.body.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 entity.name.variable.widget.tiddlywiki5
@@ -1013,7 +1013,7 @@
 >
 >\function fn-inline() [tag[Task]]
 #^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.html.tiddlywiki5
+# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.tiddlywiki5
 #         ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5
 #          ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 entity.name.variable.function.tiddlywiki5
 #                   ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
@@ -1036,7 +1036,7 @@
 #                        ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-inline.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 meta.paragraph.tiddlywiki5
 >\procedure $dollar.proc() one line
 #^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.tiddlywiki5
 #          ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5
 #           ^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 entity.name.variable.procedure.tiddlywiki5
 #                       ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
@@ -1045,7 +1045,7 @@
 #                          ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-inline.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.paragraph.tiddlywiki5
 >\function $dollar.fn() [tag[Task]]
 #^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.html.tiddlywiki5
+# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.tiddlywiki5
 #         ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5
 #          ^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 entity.name.variable.function.tiddlywiki5
 #                    ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
@@ -1070,7 +1070,7 @@
 #                                       ^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-inline.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 meta.paragraph.tiddlywiki5
 >\procedure mvv-inline(a:((var))) body
 #^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.tiddlywiki5
 #          ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5
 #           ^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 entity.name.variable.procedure.tiddlywiki5
 #                     ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
@@ -1084,7 +1084,7 @@
 #                                 ^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.procedure-inline.tiddlywiki5 meta.variable.procedure.body.tiddlywiki5 meta.paragraph.tiddlywiki5
 >\procedure dollars-stay-literal(a) $a$ and $(b)$ stay literal here
 #^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.tiddlywiki5
 #          ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5
 #           ^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 entity.name.variable.procedure.tiddlywiki5
 #                               ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
@@ -1095,7 +1095,7 @@
 >
 >\widget $my.block.widget()
 #^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 keyword.control.directive.widget.html.tiddlywiki5
+# ^^^^^^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 keyword.control.directive.widget.tiddlywiki5
 #       ^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5
 #        ^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 entity.name.variable.widget.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
 #         ^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 entity.name.variable.widget.tiddlywiki5

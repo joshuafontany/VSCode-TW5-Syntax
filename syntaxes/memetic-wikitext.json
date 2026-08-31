@@ -338,7 +338,71 @@
 					"name": "punctuation.separator.scheme.lar.memetic-wikitext"
 				},
 				"3": {
-					"name": "string.unquoted.uri.lar.memetic-wikitext"
+					"name": "string.unquoted.uri.lar.memetic-wikitext",
+					"patterns": [
+						{
+							"comment": "The authority: a persona, the role it holds, and the place it stands.",
+							"match": "(//)([^:@/\\s]+)(:)([^@/\\s]+)(@)([^/\\s]+)",
+							"captures": {
+								"1": {
+									"name": "punctuation.definition.authority.lar.memetic-wikitext"
+								},
+								"2": {
+									"name": "entity.name.persona.lar.memetic-wikitext"
+								},
+								"3": {
+									"name": "punctuation.separator.role.lar.memetic-wikitext"
+								},
+								"4": {
+									"name": "support.role.lar.memetic-wikitext"
+								},
+								"5": {
+									"name": "punctuation.separator.authority.lar.memetic-wikitext"
+								},
+								"6": {
+									"name": "entity.name.place.lar.memetic-wikitext"
+								}
+							}
+						},
+						{
+							"comment": "An empty authority, which the document form writes.",
+							"match": "(//)(?=/)",
+							"captures": {
+								"1": {
+									"name": "punctuation.definition.authority.lar.memetic-wikitext"
+								}
+							}
+						},
+						{
+							"comment": "The root segment: heading, angle of approach, carried dynamic.",
+							"match": "(/)([A-Za-z0-9_-]+)(\\.)([A-Za-z0-9_-]+)(\\.)([A-Za-z0-9_-]+)(?=[/\\s>\"']|$)",
+							"captures": {
+								"1": {
+									"name": "punctuation.separator.path.lar.memetic-wikitext"
+								},
+								"2": {
+									"name": "entity.name.heading.lar.memetic-wikitext"
+								},
+								"3": {
+									"name": "punctuation.separator.root.lar.memetic-wikitext"
+								},
+								"4": {
+									"name": "entity.name.angle.lar.memetic-wikitext"
+								},
+								"5": {
+									"name": "punctuation.separator.root.lar.memetic-wikitext"
+								},
+								"6": {
+									"name": "entity.name.dynamic.lar.memetic-wikitext"
+								}
+							}
+						},
+						{
+							"comment": "Any other path separator.",
+							"match": "/",
+							"name": "punctuation.separator.path.lar.memetic-wikitext"
+						}
+					]
 				}
 			},
 			"patterns": [

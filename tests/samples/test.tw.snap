@@ -1,6 +1,6 @@
 >\function __testFunction() [<itemTemplate>!is[blank]then[text]]
 #^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.html.tiddlywiki5
+# ^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.tiddlywiki5
 #         ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5
 #          ^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 entity.name.variable.function.tiddlywiki5
 #                        ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
@@ -22,7 +22,7 @@
 #                                                              ^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 meta.variable.function-inline.tiddlywiki5 meta.variable.function.body.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
 >\procedure __test(animal, __plant)
 #^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+# ^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.tiddlywiki5
 #          ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5
 #           ^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 entity.name.variable.procedure.tiddlywiki5
 #                 ^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5

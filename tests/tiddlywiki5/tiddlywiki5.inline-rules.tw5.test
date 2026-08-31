@@ -21,9 +21,17 @@ Code `one` and ``two`` here.
 #     ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.inline.raw.single.tiddlywiki5
 #                ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.inline.raw.double.tiddlywiki5
 
+# prettylink.js reads text = match[1] and link = match[2] || match[1]: the first segment carries
+# what a reader sees and clicks, and the second, when it stands, carries the tiddler title. So the
+# caption reads as the link and the target reads as the title it names, and a plain link's one
+# segment reads as the link because it serves as both.
+
 A link [[Caption|Target]] here.
-#        ^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 string.entity.other.title.link.tiddlywiki5
-#                ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
+#        ^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
+#                ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 string.entity.other.title.link.tiddlywiki5
+
+A link [[Some Title]] here.
+#        ^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
 
 A transclusion {{Title||Template}} here.
 #                       ^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5

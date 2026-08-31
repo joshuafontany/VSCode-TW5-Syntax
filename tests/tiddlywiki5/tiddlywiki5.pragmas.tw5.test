@@ -19,7 +19,7 @@
 #^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5 keyword.control.directive.parameters.tiddlywiki5
 
 \function aFn(x) [<x>addsuffix[y]]
-#^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.html.tiddlywiki5
+#^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.tiddlywiki5
 #         ^^^ text.html.tiddlywiki5 meta.directive.variable.function.tiddlywiki5 entity.name.variable.function.tiddlywiki5
 
 \define aMacro(a,b)
@@ -31,14 +31,14 @@ macro body
 #^^^ text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 keyword.control.directive.end.tiddlywiki5
 
 \procedure aProc(x)
-#^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+#^^^^^^^^^ text.html.tiddlywiki5 meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.tiddlywiki5
 
 procedure body
 
 \end
 
 \widget $my.widget(x)
-#^^^^^^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 keyword.control.directive.widget.html.tiddlywiki5
+#^^^^^^ text.html.tiddlywiki5 meta.directive.variable.widget.tiddlywiki5 keyword.control.directive.widget.tiddlywiki5
 
 widget body
 

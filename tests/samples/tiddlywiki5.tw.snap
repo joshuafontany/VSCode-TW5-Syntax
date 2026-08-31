@@ -1683,9 +1683,9 @@
 # ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
 #  ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.begin.tiddlywiki5
 #   ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.begin.tiddlywiki5
-#    ^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 string.entity.other.title.link.tiddlywiki5
+#    ^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
 #                        ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.title.tiddlywiki5
-#                         ^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
+#                         ^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 string.entity.other.title.link.tiddlywiki5
 #                                      ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.end.tiddlywiki5
 #                                       ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.end.tiddlywiki5
 >* [[Link title|Anything is a link here]]
@@ -1693,9 +1693,9 @@
 # ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5
 #  ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.begin.tiddlywiki5
 #   ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.begin.tiddlywiki5
-#    ^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 string.entity.other.title.link.tiddlywiki5
+#    ^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
 #              ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.title.tiddlywiki5
-#               ^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
+#               ^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 string.entity.other.title.link.tiddlywiki5
 #                                      ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.end.tiddlywiki5
 #                                       ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.end.tiddlywiki5
 >* [[ Link title | ~http://tiddlywiki.com ]]
@@ -1704,11 +1704,11 @@
 #  ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.begin.tiddlywiki5
 #   ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.begin.tiddlywiki5
 #    ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5
-#     ^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 string.entity.other.title.link.tiddlywiki5
+#     ^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
 #               ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5
 #                ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.title.tiddlywiki5
 #                 ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5
-#                  ^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
+#                  ^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 string.entity.other.title.link.tiddlywiki5
 #                                        ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5
 #                                         ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.end.tiddlywiki5
 #                                          ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.end.tiddlywiki5
@@ -1718,11 +1718,11 @@
 #  ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.begin.tiddlywiki5
 #   ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.begin.tiddlywiki5
 #    ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5
-#     ^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 string.entity.other.title.link.tiddlywiki5
+#     ^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
 #               ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5
 #                ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.title.tiddlywiki5
 #                 ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5
-#                   ^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
+#                   ^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 string.entity.other.title.link.tiddlywiki5
 #                            ^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5
 #                              ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.end.tiddlywiki5
 #                               ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.end.tiddlywiki5
@@ -1732,11 +1732,11 @@
 #  ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.begin.tiddlywiki5
 #   ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.begin.tiddlywiki5
 #    ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5
-#     ^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 string.entity.other.title.link.tiddlywiki5
+#     ^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
 #               ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5
 #                ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.title.tiddlywiki5
 #                 ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5
-#                  ^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
+#                  ^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 string.entity.other.title.link.tiddlywiki5
 #                             ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5
 #                              ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.end.tiddlywiki5
 #                               ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.end.tiddlywiki5
@@ -1746,10 +1746,10 @@
 #  ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.begin.tiddlywiki5
 #   ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.begin.tiddlywiki5
 #    ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5
-#     ^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 string.entity.other.title.link.tiddlywiki5
+#     ^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
 #               ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5
 #                ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.title.tiddlywiki5
-#                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
+#                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 string.entity.other.title.link.tiddlywiki5
 #                                                           ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.end.tiddlywiki5
 #                                                            ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.end.tiddlywiki5
 >* [[ | ]]
@@ -1759,7 +1759,7 @@
 #   ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.begin.tiddlywiki5
 #    ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5
 #     ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.title.tiddlywiki5
-#      ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5
+#      ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 string.entity.other.title.link.tiddlywiki5
 #       ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.end.tiddlywiki5
 #        ^ text.html.tiddlywiki5 unnumbered.unordered.ul.li.markup.list.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.end.tiddlywiki5
 >* [[|]]

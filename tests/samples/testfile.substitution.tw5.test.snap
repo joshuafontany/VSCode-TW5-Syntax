@@ -21,7 +21,7 @@
 # ^^^ text.html.tiddlywiki5.test meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 keyword.control.directive.end.tiddlywiki5
 >\procedure p.subs(a)
 #^ text.html.tiddlywiki5.test meta.directive.variable.procedure.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^^ text.html.tiddlywiki5.test meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+# ^^^^^^^^^ text.html.tiddlywiki5.test meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.tiddlywiki5
 #          ^ text.html.tiddlywiki5.test meta.directive.variable.procedure.tiddlywiki5
 #           ^^^^^^ text.html.tiddlywiki5.test meta.directive.variable.procedure.tiddlywiki5 entity.name.variable.procedure.tiddlywiki5
 #                 ^ text.html.tiddlywiki5.test meta.directive.variable.procedure.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5

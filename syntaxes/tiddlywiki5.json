@@ -341,7 +341,7 @@
 							"name": "punctuation.definition.directive.tiddlywiki5"
 						},
 						"2": {
-							"name": "keyword.control.directive.function.html.tiddlywiki5"
+							"name": "keyword.control.directive.function.tiddlywiki5"
 						},
 						"3": {
 							"name": "entity.name.variable.function.tiddlywiki5"
@@ -479,7 +479,7 @@
 							"name": "punctuation.definition.directive.tiddlywiki5"
 						},
 						"2": {
-							"name": "keyword.control.directive.procedure.html.tiddlywiki5"
+							"name": "keyword.control.directive.procedure.tiddlywiki5"
 						},
 						"3": {
 							"name": "entity.name.variable.procedure.tiddlywiki5"
@@ -626,7 +626,7 @@
 							"name": "punctuation.definition.directive.tiddlywiki5"
 						},
 						"2": {
-							"name": "keyword.control.directive.widget.html.tiddlywiki5"
+							"name": "keyword.control.directive.widget.tiddlywiki5"
 						},
 						"3": {
 							"name": "entity.name.variable.widget.tiddlywiki5"
@@ -5621,16 +5621,25 @@
 			},
 			"patterns": [
 				{
-					"comment": "Parse links like [[<Link title>|<URI>]]",
-					"match": "\\s*(?:([^|\\]]*?)\\s*(\\|))?\\s*([^\\]]+?)\\s*(?=\\]\\])",
+					"comment": "A captioned link. The caption reads as the link because a reader clicks it; the target reads as the title it names.",
+					"match": "\\s*([^|\\]]*?)\\s*(\\|)\\s*([^\\]]+?)\\s*(?=\\]\\])",
 					"captures": {
 						"1": {
-							"name": "string.entity.other.title.link.tiddlywiki5"
+							"name": "markup.underline.link.tiddlywiki5"
 						},
 						"2": {
 							"name": "punctuation.definition.link.title.tiddlywiki5"
 						},
 						"3": {
+							"name": "string.entity.other.title.link.tiddlywiki5"
+						}
+					}
+				},
+				{
+					"comment": "A plain link, whose one segment serves as the text a reader sees and as the title it reaches.",
+					"match": "\\s*([^\\]]+?)\\s*(?=\\]\\])",
+					"captures": {
+						"1": {
 							"name": "markup.underline.link.tiddlywiki5"
 						}
 					}

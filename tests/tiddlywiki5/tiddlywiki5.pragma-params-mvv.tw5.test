@@ -2,7 +2,7 @@
 
 \procedure myProc(param:((myvar)))
 #<- meta.directive.variable.procedure.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-#^ meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.html.tiddlywiki5
+#^ meta.directive.variable.procedure.tiddlywiki5 keyword.control.directive.procedure.tiddlywiki5
 #          ^ meta.directive.variable.procedure.tiddlywiki5 entity.name.variable.procedure.tiddlywiki5
 #                 ^ meta.variable.pragma.parameters.tiddlywiki5 variable.parameter.tiddlywiki5
 #                      ^ meta.variable.pragma.parameters.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
@@ -12,7 +12,7 @@ body text
 \end
 
 \function myFunc(param:((myvar)))
-#^ meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.html.tiddlywiki5
+#^ meta.directive.variable.function.tiddlywiki5 keyword.control.directive.function.tiddlywiki5
 #          ^ meta.directive.variable.function.tiddlywiki5 entity.name.variable.function.tiddlywiki5
 #                ^ meta.variable.pragma.parameters.tiddlywiki5 variable.parameter.tiddlywiki5
 #                     ^ meta.variable.pragma.parameters.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
