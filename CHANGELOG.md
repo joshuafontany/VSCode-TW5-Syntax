@@ -7,6 +7,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- The memetic dialect colours a definition body and a stray angle bracket the way wikitext does. A
+  grammar wrapping another keys its injections on its own scope name, so the wrapped grammar's
+  never fire — and this one carried none of them. Inside a `.mem` file a `\define` body left its
+  `$name$` uncoloured, and a stray `<` took no verdict, both of which a `.tw` file gets right. The
+  dialect carries the two injections its wrapper needs, and a gate holds every wrapper's selectors
+  equal to the wikitext grammar's, since a copy cannot derive from its original at load time.
 - A syntax-test file colours the wikitext it tests. Its grammar carries injections of its own,
   because a TextMate injection keys on a scope name and no grammar inherits another's — so two
   selectors stand written twice and a copy drifts silently. Both had. The one painting parameter

@@ -255,6 +255,17 @@
 #                                                                                  ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext
 #                                                                                   ^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
 >
+>!! A stray angle bracket answers the same way it answers in wikitext
+#^^ text.html.tiddlywiki5.memetic-wikitext meta.heading.heading-2.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.heading.heading-2.tiddlywiki5
+>
+>A dialect wrapping the wikitext grammar carries its injections or loses what they paint, so a
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+>stray < angle bracket takes the verdict here that it takes there.
+#^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+#      ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+>
 ><<~/ahu >>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
 #  ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext keyword.control.sharktooth.memetic-wikitext

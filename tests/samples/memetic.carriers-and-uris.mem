@@ -39,6 +39,11 @@ The colon spelling names a parameter too, and it takes a quoted or a bracketed v
 
 <<~ hoike held:[[a bracketed value carrying spaces]] voice:'a single-quoted value' >>
 
+!! A stray angle bracket answers the same way it answers in wikitext
+
+A dialect wrapping the wikitext grammar carries its injections or loses what they paint, so a
+stray < angle bracket takes the verdict here that it takes there.
+
 <<~/ahu >>
 
 <<^ code="&#x0003;" >>

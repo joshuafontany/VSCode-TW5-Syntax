@@ -1,9 +1,11 @@
 // A grammar that copies another's injection selectors must copy the current ones.
 //
-// The test-file grammar wraps the wikitext grammar and carries injections of its own, because a
-// TextMate injection keys on a scope name and no grammar inherits another's. So two selectors
-// stand written twice, and a copy drifts silently: the one narrowing substitution to the macro
-// body, and the one excluding the bad-angle verdict from regions that legitimately hold a `<`.
+// Two grammars wrap the wikitext grammar — the test-file grammar and the memetic dialect — and
+// each carries injections of its own, because a TextMate injection keys on a scope name and no
+// grammar inherits another's. A wrapper that omits one loses what it paints; a wrapper that keeps
+// a stale copy paints something else. Both happened. Two selectors stand written three times: the
+// one narrowing substitution to the macro body, and the one excluding the bad-angle verdict from
+// regions that legitimately hold a `<`.
 //
 // Drift here reads as a defect in the specimens rather than in the thing they specify. Measured
 // before this weld stood: identical bytes carried two bad-angle verdicts inside a .tw5.test file
@@ -17,35 +19,41 @@ const path = require('node:path');
 const ROOT = path.resolve(__dirname, '..', '..');
 const read = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, 'syntaxes', f), 'utf8'));
 const wikitext = read('tiddlywiki5.json');
-const testFile = read('tw5-test-file.json');
+// Every grammar that wraps the wikitext grammar rather than relating to it.
+const WRAPPERS = { 'tw5-test-file.json': read('tw5-test-file.json'), 'memetic-wikitext.json': read('memetic-wikitext.json') };
 
 /** The selectors a grammar injects on, by the prefix that orders them. */
 const selectors = (grammar, prefix) => Object.keys(grammar.injections || {}).filter((k) => k.startsWith(prefix));
 
-test('both grammars inject on selectors to compare', () => {
-  assert.ok(selectors(wikitext, 'R:').length === 1, 'the wikitext grammar carries one R: selector');
-  assert.ok(selectors(testFile, 'R:').length === 1, 'the test-file grammar carries one R: selector');
-  assert.ok(selectors(testFile, 'L:').length >= 2, 'the test-file grammar carries its L: selectors');
+test('each wrapper injects on selectors to compare', () => {
+  assert.strictEqual(selectors(wikitext, 'R:').length, 1, 'the wikitext grammar carries one R: selector');
+  for (const [name, grammar] of Object.entries(WRAPPERS)) {
+    assert.strictEqual(selectors(grammar, 'R:').length, 1, `${name} carries one R: selector`);
+    assert.ok(selectors(grammar, 'L:').length >= 1, `${name} carries its L: selectors`);
+  }
 });
 
 test('the late-ordered exclusion selector matches the wikitext grammar', () => {
-  assert.strictEqual(
-    selectors(testFile, 'R:')[0],
-    selectors(wikitext, 'R:')[0],
-    'the test-file grammar excludes different regions from the bad-angle verdict than the wikitext grammar does'
-  );
+  for (const [name, grammar] of Object.entries(WRAPPERS)) {
+    assert.strictEqual(
+      selectors(grammar, 'R:')[0],
+      selectors(wikitext, 'R:')[0],
+      `${name} excludes different regions from the bad-angle verdict than the wikitext grammar does`
+    );
+  }
 });
 
-test('substitution injects on the macro body alone, in both grammars', () => {
+test('substitution injects on the macro body alone, in every wrapper', () => {
   const bodySelector = (g) => selectors(g, 'L:').find((k) => k.includes('meta.variable.macro.body'));
   const inWikitext = bodySelector(wikitext);
-  const inTestFile = bodySelector(testFile);
-  assert.ok(inWikitext && inTestFile, 'a grammar names no macro-body selector');
-  assert.strictEqual(
-    inTestFile,
-    inWikitext,
-    'a definition body substitutes in a .tw5.test file and not in a .tw file, or the reverse'
-  );
+  assert.ok(inWikitext, 'the wikitext grammar names no macro-body selector');
+  for (const [name, grammar] of Object.entries(WRAPPERS)) {
+    assert.strictEqual(
+      bodySelector(grammar),
+      inWikitext,
+      `${name} substitutes where the wikitext grammar does not, or fails to where it does`
+    );
+  }
 });
 
 // A key TextMate does not read changes nothing and reads as though it does.
