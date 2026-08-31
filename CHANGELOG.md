@@ -7,6 +7,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A definition body carries the kind of definition holding it. TiddlyWiki keeps four definition
+  pragmas and stamps each stored body with its kind, and the kind decides what LANGUAGE the body
+  carries: a `\function` body reaches the filter engine, a `\procedure` or `\widget` body reads as
+  wikitext with its parameters arriving as variables, and a `\define` body reads as wikitext after
+  textual parameter substitution. The block forms named their kind; the one-line forms named every
+  body a macro body, so a filter run inside a one-line `\function` read as macro text. An author
+  writing tiddlers on disk and troubleshooting the wiki built from them reads the same definition
+  in two places, and the two now agree.
 - Every scope name the grammar emits reads as a scope. A scope name interpolates a capture only
   where every branch emitting that name fills it: an element closing with `/>` takes the
   self-closing branch of its end pattern, where the group carrying the tag name never

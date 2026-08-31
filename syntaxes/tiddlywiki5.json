@@ -356,7 +356,7 @@
 								"1": {
 									"begin": "^",
 									"end": "$",
-									"name": "meta.variable.macro.body.tiddlywiki5",
+									"name": "meta.variable.function.body.tiddlywiki5",
 									"patterns": [
 										{
 											"include": "#filter"
@@ -494,7 +494,7 @@
 								"1": {
 									"begin": "^",
 									"end": "$",
-									"name": "meta.variable.macro.body.tiddlywiki5",
+									"name": "meta.variable.procedure.body.tiddlywiki5",
 									"patterns": [
 										{
 											"include": "#wikitext"
@@ -644,7 +644,7 @@
 								"1": {
 									"begin": "^",
 									"end": "$",
-									"name": "meta.variable.macro.body.tiddlywiki5",
+									"name": "meta.variable.widget.body.tiddlywiki5",
 									"patterns": [
 										{
 											"include": "#wikitext"

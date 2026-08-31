@@ -1,0 +1,55 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A definition body carries the kind of definition holding it"
+
+# TiddlyWiki keeps four definition pragmas and stores each body verbatim, stamping which kind it
+# holds — fnprocdef.js sets isFunctionDefinition, isProcedureDefinition or isWidgetDefinition, and
+# macrodef.js sets none of them. The kind decides what LANGUAGE the body carries, and the four
+# differ:
+#
+#   function   the body reaches the FILTER engine — widget.js calls filterTiddlers on it
+#   procedure  the body reads as wikitext, its parameters arriving as variables
+#   widget     the body reads as wikitext, its parameters arriving as variables
+#   define     the body reads as wikitext after textual parameter substitution
+#
+# A body scope naming the wrong kind names the wrong language. It also reaches an author directly:
+# writing tiddlers on disk and troubleshooting the wiki built from them means reading the same
+# definition in two places, and a one-line function that colours as a macro body on disk reads as
+# a different construct from the one the wiki runs.
+#
+# The block forms carry the kind already. These pin the one-line forms beside them.
+
+! A one-line function body reads as a function body
+
+\function f.one(a) [tag[Task]]
+#                  ^^^^^^^^^^^ meta.variable.function.body.tiddlywiki5
+
+! A one-line procedure body reads as a procedure body
+
+\procedure p.one(a) go
+#                   ^^ meta.variable.procedure.body.tiddlywiki5
+
+! A one-line widget body reads as a widget body
+
+\widget $my.one(a) go
+#                  ^^ meta.variable.widget.body.tiddlywiki5
+
+! A one-line define body reads as a macro body, because a define defines a macro
+
+\define d.one(a) go
+#                ^^ meta.variable.macro.body.tiddlywiki5
+
+! A multiline body of each kind keeps the name it already carried
+
+\function f.many(a)
+[tag[Task]]
+#^^^^^^^^^^ meta.variable.function.body.tiddlywiki5
+\end
+
+\procedure p.many(a)
+go
+#^ meta.variable.procedure.body.tiddlywiki5
+\end
+
+\widget $my.many(a)
+go
+#^ meta.variable.widget.body.tiddlywiki5
+\end
