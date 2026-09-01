@@ -20,22 +20,7 @@ const path = require('node:path');
 const VERBOSE = process.argv.includes('--verbose');
 const SENTINEL = 'The corpus sentinel stands plainly at the end.';
 
-/** Every scope name the grammar declares, from its own name and contentName fields. */
-function declaredScopes(file) {
-  const out = new Set();
-  const walk = (node) => {
-    if (Array.isArray(node)) return node.forEach(walk);
-    if (!node || typeof node !== 'object') return;
-    for (const key of ['name', 'contentName']) {
-      const v = node[key];
-      // A $1 in a scope name resolves per match, so the declared form never appears verbatim.
-      if (typeof v === 'string' && !v.includes('$')) for (const s of v.split(/\s+/)) if (s) out.add(s);
-    }
-    for (const v of Object.values(node)) walk(v);
-  };
-  walk(JSON.parse(fs.readFileSync(file, 'utf8')));
-  return out;
-}
+const { declaredScopes } = require('./grammar-scopes.js');
 
 // The extensions the manifest claims. A corpus specimen carries one of them; a readme, a floor
 // and a ceiling carry none, and naming those one by one lets the next control file join the

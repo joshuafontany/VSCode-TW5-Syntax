@@ -22,6 +22,7 @@
 //   node tools/colour-witness.js [--verbose]
 
 const fs = require('node:fs');
+const { declaredScopesIn } = require('./grammar-scopes.js');
 const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..');
@@ -72,12 +73,8 @@ function colourOf(theme, scope) {
 
 /** Every scope any grammar names. */
 function declaredScopes() {
-  const out = new Set();
-  for (const file of fs.readdirSync(path.join(ROOT, 'syntaxes')).filter((f) => f.endsWith('.json'))) {
-    const text = fs.readFileSync(path.join(ROOT, 'syntaxes', file), 'utf8');
-    for (const m of text.matchAll(/"([a-z][A-Za-z0-9.$_-]*\.(?:tiddlywiki5|memetic-wikitext))"/g)) out.add(m[1]);
-  }
-  return out;
+  return new Set([...declaredScopesIn(path.join(ROOT, 'syntaxes'))]
+    .filter((s) => /\.(?:tiddlywiki5|memetic-wikitext)$/.test(s)));
 }
 
 /** An opener beside the closer that shuts it, taken from the names. */

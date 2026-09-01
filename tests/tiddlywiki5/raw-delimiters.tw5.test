@@ -1,11 +1,18 @@
 # SYNTAX TEST "text.html.tiddlywiki5" "A raw delimiter carries a scope themes colour"
 
-# Across the shipped grammars a verbatim delimiter takes its colour either from a region
-# scoped comment.* or string.*, or from a scope of its own — shell gives a heredoc marker
-# keyword.operator.heredoc, Perl gives POD constant.language. This grammar scopes its raw
-# regions meta.*, which no theme colours, so the delimiters carry their own scope. It reads
-# keyword.control rather than keyword.operator: six of the fifteen shipped themes set
+# Across the shipped grammars a verbatim delimiter takes its colour either from the region it
+# opens, or from a scope of its own — shell gives a heredoc marker keyword.operator.heredoc,
+# Perl gives POD constant.language. Which one serves a reader depends on whether themes reach
+# the region.
+#
+# A BLOCK region carries meta.* alongside markup.fenced_code.block, and 38 of 65 themes leave a
+# delimiter nesting there uncoloured, so a fence and a typed block keep a scope of their own. It
+# reads keyword.control rather than keyword.operator: six of the fifteen shipped themes set
 # keyword.operator to the default foreground, and every one of them colours keyword.control.
+#
+# An INLINE tick opens a markup.inline.raw region, which themes do reach, so the tick nests
+# there and paints with the code it wraps — the shape markdown, asciidoc and mdx all write.
+# Carrying its own keyword scope instead, it matched its own code in none of the 65 themes.
 
 ```js
 #<- text.html.tiddlywiki5 meta.codeblock.tiddlywiki5 keyword.control.raw.fence.tiddlywiki5 punctuation.definition.raw.markup.begin.tiddlywiki5
@@ -13,8 +20,8 @@ var a = 1;
 ```
 
 A paragraph carrying `inline code` and ``a double tick``.
-#                    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
-#                                      ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 keyword.control.raw.tick.tiddlywiki5 punctuation.definition.raw.markup.double.begin.tiddlywiki5
+#                    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
+#                                      ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.inline.raw.double.tiddlywiki5 punctuation.definition.raw.markup.double.begin.tiddlywiki5
 
 $$$text/plain
 #<- text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 keyword.control.raw.typedblock.tiddlywiki5 punctuation.definition.typedblock.begin.tiddlywiki5

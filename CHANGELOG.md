@@ -7,6 +7,16 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- Headings, links, code spans and list markers carry the scope names themes already colour. A
+  theme writes its rules against the vocabulary markup grammars share, and six of the seven
+  bundled ones name a heading `markup.heading` while this grammar named it `meta.heading` — which
+  9 of 65 themes colour, against 65 of 65 for the same heading in markdown. Measured across those
+  themes: heading text 14% to 94%, its marker 91% to 97%, a link's caption 72% to 100%, a code
+  span 60% to 71%, a list marker 65% to 72%.
+- A code span's backtick paints with the code it wraps. It carried `keyword.control` beside the
+  run rather than nesting inside it, so it matched its own code in none of the 65 themes; nesting
+  it, the way markdown, asciidoc and mdx all write it, agrees in 66%. A fenced block keeps a
+  delimiter scope of its own, since 38 of 65 themes leave one nesting there uncoloured.
 - An angle bracket carries no verdict. TiddlyWiki builds a node for every one — measured against
   twenty-four shapes and across five grounds, it refuses at none — so `<< not a sigil >>`, a `<`
   in prose, and a macro call the parser declines all read as the text they render. The verdict

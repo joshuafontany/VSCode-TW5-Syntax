@@ -247,6 +247,7 @@
         "overreach-host": "node ./tools/overreach-check.js --corpus 400 --exclude=editions/test/tiddlers/tests/data --exclude=editions/text-slicer --expected=corpus/expected-divergence.txt",
         "overreach-cut": "node ./tools/overreach-check.js --corpus 400 --exclude=editions/test/tiddlers/tests/data --exclude=editions/text-slicer --expected=corpus/expected-divergence.txt --truncate=1",
         "attribute-guard": "node ./tools/attribute-guard.js",
+        "theme-parity": "node ./tools/theme-parity.js",
         "swallow-witness": "node ./tools/swallow-witness.js",
         "backtrack-witness": "node ./tools/backtrack-witness.js",
         "colour-witness": "node ./tools/colour-witness.js",

@@ -4,12 +4,12 @@
 #                                ^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
 >
 >! Major Improvements
-#^ text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
-# ^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5
+#^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 punctuation.definition.heading.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+# ^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5
 >
 >!! Conditional Shortcut Syntax
-#^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
-#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5
+#^^ text.html.tiddlywiki5 markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 punctuation.definition.heading.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 entity.name.section.tiddlywiki5
 >
 >added a new shortcut syntax for concisely expressing if-then-else logic. This is the first of a new type of wikitext syntax based on tokens delimited with <% and %>. We plan to introduce other structures using the same format such as a "case" statement.
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
