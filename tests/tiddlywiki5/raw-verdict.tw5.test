@@ -1,10 +1,13 @@
 # SYNTAX TEST "text.html.tiddlywiki5" "Raw markup carries no verdict"
 
-# Nothing inside raw markup answers to wikitext, so the stray-bracket rule stops at the
-# boundary of a fence, an inline tick and a typed block. A bracket in prose still reads as one.
+# Nothing inside raw markup answers to wikitext, so no rule reaching for a construct reaches
+# past the boundary of a fence, an inline tick or a typed block. An angle bracket carries no
+# verdict anywhere — TiddlyWiki builds a node for every one — and these hold the boundary
+# itself, which a rule that gains a verdict later must still respect.
 
 Inline `a < b` code.
 #          ^ - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#          ^ markup.inline.raw.single.tiddlywiki5
 
 ```
 a < b in a bare fence
@@ -21,9 +24,10 @@ x < y
 # ^ - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
 $$$
 
-# A stray bracket in prose keeps its verdict.
+# A stray bracket in prose carries no verdict either — TiddlyWiki builds a text node for it.
 A stray < in prose.
-#       ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#       ^ - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#       ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 
 # An xml fence names its own grammar.
 ```xml

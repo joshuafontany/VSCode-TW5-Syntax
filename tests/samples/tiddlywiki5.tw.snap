@@ -2096,10 +2096,7 @@
 >alt = {{tiddler!!field}}
 #^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 markup.other.image.tiddlywiki5
 >class = <<myMacro
-#^^^^^^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 markup.other.image.tiddlywiki5
-#        ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 markup.other.image.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#         ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 markup.other.image.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#          ^^^^^^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 markup.other.image.tiddlywiki5
+#^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 markup.other.image.tiddlywiki5
 >  arg1 : """
 #^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 markup.other.image.tiddlywiki5
 >  value

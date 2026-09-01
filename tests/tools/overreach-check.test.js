@@ -86,10 +86,13 @@ test('a suppression standing where TiddlyWiki refuses reports nothing', () => {
   assert.deepStrictEqual(review(source, snap, refuse), []);
 });
 
+// TiddlyWiki refuses by parsing NOTHING at the span, which reads as `none`. A parser that put a
+// text node there looked and kept the characters, which unseats a verdict rather than warranting
+// one — the case below.
 test('a verdict standing where TiddlyWiki refuses reports nothing', () => {
   const source = 'NDT<<:>> here';
   const snap = `>${source}\n#  ^ text.html.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5\n`;
-  const refuse = { readAt: (_s, start, end) => ({ kind: 'text', innermost: 'text', rule: null, start, end }) };
+  const refuse = { readAt: (_s, start, end) => ({ kind: 'none', innermost: 'none', rule: null, start, end }) };
   assert.deepStrictEqual(review(source, snap, refuse), []);
 });
 
@@ -103,15 +106,31 @@ test('a verdict standing where TiddlyWiki builds reports as an invention', () =>
   assert.strictEqual(found[0].rule, 'prettylink');
 });
 
-// A verdict on text standing INSIDE a construct the parser built still reads correct: the
-// parser built nothing at the span itself.
-test('a verdict inside a built block reports nothing when the span itself stays text', () => {
+// A verdict on text INSIDE a construct the parser built reports all the same. The parser reached
+// the span, declined a construct there and kept the characters, and keeping characters says the
+// opposite of refusing them. Reading `built` alone here left the commonest shape of all
+// unexamined — a bracket in prose, which every parser run turns into text — and measured across
+// the host corpus it hid seventy-four spans.
+test('a verdict over text the parser kept reports as an invention', () => {
   const source = '!! Avertissement<<:>>';
   const snap = `>${source}\n#                ^ text.html.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5\n`;
   const inHeading = {
     readAt: (_s, start, end) => ({ kind: 'built', innermost: 'text', rule: 'heading', start, end })
   };
-  assert.deepStrictEqual(review(source, snap, inHeading), []);
+  const found = review(source, snap, inHeading);
+  assert.strictEqual(found.length, 1);
+  assert.strictEqual(found[0].kind, 'invention');
+});
+
+// A suppression asserts the parser declined the construct and kept the text, so text there reads
+// as agreement. Only a construct built in its place unseats one.
+test('a suppression over text reports nothing, and over a built construct reports', () => {
+  const source = 'A ~TiddlyWiki word.';
+  const snap = `>${source}\n#  ^ text.html.tiddlywiki5 meta.link.suppressed.wikilink.tiddlywiki5\n`;
+  const asText = { readAt: (_s, start, end) => ({ kind: 'text', innermost: 'text', rule: 'wikilinkprefix', start, end }) };
+  assert.deepStrictEqual(review(source, snap, asText), []);
+  const asBuilt = { readAt: (_s, start, end) => ({ kind: 'built', innermost: 'built', rule: 'wikilink', start, end }) };
+  assert.strictEqual(review(source, snap, asBuilt).length, 1);
 });
 
 // Inside a definition body the parser looked at nothing, so neither direction has grounds.

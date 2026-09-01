@@ -179,18 +179,6 @@
                     "source.tiddlywiki5.multids-file",
                     "text.html.tiddlywiki5.memetic-wikitext"
                 ]
-            },
-            {
-                "path": "./syntaxes/tw5-stray-angle-injection.json",
-                "scopeName": "text.html.tiddlywiki5.stray-angle",
-                "injectTo": [
-                    "text.html.tiddlywiki5",
-                    "text.html.tiddlywiki5.test",
-                    "source.tiddlywiki5.tid-file",
-                    "source.tiddlywiki5.fields",
-                    "source.tiddlywiki5.multids-file",
-                    "text.html.tiddlywiki5.memetic-wikitext"
-                ]
             }
         ],
         "snippets": [

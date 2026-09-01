@@ -183,6 +183,8 @@ function review(source, snapText, oracle) {
   for (const ann of parseSnapshot(snapText)) {
     const claimed = claims(ann.scopes);
     const condemned = declines(ann.scopes);
+    const condemnedVerdicts = verdicts(ann.scopes);
+    const condemnedSuppressions = condemned.filter((s) => !condemnedVerdicts.includes(s));
     if (claimed.length === 0 && condemned.length === 0) continue;
     const start = offsetAt(source, ann.line, ann.start);
     const end = offsetAt(source, ann.line, ann.end);
@@ -193,8 +195,19 @@ function review(source, snapText, oracle) {
     if (claimed.length > 0 && read.kind === 'text') {
       findings.push({ kind: 'overreach', ...at, scope: claimed[claimed.length - 1] });
     }
-    if (condemned.length > 0 && read.innermost === 'built') {
-      findings.push({ kind: 'invention', ...at, scope: condemned[condemned.length - 1] });
+    // A verdict and a suppression assert different things, so different evidence unseats them.
+    //
+    // A VERDICT claims the parser REFUSED. TiddlyWiki refuses by parsing nothing at all, so plain
+    // text unseats one as squarely as a built construct does — the parser looked, declined the
+    // construct, and kept the characters. Reading only `built` here left the commonest shape of
+    // all unexamined: a stray bracket in prose, which every parser run turns into text.
+    //
+    // A SUPPRESSION claims the parser declined the construct and kept the text. Text there reads
+    // as agreement, and only a construct built in its place unseats it.
+    if (condemnedVerdicts.length > 0 && (read.innermost === 'built' || read.innermost === 'text')) {
+      findings.push({ kind: 'invention', ...at, scope: condemnedVerdicts[condemnedVerdicts.length - 1] });
+    } else if (condemnedSuppressions.length > 0 && read.innermost === 'built') {
+      findings.push({ kind: 'invention', ...at, scope: condemnedSuppressions[condemnedSuppressions.length - 1] });
     }
   }
   return findings;

@@ -7,6 +7,16 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- An angle bracket carries no verdict. TiddlyWiki builds a node for every one — measured against
+  twenty-four shapes and across five grounds, it refuses at none — so `<< not a sigil >>`, a `<`
+  in prose, and a macro call the parser declines all read as the text they render. The verdict
+  had marked one hundred and forty-four spans, seventy-four of them in TiddlyWiki's own
+  documentation.
+- The gate that measures verdicts against the parser reads the whole answer. It counted a verdict
+  as wrong only where the parser built a construct, and TiddlyWiki declines a construct by keeping
+  the characters as text — so the commonest shape of all, a bracket in prose, sat outside every
+  measurement while the gate reported agreement everywhere. A suppression keeps the narrower
+  test, since text there reads as the agreement it claims.
 - A construct left unterminated stops at the blank line that ends its block, the way TiddlyWiki
   stops it. Eight rules named only their closing delimiter, so one unclosed opener took the rest
   of the file: every construct after it coloured as that rule's interior and the stray-bracket

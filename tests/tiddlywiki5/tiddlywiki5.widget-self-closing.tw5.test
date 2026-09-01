@@ -31,4 +31,4 @@
 
 # A stray bracket goes on reading as one; the fix widens the tag rule, never the prose.
 A stray < in prose.
-#       ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#       ^ - invalid.illegal.bad-angle-bracket.html.tiddlywiki5

@@ -38,7 +38,8 @@ a &verylongname; b
 #        ^ text.html.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 
 A stray < in prose.
-#       ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#       ^ - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#       ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 
 # html.js reads any [a-zA-Z0-9\-\$\.]+ as a tag name, so a custom element reads as ordinary markup.
 <mytag>x</mytag>

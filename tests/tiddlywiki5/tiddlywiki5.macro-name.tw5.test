@@ -34,11 +34,11 @@ x <<a=b>> y
 
 # The fr-FR edition writes this as prose about camel case, and TiddlyWiki builds plain text
 # from it. No macro call stands here — and because the parser refuses the markup rather than
-# reading it, the stray-bracket verdict earns its place on the brackets themselves.
+# reading it, the brackets fall back to the prose around them and carry no verdict.
 NDT<<:>> here
 #  ^ - punctuation.definition.macrocallinline.begin.tiddlywiki5
 #  ^ - meta.variable.macrocallinline.tiddlywiki5
-#  ^ invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#  ^ - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
 #    ^ - variable.name.macro.tiddlywiki5
 #    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 
