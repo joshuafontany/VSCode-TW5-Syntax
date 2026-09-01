@@ -10,8 +10,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Strikethrough, table cells and list markers reach more themes. A struck run carried only the
   underline family, a table cell carried `markup.other`, which Sublime's reference sanctions and
   no theme reaches, and a list marker named itself alone. Measured over 65 themes: a struck run
-  63% to 69%, a table cell 14% to 23%, a list marker 72% to 91% — the last by naming markdown's
-  own marker scope beside ours, the way the AsciiDoc grammar does for the glyphs it shares.
+  63% to 69%, a table cell 14% to 23%, and a list marker onto the name every markup grammar
+  writes for one. The marker holds at 72%: the themes it still misses rule on markdown's own
+  marker scope by name, and this grammar names no language but its own.
 - Headings, links, code spans and list markers carry the scope names themes already colour. A
   theme writes its rules against the vocabulary markup grammars share, and six of the seven
   bundled ones name a heading `markup.heading` while this grammar named it `meta.heading` — which

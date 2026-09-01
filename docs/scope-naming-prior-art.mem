@@ -16,6 +16,35 @@ written   = "2026-09-01"
 
 <<^ code="&#x0002;" >>
 
+<<~ ahu #house-ruling >>
+
+! HOUSE RULING — what this house takes from the survey, and what it declines
+
+The survey below reads through one ecosystem's vocabulary, because that ecosystem holds the
+grammars a TextMate author meets first. Read it for the PATTERN a theme author follows, never for
+a name to copy.
+
+''Operator ruling, 2026-09-01:'' this grammar names no language but its own. The survey recommends
+the asciidoctor lever — naming markdown's scope beside yours on a construct whose glyph markdown
+shares — and measured over 65 themes it carries a list marker from 72% to 91%. The house declines
+it. The nineteen points sit entirely in theme rules that spell `punctuation.definition.list.begin.markdown`
+by name, and reaching them means telling every reader's editor that a TiddlyWiki bullet belongs to
+markdown. A grammar that borrows a language's name to borrow its colour has stopped describing
+what it parses.
+
+What the house takes instead: the FAMILY a theme rules on. A list marker reads
+`punctuation.definition.list.begin.tiddlywiki5`, the shape markdown, asciidoc and mediawiki all
+write, and stands at 72% on its own name.
+
+Measured and declined beside it: `keyword.control.list.tiddlywiki5` reaches 100%, and names a
+bullet a keyword. Reach bought by misnaming buys nothing a reader can trust.
+
+A second survey runs wider — across tree-sitter, semantic tokens, Pygments, KSyntaxHighlighting,
+font-lock and the rest — so the patterns here stand against systems that share none of this
+vocabulary.
+
+<<~/ahu >>
+
 <<~ ahu #scope-naming-prior-art >>
 
 ! HANDOFF — the tasked spirit's survey, kept VERBATIM

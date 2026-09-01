@@ -143,7 +143,7 @@
 #                                                                   ^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
 >
 >* unordered, carrying <<~ sigil name=value >>
-#^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5 punctuation.definition.list.begin.markdown
+#^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
 # ^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5
 #                      ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5
 #                        ^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
@@ -156,7 +156,7 @@
 #                                          ^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
 #                                           ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5
 >** nested, carrying <<~ loulou lar:///ha.ka.ba/lares/api/pono/containers >>
-#^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5 punctuation.definition.list.begin.markdown
+#^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
 #  ^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5
 #                    ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5
 #                      ^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
@@ -169,7 +169,7 @@
 #                                                                        ^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
 #                                                                         ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5
 ># ordered, carrying <<~ sigil bracket=[[a bracketed value]] >>
-#^ text.html.tiddlywiki5.memetic-wikitext markup.list.numbered.ordered.ol.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.numbered.ordered.ol.li.list.markup.tiddlywiki5 punctuation.definition.list.begin.markdown
+#^ text.html.tiddlywiki5.memetic-wikitext markup.list.numbered.ordered.ol.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.numbered.ordered.ol.li.list.markup.tiddlywiki5
 # ^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.numbered.ordered.ol.li.tiddlywiki5
 #                    ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.numbered.ordered.ol.li.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5
 #                      ^ text.html.tiddlywiki5.memetic-wikitext markup.list.numbered.ordered.ol.li.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
@@ -184,7 +184,7 @@
 #                                                           ^ text.html.tiddlywiki5.memetic-wikitext markup.list.numbered.ordered.ol.li.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
 #                                                            ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.numbered.ordered.ol.li.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5
 >; a term carrying <<~ sigil >>
-#^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.term.dl.dt.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.term.dl.dt.list.markup.tiddlywiki5 punctuation.definition.list.begin.markdown
+#^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.term.dl.dt.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.term.dl.dt.list.markup.tiddlywiki5
 # ^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.term.dl.dt.tiddlywiki5
 #                  ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.term.dl.dt.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5
 #                    ^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.term.dl.dt.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
@@ -193,7 +193,7 @@
 #                           ^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.term.dl.dt.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
 #                            ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.term.dl.dt.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5
 >: its description carrying <<~ sigil single='quoted' >>
-#^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.description.dl.dd.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.description.dl.dd.list.markup.tiddlywiki5 punctuation.definition.list.begin.markdown
+#^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.description.dl.dd.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.description.dl.dd.list.markup.tiddlywiki5
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.description.dl.dd.tiddlywiki5
 #                           ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.description.dl.dd.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5
 #                             ^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.description.dl.dd.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
@@ -240,7 +240,7 @@
 #^^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 punctuation.definition.markup.quote.quoteblock.end.tiddlywiki5
 >
 >> a blockquote carrying <<~ sigil >>
-#^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.listquote.quote.list.markup.tiddlywiki5 punctuation.definition.list.begin.markdown
+#^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.listquote.quote.list.markup.tiddlywiki5
 # ^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5
 #                        ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5
 #                          ^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
@@ -249,7 +249,7 @@
 #                                 ^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
 #                                  ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5
 >>> nested, carrying <<~ sigil >>
-#^^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.listquote.quote.list.markup.tiddlywiki5 punctuation.definition.list.begin.markdown
+#^^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.listquote.quote.list.markup.tiddlywiki5
 #  ^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5
 #                    ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5
 #                      ^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
