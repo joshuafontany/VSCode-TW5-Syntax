@@ -7,6 +7,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A fenced block hands its guest language to the editor, not only to the colourer. Twenty-one
+  guests embed here — JavaScript, CSS, JSON, Python, Ruby, SQL and the rest — and each region now
+  names its language with `meta.embedded.block.<lang>` beside the guest scope, wired through the
+  manifest's `embeddedLanguages` map. Comment-toggling, snippets and bracket-matching follow the
+  language across the fence: `//` inside a JavaScript block rather than the host's own mark. The
+  colour never depended on either declaration, which is why nothing reported their absence.
 - A filtered transclusion and a transclusion carry across a blank line, the way TiddlyWiki carries
   them. Their regexps take newlines, so a terminated block spans blank lines and the parser keeps
   one node; a bound written to contain a runaway ended them at the first blank line instead, and

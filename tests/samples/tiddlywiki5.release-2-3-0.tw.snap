@@ -293,31 +293,31 @@
 #^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 keyword.control.raw.typedblock.tiddlywiki5 punctuation.definition.typedblock.begin.tiddlywiki5
 #   ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 entity.other.attribute-name.parse.tiddlywiki5
 ><svg xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:date>2012-05-10</dc:date></svg>
-#^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml punctuation.definition.tag.xml
-# ^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.name.tag.localname.xml
-#    ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml
-#     ^^^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.other.attribute-name.namespace.xml
-#          ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.other.attribute-name.xml punctuation.separator.namespace.xml
-#           ^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.other.attribute-name.localname.xml
-#             ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml
-#              ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml string.quoted.double.xml punctuation.definition.string.begin.xml
-#               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml string.quoted.double.xml
-#                                               ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml string.quoted.double.xml punctuation.definition.string.end.xml
-#                                                ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml punctuation.definition.tag.xml
-#                                                 ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml punctuation.definition.tag.xml
-#                                                  ^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.name.tag.namespace.xml
-#                                                    ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.name.tag.xml punctuation.separator.namespace.xml
-#                                                     ^^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.name.tag.localname.xml
-#                                                         ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml punctuation.definition.tag.xml
-#                                                          ^^^^^^^^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml
-#                                                                    ^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml punctuation.definition.tag.xml
-#                                                                      ^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.name.tag.namespace.xml
-#                                                                        ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.name.tag.xml punctuation.separator.namespace.xml
-#                                                                         ^^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.name.tag.localname.xml
-#                                                                             ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml punctuation.definition.tag.xml
-#                                                                              ^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml punctuation.definition.tag.xml
-#                                                                                ^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml entity.name.tag.localname.xml
-#                                                                                   ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 text.xml meta.tag.xml punctuation.definition.tag.xml
+#^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml punctuation.definition.tag.xml
+# ^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml entity.name.tag.localname.xml
+#    ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml
+#     ^^^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml entity.other.attribute-name.namespace.xml
+#          ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml entity.other.attribute-name.xml punctuation.separator.namespace.xml
+#           ^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml entity.other.attribute-name.localname.xml
+#             ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml
+#              ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml string.quoted.double.xml punctuation.definition.string.begin.xml
+#               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml string.quoted.double.xml
+#                                               ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml string.quoted.double.xml punctuation.definition.string.end.xml
+#                                                ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml punctuation.definition.tag.xml
+#                                                 ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml punctuation.definition.tag.xml
+#                                                  ^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml entity.name.tag.namespace.xml
+#                                                    ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml entity.name.tag.xml punctuation.separator.namespace.xml
+#                                                     ^^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml entity.name.tag.localname.xml
+#                                                         ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml punctuation.definition.tag.xml
+#                                                          ^^^^^^^^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml
+#                                                                    ^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml punctuation.definition.tag.xml
+#                                                                      ^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml entity.name.tag.namespace.xml
+#                                                                        ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml entity.name.tag.xml punctuation.separator.namespace.xml
+#                                                                         ^^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml entity.name.tag.localname.xml
+#                                                                             ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml punctuation.definition.tag.xml
+#                                                                              ^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml punctuation.definition.tag.xml
+#                                                                                ^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml entity.name.tag.localname.xml
+#                                                                                   ^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.xml text.xml meta.tag.xml punctuation.definition.tag.xml
 >$$$
 #^^^ text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 keyword.control.raw.typedblock.tiddlywiki5 punctuation.definition.typedblock.end.tiddlywiki5
 >

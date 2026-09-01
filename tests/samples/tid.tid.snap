@@ -4934,26 +4934,26 @@
 #^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 keyword.control.raw.fence.tiddlywiki5 punctuation.definition.raw.markup.begin.tiddlywiki5
 #   ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 entity.other.attribute-name.language.tiddlywiki5
 >  1 << i for i in [0..31] when i % 2
-#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee
-#  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee constant.numeric.decimal.coffee
-#   ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee
-#    ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee keyword.operator.bitwise.shift.coffee
-#      ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee
-#         ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee keyword.control.coffee
-#            ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee
-#               ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee keyword.control.coffee
-#                 ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee
-#                  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee punctuation.definition.array.begin.bracket.square.coffee
-#                   ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee constant.numeric.decimal.coffee
-#                    ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee keyword.operator.slice.inclusive.coffee
-#                      ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee constant.numeric.decimal.coffee
-#                        ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee punctuation.definition.array.end.bracket.square.coffee
-#                         ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee
-#                          ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee keyword.control.coffee
-#                              ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee
-#                                 ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee keyword.operator.coffee
-#                                  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee
-#                                   ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 source.coffee constant.numeric.decimal.coffee
+#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee
+#  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee constant.numeric.decimal.coffee
+#   ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee
+#    ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee keyword.operator.bitwise.shift.coffee
+#      ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee
+#         ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee keyword.control.coffee
+#            ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee
+#               ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee keyword.control.coffee
+#                 ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee
+#                  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee punctuation.definition.array.begin.bracket.square.coffee
+#                   ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee constant.numeric.decimal.coffee
+#                    ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee keyword.operator.slice.inclusive.coffee
+#                      ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee constant.numeric.decimal.coffee
+#                        ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee punctuation.definition.array.end.bracket.square.coffee
+#                         ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee
+#                          ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee keyword.control.coffee
+#                              ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee
+#                                 ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee keyword.operator.coffee
+#                                  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee
+#                                   ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.coffeescript source.coffee constant.numeric.decimal.coffee
 >```
 #^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 keyword.control.raw.fence.tiddlywiki5 punctuation.definition.raw.markup.end.tiddlywiki5
 >
@@ -4961,30 +4961,30 @@
 #^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 keyword.control.raw.typedblock.tiddlywiki5 punctuation.definition.typedblock.begin.tiddlywiki5
 #   ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 entity.other.attribute-name.parse.tiddlywiki5
 >  /* Use JS parser */
-#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js
-#  ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js comment.block.js punctuation.definition.comment.js
-#    ^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js comment.block.js
-#                   ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js comment.block.js punctuation.definition.comment.js
+#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js
+#  ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js comment.block.js punctuation.definition.comment.js
+#    ^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js comment.block.js
+#                   ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js comment.block.js punctuation.definition.comment.js
 >  var test = 1 + function(){return 0}
-#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js
-#  ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js storage.type.js
-#     ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js
-#      ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.var-single-variable.expr.js meta.definition.variable.js variable.other.readwrite.js
-#          ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.var-single-variable.expr.js
-#           ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js keyword.operator.assignment.js
-#            ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js
-#             ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js constant.numeric.decimal.js
-#              ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js
-#               ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js keyword.operator.arithmetic.js
-#                ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js
-#                 ^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.function.expression.js storage.type.function.js
-#                         ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.function.expression.js meta.parameters.js punctuation.definition.parameters.begin.js
-#                          ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.function.expression.js meta.parameters.js punctuation.definition.parameters.end.js
-#                           ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.function.expression.js meta.block.js punctuation.definition.block.js
-#                            ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.function.expression.js meta.block.js keyword.control.flow.js
-#                                  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.function.expression.js meta.block.js
-#                                   ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.function.expression.js meta.block.js constant.numeric.decimal.js
-#                                    ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.function.expression.js meta.block.js punctuation.definition.block.js
+#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js
+#  ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js storage.type.js
+#     ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js
+#      ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.var-single-variable.expr.js meta.definition.variable.js variable.other.readwrite.js
+#          ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.var-single-variable.expr.js
+#           ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js keyword.operator.assignment.js
+#            ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js
+#             ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js constant.numeric.decimal.js
+#              ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js
+#               ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js keyword.operator.arithmetic.js
+#                ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js
+#                 ^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.function.expression.js storage.type.function.js
+#                         ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.function.expression.js meta.parameters.js punctuation.definition.parameters.begin.js
+#                          ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.function.expression.js meta.parameters.js punctuation.definition.parameters.end.js
+#                           ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.function.expression.js meta.block.js punctuation.definition.block.js
+#                            ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.function.expression.js meta.block.js keyword.control.flow.js
+#                                  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.function.expression.js meta.block.js
+#                                   ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.function.expression.js meta.block.js constant.numeric.decimal.js
+#                                    ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.function.expression.js meta.block.js punctuation.definition.block.js
 >$$$
 #^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 keyword.control.raw.typedblock.tiddlywiki5 punctuation.definition.typedblock.end.tiddlywiki5
 >
@@ -4992,26 +4992,26 @@
 #^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 keyword.control.raw.typedblock.tiddlywiki5 punctuation.definition.typedblock.begin.tiddlywiki5
 #   ^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 entity.other.attribute-name.parse.tiddlywiki5
 >  /* Use JS parser */
-#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js
-#  ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js comment.block.js punctuation.definition.comment.js
-#    ^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js comment.block.js
-#                   ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js comment.block.js punctuation.definition.comment.js
+#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js
+#  ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js comment.block.js punctuation.definition.comment.js
+#    ^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js comment.block.js
+#                   ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js comment.block.js punctuation.definition.comment.js
 >  var test = {key: "value"}
-#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js
-#  ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js storage.type.js
-#     ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js
-#      ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.var-single-variable.expr.js meta.definition.variable.js variable.other.readwrite.js
-#          ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.var-single-variable.expr.js
-#           ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js keyword.operator.assignment.js
-#            ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js
-#             ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.objectliteral.js punctuation.definition.block.js
-#              ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.objectliteral.js meta.object.member.js meta.object-literal.key.js
-#                 ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.objectliteral.js meta.object.member.js meta.object-literal.key.js punctuation.separator.key-value.js
-#                  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.objectliteral.js meta.object.member.js
-#                   ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.objectliteral.js meta.object.member.js string.quoted.double.js punctuation.definition.string.begin.js
-#                    ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.objectliteral.js meta.object.member.js string.quoted.double.js
-#                         ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.objectliteral.js meta.object.member.js string.quoted.double.js punctuation.definition.string.end.js
-#                          ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js meta.var.expr.js meta.objectliteral.js punctuation.definition.block.js
+#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js
+#  ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js storage.type.js
+#     ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js
+#      ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.var-single-variable.expr.js meta.definition.variable.js variable.other.readwrite.js
+#          ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.var-single-variable.expr.js
+#           ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js keyword.operator.assignment.js
+#            ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js
+#             ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.objectliteral.js punctuation.definition.block.js
+#              ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.objectliteral.js meta.object.member.js meta.object-literal.key.js
+#                 ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.objectliteral.js meta.object.member.js meta.object-literal.key.js punctuation.separator.key-value.js
+#                  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.objectliteral.js meta.object.member.js
+#                   ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.objectliteral.js meta.object.member.js string.quoted.double.js punctuation.definition.string.begin.js
+#                    ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.objectliteral.js meta.object.member.js string.quoted.double.js
+#                         ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.objectliteral.js meta.object.member.js string.quoted.double.js punctuation.definition.string.end.js
+#                          ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js meta.var.expr.js meta.objectliteral.js punctuation.definition.block.js
 >$$$
 #^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 keyword.control.raw.typedblock.tiddlywiki5 punctuation.definition.typedblock.end.tiddlywiki5
 >
@@ -5023,10 +5023,10 @@
 #        ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5
 #         ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 entity.other.attribute-name.render.tiddlywiki5
 >  /* Use JS parser */
-#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js
-#  ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js comment.block.js punctuation.definition.comment.js
-#    ^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js comment.block.js
-#                   ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js comment.block.js punctuation.definition.comment.js
+#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js
+#  ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js comment.block.js punctuation.definition.comment.js
+#    ^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js comment.block.js
+#                   ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js comment.block.js punctuation.definition.comment.js
 >$$$
 #^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 keyword.control.raw.typedblock.tiddlywiki5 punctuation.definition.typedblock.end.tiddlywiki5
 >
@@ -5038,10 +5038,10 @@
 #                           ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5
 #                            ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 entity.other.attribute-name.render.tiddlywiki5
 >  /* Use JS parser */
-#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js
-#  ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js comment.block.js punctuation.definition.comment.js
-#    ^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js comment.block.js
-#                   ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 source.js comment.block.js punctuation.definition.comment.js
+#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js
+#  ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js comment.block.js punctuation.definition.comment.js
+#    ^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js comment.block.js
+#                   ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 meta.embedded.block.javascript source.js comment.block.js punctuation.definition.comment.js
 >$$$
 #^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.typedblock.tiddlywiki5 keyword.control.raw.typedblock.tiddlywiki5 punctuation.definition.typedblock.end.tiddlywiki5
 >

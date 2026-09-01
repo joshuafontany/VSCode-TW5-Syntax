@@ -813,7 +813,7 @@
 													"name": "punctuation.definition.string.begin.html.tiddlywiki5"
 												}
 											},
-											"contentName": "source.css",
+											"contentName": "meta.embedded.block.css source.css",
 											"end": "(\")",
 											"endCaptures": {
 												"0": {
@@ -837,7 +837,7 @@
 													"name": "punctuation.definition.string.begin.html.tiddlywiki5"
 												}
 											},
-											"contentName": "source.css",
+											"contentName": "meta.embedded.block.css source.css",
 											"end": "(')",
 											"endCaptures": {
 												"0": {
@@ -916,7 +916,7 @@
 													"name": "punctuation.definition.string.begin.html.tiddlywiki5"
 												}
 											},
-											"contentName": "source.js",
+											"contentName": "meta.embedded.block.javascript source.js",
 											"end": "(\")",
 											"endCaptures": {
 												"0": {
@@ -974,7 +974,7 @@
 													"name": "punctuation.definition.string.begin.html.tiddlywiki5"
 												}
 											},
-											"contentName": "source.js",
+											"contentName": "meta.embedded.block.javascript source.js",
 											"end": "(')",
 											"endCaptures": {
 												"0": {
@@ -3608,7 +3608,7 @@
 				{
 					"begin": "\\G(\\.css|text\\/css)(?:\\s*(>)\\s*(\\S+))?$",
 					"end": "(?=^\\$\\$\\$$)",
-					"contentName": "source.css",
+					"contentName": "meta.embedded.block.css source.css",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.parse.tiddlywiki5"
@@ -3629,7 +3629,7 @@
 				{
 					"begin": "\\G(\\.html?|text\\/html)(?:\\s*(>)\\s*(\\S+))?$",
 					"end": "(?=^\\$\\$\\$$)",
-					"contentName": "text.html.basic",
+					"contentName": "meta.embedded.block.html text.html.basic",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.parse.tiddlywiki5"
@@ -3650,7 +3650,7 @@
 				{
 					"begin": "\\G(\\.hta|application\\/hta)(?:\\s*(>)\\s*(\\S+))?$",
 					"end": "(?=^\\$\\$\\$$)",
-					"contentName": "text.html.basic",
+					"contentName": "meta.embedded.block.html text.html.basic",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.parse.tiddlywiki5"
@@ -3671,7 +3671,7 @@
 				{
 					"begin": "\\G(\\.js|application\\/javascript)(?:\\s*(>)\\s*(\\S+))?$",
 					"end": "(?=^\\$\\$\\$$)",
-					"contentName": "source.js",
+					"contentName": "meta.embedded.block.javascript source.js",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.parse.tiddlywiki5"
@@ -3692,7 +3692,7 @@
 				{
 					"begin": "\\G(\\.json|application\\/json)(?:\\s*(>)\\s*(\\S+))?$",
 					"end": "(?=^\\$\\$\\$$)",
-					"contentName": "source.json",
+					"contentName": "meta.embedded.block.json source.json",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.parse.tiddlywiki5"
@@ -3713,7 +3713,7 @@
 				{
 					"begin": "\\G(\\.svg|image\\/svg\\+xml)(?:\\s*(>)\\s*(\\S+))?$",
 					"end": "(?=^\\$\\$\\$$)",
-					"contentName": "text.xml",
+					"contentName": "meta.embedded.block.xml text.xml",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.parse.tiddlywiki5"
@@ -3734,7 +3734,7 @@
 				{
 					"begin": "\\G(\\.m(?:arkdown|d)|text\\/x\\-markdown)(?:\\s*(>)\\s*(\\S+))?$",
 					"end": "(?=^\\$\\$\\$$)",
-					"contentName": "source.gfm",
+					"contentName": "meta.embedded.block.markdown source.gfm",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.parse.tiddlywiki5"
@@ -4673,7 +4673,7 @@
 				},
 				{
 					"begin": "(?i)\\G(m(?:arkdown|d|kd(?:own)?))(?:[ \\t][^`\\n]*)?$",
-					"contentName": "source.gfm",
+					"contentName": "meta.embedded.block.markdown source.gfm",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -4688,7 +4688,7 @@
 				},
 				{
 					"begin": "(?i)\\G(gemspec|irb|podspec|r(?:b|uby)|thor)(?:[ \\t][^`\\n]*)?$",
-					"contentName": "source.ruby",
+					"contentName": "meta.embedded.block.ruby source.ruby",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -4703,7 +4703,7 @@
 				},
 				{
 					"begin": "(?i)\\G(m(?:ak(?:efile)?|k))(?:[ \\t][^`\\n]*)?$",
-					"contentName": "source.makefile",
+					"contentName": "meta.embedded.block.makefile source.makefile",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -4718,7 +4718,7 @@
 				},
 				{
 					"begin": "(?i)\\G(json)(?:[ \\t][^`\\n]*)?$",
-					"contentName": "source.json",
+					"contentName": "meta.embedded.block.json source.json",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -4733,7 +4733,7 @@
 				},
 				{
 					"begin": "(?i)\\G(atom|rss|xhtml|xml)(?:[ \\t][^`\\n]*)?$",
-					"contentName": "text.xml",
+					"contentName": "meta.embedded.block.xml text.xml",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -4748,7 +4748,7 @@
 				},
 				{
 					"begin": "(?i)\\G(xsl)(?:[ \\t][^`\\n]*)?$",
-					"contentName": "text.xml.xsl",
+					"contentName": "meta.embedded.block.xsl text.xml.xsl",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -4763,7 +4763,7 @@
 				},
 				{
 					"begin": "(?i)\\G(html)(?:[ \\t][^`\\n]*)?$",
-					"contentName": "text.html.basic",
+					"contentName": "meta.embedded.block.html text.html.basic",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -4778,7 +4778,7 @@
 				},
 				{
 					"begin": "(?i)\\G(css)(?:[ \\t][^`\\n]*)?$",
-					"contentName": "source.css",
+					"contentName": "meta.embedded.block.css source.css",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -4793,7 +4793,7 @@
 				},
 				{
 					"begin": "(?i)\\G(p(?:erl|l))(?:[ \\t][^`\\n]*)?$",
-					"contentName": "source.perl",
+					"contentName": "meta.embedded.block.perl source.perl",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -4808,7 +4808,7 @@
 				},
 				{
 					"begin": "(?i)\\G(cs(?:harp)?)(?:[ \\t][^`\\n]*)?$",
-					"contentName": "source.cs",
+					"contentName": "meta.embedded.block.csharp source.cs",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -4823,7 +4823,7 @@
 				},
 				{
 					"begin": "(?i)\\G(obj(?:\\-c|c|ectivec))(?:[ \\t][^`\\n]*)?$",
-					"contentName": "source.objc",
+					"contentName": "meta.embedded.block.objective-c source.objc",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -4838,7 +4838,7 @@
 				},
 				{
 					"begin": "(?i)\\G(mm)(?:[ \\t][^`\\n]*)?$",
-					"contentName": "source.objcpp",
+					"contentName": "meta.embedded.block.objective-cpp source.objcpp",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -4853,7 +4853,7 @@
 				},
 				{
 					"begin": "(?i)\\G(gyp|py(?:thon)?)(?:[ \\t][^`\\n]*)?$",
-					"contentName": "source.python",
+					"contentName": "meta.embedded.block.python source.python",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -4868,7 +4868,7 @@
 				},
 				{
 					"begin": "(?i)\\G(java)(?:[ \\t][^`\\n]*)?$",
-					"contentName": "source.java",
+					"contentName": "meta.embedded.block.java source.java",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -4898,7 +4898,7 @@
 				},
 				{
 					"begin": "(?i)\\G(bash|sh|zsh)(?:[ \\t][^`\\n]*)?$",
-					"contentName": "source.shell",
+					"contentName": "meta.embedded.block.shellscript source.shell",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -4913,7 +4913,7 @@
 				},
 				{
 					"begin": "(?i)\\G(sql)(?:[ \\t][^`\\n]*)?$",
-					"contentName": "source.sql",
+					"contentName": "meta.embedded.block.sql source.sql",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -4928,7 +4928,7 @@
 				},
 				{
 					"begin": "(?i)\\G(c|p)(?:[ \\t][^`\\n]*)?$",
-					"contentName": "source.c",
+					"contentName": "meta.embedded.block.c source.c",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -4943,7 +4943,7 @@
 				},
 				{
 					"begin": "(?i)\\G(c(?:\\+\\+|c|pp)|h(?:\\+\\+|pp))(?:[ \\t][^`\\n]*)?$",
-					"contentName": "source.cpp",
+					"contentName": "meta.embedded.block.cpp source.cpp",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -4973,7 +4973,7 @@
 				},
 				{
 					"begin": "(?i)\\G(ini|toml)(?:[ \\t][^`\\n]*)?$",
-					"contentName": "source.toml",
+					"contentName": "meta.embedded.block.toml source.toml",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -5003,7 +5003,7 @@
 				},
 				{
 					"begin": "(?i)\\G(c(?:offee(?:script)?|son)|iced)(?:[ \\t][^`\\n]*)?$",
-					"contentName": "source.coffee",
+					"contentName": "meta.embedded.block.coffeescript source.coffee",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -5018,7 +5018,7 @@
 				},
 				{
 					"begin": "(?i)\\G(j(?:avascript|s))(?:[ \\t][^`\\n]*)?$",
-					"contentName": "source.js",
+					"contentName": "meta.embedded.block.javascript source.js",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.other.attribute-name.language.tiddlywiki5"
