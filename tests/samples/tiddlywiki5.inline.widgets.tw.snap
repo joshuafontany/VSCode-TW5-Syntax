@@ -224,8 +224,8 @@
 >* <$my-widget
 #^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 #  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.my-widget.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
-#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.my-widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
-#    ^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.my-widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.my-widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 entity.name.function.widget.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
+#    ^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.my-widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 entity.name.function.widget.tiddlywiki5
 >attribute1 = """value"""
 #^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.my-widget.html.tiddlywiki5 meta.attribute.unrecognized.attribute1.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 #          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.my-widget.html.tiddlywiki5 meta.attribute.unrecognized.attribute1.html.tiddlywiki5
@@ -408,15 +408,15 @@
 >  <$tw.Widget />
 #^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 #  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
-#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
-#    ^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 entity.name.function.widget.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
+#    ^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 entity.name.function.widget.tiddlywiki5
 #             ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 >
 >  <$tw.Widget test=```${[[]]}$ $parameter$ $(currentTiddler)$```/> <!-- No macro $params$ here -->
 #^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 #  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
-#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
-#    ^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 entity.name.function.widget.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
+#    ^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 entity.name.function.widget.tiddlywiki5
 #             ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5
 #              ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 meta.attribute.unrecognized.test.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 #                  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.tw.Widget.html.tiddlywiki5 meta.attribute.unrecognized.test.html.tiddlywiki5 punctuation.separator.key-value.html.tiddlywiki5
@@ -489,8 +489,8 @@
 >  <$widget attribute="
 #^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 #  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
-#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
-#    ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 entity.name.function.widget.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
+#    ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 entity.name.function.widget.tiddlywiki5
 #          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5
 #           ^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 meta.attribute.unrecognized.attribute.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 #                    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 meta.attribute.unrecognized.attribute.html.tiddlywiki5 punctuation.separator.key-value.html.tiddlywiki5
@@ -702,14 +702,14 @@
 #                  ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5
 #                    ^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 #                               ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
-#                                 ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
-#                                  ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#                                 ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 entity.name.function.widget.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
+#                                  ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 entity.name.function.widget.tiddlywiki5
 #                                        ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 >
 ></$my-widget>
 #^^ text.html.tiddlywiki5 meta.tag.widget.my-widget.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.tag.widget.my-widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
-#   ^^^^^^^^^ text.html.tiddlywiki5 meta.tag.widget.my-widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.tag.widget.my-widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 entity.name.function.widget.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
+#   ^^^^^^^^^ text.html.tiddlywiki5 meta.tag.widget.my-widget.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 entity.name.function.widget.tiddlywiki5
 #            ^ text.html.tiddlywiki5 meta.tag.widget.my-widget.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 ><!-- #endregion -->
 #^^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5

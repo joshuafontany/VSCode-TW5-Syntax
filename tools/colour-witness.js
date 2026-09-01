@@ -41,6 +41,17 @@ const TOGETHER = [
     words: ['Plain', 'Caption', 'Ecaption'] }
 ];
 
+// MEASURED AND DECLINED. TextMate's question cuts both ways, and four pairs that read alike here
+// SHOULD read alike:
+//
+//   a section's opening name beside its closing name — one construct, and the slash carries the
+//   closing, so a reader who saw them apart would read two things where one stands
+//   a bracketed value beside a single-quoted one — one value, quoted two ways
+//   a bare value beside a quoted one — every grammar surveyed keeps both under `string`
+//   a \define keyword beside a \procedure keyword — the difference between them lands in the
+//   BODY, where a define substitutes and a procedure does not, and the bodies already read apart
+//   in 72 of 100 measured pairs. A pragma keyword reads as a pragma keyword, and both open one.
+//
 const APART = [
   { what: 'a lar: root — heading, angle of approach, carried dynamic',
     scopes: ['entity.name.tag.heading.lar.memetic-wikitext',
@@ -49,7 +60,30 @@ const APART = [
     least: 40 },
   { what: 'a link — the text a reader clicks, and the title it reaches',
     scopes: ['markup.underline.link.tiddlywiki5', 'string.entity.other.title.link.tiddlywiki5'],
-    least: 40 }
+    least: 40 },
+  // TextMate's own question decides these: "would I want these two elements styled differently?"
+  // — asked of the reader, never of the parser's node inventory.
+  //
+  // A WIDGET and an HTML ELEMENT open the same way and mean nothing alike: one calls into
+  // TiddlyWiki, one emits a tag. The host itself marks the difference with a dollar. A widget
+  // takes the family it belongs to — a thing invoked by name — rather than the tag family it
+  // merely resembles.
+  { what: 'a TiddlyWiki widget and an HTML element, which open alike and mean nothing alike',
+    scopes: ['entity.name.function.widget.tiddlywiki5', 'entity.name.tag.html.tiddlywiki5'],
+    least: 45 },
+  // A SYSTEM TITLE names something the host provides, and TiddlyWiki hides those from ordinary
+  // lists. Its home category names a framework's own thing; a second name carries it to themes,
+  // since the home category alone reaches under half of them.
+  { what: 'a title the host provides and a title an author wrote',
+    scopes: ['support.other.system.title.tiddlywiki5', 'string.entity.other.title.link.tiddlywiki5'],
+    least: 55 },
+  // The sharktooth opens a sigil in the house's namespace; the carrier mark frames the carrier
+  // itself, and what it names IS a control character. A reader scanning a meme wants the framing
+  // to stand off from what the framing carries.
+  { what: "a sigil's sharktooth and the carrier's own control mark",
+    scopes: ['keyword.control.sharktooth.memetic-wikitext',
+             'constant.character.carrier.stx.memetic-wikitext'],
+    least: 48 }
 ];
 
 /** The colour a theme paints a scope, by its most specific matching rule. */

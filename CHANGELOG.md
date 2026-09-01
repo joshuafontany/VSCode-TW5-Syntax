@@ -7,6 +7,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A widget reads apart from an HTML element, and a system title from one an author wrote. Both
+  pairs open the same way and mean nothing alike, and both read identically in every bundled theme
+  until now: a `<$list>` coloured as a `<div>`, and `$:/core/Something` as any other title. Each
+  carries a second name so a theme can tell them apart — measured across 65 themes, a widget now
+  reads apart in 57 of them and a system title in all 65. In the memetic dialect the carrier's own
+  control mark reads apart from a sigil's sharktooth in 56, where before it read apart in none.
 - A fenced block hands its guest language to the editor, not only to the colourer. Twenty-one
   guests embed here — JavaScript, CSS, JSON, Python, Ruby, SQL and the rest — and each region now
   names its language with `meta.embedded.block.<lang>` beside the guest scope, wired through the

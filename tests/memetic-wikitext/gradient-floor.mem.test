@@ -7,7 +7,7 @@ SENTINEL reads as an ordinary paragraph.
 #<- text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
 
 <<^ code:"&#x0001;" ? -> lar:///unclosed.frame.opens
-# ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext keyword.control.carrier.soh.memetic-wikitext
+# ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext constant.character.carrier.soh.memetic-wikitext
 
 SENTINEL reads as an ordinary paragraph.
 #<- text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5

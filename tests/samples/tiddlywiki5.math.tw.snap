@@ -184,8 +184,8 @@
 >BLOCK <$transclude tiddler="test"/>
 #^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
 #      ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
-#       ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
-#        ^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#       ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 entity.name.function.widget.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
+#        ^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 entity.name.function.widget.tiddlywiki5
 #                  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5
 #                   ^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 meta.attribute.unrecognized.tiddler.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 #                          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 meta.attribute.unrecognized.tiddler.html.tiddlywiki5 punctuation.separator.key-value.html.tiddlywiki5

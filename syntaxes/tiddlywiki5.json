@@ -3485,7 +3485,7 @@
 							"name": "punctuation.definition.tag.begin.html.tiddlywiki5"
 						},
 						"2": {
-							"name": "entity.name.tag.html.tiddlywiki5"
+							"name": "entity.name.tag.html.tiddlywiki5 entity.name.function.widget.tiddlywiki5"
 						},
 						"3": {
 							"name": "punctuation.definition.tag.widget.tiddlywiki5"
@@ -4064,14 +4064,28 @@
 							"end": "(?=\\S)((?:(?!\\}\\}\\}).)*?)\\s*(?=$|\\}\\}\\})",
 							"endCaptures": {
 								"1": {
-									"name": "entity.name.other.tiddler.title.template.tiddlywiki5"
+									"name": "entity.name.other.tiddler.title.template.tiddlywiki5",
+									"patterns": [
+										{
+											"comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
+											"match": "\\$:\\/[^\\s\\]\\}|]*",
+											"name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
+										}
+									]
 								}
 							}
 						},
 						{
 							"begin": "(?=\\S)",
 							"end": "(?=\\}\\}\\})",
-							"name": "entity.name.tiddler.title.template.tiddlywiki5"
+							"name": "entity.name.tiddler.title.template.tiddlywiki5",
+							"patterns": [
+								{
+									"comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
+									"match": "\\$:\\/[^\\s\\]\\}|]*",
+									"name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
+								}
+							]
 						}
 					]
 				},
@@ -4120,14 +4134,28 @@
 							"end": "(?=\\S)((?:(?!\\}\\}).)*?)\\s*(?=$|\\}\\})",
 							"endCaptures": {
 								"1": {
-									"name": "entity.name.tiddler.title.template.tiddlywiki5"
+									"name": "entity.name.tiddler.title.template.tiddlywiki5",
+									"patterns": [
+										{
+											"comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
+											"match": "\\$:\\/[^\\s\\]\\}|]*",
+											"name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
+										}
+									]
 								}
 							}
 						},
 						{
 							"begin": "(?=\\S)",
 							"end": "(?=\\}\\})",
-							"name": "entity.name.tiddler.title.template.tiddlywiki5"
+							"name": "entity.name.tiddler.title.template.tiddlywiki5",
+							"patterns": [
+								{
+									"comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
+									"match": "\\$:\\/[^\\s\\]\\}|]*",
+									"name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
+								}
+							]
 						}
 					]
 				},
@@ -5363,14 +5391,28 @@
 							"end": "(?=\\S)((?:(?!\\}\\}\\}).)*?)\\s*(?=$|\\}\\}\\})",
 							"endCaptures": {
 								"1": {
-									"name": "entity.name.other.tiddler.title.template.tiddlywiki5"
+									"name": "entity.name.other.tiddler.title.template.tiddlywiki5",
+									"patterns": [
+										{
+											"comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
+											"match": "\\$:\\/[^\\s\\]\\}|]*",
+											"name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
+										}
+									]
 								}
 							}
 						},
 						{
 							"begin": "(?=\\S)",
 							"end": "(?=\\}\\}\\})",
-							"name": "entity.name.tiddler.title.template.tiddlywiki5"
+							"name": "entity.name.tiddler.title.template.tiddlywiki5",
+							"patterns": [
+								{
+									"comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
+									"match": "\\$:\\/[^\\s\\]\\}|]*",
+									"name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
+								}
+							]
 						}
 					]
 				},
@@ -5419,14 +5461,28 @@
 							"end": "(?=\\S)((?:(?!\\}\\}).)*?)\\s*(?=$|\\}\\})",
 							"endCaptures": {
 								"1": {
-									"name": "entity.name.other.tiddler.title.template.tiddlywiki5"
+									"name": "entity.name.other.tiddler.title.template.tiddlywiki5",
+									"patterns": [
+										{
+											"comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
+											"match": "\\$:\\/[^\\s\\]\\}|]*",
+											"name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
+										}
+									]
 								}
 							}
 						},
 						{
 							"begin": "(?=\\S)",
 							"end": "(?=\\}\\})",
-							"name": "entity.name.tiddler.title.template.tiddlywiki5"
+							"name": "entity.name.tiddler.title.template.tiddlywiki5",
+							"patterns": [
+								{
+									"comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
+									"match": "\\$:\\/[^\\s\\]\\}|]*",
+									"name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
+								}
+							]
 						}
 					]
 				},
@@ -5568,13 +5624,27 @@
 					"match": "\\s*([^|\\]]*?)\\s*(\\|)\\s*([^\\]]+?)\\s*(?=\\]\\])",
 					"captures": {
 						"1": {
-							"name": "markup.underline.link.external.tiddlywiki5 string.other.link.title.tiddlywiki5"
+							"name": "markup.underline.link.external.tiddlywiki5 string.other.link.title.tiddlywiki5",
+							"patterns": [
+								{
+									"comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
+									"match": "\\$:\\/[^\\s\\]\\}|]*",
+									"name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
+								}
+							]
 						},
 						"2": {
 							"name": "punctuation.definition.link.title.tiddlywiki5"
 						},
 						"3": {
-							"name": "string.entity.other.title.link.tiddlywiki5"
+							"name": "string.entity.other.title.link.tiddlywiki5",
+							"patterns": [
+								{
+									"comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
+									"match": "\\$:\\/[^\\s\\]\\}|]*",
+									"name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
+								}
+							]
 						}
 					}
 				},
@@ -5583,7 +5653,14 @@
 					"match": "\\s*([^\\]]+?)\\s*(?=\\]\\])",
 					"captures": {
 						"1": {
-							"name": "markup.underline.link.external.tiddlywiki5 string.other.link.title.tiddlywiki5"
+							"name": "markup.underline.link.external.tiddlywiki5 string.other.link.title.tiddlywiki5",
+							"patterns": [
+								{
+									"comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
+									"match": "\\$:\\/[^\\s\\]\\}|]*",
+									"name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
+								}
+							]
 						}
 					}
 				}
@@ -5616,13 +5693,27 @@
 					"match": "\\s*([^|\\]]*?)\\s*(\\|)\\s*([^\\]]+?)\\s*(?=\\]\\])",
 					"captures": {
 						"1": {
-							"name": "markup.underline.link.tiddlywiki5 string.other.link.title.tiddlywiki5"
+							"name": "markup.underline.link.tiddlywiki5 string.other.link.title.tiddlywiki5",
+							"patterns": [
+								{
+									"comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
+									"match": "\\$:\\/[^\\s\\]\\}|]*",
+									"name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
+								}
+							]
 						},
 						"2": {
 							"name": "punctuation.definition.link.title.tiddlywiki5"
 						},
 						"3": {
-							"name": "string.entity.other.title.link.tiddlywiki5"
+							"name": "string.entity.other.title.link.tiddlywiki5",
+							"patterns": [
+								{
+									"comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
+									"match": "\\$:\\/[^\\s\\]\\}|]*",
+									"name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
+								}
+							]
 						}
 					}
 				},
@@ -5631,7 +5722,14 @@
 					"match": "\\s*([^\\]]+?)\\s*(?=\\]\\])",
 					"captures": {
 						"1": {
-							"name": "markup.underline.link.tiddlywiki5 string.other.link.title.tiddlywiki5"
+							"name": "markup.underline.link.tiddlywiki5 string.other.link.title.tiddlywiki5",
+							"patterns": [
+								{
+									"comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
+									"match": "\\$:\\/[^\\s\\]\\}|]*",
+									"name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
+								}
+							]
 						}
 					}
 				}
@@ -5656,7 +5754,14 @@
 						"1": {
 							"name": "markup.underline.link.external.$1.tiddlywiki5"
 						}
-					}
+					},
+					"patterns": [
+						{
+							"comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
+							"match": "\\$:\\/[^\\s\\]\\}|]*",
+							"name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
+						}
+					]
 				}
 			]
 		},

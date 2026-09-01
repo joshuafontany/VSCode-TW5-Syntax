@@ -24,7 +24,7 @@
 >
 ><<^ code="&#x0001;" namespace="⊙" from=? -> to=lar:///ha.ka.ba/lares/api/pono/carriers >>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
-#  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext keyword.control.carrier.soh.memetic-wikitext
+#  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext constant.character.carrier.soh.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext
 #    ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext entity.other.attribute-name.memetic-wikitext
 #        ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext keyword.operator.assignment.memetic-wikitext
@@ -90,7 +90,7 @@
 >
 ><<^ code="&#x0002;" >>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
-#  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext keyword.control.carrier.stx.memetic-wikitext
+#  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext constant.character.carrier.stx.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext
 #    ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext entity.other.attribute-name.memetic-wikitext
 #        ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext keyword.operator.assignment.memetic-wikitext
@@ -122,13 +122,13 @@
 >
 ><<^ >>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
-#  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.memetic-wikitext keyword.control.carrier.memetic-wikitext
+#  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.memetic-wikitext constant.character.carrier.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.memetic-wikitext
 #    ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
 >
 ><<^ from=lar:///ha.ka.ba/lares/api/pono/carriers >>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
-#  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.memetic-wikitext keyword.control.carrier.memetic-wikitext
+#  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.memetic-wikitext constant.character.carrier.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.memetic-wikitext
 #    ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.memetic-wikitext entity.other.attribute-name.memetic-wikitext
 #        ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.memetic-wikitext keyword.operator.assignment.memetic-wikitext
@@ -368,7 +368,7 @@
 >
 ><<^ code="&#x0003;" >>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
-#  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext keyword.control.carrier.etx.memetic-wikitext
+#  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext constant.character.carrier.etx.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext
 #    ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext entity.other.attribute-name.memetic-wikitext
 #        ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext keyword.operator.assignment.memetic-wikitext
@@ -380,7 +380,7 @@
 >
 ><<^ code="&#x0004;" -> ? >>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
-#  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext keyword.control.carrier.eot.memetic-wikitext
+#  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext constant.character.carrier.eot.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext
 #    ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext entity.other.attribute-name.memetic-wikitext
 #        ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext keyword.operator.assignment.memetic-wikitext
