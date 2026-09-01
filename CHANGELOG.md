@@ -7,6 +7,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A filtered transclusion and a transclusion carry across a blank line, the way TiddlyWiki carries
+  them. Their regexps take newlines, so a terminated block spans blank lines and the parser keeps
+  one node; a bound written to contain a runaway ended them at the first blank line instead, and
+  1004 spans across four specimens lost their filter colouring while 89 filter operands read as
+  links. Both now end at the next line that OPENS a block, which contains a runaway without
+  cutting a body short.
 - Strikethrough, table cells and list markers reach more themes. A struck run carried only the
   underline family, a table cell carried `markup.other`, which Sublime's reference sanctions and
   no theme reaches, and a list marker named itself alone. Measured over 65 themes: a struck run

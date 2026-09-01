@@ -1,0 +1,557 @@
+<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext >>
+
+<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/treesitter-and-semantic-tokens >>
+```toml meta
+cacheable = true
+file-path = "docs/prior-art/treesitter-and-semantic-tokens.mem"
+hydrate   = true
+l-space   = "stable"
+register  = "Research"
+retain    = true
+role      = "tasked spirit's handback, kept VERBATIM — tree-sitter capture vocabularies (upstream, nvim, Helix, Zed, four INCOMPATIBLE sets), locals, injections, the markdown two-grammar split, and LSP semantic tokens with VS Code's 20-row TextMate fallback map"
+type      = "text/memetic-wikitext+tiddlywiki"
+uri-path  = "ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/treesitter-and-semantic-tokens"
+written   = "2026-09-01"
+```
+
+<<^ code="&#x0002;" >>
+
+<<~ ahu #treesitter-and-semantic-tokens >>
+
+! HANDBACK — kept verbatim below this line, unedited
+
+# Syntax-highlighting capture/token vocabularies — findings
+
+Sources fetched raw (not summarized) unless noted.
+
+---
+
+## PART 1 — TREE-SITTER
+
+### 1.1 Upstream tree-sitter: three query files (AUTHORITATIVE)
+
+`https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html` — source of truth is `docs/src/3-syntax-highlighting.md` in `tree-sitter/tree-sitter`.
+
+`tree-sitter.json` `"grammars"[]` keys that matter: `scope` (e.g. `"source.js"` — *"We strive to match the scope names used by popular TextMate grammars and by the Linguist library"*), `file-types`, `first-line-regex`, `content-regex`, **`injection-regex`** (regex tested against a *language name* to decide whether this grammar serves a given injection site), and the three query paths:
+
+- `highlights` — default `queries/highlights.scm`
+- `locals` — default `queries/locals.scm`
+- `injections` — default `queries/injections.scm`
+
+The prose list of highlight names is deliberately thin: *"Commonly used highlight names include `keyword`, `function`, `type`, `property`, and `string`. Names can also be dot-separated like `function.builtin`."* **There is no normative capture vocabulary in the doc.** The real normative list lives in the code.
+
+### 1.2 The actual upstream standard capture set (AUTHORITATIVE — source)
+
+`https://github.com/tree-sitter/tree-sitter/blob/master/crates/highlight/src/highlight.rs` (note: the crate MOVED — it is `crates/highlight/src/highlight.rs`, **not** `highlight/src/lib.rs`; the old path 404s).
+
+`static STANDARD_CAPTURE_NAMES` — 58 entries, exactly:
+
+```
+attribute · boolean · carriage-return · comment · comment.documentation ·
+constant · constant.builtin · constructor · constructor.builtin · embedded ·
+error · escape · function · function.builtin · keyword · markup ·
+markup.bold · markup.heading · markup.italic · markup.link · markup.link.url ·
+markup.list · markup.list.checked · markup.list.numbered ·
+markup.list.unchecked · markup.list.unnumbered · markup.quote · markup.raw ·
+markup.raw.block · markup.raw.inline · markup.strikethrough · module ·
+number · operator · property · property.builtin · punctuation ·
+punctuation.bracket · punctuation.delimiter · punctuation.special · string ·
+string.escape · string.regexp · string.special · string.special.symbol · tag ·
+type · type.builtin · variable · variable.builtin · variable.member ·
+variable.parameter
+```
+
+Used by `HighlightConfiguration::nonconformant_capture_names()`, which reports any capture name that is neither in the set nor prefixed `_`:
+
+```rust
+.filter(|&amp;n| !(n.starts_with('_') || capture_names.contains(n)))
+```
+
+→ **A leading `_` marks a capture as intentionally private/non-highlight.** That is the escape hatch for helper captures.
+
+Note this set is *not* the nvim set and *not* the Helix set. It has `markup.bold` (nvim says `markup.strong`), `error`, `carriage-return`, `embedded`.
+
+### 1.3 Capture-name → theme-key resolution (AUTHORITATIVE — source)
+
+`HighlightConfiguration::configure()` doc comment:
+
+&gt; *"Tree-sitter syntax-highlighting queries specify highlights in the form of dot-separated highlight names like `punctuation.bracket` and `function.method.builtin`. Consumers of these queries can choose to recognize highlights with different levels of specificity. For example, the string `function.builtin` will match against `function.method.builtin` and `function.builtin.constructor`, but will not match `function.method`."*
+
+The implementation is **set-containment of dot-parts, longest theme key wins** — not prefix matching:
+
+```rust
+for part in recognized_name.as_ref().split('.') {
+    len += 1;
+    if !capture_parts.contains(&amp;part) { matches = false; break; }
+}
+if matches &amp;&amp; len &gt; best_match_len { best_index = Some(i); best_match_len = len; }
+```
+
+**This is a real trap:** theme key `function.builtin` matches capture `function.method.builtin` because it is order-insensitive membership, not a prefix test.
+
+### 1.4 Precedence / overlapping captures (AUTHORITATIVE — source; the docs are silent)
+
+Two rules, both in `HighlightIter::next()` in `highlight.rs`:
+
+**(a) Same node, multiple patterns → LAST pattern in the query file wins.** Verbatim comment:
+
+&gt; ```
+&gt; // Once a highlighting pattern is found for the current node, keep iterating over
+&gt; // any later highlighting patterns that also match this node and set the match to it.
+&gt; // Captures for a given node are ordered by pattern index, so these subsequent
+&gt; // captures are guaranteed to be for highlighting, not injections or
+&gt; // local variables.
+&gt; ```
+
+**(b) Identical byte range already highlighted → shallower layer skipped.** Verbatim:
+
+&gt; ```
+&gt; // Otherwise, this capture must represent a highlight.
+&gt; // If this exact range has already been highlighted by an earlier pattern, or by
+&gt; // a different layer, then skip over this one.
+&gt; if let Some((last_start, last_end, last_depth)) = self.last_highlight_range
+&gt;     &amp;&amp; range.start == last_start &amp;&amp; range.end == last_end &amp;&amp; layer.depth &lt; last_depth
+&gt; ```
+
+i.e. for an *exactly coincident* range, the **deeper injection layer wins**. Nesting is otherwise handled by a scope stack (`highlight_end_stack`), so **innermost node wins for non-coincident nesting**.
+
+**Correction to the task premise:** it is *last*-match-wins, not first-match-wins, in upstream tree-sitter.
+
+### 1.5 `locals.scm` (AUTHORITATIVE)
+
+Fixed capture vocabulary (upstream):
+
+- `@local.scope` — node introduces a new local scope
+- `@local.definition` — node contains the *name* of a definition in the current scope
+- `@local.definition-value` — (source only; `local_def_value_capture_index` in `highlight.rs` — undocumented in prose, used to record the definition's *value* range so a reference before assignment does not resolve)
+- `@local.reference` — node contains a name that *may* refer to an earlier definition
+- `@ignore` — exclude nodes from tagging; *"you should ensure this pattern comes before any other patterns that would be used for tagging"*
+
+Why it differs from lexical highlighting — verbatim:
+
+&gt; *"When highlighting a file, Tree-sitter will keep track of the set of scopes that contains any given position, and the set of definitions within each scope. When processing a syntax node that is captured as a `local.reference`, Tree-sitter will try to find a definition for a name that matches the node's text. If it finds a match, Tree-sitter will ensure that the reference, and the definition are colored the same."*
+
+The resolution walks `layer.scope_stack.iter().rev()`, requires `range.start &gt;= def.value_range.end`, and stops at the first scope with `inherits == false`. So it is **name-equality within a lexical scope chain — a poor man's resolver, not a type/symbol resolver.** It cannot cross files, cannot resolve members, cannot disambiguate shadowing by type.
+
+Highlights queries consume the result via the predicate **`(#is-not? local)`** — the canonical idiom being `((identifier) @function.method (#is-not? local))`: "any bare identifier not known to be a local variable is a method call."
+
+Also in source: `non_local_variable_patterns` — a pattern carrying `#is-not? local` is *skipped* when the node resolved as a local def/ref, which is why `(#is-not? local)` composes with rule (a) above rather than being overridden by it.
+
+**Note (COMMUNITY):** nvim-treesitter explicitly **abandoned** locals for highlighting — see 1.7.
+
+### 1.6 `injections.scm` (AUTHORITATIVE)
+
+Captures:
+- `@injection.content` — re-parse this node's contents with another language
+- `@injection.language` — the captured node's *text* names the language
+
+Pattern properties (via `#set!`):
+- `injection.language` — hard-code the language name
+- `injection.combined` — *"all the matching nodes in the tree should have their content parsed as one nested document"*
+- `injection.include-children` — *"the `@injection.content` node's entire text should be re-parsed, including the text of its child nodes. By default, child nodes' text will be excluded from the injected document."*
+- `injection.self` — parse with the same language as the node itself
+- `injection.parent` — parse with the node's *parent* language (for injections that must refer back out)
+
+Canonical examples:
+```scheme
+(heredoc_body (heredoc_end) @injection.language) @injection.content
+((heredoc_body) @injection.content (#set! injection.language "ruby"))
+```
+
+**Neovim adds** (AUTHORITATIVE, `runtime/doc/treesitter.txt`):
+- `@injection.filename` — *"the captured node's text may contain a filename; the corresponding filetype is then looked-up via `vim.filetype.match()`"*
+- and extends `@injection.content`: *"If there are multiple `@injection.content` captures in one pattern, all ranges will be collected and parsed as one tree. This allows query authors to create 'scoped' injections with injection query quantifiers."*
+- Perf note, verbatim: *"Injection queries are currently run over the entire buffer, which can be slow for large buffers. To disable injections for, e.g., `c`, just place an empty `queries/c/injections.scm` file in your 'runtimepath'."*
+
+**tree-sitter injection vs TextMate `include` + begin/end (MY INFERENCE, grounded in the above + TextMate semantics):**
+
+What tree-sitter can do that TextMate cannot:
+1. **Runtime-determined language.** `@injection.language` reads the *text of a node* (heredoc tag, fence info string, `&lt;script type=…&gt;`) and dispatches. TextMate must enumerate every embedded language as a separate `begin`/`end` rule with a literal `include: source.js`. A markdown TextMate grammar hard-codes N fenced-language rules; a tree-sitter one needs one pattern.
+2. **Discontiguous / gathered ranges.** `injection.combined` and multi-`@injection.content` parse *several disjoint ranges as one document* (ERB `&lt;% %&gt;` fragments forming one Ruby program; markdown `(inline)` nodes). TextMate's begin/end is strictly one contiguous span, so an ERB `if` in one tag and its `end` in another can never be one parse.
+3. **Child exclusion.** `injection.include-children` (default: children *excluded*) lets the parent grammar punch holes — interpolations stay in the host language while the surrounding literal is injected. TextMate needs the embedded grammar itself to re-declare the interpolation escape.
+4. **Structural, not lexical, boundaries.** The injection region is a *node*, so boundaries are correct under nesting/balancing. TextMate `end` patterns are regexes and mis-terminate on nested delimiters.
+5. **Bidirectional** via `injection.parent`.
+
+What TextMate can do that tree-sitter cannot:
+1. **Work without a grammar for the outer or inner language.** A TextMate rule degrades to matching regexes; tree-sitter needs a compiled parser for every injected language or the layer simply does not exist (`injection_callback: FnMut(&amp;str) -&gt; Option&lt;&amp;HighlightConfiguration&gt;` — `None` means no layer, content falls through to whatever the parent captured; **silent**, no error).
+2. **Partial/ill-formed embedding.** TextMate happily highlights a half-typed embedded block. Tree-sitter must parse it; an unrecoverable fragment yields `ERROR` nodes and captures stop applying inside them.
+3. **Cheap incremental authoring** — no parser build step, no ABI/version coupling.
+4. **`include` composition of *rule sets*** (`$self`, `#repository` refs) rather than of *languages*; tree-sitter injection is language-granular only.
+
+### 1.7 Neovim / nvim-treesitter capture vocabulary (AUTHORITATIVE — `runtime/doc/treesitter.txt`, `*treesitter-highlight-groups*`; the identical list is mirrored in nvim-treesitter `CONTRIBUTING.md`)
+
+Fallback rule, verbatim:
+
+&gt; *"A fallback system is implemented, so that more specific groups fallback to more generic ones. For instance, in a language that has separate doc comments (e.g., c, java, etc.), `@comment.documentation` could be used. If this group is not defined, the highlighting for an ordinary `@comment` is used."*
+
+Plus **per-language specialization by appending the language**: `@comment.c`, `@comment.lua`, `@comment.documentation.java`.
+
+Full list, exact spellings:
+
+```
+@variable  @variable.builtin  @variable.parameter  @variable.parameter.builtin  @variable.member
+@constant  @constant.builtin  @constant.macro
+@module  @module.builtin  @label
+@string  @string.documentation  @string.regexp  @string.escape
+@string.special  @string.special.symbol  @string.special.path  @string.special.url
+@character  @character.special
+@boolean  @number  @number.float
+@type  @type.builtin  @type.definition
+@attribute  @attribute.builtin  @property
+@function  @function.builtin  @function.call  @function.macro
+@function.method  @function.method.call
+@constructor  @operator
+@keyword  @keyword.coroutine  @keyword.function  @keyword.operator  @keyword.import
+@keyword.type  @keyword.modifier  @keyword.repeat  @keyword.return  @keyword.debug
+@keyword.exception  @keyword.conditional  @keyword.conditional.ternary
+@keyword.directive  @keyword.directive.define
+@punctuation.delimiter  @punctuation.bracket  @punctuation.special
+@comment  @comment.documentation
+@comment.error  @comment.warning  @comment.todo  @comment.note
+@markup.strong  @markup.italic  @markup.strikethrough  @markup.underline
+@markup.heading  @markup.heading.1 … @markup.heading.6
+@markup.quote  @markup.math
+@markup.link  @markup.link.label  @markup.link.url
+@markup.raw  @markup.raw.block
+@markup.list  @markup.list.checked  @markup.list.unchecked
+@diff.plus  @diff.minus  @diff.delta
+@tag  @tag.builtin  @tag.attribute  @tag.delimiter
+```
+
+Non-highlighting captures: **`@spell`**, **`@nospell`**, **`@conceal`**, **`@noconceal`**, `@none` (suppress), `@fold` (folds.scm), `@indent.begin`/`@indent.immediate` (indents.scm).
+
+There is **no `@error` capture in Neovim** — only `@comment.error`. (Upstream tree-sitter's `error` capture is not part of the nvim vocabulary.)
+
+Precedence in Neovim (AUTHORITATIVE, `*treesitter-highlight-priority*`):
+
+&gt; *"Treesitter uses `nvim_buf_set_extmark()` to set highlights with a default priority of 100. … It is also possible to change the priority of an individual query pattern manually by setting its `"priority"` metadata attribute:*
+&gt; `((super_important_node) @superimportant (#set! priority 105))`"
+
+nvim-treesitter guidance (COMMUNITY, `CONTRIBUTING.md`):
+
+&gt; *"The default priority for treesitter highlights is `100`; queries should only set priorities between `90` and `120`, to avoid conflict with other sources of highlighting (such as diagnostics or LSP semantic tokens)."*
+&gt; *"Precedence is also influenced by pattern order in a query file. If possible, try to achieve the correct result by reordering patterns before resorting to explicit priorities."*
+
+Cross-editor warning, verbatim (COMMUNITY, nvim-treesitter CONTRIBUTING):
+
+&gt; *"The valid captures that can be used in queries is different for each editor, so you cannot just copy them, e.g., from Helix or the parser repositories. For Neovim, all valid captures are listed below. You can verify that your changes adhere to this by running `make lintquery`."*
+
+`locals` in nvim-treesitter — verbatim:
+
+&gt; *"nvim-treesitter uses more specific subcaptures for definitions and **does not use locals** (for highlighting or any other purpose). These queries are only provided for limited backwards compatibility."*
+
+Its locals vocabulary: `@local.definition`, `.constant`, `.function`, `.method`, `.var`, `.parameter`, `.macro`, `.type`, `.field`, `.enum`, `.namespace`, `.import`, `.associated`; `@local.scope`; `@local.reference`. Scope override via `(#set! definition.var.scope "parent"|"global"|"local")`.
+
+Query composition modelines (AUTHORITATIVE): `;; inherits: typescript,jsx` (recursive unless wrapped `({lang})`) and `;; extends` (merge with same-language queries; *"The order of the extensions, and the query that will be used as a base depends on your 'runtimepath'"*).
+
+Query directives: `#offset!`, `#gsub!`, `#trim!`, `#set!`. Predicates (nvim-treesitter perf-ordered): `#eq?` &gt; `#any-of?` &gt; `#lua-match?` &gt; `#match?`/`#vim-match?`; nvim-treesitter adds `#kind-eq?`, `#any-kind-eq?`.
+
+### 1.8 Helix (AUTHORITATIVE — `helix-editor/helix/book/src/themes.md`)
+
+Two stated rules, verbatim:
+
+&gt; *"When determining styling for a highlight, the longest matching theme key will be used. For example, if the highlight is `function.builtin.static`, the key `function.builtin` will be used instead of `function`."*
+
+&gt; *"When several captures cover the same text the **last** matching pattern in the file wins; when they sit on nested nodes the **innermost** node wins regardless of order, so capture the leaf you mean (put `@function` on the called identifier, not a node wrapping it). A method call is `@function.method`; a field access with no call is `@variable.other.member`."*
+
+(This confirms upstream rule 1.4 — last-in-file, innermost-node.) Helix explicitly says: *"We use a similar set of scopes as Sublime Text… See also TextMate scopes."*
+
+Full syntax scope tree (dotted concatenation of the nesting):
+
+```
+attribute
+type · type.builtin · type.parameter · type.enum · type.enum.variant
+constructor
+constant · constant.builtin · constant.builtin.boolean · constant.character ·
+  constant.character.escape · constant.numeric · constant.numeric.integer ·
+  constant.numeric.float
+string · string.regexp · string.special · string.special.path ·
+  string.special.url · string.special.symbol
+comment · comment.line · comment.line.documentation · comment.block ·
+  comment.block.documentation · comment.unused
+variable · variable.mutable · variable.builtin · variable.builtin.mutable ·
+  variable.parameter · variable.parameter.mutable · variable.other ·
+  variable.other.member · variable.other.member.private
+label
+punctuation · punctuation.delimiter · punctuation.bracket · punctuation.special
+keyword · keyword.control · keyword.control.conditional · keyword.control.repeat ·
+  keyword.control.import · keyword.control.return · keyword.control.exception ·
+  keyword.operator · keyword.directive · keyword.function ·
+  keyword.storage · keyword.storage.type · keyword.storage.modifier
+operator
+function · function.public · function.builtin · function.method ·
+  function.method.public · function.method.private · function.macro · function.special
+tag · tag.builtin
+namespace
+special
+markup.heading · markup.heading.marker · markup.heading.1 … markup.heading.6
+markup.list · markup.list.unnumbered · markup.list.numbered ·
+  markup.list.checked · markup.list.unchecked
+markup.bold · markup.italic · markup.strikethrough
+markup.link · markup.link.url · markup.link.label · markup.link.text
+markup.quote · markup.raw · markup.raw.inline · markup.raw.block
+diff.plus · diff.plus.gutter · diff.minus · diff.minus.gutter ·
+  diff.delta · diff.delta.moved · diff.delta.conflict · diff.delta.gutter
+embedded
+```
+
+Errors in Helix are **UI/diagnostic scopes, not captures**: `error`, `warning`, `info`, `hint`, `diagnostic`, `diagnostic.{hint,info,warning,error}`, `*.diagnostic.inline`, `diagnostic.unnecessary`, `diagnostic.deprecated`.
+
+Note the divergences that break copy-paste: Helix `markup.bold` vs nvim `@markup.strong`; Helix `variable.other.member` vs nvim `@variable.member`; Helix `keyword.control.conditional` vs nvim `@keyword.conditional`; Helix `constant.numeric.integer` vs nvim `@number`; Helix `namespace` vs nvim `@module`.
+
+### 1.9 Zed (AUTHORITATIVE — `zed-industries/zed/docs/src/extensions/languages.md`)
+
+Zed's capture list is a *third*, smaller and older-flavored vocabulary — *"the full list of captures supported by themes"*:
+
+```
+@attribute  @boolean  @comment  @comment.doc  @constant  @constant.builtin
+@constructor  @embedded  @emphasis  @emphasis.strong  @enum  @function  @hint
+@keyword  @label  @link_text  @link_uri  @number  @operator  @predictive
+@preproc  @primary  @property  @punctuation  @punctuation.bracket
+@punctuation.delimiter  @punctuation.list_marker  @punctuation.special
+@string  @string.escape  @string.regex  @string.special  @string.special.symbol
+@tag  @tag.doctype  @text.literal  @title  @type  @type.builtin
+@variable  @variable.special  @variable.parameter  @variant
+```
+
+Note `@link_text`/`@link_uri` (underscores!), `@emphasis`/`@emphasis.strong` instead of italic/strong, `@title` instead of heading, `@string.regex` (not `regexp`), `@comment.doc` (not `documentation`), and UI-ish `@hint`/`@predictive`/`@primary`.
+
+**Zed's fallback captures — a mechanism neither nvim nor Helix has** (AUTHORITATIVE, verbatim):
+
+&gt; *"A single Tree-sitter pattern can specify multiple captures on the same node to define fallback highlights. Zed resolves them **right-to-left**: It first tries the rightmost capture, and if the current theme has no style for it, falls back to the next capture to the left, and so on."*
+&gt; ```scheme
+&gt; (type_identifier) @type @variable
+&gt; ```
+&gt; *"Here Zed will first try to resolve `@variable` from the theme. If the theme defines a style for `@variable`, that style is used. Otherwise, Zed falls back to `@type`."*
+
+Other query files: `brackets.scm` (`@open`/`@close`, plus `(#set! rainbow.exclude)`), `outline.scm` (`@item`, `@name`), `indents.scm`, `injections.scm`, `overrides.scm`.
+
+**Zed also runs LSP semantic tokens alongside tree-sitter** — this is the clearest published statement of the layering trade-off (AUTHORITATIVE):
+
+`"semantic_tokens"` setting, global or per-language:
+- `"off"` (default) — do not request semantic tokens
+- `"combined"` — *"Use LSP semantic tokens together with tree-sitter highlighting."*
+- `"full"` — *"Use LSP semantic tokens exclusively, replacing tree-sitter highlighting."*
+
+Semantic token → theme style rules, with precedence, verbatim:
+
+&gt; *"All rules that match a given `token_type` and `token_modifiers` are applied. **Earlier rules take precedence.** If no rules match, the token is not highlighted."*
+&gt; Priority order (highest→lowest): 1. User settings `semantic_token_rules` · 2. Extension rules (`semantic_token_rules.json` beside `config.toml`) · 3. Zed's built-in rules for standard LSP token types.
+
+Extension rule shape: `{"token_type": "lifetime", "style": ["lifetime"]}`, `{"token_modifiers": ["mutable"], "underline": true}`, or direct `foreground_color`/`font_weight`.
+
+### 1.10 Markdown: the two-grammar split (AUTHORITATIVE)
+
+Repo: `tree-sitter-grammars/tree-sitter-markdown`, branch **`split_parser`** (this *is* the mainline; the branch name is historical). Two grammars: **`markdown`** (block) in `tree-sitter-markdown/`, **`markdown_inline`** in `tree-sitter-markdown-inline/`, shared pieces in `common/`.
+
+The mechanism, verbatim (README, "Standalone usage"):
+
+&gt; *"To use the two grammars, first parse the document with the block grammar. Then perform a second parse with the inline grammar using `ts_parser_set_included_ranges` to specify which parts are inline content. These parts are marked as `inline` nodes. Children of those inline nodes should be excluded from these ranges."*
+
+The split is wired by **injection**, in `tree-sitter-markdown/queries/injections.scm`:
+
+```scheme
+((inline) @injection.content (#set! injection.language "markdown_inline"))
+```
+
+**WHY the split (MY INFERENCE, grounded):** CommonMark is specified as a strictly two-phase parse — block structure first, then inline content within the resulting block ranges. Emphasis resolution uses a delimiter-run stack with left/right-flanking rules and *backtracking* over unmatched delimiters; that is not expressible in tree-sitter's single LR/GLR pass, and block-level lazy continuation lines mean the inline text of one paragraph is discontiguous in the source. Splitting lets the block grammar compute the ranges and hand a *gathered, contiguous-in-parse* region to a separate inline grammar. The README is blunt about the cost: *"there are still lots of inaccuracies in the output. These stem from restricting a complex format such as markdown to the quite restricting tree-sitter parsing rules. As such it is not recommended to use this parser where correctness is important. The main goal for this parser is to provide syntactical information for syntax highlighting."*
+
+Other injections shipped by the block grammar (AUTHORITATIVE, exact file):
+
+```scheme
+(fenced_code_block (info_string (language) @injection.language)
+                   (code_fence_content) @injection.content)
+((html_block) @injection.content (#set! injection.language "html"))
+(document . (section . (thematic_break) (_) @injection.content (thematic_break))
+          (#set! injection.language "yaml"))
+((minus_metadata) @injection.content (#set! injection.language "yaml"))
+((plus_metadata)  @injection.content (#set! injection.language "toml"))
+```
+
+That first pattern is exactly the TextMate-impossible case from §1.6: one pattern, language read from the fence's info string at runtime.
+
+**Prose+code mixing — the priority idiom** (nvim-treesitter `runtime/queries/markdown/highlights.scm`, AUTHORITATIVE):
+
+```scheme
+(indented_code_block) @markup.raw.block
+((fenced_code_block) @markup.raw.block (#set! priority 90))
+```
+
+and the CONTRIBUTING annotation: `@markup.raw.block ; … (use priority 90 for blocks with injections)`. The whole block is painted `@markup.raw.block` at **priority 90 — below the default 100** — precisely so the injected language's own highlights, applied at 100, win inside the fence while the fence background/style still covers untokenized gaps. Fence delimiters and the info string are concealed:
+
+```scheme
+(fenced_code_block (fenced_code_block_delimiter) @markup.raw.block
+  (#set! conceal "") (#set! conceal_lines ""))
+(fenced_code_block (info_string (language) @label
+  (#set! conceal "") (#set! conceal_lines ""))
+```
+
+Inline side (`markdown_inline/highlights.scm`): `(code_span) @markup.raw @nospell`, `(emphasis) @markup.italic`, `(strong_emphasis) @markup.strong`, `(strikethrough) @markup.strikethrough`, link labels → `@markup.link.label`, and heavy `@conceal` on delimiters. Spell-checking is scoped by `@spell`/`@nospell` captures rather than by highlight — that is how prose gets spellchecked and inline code does not.
+
+**HAZARD (measured):** the *grammar repo's own* `queries/highlights.scm` still uses the retired nvim vocabulary — `@text.title`, `@text.literal`, `@text.uri`, `@text.reference`, `@none`, `@punctuation.special` for headings. nvim-treesitter ships its own replacement using `@markup.*`. Copying queries from a grammar repo gets you a dead vocabulary.
+
+### 1.11 ERROR nodes / unknown languages (tree-sitter)
+
+- **`error` is an upstream standard capture name** (§1.2) but is absent from Neovim's and Zed's vocabularies; Helix treats `error` as a UI/diagnostic scope. There is no cross-editor `@error`.
+- Neovim exposes `TSNode:has_error()` (*"Check if the node is a syntax error or contains any syntax errors"*) and notes ERROR nodes exist *"in order to recover from certain kinds of syntax errors"* — but ships **no default highlight for ERROR**. (AUTHORITATIVE for the API; the "no default highlight" is MY INFERENCE from the absence of any error capture in `*treesitter-highlight-groups*`.)
+- `(ERROR "else")` is used as a *query pattern* — nvim-treesitter's `indents.scm` example matches ERROR nodes deliberately to keep indentation working mid-edit. So ERROR is queryable like any node kind.
+- **Unknown injected language degrades silently.** `injection_callback: FnMut(&amp;str) -&gt; Option&lt;&amp;'a HighlightConfiguration&gt;`; `None` → no layer is pushed, the region keeps whatever the parent captured, no diagnostic. (AUTHORITATIVE — source.)
+- **Unknown file language:** upstream resolves by `file-types`, then `first-line-regex`, then `content-regex` as a tiebreak (*"If the regex matches, this grammar will be preferred over another grammar with no `content-regex`"*). No grammar → no highlighting at all; there is no regex fallback tier the way TextMate has.
+
+---
+
+## PART 2 — LSP SEMANTIC TOKENS
+
+### 2.1 Spec (AUTHORITATIVE — `_specifications/lsp/3.17/language/semanticTokens.md`, rendered at https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_semanticTokens)
+
+Since 3.16.0. Opening framing, verbatim:
+
+&gt; *"Semantic tokens are used to **add additional color information** to a file that depends on language specific symbol information."*
+
+&gt; *"Tokens are represented using one token type combined with n token modifiers. … The protocol defines a set of token types and modifiers but **clients are allowed to extend these** and announce the values they support in the corresponding client capability."*
+
+`SemanticTokenTypes` — 23 members, in spec order:
+
+```
+namespace, type, class, enum, interface, struct, typeParameter, parameter,
+variable, property, enumMember, event, function, method, macro, keyword,
+modifier, comment, string, number, regexp, operator, decorator
+```
+(`type` is documented as *"a generic type. Acts as a fallback for types which can't be mapped to a specific type like class or enum."*; `decorator` is `@since 3.17.0`.)
+
+`SemanticTokenModifiers` — 10 members, in spec order:
+
+```
+declaration, definition, readonly, static, deprecated, abstract, async,
+modification, documentation, defaultLibrary
+```
+
+`TokenFormat`: only `'relative'` is specified. `SemanticTokensLegend { tokenTypes: string[]; tokenModifiers: string[] }`. Encoding: 5 integers per token — `deltaLine`, `deltaStart`, `length`, `tokenType` (index; *"We currently ask that `tokenType` &lt; 65536"*), `tokenModifiers` (bit flags; *"a `tokenModifier` value of `3` is first viewed as binary `0b00000011`, which means `[tokenModifiers[0], tokenModifiers[1]]`"*).
+
+Client capabilities that govern layering:
+
+- **`augmentsSyntaxTokens?: boolean`** (`@since 3.17.0`) — verbatim: *"Whether the client uses semantic tokens to augment existing syntax tokens. If set to `true` client side created syntax tokens and semantic tokens are both used for colorization. If set to `false` the client only uses the returned semantic tokens for colorization. If the value is `undefined` then the client behavior is not specified."*
+- `overlappingTokenSupport?: boolean` — *"defines whether tokens can overlap each other."*
+- `multilineTokenSupport?: boolean` — *"If multiline tokens are not supported and a tokens length takes it past the end of the line, it should be treated as if the token ends at the end of the line and will not wrap onto the next line."*
+- `serverCancelSupport?: boolean` — server may return `ErrorCodes.ServerCancelled`; client must retrigger.
+
+**Note:** the LSP spec itself has **nothing** on ERROR/invalid regions, unknown languages, or prose+code. Layering semantics are pushed entirely to `augmentsSyntaxTokens` and to the client. (AUTHORITATIVE by absence — I grepped the full 534-line spec file.)
+
+### 2.2 VS Code's layering model (AUTHORITATIVE — `microsoft/vscode-docs/api/language-extensions/semantic-highlight-guide.md`, DateApproved 8/26/2026)
+
+The enrichment language, verbatim:
+
+&gt; *"Semantic highlighting is an **addition to** syntax highlighting… Visual Studio Code uses TextMate grammars as the main tokenization engine. TextMate grammars work on a single file as input and break it up based on lexical rules expressed in regular expressions."*
+&gt;
+&gt; *"Semantic tokenization allows language servers to provide additional token information based on the language server's knowledge on how to resolve symbols in the context of a project. Themes can **opt in** to use semantic tokens to **improve and refine** the syntax highlighting from grammars. **The editor applies the highlighting from semantic tokens on top of the highlighting from grammars.**"*
+
+&gt; *"This information is similar to the TextMate scopes… but we wanted to come up with a dedicated and cleaner classification system."*
+
+**VS Code's standard type list differs from LSP's**: VS Code has `label` (LSP does not) and **lacks `modifier`** (LSP has it). VS Code list, in doc order: `namespace, class, enum, interface, struct, typeParameter, type, parameter, variable, property, enumMember, decorator, event, function, method, macro, label, comment, string, keyword, number, regexp, operator` (23). Modifiers are identical to LSP's 10.
+
+**Enablement** (verbatim): setting `editor.semanticHighlighting.enabled` ∈ `true | false | configuredByTheme`. *"`configuredByTheme` is the **default** and lets each theme control whether semantic highlighting is enabled or not. All the themes that ship with VS Code (for example, the 'Dark+' default) have semantic highlighting enabled by default."* A language extension can override per-language via `configurationDefaults: { "[languageId]": { "editor.semanticHighlighting.enabled": true } }`.
+
+**Theme setting** (verbatim): *"The property `semanticHighlighting` defines whether the theme is ready for highlighting using semantic tokens. It is **false by default**, but we encourage all themes to enable it. The property is used when the setting `editor.semanticHighlighting.enabled` is set to `configuredByTheme`."*
+
+`semanticTokenColors` selector grammar, verbatim: **`(*|tokenType)(.tokenModifier)*(:tokenLanguage)?`** — e.g. `variable.readonly:java`, `"*.declaration": { "bold": true }`, `"class:java": { "foreground": "#0f0", "italic": true }`. Value is a foreground string or `{ foreground, bold, italic, underline }` / `{ foreground, fontStyle }`. **"Transparency is not supported."**
+
+**THE FALLBACK RULE** (verbatim, the crucial sentence):
+
+&gt; *"If no rule matches or the theme has no `semanticTokenColors` section (but `semanticHighlighting` enabled), VS Code uses the Semantic Token Scope Map to evaluate a TextMate scope for the given semantic token. That scope is matched against the themes TextMate theming rules in `tokenColors`."*
+&gt;
+&gt; *"In order to make semantic highlighting work for themes that have not defined any specific semantic rules and to serve as fallback for custom token types and modifiers, VS Code maintains a map from semantic token selectors to TextMate scopes. If a theme has semantic highlighting enabled, but does not contain a rule for the given semantic token, these TextMate scopes are used to find a TextMate theming rule instead."*
+
+**The predefined map, verbatim and complete** (20 rows — note it does *not* cover every token type; `keyword`, `string`, `number`, `comment`, `operator`, `regexp`, `decorator`, `typeParameter`, `label`, `modifier` have **no** entry):
+
+| Semantic Token Selector | Fallback TextMate Scope |
+|---|---|
+| `namespace` | `entity.name.namespace` |
+| `type` | `entity.name.type` |
+| `type.defaultLibrary` | `support.type` |
+| `struct` | `storage.type.struct` |
+| `class` | `entity.name.type.class` |
+| `class.defaultLibrary` | `support.class` |
+| `interface` | `entity.name.type.interface` |
+| `enum` | `entity.name.type.enum` |
+| `function` | `entity.name.function` |
+| `function.defaultLibrary` | `support.function` |
+| `method` | `entity.name.function.member` |
+| `macro` | `entity.name.function.preprocessor` |
+| `variable` | `variable.other.readwrite` , `entity.name.variable` |
+| `variable.readonly` | `variable.other.constant` |
+| `variable.readonly.defaultLibrary` | `support.constant` |
+| `parameter` | `variable.parameter` |
+| `property` | `variable.other.property` |
+| `property.readonly` | `variable.other.constant.property` |
+| `enumMember` | `variable.other.enummember` |
+| `event` | `variable.other.event` |
+
+(`variable` maps to a *list* of two scopes — the only multi-scope row.)
+
+**MY INFERENCE:** the gap is deliberate — for `keyword`/`string`/`comment`/`number`/`operator`/`regexp` the TextMate grammar is already authoritative and correct, so there is nothing for the language server to refine; the mapped rows are exactly the cases where a regex grammar *cannot* know the answer (is this identifier a class, a parameter, or a constant?). That is the whole thesis of the layering.
+
+**Custom token types** (verbatim):
+
+&gt; *"Still, semantic token providers are free to define new types and modifiers and create a subtype of the standard types."*
+
+Declared via `contributes.semanticTokenTypes` / `semanticTokenModifiers` in `package.json`, with **`superType`**:
+
+```json
+{ "contributes": { "semanticTokenTypes": [
+    { "id": "templateType", "superType": "type", "description": "A template type." }],
+  "semanticTokenModifiers": [
+    { "id": "native", "description": "Annotates a symbol that is implemented natively" }] } }
+```
+
+&gt; *"By naming `type` as the super type, theme styling rules for `type` will also apply to `templateType`. … The `semanticTokenColors` value `"#ff0011"` shown above applies to both `type` and all it's subtypes, including `templateType`."*
+&gt;
+&gt; **CRITICAL CAVEAT, verbatim:** *"Note that custom mapping rules are **not** automatically inherited from the super type. Instead, subtypes need to redefine the mapping, preferably to more specific scopes."*
+
+So: **theme rules inherit through `superType`; TextMate scope fallbacks do NOT.** A custom type with a `superType` but no `semanticTokenScopes` entry gets nothing under a non-semantic theme.
+
+Extensions supply their own fallback via `contributes.semanticTokenScopes`, in two modes (verbatim):
+```json
+{ "contributes": { "semanticTokenScopes": [
+  { "scopes": { "templateType": [ "entity.name.type.template" ] } } ] } }
+```
+and language-specific, *"The provider of a TextMate grammar can describe the language-specific scopes. That helps with themes that contain language-specific theming rules."*:
+```json
+{ "language": "typescript", "scopes": { "property.readonly": ["variable.other.constant.property.ts"] } }
+```
+
+Tooling: the **scope inspector** (`/api/language-extensions/syntax-highlight-guide#scope-inspector`) shows both TextMate scopes and semantic tokens and which theme rule each matched — *"To see semantic token, use a built-in theme (for example, Dark+) on a TypeScript file."* Sample: `microsoft/vscode-extension-samples/tree/main/semantic-tokens-sample`.
+
+### 2.3 Semantic tokens: unknown language / errors / prose+code
+
+- **Unknown language:** semantic tokens are provider-registered by `DocumentSelector` (`{ language: 'java', scheme: 'file' }`). No provider → no tokens → TextMate grammar alone. If there is also no grammar, plaintext. Graceful, silent. (AUTHORITATIVE by construction from the registration API.)
+- **Errors/invalid code:** the protocol has no error token type or modifier. A server that cannot resolve a symbol simply emits no token for it, and the TextMate layer shows through. `deprecated` is the only "something is wrong" modifier, and it is semantic-not-syntactic. (AUTHORITATIVE by absence.)
+- **Prose+code / embedded languages:** handled by the *optional token language* on each token — VS Code doc, verbatim: *"Optionally, the classification can also name a language, if the token is part of an embedded language"* — surfaced in theme selectors as the `:tokenLanguage` suffix (`variable.readonly:java`). There is no equivalent of tree-sitter's injection *ranges*; the server must decide, per token, which language it belongs to. LSP itself provides no mechanism for a single document to carry multiple language ids for tokens beyond what the server chooses to encode. (Doc statement AUTHORITATIVE; the "no range mechanism" is MY INFERENCE from the spec having only `tokenType`/`tokenModifiers` in the 5-int encoding.)
+
+---
+
+## Cross-cutting summary for a grammar author
+
+1. **Four incompatible vocabularies.** Upstream tree-sitter (58 names, has `error`/`embedded`/`carriage-return`/`markup.bold`), Neovim (~110 names, `@markup.strong`, `@variable.member`, `@module`, no `@error`), Helix (Sublime-shaped, `markup.bold`, `variable.other.member`, `namespace`, `keyword.control.*`), Zed (~45, `@link_uri`, `@emphasis.strong`, `@title`, `@string.regex`). Neovim's own docs say you cannot copy between them. Pick one target per query file; do not write "portable" highlights.scm.
+2. **Precedence is last-in-file, innermost-node, deeper-layer** in upstream/Helix; Neovim adds numeric `#set! priority` (default 100, house band 90–120) and the *fallback-by-dropping-a-dot-segment* rule; Zed adds right-to-left multi-capture fallback on one node. Only Zed and Neovim give you a theme-aware fallback; upstream and Helix resolve capture→theme purely by longest key match (and upstream's match is dot-part *set membership*, not prefix — `function.builtin` matches `function.method.builtin`).
+3. **The prose+code seam is a priority trick, not a mechanism:** `((fenced_code_block) @markup.raw.block (#set! priority 90))` — deliberately below default so injected highlights win inside.
+4. **Semantic tokens never replace, they overlay** (except by explicit opt-out: LSP `augmentsSyntaxTokens: false`, Zed `"semantic_tokens": "full"`). The whole design assumes a lexical layer underneath, and VS Code's 20-row fallback map covers only the identifier-classification cases a regex grammar genuinely cannot decide.
+5. **The one asymmetry worth designing around:** a custom semantic token type inherits *theme* styling via `superType` but **not** TextMate scope fallback — you must ship `contributes.semanticTokenScopes` yourself or the type is invisible under non-semantic themes.
+
+## Sources
+
+- https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html (raw: https://raw.githubusercontent.com/tree-sitter/tree-sitter/master/docs/src/3-syntax-highlighting.md)
+- https://github.com/tree-sitter/tree-sitter/blob/master/crates/highlight/src/highlight.rs
+- https://raw.githubusercontent.com/neovim/neovim/master/runtime/doc/treesitter.txt (`*treesitter-highlight-groups*`, `*treesitter-highlight-priority*`, `*treesitter-language-injections*`, `*treesitter-query-modeline*`)
+- https://github.com/nvim-treesitter/nvim-treesitter/blob/main/CONTRIBUTING.md
+- https://github.com/nvim-treesitter/nvim-treesitter/blob/main/runtime/queries/markdown/highlights.scm and `markdown_inline/highlights.scm`
+- https://docs.helix-editor.com/themes.html (raw: https://raw.githubusercontent.com/helix-editor/helix/master/book/src/themes.md)
+- https://zed.dev/docs/extensions/languages (raw: https://raw.githubusercontent.com/zed-industries/zed/main/docs/src/extensions/languages.md)
+- https://github.com/tree-sitter-grammars/tree-sitter-markdown (branch `split_parser`: README.md, CONTRIBUTING.md, `tree-sitter-markdown/queries/injections.scm`, `queries/highlights.scm`)
+- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_semanticTokens (raw: `microsoft/language-server-protocol` `_specifications/lsp/3.17/language/semanticTokens.md`)
+- https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide (raw: https://raw.githubusercontent.com/microsoft/vscode-docs/main/api/language-extensions/semantic-highlight-guide.md)
+
+<<~/ahu >>
+
+<<^ code="&#x0003;" >>
+
+<<^ code="&#x0004;" -> ? >>

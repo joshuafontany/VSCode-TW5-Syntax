@@ -16,6 +16,15 @@
 // it does with each opener rather than holding a table of answers, and reports only where the two
 // disagree.
 //
+// THE OTHER DIRECTION. A bound that contains a runaway can also cut a construct the parser
+// carries whole. TiddlyWiki's filtered transclude matches across blank lines — its regexp reads
+// `[^\|]+?`, which takes newlines — so a bound at the first blank line ends a block the parser
+// keeps open. Measured when that bound landed here: it cost 1004 spans across four specimens
+// their filter scoping and manufactured 89 link claims out of filter operands.
+//
+// So every opener runs twice: once left unterminated, and once CLOSED with a blank line inside.
+// A grammar must stop where the parser stops AND carry on where the parser carries on.
+//
 //   node tools/swallow-witness.js [--verbose]
 
 'use strict';
@@ -39,6 +48,15 @@ const OPENERS = ['@@style;', "''", '//', '__', '^^', ',,', '~~', '`', '[[', '{{'
 const AFTER = '<<<\nQuoted\n<<<';
 const specimen = (opener) => `text ${opener} unterminated\n\n${AFTER}\n`;
 
+// Each opener with the closer that shuts it, and a blank line between. Only openers with a
+// closer ride this second battery; a marker that opens a line has nothing to close.
+const CLOSERS = {
+  '{{{': '}}}', '{{': '}}', '[[': ']]', '[img[': ']]', '[ext[': ']]',
+  '@@style;': '@@', '@@': '@@', "''": "''", '//': '//', '__': '__', '^^': '^^',
+  ',,': ',,', '~~': '~~', '`': '`', '$(': ')$', '${': '}$', '<<': '>>'
+};
+const closedSpecimen = (opener) => `${opener}\n\nbody\n\n${CLOSERS[opener]}\n`;
+
 /** Does TiddlyWiki build a quoteblock after the blank line? */
 function parserStops(opener) {
   const out = execFileSync('node', [path.join(ROOT, 'tools', 'tw5-oracle.js'), '--text', specimen(opener)],
@@ -60,6 +78,42 @@ const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>
 execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', 'text.html.tiddlywiki5', '-u', ...files],
   { cwd: ROOT, stdio: 'ignore' });
 
+// A closed construct: does the parser keep ONE node across the blank line, and does the grammar
+// keep one region? The parser's answer comes from whether it names the construct's own rule at
+// the far side of the blank line.
+const closedOpeners = OPENERS.filter((o) => CLOSERS[o]);
+const closedFiles = closedOpeners.map((o, i) => {
+  const file = path.join(scratch, `closed-${i}.tw`);
+  fs.writeFileSync(file, closedSpecimen(o));
+  return file;
+});
+if (closedFiles.length) {
+  execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', 'text.html.tiddlywiki5', '-u', ...closedFiles],
+    { cwd: ROOT, stdio: 'ignore' });
+}
+
+/** Does TiddlyWiki carry one construct across the blank line? */
+function parserCarries(opener) {
+  const out = execFileSync('node', [path.join(ROOT, 'tools', 'tw5-oracle.js'), '--text', closedSpecimen(opener)],
+    { encoding: 'utf8', cwd: ROOT });
+  // The word `body` sits past the blank line. The parser carries the construct when the FIRST
+  // node it names names something other than a plain block stopping at the opener.
+  return !/^element<p> \[parseblock\] @0-\d+\n\s+text "[^"]*"\n(?!\s)/.test(out) && !/parseblock/.test(out.split('\n')[0]);
+}
+
+const carryFindings = [];
+closedOpeners.forEach((opener, i) => {
+  const snap = fs.readFileSync(`${closedFiles[i]}.snap`, 'utf8');
+  // The grammar carries it when the line past the blank line still stands inside a region the
+  // opener began, rather than falling back to a paragraph of its own.
+  const carries = !/^>body\n#\^+ text\.html\.tiddlywiki5 meta\.paragraph/m.test(snap);
+  const parser = parserCarries(opener);
+  if (verbose) {
+    console.log(`  ${opener.padEnd(9)} closed: parser ${parser ? 'carries' : 'stops  '}   grammar ${carries ? 'carries' : 'stops'}`);
+  }
+  if (parser && !carries) carryFindings.push(opener);
+});
+
 const findings = [];
 OPENERS.forEach((opener, i) => {
   const snap = fs.readFileSync(`${files[i]}.snap`, 'utf8');
@@ -75,5 +129,10 @@ fs.rmSync(scratch, { recursive: true, force: true });
 for (const opener of findings) {
   console.error(`  ${JSON.stringify(opener)} unterminated takes the block after the blank line; TiddlyWiki parses it`);
 }
-console.log(`swallow-witness  ${OPENERS.length} opener(s), ${findings.length} that run past a block boundary the parser respects`);
-process.exit(findings.length === 0 ? 0 : 1);
+for (const opener of carryFindings) {
+  console.error(`  ${JSON.stringify(opener)} closed stops at the blank line; TiddlyWiki carries it across`);
+}
+const total = findings.length + carryFindings.length;
+console.log(`swallow-witness  ${OPENERS.length} opener(s) unterminated and ${closedOpeners.length} closed, `
+  + `${total} that read the block boundary differently from the parser`);
+process.exit(total === 0 ? 0 : 1);

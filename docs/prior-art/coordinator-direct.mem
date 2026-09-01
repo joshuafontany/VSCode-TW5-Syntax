@@ -1,0 +1,395 @@
+<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext >>
+
+<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/coordinator-direct >>
+```toml meta
+cacheable = true
+file-path = "docs/prior-art/coordinator-direct.mem"
+hydrate   = true
+l-space   = "stable"
+register  = "Research"
+retain    = true
+role      = "the coordinating spirit's own primary-source gathering — TextMate scope-selector ranking, GtkSourceView map-to and its fixed default-style list, Neovim's tree-sitter capture vocabulary with its fallback and priority rules, and the Neovim bridge table that links BOTH tree-sitter captures and LSP semantic token types down into the 1990s Vim group set"
+type      = "text/memetic-wikitext+tiddlywiki"
+uri-path  = "ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/coordinator-direct"
+written   = "2026-09-01"
+```
+
+<<^ code="&#x0002;" >>
+
+<<~ ahu #coordinator-direct >>
+
+! TextMate scope selectors — the ranking algorithm (AUTHORITATIVE)
+
+Source: https://macromates.com/manual/en/scope_selectors
+
+Prefix matching:
+> "A scope selector in its simplest form is an element name to match, but it only needs to specify a prefix of the actual element name."
+
+`string` matches all quoted strings; `string.quoted` matches single, double and triple quoted strings.
+
+Ranking when several selectors match, in order of precedence:
+# > "Match the element deepest down in the scope e.g. `string` wins over `source.php` when the scope is `source.php string.quoted`."
+# > "Match most of the deepest element e.g. `string.quoted` wins over `string`."
+# > "Rules 1 and 2 applied again to the scope selector when removing the deepest element (in the case of a tie)."
+
+Descendant selectors:
+> "In the scope selector we specify element names as a space separated list to indicate that each element should be present in the scope (and in the same order)."
+
+`source.php string` targets strings in PHP. `text.html source.php` targets PHP embedded in HTML.
+
+Exclusion:
+> "We can subtract scope selectors to get the (asymmetric) difference using the minus operator."
+
+`source.ruby string - string source` matches strings in Ruby but excludes embedded code sections.
+NOTE: vscode-textmate does NOT implement scope exclusion — microsoft/vscode-textmate issue #52.
+
+Grouping: comma operator, `string, comment`.
+
+! GtkSourceView — `map-to`, and a fixed default-style enumeration that includes PROSE (AUTHORITATIVE)
+
+Sources:
+* https://gnome.pages.gitlab.gnome.org/gtksourceview/gtksourceview5/lang-tutorial.html
+* https://github.com/GNOME/gtksourceview/blob/master/data/language-specs/def.lang
+
+The mechanism: a language definition declares its OWN style ids, and each one carries a
+`map-to` attribute naming a default style from the `def` language. A colour scheme that has
+never heard of the language still styles it, because it styles the `def:` targets.
+
+> "This defines a `comment` style, which inherits the font properties from the defaults style `def:comment`."
+
+> "For each style used in the language definition there is a corresponding `<style>` element; every style can be used in different contexts, so they will share the same appearance."
+
+The complete default style list, read from `def.lang` (exact ids and names):
+
+```
+comment                Comment
+shebang                Shebang
+doc-comment            Documentation comment
+doc-comment-element    Documentation comment element
+constant               Constant
+character              Character
+string                 String
+special-char           Special character (inside a string)
+number                 Number
+floating-point         Floating point number
+decimal                Decimal number
+base-n-integer         Base-N number
+complex                Complex number
+special-constant       Special constant
+boolean                Boolean value
+identifier             Identifier
+function               Function
+builtin                Built-in identifier
+statement              Statement
+operator               Operator
+keyword                Keyword
+type                   Data type
+emphasis               Emphasis
+strong-emphasis        Strong emphasis
+inline-code            Inline code
+insertion              Insertion
+deletion               Deletion
+link-text              Link text
+link-symbol            Link symbol
+link-destination       Link destination
+heading                Heading
+thematic-break         Thematic break
+preformatted-section   Preformatted section
+list-marker            List marker
+preprocessor           Preprocessor directive
+error                  Error
+warning                Warning
+reserved               Reserved keyword
+note                   Note (FIXME, TODO, XXX, etc.)
+net-address            Net address (URL, email address, etc.)
+underlined             Underlined (DEPRECATED)
+heading0 .. heading6   Heading 0 .. Heading 6
+```
+
+READING: a fixed, small, closed vocabulary that carries prose markup as a FIRST-CLASS family
+beside the code families — emphasis, strong-emphasis, inline-code, link-text, link-symbol,
+link-destination, heading, thematic-break, preformatted-section, list-marker. Prose is not a
+bolt-on in this design; it sits in the same enumeration as `keyword` and `type`.
+
+UNVERIFIED: a search summary asserted the default styles are organised into logical GROUPS and
+that "a style scheme has to at least define the style for the first item of each group". The
+style-reference page as fetched does NOT state this. Treat as community hearsay until read in
+source.
+
+! Neovim tree-sitter — the capture vocabulary, the fallback rule, the priority model (AUTHORITATIVE)
+
+Source: `runtime/doc/treesitter.txt`, neovim/neovim master.
+
+The fallback rule, verbatim:
+> "A fallback system is implemented, so that more specific groups fallback to more generic ones. For instance, in a language that has separate doc comments (e.g., c, java, etc.), `@comment.documentation` could be used. If this group is not defined, the highlighting for an ordinary `@comment` is used. This way, existing color schemes already work out of the box, but it is possible to add more specific variants for queries that make them available."
+
+The per-language specialisation rule, verbatim:
+> "As an additional rule, capture highlights can always be specialized by language, by appending the language name after an additional dot."
+
+```vim
+hi @comment.c guifg=Blue
+hi @comment.lua guifg=DarkBlue
+hi link @comment.documentation.java String
+```
+
+NOTE THE ORDER. Tree-sitter puts the language name LAST — `@comment.documentation.java` — where
+TextMate puts it last too (`comment.block.tiddlywiki5`), but tree-sitter's fallback walks the
+dotted name from the right, so dropping the language suffix is the FIRST degradation step. The
+two systems agree on the shape and agree on the direction.
+
+The full standard capture list:
+
+```
+@variable                       various variable names
+@variable.builtin               built-in variable names (e.g. `this`, `self`)
+@variable.parameter             parameters of a function
+@variable.parameter.builtin     special parameters (e.g. `_`, `it`)
+@variable.member                object and struct fields
+@constant                       constant identifiers
+@constant.builtin               built-in constant values
+@constant.macro                 constants defined by the preprocessor
+@module                         modules or namespaces
+@module.builtin                 built-in modules or namespaces
+@label                          `GOTO` and other labels, including heredoc labels
+@string                         string literals
+@string.documentation           string documenting code (e.g. Python docstrings)
+@string.regexp                  regular expressions
+@string.escape                  escape sequences
+@string.special                 other special strings (e.g. dates)
+@string.special.symbol          symbols or atoms
+@string.special.path            filenames
+@string.special.url             URIs (e.g. hyperlinks)
+@character                      character literals
+@character.special              special characters (e.g. wildcards)
+@boolean                        boolean literals
+@number                         numeric literals
+@number.float                   floating-point number literals
+@type                           type or class definitions and annotations
+@type.builtin                   built-in types
+@type.definition                identifiers in type definitions
+@attribute                      attribute annotations (e.g. Python decorators, Rust lifetimes)
+@attribute.builtin              builtin annotations (e.g. `@property` in Python)
+@property                       the key in key/value pairs
+@function                       function definitions
+@function.builtin               built-in functions
+@function.call                  function calls
+@function.macro                 preprocessor macros
+@function.method                method definitions
+@function.method.call           method calls
+@constructor                    constructor calls and definitions
+@operator                       symbolic operators (e.g. `+`, `*`)
+@keyword                        keywords not fitting into specific categories
+@keyword.coroutine              keywords related to coroutines
+@keyword.function               keywords that define a function
+@keyword.operator               operators that are English words (e.g. `and`, `or`)
+@keyword.import                 keywords for including or exporting modules
+@keyword.type                   keywords describing namespaces and composite types
+@keyword.modifier               keywords modifying other constructs (e.g. `const`, `static`)
+@keyword.repeat                 keywords related to loops
+@keyword.return                 keywords like `return` and `yield`
+@keyword.debug                  keywords related to debugging
+@keyword.exception              keywords related to exceptions
+@keyword.conditional            keywords related to conditionals
+@keyword.conditional.ternary    ternary operator (e.g. `?`, `:`)
+@keyword.directive              various preprocessor directives and shebangs
+@keyword.directive.define       preprocessor definition directives
+@punctuation.delimiter          delimiters (e.g. `;`, `.`, `,`)
+@punctuation.bracket            brackets (e.g. `()`, `{}`, `[]`)
+@punctuation.special            special symbols (e.g. `{}` in string interpolation)
+@comment                        line and block comments
+@comment.documentation          comments documenting code
+@comment.error                  error-type comments (e.g. `ERROR`, `FIXME`, `DEPRECATED`)
+@comment.warning                warning-type comments (e.g. `WARNING`, `FIX`, `HACK`)
+@comment.todo                   todo-type comments (e.g. `TODO`, `WIP`)
+@comment.note                   note-type comments (e.g. `NOTE`, `INFO`, `XXX`)
+@markup.strong                  bold text
+@markup.italic                  italic text
+@markup.strikethrough           struck-through text
+@markup.underline               underlined text (only for literal underline markup!)
+@markup.heading                 headings, titles (including markers)
+@markup.heading.1 .. .6         top-level heading .. "six levels ought to be enough for anybody"
+@markup.quote                   block quotes
+@markup.math                    math environments (e.g. `$ ... $` in LaTeX)
+@markup.link                    text references, footnotes, citations, etc.
+@markup.link.label              link, reference descriptions
+@markup.link.url                URL-style links
+@markup.raw                     literal or verbatim text (e.g. inline code)
+@markup.raw.block               literal or verbatim text as a stand-alone block
+@markup.list                    list markers
+@markup.list.checked            checked todo-style list markers
+@markup.list.unchecked          unchecked todo-style list markers
+@diff.plus                      added text (for diff files)
+@diff.minus                     deleted text (for diff files)
+@diff.delta                     changed text (for diff files)
+@tag                            XML-style tag names (e.g. in XML, HTML, etc.)
+@tag.builtin                    builtin tag names (e.g. HTML5 tags)
+@tag.attribute                  XML-style tag attributes
+@tag.delimiter                  XML-style tag delimiters
+```
+
+!! The non-visual captures — `@spell` and `@nospell`
+
+> "The special `@spell` capture can be used to indicate that a node should be spell checked by Nvim's builtin |spell| checker."
+> "There is also `@nospell` which disables spellchecking regions with `@spell`."
+
+```query
+(comment) @spell
+```
+
+READING: a capture that carries NO colour and drives a different subsystem entirely. This is the
+closest analogue anywhere to TextMate's `meta.*` — a name in the highlight vocabulary whose
+purpose sits outside colour. Tree-sitter names it explicitly and functionally; TextMate leaves
+`meta.*` as a convention nobody enforces.
+
+!! Priority — an explicit numeric model TextMate does not have
+
+> "Treesitter uses |nvim_buf_set_extmark()| to set highlights with a default priority of 100. This enables plugins to set a highlighting priority lower or higher than treesitter. It is also possible to change the priority of an individual query pattern manually by setting its `"priority"` metadata attribute"
+
+```query
+((super_important_node) @superimportant (#set! priority 105))
+```
+
+TextMate has no priority dial. Precedence in TextMate is an emergent consequence of rule ORDER
+and the theme's selector-ranking algorithm — the grammar author cannot state "this one wins".
+
+!! Region-scoped metadata that is not colour at all
+
+> "When the cursor is within a node that sets the `bo.commentstring` metadata property [...] that property defines the comment delimiter (where "innermost wins"). This is useful for languages like `JSX` that have different comment syntax depending on the code region"
+
+```query
+((jsx_element) @_tag (#set! @_tag bo.commentstring "{/* %s */}"))
+```
+
+> "When multiple captures set this metadata over a region, only the innermost (most specific) one is applied to a given area."
+
+READING: the highlight query doubles as the carrier for EDITOR BEHAVIOUR that varies by region.
+A mixed prose/widget language wants exactly this — the comment delimiter inside a `<$widget>`
+differs from the one in surrounding wikitext. VS Code reaches the same end by an entirely
+different door: the `embeddedLanguages` contribution point.
+
+! Tree-sitter language injection (AUTHORITATIVE)
+
+Source: `runtime/doc/treesitter.txt`, adapted in-source from
+https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html#language-injection
+
+Captures:
+* `@injection.content` — "indicates that the captured node should have its contents re-parsed using another language. If there are multiple `@injection.content` captures in one pattern, all ranges will be collected and parsed as one tree. This allows query authors to create "scoped" injections with injection query quantifiers."
+* `@injection.language` — "indicates that the captured node's text may contain the name of a language that should be used to re-parse the `@injection.content`."
+* `@injection.filename` — "indicates that the captured node's text may contain a filename; the corresponding filetype is then looked-up up via |vim.filetype.match()|"
+
+Properties:
+* `injection.language` — "can be used to hard-code the name of a specific language."
+* `injection.combined` — "indicates that all of the matching nodes in the tree should have their content parsed as one nested document."
+* `injection.include-children` — "indicates that the `@injection.content` node's entire text should be re-parsed, including the text of its child nodes. By default, child nodes' text will be excluded from the injected document."
+* `injection.self` — "indicates that the node's text should be parsed with the same language as the node's LanguageTree."
+* `injection.parent` — "indicates that the captured node's text should be parsed with the same language as the node's parent LanguageTree."
+
+Cost, stated in the doc:
+> "Injection queries are currently run over the entire buffer, which can be slow for large buffers."
+
+WHAT THIS BUYS OVER TEXTMATE, and what it does not:
+* `@injection.language` reads the language name FROM THE DOCUMENT. TextMate cannot. A TextMate
+  fence grammar must enumerate every language it will ever accept as a separate begin/end rule
+  with a hard-coded `include: source.js`. This is the single largest structural difference for a
+  language with typed blocks.
+* `injection.combined` parses SEVERAL DISCONTIGUOUS REGIONS AS ONE DOCUMENT. TextMate has no
+  equivalent at all — each `<script>` fragment is its own island. For a language whose macro
+  bodies or widget attributes are fragments of one filter expression, this is the missing power.
+* `injection.include-children` is a switch for "re-parse the whole span" vs "re-parse only the
+  gaps my children left". TextMate's begin/end has only the former.
+* AGAINST tree-sitter: TextMate injection is line-oriented and works on unfinished, invalid text
+  by construction — it never needs a valid parse. Tree-sitter needs a grammar that admits the
+  text. For a language edited mid-keystroke, the regex machine degrades more gracefully.
+  (INFERENCE, not stated in the doc.)
+
+! The Neovim bridge table — THE strongest single finding (AUTHORITATIVE)
+
+Source: `runtime/colors/vim.lua`, neovim/neovim master.
+
+Both tree-sitter captures AND LSP semantic token types default-link into the classic Vim group
+set from the 1990s. The fixed set outlived both systems that replaced it.
+
+```lua
+hi('@markup.raw',       { link = 'Comment' })
+hi('@markup.link',      { link = 'Identifier' })
+hi('@markup.heading',   { link = 'Title' })
+hi('@markup.link.url',  { link = 'Underlined' })
+hi('@markup.underline', { link = 'Underlined' })
+hi('@comment.todo',     { link = 'Todo' })
+hi('@comment',     { link = 'Comment' })
+hi('@punctuation', { link = 'Delimiter' })
+hi('@constant',          { link = 'Constant' })
+hi('@constant.builtin',  { link = 'Special' })
+hi('@constant.macro',    { link = 'Define' })
+hi('@keyword.directive', { link = 'Define' })
+hi('@string',            { link = 'String' })
+hi('@string.escape',     { link = 'SpecialChar' })
+hi('@string.special',    { link = 'SpecialChar' })
+hi('@character',         { link = 'Character' })
+hi('@character.special', { link = 'SpecialChar' })
+hi('@number',            { link = 'Number' })
+hi('@boolean',           { link = 'Boolean' })
+hi('@number.float',      { link = 'Float' })
+hi('@function',                   { link = 'Function' })
+hi('@function.builtin',           { link = 'Special' })
+hi('@function.macro',             { link = 'Macro' })
+hi('@function.method',            { link = 'Function' })
+hi('@variable.parameter',         { link = 'Identifier' })
+hi('@variable.parameter.builtin', { link = 'Special' })
+hi('@variable.member',            { link = 'Identifier' })
+hi('@property',                   { link = 'Identifier' })
+hi('@attribute',                  { link = 'Macro' })
+hi('@attribute.builtin',          { link = 'Special' })
+hi('@constructor',                { link = 'Special' })
+hi('@keyword.conditional', { link = 'Conditional' })
+hi('@keyword.repeat',      { link = 'Repeat' })
+hi('@keyword.type',        { link = 'Structure' })
+hi('@label',               { link = 'Label' })
+hi('@operator',            { link = 'Operator' })
+hi('@keyword',             { link = 'Keyword' })
+hi('@keyword.exception',   { link = 'Exception' })
+hi('@variable',          { link = 'Identifier' })
+hi('@type',              { link = 'Type' })
+hi('@type.definition',   { link = 'Typedef' })
+hi('@module',            { link = 'Identifier' })
+hi('@keyword.import',    { link = 'Include' })
+hi('@keyword.directive', { link = 'PreProc' })
+hi('@keyword.debug',     { link = 'Debug' })
+hi('@tag',               { link = 'Tag' })
+hi('@tag.builtin',       { link = 'Special' })
+hi('@lsp.type.class',         { link = 'Structure' })
+hi('@lsp.type.comment',       { link = 'Comment' })
+hi('@lsp.type.decorator',     { link = 'Function' })
+hi('@lsp.type.enum',          { link = 'Structure' })
+hi('@lsp.type.enumMember',    { link = 'Constant' })
+hi('@lsp.type.function',      { link = 'Function' })
+hi('@lsp.type.interface',     { link = 'Structure' })
+hi('@lsp.type.macro',         { link = 'Macro' })
+hi('@lsp.type.method',        { link = 'Function' })
+hi('@lsp.type.namespace',     { link = 'Structure' })
+hi('@lsp.type.parameter',     { link = 'Identifier' })
+hi('@lsp.type.property',      { link = 'Identifier' })
+hi('@lsp.type.struct',        { link = 'Structure' })
+hi('@lsp.type.type',          { link = 'Type' })
+hi('@lsp.type.typeParameter', { link = 'TypeDef' })
+hi('@lsp.type.variable',      { link = 'Identifier' })
+```
+
+READING, and the thing to carry: `@markup.raw` links to `Comment`. `@markup.link` links to
+`Identifier`. Prose constructs are given the colour of the nearest CODE construct, because the
+terminal vocabulary has no prose. Three generations of highlighting technology terminate in
+Comment / Constant / Identifier / Statement / PreProc / Type / Special / Error / Todo.
+
+! The VS Code embeddedLanguages counterpart (COMMUNITY summary, to verify in source)
+
+> "If your grammar includes embedded languages within the parent language, you can use the `embeddedLanguages` contribution point to tell VS Code to treat the embedded language as distinct from the parent language, ensuring that bracket matching, commenting, and other basic language features work as expected."
+
+Source: https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide
+This is TextMate-land's answer to `bo.commentstring` — same problem, declared in package.json
+rather than in the grammar.
+
+<<~/ahu >>
+
+<<^ code="&#x0003;" >>
+
+<<^ code="&#x0004;" -> ? >>

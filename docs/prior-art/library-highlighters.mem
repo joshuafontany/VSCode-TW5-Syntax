@@ -1,0 +1,343 @@
+<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext >>
+
+<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/library-highlighters >>
+```toml meta
+cacheable = true
+file-path = "docs/prior-art/library-highlighters.mem"
+hydrate   = true
+l-space   = "stable"
+register  = "Research"
+retain    = true
+role      = "tasked spirit's handback, kept VERBATIM — token vocabularies of the six library highlighters: Pygments, Rouge, Chroma, highlight.js, Prism, CodeMirror 6 @lezer/highlight. The fallback-by-lookup vs fallback-by-composition split lands here"
+type      = "text/memetic-wikitext+tiddlywiki"
+uri-path  = "ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/library-highlighters"
+written   = "2026-09-01"
+```
+
+<<^ code="&#x0002;" >>
+
+<<~ ahu #library-highlighters >>
+
+! HANDBACK — kept verbatim below this line, unedited
+
+# Token vocabularies of library-based highlighters — findings
+
+All quotes below are from primary sources (project docs or project source). Marked **[A]** authoritative, **[I]** inference.
+
+---
+
+## 1. PYGMENTS — `pygments.token` **[A]**
+
+Source: https://pygments.org/docs/tokens/ · raw doc https://raw.githubusercontent.com/pygments/pygments/master/doc/docs/tokens.rst · style engine https://raw.githubusercontent.com/pygments/pygments/master/pygments/style.py
+
+**Full hierarchy (exact strings):**
+
+```
+Token.Text
+Token.Text.Whitespace          (alias Whitespace)
+Token.Escape
+Token.Error
+Token.Other
+Token.Keyword . Constant Declaration Namespace Pseudo Reserved Type
+Token.Name . Attribute Builtin Builtin.Pseudo Class Constant Decorator Entity
+             Exception Function Function.Magic Label Namespace Other Property
+             Tag Variable Variable.Class Variable.Global Variable.Instance Variable.Magic
+Token.Literal
+Token.Literal.Date
+Token.Literal.String . Affix Backtick Char Delimiter Doc Double Escape Heredoc
+                       Interpol Other Regex Single Symbol
+Token.Literal.Number . Bin Float Hex Integer Integer.Long Oct
+Token.Operator
+Token.Operator.Word
+Token.Punctuation
+Token.Punctuation.Marker
+Token.Comment . Hashbang Multiline Preproc PreprocFile Single Special
+Token.Generic . Deleted Emph EmphStrong Error Heading Inserted Output Prompt
+                Strong Subheading Traceback
+```
+
+Aliases exported at module level: `Text`, `Whitespace`, `Error`, `Other`, `Keyword`, `Name`, `Literal`, `String`, `Number`, `Operator`, `Punctuation`, `Comment`, `Generic`.
+
+**Verbatim, on `Token.Other`:** "special token for data not matched by a parser (e.g. HTML markup in PHP code)". And: "For each of those token aliases, a number of subtypes exists (excluding the special tokens `Token.Text`, `Token.Error` and `Token.Other`)" — i.e. Other is deliberately leaf-only, a *pass-through* bucket, not a semantic category.
+
+**Verbatim, on Generic:** "Generic tokens are for special lexers like the `DiffLexer` that doesn't really highlight a programming language but a patch file." And on the bare parent: "`Generic` — A generic, unstyled token. Normally you don't use this token type."
+
+**Verbatim, on inventing new types:** "You can create a new token type by accessing an attribute of `Token` whose name starts with an uppercase letter" … "In principle, you can create an unlimited number of token types but nobody can guarantee that a style would define style rules for a token type. Because of that, Pygments proposes some global token types defined in the `pygments.token.STANDARD_TYPES` dict."
+
+**Hierarchy is real, not cosmetic — verbatim:**
+```
+&gt;&gt;&gt; Comment.Single in Comment
+True
+&gt;&gt;&gt; String.split()
+[Token, Token.Literal, Token.Literal.String]
+&gt;&gt;&gt; String.parent
+Token.Literal
+```
+
+**INHERITANCE — VERIFIED IN SOURCE, not stated in tokens.rst [A].** `pygments/style.py`, `StyleMeta.__new__` resolves each token by seeding from its parent's computed style:
+```python
+for ttype in obj.styles:
+    for token in ttype.split():
+        if token in _styles: continue
+        ndef = _styles.get(token.parent, None)
+        styledefs = obj.styles.get(token, '').split()
+        if not ndef or token is None:
+            ndef = ['', 0, 0, 0, '', '', 0, 0, 0]
+        elif 'noinherit' in styledefs and token is not Token:
+            ndef = _styles[Token][:]
+        else:
+            ndef = ndef[:]
+```
+So: **a subtype with no rule inherits the full parent style vector, transitively up to `Token`.** The `noinherit` styledef is the explicit opt-out (resets to the root `Token` style). Also note `for token in STANDARD_TYPES: if token not in obj.styles: obj.styles[token] = ''` — every standard type is pre-seeded blank, so styles are computed for the whole standard set regardless.
+
+(a) meta-like non-visual category: `Token.Other` (unparsed foreign data) and `Token.Comment.Preproc`/`PreprocFile`. No general "meta". (b) unknown token → **parent fallback, guaranteed by the style metaclass**. (c) invent freely; docs warn only that no style will have a rule — but the parent-inheritance makes an invented subtype degrade gracefully to its parent's look. That pairing (open vocabulary + guaranteed parent fallback) is the whole design.
+
+---
+
+## 2. ROUGE (Ruby) **[A]**
+
+Source: https://github.com/rouge-ruby/rouge/blob/master/lib/rouge/token.rb · theme https://raw.githubusercontent.com/rouge-ruby/rouge/master/lib/rouge/theme.rb
+
+**Verbatim comment above the token list:**
+```ruby
+# XXX IMPORTANT XXX
+# For compatibility, this list must be kept in sync with
+# pygments.token.STANDARD_TYPES
+# please see https://github.com/jneen/rouge/wiki/List-of-tokens
+```
+
+Rouge is a deliberate **clone of Pygments' STANDARD_TYPES**, name-for-name and shortname-for-shortname. Full tree with shortnames:
+
+```
+Text ''            └ Whitespace 'w'
+Escape 'esc'   Error 'err'   Other 'x'
+Keyword 'k'    ├ Constant 'kc' Declaration 'kd' Namespace 'kn' Pseudo 'kp'
+               └ Reserved 'kr' Type 'kt' Variable 'kv'
+Name 'n'  ├ Attribute 'na' · Builtin 'nb' (└ Pseudo 'bp') · Class 'nc'
+          ├ Constant 'no' · Decorator 'nd' · Entity 'ni' · Exception 'ne'
+          ├ Function 'nf' (└ Magic 'fm') · Property 'py' · Label 'nl'
+          ├ Namespace 'nn' · Other 'nx' · Tag 'nt'
+          └ Variable 'nv' (Class 'vc' Global 'vg' Instance 'vi' Magic 'vm')
+Literal 'l' ├ Date 'ld'
+            ├ String 's' : Affix 'sa' Backtick 'sb' Char 'sc' Delimiter 'dl'
+            │              Doc 'sd' Double 's2' Escape 'se' Heredoc 'sh'
+            │              Interpol 'si' Other 'sx' Regex 'sr' Single 's1' Symbol 'ss'
+            └ Number 'm' : Bin 'mb' Float 'mf' Hex 'mh' Integer 'mi' (Long 'il') Oct 'mo' Other 'mx'
+Operator 'o'   └ Word 'ow'
+Punctuation 'p' └ Indicator 'pi'
+Comment 'c'  ├ Hashbang 'ch' Doc 'cd' Multiline 'cm' Preproc 'cp'
+             └ PreprocFile 'cpf' Single 'c1' Special 'cs'
+Generic 'g'  ├ Deleted 'gd' Emph 'ge' EmphStrong 'ges' Error 'gr' Heading 'gh'
+             └ Inserted 'gi' Lineno 'gl' Output 'go' Prompt 'gp' Strong 'gs'
+                Subheading 'gu' Traceback 'gt'
+```
+Divergences from Pygments worth noting: Rouge has `Keyword::Variable 'kv'`, `Comment::Doc 'cd'`, `Number::Other 'mx'`, `Generic::Lineno 'gl'`, and `Punctuation::Indicator 'pi'` where Pygments 2.x has `Punctuation.Marker`.
+
+**Shorthand scheme rationale:** the two-letter codes are Pygments' own `STANDARD_TYPES` CSS abbreviations — first letter = category, second = subtype (`nc` = **N**ame.**C**lass, `s2` = double-quoted String, `cpf` = Comment.PreprocFile). They exist so generated HTML is `&lt;span class="nc"&gt;` instead of a long path — a real payload-size concern when every token gets a span. **[A** for the sync requirement; **I** for the size motivation.**]**
+
+**Inheritance / unknown-token degradation — VERIFIED IN SOURCE [A]:**
+```ruby
+def matches?(other)  other.token_chain.include? self end
+def token_chain      @token_chain ||= ancestors.take_while { |x| x != Token }.reverse end
+# theme.rb
+def get_own_style(token)
+  token.token_chain.reverse_each { |anc| return Style.new(self, styles[anc]) if styles[anc] }
+  nil
+end
+def get_style(token) get_own_style(token) || base_style end
+def base_style       get_own_style(Token::Tokens::Text) end
+```
+Most-specific-first walk up the ancestor chain, final fallback to the `Text` style. Same contract as Pygments.
+
+(a) no `meta`; `Other 'x'` is the pass-through. (b) parent fallback then `Text`. (c) no stated advice on inventing names beyond the sync warning — the wiki "List of tokens" is the canonical registry.
+
+---
+
+## 3. CHROMA (Go) **[A]**
+
+Source: https://github.com/alecthomas/chroma/blob/master/types.go
+
+Chroma **copies Pygments** — it flattens `Token.Name.Class` into a Go identifier `NameClass` and assigns integer values so that arithmetic yields the hierarchy:
+
+```go
+func (t TokenType) Parent() TokenType {
+	if t%100 != 0 { return t / 100 * 100 }
+	if t%1000 != 0 { return t / 1000 * 1000 }
+	return 0
+}
+func (t TokenType) Category() TokenType    { return t / 1000 * 1000 }
+func (t TokenType) SubCategory() TokenType { return t / 100 * 100 }
+```
+That is the inheritance mechanism: category = thousands digit, subcategory = hundreds, leaf = units. Style lookup walks `Parent()`.
+
+Enum constants (exact Go identifiers):
+- **Meta/pseudo (non-visual, chroma-only additions):** `Background`, `PreWrapper`, `Line`, `LineNumbers`, `LineNumbersTable`, `LineHighlight`, `LineTable`, `LineTableTD`, `LineLink`, `CodeLine`, `Error`, `Other`, `None`, `Ignore`
+- `Keyword`, `KeywordConstant`, `KeywordDeclaration`, `KeywordNamespace`, `KeywordPseudo`, `KeywordReserved`, `KeywordType`
+- `Name`, `NameAttribute`, `NameBuiltin`, `NameBuiltinPseudo`, `NameClass`, `NameConstant`, `NameDecorator`, `NameEntity`, `NameException`, `NameFunction`, `NameFunctionMagic`, `NameKeyword`, `NameLabel`, `NameNamespace`, `NameOperator`, `NameOther`, `NamePseudo`, `NameProperty`, `NameTag`, `NameVariable`, `NameVariableAnonymous`, `NameVariableClass`, `NameVariableGlobal`, `NameVariableInstance`, `NameVariableMagic`
+- `Literal`, `LiteralDate`, `LiteralOther`
+- `LiteralString`, `LiteralStringAffix`, `LiteralStringAtom`, `LiteralStringBacktick`, `LiteralStringBoolean`, `LiteralStringChar`, `LiteralStringDelimiter`, `LiteralStringDoc`, `LiteralStringDouble`, `LiteralStringEscape`, `LiteralStringHeredoc`, `LiteralStringInterpol`, `LiteralStringName`, `LiteralStringOther`, `LiteralStringRegex`, `LiteralStringSingle`, `LiteralStringSymbol`
+- `LiteralNumber`, `LiteralNumberBin`, `LiteralNumberByte`, `LiteralNumberFloat`, `LiteralNumberHex`, `LiteralNumberInteger`, `LiteralNumberIntegerLong`, `LiteralNumberOct`
+- `Operator`, `OperatorWord`, `OperatorReserved`
+- `Punctuation`
+- `Comment`, `CommentHashbang`, `CommentMultiline`, `CommentSingle`, `CommentSpecial`, `CommentPreproc`, `CommentPreprocFile`
+- `Generic`, `GenericDeleted`, `GenericEmph`, `GenericError`, `GenericHeading`, `GenericInserted`, `GenericOutput`, `GenericPrompt`, `GenericStrong`, `GenericSubheading`, `GenericTraceback`, `GenericUnderline`
+- `Text`, `TextWhitespace`, `TextSymbol`, `TextPunctuation`
+
+Note the **extensions beyond Pygments**: `NameKeyword`, `NameOperator`, `NamePseudo`, `NameVariableAnonymous`, `LiteralStringAtom/Boolean/Name`, `LiteralNumberByte`, `OperatorReserved`, `GenericUnderline`, `TextSymbol`, `TextPunctuation` — added because the numeric-slot scheme leaves room, and each degrades to its `Parent()`. **[I]** on the motivation.
+
+(a) yes — a whole non-visual band (`Background`, `Line*`, `PreWrapper`, `Ignore`, `None`) reserved for formatter chrome rather than source semantics. (b) integer-arithmetic parent fallback. (c) no stated advice; the integer encoding *is* the constraint (each subcategory has ≤99 leaf slots).
+
+---
+
+## 4. HIGHLIGHT.JS — `hljs-*` classes **[A]**
+
+Source: https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html · raw https://raw.githubusercontent.com/highlightjs/highlight.js/main/docs/css-classes-reference.rst
+
+hljs calls these **scopes**, not classes. Full documented set:
+
+**General purpose:** `keyword`, `built_in`, `type`, `literal`, `number`, `operator`, `punctuation`, `property`, `regexp`, `string`, `char.escape`, `subst`, `symbol`, `class` *(deprecated)*, `function` *(deprecated)*, `variable`, `variable.language`, `variable.constant`, `title`, `title.class`, `title.class.inherited`, `title.function`, `title.function.invoke`, `params`, `comment`, `doctag`
+**Meta:** `meta`, `meta.prompt`, `meta keyword`, `meta string`
+**Tags/attributes/configs:** `section`, `tag`, `name`, `attr`, `attribute`
+**Text markup:** `bullet`, `code`, `emphasis`, `strong`, `formula`, `link`, `quote`
+**CSS:** `selector-tag`, `selector-id`, `selector-class`, `selector-attr`, `selector-pseudo`
+**Templates:** `template-tag`, `template-variable`
+**diff:** `addition`, `deletion`
+**Reserved (ReasonML, do not reuse):** `pattern-match`, `typing`, `constructor`, `module-access`, `module`
+
+**Deprecations, verbatim:** `class` → "**deprecated** You probably want ``title.class``"; `function` → "**deprecated** You probably want ``title.function``". Note `meta keyword` / `meta string` are marked "(note this is nested, not subscoped)" — CHANGES.md records the v11 move: "`.meta-keyword` =&gt; `.meta .keyword` (nested scopes) (#3167)" and "`.meta-string` =&gt; `.meta .string`", plus "remove `builtin-name` CSS class (#3119)". Sub-scopes `title.class`/`title.function`/`title.class.inherited` were **added** in the same wave (#3078).
+
+**Sub-scope encoding — this is the key mechanism, verbatim:** "Some scope names above have a ``.`` in them. We use this notation to specify sub-scopes. In the generated HTML this will output multiple computed class names. The depth of nesting determines the number of underscores appended to sub-scope names." Example: scope `title.class.other` →
+```html
+&lt;span class="hljs-title class_ other__"&gt;Render&lt;/span&gt;
+```
+"The top-level scope is always the one that has the configured prefix applied." Targeted as `.hljs-title.class_.other__ { color: blue; }`.
+
+**This is the degradation mechanism [A]:** because *all* levels are emitted as sibling classes and only the root carries the `hljs-` prefix, **a theme that knows only `hljs-title` styles the whole thing; a theme that knows the sub-scope overrides it.** Parent fallback achieved by class composition rather than by a cascade lookup.
+
+**Graceful-degradation policy, verbatim:** "Some scopes have been added more recently and do not enjoy universal theme support. For themes without support, these items will simply not be highlighted. This doesn't mean not to use them, only that they will be highlighted better as support improves over time." Listed as newer: `operator`, `punctuation`, `property`.
+
+**Reserved-scope policy, verbatim:** "The below scopes (ReasonML) are left here for documentation purposes but may not be used in other grammars because they are very poorly supported by all themes." (issues https://github.com/highlightjs/highlight.js/issues/2521 and .../2500)
+
+**On borrowing a scope out of its home category, verbatim:** "It would be reasonable to use the ``link`` class for this, even if your language is not a markup language. However, many themes might not be designed with this in mind so a better choice (for best theme support) might possibly be ``string``." — explicit advice to *downgrade to a well-supported general scope* rather than be semantically precise.
+
+**On the v10 shrink [A, partial]:** v10 release notes state highlight.js "now defines a limited set of highlightable classes giving a consistent result across all the styles and languages"; VERSION_10_BREAKING_CHANGES.md notes the ignore-class narrowing ("`nohighlight` and `no-highlight` are the only 'ignore me' css classes now (`plain` and `text` no longer count)") and CHANGES.md line ~2993 records "We're now prefixing all classes located in [CSS classes reference]". The stated rationale is **theme consistency**: an open, per-language class vocabulary meant no theme could cover it, so the vocabulary was closed and language-specific names were either deleted or folded into sub-scopes of general ones. **[I]** that the sub-scope+underscore encoding was invented *specifically* to reopen extensibility without breaking themes — but it is strongly implied by the docs and the #3078 changelog.
+
+(a) yes — explicit `meta` family, the only one of the five with a first-class non-visual category. (b) unknown scope → **unstyled**, except that a sub-scope still carries its ancestors' classes, so `title.something.new` still gets `hljs-title`. (c) advice is *don't* invent: prefer the general scope, and the reserved-scope list is a standing prohibition.
+
+---
+
+## 5. PRISM **[A]**
+
+Source: https://prismjs.com/tokens.html · https://prismjs.com/extending.html
+
+**Standard token list** (rendered as `class="token &lt;name&gt;"`):
+`keyword`, `builtin`, `class-name`, `function`, `boolean`, `number`, `string`, `char`, `symbol`, `regex`, `url`, `operator`, `variable`, `constant`, `property`, `punctuation`, `important`, `comment`
+markup: `tag`, `attr-name`, `attr-value`, `namespace`, `prolog`, `doctype`, `cdata`, `entity`
+document markup: `bold`, `italic`
+stylesheets: `atrule`, `selector`
+diff: `inserted`, `deleted`
+
+**Alias mechanism — verbatim:** "Aliases allow themes to apply the styles of multiple names to one token." A token declared with `alias: 'string'` (or an array) emits *both* names as classes: `&lt;span class="token binary-number number"&gt;`. Rationale, verbatim: "themes that do support the `binary-number` token name can assign a special color, and themes don't support it will fallback to their usual color for numbers."
+
+**Advice on inventing names, verbatim:** "Standard tokens should be preferred when choosing token names." … "While standard tokens should be the preferred choice, they are also quite general." … "Since `function-definition` is not a standard token, you might want to alias it with a standard token such as `function`, which is semantically similar."
+
+**This is tag composition, and it is worth flagging [A]:** Prism has a *flat* vocabulary with **no hierarchy at all** — no parent, no dotted path. It recovers graceful degradation entirely through multi-class emission. The invented name and the fallback name are siblings in the class attribute, and CSS specificity does the arbitration. Compare with hljs, which reaches the same place by a *derived* class list (`hljs-title class_ other__`) instead of an *author-declared* alias list. Prism's version is the more general one: an alias need not be an ancestor, only "semantically similar", so a token can degrade toward any target, and toward several at once.
+
+(a) no meta category (`important` and `prolog`/`doctype`/`cdata` are the nearest). (b) unknown token → **renders unstyled** (only the generic `.token` rule applies) unless the author supplied an alias. (c) explicit: invent freely, but always alias to a standard token.
+
+---
+
+## 6. CODEMIRROR 6 — `@lezer/highlight` tags **[A]**
+
+Source: https://lezer.codemirror.net/docs/ref/#highlight · https://codemirror.net/docs/ref/#language.syntaxHighlighting · source https://raw.githubusercontent.com/lezer-parser/highlight/main/src/highlight.ts
+
+**The design statement — the single most quotable passage on fixed vocabularies:**
+&gt; "Because syntax tree node types and highlight styles have to be able to talk the same language, CodeMirror uses a mostly _closed_ vocabulary of syntax tags (as opposed to traditional open string-based systems, which make it hard for highlighting themes to cover all the tokens produced by the various languages).
+&gt;
+&gt; It _is_ possible to define your own highlighting tags for system-internal use (where you control both the language package and the highlighter), but such tags will not be picked up by regular highlighters (though you can derive them from standard tags to allow highlighters to fall back to those)."
+
+**On the incompleteness of the set, verbatim:**
+&gt; "This collection is heavily biased towards programming languages, and necessarily incomplete. A full ontology of syntactic constructs would fill a stack of books, and be impractical to write themes for. So try to make do with this set. If all else fails, open an issue to propose a new tag, or define a local custom tag for your use case."
+
+**On mapping unusual constructs, verbatim:**
+&gt; "Note that it is not obligatory to always attach the most specific tag possible to an element—if your grammar can't easily distinguish a certain type of element (such as a local variable), it is okay to style it as its more general variant (a variable)."
+
+**Inheritance — `Tag.define(parent)`, verbatim:**
+&gt; "Define a new tag. If `parent` is given, the tag is treated as a sub-tag of that parent, and highlighters that don't mention this tag will try to fall back to the parent tag (or grandparent tag, etc)."
+
+Internally each Tag carries `set`: "The set of this tag and all its parent tags, starting with this one itself and sorted in order of decreasing specificity."
+
+**Modifiers — verbatim:**
+&gt; "Define a tag _modifier_, which is a function that, given a tag, will return a tag that is a subtag of the original. Applying the same modifier to a twice tag will return the same value (`m1(t1) == m1(t1)`) and applying multiple modifiers will, regardless or order, produce the same tag (`m1(m2(t1)) == m2(m1(t1))`)."
+&gt; "When multiple modifiers are applied to a given base tag, each smaller set of modifiers is registered as a parent, so that for example `m1(m2(m3(t1)))` is a subtype of `m1(m2(t1))`, `m1(m3(t1)`, and so on."
+
+That second paragraph is the crucial structural fact: **modifiers form a lattice, not a chain.** `definition(function(variableName))` is simultaneously a subtype of `definition(variableName)`, `function(variableName)`, and `variableName`, and a highlighter matching any of those three catches it.
+
+**The six modifiers** (`Tag.defineModifier(...)`), with their documented intent:
+- `definition` — "indicates that a given element is being defined. Expected to be used with the various name tags."
+- `constant` — "indicates that something is constant. Mostly expected to be used with variable names."
+- `function` — "indicate that a variable or property name is being called or defined as a function."
+- `standard` — "applied to names to indicate that they belong to the language's standard environment."
+- `local` — "indicates a given names is local to some scope."
+- `special` — "A generic variant modifier … to tag language-specific alternative variants of some common tag. It is recommended for themes to define special forms of at least the string and variable name tags, since those come up a lot."
+
+**The base tags** (the parent skeleton, from source):
+```js
+const comment = t(), name = t(), typeName = t(name), propertyName = t(name),
+  literal = t(), string = t(literal), number = t(literal),
+  content = t(), heading = t(content), keyword = t(), operator = t(),
+  punctuation = t(), bracket = t(punctuation), meta = t()
+```
+
+**Full `tags` list, grouped by parent:**
+- `comment` → `lineComment`, `blockComment`, `docComment`
+- `name` → `variableName`, `typeName` (→ `tagName`), `propertyName` (→ `attributeName`), `className`, `labelName`, `namespace`, `macroName`
+- `literal` → `string` (→ `docString`, `character`, `attributeValue`), `number` (→ `integer`, `float`), `bool`, `regexp`, `escape`, `color`, `url`
+- `keyword` → `self`, `null`, `atom`, `unit`, `modifier`, `operatorKeyword`, `controlKeyword`, `definitionKeyword`, `moduleKeyword`
+- `operator` → `derefOperator`, `arithmeticOperator`, `logicOperator`, `bitwiseOperator`, `compareOperator`, `updateOperator`, `definitionOperator`, `typeOperator`, `controlOperator`
+- `punctuation` → `separator`, `bracket` (→ `angleBracket`, `squareBracket`, `paren`, `brace`)
+- `content` → `heading` (→ `heading1`…`heading6`), `contentSeparator`, `list`, `quote`, `emphasis`, `strong`, `link`, `monospace`, `strikethrough`
+- **parentless:** `inserted`, `deleted`, `changed`, `invalid`
+- `meta` → `documentMeta`, `annotation`, `processingInstruction`
+
+**`styleTags()` selector language** (from source docs) — orthogonal to the tag set and relevant to any grammar with context-dependent meaning:
+```js
+"Number BigNumber": tags.number,         // multiple nodes, one tag
+"String/Escape": tags.escape,            // node only under a given parent
+"Attributes!": tags.meta,                // ! = no further matching inside
+"Italic/...": tags.emphasis,             // /... = tag applies to all children too
+"InvalidString": [tags.string, tags.invalid],  // ARRAY = multiple tags on one node
+'"/"': tags.punctuation
+```
+Note `[tags.string, tags.invalid]` — **multi-tag assignment**, Lezer's equivalent of Prism's alias.
+
+(a) yes — `meta`, `documentMeta`, `annotation`, `processingInstruction`, plus `invalid`. (b) unknown/custom tag → falls back through `Tag.define(parent)` chain and through the modifier lattice; a tag defined with *no* parent renders unstyled by third-party highlighters. (c) explicit and unusually detailed: prefer the general variant, derive custom tags from standard ones so fallback works, and file an issue to propose a genuinely new tag.
+
+---
+
+## Cross-cutting comparison
+
+| | vocabulary | hierarchy | unknown token degrades | meta category | advice on new names |
+|---|---|---|---|---|---|
+| **Pygments** | open | dotted path, real `parent` | **parent style, transitively** (style.py) | `Other`, `Comment.Preproc` | invent freely; no style guaranteed |
+| **Rouge** | closed-by-sync to Pygments | `token_chain` ancestors | **most-specific ancestor, then `Text`** | `Other 'x'` | keep in sync with Pygments |
+| **Chroma** | closed enum, slots free | integer arithmetic `Parent()` | **parent via `/100`, `/1000`** | `Background`/`Line*`/`Ignore`/`None` | none stated; slot budget is the limit |
+| **highlight.js** | **closed, deliberately shrunk** | dotted sub-scopes → sibling classes + `_` suffixes | **unstyled**, but ancestors' classes still emitted | **`meta`, `meta.prompt`, nested `meta keyword`** | don't; prefer a well-supported general scope; reserved list forbids some |
+| **Prism** | flat + open | **none** | **unstyled** unless aliased | none | invent, but always `alias:` a standard token |
+| **Lezer/CM6** | "mostly closed" | `Tag.define(parent)` + modifier **lattice** | **parent tag, then grandparent** | `meta`, `documentMeta`, `annotation`, `processingInstruction`, `invalid` | derive from a standard tag; propose new ones upstream; general variant is acceptable |
+
+**The one structural finding worth carrying forward:** every one of these six either (i) makes the hierarchy load-bearing so an unknown leaf inherits its parent's paint (Pygments, Rouge, Chroma, Lezer), or (ii) emits multiple class names so an unknown name sits beside a known one (highlight.js sub-scopes, Prism aliases). **No library leaves an invented token to render as nothing** — the two families are just two encodings of the same fallback guarantee: fallback-by-lookup versus fallback-by-composition. Lezer is the only one that composes *and* inherits (multi-tag `styleTags` arrays plus the modifier lattice), and it is also the only one that states the closed-vocabulary argument outright: an open string vocabulary "make[s] it hard for highlighting themes to cover all the tokens produced by the various languages." highlight.js's v10/v11 deprecations are that same argument applied retroactively to a vocabulary that had already sprawled.
+
+Sources:
+- [Pygments — Builtin Tokens](https://pygments.org/docs/tokens/) · [tokens.rst raw](https://raw.githubusercontent.com/pygments/pygments/master/doc/docs/tokens.rst) · [pygments/style.py](https://raw.githubusercontent.com/pygments/pygments/master/pygments/style.py)
+- [Rouge lib/rouge/token.rb](https://github.com/rouge-ruby/rouge/blob/master/lib/rouge/token.rb) · [lib/rouge/theme.rb](https://raw.githubusercontent.com/rouge-ruby/rouge/master/lib/rouge/theme.rb) · [Rouge docs](https://rouge-ruby.github.io/docs/)
+- [Chroma types.go](https://github.com/alecthomas/chroma/blob/master/types.go)
+- [highlight.js CSS classes reference](https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html) · [css-classes-reference.rst raw](https://raw.githubusercontent.com/highlightjs/highlight.js/main/docs/css-classes-reference.rst) · [VERSION_10_BREAKING_CHANGES.md](https://github.com/highlightjs/highlight.js/blob/main/VERSION_10_BREAKING_CHANGES.md) · [CHANGES.md](https://github.com/highlightjs/highlight.js/blob/main/CHANGES.md) · [Upgrading to v11](https://highlightjs.readthedocs.io/en/latest/upgrade-11.html)
+- [Prism — Token types](https://prismjs.com/tokens.html) · [Prism — Extending](https://prismjs.com/extending.html)
+- [@lezer/highlight reference](https://lezer.codemirror.net/docs/ref/#highlight) · [highlight.ts source](https://raw.githubusercontent.com/lezer-parser/highlight/main/src/highlight.ts) · [CodeMirror syntaxHighlighting](https://codemirror.net/docs/ref/#language.syntaxHighlighting)
+
+<<~/ahu >>
+
+<<^ code="&#x0003;" >>
+
+<<^ code="&#x0004;" -> ? >>
