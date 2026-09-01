@@ -28,6 +28,38 @@ function overlay(dir, sandbox) {
 }
 
 /**
+ * Run a command inside a sandbox a caller may write into first.
+ *
+ * A gate reads what it reads: one reads the grammar, another reads the pinned snapshots. A
+ * collision has to provoke the thing the gate actually opens, so the caller writes the sandbox
+ * rather than handing over one file.
+ *
+ * @param {(sandbox: string) => void} mutate  writes the fault into the sandbox
+ * @param {string[]} argv                     node arguments, relative to the sandbox
+ * @returns {{code:number, out:string}}
+ */
+function runInSandbox(mutate, argv) {
+  const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), 'grammar-sandbox-'));
+  try {
+    execFileSync('git', ['worktree', 'add', '-q', '--detach', sandbox, 'HEAD'], { cwd: ROOT });
+    fs.rmSync(path.join(sandbox, 'node_modules'), { recursive: true, force: true });
+    fs.symlinkSync(path.join(ROOT, 'node_modules'), path.join(sandbox, 'node_modules'));
+    overlay('tools', sandbox);
+    overlay('syntaxes', sandbox);
+    overlay(path.join('tests', 'samples'), sandbox);
+    mutate(sandbox);
+    try {
+      return { code: 0, out: execFileSync('node', argv.map((a) => path.join(sandbox, a)),
+        { encoding: 'utf8', cwd: sandbox }) };
+    } catch (e) {
+      return { code: e.status, out: `${e.stdout ?? ''}${e.stderr ?? ''}` };
+    }
+  } finally {
+    execFileSync('git', ['worktree', 'remove', '--force', sandbox], { cwd: ROOT, stdio: 'ignore' });
+  }
+}
+
+/**
  * Run a command inside a sandbox whose grammar carries `provoked`.
  *
  * @param {string} provoked   the grammar text to write
@@ -54,4 +86,4 @@ function runProvoked(provoked, argv) {
   }
 }
 
-module.exports = { runProvoked, GRAMMAR: path.join(ROOT, 'syntaxes', 'tiddlywiki5.json') };
+module.exports = { runProvoked, runInSandbox, GRAMMAR: path.join(ROOT, 'syntaxes', 'tiddlywiki5.json') };
