@@ -21,14 +21,14 @@
 // in a scratchpad does not survive a session, and a corpus somebody curated answers to
 // whoever curated it.
 //
-// --truncate cuts every specimen short at a seeded offset, so the corpus stops being
-// well-formed. TiddlyWiki's own tiddlers were written by people who know the parser, in house
+// --truncate cuts every specimen short at a seeded offset, so the corpus stops holding well-formed
+// input. TiddlyWiki's own tiddlers come from people who know the parser, writing in house
 // style, to document the parser — the best-formed wikitext in existence, and the easy end of the
 // distribution a learner writes from. Truncation manufactures the other end: an opener with no
 // close, a table missing its last row, a macro body cut mid-parameter. Both sides read the same
 // bytes, so the law holds unchanged; only the ground gets harder.
 //
-// The seed makes a finding reproducible. Nothing here is random at run time.
+// The seed makes a finding reproducible. Nothing here draws randomness at run time.
 //
 // Neither side of the comparison comes from anybody's reading of the format: the grammar
 // supplies the claims and TiddlyWiki's parser supplies the verdicts.
@@ -239,7 +239,7 @@ if (require.main === module) {
   // A snapshot per file, taken into scratch so a run never disturbs the pinned ones.
   const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-overreach-'));
 
-  // A seeded generator, so a run that finds something can be run again and find it again.
+  // A seeded generator, so a run that finds something repeats and finds it again.
   const seeded = (seed) => () => {
     seed = (seed + 0x6d2b79f5) | 0;
     let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
@@ -361,7 +361,7 @@ if (require.main === module) {
       if (truncating && f.kind === 'overreach' && whole[i] !== undefined) {
         const uncut = oracle.readAt(whole[i], f.start, f.end);
         // The same law review holds: a span the whole tiddler stores rather than parses carries
-        // no answer either way. A macro body is stored verbatim, so the parser never rules on the
+        // no answer either way. A macro body stores verbatim, so the parser never rules on the
         // widgets inside it, and reading "not plain text" there as "the construct works" would
         // let the cut explain a span nothing ever examined.
         if (uncut.innermost === 'opaque') {
