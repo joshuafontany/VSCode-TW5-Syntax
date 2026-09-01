@@ -12,12 +12,21 @@
 // punctuation.definition.list.begin. A grammar spelling a construct its own way asks every theme
 // author to have heard of it.
 //
-// So each construct here stands beside its markdown twin, and both go to every bundled theme.
-// Markdown sets the bar because theme authors write for it. A construct falling
-// more than the tolerance below its twin reads as a name themes cannot reach.
+// So each construct here stands beside the SAME construct in six other markup grammars, and all
+// seven go to every bundled theme. The bar reads as the median of the six, never one grammar's
+// number: markdown carries theme rules naming markdown itself, which no other grammar can match,
+// and a small grammar like rst scopes almost nothing. The median holds both at arm's length —
+// measured, markdown alone put inline code at 88% where the six agree on 63%.
 //
-// Some distance stays out of reach: a theme writing `markup.inline.raw.string.markdown` names
-// markdown itself, and no other grammar can match it. The tolerance holds that room.
+// WHERE meta.* BELONGS. Themes rule on markup, entity, string and punctuation; they leave meta
+// alone — so it names a region well and names a span a reader looks at badly. Counting it proves nothing on its own — this grammar names 29% of its scopes
+// meta, against markdown's 54%, mediawiki's 52% and org's 83%.
+//
+// The question turns on meta standing INNERMOST where the parser built something. Measured over the
+// wikitext specimens, every meta scope that no theme reaches sits where TiddlyWiki builds plain
+// text: a paragraph (markdown's reads the same), the content of embedded MathML and SVG, a
+// CamelCase word the host does not autolink because the standing rule set omits `wikilink`, and
+// the two link forms the parser declines by design. None of them wants colour.
 //
 //   node tools/theme-parity.js [--verbose]
 
@@ -31,25 +40,37 @@ const { readSnapshot } = require('./snapshot-format.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const THEMES = path.join(ROOT, 'node_modules', 'tm-themes', 'themes');
-const MARKDOWN = path.join(ROOT, 'node_modules', 'tm-grammars', 'grammars', 'markdown.json');
+const GRAMMARS = path.join(ROOT, 'node_modules', 'tm-grammars', 'grammars');
 const verbose = process.argv.includes('--verbose');
 
-// How far below its markdown twin a construct may sit. Themes naming markdown explicitly put
-// some distance out of reach, and 20 points holds that room without hiding a wrong name.
-const TOLERANCE = 20;
+// How far below the panel's median a construct may sit. A median already discounts the one
+// grammar theme authors name explicitly, so this holds tighter than a comparison to markdown
+// alone would.
+const TOLERANCE = 15;
 
-// Each construct, in both languages, with the span whose colour a reader actually looks at.
-const CONSTRUCTS = [
-  { name: 'heading text',   tw: '! Heading one',              md: '# Heading one',            span: 'Heading one' },
-  { name: 'heading marker', tw: '!! Heading two',             md: '## Heading two',           span: '!!', mdSpan: '##' },
-  { name: 'bold text',      tw: "A ''bold run'' here.",       md: 'A **bold run** here.',     span: 'bold run' },
-  { name: 'italic text',    tw: 'A //italic run// here.',     md: 'A *italic run* here.',     span: 'italic run' },
-  { name: 'inline code',    tw: 'A `code span` here.',        md: 'A `code span` here.',      span: 'code span' },
-  { name: 'inline tick',    tw: 'A `code span` here.',        md: 'A `code span` here.',      span: '`' },
-  { name: 'list marker',    tw: '* a list item',              md: '* a list item',            span: '*' },
-  { name: 'list content',   tw: '* a list item',              md: '* a list item',            span: 'a list item' },
-  { name: 'link text',      tw: 'A [[WikiLink]] here.',       md: 'A [WikiLink](W) here.',    span: 'WikiLink' }
+// The six comparators, each writing the same constructs its own way. Together they carry the
+// vocabulary theme authors write rules against; separately, each one's habits show through.
+const COMPARATORS = [
+  { id: 'markdown', scope: 'text.html.markdown', ext: '.md',   grammar: 'markdown.json',
+    source: '# Heading one\n\nA **bold run** here.\n\nA `code span` here.\n\n* a list item\n\nA [WikiLink](W) here.\n' },
+  { id: 'asciidoc', scope: 'text.asciidoc',      ext: '.adoc', grammar: 'asciidoc.json',
+    source: '= Heading one\n\nA *bold run* here.\n\nA `code span` here.\n\n* a list item\n\nA https://x.example[WikiLink] here.\n' },
+  { id: 'rst',      scope: 'source.rst',         ext: '.rst',  grammar: 'rst.json',
+    source: 'Heading one\n===========\n\nA **bold run** here.\n\nA ``code span`` here.\n\n* a list item\n\nA `WikiLink <http://x>`_ here.\n' },
+  { id: 'org',      scope: 'source.org',         ext: '.org',  grammar: 'org.json',
+    source: '* Heading one\n\nA *bold run* here.\n\nA ~code span~ here.\n\n- a list item\n\nA [[http://x][WikiLink]] here.\n' },
+  { id: 'mediawiki',scope: 'source.wikitext',    ext: '.wiki', grammar: 'wikitext.json',
+    source: "== Heading one ==\n\nA \'\'\'bold run\'\'\' here.\n\nA <code>code span</code> here.\n\n* a list item\n\nA [[WikiLink]] here.\n" },
+  { id: 'mdx',      scope: 'source.mdx',         ext: '.mdx',  grammar: 'mdx.json',
+    source: '# Heading one\n\nA **bold run** here.\n\nA `code span` here.\n\n* a list item\n\nA [WikiLink](W) here.\n' }
 ];
+
+// Our own specimen, carrying every construct the panel measures.
+const OURS = "! Heading one\n\nA \'\'bold run\'\' here.\n\nA `code span` here.\n\n* a list item\n\nA [[WikiLink]] here.\n";
+
+// The span a reader looks at, named by its text. Every comparator writes the same words, so one
+// name reaches the construct in all seven grammars without a table of per-language spellings.
+const CONSTRUCTS = ['Heading one', 'bold run', 'code span', 'a list item', 'WikiLink'];
 
 /** A theme's rules, flattened to one selector each. */
 function loadTheme(file) {
@@ -97,17 +118,18 @@ function winner(stack, rules) {
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'theme-parity-'));
 const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'],
   { encoding: 'utf8', cwd: ROOT }).trim().split('\n').filter(Boolean);
+const comparatorGrammars = COMPARATORS.flatMap((c) => ['-g', path.join(GRAMMARS, c.grammar)]);
 
-/** Tokenize one line and return its spans. */
-function tokenize(text, extension, scope, extra = []) {
-  const file = path.join(scratch, `probe-${Math.random().toString(36).slice(2)}${extension}`);
-  fs.writeFileSync(file, `${text}\n`);
-  execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, ...extra, '-s', scope, '-u', file],
+/** Every span one specimen tokenizes to, under the grammar its language names. */
+function tokenize(source, extension, scope) {
+  const file = path.join(scratch, `probe-${extension.slice(1)}${extension}`);
+  fs.writeFileSync(file, source);
+  execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, ...comparatorGrammars, '-s', scope, '-u', file],
     { cwd: ROOT, stdio: 'ignore' });
   const out = [];
-  for (const { source, annotations } of readSnapshot(fs.readFileSync(`${file}.snap`, 'utf8'))) {
-    if (!source || !source.trim()) continue;
-    for (const a of annotations) out.push({ text: source.slice(a.start, a.end), scopes: a.scopes });
+  for (const { source: line, annotations } of readSnapshot(fs.readFileSync(`${file}.snap`, 'utf8'))) {
+    if (!line || !line.trim()) continue;
+    for (const a of annotations) out.push({ text: line.slice(a.start, a.end), scopes: a.scopes });
   }
   return out;
 }
@@ -123,30 +145,49 @@ const reach = (span) => Math.round(themes.filter((t) => winner(span.scopes, t)).
 const spanOf = (spans, want) => spans.find((s) => s.text.trim() === want)
   ?? spans.find((s) => s.text.includes(want));
 
+const median = (values) => {
+  const sorted = [...values].sort((a, b) => a - b);
+  return sorted.length ? sorted[Math.floor(sorted.length / 2)] : null;
+};
+
+const ours = tokenize(OURS, '.tw', 'text.html.tiddlywiki5');
+const panel = COMPARATORS.map((c) => ({ id: c.id, spans: tokenize(c.source, c.ext, c.scope) }));
+
 const findings = [];
 const rows = [];
 for (const construct of CONSTRUCTS) {
-  const ours = spanOf(tokenize(construct.tw, '.tw', 'text.html.tiddlywiki5'), construct.span);
-  const theirs = spanOf(tokenize(construct.md, '.md', 'text.html.markdown', ['-g', MARKDOWN]),
-    construct.mdSpan ?? construct.span);
-  if (!ours || !theirs) {
-    findings.push(`${construct.name}: the probe found no span to measure`);
+  const mine = spanOf(ours, construct);
+  if (!mine) {
+    findings.push(`${construct}: our own probe found no span to measure`);
     continue;
   }
-  const mine = reach(ours);
-  const twin = reach(theirs);
-  rows.push({ name: construct.name, mine, twin });
-  if (twin - mine > TOLERANCE) {
-    findings.push(`${construct.name}: ${mine}% of themes colour it, ${twin}% colour the markdown twin`);
+  const theirs = panel
+    .map((p) => ({ id: p.id, span: spanOf(p.spans, construct) }))
+    .filter((p) => p.span)
+    .map((p) => ({ id: p.id, pct: reach(p.span) }));
+  if (theirs.length < 3) {
+    findings.push(`${construct}: only ${theirs.length} comparator(s) carry it — too few to set a bar`);
+    continue;
+  }
+  const bar = median(theirs.map((t) => t.pct));
+  const pct = reach(mine);
+  rows.push({ construct, pct, bar, theirs });
+  if (bar - pct > TOLERANCE) {
+    findings.push(`${construct}: ${pct}% of themes colour it, against a panel median of ${bar}%`);
   }
 }
 fs.rmSync(scratch, { recursive: true, force: true });
 
 if (verbose) {
+  const ids = COMPARATORS.map((c) => c.id);
+  console.log(`  construct       ours  median  ${ids.map((i) => i.slice(0, 5).padStart(7)).join('')}`);
   for (const row of rows) {
-    console.log(`  ${row.name.padEnd(16)}${String(`${row.mine}%`).padStart(5)}   markdown ${row.twin}%`);
+    const by = Object.fromEntries(row.theirs.map((t) => [t.id, t.pct]));
+    console.log(`  ${row.construct.padEnd(14)}${String(`${row.pct}%`).padStart(5)}${String(`${row.bar}%`).padStart(8)}  `
+      + ids.map((i) => String(by[i] === undefined ? '—' : `${by[i]}%`).padStart(7)).join(''));
   }
 }
 for (const finding of findings) console.error(`  ${finding}`);
-console.log(`theme-parity  ${rows.length} construct(s) across ${themes.length} themes, ${findings.length} that themes reach less than markdown's`);
+console.log(`theme-parity  ${rows.length} construct(s) across ${themes.length} themes and ${COMPARATORS.length} comparator grammars, `
+  + `${findings.length} that themes reach less than the panel does`);
 process.exit(findings.length === 0 ? 0 : 1);

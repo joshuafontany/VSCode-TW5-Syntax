@@ -25,10 +25,20 @@ const run = () => {
 
 const live = { skip: fs.existsSync(THEMES) ? false : 'no bundled themes', timeout: 600000 };
 
-test('every construct reaches themes the way its markdown twin does', live, () => {
+test('every construct reaches themes the way the comparator panel does', live, () => {
   const { code, out } = run();
-  assert.match(out, /0 that themes reach less than markdown's/, out.slice(-500));
+  assert.match(out, /0 that themes reach less than the panel does/, out.slice(-500));
   assert.strictEqual(code, 0);
+});
+
+// A median over six grammars, not one number from markdown. Markdown carries theme rules naming
+// markdown itself, and a small grammar scopes almost nothing; the panel must show both.
+test('the panel carries enough comparators to set a median', live, () => {
+  const { out } = run();
+  assert.match(out, /6 comparator grammars/, out.slice(-300));
+  for (const id of ['markd', 'ascii', 'rst', 'org', 'media', 'mdx']) {
+    assert.ok(out.includes(id), `the panel must show ${id}`);
+  }
 });
 
 test('a heading named where no theme rules on reads as a gap', live, () => {
@@ -38,7 +48,7 @@ test('a heading named where no theme rules on reads as a gap', live, () => {
       .replaceAll('markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5', 'meta.heading.heading-1.tiddlywiki5')
       .replaceAll('"contentName": "entity.name.section.tiddlywiki5",', ''));
     const { code, out } = run();
-    assert.match(out, /heading text: \d+% of themes colour it/, out.slice(-500));
+    assert.match(out, /Heading one: \d+% of themes colour it/, out.slice(-500));
     assert.notStrictEqual(code, 0, 'the witness must fail the gate, not only print');
   } finally {
     fs.writeFileSync(GRAMMAR, original);
