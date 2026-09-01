@@ -422,48 +422,48 @@ foreground from `keyword` and italic from `keyword.control` on the same token.
 
 ! G — ANTI-PATTERNS, in their authors' own words
 
-! ''Overusing `invalid`.'' Sublime: "Overuse of this will likely lead to unpleasant highlighting for users ''as they edit code''." A grammar that flags half-typed input as illegal punishes the writer, not the mistake.
-! ''`invalid.deprecated`.'' Sublime: "This should be very rarely used, as users may be working with older versions of a language."
-! ''Styling `meta.*`.'' Sublime: "resist the urge to directly style `meta` scopes." TextMate: "`meta` does not get a visual style."
-! ''Stacking meta variants.'' Sublime: `meta.function.php meta.function.parameters.php` "should never occur"; never more than one `meta.annotation*` on the stack at a time.
-! ''Nesting a sub-kind under a wrong generic.'' Sublime: "Avoid `entity.name.type.class` and `entity.name.type.struct` which unnecessarily nest scope labels under `type`."
-! ''Piling everything under one root.'' TextMate: "'spread out' your naming i.e. instead of putting everything below `keyword` (as your formal language definition may insist)."
-! ''Being too specific.'' Sublime: "being too specific will result in a color scheme that often only looks good for one or two syntaxes."
-! ''Defining new roots.'' VS Code: "try to build on existing scopes rather than defining new ones."
-! ''Fixed colours in a plugin.'' JetBrains: "A use of fixed default attributes is strongly discouraged… If the scheme designer doesn't have a language plugin, he will not be able to fix this at all."
-! ''Borrowing a scope out of its home category.'' highlight.js, on using `link` in a non-markup language: "many themes might not be designed with this in mind so a better choice (for best theme support) might possibly be `string`."
-! ''Copying queries between editors.'' nvim-treesitter: "The valid captures that can be used in queries is different for each editor, so you cannot just copy them, e.g., from Helix or the parser repositories." MEASURED: the tree-sitter-markdown repo's own `highlights.scm` still ships the retired `@text.*` vocabulary.
-! ''Reaching for priority before order.'' nvim-treesitter: "Precedence is also influenced by pattern order in a query file. If possible, try to achieve the correct result by reordering patterns before resorting to explicit priorities."
+# ''Overusing `invalid`.'' Sublime: "Overuse of this will likely lead to unpleasant highlighting for users ''as they edit code''." A grammar that flags half-typed input as illegal punishes the writer, not the mistake.
+# ''`invalid.deprecated`.'' Sublime: "This should be very rarely used, as users may be working with older versions of a language."
+# ''Styling `meta.*`.'' Sublime: "resist the urge to directly style `meta` scopes." TextMate: "`meta` does not get a visual style."
+# ''Stacking meta variants.'' Sublime: `meta.function.php meta.function.parameters.php` "should never occur"; never more than one `meta.annotation*` on the stack at a time.
+# ''Nesting a sub-kind under a wrong generic.'' Sublime: "Avoid `entity.name.type.class` and `entity.name.type.struct` which unnecessarily nest scope labels under `type`."
+# ''Piling everything under one root.'' TextMate: "'spread out' your naming i.e. instead of putting everything below `keyword` (as your formal language definition may insist)."
+# ''Being too specific.'' Sublime: "being too specific will result in a color scheme that often only looks good for one or two syntaxes."
+# ''Defining new roots.'' VS Code: "try to build on existing scopes rather than defining new ones."
+# ''Fixed colours in a plugin.'' JetBrains: "A use of fixed default attributes is strongly discouraged… If the scheme designer doesn't have a language plugin, he will not be able to fix this at all."
+# ''Borrowing a scope out of its home category.'' highlight.js, on using `link` in a non-markup language: "many themes might not be designed with this in mind so a better choice (for best theme support) might possibly be `string`."
+# ''Copying queries between editors.'' nvim-treesitter: "The valid captures that can be used in queries is different for each editor, so you cannot just copy them, e.g., from Helix or the parser repositories." MEASURED: the tree-sitter-markdown repo's own `highlights.scm` still ships the retired `@text.*` vocabulary.
+# ''Reaching for priority before order.'' nvim-treesitter: "Precedence is also influenced by pattern order in a query file. If possible, try to achieve the correct result by reordering patterns before resorting to explicit priorities."
 
 ! H — WHAT TRANSFERS
 
 !! [portable to TextMate now]
 
-! ''Double-scope where precision and portability disagree.'' Emit the domain-true name AND a name a theme rules on. Vendor precedent: Sublime's `keyword.declaration.*` + `storage.type`. This is the answer to the survey's central contradiction, and four ecosystems built a mechanism for it.
-! ''Every invented segment at the TAIL.'' The dotted prefix IS the degradation declaration. An invented segment in the middle severs the chain silently. Audit every scope in the grammar for a known-good prefix.
-! ''Ask TextMate's question, not the parser's.'' "Would I want these two elements styled differently?" — and if not, do not spend a name. The parser's node inventory is not the colour inventory. TextMate says so outright: "as your formal language definition may insist."
-! ''Use Emacs's prominence rule for the genuinely unmapped.'' When no category MEANS what a construct means, pick by salience — how loudly should this read against its neighbours — and take the name of the family that reads that loudly. This is the only published answer to "my language has no analogue", and a memetic grammar is exactly that case.
-! ''Reserve `meta.*` for the machine.'' It is already load-bearing for `embeddedLanguages` and `unbalancedBracketScopes`. Never paint it, never stack two variants of it on one span.
-! ''Emit `meta.embedded.block.<lang>` on every fence'' and wire the `embeddedLanguages` map, so comment-toggling and snippets follow the guest language across the boundary. Kate's `includeAttrib` exists for the same reason, and the doc's stated motive is instructive: it exists so COMMENTING works across the seam, not so colour does.
-! ''Treat runaway fence highlighting as a known platform defect'', not a grammar bug. TextMate's terminator lives only at the included root; an unterminated string in the guest eats it. Named by Sublime in 2015; unfixed in VS Code.
-! ''Do not flag half-typed input as `invalid`.'' Two vendors warn about it, and a memetic grammar with sigils and framing ends will see incomplete constructs on every keystroke.
+# ''Double-scope where precision and portability disagree.'' Emit the domain-true name AND a name a theme rules on. Vendor precedent: Sublime's `keyword.declaration.*` + `storage.type`. This is the answer to the survey's central contradiction, and four ecosystems built a mechanism for it.
+# ''Every invented segment at the TAIL.'' The dotted prefix IS the degradation declaration. An invented segment in the middle severs the chain silently. Audit every scope in the grammar for a known-good prefix.
+# ''Ask TextMate's question, not the parser's.'' "Would I want these two elements styled differently?" — and if not, do not spend a name. The parser's node inventory is not the colour inventory. TextMate says so outright: "as your formal language definition may insist."
+# ''Use Emacs's prominence rule for the genuinely unmapped.'' When no category MEANS what a construct means, pick by salience — how loudly should this read against its neighbours — and take the name of the family that reads that loudly. This is the only published answer to "my language has no analogue", and a memetic grammar is exactly that case.
+# ''Reserve `meta.*` for the machine.'' It is already load-bearing for `embeddedLanguages` and `unbalancedBracketScopes`. Never paint it, never stack two variants of it on one span.
+# ''Emit `meta.embedded.block.<lang>` on every fence'' and wire the `embeddedLanguages` map, so comment-toggling and snippets follow the guest language across the boundary. Kate's `includeAttrib` exists for the same reason, and the doc's stated motive is instructive: it exists so COMMENTING works across the seam, not so colour does.
+# ''Treat runaway fence highlighting as a known platform defect'', not a grammar bug. TextMate's terminator lives only at the included root; an unterminated string in the guest eats it. Named by Sublime in 2015; unfixed in VS Code.
+# ''Do not flag half-typed input as `invalid`.'' Two vendors warn about it, and a memetic grammar with sigils and framing ends will see incomplete constructs on every keystroke.
 
 !! [needs a semantic-token provider]
 
-! ''A tw5 semantic-token provider can settle what a regex cannot'' — is this bare word a widget name, a variable, a procedure, or a tiddler title? VS Code's own 20-row fallback map covers exactly the identifier-classification cases a regex grammar cannot decide, and covers NONE of `keyword`/`string`/`comment`/`number`/`operator` — because there the grammar is already right. That map is the specification of the division of labour.
-! ''Custom token types need BOTH declarations.'' Theme rules inherit through `superType`; TextMate scope fallbacks do NOT. Verbatim: "custom mapping rules are not automatically inherited from the super type. Instead, subtypes need to redefine the mapping." A custom type without `contributes.semanticTokenScopes` is invisible under any non-semantic theme.
-! ''Modifiers are an orthogonal axis TextMate lacks entirely.'' `declaration` / `definition` / `readonly` / `deprecated` / `defaultLibrary` apply ACROSS types. A macro definition and a macro call are one type with one modifier apart — in TextMate they are two unrelated dotted strings.
-! ''Semantic tokens never replace, they overlay.'' "The editor applies the highlighting from semantic tokens on top of the highlighting from grammars." The grammar remains the floor and must read correctly alone.
+# ''A tw5 semantic-token provider can settle what a regex cannot'' — is this bare word a widget name, a variable, a procedure, or a tiddler title? VS Code's own 20-row fallback map covers exactly the identifier-classification cases a regex grammar cannot decide, and covers NONE of `keyword`/`string`/`comment`/`number`/`operator` — because there the grammar is already right. That map is the specification of the division of labour.
+# ''Custom token types need BOTH declarations.'' Theme rules inherit through `superType`; TextMate scope fallbacks do NOT. Verbatim: "custom mapping rules are not automatically inherited from the super type. Instead, subtypes need to redefine the mapping." A custom type without `contributes.semanticTokenScopes` is invisible under any non-semantic theme.
+# ''Modifiers are an orthogonal axis TextMate lacks entirely.'' `declaration` / `definition` / `readonly` / `deprecated` / `defaultLibrary` apply ACROSS types. A macro definition and a macro call are one type with one modifier apart — in TextMate they are two unrelated dotted strings.
+# ''Semantic tokens never replace, they overlay.'' "The editor applies the highlighting from semantic tokens on top of the highlighting from grammars." The grammar remains the floor and must read correctly alone.
 
 !! [not portable, but instructive]
 
-! ''Injection that reads the language from the document.'' The permanent structural gap. It bounds what a fence rule can ever be under TextMate: an enumeration.
-! ''`injection.combined` — disjoint regions as one parse.'' The right model for macro bodies and attribute fragments that belong to one expression. Naming the gap is worth more than working around it badly.
-! ''`branch`/`fail` backtracking, bounded at 128 lines.'' The answer to constructs whose meaning depends on unbounded right context. Where a TW5 construct needs this, the honest move is to under-scope rather than guess.
-! ''Lezer's modifier lattice.'' Degradation along ALL paths, not one. A dotted string cannot approximate it; knowing that stops the search for a clever dotted encoding.
-! ''Xcode's provenance axis.'' Author's own carriers versus the host's reserved ones — a distinction this grammar makes and has no vocabulary for.
-! ''Kate's two-tier escape hatch.'' `dsNormal` = "no special highlighting required"; `dsOthers` = "when nothing else fits". Unmarked and deliberately-marked-but-unslotted are DIFFERENT states, and Kate is the only system that names both.
-! ''Emacs 29 as the model for growing a vocabulary.'' Every new slot shipped with an `:inherit` into the old set. Growth is safe exactly when each addition declares its parent.
+# ''Injection that reads the language from the document.'' The permanent structural gap. It bounds what a fence rule can ever be under TextMate: an enumeration.
+# ''`injection.combined` — disjoint regions as one parse.'' The right model for macro bodies and attribute fragments that belong to one expression. Naming the gap is worth more than working around it badly.
+# ''`branch`/`fail` backtracking, bounded at 128 lines.'' The answer to constructs whose meaning depends on unbounded right context. Where a TW5 construct needs this, the honest move is to under-scope rather than guess.
+# ''Lezer's modifier lattice.'' Degradation along ALL paths, not one. A dotted string cannot approximate it; knowing that stops the search for a clever dotted encoding.
+# ''Xcode's provenance axis.'' Author's own carriers versus the host's reserved ones — a distinction this grammar makes and has no vocabulary for.
+# ''Kate's two-tier escape hatch.'' `dsNormal` = "no special highlighting required"; `dsOthers` = "when nothing else fits". Unmarked and deliberately-marked-but-unslotted are DIFFERENT states, and Kate is the only system that names both.
+# ''Emacs 29 as the model for growing a vocabulary.'' Every new slot shipped with an `:inherit` into the old set. Growth is safe exactly when each addition declares its parent.
 
 <<~/ahu >>
 
@@ -539,6 +539,6 @@ Overusing `invalid` ("as they edit code"), styling `meta.*`, stacking meta varia
 
 <<~/ahu >>
 
-<<^ code="&#x0003;" >>ni:///sha-256;xNSpC3QI0IGpkK3FwsNO3b0ZdYqoNWVEm7-9SsPbUTo
+<<^ code="&#x0003;" >>ni:///sha-256;F2n9kZemyealvdm1urKUWMENu8irIMJo2rfnsEhciq0
 
 <<^ code="&#x0004;" -> to=? >>
