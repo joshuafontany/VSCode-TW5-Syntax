@@ -6,7 +6,7 @@ cacheable = true
 file-path = "docs/prior-art/fixed-vocabularies.mem"
 hydrate   = true
 l-space   = "stable"
-register  = "Research"
+register  = "Provisional"
 retain    = true
 role      = "tasked spirit's handback, kept VERBATIM — the FIXED enumerated vocabularies: Kate/KSyntaxHighlighting 32 default styles, Vim syntax groups + hi-link, Emacs font-lock faces and the Emacs 29 growth, JetBrains TextAttributesKey fallback chains, Xcode's provenance axis. The declare-a-parent discipline lands here"
 type      = "text/memetic-wikitext+tiddlywiki"
@@ -20,11 +20,11 @@ written   = "2026-09-01"
 
 ! HANDBACK — kept verbatim below this line, unedited
 
-## 1. KSyntaxHighlighting / Kate — AUTHORITATIVE (KDE primary sources)
+!! 1. KSyntaxHighlighting / Kate — AUTHORITATIVE (KDE primary sources)
 
-**The URL you gave 404s.** `https://docs.kde.org/stable5/en/kate/katepart/highlight.html` → HTTP 404; `https://api.kde.org/frameworks/syntax-highlighting/html/index.html` → not reachable via fetch. Primary source used instead: KDE's own DocBook, `https://raw.githubusercontent.com/KDE/kate/master/doc/katepart/development.docbook` (sections `kate-highlight-system-default-styles`, `kate-highlight-default-styles`, `kate-highlight-rules-detailled`), plus the framework header `https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/lib/theme.h`.
+''The URL you gave 404s.'' `https://docs.kde.org/stable5/en/kate/katepart/highlight.html` → HTTP 404; `https://api.kde.org/frameworks/syntax-highlighting/html/index.html` → not reachable via fetch. Primary source used instead: KDE's own DocBook, `https://raw.githubusercontent.com/KDE/kate/master/doc/katepart/development.docbook` (sections `kate-highlight-system-default-styles`, `kate-highlight-default-styles`, `kate-highlight-rules-detailled`), plus the framework header `https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/lib/theme.h`.
 
-### THE FIXED-VOCABULARY DISCIPLINE (verbatim, this is the core find)
+!!! THE FIXED-VOCABULARY DISCIPLINE (verbatim, this is the core find)
 
 From `&lt;sect3 id="kate-highlight-system-default-styles"&gt;&lt;title&gt;Default Styles&lt;/title&gt;`:
 
@@ -38,90 +38,90 @@ Tip block (verbatim) — note it explicitly concedes the fixed set is sometimes 
 
 The instruction to grammar authors, verbatim, in the `itemData` element description:
 
-&gt; "It defines the font style and colors. So it is possible to define your own styles and colors. **However, we recommend you stick to the default styles if possible so that the user will always see the same colors used in different languages.** Though, sometimes there is no other way and it is necessary to change color and font attributes. The attributes name and defStyleNum are required, the others are optional."
+&gt; "It defines the font style and colors. So it is possible to define your own styles and colors. ''However, we recommend you stick to the default styles if possible so that the user will always see the same colors used in different languages.'' Though, sometimes there is no other way and it is necessary to change color and font attributes. The attributes name and defStyleNum are required, the others are optional."
 
-Mechanically: an `&lt;itemData name="..." defStyleNum="dsX"/&gt;` **must** carry `defStyleNum` (required attribute), so *every* named style in *every* Kate grammar is forced to declare its position in the fixed set; optional `color`/`italic`/`bold`/`underline`/`strikeOut`/`selColor`/`spellChecking` are per-language overrides layered on top. That is the degradation device: the grammar's own vocabulary is unbounded (as many `itemData` names as you like), the *rendered* vocabulary is 32 slots.
+Mechanically: an `&lt;itemData name="..." defStyleNum="dsX"/&gt;` ''must'' carry `defStyleNum` (required attribute), so //every// named style in //every// Kate grammar is forced to declare its position in the fixed set; optional `color`/`italic`/`bold`/`underline`/`strikeOut`/`selColor`/`spellChecking` are per-language overrides layered on top. That is the degradation device: the grammar's own vocabulary is unbounded (as many `itemData` names as you like), the //rendered// vocabulary is 32 slots.
 
 Also, earlier (`highlight-context-styles-keywords`): "A syntax definition may contain as many styles as required to cover the concepts of the format it is used for."
 
-### The enumerated list — EXACT, with the doc's own description text
+!!! The enumerated list — EXACT, with the doc's own description text
 
 Grouped exactly as the doc groups them (`Available Default Styles`):
 
-**General default styles**
-- `dsNormal` — "when no special highlighting is required."
-- `dsKeyword` — "built-in language keywords."
-- `dsFunction` — "function calls and definitions."
-- `dsVariable` — "if applicable: variable names (e.g. $someVar in PHP/Perl)."
-- `dsControlFlow` — "control flow keywords like if, else, switch, break, return, yield, ..."
-- `dsOperator` — "operators like + - * / :: &lt; &gt;"
-- `dsBuiltIn` — "built-in functions, classes, and objects."
-- `dsExtension` — "common extensions, such as Qt classes and functions/macros in C++ and Python."
-- `dsPreprocessor` — "preprocessor statements or macro definitions."
-- `dsAttribute` — "annotations such as @override and __declspec(...)."
+''General default styles''
+* `dsNormal` — "when no special highlighting is required."
+* `dsKeyword` — "built-in language keywords."
+* `dsFunction` — "function calls and definitions."
+* `dsVariable` — "if applicable: variable names (e.g. $someVar in PHP/Perl)."
+* `dsControlFlow` — "control flow keywords like if, else, switch, break, return, yield, ..."
+* `dsOperator` — "operators like + - * / :: &lt; &gt;"
+* `dsBuiltIn` — "built-in functions, classes, and objects."
+* `dsExtension` — "common extensions, such as Qt classes and functions/macros in C++ and Python."
+* `dsPreprocessor` — "preprocessor statements or macro definitions."
+* `dsAttribute` — "annotations such as @override and __declspec(...)."
 
-**String-related**
-- `dsChar` — "single characters, such as 'x'."
-- `dsSpecialChar` — "chars with special meaning in strings such as escapes, substitutions, or regex operators."
-- `dsString` — "strings like \"hello world\"."
-- `dsVerbatimString` — "verbatim or raw strings like 'raw \backlash' in Perl, CoffeeScript, and shells, as well as r'\raw' in Python."
-- `dsSpecialString` — "SQL, regexes, HERE docs, LaTeX math mode, ..."
-- `dsImport` — "import, include, require of modules."
+''String-related''
+* `dsChar` — "single characters, such as 'x'."
+* `dsSpecialChar` — "chars with special meaning in strings such as escapes, substitutions, or regex operators."
+* `dsString` — "strings like \"hello world\"."
+* `dsVerbatimString` — "verbatim or raw strings like 'raw \backlash' in Perl, CoffeeScript, and shells, as well as r'\raw' in Python."
+* `dsSpecialString` — "SQL, regexes, HERE docs, LaTeX math mode, ..."
+* `dsImport` — "import, include, require of modules."
 
-**Number-related** (the doc's own heading, though it contains `dsDataType`)
-- `dsDataType` — "built-in data types like int, void, u64."
-- `dsDecVal` — "decimal values."
-- `dsBaseN` — "values with a base other than 10."
-- `dsFloat` — "floating point values."
-- `dsConstant` — "built-in and user defined constants like PI."
+''Number-related'' (the doc's own heading, though it contains `dsDataType`)
+* `dsDataType` — "built-in data types like int, void, u64."
+* `dsDecVal` — "decimal values."
+* `dsBaseN` — "values with a base other than 10."
+* `dsFloat` — "floating point values."
+* `dsConstant` — "built-in and user defined constants like PI."
 
-**Comment and documentation-related**
-- `dsComment` — "comments."
-- `dsDocumentation` — "/** Documentation comments */ or \"\"\"docstrings\"\"\"."
-- `dsAnnotation` — "documentation commands like @param, @brief."
-- `dsCommentVar` — "the variable names used in above commands, like \"foobar\" in @param foobar."
-- `dsRegionMarker` — "region markers like //BEGIN, //END in comments."
+''Comment and documentation-related''
+* `dsComment` — "comments."
+* `dsDocumentation` — "/** Documentation comments */ or \"\"\"docstrings\"\"\"."
+* `dsAnnotation` — "documentation commands like @param, @brief."
+* `dsCommentVar` — "the variable names used in above commands, like \"foobar\" in @param foobar."
+* `dsRegionMarker` — "region markers like //BEGIN, //END in comments."
 
-**Other default styles**
-- `dsInformation` — "notes and tips like @note in doxygen."
-- `dsWarning` — "warnings like @warning in doxygen."
-- `dsAlert` — "special words like TODO, FIXME, XXXX."
-- `dsError` — "error highlighting and wrong syntax."
-- `dsOthers` — "when nothing else fits."
+''Other default styles''
+* `dsInformation` — "notes and tips like @note in doxygen."
+* `dsWarning` — "warnings like @warning in doxygen."
+* `dsAlert` — "special words like TODO, FIXME, XXXX."
+* `dsError` — "error highlighting and wrong syntax."
+* `dsOthers` — "when nothing else fits."
 
-Your list matches exactly, 31 names — and the framework enum confirms 32 entries with `Normal = 0` (the `ds` prefix is stripped in the C++ API). `KSyntaxHighlighting::Theme::TextStyle`, verbatim declaration order: `Normal = 0, Keyword, Function, Variable, ControlFlow, Operator, BuiltIn, Extension, Preprocessor, Attribute, Char, SpecialChar, String, VerbatimString, SpecialString, Import, DataType, DecVal, BaseN, Float, Constant, Comment, Documentation, Annotation, CommentVar, RegionMarker, Information, Warning, Alert, Error, Others`. Note the enum's declaration order **differs from your prompt's order** in one place: your prompt puts `dsDataType` after `dsImport` — correct — but the docbook files `dsDataType` under "Number-related". The enum is authoritative for numeric value.
+Your list matches exactly, 31 names — and the framework enum confirms 32 entries with `Normal = 0` (the `ds` prefix is stripped in the C++ API). `KSyntaxHighlighting::Theme::TextStyle`, verbatim declaration order: `Normal = 0, Keyword, Function, Variable, ControlFlow, Operator, BuiltIn, Extension, Preprocessor, Attribute, Char, SpecialChar, String, VerbatimString, SpecialString, Import, DataType, DecVal, BaseN, Float, Constant, Comment, Documentation, Annotation, CommentVar, RegionMarker, Information, Warning, Alert, Error, Others`. Note the enum's declaration order ''differs from your prompt's order'' in one place: your prompt puts `dsDataType` after `dsImport` — correct — but the docbook files `dsDataType` under "Number-related". The enum is authoritative for numeric value.
 
-Note `dsOthers` and `dsNormal` are *both* escape hatches with different senses: `dsNormal` = "no special highlighting required", `dsOthers` = "when nothing else fits" (i.e. a *deliberate* marked thing that has no slot). That is a two-tier fallback and directly relevant to a memetic-wikitext design.
+Note `dsOthers` and `dsNormal` are //both// escape hatches with different senses: `dsNormal` = "no special highlighting required", `dsOthers` = "when nothing else fits" (i.e. a //deliberate// marked thing that has no slot). That is a two-tier fallback and directly relevant to a memetic-wikitext design.
 
-### Embedded languages (verbatim)
+!!! Embedded languages (verbatim)
 
 `IncludeRules` rule:
 
 &gt; "Include rules from another context or language/file.
 &gt; `&lt;IncludeRules context="contextlink" [includeAttrib="true|false"] /&gt;`
 &gt; The `context` attribute defines which context to include. If it is a simple string it includes all defined rules into the current context, example: `&lt;IncludeRules context="anotherContext" /&gt;`
-&gt; If the string contains a `##` the highlight system will look for a context from another language definition with the given name, for example `&lt;IncludeRules context="String##C++" /&gt;` would include the context *String* from the *C++* highlighting definition.
-&gt; If `includeAttrib` attribute is **true**, change the destination attribute to the one of the source. This is required to make, for example, commenting work, if text matched by the included context is a different highlight from the host context."
+&gt; If the string contains a `##` the highlight system will look for a context from another language definition with the given name, for example `&lt;IncludeRules context="String##C++" /&gt;` would include the context //String// from the //C++// highlighting definition.
+&gt; If `includeAttrib` attribute is ''true'', change the destination attribute to the one of the source. This is required to make, for example, commenting work, if text matched by the included context is a different highlight from the host context."
 
 Two further `##` crossings exist beyond `IncludeRules`, both worth noting for a mixed prose/widget grammar:
-- **Context switching across languages**: `lineEndContext` / `context` accept `SomeContext##JavaScript` — "an *identifier*, which is a context name, followed by two hashes (`##`) and another *identifier*, which is the name of a language definition… allows you to switch to a context belonging to another syntax highlighting definition."
-- **Keyword-list inclusion across languages** (KF5 ≥ 5.53): `&lt;include&gt;types##ISO C++&lt;/include&gt;` inside a `&lt;list&gt;` — "`##` is used to separate the list name and the language definition name, in the same way as in the `IncludeRules` rule. This is useful to avoid duplicating keyword lists."
+* ''Context switching across languages'': `lineEndContext` / `context` accept `SomeContext##JavaScript` — "an //identifier//, which is a context name, followed by two hashes (`##`) and another //identifier//, which is the name of a language definition… allows you to switch to a context belonging to another syntax highlighting definition."
+* ''Keyword-list inclusion across languages'' (KF5 ≥ 5.53): `&lt;include&gt;types##ISO C++&lt;/include&gt;` inside a `&lt;list&gt;` — "`##` is used to separate the list name and the language definition name, in the same way as in the `IncludeRules` rule. This is useful to avoid duplicating keyword lists."
 
 Context stacks also compose: `#pop#pop!OtherContext`, and `ContextA!ContextB!ContextC` where "The last context in the list is active immediately; the others will be accessed using `#pop`."
 
-## 2. VIM / NEOVIM — AUTHORITATIVE (`runtime/doc/syntax.txt`, vim master)
+!! 2. VIM / NEOVIM — AUTHORITATIVE (`runtime/doc/syntax.txt`, vim master)
 
 vimhelp.org rendered fine but I verified against the primary `https://raw.githubusercontent.com/vim/vim/master/runtime/doc/syntax.txt`, section `*group-name*` (NAMING CONVENTIONS, line 210).
 
-### The two-layer separation, verbatim
+!!! The two-layer separation, verbatim
 
-&gt; "A syntax group name is to be used for syntax items that match the same kind of thing. These are then linked to a highlight group that specifies the color. **A syntax group name doesn't specify any color or attributes itself.**"
+&gt; "A syntax group name is to be used for syntax items that match the same kind of thing. These are then linked to a highlight group that specifies the color. ''A syntax group name doesn't specify any color or attributes itself.''"
 
-### Why the fixed set exists, verbatim
+!!! Why the fixed set exists, verbatim
 
 &gt; "To be able to allow each user to pick their favorite set of colors, there must be preferred names for highlight groups that are common for many languages. These are the suggested group names (if syntax highlighting works properly you can see the actual color, except for \"Ignore\"):"
 
-### The list, EXACT (`*` = preferred/major; unmarked = minor)
+!!! The list, EXACT (`*` = preferred/major; unmarked = minor)
 
 ```
 *Comment	any comment
@@ -180,7 +180,7 @@ vimhelp.org rendered fine but I verified against the primary `https://raw.github
 *Removed	removed line in a diff
 ```
 
-Your prompt's list is missing four that current vim ships: **`Regexp`** (under Constant), and **`Bold` / `Italic` / `BoldItalic`** (preferred groups, alongside `Underlined`). These are recent additions.
+Your prompt's list is missing four that current vim ships: ''`Regexp`'' (under Constant), and ''`Bold` / `Italic` / `BoldItalic`'' (preferred groups, alongside `Underlined`). These are recent additions.
 
 The preferred/minor split, verbatim:
 
@@ -188,9 +188,9 @@ The preferred/minor split, verbatim:
 
 Also: "Note that highlight group names are not case sensitive." Reserved, unusable as group names: `NONE ALL ALLBUT contains contained`. Name charset: `[a-zA-Z0-9_.-]*`, max ~200 bytes (`*E1249*`).
 
-### THE LINK MECHANISM AS GRACEFUL DEGRADATION — verbatim from `usr_44.txt` (writing a syntax file)
+!!! THE LINK MECHANISM AS GRACEFUL DEGRADATION — verbatim from `usr_44.txt` (writing a syntax file)
 
-&gt; "To allow users select their own preferred colors, **make a different group name for every kind of highlighted item. Then link each of them to one of the standard highlight groups. That will make it work with every color scheme.** If you select specific colors it will look bad with some color schemes. And don't forget that some people use a different background color, or have only eight colors available.
+&gt; "To allow users select their own preferred colors, ''make a different group name for every kind of highlighted item. Then link each of them to one of the standard highlight groups. That will make it work with every color scheme.'' If you select specific colors it will look bad with some color schemes. And don't forget that some people use a different background color, or have only eight colors available.
 &gt;
 &gt; For the linking use \"hi def link\", so that the user can select different highlighting before your syntax file is loaded. Example:
 &gt;
@@ -201,92 +201,92 @@ Also: "Note that highlight group names are not case sensitive." Reserved, unusab
 &gt; ... etc ...
 &gt; ```"
 
-That is the exact doctrine you're after: **unbounded language-private vocabulary, mandatory link into a bounded public one.**
+That is the exact doctrine you're after: ''unbounded language-private vocabulary, mandatory link into a bounded public one.''
 
 `:hi-default` semantics, verbatim (`syntax.txt` line 6249):
 
 &gt; "The [default] argument is used for setting the default highlighting for a group. If highlighting has already been specified for the group the command will be ignored. Also when there is an existing link.
 &gt; Using [default] is especially useful to overrule the highlighting of a specific syntax file. For example, the C syntax file contains: `:highlight default link cComment Comment`. If you like Question highlighting for C comments, put this in your vimrc file: `:highlight link cComment Question`. Without the \"default\" in the C syntax file, the highlighting would be overruled when the syntax file is loaded."
 
-### `:h treesitter-highlight` — AUTHORITATIVE (neovim master `runtime/doc/treesitter.txt`)
+!!! `:h treesitter-highlight` — AUTHORITATIVE (neovim master `runtime/doc/treesitter.txt`)
 
-The bridge is *fallback by dotted-prefix truncation*, verbatim:
+The bridge is //fallback by dotted-prefix truncation//, verbatim:
 
 &gt; "The capture names, prefixed with `@`, are directly usable as highlight groups. For many commonly used captures, the corresponding highlight groups are linked to Nvim's standard |highlight-groups| by default (e.g., `@comment` links to `Comment`) but can be overridden in colorschemes.
 &gt;
-&gt; **A fallback system is implemented, so that more specific groups fallback to more generic ones.** For instance, in a language that has separate doc comments (e.g., c, java, etc.), `@comment.documentation` could be used. If this group is not defined, the highlighting for an ordinary `@comment` is used. This way, existing color schemes already work out of the box, but it is possible to add more specific variants for queries that make them available.
+&gt; ''A fallback system is implemented, so that more specific groups fallback to more generic ones.'' For instance, in a language that has separate doc comments (e.g., c, java, etc.), `@comment.documentation` could be used. If this group is not defined, the highlighting for an ordinary `@comment` is used. This way, existing color schemes already work out of the box, but it is possible to add more specific variants for queries that make them available.
 &gt;
 &gt; As an additional rule, capture highlights can always be specialized by language, by appending the language name after an additional dot."
 &gt; e.g. `hi @comment.c guifg=Blue` / `hi link @comment.documentation.java String`
 
-This is the strongest structural answer in the whole survey: **a dotted hierarchy where truncation IS the degradation path**, plus a per-language suffix axis. Nvim's standard captures (relevant subset for a prose/markup language, exact strings):
+This is the strongest structural answer in the whole survey: ''a dotted hierarchy where truncation IS the degradation path'', plus a per-language suffix axis. Nvim's standard captures (relevant subset for a prose/markup language, exact strings):
 
 `@markup.strong` `@markup.italic` `@markup.strikethrough` `@markup.underline` (doc note: "only for literal underline markup!") `@markup.heading` `@markup.heading.1`…`@markup.heading.6` `@markup.quote` `@markup.math` `@markup.link` `@markup.link.label` `@markup.link.url` `@markup.raw` `@markup.raw.block` `@markup.list` `@markup.list.checked` `@markup.list.unchecked`; tags: `@tag` `@tag.builtin` `@tag.attribute` `@tag.delimiter`; diff: `@diff.plus` `@diff.minus` `@diff.delta`; comments: `@comment` `@comment.documentation` `@comment.error` `@comment.warning` `@comment.todo` `@comment.note`; punctuation: `@punctuation.delimiter` `@punctuation.bracket` `@punctuation.special` ("special symbols (e.g. `{}` in string interpolation)"); strings: `@string` `@string.documentation` `@string.regexp` `@string.escape` `@string.special` `@string.special.symbol` `@string.special.path` `@string.special.url`; plus `@variable[.builtin|.parameter|.parameter.builtin|.member]`, `@constant[.builtin|.macro]`, `@module[.builtin]`, `@label`, `@character[.special]`, `@boolean`, `@number[.float]`, `@type[.builtin|.definition]`, `@attribute[.builtin]`, `@property`, `@function[.builtin|.call|.macro|.method|.method.call]`, `@constructor`, `@operator`, `@keyword[.coroutine|.function|.operator|.import|.type|.modifier|.repeat|.return|.debug|.exception|.conditional|.conditional.ternary|.directive|.directive.define]`.
 
 Two extra nvim mechanisms directly relevant to a widget-bearing prose language: `@spell` / `@nospell` (marks nodes for the spell checker — the exact analogue of Kate's `spellChecking` itemData attribute), and `conceal` / `conceal_lines` metadata ("It is also possible to replace a node with a single character, which (unlike legacy syntax) can be given a custom highlight" — `"!=" @operator (#set! conceal "≠")`).
 
-## 3. EMACS font-lock faces — AUTHORITATIVE
+!! 3. EMACS font-lock faces — AUTHORITATIVE
 
 `https://www.gnu.org/software/emacs/manual/html_node/elisp/Faces-for-Font-Lock.html` (Elisp manual §24.7.7) + `https://raw.githubusercontent.com/emacs-mirror/emacs/master/lisp/font-lock.el` for the definitive `defface` roster.
 
-### The governing principle, verbatim — note the ordering doctrine, which is unlike anyone else's
+!!! The governing principle, verbatim — note the ordering doctrine, which is unlike anyone else's
 
 &gt; "Font Lock mode can highlight using any face, but Emacs defines several faces specifically for Font Lock to use to highlight text. These Font Lock faces are listed below. They can also be used by major modes for syntactic highlighting outside of Font Lock mode (see Major Mode Conventions).
 &gt;
-&gt; **The faces are listed with descriptions of their typical usage, and in order of greater to lesser prominence. If a mode's syntactic categories do not fit well with the usage descriptions, the faces can be assigned using the ordering as a guide.**"
+&gt; ''The faces are listed with descriptions of their typical usage, and in order of greater to lesser prominence. If a mode's syntactic categories do not fit well with the usage descriptions, the faces can be assigned using the ordering as a guide.''"
 
-That last sentence is the Emacs answer to "my language's concepts don't match your fixed set": the list is **ordered by prominence**, and a mode that can't match semantically is told to match *by salience rank*. No other system surveyed does this.
+That last sentence is the Emacs answer to "my language's concepts don't match your fixed set": the list is ''ordered by prominence'', and a mode that can't match semantically is told to match //by salience rank//. No other system surveyed does this.
 
-### Faces, manual order (= prominence order), with verbatim descriptions and `:inherit` defaults
+!!! Faces, manual order (= prominence order), with verbatim descriptions and `:inherit` defaults
 
-1. `font-lock-warning-face` — "for a construct that is peculiar (e.g., an unescaped confusable quote in an Emacs Lisp symbol like '‘foo'), or that greatly changes the meaning of other text, like ';;;###autoload' in Emacs Lisp and '#error' in C."
-2. `font-lock-function-name-face` — "for the name of a function being defined or declared."
-3. `font-lock-function-call-face` — "for the name of a function being called. **This face inherits, by default, from `font-lock-function-name-face`.**"
-4. `font-lock-variable-name-face` — "for the name of a variable being defined or declared."
-5. `font-lock-variable-use-face` — "for the name of a variable being referenced. This face inherits, by default, from `font-lock-variable-name-face`."
-6. `font-lock-keyword-face` — "for a keyword with special syntactic significance, like 'for' and 'if' in C."
-7. `font-lock-comment-face` — "for comments."
-8. `font-lock-comment-delimiter-face` — "for comments delimiters, like '/*' and '*/' in C. On most terminals, this inherits from `font-lock-comment-face`."
-9. `font-lock-type-face` — "for the names of user-defined data types."
-10. `font-lock-constant-face` — "for the names of constants, like 'NULL' in C."
-11. `font-lock-builtin-face` — "for the names of built-in functions."
-12. `font-lock-preprocessor-face` — "for preprocessor commands. This inherits, by default, from `font-lock-builtin-face`."
-13. `font-lock-string-face` — "for string constants."
-14. `font-lock-doc-face` — "for documentation embedded in program code inside specially-formed comments or strings. This face inherits, by default, from `font-lock-string-face`."
-15. `font-lock-doc-markup-face` — "for mark-up elements in text using `font-lock-doc-face`. It is typically used for the mark-up constructs in documentation embedded in program code, following conventions such as Haddock, Javadoc or Doxygen. This face inherits, by default, from `font-lock-constant-face`."
-16. `font-lock-negation-char-face` — "for easily-overlooked negation characters."
-17. `font-lock-escape-face` — "for escape sequences in strings. This face inherits, by default, from `font-lock-regexp-grouping-backslash`." (example given: `print('Hello world!\n')`)
-18. `font-lock-number-face` — "for numbers."
-19. `font-lock-operator-face` — "for operators."
-20. `font-lock-property-name-face` — "for properties of an object, such as the declaration of fields in a struct. This face inherits, by default, from `font-lock-variable-name-face`."
-21. `font-lock-property-use-face` — "for properties of an object, such as use of fields in a struct. This face inherits, by default, from `font-lock-property-name-face`."
-22. `font-lock-punctuation-face` — "for punctuation such as brackets and delimiters."
-23. `font-lock-bracket-face` — "for brackets (e.g., (), [], {}). This face inherits, by default, from `font-lock-punctuation-face`."
-24. `font-lock-delimiter-face` — "for delimiters (e.g., ;, :, ,). This face inherits, by default, from `font-lock-punctuation-face`."
-25. `font-lock-misc-punctuation-face` — "for punctuation that is not a bracket or delimiter. This face inherits, by default, from `font-lock-punctuation-face`."
+# `font-lock-warning-face` — "for a construct that is peculiar (e.g., an unescaped confusable quote in an Emacs Lisp symbol like '‘foo'), or that greatly changes the meaning of other text, like ';;;###autoload' in Emacs Lisp and '#error' in C."
+# `font-lock-function-name-face` — "for the name of a function being defined or declared."
+# `font-lock-function-call-face` — "for the name of a function being called. ''This face inherits, by default, from `font-lock-function-name-face`.''"
+# `font-lock-variable-name-face` — "for the name of a variable being defined or declared."
+# `font-lock-variable-use-face` — "for the name of a variable being referenced. This face inherits, by default, from `font-lock-variable-name-face`."
+# `font-lock-keyword-face` — "for a keyword with special syntactic significance, like 'for' and 'if' in C."
+# `font-lock-comment-face` — "for comments."
+# `font-lock-comment-delimiter-face` — "for comments delimiters, like '///' and '///' in C. On most terminals, this inherits from `font-lock-comment-face`."
+# `font-lock-type-face` — "for the names of user-defined data types."
+# `font-lock-constant-face` — "for the names of constants, like 'NULL' in C."
+# `font-lock-builtin-face` — "for the names of built-in functions."
+# `font-lock-preprocessor-face` — "for preprocessor commands. This inherits, by default, from `font-lock-builtin-face`."
+# `font-lock-string-face` — "for string constants."
+# `font-lock-doc-face` — "for documentation embedded in program code inside specially-formed comments or strings. This face inherits, by default, from `font-lock-string-face`."
+# `font-lock-doc-markup-face` — "for mark-up elements in text using `font-lock-doc-face`. It is typically used for the mark-up constructs in documentation embedded in program code, following conventions such as Haddock, Javadoc or Doxygen. This face inherits, by default, from `font-lock-constant-face`."
+# `font-lock-negation-char-face` — "for easily-overlooked negation characters."
+# `font-lock-escape-face` — "for escape sequences in strings. This face inherits, by default, from `font-lock-regexp-grouping-backslash`." (example given: `print('Hello world!\n')`)
+# `font-lock-number-face` — "for numbers."
+# `font-lock-operator-face` — "for operators."
+# `font-lock-property-name-face` — "for properties of an object, such as the declaration of fields in a struct. This face inherits, by default, from `font-lock-variable-name-face`."
+# `font-lock-property-use-face` — "for properties of an object, such as use of fields in a struct. This face inherits, by default, from `font-lock-property-name-face`."
+# `font-lock-punctuation-face` — "for punctuation such as brackets and delimiters."
+# `font-lock-bracket-face` — "for brackets (e.g., (), [], {}). This face inherits, by default, from `font-lock-punctuation-face`."
+# `font-lock-delimiter-face` — "for delimiters (e.g., ;, :, ,). This face inherits, by default, from `font-lock-punctuation-face`."
+# `font-lock-misc-punctuation-face` — "for punctuation that is not a bracket or delimiter. This face inherits, by default, from `font-lock-punctuation-face`."
 
-**Not on that manual page** (documented elsewhere / in `font-lock.el` only) but confirmed present as `defface` in current source: `font-lock-regexp-face`, `font-lock-regexp-grouping-backslash`, `font-lock-regexp-grouping-construct`. So your prompt's `font-lock-regexp-*` and `font-lock-regexp-face` are real; they just don't appear in the Faces-for-Font-Lock node.
+''Not on that manual page'' (documented elsewhere / in `font-lock.el` only) but confirmed present as `defface` in current source: `font-lock-regexp-face`, `font-lock-regexp-grouping-backslash`, `font-lock-regexp-grouping-construct`. So your prompt's `font-lock-regexp-*` and `font-lock-regexp-face` are real; they just don't appear in the Faces-for-Font-Lock node.
 
-### The Emacs 29 expansion — your data point, confirmed
+!!! The Emacs 29 expansion — your data point, confirmed
 
-The pre-29 set is exactly the 14 faces that still carry the old `"Face name to use for X."` docstrings at `font-lock.el` lines 313–392 (comment, comment-delimiter, string, doc, doc-markup, keyword, builtin, function-name, variable-name, type, constant, warning, negation-char, preprocessor). Everything else in the roster above — `function-call`, `variable-use`, `regexp`, `escape`, `number`, `operator`, `property-name`, `property-use`, `punctuation`, `bracket`, `delimiter`, `misc-punctuation` — is the tree-sitter-era addition (Emacs 29). **A ~30-year-stable fixed set grew by ~12 slots the moment a finer-grained parser arrived**, and every single new face was landed *with a default `:inherit` into the old set*, so pre-existing themes render them without change. That is the graceful-degradation move in its purest form: expansion is safe precisely because each new slot names its parent.
+The pre-29 set is exactly the 14 faces that still carry the old `"Face name to use for X."` docstrings at `font-lock.el` lines 313–392 (comment, comment-delimiter, string, doc, doc-markup, keyword, builtin, function-name, variable-name, type, constant, warning, negation-char, preprocessor). Everything else in the roster above — `function-call`, `variable-use`, `regexp`, `escape`, `number`, `operator`, `property-name`, `property-use`, `punctuation`, `bracket`, `delimiter`, `misc-punctuation` — is the tree-sitter-era addition (Emacs 29). ''A ~30-year-stable fixed set grew by ~12 slots the moment a finer-grained parser arrived'', and every single new face was landed //with a default `:inherit` into the old set//, so pre-existing themes render them without change. That is the graceful-degradation move in its purest form: expansion is safe precisely because each new slot names its parent.
 
 `:inherit` is the mechanism (INFERENCE from the doc's repeated "inherits, by default, from …" + Emacs face model): a theme that knows nothing of `font-lock-bracket-face` still paints it, via `punctuation` → and unthemed `punctuation` falls to `default`.
 
-## 4. JETBRAINS `TextAttributesKey` — AUTHORITATIVE. This is the canonical answer.
+!! 4. JETBRAINS `TextAttributesKey` — AUTHORITATIVE. This is the canonical answer.
 
 Sources: `https://plugins.jetbrains.com/docs/intellij/syntax-highlighting-and-error-highlighting.html`, `https://plugins.jetbrains.com/docs/intellij/color-scheme-management.html` (this page, not the syntax-highlighting one, carries the fallback doctrine — the syntax-highlighting page merely points at it: "See the note about Language Defaults and support for additional color schemes in Color Scheme Management"), and the source of truth `https://raw.githubusercontent.com/JetBrains/intellij-community/master/platform/core-api/src/com/intellij/openapi/editor/DefaultLanguageHighlighterColors.java`.
 
-### The stated guidance, VERBATIM — the strongest formulation of the principle anywhere in this survey
+!!! The stated guidance, VERBATIM — the strongest formulation of the principle anywhere in this survey
 
-&gt; "Color scheme management in IntelliJ IDEA 12.1 was changed to ease scheme designers' work and **make schemes look equally well for different programming languages even if not designed specifically for these languages. Previously, language plugins were using fixed default colors incompatible, for example, with dark schemes.** The new implementation allows specifying a dependency on a set of standard text attributes linked to a scheme but not to any specific language. Language-specific attributes still can be set by a scheme designer if needed, but it's optional."
+&gt; "Color scheme management in IntelliJ IDEA 12.1 was changed to ease scheme designers' work and ''make schemes look equally well for different programming languages even if not designed specifically for these languages. Previously, language plugins were using fixed default colors incompatible, for example, with dark schemes.'' The new implementation allows specifying a dependency on a set of standard text attributes linked to a scheme but not to any specific language. Language-specific attributes still can be set by a scheme designer if needed, but it's optional."
 
-&gt; "**The easiest and the best way to specify highlighting text attributes is to specify a dependency on one of standard keys defined in `DefaultLanguageHighlighterColors`:**
+&gt; "''The easiest and the best way to specify highlighting text attributes is to specify a dependency on one of standard keys defined in `DefaultLanguageHighlighterColors`:''
 &gt; ```java
 &gt; static final TextAttributesKey MY_KEYWORD =
 &gt;   TextAttributesKey.createTextAttributesKey("MY_KEYWORD", DefaultLanguageHighlighterColors.KEYWORD);
 &gt; ```
-&gt; The color scheme manager will search first for text attributes specified by the `MY_KEYWORD` key. If those are not defined explicitly or if all the attributes are empty (undefined), it will search them using the `DEFAULT_KEYWORD` key. **If neither is defined, it will further fall back to a default scheme.**"
+&gt; The color scheme manager will search first for text attributes specified by the `MY_KEYWORD` key. If those are not defined explicitly or if all the attributes are empty (undefined), it will search them using the `DEFAULT_KEYWORD` key. ''If neither is defined, it will further fall back to a default scheme.''"
 
 Chaining (arbitrary-depth degradation ladder), verbatim:
 
@@ -299,13 +299,13 @@ Chaining (arbitrary-depth degradation ladder), verbatim:
 
 The prohibition and the "when in doubt" rule, verbatim:
 
-&gt; "**A use of fixed default attributes is strongly discouraged.** If you are unsure which base key to use, **it's better to pick the most generic one, for example, `DefaultLanguageHighlighterColors.IDENTIFIER`.** Remember that using fixed default attributes will force a scheme designer to explicitly set up a color for this element. Otherwise, its default colors may visually conflict with a color scheme. **If the scheme designer doesn't have a language plugin, he will not be able to fix this at all.**"
+&gt; "''A use of fixed default attributes is strongly discouraged.'' If you are unsure which base key to use, ''it's better to pick the most generic one, for example, `DefaultLanguageHighlighterColors.IDENTIFIER`.'' Remember that using fixed default attributes will force a scheme designer to explicitly set up a color for this element. Otherwise, its default colors may visually conflict with a color scheme. ''If the scheme designer doesn't have a language plugin, he will not be able to fix this at all.''"
 
-That last clause is the sharpest statement of *why* the discipline matters: a hardcoded color is an unfixable defect for a third party.
+That last clause is the sharpest statement of //why// the discipline matters: a hardcoded color is an unfixable defect for a third party.
 
-Scheme-side inheritance, verbatim: "For many language text attributes that do not have any values, there will be a line indicating that the attributes are inherited from a specific section/attributes, such as `Keyword` in `Language Defaults`. **If an element has any attributes set, only these attributes are used. All attributes from the base element are ignored.** To restore the inheritance, uncheck all the boxes, and click Apply." — i.e. override is *total per key*, not per property, at the scheme layer; but the key *layering* at the highlighter layer is compositional: "Highlighting from multiple `TextAttributesKey` items can be layered — for example, one key may define an item's boldness and another one its color."
+Scheme-side inheritance, verbatim: "For many language text attributes that do not have any values, there will be a line indicating that the attributes are inherited from a specific section/attributes, such as `Keyword` in `Language Defaults`. ''If an element has any attributes set, only these attributes are used. All attributes from the base element are ignored.'' To restore the inheritance, uncheck all the boxes, and click Apply." — i.e. override is //total per key//, not per property, at the scheme layer; but the key //layering// at the highlighter layer is compositional: "Highlighting from multiple `TextAttributesKey` items can be layered — for example, one key may define an item's boldness and another one its color."
 
-### `DefaultLanguageHighlighterColors` — EXACT constants + their external names + their own fallbacks (verbatim from source)
+!!! `DefaultLanguageHighlighterColors` — EXACT constants + their external names + their own fallbacks (verbatim from source)
 
 Root: `TEMPLATE_LANGUAGE_COLOR → "DEFAULT_TEMPLATE_LANGUAGE_COLOR", fallback HighlighterColors.TEXT`; `IDENTIFIER → "DEFAULT_IDENTIFIER", fallback HighlighterColors.TEXT`.
 
@@ -319,17 +319,17 @@ Falling back to `HighlighterColors.TEXT`: `METADATA "DEFAULT_METADATA"`, `MARKUP
 
 Doc-adjacent extras present in current master and not in your prompt: `DOC_COMMENT_GUIDE` and `DOC_COMMENT_LINK` (these are `ColorKey`, not `TextAttributesKey`), `DOC_CODE_INLINE`, `DOC_CODE_BLOCK`, `DOC_TIPS_SHORTCUT`. Also a block of non-syntax IDE-chrome keys (`INLINE_SUGGESTION`, `INLINE_PARAMETER_HINT*`, `INLAY_*`, `AI_INLAY_BUTTON_*`, `INLINE_REFACTORING_SETTINGS_*`) — not part of the language vocabulary.
 
-Note two absences worth flagging: there is **no `MARKUP_*` beyond tag/attribute/entity** (no heading, no emphasis, no link) — IntelliJ's fixed set is code-shaped, and a prose language must borrow. And error/bad-token is *not* in this class: the syntax-highlighting page says "For highlighting lexer errors use `HighlighterColors.BAD_CHARACTER`."
+Note two absences worth flagging: there is ''no `MARKUP_*` beyond tag/attribute/entity'' (no heading, no emphasis, no link) — IntelliJ's fixed set is code-shaped, and a prose language must borrow. And error/bad-token is //not// in this class: the syntax-highlighting page says "For highlighting lexer errors use `HighlighterColors.BAD_CHARACTER`."
 
-### `TEMPLATE_LANGUAGE_COLOR` and template languages
+!!! `TEMPLATE_LANGUAGE_COLOR` and template languages
 
-The docs page for templating languages 404s at both `templating-languages.html` and `websites-and-templating-languages.html`; I did not locate a live SDK page. What is AUTHORITATIVE from source: `TEMPLATE_LANGUAGE_COLOR` is declared as the **first** constant in `DefaultLanguageHighlighterColors`, external name `"DEFAULT_TEMPLATE_LANGUAGE_COLOR"`, falling back to `HighlighterColors.TEXT`. Its role (INFERENCE, from that declaration plus the IntelliJ template-language architecture): in a `TemplateLanguageFileViewProvider` setup a file has a *data language* (HTML, say) and a *template language* (JSP/Twig), and the ranges belonging to the template dialect are painted with `TEMPLATE_LANGUAGE_COLOR` as a **background wash layered under** the data language's own highlighting — which works because "Highlighting from multiple `TextAttributesKey` items can be layered — for example, one key may define an item's boldness and another one its color" (verbatim, AUTHORITATIVE). That layering property is the directly transferable idea for a prose host with embedded widget syntax: **the host/guest distinction is carried on a separate, orthogonal attribute channel (background) rather than by consuming a slot in the foreground vocabulary.** I could not find a verbatim doc sentence stating this; treat the mechanism as inference and the layering sentence as the authoritative support.
+The docs page for templating languages 404s at both `templating-languages.html` and `websites-and-templating-languages.html`; I did not locate a live SDK page. What is AUTHORITATIVE from source: `TEMPLATE_LANGUAGE_COLOR` is declared as the ''first'' constant in `DefaultLanguageHighlighterColors`, external name `"DEFAULT_TEMPLATE_LANGUAGE_COLOR"`, falling back to `HighlighterColors.TEXT`. Its role (INFERENCE, from that declaration plus the IntelliJ template-language architecture): in a `TemplateLanguageFileViewProvider` setup a file has a //data language// (HTML, say) and a //template language// (JSP/Twig), and the ranges belonging to the template dialect are painted with `TEMPLATE_LANGUAGE_COLOR` as a ''background wash layered under'' the data language's own highlighting — which works because "Highlighting from multiple `TextAttributesKey` items can be layered — for example, one key may define an item's boldness and another one its color" (verbatim, AUTHORITATIVE). That layering property is the directly transferable idea for a prose host with embedded widget syntax: ''the host/guest distinction is carried on a separate, orthogonal attribute channel (background) rather than by consuming a slot in the foreground vocabulary.'' I could not find a verbatim doc sentence stating this; treat the mechanism as inference and the layering sentence as the authoritative support.
 
-Also authoritative and relevant: IntelliJ has a *fourth* channel beyond lexer/parser/annotator — **semantic highlighting** via `RainbowVisitor` in `com.intellij.highlightVisitor`, "an additional coloring layer to improve the visual distinction of several related items (e.g., method parameters, local variables)", with the settings page implementing `RainbowColorSettingsPage`. That is identity-based, not category-based coloring — a separate axis again.
+Also authoritative and relevant: IntelliJ has a //fourth// channel beyond lexer/parser/annotator — ''semantic highlighting'' via `RainbowVisitor` in `com.intellij.highlightVisitor`, "an additional coloring layer to improve the visual distinction of several related items (e.g., method parameters, local variables)", with the settings page implementing `RainbowColorSettingsPage`. That is identity-based, not category-based coloring — a separate axis again.
 
-## 5. XCODE — NO OFFICIAL DOCUMENTATION FOUND. Say so plainly.
+!! 5. XCODE — NO OFFICIAL DOCUMENTATION FOUND. Say so plainly.
 
-I found **no Apple-published list** of theme-editor syntax categories. Apple does not document the `.xccolortheme` format or the Fonts &amp; Colors category set in developer.apple.com documentation as far as web search reaches. Mark everything below **COMMUNITY**, derived from the theme file format itself (which is the de-facto authority, since it is what Xcode reads).
+I found ''no Apple-published list'' of theme-editor syntax categories. Apple does not document the `.xccolortheme` format or the Fonts &amp; Colors category set in developer.apple.com documentation as far as web search reaches. Mark everything below ''COMMUNITY'', derived from the theme file format itself (which is the de-facto authority, since it is what Xcode reads).
 
 Exact key strings, extracted from a real `.xccolortheme` (`https://raw.githubusercontent.com/ThatsJustCheesy/xcode-sunburst-theme/master/Sunburst.xccolortheme`), under `DVTSourceTextSyntaxColors`:
 
@@ -363,43 +363,42 @@ xcode.syntax.identifier.variable
 xcode.syntax.identifier.variable.system
 ```
 
-Mapping to the UI labels in Fonts &amp; Colors (COMMUNITY): Plain Text, Comments, Documentation Markup, Documentation Markup Keywords, Strings, Characters, Numbers, Keywords, Preprocessor Statements, URLs, Attributes, Marks, and then the paired **Project ⁄ Other** rows — Type Declarations, Other Declarations, and for each of class names, function/method names, constants, type names, variables/instance-and-global variables, preprocessor macros.
+Mapping to the UI labels in Fonts &amp; Colors (COMMUNITY): Plain Text, Comments, Documentation Markup, Documentation Markup Keywords, Strings, Characters, Numbers, Keywords, Preprocessor Statements, URLs, Attributes, Marks, and then the paired ''Project ⁄ Other'' rows — Type Declarations, Other Declarations, and for each of class names, function/method names, constants, type names, variables/instance-and-global variables, preprocessor macros.
 
-**The structurally interesting bit** (and the one thing Xcode does that none of the other four do): the vocabulary's second axis is not *what kind of thing* but *whose code it is* — every `identifier.*` slot is doubled by a `.system` variant, "Project" vs "Other", i.e. code your team wrote versus code the SDK provides. 27 keys, of which 9 pairs are the same 9 categories split by provenance. There is no fallback/inheritance mechanism visible in the format: a theme file simply enumerates all keys, and a missing key falls to Xcode's built-in default rather than to a parent category (INFERENCE — no documentation states the behavior).
+''The structurally interesting bit'' (and the one thing Xcode does that none of the other four do): the vocabulary's second axis is not //what kind of thing// but //whose code it is// — every `identifier.*` slot is doubled by a `.system` variant, "Project" vs "Other", i.e. code your team wrote versus code the SDK provides. 27 keys, of which 9 pairs are the same 9 categories split by provenance. There is no fallback/inheritance mechanism visible in the format: a theme file simply enumerates all keys, and a missing key falls to Xcode's built-in default rather than to a parent category (INFERENCE — no documentation states the behavior).
 
-## Cross-cutting summary for your grammar work
+!! Cross-cutting summary for your grammar work
 
 Five systems, five different answers to "the set is fixed but my language isn't":
 
-| System | Fixed set size | Author's private vocabulary | Degradation device |
-|---|---|---|---|
-| Kate | 32 (`dsNormal`…`dsOthers`) | unlimited `itemData` names | **required** `defStyleNum` on every one; two escape hatches (`dsNormal` = unmarked, `dsOthers` = "nothing else fits") |
-| Vim | ~40, split preferred/minor | unlimited syntax group names | `hi def link mine Standard`; minor groups pre-linked to preferred |
-| Nvim TS | ~90 dotted captures | dotted extension | **prefix truncation**: `@comment.documentation` → `@comment`; plus `.lang` suffix axis |
-| Emacs | 14 → ~28 (Emacs 29) | modes pick from the list | `:inherit` chains; plus "**order of greater to lesser prominence**" as a fallback *ranking* when semantics don't fit |
-| JetBrains | ~40 `DefaultLanguageHighlighterColors` | unlimited `TextAttributesKey` | `createTextAttributesKey(name, fallbackKey)`, arbitrarily chainable, "fixed default attributes strongly discouraged", when unsure fall back to `IDENTIFIER` |
-| Xcode | 27 keys | none (closed) | none documented |
+|!System|!Fixed set size|!Author's private vocabulary|!Degradation device|
+|Kate|32 (`dsNormal`…`dsOthers`)|unlimited `itemData` names|''required'' `defStyleNum` on every one; two escape hatches (`dsNormal` = unmarked, `dsOthers` = "nothing else fits")|
+|Vim|~40, split preferred/minor|unlimited syntax group names|`hi def link mine Standard`; minor groups pre-linked to preferred|
+|Nvim TS|~90 dotted captures|dotted extension|''prefix truncation'': `@comment.documentation` → `@comment`; plus `.lang` suffix axis|
+|Emacs|14 → ~28 (Emacs 29)|modes pick from the list|`:inherit` chains; plus "''order of greater to lesser prominence''" as a fallback //ranking// when semantics don't fit|
+|JetBrains|~40 `DefaultLanguageHighlighterColors`|unlimited `TextAttributesKey`|`createTextAttributesKey(name, fallbackKey)`, arbitrarily chainable, "fixed default attributes strongly discouraged", when unsure fall back to `IDENTIFIER`|
+|Xcode|27 keys|none (closed)|none documented|
 
-Three of the five (Vim, Nvim, JetBrains) converge on the identical shape: **name your own concepts freely, but every name must declare a parent in the public set, and the resolver walks up until it finds a painted ancestor.** Kate makes the declaration mandatory but flat (one hop, no chain). Emacs's is the only one that offers a *non-semantic* fallback rule (prominence ordering) for concepts that genuinely have no analogue — which is the situation a memetic-wikitext grammar is actually in.
+Three of the five (Vim, Nvim, JetBrains) converge on the identical shape: ''name your own concepts freely, but every name must declare a parent in the public set, and the resolver walks up until it finds a painted ancestor.'' Kate makes the declaration mandatory but flat (one hop, no chain). Emacs's is the only one that offers a //non-semantic// fallback rule (prominence ordering) for concepts that genuinely have no analogue — which is the situation a memetic-wikitext grammar is actually in.
 
-For embedded/mixed languages specifically: Kate's `##OtherLanguage` (three separate crossings — `IncludeRules`, context switch, keyword-list `&lt;include&gt;`, with `includeAttrib` controlling whether the *guest* or *host* attribute wins on the included text) and IntelliJ's `TEMPLATE_LANGUAGE_COLOR` (an orthogonal layered channel, so host/guest costs zero foreground slots) are the two designs worth stealing. `includeAttrib` is the precise knob for "does the embedded thing keep its own colors, or take on the surrounding block's?" — and the doc's stated reason for it is instructive: it exists so that *commenting* (an editor operation, not a color) works across the boundary.
+For embedded/mixed languages specifically: Kate's `##OtherLanguage` (three separate crossings — `IncludeRules`, context switch, keyword-list `&lt;include&gt;`, with `includeAttrib` controlling whether the //guest// or //host// attribute wins on the included text) and IntelliJ's `TEMPLATE_LANGUAGE_COLOR` (an orthogonal layered channel, so host/guest costs zero foreground slots) are the two designs worth stealing. `includeAttrib` is the precise knob for "does the embedded thing keep its own colors, or take on the surrounding block's?" — and the doc's stated reason for it is instructive: it exists so that //commenting// (an editor operation, not a color) works across the boundary.
 
 Sources:
-- [KDE kate development.docbook (primary)](https://raw.githubusercontent.com/KDE/kate/master/doc/katepart/development.docbook)
-- [KSyntaxHighlighting theme.h](https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/lib/theme.h)
-- [vim runtime/doc/syntax.txt](https://raw.githubusercontent.com/vim/vim/master/runtime/doc/syntax.txt)
-- [vim runtime/doc/usr_44.txt](https://raw.githubusercontent.com/vim/vim/master/runtime/doc/usr_44.txt)
-- [neovim runtime/doc/treesitter.txt](https://raw.githubusercontent.com/neovim/neovim/master/runtime/doc/treesitter.txt)
-- [Emacs Lisp manual — Faces for Font Lock](https://www.gnu.org/software/emacs/manual/html_node/elisp/Faces-for-Font-Lock.html)
-- [emacs lisp/font-lock.el](https://raw.githubusercontent.com/emacs-mirror/emacs/master/lisp/font-lock.el)
-- [IntelliJ SDK — Syntax and Error Highlighting](https://plugins.jetbrains.com/docs/intellij/syntax-highlighting-and-error-highlighting.html)
-- [IntelliJ SDK — Color Scheme Management](https://plugins.jetbrains.com/docs/intellij/color-scheme-management.html)
-- [DefaultLanguageHighlighterColors.java](https://raw.githubusercontent.com/JetBrains/intellij-community/master/platform/core-api/src/com/intellij/openapi/editor/DefaultLanguageHighlighterColors.java)
-- [xcode-sunburst-theme .xccolortheme](https://github.com/ThatsJustCheesy/xcode-sunburst-theme)
-- [MateoCerquetella/xcode-theme](https://github.com/MateoCerquetella/xcode-theme)
+* [[KDE kate development.docbook (primary)|https://raw.githubusercontent.com/KDE/kate/master/doc/katepart/development.docbook]]
+* [[KSyntaxHighlighting theme.h|https://invent.kde.org/frameworks/syntax-highlighting/-/raw/master/src/lib/theme.h]]
+* [[vim runtime/doc/syntax.txt|https://raw.githubusercontent.com/vim/vim/master/runtime/doc/syntax.txt]]
+* [[vim runtime/doc/usr_44.txt|https://raw.githubusercontent.com/vim/vim/master/runtime/doc/usr_44.txt]]
+* [[neovim runtime/doc/treesitter.txt|https://raw.githubusercontent.com/neovim/neovim/master/runtime/doc/treesitter.txt]]
+* [[Emacs Lisp manual — Faces for Font Lock|https://www.gnu.org/software/emacs/manual/html_node/elisp/Faces-for-Font-Lock.html]]
+* [[emacs lisp/font-lock.el|https://raw.githubusercontent.com/emacs-mirror/emacs/master/lisp/font-lock.el]]
+* [[IntelliJ SDK — Syntax and Error Highlighting|https://plugins.jetbrains.com/docs/intellij/syntax-highlighting-and-error-highlighting.html]]
+* [[IntelliJ SDK — Color Scheme Management|https://plugins.jetbrains.com/docs/intellij/color-scheme-management.html]]
+* [[DefaultLanguageHighlighterColors.java|https://raw.githubusercontent.com/JetBrains/intellij-community/master/platform/core-api/src/com/intellij/openapi/editor/DefaultLanguageHighlighterColors.java]]
+* [[xcode-sunburst-theme .xccolortheme|https://github.com/ThatsJustCheesy/xcode-sunburst-theme]]
+* [[MateoCerquetella/xcode-theme|https://github.com/MateoCerquetella/xcode-theme]]
 
 <<~/ahu >>
 
-<<^ code="&#x0003;" >>
+<<^ code="&#x0003;" >>ni:///sha-256;827-dpPwV0OXM0vFa86vF0sTqFJd5mW-iPShL7D7wcU
 
-<<^ code="&#x0004;" -> ? >>
+<<^ code="&#x0004;" -> to=? >>

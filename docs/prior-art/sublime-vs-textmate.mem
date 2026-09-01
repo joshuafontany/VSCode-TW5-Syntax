@@ -6,7 +6,7 @@ cacheable = true
 file-path = "docs/prior-art/sublime-vs-textmate.mem"
 hydrate   = true
 l-space   = "stable"
-register  = "Research"
+register  = "Provisional"
 retain    = true
 role      = "tasked spirit's handback, kept VERBATIM — the TextMate-lineage naming conventions read critically as ONE data point: Sublime's scope_naming principles, what .sublime-syntax deliberately changed (embed/escape, branch/fail, with_prototype), the ORIGIN doctrine in the TextMate 1 manual, VS Code's deferral, and the anti-patterns collected in their authors' own words"
 type      = "text/memetic-wikitext+tiddlywiki"
@@ -20,120 +20,120 @@ written   = "2026-09-01"
 
 ! HANDBACK — kept verbatim below this line, unedited
 
-# Findings — TextMate-lineage scope naming and what Sublime deliberately changed
+! Findings — TextMate-lineage scope naming and what Sublime deliberately changed
 
 Sources fetched directly (raw HTML → text), not summarized from memory unless marked.
 
 ---
 
-## 1. Sublime `scope_naming.html` — AUTHORITATIVE (vendor doc)
+!! 1. Sublime `scope_naming.html` — AUTHORITATIVE (vendor doc)
 URL: https://www.sublimetext.com/docs/scope_naming.html
 
-### 1a. Stated status / principles (verbatim)
+!!! 1a. Stated status / principles (verbatim)
 
 &gt; "Syntax definitions and color schemes in Sublime Text interact through the use of scope names. Scopes are dotted strings, specified from least-to-most specific. For example, the `if` keyword in PHP could be specified via the scope name `keyword.control.php`."
 
-&gt; "Sublime Text supports TextMate language grammars, and inherited its default syntaxes from various open-source bundles. The TextMate language grammar documentation provided a base set of scope names that **have been slowly expanded and changed by the community**."
+&gt; "Sublime Text supports TextMate language grammars, and inherited its default syntaxes from various open-source bundles. The TextMate language grammar documentation provided a base set of scope names that ''have been slowly expanded and changed by the community''."
 
-&gt; "This is a **living document that attempts to document best practices** for using scope names in syntax definitions and color schemes. All of the Sublime Text default packages strive to adhere to these recommendations."
+&gt; "This is a ''living document that attempts to document best practices'' for using scope names in syntax definitions and color schemes. All of the Sublime Text default packages strive to adhere to these recommendations."
 
-&gt; "The scopes documented below are a **recommended base set** of scope names to use when creating a syntax definition."
+&gt; "The scopes documented below are a ''recommended base set'' of scope names to use when creating a syntax definition."
 
 &gt; "It is recommended to read through the entire list at least once before writing or modifying a syntax."
 
-**(d) language-suffix convention — verbatim:**
-&gt; "In this documentation, the syntax name is omitted from the end of the dotted scope name. When writing a syntax, unless otherwise noted, **the syntax name should be the final segment of a dotted name**. For example, a control keyword in Ruby would be `keyword.control.ruby`, whereas in Python it would be `keyword.control.python`."
+''(d) language-suffix convention — verbatim:''
+&gt; "In this documentation, the syntax name is omitted from the end of the dotted scope name. When writing a syntax, unless otherwise noted, ''the syntax name should be the final segment of a dotted name''. For example, a control keyword in Ruby would be `keyword.control.ruby`, whereas in Python it would be `keyword.control.python`."
 
-Sublime does *not* state the *why*; TextMate does (see §3).
+Sublime does //not// state the //why//; TextMate does (see §3).
 
-**(a) when to invent a new scope — verbatim (the only guidance):**
-&gt; "The names of data structures will use one of the following scopes, **or a new sub-scope of `entity.name` – this list is not exhaustive. To provide rich semantic information, use the specific terminology for a given language construct.**"
-&gt; "**Avoid `entity.name.type.class` and `entity.name.type.struct` which unnecessarily nest scope labels under `type`.**"
+''(a) when to invent a new scope — verbatim (the only guidance):''
+&gt; "The names of data structures will use one of the following scopes, ''or a new sub-scope of `entity.name` – this list is not exhaustive. To provide rich semantic information, use the specific terminology for a given language construct.''"
+&gt; "''Avoid `entity.name.type.class` and `entity.name.type.struct` which unnecessarily nest scope labels under `type`.''"
 
 So the doctrine is: extend at an existing root, use real domain terminology, do not stack a sub-kind under an unrelated generic level.
 
-**(b) meta is NOT for coloring — verbatim, stated twice:**
-&gt; "Meta scopes are used to scope larger sections of code or markup, generally containing multiple, more specific scopes. **These are not intended to be styled by a color scheme, but used by preferences and plugins.**"
+''(b) meta is NOT for coloring — verbatim, stated twice:''
+&gt; "Meta scopes are used to scope larger sections of code or markup, generally containing multiple, more specific scopes. ''These are not intended to be styled by a color scheme, but used by preferences and plugins.''"
 
-&gt; (Color Schemes → `meta.` Colors) "**When styling scopes, resist the urge to directly style `meta` scopes. They are primarily intended to provide contextual information for preferences and plugins.**"
+&gt; (Color Schemes → `meta.` Colors) "''When styling scopes, resist the urge to directly style `meta` scopes. They are primarily intended to provide contextual information for preferences and plugins.''"
 
 Plus the non-stacking rule for meta variants — verbatim:
-&gt; "Each variant should be applied to a specific part, and **not stacked**. For example, `meta.function.php meta.function.parameters.php` should never occur, but instead the scopes should alternate between `meta.function.php` then `meta.function.parameters.php` and back to `meta.function.php`."
-&gt; (annotations) "…there should **never be more than one `meta.annotation*` scope on the stack at any given time**."
+&gt; "Each variant should be applied to a specific part, and ''not stacked''. For example, `meta.function.php meta.function.parameters.php` should never occur, but instead the scopes should alternate between `meta.function.php` then `meta.function.parameters.php` and back to `meta.function.php`."
+&gt; (annotations) "…there should ''never be more than one `meta.annotation*` scope on the stack at any given time''."
 
-**(c) prefer existing names so themes work — verbatim (stated from the *theme* side):**
-&gt; "In general, when applying colors and styles to scopes in a color scheme, the most general form of a selector should be styled first. **High-quality syntaxes utilizing the scopes outlined in the previous section should result is good user experience for end users.**" [sic — "result is"]
+''(c) prefer existing names so themes work — verbatim (stated from the //theme// side):''
+&gt; "In general, when applying colors and styles to scopes in a color scheme, the most general form of a selector should be styled first. ''High-quality syntaxes utilizing the scopes outlined in the previous section should result is good user experience for end users.''" [sic — "result is"]
 
-&gt; (entity.name Colors) "Historically, many color schemes have provided one color for `entity.name.function` and `entity.name.type`, and often a different color for `entity.name.tag`. **This leaves new `entity.name.*` scopes un-highlighted.** Color schemes should instead specify a color for `entity.name` that will be applied to classes, types, structs, interfaces and many other data structures."
+&gt; (entity.name Colors) "Historically, many color schemes have provided one color for `entity.name.function` and `entity.name.type`, and often a different color for `entity.name.tag`. ''This leaves new `entity.name.*` scopes un-highlighted.'' Color schemes should instead specify a color for `entity.name` that will be applied to classes, types, structs, interfaces and many other data structures."
 
-**(e) risk of overly specific scopes — verbatim:**
-&gt; "The following is a recommended minimal set of scopes to highlight. **Adding extra may result in a slightly improved experience, however being too specific will result in a color scheme that often only looks good for one or two syntaxes.**"
+''(e) risk of overly specific scopes — verbatim:''
+&gt; "The following is a recommended minimal set of scopes to highlight. ''Adding extra may result in a slightly improved experience, however being too specific will result in a color scheme that often only looks good for one or two syntaxes.''"
 
 Minimal scope coverage list (exact, in doc order):
 `entity.name` · `entity.other.inherited-class` · `entity.name.section` · `entity.name.tag` · `entity.other.attribute-name` · `variable` · `variable.language` · `variable.parameter` · `variable.function` · `constant` · `constant.numeric` · `constant.language` · `constant.character.escape` · `storage.type` · `storage.modifier` · `support` · `keyword` · `keyword.control` · `keyword.operator` · `keyword.declaration` · `string` · `comment` · `invalid` · `invalid.deprecated`
 
-INFERENCE (mine): that 24-entry list is the practical contract. A scope outside it is *decoration you cannot rely on*. It is the closest thing in the ecosystem to a "guaranteed styled" set, and note `meta.*` appears nowhere in it.
+INFERENCE (mine): that 24-entry list is the practical contract. A scope outside it is //decoration you cannot rely on//. It is the closest thing in the ecosystem to a "guaranteed styled" set, and note `meta.*` appears nowhere in it.
 
-### 1b. Full top-level list + sub-scopes (exact strings, doc order)
+!!! 1b. Full top-level list + sub-scopes (exact strings, doc order)
 
 Roots (14): `comment.` `constant.` `entity.` `invalid.` `keyword.` `markup.` `meta.` `punctuation.` `source.` `storage.` `string.` `support.` `text.` `variable.`
 
-- **comment**: `comment.line` · `comment.block` · `comment.block.documentation` · `punctuation.definition.comment` · `meta.toc-list` ("Comments with special syntax that denote a section of code, should use the following scope **on the text only**. This will cause it to be shown in the symbol list.")
-- **constant**: `constant.numeric` · `.integer` `.integer.binary/.octal/.decimal/.hexadecimal/.other` · `.float` `.float.binary/.octal/.decimal/.hexadecimal/.other` · `.complex` `.complex.real` `.complex.imaginary` · `constant.language` · `constant.character.escape` · `constant.other.placeholder` · `constant.other`
-- **entity**: "The notable exceptions are `entity.name.tag` and `entity.other.attribute-name`, which are used in HTML and XML tags."
+* ''comment'': `comment.line` · `comment.block` · `comment.block.documentation` · `punctuation.definition.comment` · `meta.toc-list` ("Comments with special syntax that denote a section of code, should use the following scope ''on the text only''. This will cause it to be shown in the symbol list.")
+* ''constant'': `constant.numeric` · `.integer` `.integer.binary/.octal/.decimal/.hexadecimal/.other` · `.float` `.float.binary/.octal/.decimal/.hexadecimal/.other` · `.complex` `.complex.real` `.complex.imaginary` · `constant.language` · `constant.character.escape` · `constant.other.placeholder` · `constant.other`
+* ''entity'': "The notable exceptions are `entity.name.tag` and `entity.other.attribute-name`, which are used in HTML and XML tags."
   `entity.name.class` `entity.name.struct` `entity.name.enum` `entity.name.union` `entity.name.trait` `entity.name.interface` `entity.name.impl` `entity.name.type` · `entity.name.class.forward-decl` ("`forward-decl` variants … can be used to exclude identifiers from the symbol list and indexing.") · `entity.other.inherited-class` · `entity.name.function` `entity.name.function.constructor` `entity.name.function.destructor` · `entity.name.namespace` · `entity.name.constant` · `entity.name.label` · `entity.name.section` (markup headings) · `entity.name.tag` ("This is the only `entity.name` scope that is applied to repeated constructs.") · `entity.other.attribute-name`
-- **invalid** — verbatim, both warnings:
-  &gt; "Elements that are illegal in a specific context should use the following scope. **Overuse of this will likely lead to unpleasant highlighting for users as they edit code.** `invalid.illegal`"
-  &gt; "Deprecated elements should be scoped using the following scope. **This should be very rarely used, as users may be working with older versions of a language.** `invalid.deprecated`"
+* ''invalid'' — verbatim, both warnings:
+  &gt; "Elements that are illegal in a specific context should use the following scope. ''Overuse of this will likely lead to unpleasant highlighting for users as they edit code.'' `invalid.illegal`"
+  &gt; "Deprecated elements should be scoped using the following scope. ''This should be very rarely used, as users may be working with older versions of a language.'' `invalid.deprecated`"
   (Sanctioned uses appear in syntax.html: `invalid.illegal.stray-bracket-end`, `invalid.illegal.stray-semi-colon`.)
-- **keyword**: `keyword.control` `keyword.control.conditional` `keyword.control.import` · `punctuation.definition.keyword` · `keyword.other` · `keyword.operator` `.assignment` `.arithmetic` `.bitwise` `.logical` · `keyword.operator.word` ("When the operator is a word, such as `and`, `or` or `not`")
-- **markup** — verbatim: "**Markup scopes are used for content, as opposed to code. This includes syntaxes such as Markdown and Textile.**"
+* ''keyword'': `keyword.control` `keyword.control.conditional` `keyword.control.import` · `punctuation.definition.keyword` · `keyword.other` · `keyword.operator` `.assignment` `.arithmetic` `.bitwise` `.logical` · `keyword.operator.word` ("When the operator is a word, such as `and`, `or` or `not`")
+* ''markup'' — verbatim: "''Markup scopes are used for content, as opposed to code. This includes syntaxes such as Markdown and Textile.''"
   `markup.heading` · `markup.list.unnumbered` `markup.list.numbered` · `markup.bold` `markup.italic` `markup.underline` · `markup.inserted` `markup.deleted` · `markup.underline.link` · `markup.quote` · `markup.raw.inline` `markup.raw.block` · `markup.other` ("Other markup, including constructs such as footnotes and tables")
-- **meta**: `meta.class` `meta.struct` `meta.enum` `meta.union` `meta.trait` `meta.interface` `meta.impl` `meta.type` · `meta.function` `meta.function.parameters` `meta.function.return-type` · `meta.namespace` · `meta.preprocessor` · `meta.annotation` `meta.annotation.identifier` `meta.annotation.parameters` `punctuation.definition.annotation` · `meta.path` · `meta.function-call` · `meta.block` + `punctuation.section.block.begin/.end` · `meta.braces` + `punctuation.section.braces.begin/.end` · `meta.group` + `punctuation.section.group.begin/.end` · `meta.parens` + `punctuation.section.parens.begin/.end` · `meta.brackets` + `punctuation.section.brackets.begin/.end` · `meta.generic` + `punctuation.definition.generic.begin/.end` · `meta.tag` · `meta.paragraph` ("Paragraphs in markup languages use: `meta.paragraph`") · also `meta.string`, `meta.interpolation` (in the string section)
-- **punctuation** (free-standing only): `punctuation.separator` · `punctuation.terminator` · `punctuation.separator.continuation` · `punctuation.accessor`
-- **source**: "A language-specific variant of the following scope is typically applied to the entirety of a source code file: `source`"
-- **storage**: `storage.type` · `storage.modifier` · `storage.type.function` + `keyword.declaration.function` · `storage.type.class`/`struct`/`enum`/`union`/`trait`/`interface`/`impl`/`type` each paired with `keyword.declaration.&lt;same&gt;`. Note verbatim: "**This includes `storage.type` for backwards compatibility with older color schemes.**" — i.e. Sublime double-scopes deliberately, so old themes keep working while `keyword.declaration.*` is the semantically right name.
-- **string**: `string.quoted.single/.double/.triple/.other` · `meta.string` (entirety incl. punctuation/prefixes/suffixes/interpolations) · `punctuation.definition.string.begin/.end` · `string.unquoted` · `string.regexp` · interpolation — verbatim: "the `string.*` scope should be **removed using `clear_scopes:`**, and the following should be added to the entirety of the interpolation, including punctuation: `meta.interpolation`" + `punctuation.section.interpolation.begin/.end` + "Between the punctuation, the interpolated expression should get: `source.*language-suffix*.embedded`"
-- **support**: `support.constant` `support.function` `support.module` · `support.type` `support.class` ("While also used for base frameworks, many syntaxes apply these to scopes unrecognized classes and types, effectively scoping all user constructs.")
-- **text** — the prose/code split at the ROOT, verbatim:
-  &gt; "**Programming languages use `source.` as their base scope, whereas content uses `text.`. One of the biggest differences is the fact that many plugins and other dynamic functionality is disabled within `text.` scopes. `markup.` scopes are typically used within text.**"
-  &gt; "HTML should use the following scope. **Variants for this scope are different than other scopes, in that the variant is always added after the `.html`**, such as `text.html.basic` or `text.html.markdown`." · `text.xml`
-- **variable**: `variable.other` `variable.other.readwrite` · `punctuation.definition.variable` · `variable.other.constant` ("Depending on the language and semantics, `entity.name.constant` may be a better choice.") · `variable.language` · `variable.parameter` · `variable.other.member` · `variable.function` ("only when they are being invoked. When defined, they should use `entity.name.function`.") · `variable.annotation` · `punctuation.definition.annotation`
+* ''meta'': `meta.class` `meta.struct` `meta.enum` `meta.union` `meta.trait` `meta.interface` `meta.impl` `meta.type` · `meta.function` `meta.function.parameters` `meta.function.return-type` · `meta.namespace` · `meta.preprocessor` · `meta.annotation` `meta.annotation.identifier` `meta.annotation.parameters` `punctuation.definition.annotation` · `meta.path` · `meta.function-call` · `meta.block` + `punctuation.section.block.begin/.end` · `meta.braces` + `punctuation.section.braces.begin/.end` · `meta.group` + `punctuation.section.group.begin/.end` · `meta.parens` + `punctuation.section.parens.begin/.end` · `meta.brackets` + `punctuation.section.brackets.begin/.end` · `meta.generic` + `punctuation.definition.generic.begin/.end` · `meta.tag` · `meta.paragraph` ("Paragraphs in markup languages use: `meta.paragraph`") · also `meta.string`, `meta.interpolation` (in the string section)
+* ''punctuation'' (free-standing only): `punctuation.separator` · `punctuation.terminator` · `punctuation.separator.continuation` · `punctuation.accessor`
+* ''source'': "A language-specific variant of the following scope is typically applied to the entirety of a source code file: `source`"
+* ''storage'': `storage.type` · `storage.modifier` · `storage.type.function` + `keyword.declaration.function` · `storage.type.class`/`struct`/`enum`/`union`/`trait`/`interface`/`impl`/`type` each paired with `keyword.declaration.&lt;same&gt;`. Note verbatim: "''This includes `storage.type` for backwards compatibility with older color schemes.''" — i.e. Sublime double-scopes deliberately, so old themes keep working while `keyword.declaration.*` is the semantically right name.
+* ''string'': `string.quoted.single/.double/.triple/.other` · `meta.string` (entirety incl. punctuation/prefixes/suffixes/interpolations) · `punctuation.definition.string.begin/.end` · `string.unquoted` · `string.regexp` · interpolation — verbatim: "the `string.*` scope should be ''removed using `clear_scopes:`'', and the following should be added to the entirety of the interpolation, including punctuation: `meta.interpolation`" + `punctuation.section.interpolation.begin/.end` + "Between the punctuation, the interpolated expression should get: `source.*language-suffix*.embedded`"
+* ''support'': `support.constant` `support.function` `support.module` · `support.type` `support.class` ("While also used for base frameworks, many syntaxes apply these to scopes unrecognized classes and types, effectively scoping all user constructs.")
+* ''text'' — the prose/code split at the ROOT, verbatim:
+  &gt; "''Programming languages use `source.` as their base scope, whereas content uses `text.`. One of the biggest differences is the fact that many plugins and other dynamic functionality is disabled within `text.` scopes. `markup.` scopes are typically used within text.''"
+  &gt; "HTML should use the following scope. ''Variants for this scope are different than other scopes, in that the variant is always added after the `.html`'', such as `text.html.basic` or `text.html.markdown`." · `text.xml`
+* ''variable'': `variable.other` `variable.other.readwrite` · `punctuation.definition.variable` · `variable.other.constant` ("Depending on the language and semantics, `entity.name.constant` may be a better choice.") · `variable.language` · `variable.parameter` · `variable.other.member` · `variable.function` ("only when they are being invoked. When defined, they should use `entity.name.function`.") · `variable.annotation` · `punctuation.definition.annotation`
 
-**Load-bearing for a markdown-lineage grammar:** `text.html.markdown` is the only root scope whose language variant goes *after* `.html`, not last. That breaks the otherwise-universal "language last" rule.
+''Load-bearing for a markdown-lineage grammar:'' `text.html.markdown` is the only root scope whose language variant goes //after// `.html`, not last. That breaks the otherwise-universal "language last" rule.
 
 ---
 
-## 2. What Sublime deliberately changed vs `.tmLanguage` — AUTHORITATIVE
+!! 2. What Sublime deliberately changed vs `.tmLanguage` — AUTHORITATIVE
 URLs: https://www.sublimetext.com/docs/syntax.html · announcement https://forum.sublimetext.com/t/dev-build-3084/14887 (jps, April 2015) · https://www.sublimetext.com/blog/articles/sublime-text-4
 
-### The original announcement's own three reasons (verbatim, jps, build 3084)
-1. &gt; "Ability to **switch the context at the top of the stack, rather than just push/pop**. Can also push multiple contexts on the stack at once, giving the ability to recognise **any LL(1) grammar**."
-2. &gt; "Easier to edit: compact YAML representation, and the `prototype` context can be used to reduce repetitious includes of things such as comments."
-3. &gt; "More robust inclusion of other syntax definitions. The tmLanguage format allows including another syntax definition (e.g., HTML including JavaScript), but **isn't well behaved in the face of syntax errors in the included code** (e.g., see what happens if you have an unclosed string in embedded JavaScript). **This is because any patterns modifying the included syntax (e.g., popping a context when `&lt;/script&gt;` is encountered) are only added to the root context.** Using the `with_prototype` construct in sublime-syntax files, this issue can be avoided."
+!!! The original announcement's own three reasons (verbatim, jps, build 3084)
+# &gt; "Ability to ''switch the context at the top of the stack, rather than just push/pop''. Can also push multiple contexts on the stack at once, giving the ability to recognise ''any LL(1) grammar''."
+# &gt; "Easier to edit: compact YAML representation, and the `prototype` context can be used to reduce repetitious includes of things such as comments."
+# &gt; "More robust inclusion of other syntax definitions. The tmLanguage format allows including another syntax definition (e.g., HTML including JavaScript), but ''isn't well behaved in the face of syntax errors in the included code'' (e.g., see what happens if you have an unclosed string in embedded JavaScript). ''This is because any patterns modifying the included syntax (e.g., popping a context when `&lt;/script&gt;` is encountered) are only added to the root context.'' Using the `with_prototype` construct in sublime-syntax files, this issue can be avoided."
 
 &gt; "The `sublime-syntax` is not set in stone, and may be changing over the next few builds."
 
-That #3 is the single most important line for anyone doing fenced/embedded languages: **TextMate's `begin`/`end` + `contentName` + `include source.x` is structurally broken on malformed embedded content**, because the terminator only lives at the included grammar's root, and any nested rule (an open string) swallows it.
+That #3 is the single most important line for anyone doing fenced/embedded languages: ''TextMate's `begin`/`end` + `contentName` + `include source.x` is structurally broken on malformed embedded content'', because the terminator only lives at the included grammar's root, and any nested rule (an open string) swallows it.
 
-### The mechanism, from `syntax.html`
+!!! The mechanism, from `syntax.html`
 
-- **YAML, not plist.** "Sublime Syntax files are YAML files with a small header, followed by a list of contexts." "Note that due to the YAML syntax, **tab characters are not allowed**." Regex engine: **Oniguruma** (same as TextMate). "**Regexes are only ever run against a single line of text at a time.**"
-- **Named contexts + explicit stack.** "every syntax must define a `main` context, as it will be used at the start of the file." Match resolution rule, verbatim: "**When a context has multiple patterns, the leftmost one will be found. When multiple patterns match at the same position, the first defined pattern will be selected.**"
-- **`push` / `pop` / `set`**: `push` takes "a single context name, a list of context names, or an inline, anonymous context." `pop: true` pops one; an integer pops N. `set` = "Accepts the same arguments as push, but will first pop this context off, and then push the given context(s) onto the stack. Any match will receive the `meta_scope` of the context being popped **and** the context being pushed." Pushing a *list*: "the **rightmost context in the list becoming the topmost context on the stack**" — this is the sequencing trick (`set: [typedef_after_typename, typename]`) that TextMate has no analogue for.
-- **`pop` combined with another action** (build 4050): "the specified number of contexts will be popped off of the stack before the other action is performed. For `push`, `embed` and `branch` actions, **the pop treats the match as if it were a lookahead**, which means the match will not receive the `meta_scope` of the contexts that are popped."
-- **`meta_scope` vs `meta_content_scope`** — verbatim:
-  - `meta_scope`: "assigns the given scope to all text within this context, **including the patterns that push the context onto the stack and pop it off**."
-  - `meta_content_scope`: "As above, but **does not apply to the text that triggers the context** (e.g., in the above string example, the content scope would not get applied to the quote characters)."
-  - `clear_scopes`: "allows removing scope names from the current stack. It can be an integer, or the value `true` to remove all scope names. **It is applied before `meta_scope` and `meta_content_scope`. This is typically only used when one syntax is embedding another.**"
-  - "**Meta patterns must be listed first in the context, before any match or include patterns.**"
-- **`prototype` / `meta_include_prototype` / `include … apply_prototype`**: prototype "will be included automatically at the top of every other context, unless the context contains the `meta_include_prototype` key." Cross-syntax: "By default, an include pattern **does not** include such a prototype. If the key/value pair `apply_prototype: true` is added … then those patterns will also be included." Includes drop meta: "**Any meta patterns defined in the `comments` context will be ignored.**"
-- **`with_prototype`** — the fix for TextMate's embedding bug: "This contains a list of patterns that will be inserted into **every** context defined within `JavaScript.sublime-syntax`. Note that `with_prototype` is conceptually similar to the prototype context, however it **will be always be inserted into every referenced context irrespective of their `meta_include_prototype` key**." And: "it doesn't actually match the `&lt;/script&gt;` tag, it's just using a **lookahead assertion**… It both allows the HTML rules to match against the end tag, highlighting it as-per normal, and it will ensure that **all the JavaScript contexts will get popped off**. The context stack may be in the middle of a JavaScript string, for example, but when the `&lt;/script&gt;` is encountered, both the JavaScript string and main contexts will get popped off."
-- **`embed` / `escape` / `embed_scope` / `escape_captures`** (build 3153) — the explicit construct:
-  - `embed`: "Accepts the name of a single context to push into. While similar to `push`, it **pops out of any number of nested contexts as soon as the `escape` pattern is found**. This makes it an ideal tool for embedding one syntax within another."
-  - `escape`: "required if `embed` is used, and is a regex used to exit from the embedded context. **Any backreferences in this pattern will refer to capture groups in the `match` regex.**"
-  - `embed_scope`: "A scope assigned to all text matched after the `match` and before the `escape`. **Similar in concept to `meta_content_scope`.**"
-  - The doc's own fenced-code example is literally your case:
+* ''YAML, not plist.'' "Sublime Syntax files are YAML files with a small header, followed by a list of contexts." "Note that due to the YAML syntax, ''tab characters are not allowed''." Regex engine: ''Oniguruma'' (same as TextMate). "''Regexes are only ever run against a single line of text at a time.''"
+* ''Named contexts + explicit stack.'' "every syntax must define a `main` context, as it will be used at the start of the file." Match resolution rule, verbatim: "''When a context has multiple patterns, the leftmost one will be found. When multiple patterns match at the same position, the first defined pattern will be selected.''"
+* ''`push` / `pop` / `set`'': `push` takes "a single context name, a list of context names, or an inline, anonymous context." `pop: true` pops one; an integer pops N. `set` = "Accepts the same arguments as push, but will first pop this context off, and then push the given context(s) onto the stack. Any match will receive the `meta_scope` of the context being popped ''and'' the context being pushed." Pushing a //list//: "the ''rightmost context in the list becoming the topmost context on the stack''" — this is the sequencing trick (`set: [typedef_after_typename, typename]`) that TextMate has no analogue for.
+* ''`pop` combined with another action'' (build 4050): "the specified number of contexts will be popped off of the stack before the other action is performed. For `push`, `embed` and `branch` actions, ''the pop treats the match as if it were a lookahead'', which means the match will not receive the `meta_scope` of the contexts that are popped."
+* ''`meta_scope` vs `meta_content_scope`'' — verbatim:
+** `meta_scope`: "assigns the given scope to all text within this context, ''including the patterns that push the context onto the stack and pop it off''."
+** `meta_content_scope`: "As above, but ''does not apply to the text that triggers the context'' (e.g., in the above string example, the content scope would not get applied to the quote characters)."
+'' `clear_scopes`: "allows removing scope names from the current stack. It can be an integer, or the value `true` to remove all scope names. ''It is applied before `meta_scope` and `meta_content_scope`. This is typically only used when one syntax is embedding another.**"
+'' "''Meta patterns must be listed first in the context, before any match or include patterns.**"
+* ''`prototype` / `meta_include_prototype` / `include … apply_prototype`'': prototype "will be included automatically at the top of every other context, unless the context contains the `meta_include_prototype` key." Cross-syntax: "By default, an include pattern ''does not'' include such a prototype. If the key/value pair `apply_prototype: true` is added … then those patterns will also be included." Includes drop meta: "''Any meta patterns defined in the `comments` context will be ignored.''"
+* ''`with_prototype`'' — the fix for TextMate's embedding bug: "This contains a list of patterns that will be inserted into ''every'' context defined within `JavaScript.sublime-syntax`. Note that `with_prototype` is conceptually similar to the prototype context, however it ''will be always be inserted into every referenced context irrespective of their `meta_include_prototype` key''." And: "it doesn't actually match the `&lt;/script&gt;` tag, it's just using a ''lookahead assertion''… It both allows the HTML rules to match against the end tag, highlighting it as-per normal, and it will ensure that ''all the JavaScript contexts will get popped off''. The context stack may be in the middle of a JavaScript string, for example, but when the `&lt;/script&gt;` is encountered, both the JavaScript string and main contexts will get popped off."
+* ''`embed` / `escape` / `embed_scope` / `escape_captures`'' (build 3153) — the explicit construct:
+'' `embed`: "Accepts the name of a single context to push into. While similar to `push`, it ''pops out of any number of nested contexts as soon as the `escape` pattern is found**. This makes it an ideal tool for embedding one syntax within another."
+'' `escape`: "required if `embed` is used, and is a regex used to exit from the embedded context. ''Any backreferences in this pattern will refer to capture groups in the `match` regex.**"
+'' `embed_scope`: "A scope assigned to all text matched after the `match` and before the `escape`. ''Similar in concept to `meta_content_scope`.**"
+** The doc's own fenced-code example is literally your case:
     ```yaml
     - match: (```)(js|javascript)
       captures:
@@ -146,172 +146,172 @@ That #3 is the single most important line for anyone doing fenced/embedded langu
         0: punctuation.section.code.end.markdown
     ```
     A second example uses `embed_scope: source.python.embedded` with `punctuation.definition.code.begin.md` / `constant.other.language-name.md`.
-  - **Difference from TextMate**: TextMate's `begin`/`end`+`contentName`+`include source.x` puts the terminator only at the included root, so nested included contexts (unterminated string, open brace) eat it and highlighting runs away to EOF. `embed`/`escape` makes the escape a **stack-unwinding** operation over arbitrary depth, and backreference-capable (`escape` can reference the opening `match`'s captures — so a longer fence closes only on a matching longer fence). `embed_scope` also gives you an unambiguous span name that is *not* the language's own root scope, which is what VS Code's `embeddedLanguages` map needs (`meta.embedded.block.javascript`).
-- **`branch` / `branch_point` / `fail`** (build 4050) — real backtracking across contexts:
-  &gt; "`branch`: Accepts the names of two or more contexts, which are attempted in order. If a `fail` action is encountered, **the highlighting of the file will be restarted at the character where the branch occurred**, and the next context will be attempted."
+'' ''Difference from TextMate**: TextMate's `begin`/`end`+`contentName`+`include source.x` puts the terminator only at the included root, so nested included contexts (unterminated string, open brace) eat it and highlighting runs away to EOF. `embed`/`escape` makes the escape a ''stack-unwinding'' operation over arbitrary depth, and backreference-capable (`escape` can reference the opening `match`'s captures — so a longer fence closes only on a matching longer fence). `embed_scope` also gives you an unambiguous span name that is //not// the language's own root scope, which is what VS Code's `embeddedLanguages` map needs (`meta.embedded.block.javascript`).
+* ''`branch` / `branch_point` / `fail`'' (build 4050) — real backtracking across contexts:
+  &gt; "`branch`: Accepts the names of two or more contexts, which are attempted in order. If a `fail` action is encountered, ''the highlighting of the file will be restarted at the character where the branch occurred'', and the next context will be attempted."
   &gt; "`branch_point`: This is the unique identifier for the branch and is specified when a match uses the `fail` action."
-  &gt; "**The `branch` action allows for handling syntax constructs that are ambiguous, and also allows handling constructs that span multiple lines.**"
-  &gt; "For ideal performance, the contexts should be listed in the order of how likely they are to be accepted. Note: because highlighting with branches requires **reprocessing an entire branch upon each change to the document**, the highlighting engine **will not rewind more than 128 lines** when a `fail` occurs."
+  &gt; "''The `branch` action allows for handling syntax constructs that are ambiguous, and also allows handling constructs that span multiple lines.''"
+  &gt; "For ideal performance, the contexts should be listed in the order of how likely they are to be accepted. Note: because highlighting with branches requires ''reprocessing an entire branch upon each change to the document'', the highlighting engine ''will not rewind more than 128 lines'' when a `fail` occurs."
   &gt; "`fail`: … If a `fail` action specifies a `branch_point` that was never pushed on the stack, or has already been popped off of the stack, it will have no effect."
-  Worked example in the doc: JS `(` — is it a parenthesized group or an arrow-function parameter list? You cannot know until you see the fat arrow, possibly lines later. `branch` tries `paren_group`, and on hitting it issues `fail: open_parens`, rewinding to the `(` and re-running as `arrow_function`. **TextMate cannot do this at all** — its only lookahead is what a single-line regex can express. What it buys: disambiguation that requires unbounded right context, bounded at 128 lines.
-- **`variables`**: "Variables must be defined at the top level of the `.sublime-syntax` file, and are referenced within regexes via `{{varname}}`. Variables may themselves include other variables. Note that **any text that doesn't match `{{[A-Za-z0-9_]+}}` won't be considered as a variable**, so regexes can still include literal `{{` characters."
-- **`extends` / inheritance** (4075): single or multiple; "A syntax using inheritance will inherit the `variables` and `contexts` values from its parent syntax. **All other top-level keys, such as `file_extensions` and `scope` will not be inherited.**" Conflict resolution via `meta_prepend: true` / `meta_append: true`. "all syntaxes must share the same `version`." Examples: Objective-C++ extends C++ and Objective-C; TSX extends JSX and TypeScript.
-- **Hard boundary**: "**it's not possible to include a `.tmLanguage` file within a `.sublime-syntax` one.**"
-- **Built-in syntax tests**: `// SYNTAX TEST "Packages/C/C.sublime-syntax"` with `// &lt;- scope` and `// ^^^ scope` assertions, plus `- comment` negation (`string.quoted.double - comment`), `@@@` symbol assertions. No TextMate equivalent.
+  Worked example in the doc: JS `(` — is it a parenthesized group or an arrow-function parameter list? You cannot know until you see the fat arrow, possibly lines later. `branch` tries `paren_group`, and on hitting it issues `fail: open_parens`, rewinding to the `(` and re-running as `arrow_function`. ''TextMate cannot do this at all'' — its only lookahead is what a single-line regex can express. What it buys: disambiguation that requires unbounded right context, bounded at 128 lines.
+* ''`variables`'': "Variables must be defined at the top level of the `.sublime-syntax` file, and are referenced within regexes via `{{varname}}`. Variables may themselves include other variables. Note that ''any text that doesn't match `{{[A-Za-z0-9_]+}}` won't be considered as a variable'', so regexes can still include literal `{{` characters."
+* ''`extends` / inheritance'' (4075): single or multiple; "A syntax using inheritance will inherit the `variables` and `contexts` values from its parent syntax. ''All other top-level keys, such as `file_extensions` and `scope` will not be inherited.''" Conflict resolution via `meta_prepend: true` / `meta_append: true`. "all syntaxes must share the same `version`." Examples: Objective-C++ extends C++ and Objective-C; TSX extends JSX and TypeScript.
+* ''Hard boundary'': "''it's not possible to include a `.tmLanguage` file within a `.sublime-syntax` one.''"
+* ''Built-in syntax tests'': `// SYNTAX TEST "Packages/C/C.sublime-syntax"` with `// &lt;- scope` and `// ^^^ scope` assertions, plus `- comment` negation (`string.quoted.double - comment`), `@@@` symbol assertions. No TextMate equivalent.
 
-### `version: 1` vs `version: 2` — AUTHORITATIVE (Compatibility section)
-&gt; "An integer, either `1` or `2`, that controls backwards compatibility. **New syntaxes should target `2`, as it fixes some inconsistencies in how scopes are applied.**"
-&gt; "When the syntax highlighting engine of Sublime Text requires changes that will break existing syntaxes, these modifications or bug fixes are gated behind the `version` key. Currently there exist two versions: `1` and `2`. **The absence of the `version` key indicates version 1.**"
+!!! `version: 1` vs `version: 2` — AUTHORITATIVE (Compatibility section)
+&gt; "An integer, either `1` or `2`, that controls backwards compatibility. ''New syntaxes should target `2`, as it fixes some inconsistencies in how scopes are applied.''"
+&gt; "When the syntax highlighting engine of Sublime Text requires changes that will break existing syntaxes, these modifications or bug fixes are gated behind the `version` key. Currently there exist two versions: `1` and `2`. ''The absence of the `version` key indicates version 1.''"
 
 The six v1 bugs fixed in v2, each verbatim-titled:
-1. **`embed_scope` Stacks with scope of Other Syntax** — "In version 2 syntaxes, the scope of the other syntax will only be included if `embed_scope` is not specified." (v1: `source.other.embedded source.other identifier`; v2: `source.other.embedded identifier`.) **Directly relevant to fences.**
-2. **Match Pattern with `set` and `meta_content_scope`** — matched text wrongly got the popped context's `meta_content_scope`.
-3. **Match Pattern with `set` and Target with `clear_scopes`** — "scopes will not be cleared properly."
-4. **Embed Escape Match and Meta Scopes** — "The text matched by the `escape` pattern of an `embed` action will not get the `meta_scope` or `meta_content_scope` of the context that contains it."
-5. **Multiple Target Push Actions with `clear_scopes`** — "The `clear_scopes` values of all target contexts are added up and applied before applying the `meta_scope` and `meta_content_scope` of any targets."
-6. **Regex Capture Group Order** — "If a lower-numbered capture group matches text that occurs after text matched by a higher-numbered capture group, the lower-numbered capture group will not have its capture scope applied." (`(?:(x)|(y))+` over `yx` → `x` loses `identifier.x`.) **This one is a live hazard in tmLanguage too** — it is an engine property, not a format property.
+# ''`embed_scope` Stacks with scope of Other Syntax'' — "In version 2 syntaxes, the scope of the other syntax will only be included if `embed_scope` is not specified." (v1: `source.other.embedded source.other identifier`; v2: `source.other.embedded identifier`.) ''Directly relevant to fences.''
+# ''Match Pattern with `set` and `meta_content_scope`'' — matched text wrongly got the popped context's `meta_content_scope`.
+# ''Match Pattern with `set` and Target with `clear_scopes`'' — "scopes will not be cleared properly."
+# ''Embed Escape Match and Meta Scopes'' — "The text matched by the `escape` pattern of an `embed` action will not get the `meta_scope` or `meta_content_scope` of the context that contains it."
+# ''Multiple Target Push Actions with `clear_scopes`'' — "The `clear_scopes` values of all target contexts are added up and applied before applying the `meta_scope` and `meta_content_scope` of any targets."
+# ''Regex Capture Group Order'' — "If a lower-numbered capture group matches text that occurs after text matched by a higher-numbered capture group, the lower-numbered capture group will not have its capture scope applied." (`(?:(x)|(y))+` over `yx` → `x` loses `identifier.x`.) ''This one is a live hazard in tmLanguage too'' — it is an engine property, not a format property.
 
-### Performance statements — AUTHORITATIVE but thin
+!!! Performance statements — AUTHORITATIVE but thin
 Neither `syntax.html` nor the 3084 post makes a general "contexts are faster than tmLanguage rule scanning" claim. The only performance statements found:
-- `syntax.html` on branch: "because highlighting with branches requires reprocessing an entire branch upon each change to the document, the highlighting engine will not rewind more than 128 lines."
-- ST4 release notes: "Memory usage has been reduced, and load times are faster than ever"; "Significantly improved load times, match times and reduced cache size on disk"; **lazy embeds** giving "much higher performance for syntaxes like markdown"; plus "handling non-deterministic grammars, multi-line constructs, lazy embeds and syntax inheritance."
+* `syntax.html` on branch: "because highlighting with branches requires reprocessing an entire branch upon each change to the document, the highlighting engine will not rewind more than 128 lines."
+* ST4 release notes: "Memory usage has been reduced, and load times are faster than ever"; "Significantly improved load times, match times and reduced cache size on disk"; ''lazy embeds'' giving "much higher performance for syntaxes like markdown"; plus "handling non-deterministic grammars, multi-line constructs, lazy embeds and syntax inheritance."
 
-INFERENCE (mine): the predictability argument is structural, not benchmarked — a context is a closed, named alphabet of what can match *here*, so a rule cannot fire from an unrelated part of the grammar. tmLanguage's `patterns` + `repository` + `include` reachability is effectively a global soup at each level, which is why the "swallow"/"invention" defect families show up there.
+INFERENCE (mine): the predictability argument is structural, not benchmarked — a context is a closed, named alphabet of what can match //here//, so a rule cannot fire from an unrelated part of the grammar. tmLanguage's `patterns` + `repository` + `include` reachability is effectively a global soup at each level, which is why the "swallow"/"invention" defect families show up there.
 
 ---
 
-## 3. TextMate 1 manual §"Naming Conventions" — AUTHORITATIVE, the ORIGIN
+!! 3. TextMate 1 manual §"Naming Conventions" — AUTHORITATIVE, the ORIGIN
 URL: https://macromates.com/manual/en/language_grammars
 
 Introductory guidance, verbatim in full:
 
-&gt; "TextMate is **free-form in the sense that you can assign basically any name you wish** to any part of the document that you can markup with the grammar system and then use that name in scope selectors."
+&gt; "TextMate is ''free-form in the sense that you can assign basically any name you wish'' to any part of the document that you can markup with the grammar system and then use that name in scope selectors."
 
-&gt; "There are however conventions **so that one theme can target as many languages as possible, without having dozens of rules specific to each language** and also so that functionality (mainly preferences) can be re-used across languages, e.g. you probably do not want an apostrophe to be auto-paired when inserted in strings and comments, regardless of the language you are in, so it makes sense to only set this up once."
+&gt; "There are however conventions ''so that one theme can target as many languages as possible, without having dozens of rules specific to each language'' and also so that functionality (mainly preferences) can be re-used across languages, e.g. you probably do not want an apostrophe to be auto-paired when inserted in strings and comments, regardless of the language you are in, so it makes sense to only set this up once."
 
 The three rules that follow, verbatim:
 
-&gt; "A minimal theme will only assign styles to **10 of the 11 root groups** below (**`meta` does not get a visual style**), so you should **'spread out' your naming** i.e. instead of putting everything below `keyword` (as your formal language definition may insist) you should think **'would I want these two elements styled differently?'** and if so, they should probably be put into different root groups."
+&gt; "A minimal theme will only assign styles to ''10 of the 11 root groups'' below (''`meta` does not get a visual style''), so you should '''spread out' your naming'' i.e. instead of putting everything below `keyword` (as your formal language definition may insist) you should think '''would I want these two elements styled differently?''' and if so, they should probably be put into different root groups."
 
-&gt; "Even though you should 'spread out' your names, when you have found the group in which you want to place your element (e.g. `storage`) you should **re-use the existing names used below that group** (for `storage` that is `modifier` or `type`) **rather than make up a new sub-type**. You should however **append as much information to the sub-type you choose**. For example if you are matching the static storage modifier, then instead of just naming it `storage.modifier` use `storage.modifier.static.«language»`. A scope selector of just `storage.modifier` will match both, but having the extra information in the name means it is possible to specifically target it disregarding the other storage modifiers."
+&gt; "Even though you should 'spread out' your names, when you have found the group in which you want to place your element (e.g. `storage`) you should ''re-use the existing names used below that group'' (for `storage` that is `modifier` or `type`) ''rather than make up a new sub-type''. You should however ''append as much information to the sub-type you choose''. For example if you are matching the static storage modifier, then instead of just naming it `storage.modifier` use `storage.modifier.static.«language»`. A scope selector of just `storage.modifier` will match both, but having the extra information in the name means it is possible to specifically target it disregarding the other storage modifiers."
 
-&gt; "**Put the language name last in the name.** This may seem redundant, since you can generally use a scope selector of: `source.«language» storage.modifier`, but **when embedding languages, this is not always possible**."
+&gt; "''Put the language name last in the name.'' This may seem redundant, since you can generally use a scope selector of: `source.«language» storage.modifier`, but ''when embedding languages, this is not always possible''."
 
-That last clause is the actual *why* behind the `.php`/`.js` suffix, and Sublime never restates it: under embedding, the ancestor `source.x` may have been cleared or replaced, so the language must be carried on the token itself.
+That last clause is the actual //why// behind the `.php`/`.js` suffix, and Sublime never restates it: under embedding, the ancestor `source.x` may have been cleared or replaced, so the language must be carried on the token itself.
 
-**11 root groups** (note: no `punctuation`, no `source`/`text`): `comment` `constant` `entity` `invalid` `keyword` `markup` `meta` `storage` `string` `support` `variable`.
+''11 root groups'' (note: no `punctuation`, no `source`/`text`): `comment` `constant` `entity` `invalid` `keyword` `markup` `meta` `storage` `string` `support` `variable`.
 
 Definitions worth quoting for a memetic/prose grammar:
-- **entity**: "an entity refers to a larger part of the document, for example a chapter, class, function, or tag. **We do not scope the entire entity as `entity.*` (we use `meta.*` for that). But we do use `entity.*` for the 'placeholders' in the larger entity**, e.g. if the entity is a chapter, we would use `entity.name.section` for the chapter title."
-- **meta**: "generally used to markup larger parts of the document. For example the entire line which declares a function would be `meta.function` and the subsets would be `storage.type`, `entity.name.function`, `variable.parameter` etc. and **only the latter would be styled**. Sometimes the meta part of the scope will be used only to limit the more general element that is styled, **most of the time meta scopes are however used in scope selectors for activation of bundle items**."
-- **markup**: "this is for markup languages and generally applies to larger subsets of the text." `underline` → `link` ("as a convenience this is derived from `markup.underline` so that if there is no theme rule which specifically targets `markup.underline.link` then it will inherit the underline style") · `bold` ("text which is strong and similar should preferably be derived from this name") · `heading` ("Optionally provide the heading level as the next element, for example `markup.heading.2.html` for an h2") · `italic` · `list.numbered`/`list.unnumbered` · `quote` · `raw` ("**Normally spell checking is disabled for `markup.raw`**") · `other`
-- **invalid**: `illegal` ("e.g. an ampersand or lower-than character in HTML"), `deprecated`.
-- `string.interpolated` ("strings which are 'evaluated'") — **present in TextMate, dropped by Sublime** in favour of `meta.interpolation` + `clear_scopes`.
-- `string.other` — "should rarely be used."
-- `support.other` — "the above should be exhaustive, but for everything else use `support.other`."
+* ''entity'': "an entity refers to a larger part of the document, for example a chapter, class, function, or tag. ''We do not scope the entire entity as `entity.*` (we use `meta.*` for that). But we do use `entity.*` for the 'placeholders' in the larger entity'', e.g. if the entity is a chapter, we would use `entity.name.section` for the chapter title."
+* ''meta'': "generally used to markup larger parts of the document. For example the entire line which declares a function would be `meta.function` and the subsets would be `storage.type`, `entity.name.function`, `variable.parameter` etc. and ''only the latter would be styled''. Sometimes the meta part of the scope will be used only to limit the more general element that is styled, ''most of the time meta scopes are however used in scope selectors for activation of bundle items''."
+* ''markup'': "this is for markup languages and generally applies to larger subsets of the text." `underline` → `link` ("as a convenience this is derived from `markup.underline` so that if there is no theme rule which specifically targets `markup.underline.link` then it will inherit the underline style") · `bold` ("text which is strong and similar should preferably be derived from this name") · `heading` ("Optionally provide the heading level as the next element, for example `markup.heading.2.html` for an h2") · `italic` · `list.numbered`/`list.unnumbered` · `quote` · `raw` ("''Normally spell checking is disabled for `markup.raw`''") · `other`
+* ''invalid'': `illegal` ("e.g. an ampersand or lower-than character in HTML"), `deprecated`.
+* `string.interpolated` ("strings which are 'evaluated'") — ''present in TextMate, dropped by Sublime'' in favour of `meta.interpolation` + `clear_scopes`.
+* `string.other` — "should rarely be used."
+* `support.other` — "the above should be exhaustive, but for everything else use `support.other`."
 
-### Delta TextMate → Sublime (INFERENCE, derived from the two lists)
-- Added roots: `punctuation`, `source`, `text` (3 new; 11 → 14).
-- `markup.heading.2` (level in the name) → Sublime just `markup.heading`.
-- `markup.underline.link` retained, with the inheritance trick unstated by Sublime.
-- `string.interpolated` retired → `meta.interpolation` + `source.x.embedded` + `clear_scopes`.
-- `entity.name.type` (TM: "type declaration or class") split into `entity.name.class/.struct/.enum/.union/.trait/.interface/.impl/.type`, plus the explicit anti-pattern `entity.name.type.class`.
-- `storage.type` for declaration keywords → `keyword.declaration.*`, double-scoped with `storage.type` for old themes.
-- `variable.other.member`, `variable.function`, `variable.annotation`, `entity.name.namespace`, `entity.name.label`, `meta.path`, `meta.function-call`, `meta.toc-list` — all post-TextMate community additions.
-- The TextMate "append as much information as you can" rule and the Sublime "being too specific will result in a color scheme that often only looks good for one or two syntaxes" warning **point in opposite directions**. They are reconcilable only because they address different actors (syntax author vs theme author) — but in practice this is the ecosystem's central unresolved tension.
+!!! Delta TextMate → Sublime (INFERENCE, derived from the two lists)
+* Added roots: `punctuation`, `source`, `text` (3 new; 11 → 14).
+* `markup.heading.2` (level in the name) → Sublime just `markup.heading`.
+* `markup.underline.link` retained, with the inheritance trick unstated by Sublime.
+* `string.interpolated` retired → `meta.interpolation` + `source.x.embedded` + `clear_scopes`.
+* `entity.name.type` (TM: "type declaration or class") split into `entity.name.class/.struct/.enum/.union/.trait/.interface/.impl/.type`, plus the explicit anti-pattern `entity.name.type.class`.
+* `storage.type` for declaration keywords → `keyword.declaration.*`, double-scoped with `storage.type` for old themes.
+* `variable.other.member`, `variable.function`, `variable.annotation`, `entity.name.namespace`, `entity.name.label`, `meta.path`, `meta.function-call`, `meta.toc-list` — all post-TextMate community additions.
+* The TextMate "append as much information as you can" rule and the Sublime "being too specific will result in a color scheme that often only looks good for one or two syntaxes" warning ''point in opposite directions''. They are reconcilable only because they address different actors (syntax author vs theme author) — but in practice this is the ecosystem's central unresolved tension.
 
 ---
 
-## 4. VS Code — AUTHORITATIVE
+!! 4. VS Code — AUTHORITATIVE
 URL: https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide
 
-**There is no VS Code list of scopes themes are guaranteed to style.** The page defers entirely:
+''There is no VS Code list of scopes themes are guaranteed to style.'' The page defers entirely:
 
-&gt; "Themes map scopes to colors and styles to provide syntax highlighting. **TextMate provides list of common scopes that many themes target. In order to have your grammar as broadly supported as possible, try to build on existing scopes rather than defining new ones.**"
+&gt; "Themes map scopes to colors and styles to provide syntax highlighting. ''TextMate provides list of common scopes that many themes target. In order to have your grammar as broadly supported as possible, try to build on existing scopes rather than defining new ones.''"
 
 (That "list" link goes to the macromates manual §Naming Conventions — i.e. VS Code's normative authority is the 2004 TextMate doc, not Sublime's.)
 
 On what happens for scopes a theme doesn't know — verbatim:
 &gt; "Scopes nest so that each token is also associated with a list of parent scopes. … The most specific scope is listed at the top, with more general parent scopes listed below."
-&gt; "**Parent scope information is also used for theming. When a theme targets a scope, all tokens with that parent scope will be colorized unless the theme also provides a more specific colorization for their individual scopes.**"
-&gt; "When evaluating the color and style of a token, the current token's scope is matched against the rule's selector to find the most specific rule **for each style property (foreground, bold, italic, underline)**."
+&gt; "''Parent scope information is also used for theming. When a theme targets a scope, all tokens with that parent scope will be colorized unless the theme also provides a more specific colorization for their individual scopes.''"
+&gt; "When evaluating the color and style of a token, the current token's scope is matched against the rule's selector to find the most specific rule ''for each style property (foreground, bold, italic, underline)''."
 
-INFERENCE: so an unknown scope is not *unstyled* — it falls back to the nearest ancestor the theme *does* know. `keyword.control.memetic.frame-end.tw5` colors as `keyword.control` (or `keyword`) with zero theme support. This is the actual safety net, and it is why the "language last" rule matters: it keeps the unknown segments at the *tail*, where they degrade cleanly. Putting an invented segment in the middle (`keyword.mything.control`) breaks the fallback.
+INFERENCE: so an unknown scope is not //unstyled// — it falls back to the nearest ancestor the theme //does// know. `keyword.control.memetic.frame-end.tw5` colors as `keyword.control` (or `keyword`) with zero theme support. This is the actual safety net, and it is why the "language last" rule matters: it keeps the unknown segments at the //tail//, where they degrade cleanly. Putting an invented segment in the middle (`keyword.mything.control`) breaks the fallback.
 
 Other VS Code specifics:
-- Engine: "VS Code's tokenization engine is powered by TextMate grammars … written as a plist (XML) or JSON files." "**TextMate grammars rely on Oniguruma regular expressions.**" "The TextMate tokenization engine runs in the **same process as the renderer** and tokens are updated as the user types."
-- Tokens are load-bearing beyond color: "Tokens are used for syntax highlighting, but also to **classify the source code into areas of comments, strings, regex**."
-- **`embeddedLanguages`** contribution point — "maps a scope in the embedded language to a top-level language scope. In the example below, any tokens in the `meta.embedded.block.javascript` scope will be treated as JavaScript content" → "they will get the correct `//` JavaScript style comment and the correct JavaScript snippets." **This is the VS Code analogue of Sublime's `embed_scope`, and it is why `meta.embedded.block.&lt;lang&gt;` is a de-facto required string for fenced code, despite `meta.*` being "not for coloring".**
-- **`balancedBracketScopes` / `unbalancedBracketScopes`** — "defines which scopes participate in bracket matching. By default, all scopes are included." Example given: `"unbalancedBracketScopes": ["meta.scope.case-pattern.shell"]`. Another `meta.*` scope carrying non-color logic.
-- Injection grammars use `injectionSelector`, e.g. `L:comment.line.double-slash`.
-- YAML authoring is supported only via build-step conversion: "**VS Code can only load json grammars, so yaml based grammars must be converted to json.**"
-- Semantic tokens are a separate, additive layer: "Highlighting based on semantic tokens is considered an **addition** to the TextMate-based syntax highlighting. Semantic highlighting goes on top of the syntax highlighting."
+* Engine: "VS Code's tokenization engine is powered by TextMate grammars … written as a plist (XML) or JSON files." "''TextMate grammars rely on Oniguruma regular expressions.''" "The TextMate tokenization engine runs in the ''same process as the renderer'' and tokens are updated as the user types."
+* Tokens are load-bearing beyond color: "Tokens are used for syntax highlighting, but also to ''classify the source code into areas of comments, strings, regex''."
+* ''`embeddedLanguages`'' contribution point — "maps a scope in the embedded language to a top-level language scope. In the example below, any tokens in the `meta.embedded.block.javascript` scope will be treated as JavaScript content" → "they will get the correct `//` JavaScript style comment and the correct JavaScript snippets." ''This is the VS Code analogue of Sublime's `embed_scope`, and it is why `meta.embedded.block.&lt;lang&gt;` is a de-facto required string for fenced code, despite `meta.*` being "not for coloring".''
+* ''`balancedBracketScopes` / `unbalancedBracketScopes`'' — "defines which scopes participate in bracket matching. By default, all scopes are included." Example given: `"unbalancedBracketScopes": ["meta.scope.case-pattern.shell"]`. Another `meta.*` scope carrying non-color logic.
+* Injection grammars use `injectionSelector`, e.g. `L:comment.line.double-slash`.
+* YAML authoring is supported only via build-step conversion: "''VS Code can only load json grammars, so yaml based grammars must be converted to json.''"
+* Semantic tokens are a separate, additive layer: "Highlighting based on semantic tokens is considered an ''addition'' to the TextMate-based syntax highlighting. Semantic highlighting goes on top of the syntax highlighting."
 
-**VS Code's actual standard list** lives in the *semantic* guide (https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide), and it is a *token type* list, not scopes — AUTHORITATIVE:
-&gt; "The standard types and modifiers cover common concepts used by many languages. While each language might use a different terminology for some types and modifiers, **by adhering to the standard classifications, it will be possible for theme authors to define theming rules that work across languages.**"
+''VS Code's actual standard list'' lives in the //semantic// guide (https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide), and it is a //token type// list, not scopes — AUTHORITATIVE:
+&gt; "The standard types and modifiers cover common concepts used by many languages. While each language might use a different terminology for some types and modifiers, ''by adhering to the standard classifications, it will be possible for theme authors to define theming rules that work across languages.''"
 
 Types (23): `namespace` `class` `enum` `interface` `struct` `typeParameter` `type` `parameter` `variable` `property` `enumMember` `decorator` `event` `function` `method` `macro` `label` `comment` `string` `keyword` `number` `regexp` `operator`
 Modifiers (10): `declaration` `definition` `readonly` `static` `deprecated` `abstract` `async` `modification` `documentation` `defaultLibrary`
 
-Extension mechanism worth noting for grammar design — `superType` inheritance is *explicit*: "By naming `type` as the super type, theme styling rules for `type` will also apply to `templateType`." But: "**custom mapping rules are not automatically inherited from the super type. Instead, subtypes need to redefine the mapping, preferably to more specific scopes.**"
+Extension mechanism worth noting for grammar design — `superType` inheritance is //explicit//: "By naming `type` as the super type, theme styling rules for `type` will also apply to `templateType`." But: "''custom mapping rules are not automatically inherited from the super type. Instead, subtypes need to redefine the mapping, preferably to more specific scopes.''"
 
 ---
 
-## 5. Anti-patterns and criticism
+!! 5. Anti-patterns and criticism
 
-### AUTHORITATIVE anti-patterns (all quoted above, collected)
-1. Overusing `invalid.illegal` — "will likely lead to unpleasant highlighting for users **as they edit code**." (Sublime)
-2. `invalid.deprecated` — "should be **very rarely used**, as users may be working with older versions of a language." (Sublime)
-3. Styling `meta.*` — "resist the urge." (Sublime); "`meta` does not get a visual style." (TextMate)
-4. Stacking meta variants — `meta.function.php meta.function.parameters.php` "should never occur"; never more than one `meta.annotation*` on the stack. (Sublime)
-5. Nesting a sub-kind under a wrong generic — "Avoid `entity.name.type.class` and `entity.name.type.struct` which **unnecessarily nest scope labels under `type`**." (Sublime)
-6. Themes styling `entity.name.function`/`entity.name.type` instead of `entity.name` — "This leaves new `entity.name.*` scopes un-highlighted." (Sublime)
-7. Over-specific theme rules — "being too specific will result in a color scheme that often only looks good for one or two syntaxes." (Sublime)
-8. Inventing a sub-type where one exists — "re-use the existing names used below that group … rather than make up a new sub-type." (TextMate)
-9. Piling everything under one root — "'spread out' your naming … instead of putting everything below `keyword` (as your formal language definition may insist)." (TextMate) **Note the explicit instruction to disregard your own formal grammar's taxonomy when it conflicts with what a user would want colored differently.**
-10. Defining new roots instead of building on existing — "try to build on existing scopes rather than defining new ones." (VS Code)
+!!! AUTHORITATIVE anti-patterns (all quoted above, collected)
+# Overusing `invalid.illegal` — "will likely lead to unpleasant highlighting for users ''as they edit code''." (Sublime)
+# `invalid.deprecated` — "should be ''very rarely used'', as users may be working with older versions of a language." (Sublime)
+# Styling `meta.*` — "resist the urge." (Sublime); "`meta` does not get a visual style." (TextMate)
+# Stacking meta variants — `meta.function.php meta.function.parameters.php` "should never occur"; never more than one `meta.annotation*` on the stack. (Sublime)
+# Nesting a sub-kind under a wrong generic — "Avoid `entity.name.type.class` and `entity.name.type.struct` which ''unnecessarily nest scope labels under `type`''." (Sublime)
+# Themes styling `entity.name.function`/`entity.name.type` instead of `entity.name` — "This leaves new `entity.name.*` scopes un-highlighted." (Sublime)
+# Over-specific theme rules — "being too specific will result in a color scheme that often only looks good for one or two syntaxes." (Sublime)
+# Inventing a sub-type where one exists — "re-use the existing names used below that group … rather than make up a new sub-type." (TextMate)
+# Piling everything under one root — "'spread out' your naming … instead of putting everything below `keyword` (as your formal language definition may insist)." (TextMate) ''Note the explicit instruction to disregard your own formal grammar's taxonomy when it conflicts with what a user would want colored differently.''
+# Defining new roots instead of building on existing — "try to build on existing scopes rather than defining new ones." (VS Code)
 
-### The one that isn't a naming rule but bites hardest
-Sublime v1→v2 bug #6 (capture-group order) and the `syntax.html` line "**Regexes are only ever run against a single line of text at a time**" are engine truths that apply equally to `.tmLanguage` in VS Code. Any multi-line construct in a tmLanguage grammar must be `begin`/`end` or it does not exist.
+!!! The one that isn't a naming rule but bites hardest
+Sublime v1→v2 bug #6 (capture-group order) and the `syntax.html` line "''Regexes are only ever run against a single line of text at a time''" are engine truths that apply equally to `.tmLanguage` in VS Code. Any multi-line construct in a tmLanguage grammar must be `begin`/`end` or it does not exist.
 
-### COMMUNITY — counter-argument to "don't be specific"
+!!! COMMUNITY — counter-argument to "don't be specific"
 `bathos/Ecmascript-Sublime` (https://github.com/bathos/Ecmascript-Sublime), self-described "absurdly specific scopes":
 &gt; "The number one reason why I made this is that it bothered me that many disparate elements of the grammar that just happened to look similar had to share generic scopes like `meta.brace.curly`."
-&gt; "In a few cases, the original Sublime JS tmLanguage had errors, and Babel and JSNext preserved them. I chose to correct these **at the risk of decreasing compatibility with existing themes**."
-&gt; "Sometimes I opted to use a pre-existing tmLanguage convention over a domain-specific choice… In cases like this I typically **'double scope' the tokens so that they can be targetted either way**."
+&gt; "In a few cases, the original Sublime JS tmLanguage had errors, and Babel and JSNext preserved them. I chose to correct these ''at the risk of decreasing compatibility with existing themes''."
+&gt; "Sometimes I opted to use a pre-existing tmLanguage convention over a domain-specific choice… In cases like this I typically '''double scope' the tokens so that they can be targetted either way''."
 
-That last technique is the same one Sublime itself uses for `storage.type` + `keyword.declaration.*`. **Double-scoping is the sanctioned escape hatch when semantic correctness and theme compatibility disagree.** It is the strongest concrete recommendation to carry out of this research.
+That last technique is the same one Sublime itself uses for `storage.type` + `keyword.declaration.*`. ''Double-scoping is the sanctioned escape hatch when semantic correctness and theme compatibility disagree.'' It is the strongest concrete recommendation to carry out of this research.
 
-### AUTHORITATIVE criticism of regex/TextMate grammars, from people who replaced them
+!!! AUTHORITATIVE criticism of regex/TextMate grammars, from people who replaced them
 Max Brunsfeld, Strange Loop 2018 abstract (https://www.thestrangeloop.com/2018/tree-sitter---a-new-parsing-system-for-programming-tools.html):
-&gt; "Developer tools that support multiple programming languages generally have **very limited, regex-based code-analysis capabilities**. Tree-sitter is a new parsing system that aims to change this paradigm."
+&gt; "Developer tools that support multiple programming languages generally have ''very limited, regex-based code-analysis capabilities''. Tree-sitter is a new parsing system that aims to change this paradigm."
 
 Tree-sitter docs (https://tree-sitter.github.io/tree-sitter/) state the design goals, which read as an implicit indictment:
-&gt; "General enough to parse any programming language / **Fast enough to parse on every keystroke in a text editor** / **Robust enough to provide useful results even in the presence of syntax errors** / Dependency-free…"
+&gt; "General enough to parse any programming language / ''Fast enough to parse on every keystroke in a text editor'' / ''Robust enough to provide useful results even in the presence of syntax errors'' / Dependency-free…"
 
-### COMMUNITY — the honest counter-verdict (important: don't over-index on tree-sitter)
-Pulsar, "Modern Tree-sitter, part 7: the pain points and the promise" (https://blog.pulsar-edit.dev/posts/20240902-savetheclocktower-modern-tree-sitter-part-7/) — from a maintainer who shipped *both* systems in the same editor:
-&gt; "TextMate grammars … **tend to recover better from constructs they don't understand, and they tend to be easier to fix than Tree-sitter grammars**"
-&gt; "**Under a worst-case scenario — a gigantic file with very long lines — both systems will fall down. But Tree-sitter will fall down sooner.**"
+!!! COMMUNITY — the honest counter-verdict (important: don't over-index on tree-sitter)
+Pulsar, "Modern Tree-sitter, part 7: the pain points and the promise" (https://blog.pulsar-edit.dev/posts/20240902-savetheclocktower-modern-tree-sitter-part-7/) — from a maintainer who shipped //both// systems in the same editor:
+&gt; "TextMate grammars … ''tend to recover better from constructs they don't understand, and they tend to be easier to fix than Tree-sitter grammars''"
+&gt; "''Under a worst-case scenario — a gigantic file with very long lines — both systems will fall down. But Tree-sitter will fall down sooner.''"
 &gt; "TextMate-style indentation hinting is cheap because it can just execute a regular expression against one line of content"
 
-The widely-circulated "TextMate grammars lie / are slow / are impossible to get right" framing surfaced in search results is **COMMUNITY paraphrase without a primary attribution I could locate** — treat as unsourced. Do not cite it.
+The widely-circulated "TextMate grammars lie / are slow / are impossible to get right" framing surfaced in search results is ''COMMUNITY paraphrase without a primary attribution I could locate'' — treat as unsourced. Do not cite it.
 
 ---
 
-## Bottom line for a memetic-wikitext TW5 grammar
+!! Bottom line for a memetic-wikitext TW5 grammar
 
-- The contract you can actually rely on is Sublime's 24-entry **Minimal Scope Coverage** list plus VS Code's ancestor-fallback rule. Everything else is decoration that degrades to its nearest known ancestor.
-- Root choice is forced: prose → `text.`, and the TW5/markdown lineage means `text.html.&lt;variant&gt;` where the variant goes after `.html`, not last.
-- `meta.*` is your structural/logic channel and is explicitly *not* colored — and VS Code's `embeddedLanguages` and `unbalancedBracketScopes` both key off `meta.*`, confirming it as the machine-readable layer.
-- For fenced embedded languages under a `.tmLanguage`-only host (VS Code), you get TextMate's broken model: terminator only at the included root. The mitigations are (i) `meta.embedded.block.&lt;lang&gt;` + the `embeddedLanguages` map, (ii) accepting runaway highlighting on malformed fences, since `escape`/`with_prototype`/`branch` are unavailable. Sublime solved this in 2015 and VS Code has not adopted the fix.
-- When a semantically-right name and a theme-compatible name conflict, **double-scope** — vendor-sanctioned precedent exists (`storage.type` + `keyword.declaration.*`).
-- New scope names should extend an existing root at the **tail**, never in the middle, and should be real domain terminology, not a nesting under a generic level.
+* The contract you can actually rely on is Sublime's 24-entry ''Minimal Scope Coverage'' list plus VS Code's ancestor-fallback rule. Everything else is decoration that degrades to its nearest known ancestor.
+* Root choice is forced: prose → `text.`, and the TW5/markdown lineage means `text.html.&lt;variant&gt;` where the variant goes after `.html`, not last.
+* `meta.*` is your structural/logic channel and is explicitly //not// colored — and VS Code's `embeddedLanguages` and `unbalancedBracketScopes` both key off `meta.*`, confirming it as the machine-readable layer.
+* For fenced embedded languages under a `.tmLanguage`-only host (VS Code), you get TextMate's broken model: terminator only at the included root. The mitigations are (i) `meta.embedded.block.&lt;lang&gt;` + the `embeddedLanguages` map, (ii) accepting runaway highlighting on malformed fences, since `escape`/`with_prototype`/`branch` are unavailable. Sublime solved this in 2015 and VS Code has not adopted the fix.
+* When a semantically-right name and a theme-compatible name conflict, ''double-scope'' — vendor-sanctioned precedent exists (`storage.type` + `keyword.declaration.*`).
+* New scope names should extend an existing root at the ''tail'', never in the middle, and should be real domain terminology, not a nesting under a generic level.
 
-Sources: [Sublime scope naming](https://www.sublimetext.com/docs/scope_naming.html) · [Sublime syntax reference](https://www.sublimetext.com/docs/syntax.html) · [Build 3084 announcement](https://forum.sublimetext.com/t/dev-build-3084/14887) · [Sublime Text 4](https://www.sublimetext.com/blog/articles/sublime-text-4) · [TextMate language grammars](https://macromates.com/manual/en/language_grammars) · [VS Code syntax highlight guide](https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide) · [VS Code semantic highlight guide](https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide) · [VS Code color theme guide](https://code.visualstudio.com/api/extension-guides/color-theme) · [Tree-sitter](https://tree-sitter.github.io/tree-sitter/) · [Strange Loop 2018](https://www.thestrangeloop.com/2018/tree-sitter---a-new-parsing-system-for-programming-tools.html) · [Pulsar: Modern Tree-sitter part 7](https://blog.pulsar-edit.dev/posts/20240902-savetheclocktower-modern-tree-sitter-part-7/) · [Ecmascript-Sublime](https://github.com/bathos/Ecmascript-Sublime)
+Sources: [[Sublime scope naming|https://www.sublimetext.com/docs/scope_naming.html]] · [[Sublime syntax reference|https://www.sublimetext.com/docs/syntax.html]] · [[Build 3084 announcement|https://forum.sublimetext.com/t/dev-build-3084/14887]] · [[Sublime Text 4|https://www.sublimetext.com/blog/articles/sublime-text-4]] · [[TextMate language grammars|https://macromates.com/manual/en/language_grammars]] · [[VS Code syntax highlight guide|https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide]] · [[VS Code semantic highlight guide|https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide]] · [[VS Code color theme guide|https://code.visualstudio.com/api/extension-guides/color-theme]] · [[Tree-sitter|https://tree-sitter.github.io/tree-sitter/]] · [[Strange Loop 2018|https://www.thestrangeloop.com/2018/tree-sitter---a-new-parsing-system-for-programming-tools.html]] · [[Pulsar: Modern Tree-sitter part 7|https://blog.pulsar-edit.dev/posts/20240902-savetheclocktower-modern-tree-sitter-part-7/]] · [[Ecmascript-Sublime|https://github.com/bathos/Ecmascript-Sublime]]
 
 <<~/ahu >>
 
-<<^ code="&#x0003;" >>
+<<^ code="&#x0003;" >>ni:///sha-256;nOCrURpdgH41DWmKokbOaHMveqwgPPrAiTsGwLiYm5s
 
-<<^ code="&#x0004;" -> ? >>
+<<^ code="&#x0004;" -> to=? >>

@@ -6,7 +6,7 @@ cacheable = true
 file-path = "docs/prior-art/coordinator-direct.mem"
 hydrate   = true
 l-space   = "stable"
-register  = "Research"
+register  = "Provisional"
 retain    = true
 role      = "the coordinating spirit's own primary-source gathering — TextMate scope-selector ranking, GtkSourceView map-to and its fixed default-style list, Neovim's tree-sitter capture vocabulary with its fallback and priority rules, and the Neovim bridge table that links BOTH tree-sitter captures and LSP semantic token types down into the 1990s Vim group set"
 type      = "text/memetic-wikitext+tiddlywiki"
@@ -28,9 +28,9 @@ Prefix matching:
 `string` matches all quoted strings; `string.quoted` matches single, double and triple quoted strings.
 
 Ranking when several selectors match, in order of precedence:
-# > "Match the element deepest down in the scope e.g. `string` wins over `source.php` when the scope is `source.php string.quoted`."
-# > "Match most of the deepest element e.g. `string.quoted` wins over `string`."
-# > "Rules 1 and 2 applied again to the scope selector when removing the deepest element (in the case of a tie)."
+! > "Match the element deepest down in the scope e.g. `string` wins over `source.php` when the scope is `source.php string.quoted`."
+! > "Match most of the deepest element e.g. `string.quoted` wins over `string`."
+! > "Rules 1 and 2 applied again to the scope selector when removing the deepest element (in the case of a tie)."
 
 Descendant selectors:
 > "In the scope selector we specify element names as a space separated list to indicate that each element should be present in the scope (and in the same order)."
@@ -390,6 +390,6 @@ rather than in the grammar.
 
 <<~/ahu >>
 
-<<^ code="&#x0003;" >>
+<<^ code="&#x0003;" >>ni:///sha-256;r7nPJcC-663bpTKSl8LgRKurYnRQRwgNYp2A6Lf5tKA
 
-<<^ code="&#x0004;" -> ? >>
+<<^ code="&#x0004;" -> to=? >>
