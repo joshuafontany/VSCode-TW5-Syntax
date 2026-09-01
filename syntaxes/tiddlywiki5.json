@@ -4166,7 +4166,7 @@
 			"patterns": [
 				{
 					"match": "^\\s*(\\|)(.*)(\\|)(k)$",
-					"name": "markup.other.table.tiddlywiki5",
+					"name": "markup.table.tiddlywiki5 markup.other.table.tiddlywiki5",
 					"captures": {
 						"0": {
 							"name": "meta.table.classes.tiddlywiki5"
@@ -4191,13 +4191,13 @@
 							"name": "punctuation.definition.table.pipe.outer.end.tiddlywiki5"
 						},
 						"4": {
-							"name": "markup.other.table.classes.tiddlywiki5"
+							"name": "markup.table.tiddlywiki5 markup.other.table.classes.tiddlywiki5"
 						}
 					}
 				},
 				{
 					"match": "^(\\|)(.*)(\\|)(c)$",
-					"name": "markup.other.table.tiddlywiki5",
+					"name": "markup.table.tiddlywiki5 markup.other.table.tiddlywiki5",
 					"captures": {
 						"0": {
 							"name": "meta.table.caption.tiddlywiki5"
@@ -4226,13 +4226,13 @@
 							"name": "punctuation.definition.table.pipe.outer.end.tiddlywiki5"
 						},
 						"4": {
-							"name": "markup.other.table.caption.tiddlywiki5"
+							"name": "markup.table.tiddlywiki5 markup.other.table.caption.tiddlywiki5"
 						}
 					}
 				},
 				{
 					"match": "^(\\|)(.*)(\\|)(h)$",
-					"name": "markup.other.table.tiddlywiki5",
+					"name": "markup.table.tiddlywiki5 markup.other.table.tiddlywiki5",
 					"captures": {
 						"0": {
 							"name": "meta.table.row.thead.header.tiddlywiki5"
@@ -4251,13 +4251,13 @@
 							"name": "punctuation.definition.table.pipe.outer.end.tiddlywiki5"
 						},
 						"4": {
-							"name": "markup.other.table.row.thead.header.tiddlywiki5"
+							"name": "markup.table.tiddlywiki5 markup.other.table.row.thead.header.tiddlywiki5"
 						}
 					}
 				},
 				{
 					"match": "^(\\|)(.*)(\\|)(f)$",
-					"name": "markup.other.table.tiddlywiki5",
+					"name": "markup.table.tiddlywiki5 markup.other.table.tiddlywiki5",
 					"captures": {
 						"0": {
 							"name": "meta.table.row.tfoot.footer.tiddlywiki5"
@@ -4276,13 +4276,13 @@
 							"name": "punctuation.definition.table.pipe.outer.end.tiddlywiki5"
 						},
 						"4": {
-							"name": "markup.other.table.row.tfoot.footer.tiddlywiki5"
+							"name": "markup.table.tiddlywiki5 markup.other.table.row.tfoot.footer.tiddlywiki5"
 						}
 					}
 				},
 				{
 					"match": "^(\\|)(.*)(\\|)()$",
-					"name": "markup.other.table.tiddlywiki5",
+					"name": "markup.table.tiddlywiki5 markup.other.table.tiddlywiki5",
 					"captures": {
 						"0": {
 							"name": "meta.table.row.tbody.body.tiddlywiki5"
@@ -4301,7 +4301,7 @@
 							"name": "punctuation.definition.table.pipe.outer.end.tiddlywiki5"
 						},
 						"4": {
-							"name": "markup.other.table.row.tbody.body.tiddlywiki5"
+							"name": "markup.table.tiddlywiki5 markup.other.table.row.tbody.body.tiddlywiki5"
 						}
 					}
 				}
@@ -4387,7 +4387,7 @@
 					"name": "markup.list.unnumbered.unordered.ul.li.tiddlywiki5",
 					"captures": {
 						"1": {
-							"name": "punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5"
+							"name": "punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5 punctuation.definition.list.begin.markdown"
 						},
 						"2": {
 							"patterns": [
@@ -4409,7 +4409,7 @@
 					"name": "markup.list.numbered.ordered.ol.li.tiddlywiki5",
 					"captures": {
 						"1": {
-							"name": "punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.numbered.ordered.ol.li.list.markup.tiddlywiki5"
+							"name": "punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.numbered.ordered.ol.li.list.markup.tiddlywiki5 punctuation.definition.list.begin.markdown"
 						},
 						"2": {
 							"patterns": [
@@ -4431,7 +4431,7 @@
 					"name": "markup.list.unnumbered.term.dl.dt.tiddlywiki5",
 					"captures": {
 						"1": {
-							"name": "punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.term.dl.dt.list.markup.tiddlywiki5"
+							"name": "punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.term.dl.dt.list.markup.tiddlywiki5 punctuation.definition.list.begin.markdown"
 						},
 						"2": {
 							"patterns": [
@@ -4453,7 +4453,7 @@
 					"name": "markup.list.unnumbered.description.dl.dd.tiddlywiki5",
 					"captures": {
 						"1": {
-							"name": "punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.description.dl.dd.list.markup.tiddlywiki5"
+							"name": "punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.description.dl.dd.list.markup.tiddlywiki5 punctuation.definition.list.begin.markdown"
 						},
 						"2": {
 							"patterns": [
@@ -4475,7 +4475,7 @@
 					"name": "markup.list.listquote.quote.tiddlywiki5",
 					"captures": {
 						"1": {
-							"name": "punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.listquote.quote.list.markup.tiddlywiki5"
+							"name": "punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.listquote.quote.list.markup.tiddlywiki5 punctuation.definition.list.begin.markdown"
 						},
 						"2": {
 							"patterns": [
@@ -5194,7 +5194,7 @@
 				{
 					"begin": "~~(?=[^\\n]*~~)",
 					"end": "~~|(?=$)",
-					"contentName": "markup.underline.strikethrough.tiddlywiki5",
+					"contentName": "markup.underline.strikethrough.tiddlywiki5 markup.strikethrough.tiddlywiki5",
 					"beginCaptures": {
 						"0": {
 							"name": "punctuation.definition.markup.begin.strikethrough.tiddlywiki5"

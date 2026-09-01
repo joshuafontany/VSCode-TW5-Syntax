@@ -156,15 +156,15 @@
 >
 >    * List One
 #^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
-#    ^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+#    ^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5 punctuation.definition.list.begin.markdown
 #     ^^^^^^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
 >    ** List Two
 #^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
-#    ^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+#    ^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5 punctuation.definition.list.begin.markdown
 #      ^^^^^^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
 >    **> A quote
 #^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.listquote.quote.tiddlywiki5
-#    ^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.listquote.quote.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.listquote.quote.list.markup.tiddlywiki5
+#    ^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.listquote.quote.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.listquote.quote.list.markup.tiddlywiki5 punctuation.definition.list.begin.markdown
 #       ^^^^^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.listquote.quote.tiddlywiki5
 >"""
 #^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.other.paragraph.tiddlywiki5 punctuation.definition.hardlinebreaks.begin.tiddlywiki5
@@ -387,21 +387,21 @@
 >
 >    * List ''One''
 #^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
-#    ^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+#    ^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5 punctuation.definition.list.begin.markdown
 #     ^^^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
 #           ^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.markup.begin.bold.tiddlywiki5
 #             ^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 markup.bold.tiddlywiki5
 #                ^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.markup.end.bold.tiddlywiki5
 >    ** List //Two//
 #^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
-#    ^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+#    ^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5 punctuation.definition.list.begin.markdown
 #      ^^^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
 #            ^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.markup.begin.italic.tiddlywiki5
 #              ^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 markup.italic.tiddlywiki5
 #                 ^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.markup.end.italic.tiddlywiki5
 >    **> A quote
 #^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.listquote.quote.tiddlywiki5
-#    ^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.listquote.quote.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.listquote.quote.list.markup.tiddlywiki5
+#    ^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.listquote.quote.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.listquote.quote.list.markup.tiddlywiki5 punctuation.definition.list.begin.markdown
 #       ^^^^^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.list.listquote.quote.tiddlywiki5
 >"""
 #^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.other.paragraph.tiddlywiki5 punctuation.definition.hardlinebreaks.begin.tiddlywiki5

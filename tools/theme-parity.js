@@ -52,25 +52,26 @@ const TOLERANCE = 15;
 // vocabulary theme authors write rules against; separately, each one's habits show through.
 const COMPARATORS = [
   { id: 'markdown', scope: 'text.html.markdown', ext: '.md',   grammar: 'markdown.json',
-    source: '# Heading one\n\nA **bold run** here.\n\nA `code span` here.\n\n* a list item\n\nA [WikiLink](W) here.\n' },
+    source: '# Heading one\n\nA **bold run** here.\n\nA `code span` here.\n\n* a list item\n\nA [WikiLink](W) here.\n\nA ~~struck run~~ here.\n\n| a | table cell |\n| - | ---------- |\n' },
   { id: 'asciidoc', scope: 'text.asciidoc',      ext: '.adoc', grammar: 'asciidoc.json',
-    source: '= Heading one\n\nA *bold run* here.\n\nA `code span` here.\n\n* a list item\n\nA https://x.example[WikiLink] here.\n' },
+    source: '= Heading one\n\nA *bold run* here.\n\nA `code span` here.\n\n* a list item\n\nA https://x.example[WikiLink] here.\n\nA [.line-through]#struck run# here.\n\n|===\n| a | table cell\n|===\n' },
   { id: 'rst',      scope: 'source.rst',         ext: '.rst',  grammar: 'rst.json',
     source: 'Heading one\n===========\n\nA **bold run** here.\n\nA ``code span`` here.\n\n* a list item\n\nA `WikiLink <http://x>`_ here.\n' },
   { id: 'org',      scope: 'source.org',         ext: '.org',  grammar: 'org.json',
-    source: '* Heading one\n\nA *bold run* here.\n\nA ~code span~ here.\n\n- a list item\n\nA [[http://x][WikiLink]] here.\n' },
+    source: '* Heading one\n\nA *bold run* here.\n\nA ~code span~ here.\n\n- a list item\n\nA [[http://x][WikiLink]] here.\n\nA +struck run+ here.\n\n| a | table cell |\n' },
   { id: 'mediawiki',scope: 'source.wikitext',    ext: '.wiki', grammar: 'wikitext.json',
-    source: "== Heading one ==\n\nA \'\'\'bold run\'\'\' here.\n\nA <code>code span</code> here.\n\n* a list item\n\nA [[WikiLink]] here.\n" },
+    source: "== Heading one ==\n\nA \'\'\'bold run\'\'\' here.\n\nA <code>code span</code> here.\n\n* a list item\n\nA [[WikiLink]] here.\n\nA <s>struck run</s> here.\n\n{|\n| a || table cell\n|}\n" },
   { id: 'mdx',      scope: 'source.mdx',         ext: '.mdx',  grammar: 'mdx.json',
-    source: '# Heading one\n\nA **bold run** here.\n\nA `code span` here.\n\n* a list item\n\nA [WikiLink](W) here.\n' }
+    source: '# Heading one\n\nA **bold run** here.\n\nA `code span` here.\n\n* a list item\n\nA [WikiLink](W) here.\n\nA ~~struck run~~ here.\n\n| a | table cell |\n| - | ---------- |\n' }
 ];
 
 // Our own specimen, carrying every construct the panel measures.
-const OURS = "! Heading one\n\nA \'\'bold run\'\' here.\n\nA `code span` here.\n\n* a list item\n\nA [[WikiLink]] here.\n";
+const OURS = "! Heading one\n\nA \'\'bold run\'\' here.\n\nA `code span` here.\n\n* a list item\n\nA [[WikiLink]] here.\n\nA ~~struck run~~ here.\n\n|a|table cell|\n";
 
 // The span a reader looks at, named by its text. Every comparator writes the same words, so one
 // name reaches the construct in all seven grammars without a table of per-language spellings.
-const CONSTRUCTS = ['Heading one', 'bold run', 'code span', 'a list item', 'WikiLink'];
+const CONSTRUCTS = ['Heading one', 'bold run', 'code span', 'a list item', 'WikiLink',
+  'struck run', 'table cell'];
 
 /** A theme's rules, flattened to one selector each. */
 function loadTheme(file) {

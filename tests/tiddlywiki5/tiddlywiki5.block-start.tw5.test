@@ -1,0 +1,31 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A block rule runs only where a block starts"
+
+# TiddlyWiki opens a block at a blank line and nowhere else. A fence written straight under a
+# paragraph line does not start a block: the paragraph carries on, and the parser reads the
+# backticks as an unterminated inline code delimiter — it says so itself, with an
+# `unterminated-codeinline` diagnostic, and builds no code block.
+#
+# So a fence gets an embedded language only after a blank line. Colouring the first form as a
+# code block would tell an author their JavaScript runs where the wiki renders backticks in a
+# paragraph. The blank line cures it, and the absent colour shows it missing.
+
+! Straight under a paragraph line, no block starts
+
+A paragraph line.
+```js
+#^^^^^ meta.paragraph.tiddlywiki5
+#^^^^^ - meta.codeblock.tiddlywiki5
+#^^^^^ - source.js
+var a = 1;
+#^^^^^^^^^^ - source.js
+```
+
+! After a blank line, the block starts and the language embeds
+
+A paragraph line.
+
+```js
+#^^^^^ markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5
+var a = 1;
+#^^^ source.js
+```

@@ -8,6 +8,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..', '..');
@@ -41,16 +42,33 @@ test('the panel carries enough comparators to set a median', live, () => {
   }
 });
 
+// The collision runs against a COPY. Writing the real grammar to provoke a failure hands every
+// other test a different grammar mid-run, and a restore that loses a race leaves the tree holding
+// the provocation — measured, it stripped the heading names and the next reading of the gate
+// reported a 20-point regression that existed only in the test's own leftovers.
 test('a heading named where no theme rules on reads as a gap', live, () => {
-  const original = fs.readFileSync(GRAMMAR, 'utf8');
+  const provoked = fs.readFileSync(GRAMMAR, 'utf8')
+    .replaceAll('markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5', 'meta.heading.heading-1.tiddlywiki5')
+    .replaceAll('"contentName": "entity.name.section.tiddlywiki5",', '');
+  const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), 'theme-parity-collide-'));
   try {
-    fs.writeFileSync(GRAMMAR, original
-      .replaceAll('markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5', 'meta.heading.heading-1.tiddlywiki5')
-      .replaceAll('"contentName": "entity.name.section.tiddlywiki5",', ''));
-    const { code, out } = run();
+    // A worktree of the repo the witness can read whole, with one grammar swapped.
+    execFileSync('git', ['worktree', 'add', '-q', '--detach', sandbox, 'HEAD'], { cwd: ROOT });
+    fs.rmSync(path.join(sandbox, 'node_modules'), { recursive: true, force: true });
+    fs.symlinkSync(path.join(ROOT, 'node_modules'), path.join(sandbox, 'node_modules'));
+    fs.writeFileSync(path.join(sandbox, 'syntaxes', 'tiddlywiki5.json'), provoked);
+    let out = '';
+    let code = 0;
+    try {
+      out = execFileSync('node', [path.join(sandbox, 'tools', 'theme-parity.js'), '--verbose'],
+        { encoding: 'utf8', cwd: sandbox });
+    } catch (e) {
+      code = e.status;
+      out = `${e.stdout ?? ''}${e.stderr ?? ''}`;
+    }
     assert.match(out, /Heading one: \d+% of themes colour it/, out.slice(-500));
     assert.notStrictEqual(code, 0, 'the witness must fail the gate, not only print');
   } finally {
-    fs.writeFileSync(GRAMMAR, original);
+    execFileSync('git', ['worktree', 'remove', '--force', sandbox], { cwd: ROOT, stdio: 'ignore' });
   }
 });

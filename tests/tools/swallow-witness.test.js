@@ -8,6 +8,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..', '..');
@@ -39,14 +40,33 @@ test('an opener the parser carries to end-of-source reads as agreement', live, (
     'the witness must read the parser rather than assume every opener stops');
 });
 
+// The collision runs against a COPY. Writing the real grammar to provoke a failure hands every
+// other test a different grammar mid-run, and a restore that loses a race leaves the provocation
+// standing in the tree.
 test('a rule stripped of its bound reads as a swallow', live, () => {
-  const original = fs.readFileSync(GRAMMAR, 'utf8');
+  // Every block bound at once, not one rule's. Stripping a single rule stopped provoking the
+  // moment a second rule bounded the same opener, and the collision then proved nothing while
+  // reading green — measured on the inline style run, which the style BLOCK also bounds.
+  const provoked = fs.readFileSync(GRAMMAR, 'utf8').split('|(?=^$)').join('');
+  const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), 'swallow-collide-'));
   try {
-    fs.writeFileSync(GRAMMAR, original.replace('(@@)|(?=^$)', '(@@)'));
-    const { code, out } = run();
-    assert.match(out, /"@@" unterminated takes the block after the blank line/, out.slice(-400));
+    execFileSync('git', ['worktree', 'add', '-q', '--detach', sandbox, 'HEAD'], { cwd: ROOT });
+    fs.rmSync(path.join(sandbox, 'node_modules'), { recursive: true, force: true });
+    fs.symlinkSync(path.join(ROOT, 'node_modules'), path.join(sandbox, 'node_modules'));
+    fs.writeFileSync(path.join(sandbox, 'syntaxes', 'tiddlywiki5.json'), provoked);
+    let out = '';
+    let code = 0;
+    try {
+      out = execFileSync('node', [path.join(sandbox, 'tools', 'swallow-witness.js')],
+        { encoding: 'utf8', cwd: sandbox });
+    } catch (e) {
+      code = e.status;
+      out = `${e.stdout ?? ''}${e.stderr ?? ''}`;
+    }
+    assert.match(out, /"\{\{" unterminated takes the block after the blank line/, out.slice(-600));
+    assert.match(out, /[1-9]\d* that run past a block boundary/, out.slice(-200));
     assert.notStrictEqual(code, 0, 'the witness must fail the gate, not only print');
   } finally {
-    fs.writeFileSync(GRAMMAR, original);
+    execFileSync('git', ['worktree', 'remove', '--force', sandbox], { cwd: ROOT, stdio: 'ignore' });
   }
 });
