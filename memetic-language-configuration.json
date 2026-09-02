@@ -35,7 +35,7 @@
     ],
     // A sigil name, a lar: URI and a #fragment each select as one word, so a double
     // click takes the whole address.
-    "wordPattern": "(lar:[^\\s>]+)|(#[A-Za-z_][A-Za-z0-9_-]*)|(\\\\?[A-Za-z_][A-Za-z0-9_-]*)",
+    "wordPattern": "(\\$:\\/[^\\s\\|\\[\\]\\{\\}<>\"'`]+)|(lar:[^\\s>]+)|(#[A-Za-z_][A-Za-z0-9_-]*)|(-?\\d*\\.\\d\\w*)|(\\\\?[A-Za-z_$][A-Za-z0-9_$-]*)",
     // A sigil block closes on a name, and a folding marker matches text rather than
     // names. Structural folding waits for a language server that can pair a close
     // with its open; region markers stand until then.

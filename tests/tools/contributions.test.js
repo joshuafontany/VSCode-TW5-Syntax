@@ -112,6 +112,10 @@ test('no language folds on the off-side rule', () => {
 // Both read to a reader as red.
 const AUTO_CLOSED = [['<<', '>>'], ['[[', ']]']];
 const MATCHED = [['{', '}'], ['[', ']'], ['(', ')']];
+// A lone angle stands unpaired in ordinary prose — 440 of TiddlyWiki's own 14485 core lines
+// carry one, and 51 of the corpus's 738. Matching them draws every one as an unclosed bracket,
+// which a reader meets as red on text the parser accepts. Surrounding fights the same prose.
+const NEVER_PAIRED = [['<', '>']];
 
 test('a macro call and a bracketed title close themselves and match nothing', () => {
   for (const lang of pkg.contributes.languages || []) {
@@ -127,6 +131,12 @@ test('a macro call and a bracketed title close themselves and match nothing', ()
       assert.ok(has(config.brackets, pair), `${lang.id} brackets no ${pair[0]}${pair[1]}`);
       assert.ok(has(config.autoClosingPairs, pair), `${lang.id} does not close ${pair[0]} for you`);
     }
+      for (const pair of NEVER_PAIRED) {
+        assert.ok(!has(config.brackets, pair),
+          `${lang.id} matches ${pair[0]}${pair[1]} as a bracket, which ordinary prose leaves unpaired`);
+        assert.ok(!has(config.surroundingPairs, pair),
+          `${lang.id} surrounds with ${pair[0]}${pair[1]}, which ordinary prose leaves unpaired`);
+      }
   }
 });
 

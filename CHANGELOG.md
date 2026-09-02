@@ -7,6 +7,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A lone angle bracket no longer reads as an unclosed pair. Wikitext leaves `<` and `>` unpaired
+  in ordinary prose — 440 of TiddlyWiki's own 14485 core lines carry one — and matching them drew
+  every one as an unmatched bracket. Neither language brackets the pair now, nor surrounds with it.
+- A `.mem` file takes a system title as one word. Its word pattern took `lar:` addresses and
+  `#anchors` whole and left `$:/core/Something` broken into pieces, though a memetic file holds
+  wikitext throughout.
 - A widget reads apart from an HTML element, and a system title from one an author wrote. Both
   pairs open the same way and mean nothing alike, and both read identically in every bundled theme
   until now: a `<$list>` coloured as a `<div>`, and `$:/core/Something` as any other title. Each
