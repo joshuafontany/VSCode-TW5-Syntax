@@ -31,20 +31,23 @@ const verbose = process.argv.includes('--verbose');
 // How many of the bundled themes must paint a construct before it reads as painted at all.
 const LEAST = 16;
 
-// Every construct that reads plain ON PURPOSE, with the reason a reader should meet it plain.
-// A scope leaving this list without gaining colour fails the gate; a scope joining it needs a
-// reason that stands on its own.
-const PLAIN = {
-  'meta.paragraph': 'prose, which markdown leaves plain at the same reach',
-  'markup.other.preformatted.hardlinebreaks': 'a hard-linebreak block, which TiddlyWiki renders as text with breaks rather than as code',
-  'meta.element.inline.math': 'the content of embedded MathML, plain in every grammar that embeds it',
-  'meta.element.structure.svg': 'the content of embedded SVG, plain for the same reason',
-  'meta.link.wikilink': 'a CamelCase word the standing rule set does not autolink, so the parser builds no link to colour',
-  'meta.multids.text.html': 'a multids body line handed to the wikitext grammar, plain where no construct stands',
-  'meta.text.tiddler.fields': 'a field region, plain where no field stands',
-  'meta.sigil': 'the gaps inside a sigil, between the parts a reader looks at',
-  'meta.carrier': 'the framing region, whose marks and names carry the colour'
-};
+// The reasons live in the edition, at $:/tw5-syntax/PlainConstructs, because each answers a
+// question no theme answers: should a reader meet this as prose? A list of those inside a tool
+// stands where nobody argues over it, and a construct that outgrows its reason deserves an
+// argument rather than a quiet deletion.
+//
+// A scope leaving the list without gaining colour fails the gate; a reason answering to nothing
+// fails it the same way.
+const { readData } = require('./wiki-data.js');
+let PLAIN;
+try {
+  PLAIN = readData('PlainConstructs').data;
+} catch (e) {
+  // A gate that cannot read its own declarations must stop, never report agreement with nothing.
+  console.error(`  ${e.message}`);
+  process.exit(2);
+}
+
 
 /** A theme's rules, flattened to one selector each. */
 function loadTheme(file) {

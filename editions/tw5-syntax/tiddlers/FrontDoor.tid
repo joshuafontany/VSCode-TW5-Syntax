@@ -19,7 +19,13 @@ when the world moves and nobody notices. A harvest goes stale on a version, and 
 
 |!Tiddler |!Kind |
 |<<lar-link "$:/tw5-syntax/BuiltInVariables">> |judgement — which names TiddlyWiki's core owns |
+|<<lar-link "$:/tw5-syntax/ReaderRelations">> |judgement — what a reader must meet as one, and what a reader must tell apart |
+|<<lar-link "$:/tw5-syntax/PlainConstructs">> |judgement — why a construct reads as prose rather than as a thing |
 |<<lar-link "$:/tw5-syntax/GrammarSignals">> |harvest — every filter operator, widget and wikitext rule this TiddlyWiki registers |
+
+Each judgement carries its own reason beside it. A reason belongs with the ruling it explains, and
+a comment in a tool keeps it where nobody weighs it — so the wiki shows both, and a reason that
+stops answering to anything fails the gate that reads it, the same way a missing ruling does.
 
 !! How a new TiddlyWiki reaches the grammar
 

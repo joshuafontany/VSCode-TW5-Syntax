@@ -35,71 +35,27 @@ const THEMES = path.join(ROOT, 'node_modules', 'tm-themes', 'themes');
 // SPECIMEN and the words inside it that play one part, because a relation over scope NAMES stays
 // true when a rule swaps which capture carries which name, and such a swap makes a
 // link's visible text change colour with the presence of a caption.
-const TOGETHER = [
-  { what: "a link's visible text, captioned or not",
-    specimen: 'A [[Plain]] and a [[Caption|Target]] link.\nAn [ext[Ecaption|https://example.com]] and https://example.org here.\n',
-    words: ['Plain', 'Caption', 'Ecaption'] }
-];
+// The relations live in the edition, at $:/tw5-syntax/ReaderRelations, because each one answers a
+// question no registry answers: would a reader want these two styled differently, and would a
+// reader meet these as one thing? A list of those inside a tool stands where nobody argues over
+// it, and each entry carries the reason it stands — which the wiki shows and a comment cannot.
+//
+// TOGETHER holds a thing met as one, found over a specimen. ALIKE holds named scopes that must
+// share a colour. APART holds a distinction a reader needs. A relation naming a scope no grammar
+// emits stops checking anything, whichever list it sits in.
+const { readData } = require('./wiki-data.js');
+let RELATIONS;
+try {
+  RELATIONS = readData('ReaderRelations').data;
+} catch (e) {
+  // A gate that cannot read its own declarations must stop, never report agreement with nothing.
+  console.error(`  ${e.message}`);
+  process.exit(2);
+}
+const TOGETHER = RELATIONS.together;
+const ALIKE = RELATIONS.alike;
+const APART = RELATIONS.apart;
 
-// MEASURED AND DECLINED. TextMate's question cuts both ways, and four pairs that read alike here
-// SHOULD read alike:
-//
-//   a section's opening name beside its closing name — one construct, and the slash carries the
-//   closing, so a reader who saw them apart would read two things where one stands
-//   a bracketed value beside a single-quoted one — one value, quoted two ways
-//   a bare value beside a quoted one — every grammar surveyed keeps both under `string`
-//   a \define keyword beside a \procedure keyword — the difference between them lands in the
-//   BODY, where a define substitutes and a procedure does not, and the bodies already read apart
-//   in 72 of 100 measured pairs. A pragma keyword reads as a pragma keyword, and both open one.
-//
-// Scopes a reader meets as ONE THING, named separately so a rule can still reach each. A lar
-// root carries three terms — heading, angle of approach, carried dynamic — and they name one
-// address between them. Painted from three different families they read as three unrelated
-// things: measured, all three shared a colour in 1 of 65 themes, and Gruvbox Dark Medium gave the
-// first one aqua and the other two yellow.
-//
-// Operator ruling, 2026-09-01: the three read as one colour. They keep distinct tails, so a rule
-// written against `entity.name.tag.angle.lar` still reaches that term alone — but no bundled theme
-// rules below `entity.name.tag` for a scope this grammar emits, so under one root the three paint
-// alike in every one of them, and the differentiation stays available rather than visible.
-const ALIKE = [
-  { what: "a lar: root's three terms, which name one address between them",
-    scopes: ['entity.name.tag.heading.lar.memetic-wikitext',
-             'entity.name.tag.angle.lar.memetic-wikitext',
-             'entity.name.tag.dynamic.lar.memetic-wikitext'],
-    // Every theme, not most. The three measure at 65 of 65, so a floor below that lets several
-    // themes' worth of drift land before the gate speaks.
-    least: 65 }
-];
-
-const APART = [
-  { what: 'a link — the text a reader clicks, and the title it reaches',
-    scopes: ['markup.underline.link.tiddlywiki5', 'string.entity.other.title.link.tiddlywiki5'],
-    least: 40 },
-  // TextMate's own question decides these: "would I want these two elements styled differently?"
-  // — asked of the reader, never of the parser's node inventory.
-  //
-  // A WIDGET and an HTML ELEMENT open the same way and mean nothing alike: one calls into
-  // TiddlyWiki, one emits a tag. The host itself marks the difference with a dollar. A widget
-  // takes the family it belongs to — a thing invoked by name — rather than the tag family it
-  // merely resembles.
-  { what: 'a TiddlyWiki widget and an HTML element, which open alike and mean nothing alike',
-    scopes: ['entity.name.function.widget.tiddlywiki5', 'entity.name.tag.html.tiddlywiki5'],
-    least: 45 },
-  // A SYSTEM TITLE names something the host provides, and TiddlyWiki hides those from ordinary
-  // lists. Its home category names a framework's own thing; a second name carries it to themes,
-  // since the home category alone reaches under half of them.
-  { what: 'a title the host provides and a title an author wrote',
-    scopes: ['support.other.system.title.tiddlywiki5', 'string.entity.other.title.link.tiddlywiki5'],
-    least: 55 },
-  // The sharktooth opens a sigil in the house's namespace; the carrier mark frames the carrier
-  // itself, and what it names IS a control character. A reader scanning a meme wants the framing
-  // to stand off from what the framing carries.
-  { what: "a sigil's sharktooth and the carrier's own control mark",
-    scopes: ['keyword.control.sharktooth.memetic-wikitext',
-             'constant.character.carrier.stx.memetic-wikitext'],
-    least: 48 }
-];
 
 /** The colour a theme paints a scope, by its most specific matching rule. */
 function colourOf(theme, scope) {

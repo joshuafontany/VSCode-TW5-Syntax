@@ -7,6 +7,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- The rulings a reader depends on stand where an operator can weigh them. Which distinctions a
+  reader needs, which constructs read as prose, and which names TiddlyWiki's core owns — none of
+  the three has a registry to answer it, and all three governed a gate from inside a tool where
+  nobody argued over them. Each now lives in the wiki beside the reason it stands on, and a reason
+  that stops answering to anything fails its gate the way a missing ruling does.
 - A TiddlyWiki release reaches this grammar as a failing check rather than as a construct that
   quietly reads as prose. Booting the edition against a TiddlyWiki harvests every filter operator,
   widget and wikitext rule it registers — 84, 69 and 44 at 5.5.0-prerelease — and a gate holds the

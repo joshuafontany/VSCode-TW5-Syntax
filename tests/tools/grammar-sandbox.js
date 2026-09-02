@@ -19,11 +19,16 @@ const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..', '..');
 
-/** Copy a directory's files over the sandbox's own. */
+// Copy a directory over the sandbox's own, all the way down. A shallow copy left the edition's
+// tiddlers behind, and a gate that reads them then measured whatever the last commit held.
 function overlay(dir, sandbox) {
-  for (const entry of fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {
+  const from = path.join(ROOT, dir);
+  if (!fs.existsSync(from)) return;
+  fs.mkdirSync(path.join(sandbox, dir), { recursive: true });
+  for (const entry of fs.readdirSync(from, { withFileTypes: true })) {
+    if (entry.isDirectory()) { overlay(path.join(dir, entry.name), sandbox); continue; }
     if (!entry.isFile()) continue;
-    fs.copyFileSync(path.join(ROOT, dir, entry.name), path.join(sandbox, dir, entry.name));
+    fs.copyFileSync(path.join(from, entry.name), path.join(sandbox, dir, entry.name));
   }
 }
 
@@ -46,6 +51,7 @@ function runInSandbox(mutate, argv) {
     fs.symlinkSync(path.join(ROOT, 'node_modules'), path.join(sandbox, 'node_modules'));
     overlay('tools', sandbox);
     overlay('syntaxes', sandbox);
+    overlay('editions', sandbox);
     overlay(path.join('tests', 'samples'), sandbox);
     mutate(sandbox);
     try {
@@ -74,6 +80,7 @@ function runProvoked(provoked, argv) {
     fs.symlinkSync(path.join(ROOT, 'node_modules'), path.join(sandbox, 'node_modules'));
     overlay('tools', sandbox);
     overlay('syntaxes', sandbox);
+    overlay('editions', sandbox);
     fs.writeFileSync(path.join(sandbox, 'syntaxes', 'tiddlywiki5.json'), provoked);
     try {
       return { code: 0, out: execFileSync('node', argv.map((a) => path.join(sandbox, a)),

@@ -18,34 +18,18 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..');
-const TIDDLER = path.join(ROOT, 'editions', 'tw5-syntax', 'tiddlers', 'BuiltInVariables.tid');
 const GRAMMAR = path.join(ROOT, 'syntaxes', 'tiddlywiki5.json');
 const check = process.argv.includes('--check');
 
-/**
- * A .tid file's fields and body. The header runs to the first blank line.
- *
- * @param {string} text
- * @returns {{fields: Record<string,string>, body: string}}
- */
-function readTid(text) {
-  const lines = text.split('\n');
-  const fields = {};
-  let i = 0;
-  for (; i < lines.length; i++) {
-    if (lines[i].trim() === '') { i += 1; break; }
-    const match = /^([^:]+):\s?(.*)$/.exec(lines[i]);
-    if (match) fields[match[1].trim()] = match[2];
-  }
-  return { fields, body: lines.slice(i).join('\n') };
-}
+const { readData } = require('./wiki-data.js');
 
-const { fields, body } = readTid(fs.readFileSync(TIDDLER, 'utf8'));
-if (fields.type !== 'application/json') {
-  console.error(`  ${path.relative(ROOT, TIDDLER)} declares type ${fields.type}, and this reads JSON`);
+let list;
+try {
+  list = readData('BuiltInVariables').data;
+} catch (e) {
+  console.error(`  ${e.message}`);
   process.exit(2);
 }
-const list = JSON.parse(body);
 const exact = [...new Set(list.exact || [])].sort();
 const prefixes = [...new Set(list.prefixes || [])].sort();
 if (!exact.length && !prefixes.length) {

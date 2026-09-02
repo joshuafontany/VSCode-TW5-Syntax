@@ -1,0 +1,70 @@
+title: $:/tw5-syntax/ReaderRelations
+type: application/json
+tags: $:/tags/TW5Syntax/GrammarData
+caption: Reader relations
+description: What a reader must meet as one thing and what a reader must tell apart — a judgement no registry answers
+
+{
+    "together": [
+        {
+            "what": "a link's visible text, captioned or not",
+            "specimen": "A [[Plain]] and a [[Caption|Target]] link.\nAn [ext[Ecaption|https://example.com]] and https://example.org here.\n",
+            "words": [
+                "Plain",
+                "Caption",
+                "Ecaption"
+            ],
+            "why": "A reader clicks the text, whether an author captioned it or let the title stand. Painted apart, the same act reads as two."
+        }
+    ],
+    "alike": [
+        {
+            "what": "a lar: root's three terms, which name one address between them",
+            "scopes": [
+                "entity.name.tag.heading.lar.memetic-wikitext",
+                "entity.name.tag.angle.lar.memetic-wikitext",
+                "entity.name.tag.dynamic.lar.memetic-wikitext"
+            ],
+            "least": 65,
+            "why": "Heading, angle of approach and carried dynamic name ONE address. Painted from three families they read as three unrelated things \u2014 measured, all three shared a colour in 1 of 65 themes. Each keeps a distinct tail, so a rule reaches one term alone; no bundled theme rules below entity.name.tag for a scope this grammar emits, so the difference stands available rather than visible."
+        }
+    ],
+    "apart": [
+        {
+            "what": "a link \u2014 the text a reader clicks, and the title it reaches",
+            "scopes": [
+                "markup.underline.link.tiddlywiki5",
+                "string.entity.other.title.link.tiddlywiki5"
+            ],
+            "least": 40,
+            "why": "A caption and the title behind it do different work: one invites the click, one names where it lands."
+        },
+        {
+            "what": "a TiddlyWiki widget and an HTML element, which open alike and mean nothing alike",
+            "scopes": [
+                "entity.name.function.widget.tiddlywiki5",
+                "entity.name.tag.html.tiddlywiki5"
+            ],
+            "least": 45,
+            "why": "A widget calls into TiddlyWiki; an element emits a tag. The host marks the difference with a dollar and the grammar did not \u2014 measured, they read alike in every theme until the widget took the family it belongs to."
+        },
+        {
+            "what": "a title the host provides and a title an author wrote",
+            "scopes": [
+                "support.other.system.title.tiddlywiki5",
+                "string.entity.other.title.link.tiddlywiki5"
+            ],
+            "least": 55,
+            "why": "wiki.js#isSystemTiddler names a system title by its $:/ opening, and TiddlyWiki keeps those out of ordinary lists. The precise name says whose thing it is; a second name carries it to themes, since the precise one alone reaches under half of them."
+        },
+        {
+            "what": "a sigil's sharktooth and the carrier's own control mark",
+            "scopes": [
+                "keyword.control.sharktooth.memetic-wikitext",
+                "constant.character.carrier.stx.memetic-wikitext"
+            ],
+            "least": 48,
+            "why": "The sharktooth opens a sigil in the house namespace; the carrier mark opens the framing that carries the meme, and what it names IS a control character. A reader scanning a meme wants the framing to stand off from what it frames."
+        }
+    ]
+}
