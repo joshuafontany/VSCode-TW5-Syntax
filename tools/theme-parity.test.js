@@ -12,7 +12,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 
-const ROOT = path.resolve(__dirname, '..', '..');
+const ROOT = path.resolve(__dirname, '..');
 const WITNESS = path.join(ROOT, 'tools', 'theme-parity.js');
 const GRAMMAR = path.join(ROOT, 'syntaxes', 'tiddlywiki5.json');
 const THEMES = path.join(ROOT, 'node_modules', 'tm-themes', 'themes');

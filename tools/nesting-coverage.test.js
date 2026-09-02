@@ -3,7 +3,7 @@
 
 const test = require('node:test');
 const assert = require('node:assert');
-const { containerOf, constructsIn, compose } = require('../../tools/nesting-coverage.js');
+const { containerOf, constructsIn, compose } = require('./nesting-coverage.js');
 
 test('a heading line names its container and hands back its content', () => {
   assert.deepStrictEqual(containerOf('!! a heading here'), { name: 'heading', content: 'a heading here' });
@@ -48,7 +48,7 @@ test('a construct goes back inside its container in that container shape', () =>
 });
 
 test('the baseline puts a construct in a plain sentence, not alone on a line', () => {
-  // Alone on a line, a construct reads as its block form where one exists. A sentence is
+  // Alone on a line, a construct reads as its block form where one exists. A sentence stands
   // the fair comparison for what a container should preserve.
   assert.strictEqual(compose('inline', '{{X}}'), 'a {{X}} b');
 });

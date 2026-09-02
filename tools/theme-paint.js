@@ -14,7 +14,7 @@
 //   node tools/theme-paint.js --families      every scope the grammar emits, by family
 //
 // The deciding half — themeRules, paints, paintRate — stands under test in
-// tests/tools/theme-paint.test.js.
+// tools/theme-paint.test.js.
 
 const fs = require('node:fs');
 const path = require('node:path');

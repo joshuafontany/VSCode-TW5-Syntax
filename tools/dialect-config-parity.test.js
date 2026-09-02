@@ -18,7 +18,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { parseJsonc } = require('./contributions.test.js');
 
-const ROOT = path.resolve(__dirname, '..', '..');
+const ROOT = path.resolve(__dirname, '..');
 const read = (f) => parseJsonc(fs.readFileSync(path.join(ROOT, f), 'utf8'));
 const base = read('language-configuration.json');
 const dialect = read('memetic-language-configuration.json');

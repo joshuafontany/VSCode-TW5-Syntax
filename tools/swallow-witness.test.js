@@ -12,7 +12,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 
-const ROOT = path.resolve(__dirname, '..', '..');
+const ROOT = path.resolve(__dirname, '..');
 const WITNESS = path.join(ROOT, 'tools', 'swallow-witness.js');
 const GRAMMAR = path.join(ROOT, 'syntaxes', 'tiddlywiki5.json');
 

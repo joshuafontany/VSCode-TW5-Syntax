@@ -16,7 +16,7 @@ const os = require('node:os');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 
-const ROOT = path.resolve(__dirname, '..', '..');
+const ROOT = path.resolve(__dirname, '..');
 const CORPUS = path.join(ROOT, 'corpus', 'wikitext');
 
 /** Every annotated span in a snapshot, keyed by line and column, carrying its scopes. */

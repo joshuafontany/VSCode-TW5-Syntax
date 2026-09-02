@@ -5,10 +5,15 @@
             "filesRegExp": "^.*\\.(json|cson|plist|tmLanguage)$",
             "isTiddlerFile": false,
             "fields": {
-                "title": { "source": "filename", "prefix": "$:/tw5-syntax/tests/" },
+                "title": {
+                    "source": "filename",
+                    "prefix": "$:/tw5-syntax/tests/"
+                },
                 "type": "text/plain",
                 "tags": "$:/tags/TW5Syntax/TestFixture",
-                "text": { "source": "text" }
+                "text": {
+                    "source": "text"
+                }
             }
         },
         {
@@ -16,10 +21,15 @@
             "filesRegExp": "^.*\\.test$",
             "isTiddlerFile": false,
             "fields": {
-                "title": { "source": "filename", "prefix": "$:/tw5-syntax/tests/tiddlywiki5/" },
+                "title": {
+                    "source": "filename",
+                    "prefix": "$:/tw5-syntax/tests/tiddlywiki5/"
+                },
                 "type": "text/plain",
                 "tags": "$:/tags/TW5Syntax/Assertion",
-                "text": { "source": "text" }
+                "text": {
+                    "source": "text"
+                }
             }
         },
         {
@@ -27,10 +37,15 @@
             "filesRegExp": "^.*\\.test$",
             "isTiddlerFile": false,
             "fields": {
-                "title": { "source": "filename", "prefix": "$:/tw5-syntax/tests/memetic-wikitext/" },
+                "title": {
+                    "source": "filename",
+                    "prefix": "$:/tw5-syntax/tests/memetic-wikitext/"
+                },
                 "type": "text/plain",
                 "tags": "$:/tags/TW5Syntax/Assertion",
-                "text": { "source": "text" }
+                "text": {
+                    "source": "text"
+                }
             }
         },
         {
@@ -38,21 +53,15 @@
             "filesRegExp": "^.*\\.(test|md)$",
             "isTiddlerFile": false,
             "fields": {
-                "title": { "source": "filename", "prefix": "$:/tw5-syntax/tests/known-gaps/" },
+                "title": {
+                    "source": "filename",
+                    "prefix": "$:/tw5-syntax/tests/known-gaps/"
+                },
                 "type": "text/plain",
                 "tags": "$:/tags/TW5Syntax/Assertion $:/tags/TW5Syntax/KnownGap",
-                "text": { "source": "text" }
-            }
-        },
-        {
-            "path": "../../../../tests/tools",
-            "filesRegExp": "^.*\\.js$",
-            "isTiddlerFile": false,
-            "fields": {
-                "title": { "source": "filename", "prefix": "$:/tw5-syntax/tests/tools/" },
-                "type": "application/javascript",
-                "tags": "$:/tags/TW5Syntax/ToolTest",
-                "text": { "source": "text" }
+                "text": {
+                    "source": "text"
+                }
             }
         },
         {
@@ -60,10 +69,15 @@
             "filesRegExp": "^.*\\.(tw|mem|tid|md|html|meta|multids|test)$",
             "isTiddlerFile": false,
             "fields": {
-                "title": { "source": "filename", "prefix": "$:/tw5-syntax/tests/samples/" },
+                "title": {
+                    "source": "filename",
+                    "prefix": "$:/tw5-syntax/tests/samples/"
+                },
                 "type": "text/plain",
                 "tags": "$:/tags/TW5Syntax/Specimen",
-                "text": { "source": "text" }
+                "text": {
+                    "source": "text"
+                }
             }
         },
         {
@@ -71,10 +85,15 @@
             "filesRegExp": "^.*\\.snap$",
             "isTiddlerFile": false,
             "fields": {
-                "title": { "source": "filename", "prefix": "$:/tw5-syntax/tests/snapshots/" },
+                "title": {
+                    "source": "filename",
+                    "prefix": "$:/tw5-syntax/tests/snapshots/"
+                },
                 "type": "text/plain",
                 "tags": "$:/tags/TW5Syntax/Snapshot",
-                "text": { "source": "text" }
+                "text": {
+                    "source": "text"
+                }
             }
         }
     ]

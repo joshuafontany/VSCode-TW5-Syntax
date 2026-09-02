@@ -16,7 +16,7 @@ const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const ROOT = path.resolve(__dirname, '..', '..');
+const ROOT = path.resolve(__dirname, '..');
 const SAMPLES = path.join(ROOT, 'tests', 'samples');
 
 /** Every scope name a grammar declares, interpolating names excepted. */

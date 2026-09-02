@@ -14,9 +14,10 @@ const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const ROOT = path.resolve(__dirname, '..', '..');
+const ROOT = path.resolve(__dirname, '..');
 const HARVEST = path.join(ROOT, 'editions', 'tw5-syntax', 'tiddlers', 'GrammarSignals.tid');
-const host = process.env.TW5_PATH ?? path.join(ROOT, '..', 'TiddlyWiki5');
+const { resolveTiddlyWiki } = require('./tw5-oracle.js');
+const host = resolveTiddlyWiki() ?? '';
 const live = { skip: fs.existsSync(path.join(host, 'tiddlywiki.js')) ? false : 'no TiddlyWiki beside this repo', timeout: 600000 };
 
 const run = (tool, args = []) => {

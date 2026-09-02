@@ -5,11 +5,11 @@
 // corpus, where a wrong answer and a wrong reason look identical.
 // Here the snapshot stands as a fixture and states its own answer.
 //
-//   node --test tests/tools/
+//   node --test tools/
 
 const test = require('node:test');
 const assert = require('node:assert');
-const { judgeSnapshot } = require('../../tools/upstream-coverage.js');
+const { judgeSnapshot } = require('./upstream-coverage.js');
 
 // `#^ …` annotates source column 0. `# ^ …` annotates column 1.
 const BASE = 'text.html.tiddlywiki5 meta.paragraph.tiddlywiki5';

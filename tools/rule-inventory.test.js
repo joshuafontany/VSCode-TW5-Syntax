@@ -9,7 +9,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { resolveTiddlyWiki } = require('../../tools/tw5-oracle.js');
+const { resolveTiddlyWiki } = require('./tw5-oracle.js');
 const {
   PREFIX,
   configKeysFor,
@@ -17,7 +17,7 @@ const {
   readShippedDefaults,
   buildInventory,
   configurationProperties
-} = require('../../tools/rule-inventory.js');
+} = require('./rule-inventory.js');
 
 // ── the pure half ────────────────────────────────────────────────────────────
 
@@ -69,7 +69,7 @@ const TW = resolveTiddlyWiki();
 const live = { skip: TW ? false : 'no TiddlyWiki checkout resolved (set TW5_PATH)' };
 
 // The pragma prefix reads PLURAL where the other two read singular. Nothing derives that, so the
-// three strings are transcribed — and this test reads them back out of wikiparser.js so a
+// this repo transcribes three strings — and this test reads them back out of wikiparser.js so a
 // rename upstream fails here rather than in a settings key nobody notices.
 test('the three prefixes match the ones wikiparser.js reads', live, () => {
   const src = fs.readFileSync(path.join(TW, 'core/modules/parsers/wikiparser/wikiparser.js'), 'utf8');

@@ -16,7 +16,7 @@ const os = require('node:os');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 
-const ROOT = path.resolve(__dirname, '..', '..');
+const ROOT = path.resolve(__dirname, '..');
 const SENTENCE = 'An ordinary sentence stands here.';
 
 /** One specimen of each construct, taken from the rule's own opening pattern. */

@@ -2,7 +2,7 @@
 //
 // A scope name interpolating a capture — `meta.attribute.$1.html` — takes whatever the
 // capture matched. Where that capture can hold a space, a bracket or a paren, the emitted
-// name stops being one name: a snapshot splits scopes on whitespace, so a mangled name arrives
+// name stops reading as one name: a snapshot splits scopes on whitespace, so a mangled name arrives
 // as two tokens, the second usually opening with a dot.
 //
 // Nothing downstream complains. A theme simply never matches it, a `-` exclusion in an
@@ -16,7 +16,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { readSnapshot } = require('../../tools/snapshot-format.js');
+const { readSnapshot } = require('./snapshot-format.js');
 
 // A scope name: dot-separated segments, none of them empty. A segment may hold whatever an
 // interpolated capture legitimately holds — VS Code's own HTML grammar emits
@@ -82,7 +82,7 @@ test('a well-formed scope passes and a mangled one fails', () => {
   assert.strictEqual(damage('meta.tiddle.field.text.tiddlywiki5.multids-file'), null, 'so does a sibling grammar');
 });
 
-const SAMPLES = path.resolve(__dirname, '..', 'samples');
+const SAMPLES = path.resolve(__dirname, '..', 'tests', 'samples');
 const snapshots = fs.existsSync(SAMPLES) ? scopesInSnapshots(SAMPLES) : [];
 const live = { skip: snapshots.length > 0 ? false : 'no pinned snapshots' };
 
@@ -102,7 +102,7 @@ const FLOOR = 0;
 // A theme writes its rules against a scope's OPENING segments, so a name opening on anything but
 // a TextMate root reaches no rule at all. Measured: an emphasis mark named
 // `bold.punctuation.definition.markup.begin` painted in two of sixty-five themes and in neither of
-// the two a reader is likely to run; opening on `punctuation` it paints in forty.
+// the two a reader most likely runs; opening on `punctuation` it paints in forty.
 const ROOTS = new Set(['comment', 'constant', 'entity', 'invalid', 'keyword', 'markup', 'meta',
   'punctuation', 'source', 'storage', 'string', 'support', 'text', 'variable']);
 

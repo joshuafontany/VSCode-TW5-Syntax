@@ -418,6 +418,17 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
   points at the one directory that stays outside: the coverage floor already measures those files,
   and a second copy would part from the first the day somebody edits one.
+- An instrument and the test that collides it stand in one directory. A second `tools/` under
+  `tests/` held the tests, and the name promised a mirror the directory never held: of 29 tests
+  there, 15 answered a question about the whole repository and 14 instruments carried no test under
+  their own name. `tests/` now holds one kind of thing — the declarative grammar assertions
+  `vscode-tmgrammar-test` reads — and `tools/` holds the other, which `node --test` runs. The wiki
+  tells them apart by tag.
+- Two tests resolved the TiddlyWiki this repo answers to by hand, reading the environment and
+  falling back to a sibling checkout, where the oracle already tries three more candidates behind
+  that. A contributor whose checkout stood somewhere only the oracle finds saw those two skip while
+  every other gate ran. Both go through the oracle now, and the one-implementation gate reaches
+  tests as well as tools.
 - A gate holds that claim. It boots the edition, compares every arriving tiddler against the bytes
   on disk, and derives its expectation from the specs rather than listing the directories again —
   so a sixth directory gets checked without anybody editing the gate. It also holds the two

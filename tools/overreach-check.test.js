@@ -7,9 +7,9 @@
 
 const test = require('node:test');
 const assert = require('node:assert');
-const { parseSnapshot, offsetAt, claims, verdicts, review } = require('../../tools/overreach-check.js');
-const { declines } = require('../../tools/snapshot-format.js');
-const { readExpected, isExpected, parsesAsWikitext } = require('../../tools/overreach-check.js');
+const { parseSnapshot, offsetAt, claims, verdicts, review } = require('./overreach-check.js');
+const { declines } = require('./snapshot-format.js');
+const { readExpected, isExpected, parsesAsWikitext } = require('./overreach-check.js');
 
 test('a snapshot reads back as the spans it annotates', () => {
   const snap = ['>A x1HelloThere here', '#    ^^^^^^^^^^ text.html.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5', '>'].join('\n');

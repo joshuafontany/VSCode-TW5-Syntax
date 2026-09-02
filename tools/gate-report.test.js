@@ -11,13 +11,13 @@ const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const ROOT = path.resolve(__dirname, '..', '..');
+const ROOT = path.resolve(__dirname, '..');
 const TOOL = fs.readFileSync(path.join(ROOT, 'tools', 'gate-report.js'), 'utf8');
 const scripts = require(path.join(ROOT, 'package.json')).scripts;
 
 // The tool exports its own derivation, so this reads the same list the report runs rather than
 // deriving a second one that could differ from it silently.
-const { gateNames } = require('../../tools/gate-report.js');
+const { gateNames } = require('./gate-report.js');
 const gates = gateNames;
 
 test('the report takes its gate list from the manifest', () => {

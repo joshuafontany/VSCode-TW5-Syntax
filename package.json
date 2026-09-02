@@ -353,7 +353,7 @@
         "tests-wikitext": "bash ./run_tests.sh './tests/tiddlywiki5/tiddlywiki5.*.tw5.test'",
         "tests-memetic": "bash ./run_tests.sh './tests/memetic-wikitext/*.mem.test'",
         "lint-closure": "node ./tools/terminator-closure.js ./syntaxes/memetic-wikitext.json",
-        "test-tools": "node --test \"./tests/tools/*.test.js\"",
+        "test-tools": "node --test \"./tools/*.test.js\"",
         "compose-wikitext": "node ./tools/composition-check.js text.html.tiddlywiki5 \"./tests/samples/*.tw\"",
         "compose-memetic": "node ./tools/composition-check.js text.html.tiddlywiki5.memetic-wikitext \"./tests/samples/*.mem\"",
         "compose": "npm run compose-wikitext",

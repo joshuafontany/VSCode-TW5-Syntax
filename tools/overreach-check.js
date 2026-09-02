@@ -34,7 +34,7 @@
 // supplies the claims and TiddlyWiki's parser supplies the verdicts.
 //
 // The deciding half — offsetAt, review — stands under test in
-// tests/tools/overreach-check.test.js; the .snap format itself lives in tools/snapshot-format.js.
+// tools/overreach-check.test.js; the .snap format itself lives in tools/snapshot-format.js.
 
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');

@@ -7,15 +7,15 @@
 //
 // `overreach-check --truncate` cuts every specimen short at a seeded offset to manufacture that
 // other end: an opener with no close, a table missing its last row, a macro body cut mid-parameter.
-// Both sides read the same bytes, so the verdict law holds — but two readings of the result are
+// Both sides read the same bytes, so the verdict law holds — but two readings of the result stand
 // wrong, and each one flatters the grammar:
 //
 //   THE CUT'S OWN REFUSAL. A construct whose close lies past the cut refuses for that reason
 //   alone. Reading that as over-reach would demand an editor go dark on every keystroke a
 //   construct takes to type. Truncation takes a PREFIX, so an offset means the same in both
-//   texts: the whole tiddler answers whether the cut is the entire reason.
+//   texts: the whole tiddler answers whether the cut carries the entire reason.
 //
-//   THE STORED BODY. A macro body is stored verbatim, never parsed, so the parser rules on
+//   THE STORED BODY. TiddlyWiki stores a macro body verbatim and never parses it, so the parser rules on
 //   nothing inside it. Reading "not plain text" there as "the construct works" lets the cut
 //   explain a span nothing ever examined — 377 of 519 spans at seed 1, three quarters of the
 //   result. The check carries the same opaque law `review` holds, so a stored body answers
@@ -26,7 +26,7 @@ const assert = require('node:assert');
 const { execFileSync } = require('node:child_process');
 const path = require('node:path');
 
-const ROOT = path.resolve(__dirname, '..', '..');
+const ROOT = path.resolve(__dirname, '..');
 const TW5 = path.resolve(ROOT, '..', 'TiddlyWiki5');
 const have = require('node:fs').existsSync(TW5);
 const live = { skip: have ? false : 'no TiddlyWiki checkout beside the extension' };

@@ -59,17 +59,34 @@ copied. A `tiddlywiki.files` spec beside each one names the directory. Open a ti
 source stands there, comments and all; edit the file on disk and the next boot shows the edit.
 
 |!Directory |!Prefix |!Tag |
-|`tools/` |`$:/tw5-syntax/tools/` |`$:/tags/TW5Syntax/Tool` |
+|`tools/` |`$:/tw5-syntax/tools/` |`$:/tags/TW5Syntax/Tool` for an instrument, `ToolTest` for the test beside it |
 |`syntaxes/` |`$:/tw5-syntax/syntaxes/` |`$:/tags/TW5Syntax/Grammar` |
 |`snippets/` |`$:/tw5-syntax/snippets/` |`$:/tags/TW5Syntax/Snippet` |
 |`docs/` |`$:/tw5-syntax/docs/` |`$:/tags/TW5Syntax/Meme`, and `PriorArt` for the survey |
-|`tests/` |`$:/tw5-syntax/tests/` |`Assertion`, `ToolTest`, `Specimen`, `Snapshot`, `TestFixture`, `KnownGap` |
+|`tests/` |`$:/tw5-syntax/tests/` |`Assertion`, `Specimen`, `Snapshot`, `TestFixture`, `KnownGap` |
 
 The memes under `docs/` load as wikitext and render. Everything under `tests/` loads as plain
 text on purpose: a specimen exists for a tokenizer rather than for a reader, and rendering one shows
 what the construct means instead of the characters the assertion pins.
 
 <<lar-link "$:/tw5-syntax/Corpus">> names the one directory that stays outside, and why.
+
+!!! One home for the instruments
+
+An instrument and the test that collides it sit in the same directory: `tools/theme-model.js`
+beside `tools/theme-model.test.js`. A second `tools/` under `tests/` used to hold the tests, and
+the name promised a mirror the directory never held — of 29 tests there, 15 answered a question
+about the whole repository rather than about any instrument, and 14 instruments carried no test
+under their own name. A reader who trusted the name looked for a pairing that stood for half the
+files.
+
+`tests/` now holds one kind of thing: the grammar assertions, declarative, read by
+`vscode-tmgrammar-test`, one directory per dialect. `tools/` holds the other: executable, read by
+`node --test`. Each answers to its own runner, and the directory says which.
+
+The wiki reads both from the one directory and tells them apart by tag — `Tool` for an instrument,
+`ToolTest` for a test — so a reader browsing the instruments meets no test, and a reader after a
+test finds it beside what it collides.
 
 !!! Two hazards a spec carries
 
@@ -85,7 +102,7 @@ fixture beside it says so, which names the reason that fixture stands. The gate 
 deriving it — a pair on disk, neither half under the house prefix — rather than by naming the
 file, so a specimen that grows a sidecar gets covered without anybody remembering.
 
-<<lar-link "$:/tw5-syntax/tests/tools/wiki-reads-the-repo.test.js">> boots the edition and compares
+<<lar-link "$:/tw5-syntax/tools/wiki-reads-the-repo.test.js">> boots the edition and compares
 every arriving tiddler against the bytes on disk, so a spec that stops reaching a file, or a file
 that reaches the wiki changed, fails rather than goes quiet.
 
@@ -93,8 +110,8 @@ that reaches the wiki changed, fails rather than goes quiet.
 
 |!Surface |!What it carries |
 |`syntaxes/` |the grammars — one wikitext base, one dialect, two injections registered to both |
-|`tests/tiddlywiki5/` and `tests/memetic-wikitext/` |assertions, each pinned to a measured snapshot |
+|`tests/` |the grammar assertions — declarative, read by `vscode-tmgrammar-test`, one dialect per directory |
 |`tests/samples/` |specimens, and the snapshots `npm run snap-update` re-pins |
-|`tools/` |the witnesses — each one collides against the fault it stands for |
+|`tools/` |the witnesses, and the test beside each one that collides it against the fault it stands for |
 |`docs/prior-art/` |twenty highlighting systems surveyed, kept verbatim |
 |`corpus/` |broad ground, gated on invariants — on disk, never in the wiki |

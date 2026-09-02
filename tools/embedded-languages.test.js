@@ -13,9 +13,9 @@
 const test = require('node:test');
 const assert = require('node:assert');
 const path = require('node:path');
-const { declaredScopes } = require('../../tools/grammar-scopes.js');
+const { declaredScopes } = require('./grammar-scopes.js');
 
-const ROOT = path.resolve(__dirname, '..', '..');
+const ROOT = path.resolve(__dirname, '..');
 const manifest = require(path.join(ROOT, 'package.json')).contributes;
 const grammar = require(path.join(ROOT, 'syntaxes', 'tiddlywiki5.json'));
 

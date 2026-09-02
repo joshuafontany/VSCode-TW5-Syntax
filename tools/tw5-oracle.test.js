@@ -15,7 +15,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { flatten, isPlainText, verdictAt, resolveTiddlyWiki, boot } = require('../../tools/tw5-oracle.js');
+const { flatten, isPlainText, verdictAt, resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
 
 /** The span of `part` inside `text`, so no test carries a hand-counted column. */
 const span = (text, part) => {

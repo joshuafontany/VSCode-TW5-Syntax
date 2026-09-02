@@ -19,10 +19,10 @@
 //   node tools/rule-inventory.js [--json|--configuration]
 //
 // --configuration emits the contributes.configuration properties block, so the extension's
-// settings are generated from TiddlyWiki's rule modules rather than transcribed from them.
+// settings come off TiddlyWiki's rule modules rather than a transcription of them.
 //
 // The deciding half — configKeysFor, readShippedDefaults, buildInventory — stands under
-// test in tests/tools/rule-inventory.test.js.
+// test in tools/rule-inventory.test.js.
 
 const fs = require('node:fs');
 const path = require('node:path');

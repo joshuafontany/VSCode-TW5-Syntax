@@ -6,7 +6,7 @@
 
 const test = require('node:test');
 const assert = require('node:assert');
-const { readingsOf, movedLines } = require('../../tools/composition-check.js');
+const { readingsOf, movedLines } = require('./composition-check.js');
 
 const B = 'text.html.tiddlywiki5 meta.paragraph.tiddlywiki5';
 
@@ -18,7 +18,7 @@ test('a snapshot reads into one entry per source line, in order', () => {
 });
 
 test('the same line text in two places keeps two readings', () => {
-  // Keying by line text compares one sample's reading against another's, which is how three
+  // Keying by line text compares one sample's reading against another's, the way three
   // pairs read as failing while every sample composed.
   const snap = ['>dup', '#^^^ FIRST', '>dup', '#^^^ SECOND'].join('\n');
   const r = readingsOf(snap);

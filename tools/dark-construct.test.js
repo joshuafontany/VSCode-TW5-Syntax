@@ -11,7 +11,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { runInSandbox } = require('./grammar-sandbox.js');
 
-const ROOT = path.resolve(__dirname, '..', '..');
+const ROOT = path.resolve(__dirname, '..');
 const THEMES = path.join(ROOT, 'node_modules', 'tm-themes', 'themes');
 const live = { skip: fs.existsSync(THEMES) ? false : 'no bundled themes', timeout: 600000 };
 

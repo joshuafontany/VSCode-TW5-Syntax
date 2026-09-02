@@ -17,7 +17,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 
-const ROOT = path.resolve(__dirname, '..', '..');
+const ROOT = path.resolve(__dirname, '..');
 
 // Copy a directory over the sandbox's own, all the way down. A shallow copy left the edition's
 // tiddlers behind, and a gate that reads them then measured whatever the last commit held.

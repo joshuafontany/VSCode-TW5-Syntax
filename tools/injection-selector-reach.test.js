@@ -16,9 +16,9 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { readSnapshot } = require('../../tools/snapshot-format.js');
+const { readSnapshot } = require('./snapshot-format.js');
 
-const ROOT = path.resolve(__dirname, '..', '..');
+const ROOT = path.resolve(__dirname, '..');
 const SAMPLES = path.join(ROOT, 'tests', 'samples');
 const read = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, 'syntaxes', f), 'utf8'));
 
@@ -107,7 +107,7 @@ test('every injection selector reaches a scope the corpus emits', live, () => {
 });
 
 // An exclusion naming a scope nothing emits fences nothing. It breaks no colour on the day it
-// goes stale — it lets through what it stood to hold back, wherever that scope is emitted under
+// goes stale — it lets through what it stood to hold back, wherever a grammar emits that scope under
 // another name.
 test('every injection exclusion fences a scope the corpus emits', live, () => {
   const idle = [];

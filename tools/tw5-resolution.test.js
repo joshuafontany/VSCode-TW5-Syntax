@@ -9,7 +9,7 @@
 //     contributor holding only this repository still runs every gate rather than skipping them
 //
 // The checkout outranks the package. A released parser answering for gates aimed at unreleased
-// parser work would report agreement with something nobody is editing, and both resolve, and
+// parser work would report agreement with something nobody edits, and both resolve, and
 // both boot, so nothing would say which one answered.
 //
 // TW5_PATH outranks both, for a contributor whose checkout lives elsewhere.
@@ -18,9 +18,9 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { resolveTiddlyWiki } = require('../../tools/tw5-oracle.js');
+const { resolveTiddlyWiki } = require('./tw5-oracle.js');
 
-const ROOT = path.resolve(__dirname, '..', '..');
+const ROOT = path.resolve(__dirname, '..');
 const pkg = require(path.join(ROOT, 'package.json'));
 
 test('TiddlyWiki stands pinned, exactly, and only for development', () => {
@@ -33,7 +33,7 @@ test('TiddlyWiki stands pinned, exactly, and only for development', () => {
 test('a checkout beside this repository outranks the pinned package', () => {
   const sibling = path.resolve(ROOT, '..', 'TiddlyWiki5');
   if (!fs.existsSync(path.join(sibling, 'boot', 'boot.js'))) {
-    // No checkout stands here, so the package answers and the order cannot be read.
+    // No checkout stands here, so the package answers and the order stays unreadable.
     assert.ok(resolveTiddlyWiki(), 'neither a checkout nor the package resolved');
     return;
   }

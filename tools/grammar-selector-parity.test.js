@@ -16,7 +16,7 @@ const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const ROOT = path.resolve(__dirname, '..', '..');
+const ROOT = path.resolve(__dirname, '..');
 const read = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, 'syntaxes', f), 'utf8'));
 const pkg = require(path.join(ROOT, 'package.json'));
 const wikitext = read('tiddlywiki5.json');
@@ -38,7 +38,7 @@ const selectors = (grammar, prefix) => Object.keys(grammar.injections || {}).fil
 
 // A shared injection stands in ONE grammar, registered to reach every scope that colours
 // wikitext. A TextMate injection keys on a scope name and a wrapper carries a different one, so an
-// injection written inside the base grammar fires only there — which is why each wrapper once
+// injection written inside the base grammar fires only there — which explains why each wrapper once
 // copied it, and why a wrapper that forgot the copy lost colouring silently. A registration
 // forgotten leaves the injection reaching nobody, which this reads at once.
 test('a shared injection stands in one grammar and reaches every scope', () => {

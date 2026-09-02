@@ -9,7 +9,7 @@
 const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
-const { themeRules, paints, loadThemes, paintRate, grammarScopes, THEME_DIR } = require('../../tools/theme-paint.js');
+const { themeRules, paints, loadThemes, paintRate, grammarScopes, THEME_DIR } = require('./theme-paint.js');
 
 // ── the pure half ────────────────────────────────────────────────────────────
 

@@ -23,7 +23,7 @@
 // no content, so those rules never reach the corpus sweep and carry hand-written cases in
 // tests/tiddlywiki5 instead.
 //
-// The deciding half stands under test in tests/tools/upstream-coverage.test.js, against
+// The deciding half stands under test in tools/upstream-coverage.test.js, against
 // snapshots that state their answer rather than leaving a grammar to supply it.
 
 const { execFileSync } = require('node:child_process');

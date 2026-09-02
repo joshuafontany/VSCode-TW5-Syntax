@@ -11,8 +11,9 @@ const assert = require('node:assert');
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
+const { resolveTiddlyWiki } = require('./tw5-oracle.js');
 
-const ROOT = path.resolve(__dirname, '..', '..');
+const ROOT = path.resolve(__dirname, '..');
 const TIDDLER = path.join(ROOT, 'editions', 'tw5-syntax', 'tiddlers', 'BuiltInVariables.tid');
 
 const run = (args) => {
@@ -46,7 +47,8 @@ test('the tiddler names something, and names it once', () => {
 // Every name here claims a construct the core owns. A name TiddlyWiki does not define paints an
 // author's variable as the language's own.
 test('every name the tiddler claims, TiddlyWiki defines', () => {
-  const host = process.env.TW5_PATH ?? path.join(ROOT, '..', 'TiddlyWiki5');
+      const host = resolveTiddlyWiki();
+      if (!host) return; // no TiddlyWiki resolved on this machine
   const docs = path.join(host, 'editions', 'tw5.com', 'tiddlers', 'variables');
   if (!fs.existsSync(docs)) return; // the host's own documentation stands elsewhere on this machine
   const documented = fs.readdirSync(docs).join('\n');

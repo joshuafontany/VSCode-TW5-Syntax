@@ -16,7 +16,7 @@
 //   node tools/tw5-oracle.js --rules        list the rules TiddlyWiki stands
 //
 // The deciding half — flatten, isPlainText, isOpaqueBody, verdictAt — stands under test in
-// tests/tools/tw5-oracle.test.js.
+// tools/tw5-oracle.test.js.
 
 const fs = require('node:fs');
 const path = require('node:path');
@@ -77,7 +77,7 @@ function isPlainText(node) {
 // Constructs TiddlyWiki stores rather than parses. macrodef and fnprocdef build a `set` node
 // carrying the body in attributes.value, which TiddlyWiki examines at the CALL, in whatever
 // context the call stands, never at the definition. Neither the name nor the body carries an
-// extent, so no column inside one can be answered for.
+// extent, so no column inside one carries an answer.
 const UNPARSED_BODY = new Set(['macrodef', 'fnprocdef']);
 
 // Rules that consume a leading mark and hand back a node BEGINNING AFTER IT. wikilinkprefix

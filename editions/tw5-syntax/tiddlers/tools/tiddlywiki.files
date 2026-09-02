@@ -2,18 +2,24 @@
     "directories": [
         {
             "path": "../../../../tools",
-            "filesRegExp": "^.*\\.(js|sh)$",
+            "filesRegExp": "^(?!.*\\.test\\.js$).*\\.(js|sh)$",
             "isTiddlerFile": false,
             "fields": {
-                "title": {
-                    "source": "filename",
-                    "prefix": "$:/tw5-syntax/tools/"
-                },
+                "title": { "source": "filename", "prefix": "$:/tw5-syntax/tools/" },
                 "type": "application/javascript",
                 "tags": "$:/tags/TW5Syntax/Tool",
-                "text": {
-                    "source": "text"
-                }
+                "text": { "source": "text" }
+            }
+        },
+        {
+            "path": "../../../../tools",
+            "filesRegExp": "^.*\\.test\\.js$",
+            "isTiddlerFile": false,
+            "fields": {
+                "title": { "source": "filename", "prefix": "$:/tw5-syntax/tools/" },
+                "type": "application/javascript",
+                "tags": "$:/tags/TW5Syntax/ToolTest",
+                "text": { "source": "text" }
             }
         }
     ]
