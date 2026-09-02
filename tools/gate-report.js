@@ -28,9 +28,23 @@ const check = process.argv.includes('--check');
 // A script that runs a tool and renders a VERDICT. The manifest names them; these stand aside:
 // a builder, a server, a reporting tool that answers a question rather than judging one, and the
 // per-scope snapshot runs that `snap` already carries whole.
-const SKIP = /^(bench|edition|snap-update|snap-[a-z]|signals$|test|tests-|vscode|package|watch|compile|lint|corpus-verbose|rule-inventory|theme-paint|tw5-oracle|overreach-corpus-files)/;
+// `gates` names this tool, which would run itself and never stop.
+const SKIP = /^(gates$|bench|edition|snap-update|snap-[a-z]|signals$|test|tests-|vscode|package|watch|compile|lint|corpus-verbose|rule-inventory|theme-paint|tw5-oracle|overreach-corpus-files)/;
 
 const scripts = require(path.join(ROOT, 'package.json')).scripts;
+
+/** The gates the manifest names, derived once so a caller never derives it a second way. */
+function gateNames() {
+  return Object.entries(scripts)
+    .filter(([name, body]) => !SKIP.test(name) && /^node \.\/tools\/|^bash \.\/tools\//.test(body))
+    .map(([name]) => name)
+    .sort();
+}
+
+module.exports = { SKIP, gateNames };
+
+if (require.main !== module) return;
+
 const gates = Object.entries(scripts)
   .filter(([name, body]) => !SKIP.test(name) && /^node \.\/tools\/|^bash \.\/tools\//.test(body))
   .map(([name]) => name)

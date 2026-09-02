@@ -1,0 +1,124 @@
+title: $:/tw5-syntax/GateReport
+type: application/json
+tags: $:/tags/TW5Syntax/GrammarData
+caption: Gate report
+description: What each gate said when it last ran — harvested, never hand-written
+gates-held: 18 of 22
+
+{
+    "gates": 22,
+    "held": 18,
+    "failing": 4,
+    "results": [
+        {
+            "gate": "attribute-guard",
+            "held": true,
+            "said": "7  the guard refuses and the parser BUILDS — adopting it costs this"
+        },
+        {
+            "gate": "backtrack-witness",
+            "held": true,
+            "said": "0  pattern(s) a reader would feel stall on unfinished input"
+        },
+        {
+            "gate": "builtins",
+            "held": true,
+            "said": "builtins-sync  7 name(s) and 1 prefix(es), the grammar current"
+        },
+        {
+            "gate": "canary-memetic",
+            "held": true,
+            "said": "bleed-canary  text.html.tiddlywiki5.memetic-wikitext  4 samples, 0 bleeding"
+        },
+        {
+            "gate": "canary-tid",
+            "held": true,
+            "said": "bleed-canary  source.tiddlywiki5.tid-file  2 samples, 0 bleeding"
+        },
+        {
+            "gate": "canary-wikitext",
+            "held": false,
+            "said": "bleed-canary  text.html.tiddlywiki5  22 samples, 2 bleeding"
+        },
+        {
+            "gate": "colour-witness",
+            "held": true,
+            "said": "0  relation(s) that stopped checking anything"
+        },
+        {
+            "gate": "compose-memetic",
+            "held": true,
+            "said": "composition-check  text.html.tiddlywiki5.memetic-wikitext  4 pairs, 0 that do not compose"
+        },
+        {
+            "gate": "compose-wikitext",
+            "held": false,
+            "said": "composition-check  text.html.tiddlywiki5  22 pairs, 2 that do not compose"
+        },
+        {
+            "gate": "corpus",
+            "held": true,
+            "said": "corpus-check  42 files, 526 scopes declared, 466 reached (floor 466)"
+        },
+        {
+            "gate": "dark-construct",
+            "held": true,
+            "said": "dark-construct  389 construct(s) over 65 themes, 13 plain, 0 unaccounted"
+        },
+        {
+            "gate": "nesting-coverage",
+            "held": true,
+            "said": "nesting-coverage  14 container/construct pairs from TiddlyWiki's own tiddlers"
+        },
+        {
+            "gate": "overreach",
+            "held": false,
+            "said": "0  span(s) the grammar CONDEMNS and TiddlyWiki builds"
+        },
+        {
+            "gate": "overreach-corpus",
+            "held": false,
+            "said": "0  span(s) the grammar CONDEMNS and TiddlyWiki builds"
+        },
+        {
+            "gate": "overreach-corpus-memetic",
+            "held": true,
+            "said": "0  span(s) the grammar CONDEMNS and TiddlyWiki builds"
+        },
+        {
+            "gate": "overreach-cut",
+            "held": true,
+            "said": "0  span(s) the grammar CONDEMNS and TiddlyWiki builds"
+        },
+        {
+            "gate": "overreach-host",
+            "held": true,
+            "said": "0  span(s) the grammar CONDEMNS and TiddlyWiki builds"
+        },
+        {
+            "gate": "rule-coverage",
+            "held": true,
+            "said": "rule-coverage  TiddlyWiki 5.5.0-prerelease: 44 rule(s), 41 read, 3 under another name, 0 unaccounted"
+        },
+        {
+            "gate": "signals:check",
+            "held": true,
+            "said": "grammar-signals  TiddlyWiki 5.5.0-prerelease — 84 operator(s), 69 widget(s), 44 rule(s), the harvest current"
+        },
+        {
+            "gate": "swallow-witness",
+            "held": true,
+            "said": "swallow-witness  25 opener(s) unterminated and 17 closed, 0 that read the block boundary differently from the parser"
+        },
+        {
+            "gate": "theme-parity",
+            "held": true,
+            "said": "theme-parity  7 construct(s) across 65 themes and 6 comparator grammars, 0 that themes reach less than the panel does"
+        },
+        {
+            "gate": "upstream-coverage",
+            "held": true,
+            "said": "ok       whitespace               1/1  [pragma]"
+        }
+    ]
+}
