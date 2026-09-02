@@ -20,14 +20,6 @@ module-type: startup
  * own TW5 modules — the source carries the tiddler header, so the compiled file needs no wrapper.
  */
 
-declare const exports: Record<string, unknown>;
-declare const $tw: {
-  version: string;
-  modules: { types: Record<string, Record<string, unknown>> };
-  wiki: { addTiddler: (fields: Record<string, string>) => void };
-  utils: { each: (o: unknown, f: (v: unknown, k: string) => void) => void };
-};
-
 exports.name = "grammar-signals";
 exports.platforms = ["node"];
 exports.after = ["load-modules"];

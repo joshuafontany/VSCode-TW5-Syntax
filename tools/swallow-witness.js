@@ -33,6 +33,7 @@ const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { grammarArgs } = require('./tokenizer.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const verbose = process.argv.includes('--verbose');
@@ -73,8 +74,7 @@ function grammarStops(dir, opener, index) {
 
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'swallow-'));
 const files = OPENERS.map((o, i) => grammarStops(scratch, o, i));
-const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'],
-  { encoding: 'utf8', cwd: ROOT }).trim().split('\n').filter(Boolean);
+const grammars = grammarArgs();
 execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', 'text.html.tiddlywiki5', '-u', ...files],
   { cwd: ROOT, stdio: 'ignore' });
 

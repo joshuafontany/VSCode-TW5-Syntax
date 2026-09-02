@@ -40,6 +40,7 @@ const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { grammarArgs } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
 const { BASE, readSnapshot, claims, verdicts, declines } = require('./snapshot-format.js');
 
@@ -74,7 +75,7 @@ function offsetAt(source, line, col) {
  * A `.tid` carries a `type` field in its header, and only some types reach the wikitext
  * parser. Asking what that parser builds from a tiddler typed `text/plain`, or from TiddlyWiki
  * Classic markup, compares the grammar against a parser that would never have run — and the
- * answer is a divergence in every span, saying nothing about either.
+ * answer diverges in every span, saying nothing about either.
  *
  * An absent type reads as wikitext, TiddlyWiki's own default. Only the header block declares a
  * type; a `type:` line standing in the body carries content.
@@ -321,12 +322,7 @@ if (require.main === module) {
     console.error(`no files matched ${pattern}`);
     process.exit(2);
   }
-  const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'], {
-    encoding: 'utf8'
-  })
-    .trim()
-    .split('\n')
-    .filter(Boolean);
+  const grammars = grammarArgs();
   execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', ...copies], {
     stdio: ['ignore', 'ignore', 'inherit'],
     shell: process.platform === 'win32'

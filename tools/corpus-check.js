@@ -16,6 +16,7 @@ const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { grammarArgs } = require('./tokenizer.js');
 
 const VERBOSE = process.argv.includes('--verbose');
 const SENTINEL = 'The corpus sentinel stands plainly at the end.';
@@ -39,9 +40,7 @@ function files(dir, out = []) {
   return out;
 }
 
-const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'], {
-  encoding: 'utf8'
-}).trim().split('\n').filter(Boolean);
+const grammars = grammarArgs();
 
 // The scope a file opens under, from the manifest's own language-to-grammar link. A map written
 // beside the manifest sends a file type to the wrong grammar the moment one more appears, and

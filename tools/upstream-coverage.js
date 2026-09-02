@@ -30,6 +30,7 @@ const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { grammarArgs } = require('./tokenizer.js');
 const { resolveTiddlyWiki } = require('./tw5-oracle.js');
 
 const { BASE, readSnapshot } = require('./snapshot-format.js');
@@ -165,9 +166,7 @@ function main() {
     return file;
   });
 
-  const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'], {
-    encoding: 'utf8'
-  }).trim().split('\n').filter(Boolean);
+  const grammars = grammarArgs();
   execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', 'text.html.tiddlywiki5', '-u', ...probes], {
     stdio: ['ignore', 'ignore', 'inherit'],
     shell: process.platform === 'win32'

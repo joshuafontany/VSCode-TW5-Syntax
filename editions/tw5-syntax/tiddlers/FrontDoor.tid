@@ -28,6 +28,20 @@ Each judgement carries its own reason beside it. A reason belongs with the rulin
 a comment in a tool keeps it where nobody weighs it — so the wiki shows both, and a reason that
 stops answering to anything fails the gate that reads it, the same way a missing ruling does.
 
+!! Running a gate from here
+
+The wiki that shows a ruling runs the instrument that enforces it:
+
+```
+tiddlywiki editions/tw5-syntax --gate list
+tiddlywiki editions/tw5-syntax --gate colour-witness dark-construct
+tiddlywiki editions/tw5-syntax --gate
+```
+
+The command stands in this wiki as <<lar-link "$:/tw5-syntax/modules/grammar-commands">>, so a
+reader who wants to know what it does opens it rather than a file beside the wiki. Its gate list
+comes from the manifest by way of the report, so one added joins without anybody remembering.
+
 !! How a new TiddlyWiki reaches the grammar
 
 # `npm run signals` boots this edition against the TiddlyWiki the repo answers to, and writes what it found.

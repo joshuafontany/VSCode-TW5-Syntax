@@ -6,7 +6,7 @@
 // read the same way with something standing in front of it?
 //
 // A grammar that answers yes composes. One that answers no has a construct reaching
-// across a boundary it should not cross — which is the fault behind every colouring bug
+// across a boundary it should not cross — the fault behind every colouring bug
 // this repository has fixed, and the fault that hid in the upstream-coverage probe file
 // until each case got a file of its own.
 //
@@ -19,7 +19,7 @@
 // the block families TiddlyWiki spans by design, so a sample ending inside an open style
 // or quote block reads clean there and still colours whatever follows it. This has no
 // allowance list: a construct reaching past its file shows up as the next file reading
-// differently. Closing two samples' constructs turned two pairs green, which is the
+// differently. Closing two samples' constructs turned two pairs green, naming the
 // property working.
 //
 // Readings compare by position rather than by line text. The same line stands in more than
@@ -30,6 +30,7 @@ const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { grammarArgs } = require('./tokenizer.js');
 
 /**
  * The scope annotations a snapshot carries, in source order.
@@ -123,9 +124,7 @@ function main() {
     return { file: f, i, j };
   });
 
-  const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'], {
-    encoding: 'utf8'
-  }).trim().split('\n').filter(Boolean);
+  const grammars = grammarArgs();
   execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', ...files], {
     stdio: ['ignore', 'ignore', 'inherit'],
     shell: process.platform === 'win32'

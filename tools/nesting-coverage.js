@@ -18,6 +18,7 @@ const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { grammarArgs } = require('./tokenizer.js');
 const { resolveTiddlyWiki } = require('./tw5-oracle.js');
 
 /**
@@ -42,7 +43,7 @@ function containerOf(line) {
 /**
  * The constructs standing in a stretch of text, by the regexes TiddlyWiki matches them
  * with. A regex that matches only its own delimiter carries no construct to check, so a
- * match with no alphanumeric character is passed over.
+ * match carrying no alphanumeric character stands over.
  *
  * @param {string} text
  * @param {Array<{name: string, re: RegExp}>} inlineRules
@@ -66,9 +67,9 @@ function constructsIn(text, inlineRules) {
  * Put a construct inside a container, in that container's own shape.
  *
  * `inline` stands for the baseline: the construct in a plain sentence. A construct ALONE
- * on a line reads as its block form where one exists — `{{X}}` is a block transclusion,
+ * on a line reads as its block form where one exists — `{{X}}` opens a block transclusion,
  * `@@css;` opens a style block — so comparing a container against a line-alone baseline
- * would count that duality as loss. A sentence is the fair comparison.
+ * would count that duality as loss. A sentence compares fairly.
  */
 function compose(container, hit) {
   switch (container) {
@@ -167,9 +168,7 @@ function main() {
     return { key, container, rule, hit, alone, inside };
   });
 
-  const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'], {
-    encoding: 'utf8'
-  }).trim().split('\n').filter(Boolean);
+  const grammars = grammarArgs();
   execFileSync(
     'npx',
     ['vscode-tmgrammar-snap', ...grammars, '-s', 'text.html.tiddlywiki5', '-u', ...entries.flatMap((e) => [e.alone, e.inside])],

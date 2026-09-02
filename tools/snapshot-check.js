@@ -17,6 +17,7 @@ const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { grammarArgs } = require('./tokenizer.js');
 
 // Node 22 added fs.globSync and Windows disagrees with a forward-slash glob, so the
 // listing happens here: every pattern this repository uses reads `dir/*.ext`.
@@ -49,11 +50,7 @@ if (sources.length === 0) {
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-snap-'));
 for (const src of sources) fs.copyFileSync(src, path.join(scratch, path.basename(src)));
 
-const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'], {
-  // No shell: cmd.exe would mangle the -c argument, and Git Bash stands on PATH
-  // wherever this runs.
-  encoding: 'utf8'
-}).trim().split('\n').filter(Boolean);
+const grammars = grammarArgs();
 
 const staged = sources.map((src) => path.join(scratch, path.basename(src)));
 execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', ...staged], {

@@ -3,12 +3,12 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 18 of 22
+gates-held: 15 of 23
 
 {
-    "gates": 22,
-    "held": 18,
-    "failing": 4,
+    "gates": 23,
+    "held": 15,
+    "failing": 8,
     "results": [
         {
             "gate": "attribute-guard",
@@ -66,6 +66,11 @@ gates-held: 18 of 22
             "said": "dark-construct  389 construct(s) over 65 themes, 13 plain, 0 unaccounted"
         },
         {
+            "gate": "gates",
+            "held": false,
+            "said": "gate-report  18 of 23 gate(s) hold, written"
+        },
+        {
             "gate": "nesting-coverage",
             "held": true,
             "said": "nesting-coverage  14 container/construct pairs from TiddlyWiki's own tiddlers"
@@ -73,27 +78,27 @@ gates-held: 18 of 22
         {
             "gate": "overreach",
             "held": false,
-            "said": "0  span(s) the grammar CONDEMNS and TiddlyWiki builds"
+            "said": "Node.js v24.15.0"
         },
         {
             "gate": "overreach-corpus",
             "held": false,
-            "said": "0  span(s) the grammar CONDEMNS and TiddlyWiki builds"
+            "said": "Node.js v24.15.0"
         },
         {
             "gate": "overreach-corpus-memetic",
-            "held": true,
-            "said": "0  span(s) the grammar CONDEMNS and TiddlyWiki builds"
+            "held": false,
+            "said": "Node.js v24.15.0"
         },
         {
             "gate": "overreach-cut",
-            "held": true,
-            "said": "0  span(s) the grammar CONDEMNS and TiddlyWiki builds"
+            "held": false,
+            "said": "Node.js v24.15.0"
         },
         {
             "gate": "overreach-host",
-            "held": true,
-            "said": "0  span(s) the grammar CONDEMNS and TiddlyWiki builds"
+            "held": false,
+            "said": "Node.js v24.15.0"
         },
         {
             "gate": "rule-coverage",

@@ -36,6 +36,7 @@ const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { grammarArgs } = require('./tokenizer.js');
 const { readSnapshot } = require('./snapshot-format.js');
 
 const ROOT = path.resolve(__dirname, '..');
@@ -76,8 +77,7 @@ const CONSTRUCTS = ['Heading one', 'bold run', 'code span', 'a list item', 'Wiki
 const { loadThemes, winner } = require('./theme-model.js');
 
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'theme-parity-'));
-const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'],
-  { encoding: 'utf8', cwd: ROOT }).trim().split('\n').filter(Boolean);
+const grammars = grammarArgs();
 const comparatorGrammars = COMPARATORS.flatMap((c) => ['-g', path.join(GRAMMARS, c.grammar)]);
 
 /** Every span one specimen tokenizes to, under the grammar its language names. */

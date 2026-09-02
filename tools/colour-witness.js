@@ -24,6 +24,7 @@
 const fs = require('node:fs');
 const { declaredScopesIn } = require('./grammar-scopes.js');
 const path = require('node:path');
+const { grammarArgs } = require('./tokenizer.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const THEMES = path.join(ROOT, 'node_modules', 'tm-themes', 'themes');
@@ -92,8 +93,7 @@ function scopesOverWords(specimen, words) {
   const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-colour-'));
   const file = path.join(scratch, 'probe.tw');
   fs.writeFileSync(file, specimen);
-  const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'],
-    { cwd: ROOT, encoding: 'utf8' }).trim().split('\n').filter(Boolean);
+  const grammars = grammarArgs();
   execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', 'text.html.tiddlywiki5', '-u', file],
     { cwd: ROOT, stdio: ['ignore', 'ignore', 'ignore'] });
   const out = {};

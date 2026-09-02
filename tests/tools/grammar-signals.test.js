@@ -84,3 +84,32 @@ test('the startup stands before the commands that read it', () => {
   assert.match(source, /exports\.before\s*=\s*\[\s*"commands"\s*\]/,
     'without this the render finds no tiddler and writes zero bytes, with exit code zero');
 });
+
+// The wiki that shows a ruling runs the instrument that enforces it. A command tiddler carries the
+// gates into the edition, so a reader who opens the wiki never leaves it to run one.
+test('the edition carries a command that runs the gates', live, () => {
+  const emitted = path.join(ROOT, 'editions', 'tw5-syntax', 'tiddlers', 'grammar-commands.js');
+  const text = fs.readFileSync(emitted, 'utf8');
+  const header = new RegExp('^\\/\\*\\\\(?:\\r?\\n)((?:^[^\\r\\n]*(?:\\r?\\n))+?)(^\\\\\\*\\/$(?:\\r?\\n)?)', 'mg');
+  const match = header.exec(text);
+  assert.ok(match, 'the compiled command carries no header, so the wiki would load nothing');
+  assert.match(match[1], /module-type: command/, 'the module declares no command type');
+  const { out } = (() => {
+    try {
+      return { out: execFileSync('node', [path.join(host, 'tiddlywiki.js'),
+        path.join(ROOT, 'editions', 'tw5-syntax'), '--gate', 'list'], { encoding: 'utf8', cwd: ROOT }) };
+    } catch (e) { return { out: `${e.stdout ?? ''}${e.stderr ?? ''}` }; }
+  })();
+  assert.match(out, /\d+ gate\(s\): /, out.slice(-300));
+  assert.match(out, /colour-witness/, 'the command lists a gate the manifest names');
+});
+
+// A module tiddler meets no __dirname, and a command reaching for one dies where it runs rather
+// than where it compiles.
+test('the command finds the repository without __dirname', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'editions', 'tw5-syntax', 'src', 'grammar-commands.ts'), 'utf8');
+  // The comment explaining its absence names it, so the code alone answers here.
+  const code = source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+  assert.ok(!/\b__dirname\b/.test(code), 'a module tiddler meets no __dirname');
+  assert.match(source, /boot\.wikiPath/, 'the boot knows where it opened the wiki');
+});
