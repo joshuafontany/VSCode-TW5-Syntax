@@ -412,8 +412,22 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   an address colours the way the rest of a call does.
 - **Colour toggles** in the README: the two scope groups worth turning, and the
   `editor.tokenColorCustomizations` block that turns each, per workspace folder.
+- The repository reads from inside the wiki. `tools/`, `syntaxes/`, `snippets/`, `docs/` and
+  `tests/` reach the edition as tiddlers through a `tiddlywiki.files` spec that names each
+  directory by relative path — nothing gets copied, so a reader who opens a tiddler looks at the
+  same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
+  points at the one directory that stays outside: the coverage floor already measures those files,
+  and a second copy would part from the first the day somebody edits one.
+- A gate holds that claim. It boots the edition, compares every arriving tiddler against the bytes
+  on disk, and derives its expectation from the specs rather than listing the directories again —
+  so a sixth directory gets checked without anybody editing the gate. It also holds the two
+  hazards a spec carries: a `tiddlywiki.files` REPLACES the scan of the directory holding it, and a
+  `.meta` sidecar outranks a spec's own fields, taking both halves of the pair out of the house
+  namespace.
 
 ### Removed
+- `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`
+  excluded the directory, and no tool, test or doc read from it. Git holds them.
 - A bare `?` carries no bearing scope. An end names itself — `from=?`, `to=?` — so the glyph rides as
   an ordinary value, and standing alone it reads as content like any other character.
 

@@ -1,0 +1,15 @@
+{
+    "directories": [
+        {
+            "path": "../../../../snippets",
+            "filesRegExp": "^.*\\.json$",
+            "isTiddlerFile": false,
+            "fields": {
+                "title": { "source": "filename", "prefix": "$:/tw5-syntax/snippets/" },
+                "type": "application/json",
+                "tags": "$:/tags/TW5Syntax/Snippet",
+                "text": { "source": "text" }
+            }
+        }
+    ]
+}

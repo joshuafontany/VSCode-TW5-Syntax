@@ -52,21 +52,49 @@ comes from the manifest by way of the report, so one added joins without anybody
 Nothing in that chain edits the grammar for you. It reports what a release changed and stops, so
 an operator decides what the change means.
 
-!! The tools, readable here
+!! The repository, readable here
 
-Every instrument in `tools/` loads into this wiki as a tiddler under `$:/tw5-syntax/tools/`, read
-from where it sits rather than copied — a `tiddlywiki.files` spec beside them names the directory.
-Open one and the source stands there, comments and all.
+Five directories load into this wiki as tiddlers, read from where those files sit rather than
+copied. A `tiddlywiki.files` spec beside each one names the directory. Open a tiddler and the
+source stands there, comments and all; edit the file on disk and the next boot shows the edit.
 
-The spec sits in its own subdirectory on purpose: a `tiddlywiki.files` REPLACES the scan of the
-directory holding it, so one dropped beside the tiddlers stopped the edition loading its own — the
-harvest went silent and the signals gate said so.
+|!Directory |!Prefix |!Tag |
+|`tools/` |`$:/tw5-syntax/tools/` |`$:/tags/TW5Syntax/Tool` |
+|`syntaxes/` |`$:/tw5-syntax/syntaxes/` |`$:/tags/TW5Syntax/Grammar` |
+|`snippets/` |`$:/tw5-syntax/snippets/` |`$:/tags/TW5Syntax/Snippet` |
+|`docs/` |`$:/tw5-syntax/docs/` |`$:/tags/TW5Syntax/Meme`, and `PriorArt` for the survey |
+|`tests/` |`$:/tw5-syntax/tests/` |`Assertion`, `ToolTest`, `Specimen`, `Snapshot`, `TestFixture`, `KnownGap` |
+
+The memes under `docs/` load as wikitext and render. Everything under `tests/` loads as plain
+text on purpose: a specimen exists for a tokenizer rather than for a reader, and rendering one shows
+what the construct means instead of the characters the assertion pins.
+
+<<lar-link "$:/tw5-syntax/Corpus">> names the one directory that stays outside, and why.
+
+!!! Two hazards a spec carries
+
+A `tiddlywiki.files` REPLACES the scan of the directory holding it. One dropped beside the
+edition's own tiddlers stopped it loading them — the harvest went silent and the signals gate said
+so within the minute. Every spec here sits in a subdirectory of its own, holding nothing but
+itself, so it replaces a scan that would have found nothing.
+
+A `.meta` sidecar outranks a spec. The loader hard-excludes `*.meta`, and merges the sidecar's
+fields over the ones the spec asks for, so a sidecar carrying `title:` names the tiddler and the
+prefix loses. `tests/samples/tiddlywiki5.tw` arrives as `$:/wikitext.tw` because the malformed
+fixture beside it says so, which names the reason that fixture stands. The gate holds that shape by
+deriving it — a pair on disk, neither half under the house prefix — rather than by naming the
+file, so a specimen that grows a sidecar gets covered without anybody remembering.
+
+<<lar-link "$:/tw5-syntax/tests/tools/wiki-reads-the-repo.test.js">> boots the edition and compares
+every arriving tiddler against the bytes on disk, so a spec that stops reaching a file, or a file
+that reaches the wiki changed, fails rather than goes quiet.
 
 !! Where the rest stands
 
 |!Surface |!What it carries |
 |`syntaxes/` |the grammars — one wikitext base, one dialect, two injections registered to both |
 |`tests/tiddlywiki5/` and `tests/memetic-wikitext/` |assertions, each pinned to a measured snapshot |
-|`tests/samples/` |snapshots, re-pinned by `npm run snap-update` |
+|`tests/samples/` |specimens, and the snapshots `npm run snap-update` re-pins |
 |`tools/` |the witnesses — each one collides against the fault it stands for |
 |`docs/prior-art/` |twenty highlighting systems surveyed, kept verbatim |
+|`corpus/` |broad ground, gated on invariants — on disk, never in the wiki |

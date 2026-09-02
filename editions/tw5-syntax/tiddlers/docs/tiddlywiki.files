@@ -1,0 +1,26 @@
+{
+    "directories": [
+        {
+            "path": "../../../../docs",
+            "filesRegExp": "^.*\\.mem$",
+            "isTiddlerFile": false,
+            "fields": {
+                "title": { "source": "filename", "prefix": "$:/tw5-syntax/docs/" },
+                "type": "text/vnd.tiddlywiki",
+                "tags": "$:/tags/TW5Syntax/Meme",
+                "text": { "source": "text" }
+            }
+        },
+        {
+            "path": "../../../../docs/prior-art",
+            "filesRegExp": "^.*\\.mem$",
+            "isTiddlerFile": false,
+            "fields": {
+                "title": { "source": "filename", "prefix": "$:/tw5-syntax/docs/prior-art/" },
+                "type": "text/vnd.tiddlywiki",
+                "tags": "$:/tags/TW5Syntax/Meme $:/tags/TW5Syntax/PriorArt",
+                "text": { "source": "text" }
+            }
+        }
+    ]
+}
