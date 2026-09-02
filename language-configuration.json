@@ -9,7 +9,7 @@
         ["[", "]"],
         ["(", ")"],
     ],
-    // symbols that are auto closed when typing
+    // symbols the editor closes for you when typing
     "autoClosingPairs": [
         // A bare < opens an html tag and closes nothing; << opens a macro call and closes.
         { "open": "<<", "close": ">>" },
@@ -21,7 +21,7 @@
 		{ "open": "<!--", "close": "-->", "notIn": ["comment", "string"] }
     ],
     "autoCloseBefore": ";:.,=}])>` \n\t",
-    // symbols that can be used to surround a selection
+    // symbols that surround a selection
     "surroundingPairs": [
         ["<<", ">>"],
         ["[[", "]]"],

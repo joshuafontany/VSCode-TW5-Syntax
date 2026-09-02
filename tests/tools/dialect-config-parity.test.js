@@ -6,8 +6,8 @@
 //
 // The CONFIGURATION derives from nothing. It sits in a second file with no include and no
 // injection, so a bracket dropped from one, a word pattern widened in one, an auto-close added to
-// one — each lands in the dialect only when somebody remembers. That memory is the lag, and it
-// showed: the dialect took `core` from `$:/core/Something` where the base took the whole title.
+// one — each lands in the dialect only when somebody remembers, and that remembering carries the
+// lag. It showed: the dialect took `core` from `$:/core/Something` where the base took the whole title.
 //
 // So each difference stands DECLARED with the reason a dialect needs it, and anything else reads
 // as the base moving on alone.
@@ -52,7 +52,7 @@ test('every difference between them stands declared with a reason', () => {
     'key(s) where the base moved on and the dialect stayed behind');
 });
 
-// A list the dialect trims loses what the base gained, which is the lag in its commonest shape.
+// A list the dialect trims loses what the base gained — the lag in its commonest shape.
 test('the dialect keeps every list entry the base carries, or declares the key', () => {
   const lost = [];
   for (const [key, value] of Object.entries(base)) {
@@ -69,8 +69,8 @@ test('every declared reason answers to a real difference', () => {
   assert.deepStrictEqual(idle, [], 'declared difference(s) that no longer differ');
 });
 
-// The word pattern is the one the lag actually bit, so it gets held to the outcome rather than to
-// the string: a `.mem` file holds wikitext, and a system title reads as one word in both.
+// The lag actually bit the word pattern, so this holds it to the outcome rather than to the
+// string: a `.mem` file holds wikitext, and a system title reads as one word in both.
 test('both take a system title whole', () => {
   for (const [name, config] of [['base', base], ['dialect', dialect]]) {
     const match = new RegExp(config.wordPattern).exec('$:/core/Something');
