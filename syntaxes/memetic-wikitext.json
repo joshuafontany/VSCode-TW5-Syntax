@@ -387,13 +387,13 @@
                   "name": "punctuation.separator.root.lar.memetic-wikitext"
                 },
                 "4": {
-                  "name": "entity.other.attribute-name.angle.lar.memetic-wikitext"
+                  "name": "entity.name.tag.angle.lar.memetic-wikitext"
                 },
                 "5": {
                   "name": "punctuation.separator.root.lar.memetic-wikitext"
                 },
                 "6": {
-                  "name": "entity.name.function.dynamic.lar.memetic-wikitext"
+                  "name": "entity.name.tag.dynamic.lar.memetic-wikitext"
                 }
               }
             },

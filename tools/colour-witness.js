@@ -52,12 +52,25 @@ const TOGETHER = [
 //   BODY, where a define substitutes and a procedure does not, and the bodies already read apart
 //   in 72 of 100 measured pairs. A pragma keyword reads as a pragma keyword, and both open one.
 //
-const APART = [
-  { what: 'a lar: root — heading, angle of approach, carried dynamic',
+// Scopes a reader meets as ONE THING, named separately so a rule can still reach each. A lar
+// root carries three terms — heading, angle of approach, carried dynamic — and they name one
+// address between them. Painted from three different families they read as three unrelated
+// things: measured, all three shared a colour in 1 of 65 themes, and Gruvbox Dark Medium gave the
+// first one aqua and the other two yellow.
+//
+// Operator ruling, 2026-09-01: the three read as one colour. They keep distinct tails, so a rule
+// written against `entity.name.tag.angle.lar` still reaches that term alone — but no bundled theme
+// rules below `entity.name.tag` for a scope this grammar emits, so under one root the three paint
+// alike in every one of them, and the differentiation stays available rather than visible.
+const ALIKE = [
+  { what: "a lar: root's three terms, which name one address between them",
     scopes: ['entity.name.tag.heading.lar.memetic-wikitext',
-             'entity.other.attribute-name.angle.lar.memetic-wikitext',
-             'entity.name.function.dynamic.lar.memetic-wikitext'],
-    least: 40 },
+             'entity.name.tag.angle.lar.memetic-wikitext',
+             'entity.name.tag.dynamic.lar.memetic-wikitext'],
+    least: 60 }
+];
+
+const APART = [
   { what: 'a link — the text a reader clicks, and the title it reaches',
     scopes: ['markup.underline.link.tiddlywiki5', 'string.entity.other.title.link.tiddlywiki5'],
     least: 40 },
@@ -175,7 +188,7 @@ if (require.main === module) {
   // A relation naming a scope no grammar emits stops checking anything, and reads as clean while
   // it does. So does a pair list that shrinks. Both weaken silently, the failure a gate
   // exists to prevent.
-  const missing = APART.flatMap((r) => r.scopes.filter((sc) => !scopes.has(sc)).map((sc) => `${sc} — named by a relation, emitted by no grammar`));
+  const missing = [...ALIKE, ...APART].flatMap((r) => r.scopes.filter((sc) => !scopes.has(sc)).map((sc) => `${sc} — named by a relation, emitted by no grammar`));
   const PAIR_FLOOR = Number(fs.existsSync(path.join(ROOT, 'corpus', 'colour-pair-floor.txt'))
     ? fs.readFileSync(path.join(ROOT, 'corpus', 'colour-pair-floor.txt'), 'utf8').split('\n')[0].trim() : 0);
   const shrunk = pairs.length < PAIR_FLOOR ? [`${pairs.length} opener/closer pair(s), below the floor of ${PAIR_FLOOR}`] : [];
@@ -195,6 +208,12 @@ if (require.main === module) {
     if (differ) parted.push(`${differ}/${themes.length} themes read apart what a reader meets as one: ${relation.what} (${carried.join(' vs ')})`);
   }
 
+  const fused = [];
+  for (const relation of ALIKE) {
+    const alike = themes.filter((t) => new Set(relation.scopes.map((sc) => colourOf(t, sc))).size === 1).length;
+    if (alike < relation.least) fused.push(`${alike}/${themes.length} themes read as one (wants ${relation.least}): ${relation.what}`);
+  }
+
   const flattened = [];
   for (const relation of APART) {
     // A scope no rule reaches paints as the editor's own foreground, which a reader sees as a
@@ -207,7 +226,8 @@ if (require.main === module) {
   console.log(`colour-witness  ${scopes.size} scope(s) over ${themes.length} theme(s)`);
   console.log(`  ${String(split.length + parted.length).padStart(4)}  thing(s) a reader meets as one and a theme paints apart, of ${pairs.length + TOGETHER.length}`);
   console.log(`  ${String(flattened.length).padStart(4)}  declared distinction(s) too few themes can show, of ${APART.length}`);
+  console.log(`  ${String(fused.length).padStart(4)}  declared unity(ies) too few themes can show, of ${ALIKE.length}`);
   console.log(`  ${String(missing.length + shrunk.length).padStart(4)}  relation(s) that stopped checking anything`);
-  for (const line of [...split, ...parted, ...flattened, ...missing, ...shrunk].slice(0, verbose ? 12 : 3)) console.log(`     ${line}`);
-  process.exit(split.length || parted.length || flattened.length || missing.length || shrunk.length ? 1 : 0);
+  for (const line of [...split, ...parted, ...flattened, ...fused, ...missing, ...shrunk].slice(0, verbose ? 12 : 3)) console.log(`     ${line}`);
+  process.exit(split.length || parted.length || flattened.length || fused.length || missing.length || shrunk.length ? 1 : 0);
 }

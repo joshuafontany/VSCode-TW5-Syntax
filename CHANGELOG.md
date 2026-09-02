@@ -7,6 +7,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A `lar:` root's three terms read as one address. Heading, angle of approach and carried dynamic
+  came from three scope families and painted as three unrelated things — all three shared a colour
+  in 1 of 65 themes, and Gruvbox Dark Medium gave the heading aqua against yellow for the other
+  two. Under one family they read alike in all 65, and each keeps a distinct tail so a rule written
+  against one term still reaches it alone.
 - A filter reads every operand delimiter TiddlyWiki reads. filters.js switches on five after an
   operator name — `[`, `<`, `{`, `(` and `/` — and the grammar read three. A regular-expression
   operand and a multi-valued variable operand fell into the operator name, so `[prefix/Some/]`
