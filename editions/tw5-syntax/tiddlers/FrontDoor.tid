@@ -52,6 +52,16 @@ comes from the manifest by way of the report, so one added joins without anybody
 Nothing in that chain edits the grammar for you. It reports what a release changed and stops, so
 an operator decides what the change means.
 
+!! The tools, readable here
+
+Every instrument in `tools/` loads into this wiki as a tiddler under `$:/tw5-syntax/tools/`, read
+from where it sits rather than copied — a `tiddlywiki.files` spec beside them names the directory.
+Open one and the source stands there, comments and all.
+
+The spec sits in its own subdirectory on purpose: a `tiddlywiki.files` REPLACES the scan of the
+directory holding it, so one dropped beside the tiddlers stopped the edition loading its own — the
+harvest went silent and the signals gate said so.
+
 !! Where the rest stands
 
 |!Surface |!What it carries |
