@@ -178,3 +178,41 @@ test('every file association names a declared language', () => {
     assert.ok(declared.has(language), `${glob} points at an undeclared language: ${language}`);
   }
 });
+
+// A file association decides which grammar a file even reaches, and it outranks an extension
+// another publisher claims for the same suffix. Every language this extension DEFINES asserts one;
+// `json` stands apart, because this extension adds two suffixes to a language Microsoft owns, and
+// claiming `*.info` outright would take every `.info` file on the reader's machine.
+test('every language this extension defines asserts its own extensions', () => {
+  const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+  const assoc = pkg.contributes.configurationDefaults['files.associations'] || {};
+  const BORROWED = new Set(['json']);
+  const unasserted = [];
+  for (const language of pkg.contributes.languages) {
+    if (BORROWED.has(language.id)) continue;
+    for (const ext of language.extensions || []) {
+      if (assoc[`*${ext}`] !== language.id) unasserted.push(`${ext} -> ${language.id}`);
+    }
+  }
+  assert.deepStrictEqual(unasserted, [],
+    'extension(s) a language declares and no association asserts — another publisher claiming the same suffix wins');
+});
+
+// The other direction. An association naming a language nothing declares silently sends a file to a
+// grammar that never loads, and the file opens as plain text with no error anywhere.
+test('every association names a language the manifest declares, and names it once', () => {
+  const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+  const assoc = pkg.contributes.configurationDefaults['files.associations'] || {};
+  const declared = new Set(pkg.contributes.languages.map((l) => l.id));
+  const byExtension = new Map();
+  for (const [glob, id] of Object.entries(assoc)) {
+    assert.ok(declared.has(id), `an association sends ${glob} to ${id}, which the manifest declares nowhere`);
+    const ext = glob.replace(/^\*/, '');
+    const owner = pkg.contributes.languages.find((l) => (l.extensions || []).includes(ext));
+    assert.ok(owner, `an association names ${glob}, which no language claims as an extension`);
+    assert.strictEqual(owner.id, id,
+      `an association sends ${glob} to ${id} where ${owner.id} declares it`);
+    assert.ok(!byExtension.has(glob), `${glob} carries two associations`);
+    byExtension.set(glob, id);
+  }
+});

@@ -77,3 +77,29 @@ test('both take a system title whole', () => {
     assert.strictEqual(match && match[0], '$:/core/Something', `${name} breaks a system title into pieces`);
   }
 });
+
+// A snippet set answers the same way. `snippets/snippets.json` hands a learner 125 wikitext
+// constructs to start from — the pragmas, the widgets, the filter shapes — and the dialect claims to
+// hold wikitext entire. It carried the grammar and the configuration and not these, so an author
+// writing a `.mem` reached for a widget snippet and met nothing, with no error anywhere to name the
+// absence.
+test('the dialect carries the base language\'s snippets', () => {
+  const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+  const forLanguage = (id) => new Set((pkg.contributes.snippets || [])
+    .filter((s) => s.language === id).map((s) => s.path));
+  const base = forLanguage('tiddlywiki5');
+  const dialect = forLanguage('memetic-wikitext');
+  const missing = [...base].filter((p) => !dialect.has(p));
+  assert.deepStrictEqual(missing, [],
+    'snippet set(s) the base offers and the dialect does not — the dialect holds wikitext entire');
+});
+
+// The fixture language stands apart, and this says so rather than leaving the absence unexplained.
+// A `.tw5.test` body carries wikitext under assertion comments that pin every token of it, so a
+// snippet inserted there moves the very columns the file exists to name.
+test('the syntax-test language takes no snippets, by ruling', () => {
+  const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+  const attached = (pkg.contributes.snippets || []).filter((s) => s.language === 'tiddlywiki5.test');
+  assert.deepStrictEqual(attached, [],
+    'the syntax-test language took snippets; a snippet there moves the columns an assertion pins');
+});

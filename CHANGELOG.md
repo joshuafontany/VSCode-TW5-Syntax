@@ -418,6 +418,26 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
   points at the one directory that stays outside: the coverage floor already measures those files,
   and a second copy would part from the first the day somebody edits one.
+- The dialect carries the wikitext snippets. `memetic-wikitext` held the grammar and the language
+  configuration and not the 125 snippets the base offers, so an author writing a `.mem` reached for
+  a widget snippet and met nothing, with no error anywhere naming the absence. The syntax-test
+  language still takes none, by ruling: a `.tw5.test` body carries wikitext under assertion comments
+  that pin every token, and a snippet inserted there moves the columns the file exists to name.
+- `.mem` and `.tiddlywiki5.test` assert their own file associations, the way every other extension
+  this repository defines already did. An association outranks another publisher claiming the same
+  suffix; without one, whoever else claims it wins. A gate holds both directions — an extension no
+  association asserts, and an association naming a language or suffix the manifest never declares.
+- Every snippet inserts a construct TiddlyWiki closes. Nothing asked before, and a snippet is the
+  one surface here that writes into a reader's file: a mis-coloured construct costs a colour, an
+  inserted broken one costs a tiddler that renders wrong. All 128 pass; the parser's own
+  `unterminated-*` diagnostics answer the question.
+- Every repository rule in every grammar stands reachable from some root. An orphaned rule loads,
+  validates and colours nothing, and its scopes still count among the declared ones the corpus must
+  reach — so it reads as corpus work owed where the fault sits in the grammar. The walk follows
+  TextMate's own two rules: an include resolves against the nearest enclosing repository, and a
+  rule's own repository stands in scope only inside it. This grammar carries two nested repositories,
+  and a walker reading only the top level calls twelve working includes broken.
+
 - Continuous integration runs every witness the repository stands. It reached six of twenty-two,
   and sixteen stood green in a developer's terminal and nowhere else — seven of them with nothing
   in CI exercising their verdict at all. Two jobs carry them now: one that blocks a merge, and one

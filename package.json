@@ -321,6 +321,10 @@
             {
                 "language": "tiddlywiki5",
                 "path": "./snippets/snippets.json"
+            },
+            {
+                "language": "memetic-wikitext",
+                "path": "./snippets/snippets.json"
             }
         ],
         "configurationDefaults": {
@@ -331,7 +335,9 @@
                 "*.tw5.test": "tiddlywiki5.test",
                 "*.tid": "tid",
                 "*.meta": "tid",
-                "*.multids": "multids"
+                "*.multids": "multids",
+                "*.tiddlywiki5.test": "tiddlywiki5.test",
+                "*.mem": "memetic-wikitext"
             }
         }
     },
