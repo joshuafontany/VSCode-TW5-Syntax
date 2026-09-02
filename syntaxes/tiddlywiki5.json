@@ -4019,7 +4019,12 @@
 					"name": "punctuation.definition.macrocallblock.begin.tiddlywiki5"
 				},
 				"2": {
-					"name": "variable.name.macro.tiddlywiki5"
+					"name": "variable.name.macro.tiddlywiki5",
+					"patterns": [
+						{
+							"include": "#builtin-variable"
+						}
+					]
 				}
 			},
 			"endCaptures": {
@@ -5346,7 +5351,12 @@
 					"name": "punctuation.definition.macrocallinline.begin.tiddlywiki5"
 				},
 				"2": {
-					"name": "variable.name.macro.tiddlywiki5"
+					"name": "variable.name.macro.tiddlywiki5",
+					"patterns": [
+						{
+							"include": "#builtin-variable"
+						}
+					]
 				}
 			},
 			"endCaptures": {
@@ -7155,6 +7165,11 @@
 					"name": "punctuation.separator.variable.pragma.parameter.tiddlywiki5"
 				}
 			]
+		},
+		"builtin-variable": {
+			"comment": "A variable TiddlyWiki's core defines. The names come from $:/tw5-syntax/BuiltInVariables in the edition, projected here by tools/builtins-sync.js — edit the tiddler, run the tool, and a gate holds the two together.",
+			"match": "(?<![A-Za-z0-9_$.-])(?:tv\\-[A-Za-z0-9_.-]*|currentTiddler|actionTiddler|storyTiddler|transclusion|thisTiddler|namespace|modifier)(?![A-Za-z0-9_$.-])",
+			"name": "variable.language.builtin.tiddlywiki5"
 		}
 	}
 }

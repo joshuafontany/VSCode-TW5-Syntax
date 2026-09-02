@@ -1,0 +1,35 @@
+title: Built-in variables
+tags: TW5Syntax GrammarData
+caption: Built-in variables
+
+A variable an author writes may come from TiddlyWiki's core or from their own `\define`. A reader
+benefits from telling the two apart, and a regular expression cannot: the name alone carries no
+mark. So the grammar holds a list, and this wiki holds the list.
+
+! What stands here
+
+The data tiddler <<lar-link "$:/tw5-syntax/BuiltInVariables">> carries two fields:
+
+|!Field |!Meaning |
+|`exact` |a name the core defines, matched whole |
+|`prefixes` |a family the core reserves, matched by its opening |
+
+The seven exact names come from the tiddlers TiddlyWiki's own documentation tags ''Core
+Variables''. The `tv-` prefix covers the transclusion family — fifteen names at the time of
+writing, and the core adds to it — so the prefix carries them without a list that goes stale
+between releases.
+
+! How the grammar reads it
+
+`tools/builtins-sync.js` reads this tiddler and writes the alternation the grammar matches on.
+Run it with `--check` and it reports drift without writing; a gate runs it that way, so the
+grammar and this tiddler cannot part company without the gate saying so.
+
+Edit the list here. Run `npm run builtins -- --write`. The grammar follows.
+
+! Why a bare minimum
+
+Every name added here claims a construct the core owns. A name that turns out to belong to an
+author paints their variable as the language's, which reads as a lie about whose thing it is.
+The list stays short on purpose, and the wiki keeps it where an operator can weigh an addition
+against what the core actually documents.

@@ -20,6 +20,10 @@ tools/**
 # Reference grammars. The extension ships none of them.
 grammars_archive/**
 
+# The operator surface. A wiki the tooling reads and an operator edits, which the editor never
+# loads — the grammar carries what the wiki says, projected ahead of the packaging step.
+editions/**
+
 # Resolved from package.json at install time.
 node_modules/**
 package-lock.json

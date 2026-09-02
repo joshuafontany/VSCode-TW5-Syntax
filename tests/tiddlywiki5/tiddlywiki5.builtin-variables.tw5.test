@@ -1,0 +1,35 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A variable the core defines reads as the language's own"
+
+# A variable an author writes may come from TiddlyWiki's core or from their own `\define`, and the
+# name alone carries no mark. So the grammar matches a list, and the list lives in the edition —
+# `$:/tw5-syntax/BuiltInVariables` — where an operator weighs an addition against what the core
+# documents. `tools/builtins-sync.js` projects it into the grammar, and a gate holds the two
+# together, so neither one quietly becomes the source.
+#
+# Seven exact names come from the tiddlers TiddlyWiki's own documentation tags Core Variables. The
+# `tv-` prefix carries the transclusion family, which the core adds to between releases.
+#
+# Measured over the 65 bundled themes, a core variable reads apart from an author's in 41.
+
+# A core name carries BOTH families: the capture names every macro call, and the core branch
+# names this one inside it, so the core family stands innermost and wins.
+
+! A core variable, and an author's beside it
+
+<<currentTiddler>>
+# ^^^^^^^^^^^^^^ variable.language.builtin.tiddlywiki5
+
+<<myOwnMacro>>
+# ^^^^^^^^^^ variable.name.macro.tiddlywiki5
+#  ^^^^^^^^^ - variable.language.builtin.tiddlywiki5
+
+! The transclusion family, carried by its prefix
+
+<<tv-story-list>>
+# ^^^^^^^^^^^^^ variable.language.builtin.tiddlywiki5
+
+! A name that merely opens with a core name stays the author's
+
+<<currentTiddlerOfMine>>
+# ^^^^^^^^^^^^^^^^^^^^ variable.name.macro.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^ - variable.language.builtin.tiddlywiki5

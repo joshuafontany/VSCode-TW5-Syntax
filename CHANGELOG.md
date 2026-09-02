@@ -7,6 +7,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A variable TiddlyWiki's core defines reads as the language's own rather than as an author's.
+  `<<currentTiddler>>` and the `tv-` family carry the family a theme keeps for a reserved name —
+  measured, they read apart from an author's macro in 41 of 65 themes — while a name that merely
+  opens with a core name stays the author's. The names live in a wiki edition beside the grammar,
+  where an operator weighs an addition against what the core documents; the grammar carries what
+  the wiki says, and a gate holds the two together.
 - A `lar:` root's three terms read as one address. Heading, angle of approach and carried dynamic
   came from three scope families and painted as three unrelated things — all three shared a colour
   in 1 of 65 themes, and Gruvbox Dark Medium gave the heading aqua against yellow for the other

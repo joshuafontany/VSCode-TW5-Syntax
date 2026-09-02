@@ -67,7 +67,9 @@ const ALIKE = [
     scopes: ['entity.name.tag.heading.lar.memetic-wikitext',
              'entity.name.tag.angle.lar.memetic-wikitext',
              'entity.name.tag.dynamic.lar.memetic-wikitext'],
-    least: 60 }
+    // Every theme, not most. The three measure at 65 of 65, so a floor below that lets several
+    // themes' worth of drift land before the gate speaks.
+    least: 65 }
 ];
 
 const APART = [
