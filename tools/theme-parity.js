@@ -73,48 +73,7 @@ const OURS = "! Heading one\n\nA \'\'bold run\'\' here.\n\nA `code span` here.\n
 const CONSTRUCTS = ['Heading one', 'bold run', 'code span', 'a list item', 'WikiLink',
   'struck run', 'table cell'];
 
-/** A theme's rules, flattened to one selector each. */
-function loadTheme(file) {
-  const theme = JSON.parse(fs.readFileSync(file, 'utf8').replace(/^﻿/, ''));
-  const rules = [];
-  (theme.tokenColors || []).forEach((rule, order) => {
-    const scope = rule.scope;
-    if (!scope) return;
-    for (const selector of (Array.isArray(scope) ? scope : String(scope).split(','))) {
-      const parts = selector.trim().split(/\s+/).filter(Boolean);
-      if (parts.length) rules.push({ parts, order, settings: rule.settings || {} });
-    }
-  });
-  return rules;
-}
-
-// A selector segment matches a scope by whole dot-separated segments, never by prefix of one.
-const covers = (selector, scope) => scope === selector || scope.startsWith(`${selector}.`);
-
-/** The rule a theme paints a scope stack with, or null. */
-function winner(stack, rules) {
-  let best = null;
-  for (const rule of rules) {
-    const last = rule.parts[rule.parts.length - 1];
-    for (let i = stack.length - 1; i >= 0; i--) {
-      if (!covers(last, stack[i])) continue;
-      let ok = true;
-      let j = i - 1;
-      for (let p = rule.parts.length - 2; p >= 0; p--) {
-        while (j >= 0 && !covers(rule.parts[p], stack[j])) j--;
-        if (j < 0) { ok = false; break; }
-        j--;
-      }
-      if (!ok) continue;
-      const score = last.split('.').length * 1000 + i * 10 + rule.parts.length;
-      if (!best || score > best.score || (score === best.score && rule.order > best.order)) {
-        best = { score, order: rule.order, foreground: rule.settings.foreground };
-      }
-      break;
-    }
-  }
-  return best;
-}
+const { loadThemes, winner } = require('./theme-model.js');
 
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'theme-parity-'));
 const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'],
@@ -135,9 +94,7 @@ function tokenize(source, extension, scope) {
   return out;
 }
 
-const themes = fs.readdirSync(THEMES).filter((f) => f.endsWith('.json'))
-  .map((f) => { try { return loadTheme(path.join(THEMES, f)); } catch { return null; } })
-  .filter(Boolean);
+const themes = loadThemes();
 
 const reach = (span) => Math.round(themes.filter((t) => winner(span.scopes, t)).length * 100 / themes.length);
 

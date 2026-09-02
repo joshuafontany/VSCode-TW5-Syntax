@@ -1,0 +1,13 @@
+Every operand delimiter the parser switches on, and the two it warns about.
+
+{{{ [tag[Literal]] }}}
+
+{{{ [tag<variable>] }}}
+
+{{{ [tag{tiddler!!field}] }}}
+
+{{{ [tag(multiValued)] }}}
+
+{{{ [prefix/Some/] }}}
+
+{{{ [prefix/Some/(gi)] }}}

@@ -30,6 +30,10 @@ const THEME_DIR = path.resolve(__dirname, '..', 'node_modules', 'tm-themes', 'th
  * @param {object} theme  a parsed theme JSON
  * @returns {string[]}
  */
+// One matching rule, shared. Four tools here weigh what a selector reaches, and a rule written
+// four times parts four ways the day one of them learns something.
+const { covers } = require('./theme-model.js');
+
 function themeRules(theme) {
   const out = [];
   for (const rule of theme.tokenColors || []) {
@@ -59,7 +63,7 @@ function paints(scope, rules) {
     // under-counts rather than claiming a match it could not check.
     const parts = rule.split(/\s+/);
     const target = parts[parts.length - 1];
-    if (scope === target || scope.startsWith(`${target}.`)) return target;
+      if (covers(target, scope)) return target;
   }
   return null;
 }

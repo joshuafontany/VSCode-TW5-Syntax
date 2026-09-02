@@ -1,0 +1,51 @@
+title: Gate report
+tags: TW5Syntax GrammarData
+caption: Gate report
+
+Seventeen instruments stand in `tools/`, and each prints a line nobody keeps. A reader who wants
+the grammar's state runs them all and reads scrollback; a reader who opens this wiki sees the
+rulings that govern them and nothing about whether they hold.
+
+<<lar-link "$:/tw5-syntax/GateReport">> carries what each gate said when it last ran.
+
+! A harvest, and what that costs
+
+No hand edits it, and it goes stale the moment the tree moves. That reads as a feature: a report
+agreeing with a tree it no longer describes would offer reassurance rather than a reading.
+
+`npm run gates -- --check` runs them again and compares. It reports two different things, and the
+difference matters:
+
+|!Reading |!Meaning |
+|a gate ''does not hold'' |the tree has a finding the gate names |
+|the report ''DRIFTED'' |the tree moved and this page describes the tree before it |
+
+A gate can hold while the report drifts — somebody fixed something and never re-harvested — and a
+gate can fail while the report stands current, which names a real finding.
+
+! Where the list comes from
+
+The manifest, never this page. A gate somebody adds joins the report without anybody remembering,
+and a gate that leaves drops out of the report rather than reporting a stale pass. What stands aside:
+a builder, a server, a reporting tool that answers a question rather than judging one, and the
+per-scope snapshot runs that `snap` already carries whole.
+
+! What a red gate means here
+
+Not every red names a defect, and the report shows each rather than hiding it.
+
+|!Gate |!Why it reads red |
+|`overreach` `overreach-corpus` |they measure spans where the grammar and the parser diverge, and report rather than judge |
+|`canary-wikitext` `compose-wikitext` |a specimen carries an unterminated styleblock, and TiddlyWiki swallows one to the end of the source — `void [styleblock] @0-28` — so the grammar agrees with the parser and the canary reads the agreement as a bleed |
+|`nesting-coverage` `upstream-coverage` |the manifest runs them with no argument, and each wants a path to a TiddlyWiki |
+
+A gate that answers a question rather than judging one wants moving out of this report or giving
+its argument, and a canary that cannot tell a legitimate swallow from a leak wants the parser's
+answer beside its own. Both stand recorded rather than silenced.
+
+! One thing this report caught on its first run
+
+`corpus` read red at 13 unreached scopes against a ceiling of 3, and the sweep that had reported
+it green each turn had read the FLOOR line and never the ceiling. The unreached scopes came from
+this session — a system title, a regexp operand and its flags, a built-in variable — and the corpus
+exercised none of them. Two specimens close them, and the floor stands at 466.

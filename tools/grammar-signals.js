@@ -29,21 +29,12 @@ const EDITION = path.join(ROOT, 'editions', 'tw5-syntax');
 const HARVEST = path.join(EDITION, 'tiddlers', 'GrammarSignals.tid');
 const check = process.argv.includes('--check');
 
-/** The TiddlyWiki this repo answers to, by the same order the oracle uses. */
-function resolveHost() {
-  const candidates = [
-    process.env.TW5_PATH,
-    path.join(ROOT, '..', 'TiddlyWiki5'),
-    path.join(ROOT, 'node_modules', 'tiddlywiki')
-  ].filter(Boolean);
-  for (const candidate of candidates) {
-    if (fs.existsSync(path.join(candidate, 'tiddlywiki.js'))) return candidate;
-  }
-  return null;
-}
+// The oracle already resolves the TiddlyWiki this repo answers to, and a second resolver here
+// would answer differently the day either one learns something.
+const { resolveTiddlyWiki } = require('./tw5-oracle.js');
 
-const host = resolveHost();
-if (!host) {
+const host = resolveTiddlyWiki();
+if (!host || !fs.existsSync(path.join(host, 'tiddlywiki.js'))) {
   console.error('  no TiddlyWiki stands where this looked — set TW5_PATH');
   process.exit(2);
 }

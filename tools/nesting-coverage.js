@@ -8,7 +8,7 @@
 // Both halves come from upstream: containers from the rules TiddlyWiki declares
 // `types: {block: true}`, constructs from those it declares `types: {inline: true}`, and
 // the pairing from where they stand together in the corpus. Nothing here consults this
-// grammar to decide what counts, which is what keeps it from being circular.
+// grammar to decide what counts, which keeps it clear of its own reasoning.
 //
 //   node tools/nesting-coverage.js <path-to-TiddlyWiki5> [max-pairs]
 //
@@ -18,6 +18,7 @@ const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { resolveTiddlyWiki } = require('./tw5-oracle.js');
 
 /**
  * The container a line opens, by the block marker it starts with.
@@ -89,7 +90,10 @@ function compose(container, hit) {
 module.exports = { containerOf, constructsIn, compose };
 
 function main() {
-  const tw = process.argv[2];
+  // A path names a checkout outright; without one this answers to the same TiddlyWiki every
+  // other gate does. Demanding the argument left the registered script unrunnable, and it
+  // reported a usage line where a verdict belonged.
+  const tw = process.argv[2] || resolveTiddlyWiki();
   const MAX = Number(process.argv[3] || 120);
   if (!tw || !fs.existsSync(tw)) {
     console.error('Usage: node tools/nesting-coverage.js <path-to-TiddlyWiki5> [max-pairs]');

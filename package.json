@@ -371,6 +371,7 @@
         "swallow-witness": "node ./tools/swallow-witness.js",
         "backtrack-witness": "node ./tools/backtrack-witness.js",
         "dark-construct": "node ./tools/dark-construct.js",
+        "gates": "node ./tools/gate-report.js",
         "signals": "node ./tools/grammar-signals.js",
         "signals:check": "node ./tools/grammar-signals.js --check",
         "rule-coverage": "node ./tools/rule-coverage.js",

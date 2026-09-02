@@ -57,24 +57,10 @@ const ALIKE = RELATIONS.alike;
 const APART = RELATIONS.apart;
 
 
+const { loadThemes, colourOf: paintOf } = require('./theme-model.js');
+
 /** The colour a theme paints a scope, by its most specific matching rule. */
-function colourOf(theme, scope) {
-  let best = null;
-  let reach = -1;
-  for (const rule of theme.tokenColors || []) {
-    for (const selector of [].concat(rule.scope || [])) {
-      for (const part of String(selector).split(',').map((s) => s.trim())) {
-        const last = part.split(/\s+/).pop();
-        if (!last) continue;
-        if ((scope === last || scope.startsWith(`${last}.`)) && last.length > reach) {
-          reach = last.length;
-          best = (rule.settings || {}).foreground || null;
-        }
-      }
-    }
-  }
-  return best;
-}
+const colourOf = (theme, scope) => paintOf(scope, theme);
 
 /** Every scope any grammar names. */
 function declaredScopes() {
@@ -136,9 +122,7 @@ if (require.main === module) {
     console.error('no bundled themes — run npm install');
     process.exit(2);
   }
-  const themes = fs.readdirSync(THEMES).filter((f) => f.endsWith('.json'))
-    .map((f) => { try { return JSON.parse(fs.readFileSync(path.join(THEMES, f), 'utf8')); } catch { return null; } })
-    .filter(Boolean);
+  const themes = loadThemes();
 
   const scopes = declaredScopes();
   const pairs = openerCloserPairs(scopes);

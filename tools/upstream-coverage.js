@@ -18,8 +18,8 @@
 // Removing only #transcludeblock reports nothing, and rightly — #transcludeinline still
 // reads the same text, so the construct still reads.
 //
-// WHAT IT DOES NOT COVER: a rule whose regex matches only its own marker. heading is
-// /(!{1,6})/, list is /([\*#;:>]+)/, quoteblock is /(<<<+)/ — the harvested span carries
+// WHAT IT DOES NOT COVER: a rule whose regex matches only its own marker. heading carries
+// /(!{1,6})/, list /([\*#;:>]+)/, quoteblock /(<<<+)/ — the harvested span carries
 // no content, so those rules never reach the corpus sweep and carry hand-written cases in
 // tests/tiddlywiki5 instead.
 //
@@ -30,6 +30,7 @@ const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { resolveTiddlyWiki } = require('./tw5-oracle.js');
 
 const { BASE, readSnapshot } = require('./snapshot-format.js');
 
@@ -68,7 +69,10 @@ function judgeSnapshot(text) {
 module.exports = { judgeSnapshot, BASE };
 
 function main() {
-  const tw = process.argv[2];
+  // A path names a checkout outright; without one this answers to the same TiddlyWiki every
+  // other gate does. Demanding the argument left the registered script unrunnable, and it
+  // reported a usage line where a verdict belonged.
+  const tw = process.argv[2] || resolveTiddlyWiki();
   const PER_RULE = Number(process.argv[3] || 6);
   if (!tw || !fs.existsSync(tw)) {
     console.error('Usage: node tools/upstream-coverage.js <path-to-TiddlyWiki5> [samples-per-rule]');
@@ -128,7 +132,7 @@ function main() {
         // could find a case carrying it again by its own text.
         const hit = m[0].replace(/\s+$/, '');
         // One line, short enough to stand alone in a probe. Some rules match only their
-        // opening delimiter — codeinline is /(``?)/, the emphasis family is /''/ and its
+        // opening delimiter — codeinline carries /(``?)/, the emphasis family /''/ and its
         // siblings — so the harvested span carries a delimiter with neither content nor
         // closer. Those keep their own cases in tests/tiddlywiki5.
         if (!hit.trim() || hit.includes('\n') || hit.length > 60) continue;
@@ -151,7 +155,7 @@ function main() {
 
   // ── one file per case ────────────────────────────────────────────────────
   // Never one file for all of them. Several rules match only their opening mark —
-  // codeblock is /```([\w-]*)\r?\n/ — so a harvested case can open a construct with no
+  // codeblock carries /```([\w-]*)\r?\n/ — so a harvested case can open a construct with no
   // closer, and in a shared file it swallows every case after it. Each case answers for
   // itself alone.
   const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-upstream-'));

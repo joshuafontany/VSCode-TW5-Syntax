@@ -1,0 +1,7 @@
+A title the host provides and a title an author wrote, and the same for a variable.
+
+A [[$:/core/ui/ViewTemplate]] link and a [[Plain Title]] link.
+
+A {{$:/core/ui/ViewTemplate}} transclusion and a {{Plain Title}} transclusion.
+
+<<currentTiddler>> and <<tv-story-list>> stand beside <<anAuthorsOwnMacro>>.

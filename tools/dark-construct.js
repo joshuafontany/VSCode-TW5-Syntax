@@ -49,29 +49,9 @@ try {
 }
 
 
-/** A theme's rules, flattened to one selector each. */
-function loadTheme(file) {
-  const theme = JSON.parse(fs.readFileSync(file, 'utf8').replace(/^﻿/, ''));
-  const rules = [];
-  for (const rule of theme.tokenColors || []) {
-    for (const selector of [].concat(rule.scope || [])) {
-      for (const part of String(selector).split(',')) {
-        const last = part.trim().split(/\s+/).pop();
-        if (last) rules.push({ last, settings: rule.settings || {} });
-      }
-    }
-  }
-  return rules;
-}
+const { loadThemes, paints } = require('./theme-model.js');
 
-const covers = (selector, scope) => scope === selector || scope.startsWith(`${selector}.`);
-const paints = (rules, stack) => rules.some((r) => stack.some((s) => covers(r.last, s)));
-
-const themes = fs.existsSync(THEMES)
-  ? fs.readdirSync(THEMES).filter((f) => f.endsWith('.json'))
-      .map((f) => { try { return loadTheme(path.join(THEMES, f)); } catch { return null; } })
-      .filter(Boolean)
-  : [];
+const themes = loadThemes();
 
 if (!themes.length) {
   console.error('no bundled themes — run npm install');
@@ -90,7 +70,7 @@ for (const name of fs.readdirSync(SAMPLES).filter((f) => f.endsWith('.snap'))) {
       if (!text.trim()) continue;
       const inner = a.scopes[a.scopes.length - 1];
       if (seen.has(inner)) { seen.get(inner).spans += 1; continue; }
-      seen.set(inner, { spans: 1, themes: themes.filter((t) => paints(t, a.scopes)).length, sample: text.slice(0, 18) });
+      seen.set(inner, { spans: 1, themes: themes.filter((t) => paints(a.scopes, t)).length, sample: text.slice(0, 18) });
     }
   }
 }
