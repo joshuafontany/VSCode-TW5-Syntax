@@ -7,6 +7,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A TiddlyWiki release reaches this grammar as a failing check rather than as a construct that
+  quietly reads as prose. Booting the edition against a TiddlyWiki harvests every filter operator,
+  widget and wikitext rule it registers — 84, 69 and 44 at 5.5.0-prerelease — and a gate holds the
+  grammar to that list: every rule the host stands, the grammar reads under its own name or under
+  one a line declares. A rule the host adds and the grammar never learns fails the gate.
 - A variable TiddlyWiki's core defines reads as the language's own rather than as an author's.
   `<<currentTiddler>>` and the `tv-` family carry the family a theme keeps for a reserved name —
   measured, they read apart from an author's macro in 41 of 65 themes — while a name that merely

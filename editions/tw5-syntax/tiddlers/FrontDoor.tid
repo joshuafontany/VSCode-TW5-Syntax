@@ -1,0 +1,41 @@
+title: $:/tw5-syntax/FrontDoor
+tags: $:/tags/TW5Syntax
+caption: TW5-Syntax
+description: The door into this repository
+
+! TW5-Syntax
+
+A TextMate grammar for TiddlyWiki wikitext and the memetic dialect, and the instruments that hold
+it to the parser it answers to.
+
+!! What this wiki holds
+
+|!Kind |!What it answers |!How it stays true |
+|''judgement'' |a question no registry answers, which a person weighs |argued here, gated against what the host documents |
+|''harvest'' |what the installed TiddlyWiki knows |written by a boot, never by a hand |
+
+The two look alike — both JSON data tiddlers — and they fail differently. A judgement goes stale
+when the world moves and nobody notices. A harvest goes stale on a version, and says so.
+
+|!Tiddler |!Kind |
+|<<lar-link "$:/tw5-syntax/BuiltInVariables">> |judgement — which names TiddlyWiki's core owns |
+|<<lar-link "$:/tw5-syntax/GrammarSignals">> |harvest — every filter operator, widget and wikitext rule this TiddlyWiki registers |
+
+!! How a new TiddlyWiki reaches the grammar
+
+# `npm run signals` boots this edition against the TiddlyWiki the repo answers to, and writes what it found.
+# `npm run rule-coverage` holds the grammar to it: every wikitext rule the host stands, the grammar reads — under its own name, or under one a line declares.
+# `npm run builtins -- --check` holds the grammar to the judgement beside it.
+# A rule the host added and the grammar never learned fails the second step, so a version bump arrives as a failing gate rather than as a construct that quietly reads as prose.
+
+Nothing in that chain edits the grammar for you. It reports what a release changed and stops, so
+an operator decides what the change means.
+
+!! Where the rest stands
+
+|!Surface |!What it carries |
+|`syntaxes/` |the grammars — one wikitext base, one dialect, two injections registered to both |
+|`tests/tiddlywiki5/` and `tests/memetic-wikitext/` |assertions, each pinned to a measured snapshot |
+|`tests/samples/` |snapshots, re-pinned by `npm run snap-update` |
+|`tools/` |the witnesses — each one collides against the fault it stands for |
+|`docs/prior-art/` |twenty highlighting systems surveyed, kept verbatim |
