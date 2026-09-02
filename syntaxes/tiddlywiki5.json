@@ -5985,7 +5985,7 @@
 					"patterns": [
 						{
 							"comment": "Match string filter operator (step).",
-							"match": "(!?)([^\\[\\{<]*?)(?:(:)([^\\[\\{<]*?))?((\\[)(.*?)(\\]))",
+							"match": "(!?)([^\\[\\{<(/]*?)(?:(:)([^\\[\\{<(/]*?))?((\\[)(.*?)(\\]))",
 							"name": "meta.filter.operator.step.tiddlywiki5",
 							"captures": {
 								"1": {
@@ -6017,7 +6017,7 @@
 						},
 						{
 							"comment": "Match variable filter operator (step).",
-							"match": "(!?)([^\\[\\{<]*?)(?:(:)([^\\[\\{<]*?))?((<)(.*?)(>))",
+							"match": "(!?)([^\\[\\{<(/]*?)(?:(:)([^\\[\\{<(/]*?))?((<)(.*?)(>))",
 							"name": "meta.filter.operator.step.tiddlywiki5",
 							"captures": {
 								"1": {
@@ -6048,7 +6048,7 @@
 						},
 						{
 							"comment": "Match text reference filter operator (step).",
-							"match": "(!?)([^\\[\\{<]*?)(?:(:)([^\\[\\{<]*?))?((\\{)(.*?)(\\}))",
+							"match": "(!?)([^\\[\\{<(/]*?)(?:(:)([^\\[\\{<(/]*?))?((\\{)(.*?)(\\}))",
 							"name": "meta.filter.operator.step.tiddlywiki5",
 							"captures": {
 								"1": {
@@ -6079,6 +6079,77 @@
 								},
 								"8": {
 									"name": "entity.name.punctuation.definition.operand.end.tiddlywiki5"
+								}
+							}
+						},
+						{
+							"comment": "Match regular-expression filter operator (step). filters.js compiles the operand with `new RegExp` and prints a deprecation warning; the flags ride in round brackets after the closing slash.",
+							"match": "(!?)([^\\[\\{<(/]*?)(?:(:)([^\\[\\{<(/]*?))?((/)((?:[^\\\\/]|\\\\.)*)(/)(?:(\\()([mygi]+)(\\)))?)",
+							"name": "meta.filter.operator.step.tiddlywiki5",
+							"captures": {
+								"1": {
+									"name": "keyword.control.operator.prefix.negation.tiddlywiki5"
+								},
+								"2": {
+									"name": "keyword.operator.operator.filter.tiddlywiki5"
+								},
+								"3": {
+									"name": "keyword.control.operator.suffix.tiddlywiki5"
+								},
+								"4": {
+									"name": "keyword.operator.suffix.tiddlywiki5"
+								},
+								"5": {
+									"name": "meta.string.regexp.filter.operand.tiddlywiki5"
+								},
+								"6": {
+									"name": "punctuation.definition.string.regexp.begin.tiddlywiki5"
+								},
+								"7": {
+									"name": "string.regexp.tiddlywiki5"
+								},
+								"8": {
+									"name": "punctuation.definition.string.regexp.end.tiddlywiki5"
+								},
+								"9": {
+									"name": "punctuation.definition.flag.regexp.begin.tiddlywiki5"
+								},
+								"10": {
+									"name": "keyword.other.flag.regexp.tiddlywiki5"
+								},
+								"11": {
+									"name": "punctuation.definition.flag.regexp.end.tiddlywiki5"
+								}
+							}
+						},
+						{
+							"comment": "Match multi-valued variable filter operator (step). filters.js reads `(` as a variable carrying several values, beside `<` for one, and prints a deprecation warning for it.",
+							"match": "(!?)([^\\[\\{<(/]*?)(?:(:)([^\\[\\{<(/]*?))?((\\()(.*?)(\\)))",
+							"name": "meta.filter.operator.step.tiddlywiki5",
+							"captures": {
+								"1": {
+									"name": "keyword.control.operator.prefix.negation.tiddlywiki5"
+								},
+								"2": {
+									"name": "keyword.operator.operator.filter.tiddlywiki5"
+								},
+								"3": {
+									"name": "keyword.control.operator.suffix.tiddlywiki5"
+								},
+								"4": {
+									"name": "keyword.operator.suffix.tiddlywiki5"
+								},
+								"5": {
+									"name": "meta.variable.entity.filter.operand.tiddlywiki5"
+								},
+								"6": {
+									"name": "variable.punctuation.definition.operand.begin.tiddlywiki5"
+								},
+								"7": {
+									"name": "variable.entity.filter.operand.tiddlywiki5"
+								},
+								"8": {
+									"name": "variable.punctuation.definition.operand.end.tiddlywiki5"
 								}
 							}
 						}

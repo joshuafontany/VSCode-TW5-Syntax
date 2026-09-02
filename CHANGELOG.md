@@ -7,6 +7,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A filter reads every operand delimiter TiddlyWiki reads. filters.js switches on five after an
+  operator name — `[`, `<`, `{`, `(` and `/` — and the grammar read three. A regular-expression
+  operand and a multi-valued variable operand fell into the operator name, so `[prefix/Some/]`
+  read as one operator called `prefix/Some/`. Both parse now, with the regexp body taking the
+  family every highlighter surveyed keeps for one, and its flags their own: measured over 65
+  themes, the body and flags colour in all of them and the multi-valued operand in 89%, where the
+  swallowed span reached 31%.
 - A lone angle bracket no longer reads as an unclosed pair. Wikitext leaves `<` and `>` unpaired
   in ordinary prose — 440 of TiddlyWiki's own 14485 core lines carry one — and matching them drew
   every one as an unmatched bracket. Neither language brackets the pair now, nor surrounds with it.
