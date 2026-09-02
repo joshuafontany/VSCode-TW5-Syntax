@@ -84,6 +84,45 @@ test('only run-tool.js spawns a child and reads both halves of the answer', () =
   assert.deepStrictEqual(others, [], 'file(s) spawning a child of their own beside run-tool.js');
 });
 
+// Collecting the scopes a grammar declares collapsed last of all, and the delay cost a measurement.
+// Three readers stood: the shared one, one inside the dialect's coverage test, and one inside the
+// theme reader. Two of the three read the grammar's ROOT `name` as a scope — the language name, not
+// a scope — putting nine words into the declared set that nothing can ever reach. The corpus
+// answered to 526 declared scopes where 517 stand, and nine sat forever among the ones it reports as
+// handed to another grammar.
+//
+// The third reader had it right, in a comment beside the check. A collapse gate that names one
+// implementation's fingerprint could not see the other two, so this one names the field a collector
+// reads, and carries a reason for each file that names it without collecting.
+// Spelled in pieces, so a rule that names the field it watches does not read as its own offender.
+const FIELD = `content${'Name'}`;
+const READS_CONTENT_NAME = {
+  'embedded-languages.test.js':
+    `reads ${FIELD} ALONE, for the regions that hand a language to a guest grammar — a different question`,
+  'grammar-selector-parity.test.js':
+    'lists it among the keys TextMate defines, to catch a rule carrying a key TextMate does not',
+  'terminator-closure.js':
+    "reads one rule's own name while reporting on that rule, never a set over the grammar",
+  'theme-parity.test.js':
+    `strips one ${FIELD} from a copy of the grammar, to provoke the gate it collides`
+};
+test('only grammar-scopes.js collects the scopes a grammar declares', () => {
+  const others = all.filter((s) => s.name !== 'grammar-scopes.js')
+    .filter((s) => code(s.text).includes(FIELD))
+    .filter((s) => !READS_CONTENT_NAME[s.name])
+    .map((s) => s.name);
+  assert.deepStrictEqual(others, [], 'file(s) collecting scope names beside grammar-scopes.js');
+});
+
+test('every allowance for reading that field still names a file that reads it', () => {
+  const stale = Object.keys(READS_CONTENT_NAME)
+    .filter((name) => {
+      const file = all.find((s) => s.name === name);
+      return !file || !code(file.text).includes(FIELD);
+    });
+  assert.deepStrictEqual(stale, [], 'allowance(s) for a file that no longer reads the field');
+});
+
 // A test answers to the same rule here. Two of them read `TW5_PATH` and fell back to a sibling
 // checkout by hand, which the oracle already does with three more candidates behind it — so a
 // contributor whose TiddlyWiki stands somewhere the oracle finds and the hand-rolled pair does not

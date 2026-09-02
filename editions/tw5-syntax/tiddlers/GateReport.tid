@@ -58,7 +58,7 @@ gates-held: 20 of 21
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  42 files, 526 scopes declared, 466 reached (floor 466)"
+            "said": "corpus-check  42 files, 515 scopes declared, 467 reached (floor 467)"
         },
         {
             "gate": "dark-construct",

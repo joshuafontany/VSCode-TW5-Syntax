@@ -18,6 +18,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { declaredScopes } = require('./grammar-scopes.js');
 
 const THEME_DIR = path.resolve(__dirname, '..', 'node_modules', 'tm-themes', 'themes');
 
@@ -106,22 +107,15 @@ function paintRate(scope, themes) {
 /**
  * Every scope this grammar emits.
  *
+ * The shared collector answers this. A second reader here carried its own reading of the root
+ * `name` — the grammar's language name, never a scope — and asked sixty-five themes to paint
+ * "TiddlyWiki5".
+ *
  * @param {string} grammarPath
  * @returns {string[]}
  */
 function grammarScopes(grammarPath) {
-  const found = new Set();
-  const walk = (node) => {
-    if (Array.isArray(node)) return node.forEach(walk);
-    if (!node || typeof node !== 'object') return;
-    for (const [key, value] of Object.entries(node)) {
-      if ((key === 'name' || key === 'contentName') && typeof value === 'string') {
-        for (const s of value.split(/\s+/)) if (s && !s.includes('$')) found.add(s);
-      } else walk(value);
-    }
-  };
-  walk(JSON.parse(fs.readFileSync(grammarPath, 'utf8')));
-  return [...found].sort();
+  return [...declaredScopes(grammarPath)].sort();
 }
 
 module.exports = { THEME_DIR, themeRules, paints, loadThemes, paintRate, grammarScopes };

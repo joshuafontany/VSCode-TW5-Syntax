@@ -5,6 +5,12 @@
 // reading the field as one scope finds none of them, and a gate built on it goes quiet about
 // everything that field names.
 //
+// The grammar's OWN `name` sits beside `scopeName` and names the language rather than a scope.
+// Reading it as one puts nine words into the declared set across these eight grammars —
+// "TiddlyWiki5", "fields", "substituted", "test" — each unreachable by construction, each inflating
+// the denominator a corpus answers to and standing forever among the scopes handed to another
+// grammar.
+//
 // One collector, so a reader added later cannot drift from the one beside it.
 
 'use strict';
@@ -19,20 +25,23 @@ const path = require('node:path');
  * @returns {Set<string>}
  */
 function declaredScopes(file) {
+  const grammar = JSON.parse(fs.readFileSync(file, 'utf8'));
   const out = new Set();
   const walk = (node) => {
     if (Array.isArray(node)) return node.forEach(walk);
     if (!node || typeof node !== 'object') return;
-    for (const key of ['name', 'contentName']) {
-      const value = node[key];
-      // A $1 in a scope name resolves per match, so the declared form never appears verbatim.
-      if (typeof value === 'string' && !value.includes('$')) {
-        for (const scope of value.split(/\s+/)) if (scope) out.add(scope);
+    // The root's `name` names the language; every other one names a scope.
+    if (node !== grammar) {
+      for (const key of ['name', 'contentName']) {
+        const value = node[key];
+        if (typeof value !== 'string') continue;
+        // A $1 resolves per match, so that scope's declared form never appears verbatim.
+        for (const scope of value.split(/\s+/)) if (scope && !scope.includes('$')) out.add(scope);
       }
     }
     for (const value of Object.values(node)) walk(value);
   };
-  walk(JSON.parse(fs.readFileSync(file, 'utf8')));
+  walk(grammar);
   return out;
 }
 

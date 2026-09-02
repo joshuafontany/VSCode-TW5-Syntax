@@ -418,6 +418,26 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
   points at the one directory that stays outside: the coverage floor already measures those files,
   and a second copy would part from the first the day somebody edits one.
+- Nothing this grammar emits stands unreached. The corpus reached 466 of the scopes it declares and
+  three stood outside, and the three left by three different roads. A square-bracket string inside a
+  macro call wanted a specimen and got one. The macro-call parameter separator sat last in a list
+  whose previous pattern takes any run of non-space, non-quote, non-angle characters, so every
+  character it accepts that pattern claims first — twenty-nine tried in a macro call, and it fired
+  for none. The table body row carried a name on an EMPTY capture group: its three siblings name the
+  markup family on the `c`, `h` or `f` ending the line, a body row ends on nothing, and a zero-width
+  capture produces no token. Both dead names are gone, the floor stands at 467 and the ceiling at 0.
+- A grammar's own `name` stopped counting as a scope. It sits beside `scopeName` and names the
+  language, and three collectors read it as a scope — nine words across eight grammars, none of them
+  reachable by anything, each inflating the count the corpus answers to and standing forever among
+  the scopes reported as handed to another grammar. 526 declared reads 515. The collectors collapsed
+  onto the one that already had it right, in a comment beside the check.
+- Every snippet inserts a construct this grammar colours, not only one TiddlyWiki parses. One reads
+  as prose by ruling: a substitution colours inside a macro definition body and nowhere else, so it
+  reads as text standing alone, exactly as TiddlyWiki reads it there.
+- The snippet reader honours VS Code's escapes. A body spells a pragma `\\define` and INSERTS
+  `\define`, so reading it verbatim handed the parser two backslashes — every pragma snippet then
+  read clean for the wrong reason, and read as prose against the grammar for the same one.
+
 - The dialect carries the wikitext snippets. `memetic-wikitext` held the grammar and the language
   configuration and not the 125 snippets the base offers, so an author writing a `.mem` reached for
   a widget snippet and met nothing, with no error anywhere naming the absence. The syntax-test

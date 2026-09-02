@@ -15,26 +15,10 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
+const { declaredScopes } = require('./grammar-scopes.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const SAMPLES = path.join(ROOT, 'tests', 'samples');
-
-/** Every scope name a grammar declares, interpolating names excepted. */
-function declaredScopes(file) {
-  const grammar = JSON.parse(fs.readFileSync(file, 'utf8'));
-  const out = new Set();
-  const walk = (node) => {
-    if (!node || typeof node !== 'object') return;
-    for (const key of ['name', 'contentName']) {
-      const value = node[key];
-      // A grammar's own `name` sits beside scopeName and names the language, never a scope.
-      if (typeof value === 'string' && node !== grammar) for (const s of value.split(/\s+/)) if (!/\$\d/.test(s)) out.add(s);
-    }
-    for (const key of Object.keys(node)) walk(node[key]);
-  };
-  walk(grammar);
-  return out;
-}
 
 /** Every scope the pinned snapshots of a given suffix reach. */
 function reachedScopes(suffix) {

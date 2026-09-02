@@ -17,3 +17,5 @@ $aParameter$
 ${ [tag[x]] }$
 
 A call whose parameters carry separators: <<mymacro one, two; three>> here.
+
+<<mymacro [[a bracketed value]]>>
