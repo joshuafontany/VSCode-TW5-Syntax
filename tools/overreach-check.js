@@ -40,6 +40,7 @@ const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { parseTid } = require('./wiki-data.js');
 const { grammarArgs } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
 const { BASE, readSnapshot, claims, verdicts, declines } = require('./snapshot-format.js');
@@ -84,11 +85,9 @@ function offsetAt(source, line, col) {
  * @returns {boolean}
  */
 function parsesAsWikitext(tid) {
-  const blank = tid.indexOf('\n\n');
-  const header = blank < 0 ? tid : tid.slice(0, blank);
-  const declared = /^type:[ \t]*(\S+)/m.exec(header);
+  const declared = parseTid(tid).fields.type;
   if (!declared) return true;
-  return declared[1] === 'text/vnd.tiddlywiki';
+  return declared === 'text/vnd.tiddlywiki';
 }
 
 /**
@@ -290,9 +289,8 @@ if (require.main === module) {
       .filter(({ tid }) => parsesAsWikitext(tid))
       .map(({ src, tid }, i) => {
         // A .tid carries a header block, then a blank line, then the wikitext.
-        const blank = tid.indexOf('\n\n');
         const dest = path.join(scratch, `w${String(i).padStart(4, '0')}.tw`);
-        const body = blank < 0 ? '' : tid.slice(blank + 2);
+        const { body } = parseTid(tid);
         fs.writeFileSync(dest, truncating ? truncate(body, rand) : body);
         return { src, dest, whole: body };
       });

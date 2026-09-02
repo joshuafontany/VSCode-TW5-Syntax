@@ -26,6 +26,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { parseTid } = require('./wiki-data.js');
 const { resolveTiddlyWiki } = require('./tw5-oracle.js');
 
 // wikiparser.js reads one prefix per rule type. The pragma prefix reads PLURAL where the
@@ -93,7 +94,7 @@ function readShippedDefaults(twPath) {
       else if (e.name.endsWith('.tid')) {
         const text = fs.readFileSync(p, 'utf8');
         const m = /^title:\s*\$:\/config\/WikiParserRules\/(\S+)\s*$/m.exec(text);
-        if (m) out.set(m[1], text.slice(text.indexOf('\n\n') + 2).trim());
+        if (m) out.set(m[1], parseTid(text).body.trim());
       }
     }
   };

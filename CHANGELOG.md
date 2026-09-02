@@ -418,6 +418,25 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
   points at the one directory that stays outside: the coverage floor already measures those files,
   and a second copy would part from the first the day somebody edits one.
+- A gate reads a `.tid` the same on either line ending. Six tools split a tiddler by scanning for
+  two newlines in a row, and that reading answers wrongly three ways: a file opening with a blank
+  line hands back a fragment of its body, a CRLF file matches nothing and reads as bodiless, and a
+  blank line carrying a space reads on into the first paragraph break. 34 of TiddlyWiki's own
+  tiddlers answer differently under the two readings — one of them with 1373 characters a gate read
+  as none. All six now read line-wise, and the attribute guard sees 23,682 tags where it saw
+  23,627, at the same 99.95% agreement.
+- Spawning a child and reading both halves of the answer stands in one place. Ten sites carried the
+  same seven lines — five running an instrument, three booting the edition, two inside the sandbox
+  — and each one that let the throw escape read a failing gate as a broken test. The swallow
+  witness now says so out loud: its two readings test a regex against the parser's output, so an
+  oracle that died would have answered every question with "no" and reported agreement everywhere.
+- The two sandbox runners share one body. They differed in which directories the sandbox takes from
+  the working tree, which is now the argument rather than a second copy of everything else.
+- The vendored grammars stand in `tests/grammars/` with an account of where they came from, and a
+  gate holds the directory to it: a grammar here that no runner loads fails, and so does a path
+  `grammars.sh` names that nothing holds. A grammar nothing loads costs an assertion its meaning
+  silently — every reading against it comes back absent rather than wrong.
+
 - An instrument and the test that collides it stand in one directory. A second `tools/` under
   `tests/` held the tests, and the name promised a mirror the directory never held: of 29 tests
   there, 15 answered a question about the whole repository and 14 instruments carried no test under

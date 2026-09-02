@@ -17,6 +17,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { readData } = require('./wiki-data.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const HARVEST = path.join(ROOT, 'editions', 'tw5-syntax', 'tiddlers', 'GrammarSignals.tid');
@@ -34,9 +35,8 @@ if (!fs.existsSync(HARVEST)) {
   console.error('  no harvest stands — run `npm run signals` against the TiddlyWiki this repo answers to');
   process.exit(2);
 }
-const text = fs.readFileSync(HARVEST, 'utf8');
-const version = (/^tw5-version: (.*)$/m.exec(text) || [, 'unknown'])[1];
-const signals = JSON.parse(text.slice(text.indexOf('\n\n') + 2));
+const { fields, data: signals } = readData('GrammarSignals.tid');
+const version = fields['tw5-version'] ?? 'unknown';
 const grammar = JSON.parse(fs.readFileSync(GRAMMAR, 'utf8'));
 
 const keys = new Set(Object.keys(grammar.repository).map((k) => k.toLowerCase()));

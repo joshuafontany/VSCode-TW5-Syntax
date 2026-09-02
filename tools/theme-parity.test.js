@@ -6,24 +6,18 @@
 
 const test = require('node:test');
 const assert = require('node:assert');
-const { execFileSync } = require('node:child_process');
 const { runProvoked } = require('./grammar-sandbox.js');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { runTool } = require('./run-tool.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const WITNESS = path.join(ROOT, 'tools', 'theme-parity.js');
 const GRAMMAR = path.join(ROOT, 'syntaxes', 'tiddlywiki5.json');
 const THEMES = path.join(ROOT, 'node_modules', 'tm-themes', 'themes');
 
-const run = () => {
-  try {
-    return { code: 0, out: execFileSync('node', [WITNESS, '--verbose'], { encoding: 'utf8', cwd: ROOT }) };
-  } catch (e) {
-    return { code: e.status, out: `${e.stdout ?? ''}${e.stderr ?? ''}` };
-  }
-};
+const run = () => runTool(WITNESS, ['--verbose']);
 
 const live = { skip: fs.existsSync(THEMES) ? false : 'no bundled themes', timeout: 600000 };
 

@@ -18,7 +18,7 @@ This extension provides five languages, each with its own grammar and scope.
 | `tid` | `.tid`, `.meta` | `source.tiddlywiki5.tid-file` | the tiddler file format: a field block, a blank line, then a body parsed as wikitext |
 | `multids` | `.multids` | `source.tiddlywiki5.multids-file` | the multiple-tiddler file format |
 | `memetic-wikitext` | `.mem` | `text.html.tiddlywiki5.memetic-wikitext` | Memetic-Wikitext, a superset of TiddlyWiki wikitext |
-| `tiddlywiki5.test` | `.tw5.test` | `text.html.tiddlywiki5.test` | the syntax-test files used to check the grammars |
+| `tiddlywiki5.test` | `.tw5.test` | `text.html.tiddlywiki5.test` | the syntax-test files that check the grammars |
 
 Each language applies only to the file extensions listed, so adding one changes nothing about how the others behave.
 

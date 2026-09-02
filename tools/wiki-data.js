@@ -19,6 +19,15 @@ const TIDDLERS = path.join(ROOT, 'editions', 'tw5-syntax', 'tiddlers');
 /**
  * A .tid file's fields and body. The header runs to the first blank line.
  *
+ * Line-wise, because the header ends at a LINE that carries nothing. Scanning for two newlines in
+ * a row answers differently three ways, each measured against TiddlyWiki's own tiddlers: a file
+ * opening with a blank line hands back a body of 17 characters where 120 stand, a CRLF file never
+ * matches at all and reads as bodiless, and a header whose blank line carries a space reads on into
+ * the first paragraph break. 34 of TiddlyWiki's tiddlers answer differently under the two readings.
+ *
+ * A field reads the same on either line ending, so a comparison against a bare name holds. The
+ * body keeps its own bytes, carriage returns and all.
+ *
  * @param {string} text
  * @returns {{fields: Record<string,string>, body: string}}
  */
@@ -27,8 +36,11 @@ function parseTid(text) {
   const fields = {};
   let i = 0;
   for (; i < lines.length; i++) {
-    if (lines[i].trim() === '') { i += 1; break; }
-    const match = /^([^:]+):\s?(.*)$/.exec(lines[i]);
+    // A carriage return counts as a line terminator to `.` and to `$`, so a field regex run over a
+    // CRLF line matches nothing at all. Dropping it before the match answers every field at once.
+    const line = lines[i].replace(/\r$/, '');
+    if (line.trim() === '') { i += 1; break; }
+    const match = /^([^:]+):\s?(.*)$/.exec(line);
     if (match) fields[match[1].trim()] = match[2];
   }
   return { fields, body: lines.slice(i).join('\n') };

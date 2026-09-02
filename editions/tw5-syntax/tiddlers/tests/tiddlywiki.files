@@ -1,13 +1,13 @@
 {
     "directories": [
         {
-            "path": "../../../../tests",
+            "path": "../../../../tests/grammars",
             "filesRegExp": "^.*\\.(json|cson|plist|tmLanguage)$",
             "isTiddlerFile": false,
             "fields": {
                 "title": {
                     "source": "filename",
-                    "prefix": "$:/tw5-syntax/tests/"
+                    "prefix": "$:/tw5-syntax/tests/grammars/"
                 },
                 "type": "text/plain",
                 "tags": "$:/tags/TW5Syntax/TestFixture",

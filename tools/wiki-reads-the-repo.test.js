@@ -19,10 +19,10 @@
 
 const test = require('node:test');
 const assert = require('node:assert');
-const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { runNode } = require('./run-tool.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const EDITION = path.join(ROOT, 'editions', 'tw5-syntax');
@@ -89,9 +89,10 @@ function fromTheWiki() {
   const host = resolveTiddlyWiki();
   const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'wiki-reads-'));
   try {
-    execFileSync('node', [path.join(host, 'tiddlywiki.js'), EDITION, '--output', scratch,
+    const { code, out } = runNode([path.join(host, 'tiddlywiki.js'), EDITION, '--output', scratch,
       '--render', '[all[tiddlers]prefix[$:/tw5-syntax/]]', '[encodeuricomponent[]addsuffix[.txt]]',
-      'text/plain', '$:/core/templates/plain-text-tiddler'], { cwd: ROOT, stdio: 'ignore' });
+      'text/plain', '$:/core/templates/plain-text-tiddler']);
+    assert.strictEqual(code, 0, `the boot refused, so every reading below would read as absent:\n${out}`);
     booted = new Map();
     for (const name of fs.readdirSync(scratch)) {
       booted.set(decodeURIComponent(name.slice(0, -'.txt'.length)),

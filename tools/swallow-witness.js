@@ -33,6 +33,7 @@ const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { runTool } = require('./run-tool.js');
 const { grammarArgs } = require('./tokenizer.js');
 
 const ROOT = path.resolve(__dirname, '..');
@@ -58,11 +59,25 @@ const CLOSERS = {
 };
 const closedSpecimen = (opener) => `${opener}\n\nbody\n\n${CLOSERS[opener]}\n`;
 
+/**
+ * What TiddlyWiki built from one specimen.
+ *
+ * A refusal reads loudly here. The two readings below test a regex against the output, so an
+ * oracle that died would answer every question with "no" and the witness would report the parser
+ * agreeing with the grammar everywhere.
+ *
+ * @param {string} text
+ * @returns {string}
+ */
+function askOracle(text) {
+  const { code, out } = runTool('tw5-oracle.js', ['--text', text]);
+  if (code !== 0) throw new Error(`the oracle refused a specimen, so no reading below stands:\n${out}`);
+  return out;
+}
+
 /** Does TiddlyWiki build a quoteblock after the blank line? */
 function parserStops(opener) {
-  const out = execFileSync('node', [path.join(ROOT, 'tools', 'tw5-oracle.js'), '--text', specimen(opener)],
-    { encoding: 'utf8', cwd: ROOT });
-  return /quoteblock/.test(out);
+  return /quoteblock/.test(askOracle(specimen(opener)));
 }
 
 /** Does the grammar colour a quoteblock after the blank line? */
@@ -94,8 +109,7 @@ if (closedFiles.length) {
 
 /** Does TiddlyWiki carry one construct across the blank line? */
 function parserCarries(opener) {
-  const out = execFileSync('node', [path.join(ROOT, 'tools', 'tw5-oracle.js'), '--text', closedSpecimen(opener)],
-    { encoding: 'utf8', cwd: ROOT });
+  const out = askOracle(closedSpecimen(opener));
   // The word `body` sits past the blank line. The parser carries the construct when the FIRST
   // node it names names something other than a plain block stopping at the opener.
   return !/^element<p> \[parseblock\] @0-\d+\n\s+text "[^"]*"\n(?!\s)/.test(out) && !/parseblock/.test(out.split('\n')[0]);

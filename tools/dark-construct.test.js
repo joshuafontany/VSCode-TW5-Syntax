@@ -6,23 +6,16 @@
 
 const test = require('node:test');
 const assert = require('node:assert');
-const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
+const { runTool } = require('./run-tool.js');
 const { runInSandbox } = require('./grammar-sandbox.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const THEMES = path.join(ROOT, 'node_modules', 'tm-themes', 'themes');
 const live = { skip: fs.existsSync(THEMES) ? false : 'no bundled themes', timeout: 600000 };
 
-const run = () => {
-  try {
-    return { code: 0, out: execFileSync('node', [path.join(ROOT, 'tools', 'dark-construct.js'), '--verbose'],
-      { encoding: 'utf8', cwd: ROOT }) };
-  } catch (e) {
-    return { code: e.status, out: `${e.stdout ?? ''}${e.stderr ?? ''}` };
-  }
-};
+const run = () => runTool('dark-construct.js', ['--verbose']);
 
 test('every construct that reads plain carries a reason', live, () => {
   const { code, out } = run();

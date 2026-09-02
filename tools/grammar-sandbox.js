@@ -16,6 +16,7 @@ const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { runNode } = require('./run-tool.js');
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -33,37 +34,46 @@ function overlay(dir, sandbox) {
 }
 
 /**
- * Run a command inside a sandbox a caller may write into first.
+ * Run a command inside a sandbox, with a caller's fault written into it first.
  *
  * A gate reads what it reads: one reads the grammar, another reads the pinned snapshots. A
  * collision has to provoke the thing the gate actually opens, so the caller writes the sandbox
  * rather than handing over one file.
  *
+ * `dirs` names what the sandbox takes from the working tree. A gate reading pinned snapshots needs
+ * the samples as they stand; one provoking the grammar wants them as HEAD holds them, so the two
+ * callers below ask for different overlays and share everything else.
+ *
+ * @param {string[]} dirs                     directories to overlay from the working tree
  * @param {(sandbox: string) => void} mutate  writes the fault into the sandbox
  * @param {string[]} argv                     node arguments, relative to the sandbox
  * @returns {{code:number, out:string}}
  */
-function runInSandbox(mutate, argv) {
+function inSandbox(dirs, mutate, argv) {
   const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), 'grammar-sandbox-'));
   try {
     execFileSync('git', ['worktree', 'add', '-q', '--detach', sandbox, 'HEAD'], { cwd: ROOT });
     fs.rmSync(path.join(sandbox, 'node_modules'), { recursive: true, force: true });
     fs.symlinkSync(path.join(ROOT, 'node_modules'), path.join(sandbox, 'node_modules'));
-    overlay('tools', sandbox);
-    overlay('syntaxes', sandbox);
-    overlay('editions', sandbox);
-    overlay(path.join('tests', 'samples'), sandbox);
+    for (const dir of dirs) overlay(dir, sandbox);
     mutate(sandbox);
-    try {
-      return { code: 0, out: execFileSync('node', argv.map((a) => path.join(sandbox, a)),
-        { encoding: 'utf8', cwd: sandbox }) };
-    } catch (e) {
-      return { code: e.status, out: `${e.stdout ?? ''}${e.stderr ?? ''}` };
-    }
+    return runNode(argv.map((a) => path.join(sandbox, a)), { cwd: sandbox });
   } finally {
     execFileSync('git', ['worktree', 'remove', '--force', sandbox], { cwd: ROOT, stdio: 'ignore' });
   }
 }
+
+const WORKING = ['tools', 'syntaxes', 'editions', path.join('tests', 'samples')];
+const AT_HEAD = ['tools', 'syntaxes', 'editions'];
+
+/**
+ * Run a command inside a sandbox a caller may write into first.
+ *
+ * @param {(sandbox: string) => void} mutate  writes the fault into the sandbox
+ * @param {string[]} argv                     node arguments, relative to the sandbox
+ * @returns {{code:number, out:string}}
+ */
+const runInSandbox = (mutate, argv) => inSandbox(WORKING, mutate, argv);
 
 /**
  * Run a command inside a sandbox whose grammar carries `provoked`.
@@ -72,25 +82,7 @@ function runInSandbox(mutate, argv) {
  * @param {string[]} argv     node arguments, relative to the sandbox
  * @returns {{code:number, out:string}}
  */
-function runProvoked(provoked, argv) {
-  const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), 'grammar-sandbox-'));
-  try {
-    execFileSync('git', ['worktree', 'add', '-q', '--detach', sandbox, 'HEAD'], { cwd: ROOT });
-    fs.rmSync(path.join(sandbox, 'node_modules'), { recursive: true, force: true });
-    fs.symlinkSync(path.join(ROOT, 'node_modules'), path.join(sandbox, 'node_modules'));
-    overlay('tools', sandbox);
-    overlay('syntaxes', sandbox);
-    overlay('editions', sandbox);
-    fs.writeFileSync(path.join(sandbox, 'syntaxes', 'tiddlywiki5.json'), provoked);
-    try {
-      return { code: 0, out: execFileSync('node', argv.map((a) => path.join(sandbox, a)),
-        { encoding: 'utf8', cwd: sandbox }) };
-    } catch (e) {
-      return { code: e.status, out: `${e.stdout ?? ''}${e.stderr ?? ''}` };
-    }
-  } finally {
-    execFileSync('git', ['worktree', 'remove', '--force', sandbox], { cwd: ROOT, stdio: 'ignore' });
-  }
-}
+const runProvoked = (provoked, argv) => inSandbox(AT_HEAD,
+  (sandbox) => fs.writeFileSync(path.join(sandbox, 'syntaxes', 'tiddlywiki5.json'), provoked), argv);
 
 module.exports = { runProvoked, runInSandbox, GRAMMAR: path.join(ROOT, 'syntaxes', 'tiddlywiki5.json') };

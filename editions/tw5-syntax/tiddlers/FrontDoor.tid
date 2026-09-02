@@ -74,15 +74,17 @@ what the construct means instead of the characters the assertion pins.
 !!! One home for the instruments
 
 An instrument and the test that collides it sit in the same directory: `tools/theme-model.js`
-beside `tools/theme-model.test.js`. A second `tools/` under `tests/` used to hold the tests, and
-the name promised a mirror the directory never held — of 29 tests there, 15 answered a question
-about the whole repository rather than about any instrument, and 14 instruments carried no test
-under their own name. A reader who trusted the name looked for a pairing that stood for half the
-files.
+beside `tools/theme-model.test.js`.
 
-`tests/` now holds one kind of thing: the grammar assertions, declarative, read by
-`vscode-tmgrammar-test`, one directory per dialect. `tools/` holds the other: executable, read by
-`node --test`. Each answers to its own runner, and the directory says which.
+Splitting them across two directories named `tools` promises a mirror that measurement refuses. Of
+the 29 tests in this repository, 15 answer a question about the whole repository rather than about
+any instrument, and 14 instruments carry no test under their own name. A reader who trusts such a
+name looks for a pairing that stands for half the files.
+
+So each directory holds one kind of thing. `tests/` holds the grammar assertions: declarative, read
+by `vscode-tmgrammar-test`, one directory per dialect, with the vendored grammars they resolve
+against under `tests/grammars/`. `tools/` holds the executable ones, which `node --test` runs. Each
+answers to its own runner, and the directory says which.
 
 The wiki reads both from the one directory and tells them apart by tag — `Tool` for an instrument,
 `ToolTest` for a test — so a reader browsing the instruments meets no test, and a reader after a
@@ -114,4 +116,5 @@ that reaches the wiki changed, fails rather than goes quiet.
 |`tests/samples/` |specimens, and the snapshots `npm run snap-update` re-pins |
 |`tools/` |the witnesses, and the test beside each one that collides it against the fault it stands for |
 |`docs/prior-art/` |twenty highlighting systems surveyed, kept verbatim |
+|`tests/grammars/` |grammars other people wrote, so an embedded-language assertion resolves the scope it names |
 |`corpus/` |broad ground, gated on invariants — on disk, never in the wiki |

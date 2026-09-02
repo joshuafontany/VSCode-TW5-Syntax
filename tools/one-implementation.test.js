@@ -35,7 +35,12 @@ const code = (text) => text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*
 const COLLAPSED = [
   { module: 'theme-model.js', doing: /tokenColors/, what: 'reading what a theme paints' },
   { module: 'tokenizer.js', doing: /source \.\/grammars\.sh/, what: 'resolving the grammar set' },
-  { module: 'wiki-data.js', doing: /lines\[i\]\.trim\(\) === ''/, what: 'parsing a tiddler file' }
+  // A detector naming ONE implementation's fingerprint can only ever pass. This one named the
+  // line-scan wiki-data does, so six tools splitting a tiddler on two newlines in a row stood clear
+  // of it — and carried a reading that missed 34 of TiddlyWiki's own tiddlers. It names both
+  // idioms now: the work, rather than the file that holds it.
+  { module: 'wiki-data.js', doing: /indexOf\('\\n\\n'\)|lines\[i\]\.trim\(\) === ''/,
+    what: 'parsing a tiddler file' }
 ];
 
 for (const { module: owner, doing, what } of COLLAPSED) {
@@ -62,6 +67,21 @@ test('only the oracle resolves the TiddlyWiki this repo answers to', () => {
       || new RegExp(`process\\.env\\.${ENV}\\s*(\\?\\?|\\|\\|)`).test(code(s.text)))
     .map((s) => s.name);
   assert.deepStrictEqual(others, [], 'file(s) resolving a host of their own beside the oracle');
+});
+
+// Spawning a child and reading both halves of its answer — the exit code and the lines — collapsed
+// the same way. Five tests carried the same seven lines to run an instrument, three more to boot the
+// edition, and two inside the sandbox. A tenth written afresh reads a non-zero exit as a broken test
+// rather than as the measurement it carries, and a witness whose oracle died answers every question
+// with "no" and reports agreement everywhere.
+//
+// Spelled in pieces, so a rule that names the thing it forbids does not read as its own offender.
+const SPAWN = `execFileSync('${'node'}'`;
+test('only run-tool.js spawns a child and reads both halves of the answer', () => {
+  const others = all.filter((s) => s.name !== 'run-tool.js')
+    .filter((s) => code(s.text).includes(SPAWN))
+    .map((s) => s.name);
+  assert.deepStrictEqual(others, [], 'file(s) spawning a child of their own beside run-tool.js');
 });
 
 // A test answers to the same rule here. Two of them read `TW5_PATH` and fell back to a sibling

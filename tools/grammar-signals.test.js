@@ -10,9 +10,10 @@
 
 const test = require('node:test');
 const assert = require('node:assert');
-const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
+const { runTool, runNode } = require('./run-tool.js');
+const { readData } = require('./wiki-data.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const HARVEST = path.join(ROOT, 'editions', 'tw5-syntax', 'tiddlers', 'GrammarSignals.tid');
@@ -20,21 +21,13 @@ const { resolveTiddlyWiki } = require('./tw5-oracle.js');
 const host = resolveTiddlyWiki() ?? '';
 const live = { skip: fs.existsSync(path.join(host, 'tiddlywiki.js')) ? false : 'no TiddlyWiki beside this repo', timeout: 600000 };
 
-const run = (tool, args = []) => {
-  try {
-    return { code: 0, out: execFileSync('node', [path.join(ROOT, 'tools', tool), ...args], { encoding: 'utf8', cwd: ROOT }) };
-  } catch (e) {
-    return { code: e.status, out: `${e.stdout ?? ''}${e.stderr ?? ''}` };
-  }
-};
 
 const harvest = () => {
-  const text = fs.readFileSync(HARVEST, 'utf8');
-  return JSON.parse(text.slice(text.indexOf('\n\n') + 2));
+  return readData('GrammarSignals.tid').data;
 };
 
 test('the harvest matches the TiddlyWiki this repo boots against', live, () => {
-  const { code, out } = run('grammar-signals.js', ['--check']);
+  const { code, out } = runTool('grammar-signals.js', ['--check']);
   assert.match(out, /the harvest current/, out.slice(-400));
   assert.strictEqual(code, 0);
 });
@@ -50,7 +43,7 @@ test('the harvest carries what a grammar needs to answer to', () => {
 });
 
 test('every wikitext rule the host stands, the grammar reads', () => {
-  const { code, out } = run('rule-coverage.js');
+  const { code, out } = runTool('rule-coverage.js');
   assert.match(out, /0 unaccounted/, out.slice(-400));
   assert.strictEqual(code, 0);
 });
@@ -60,7 +53,7 @@ test('a rule the host adds and the grammar never learns fails the gate', () => {
   const original = fs.readFileSync(HARVEST, 'utf8');
   try {
     fs.writeFileSync(HARVEST, original.replace('"wikiRules": [', '"wikiRules": [\n        "quantumfold",'));
-    const { code, out } = run('rule-coverage.js');
+    const { code, out } = runTool('rule-coverage.js');
     assert.match(out, /stands a "quantumfold" rule this grammar never names/, out.slice(-400));
     assert.notStrictEqual(code, 0, 'the gate must fail, not only print');
   } finally {
@@ -95,12 +88,8 @@ test('the edition carries a command that runs the gates', live, () => {
   const match = header.exec(text);
   assert.ok(match, 'the compiled command carries no header, so the wiki would load nothing');
   assert.match(match[1], /module-type: command/, 'the module declares no command type');
-  const { out } = (() => {
-    try {
-      return { out: execFileSync('node', [path.join(host, 'tiddlywiki.js'),
-        path.join(ROOT, 'editions', 'tw5-syntax'), '--gate', 'list'], { encoding: 'utf8', cwd: ROOT }) };
-    } catch (e) { return { out: `${e.stdout ?? ''}${e.stderr ?? ''}` }; }
-  })();
+  const { out } = runNode([path.join(host, 'tiddlywiki.js'),
+    path.join(ROOT, 'editions', 'tw5-syntax'), '--gate', 'list']);
   assert.match(out, /\d+ gate\(s\): /, out.slice(-300));
   assert.match(out, /colour-witness/, 'the command lists a gate the manifest names');
 });

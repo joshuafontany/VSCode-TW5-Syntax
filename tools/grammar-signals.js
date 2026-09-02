@@ -19,10 +19,10 @@
 
 'use strict';
 
-const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { runNode } = require('./run-tool.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const EDITION = path.join(ROOT, 'editions', 'tw5-syntax');
@@ -42,9 +42,12 @@ if (!host || !fs.existsSync(path.join(host, 'tiddlywiki.js'))) {
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'grammar-signals-'));
 let harvested;
 try {
-  execFileSync('node', [path.join(host, 'tiddlywiki.js'), EDITION,
-    '--output', scratch, '--rendertiddler', '$:/tw5-syntax/GrammarSignals', 'signals.json', 'text/plain'],
-    { cwd: ROOT, stdio: 'ignore' });
+  const { code, out } = runNode([path.join(host, 'tiddlywiki.js'), EDITION,
+    '--output', scratch, '--rendertiddler', '$:/tw5-syntax/GrammarSignals', 'signals.json', 'text/plain']);
+  if (code !== 0) {
+    console.error(`  the boot refused, so nothing below stands:\n${out}`);
+    process.exit(2);
+  }
   harvested = fs.readFileSync(path.join(scratch, 'signals.json'), 'utf8');
 } finally {
   fs.rmSync(scratch, { recursive: true, force: true });

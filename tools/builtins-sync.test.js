@@ -8,26 +8,19 @@
 
 const test = require('node:test');
 const assert = require('node:assert');
-const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
+const { runTool } = require('./run-tool.js');
+const { readData } = require('./wiki-data.js');
 const { resolveTiddlyWiki } = require('./tw5-oracle.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const TIDDLER = path.join(ROOT, 'editions', 'tw5-syntax', 'tiddlers', 'BuiltInVariables.tid');
 
-const run = (args) => {
-  try {
-    return { code: 0, out: execFileSync('node', [path.join(ROOT, 'tools', 'builtins-sync.js'), ...args],
-      { encoding: 'utf8', cwd: ROOT }) };
-  } catch (e) {
-    return { code: e.status, out: `${e.stdout ?? ''}${e.stderr ?? ''}` };
-  }
-};
+const run = (args) => runTool('builtins-sync.js', args);
 
 const body = () => {
-  const text = fs.readFileSync(TIDDLER, 'utf8');
-  return JSON.parse(text.slice(text.indexOf('\n\n') + 2));
+  return readData('BuiltInVariables.tid').data;
 };
 
 test('the grammar carries what the tiddler says', () => {

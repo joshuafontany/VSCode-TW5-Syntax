@@ -55,7 +55,7 @@ description: What a reader must meet as one thing and what a reader must tell ap
                 "string.entity.other.title.link.tiddlywiki5"
             ],
             "least": 55,
-            "why": "wiki.js#isSystemTiddler names a system title by its $:/ opening, and TiddlyWiki keeps those out of ordinary lists. The precise name says whose thing it is; a second name carries it to themes, since the precise one alone reaches under half of them."
+            "why": "wiki.js#isSystemTiddler names a system title by its $:/ opening, and TiddlyWiki keeps those out of ordinary lists. The precise name says who owns it; a second name carries it to themes, since the precise one alone reaches under half of them."
         },
         {
             "what": "a sigil's sharktooth and the carrier's own control mark",

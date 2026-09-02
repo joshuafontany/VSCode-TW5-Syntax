@@ -30,6 +30,6 @@ Edit the list here. Run `npm run builtins -- --write`. The grammar follows.
 ! Why a bare minimum
 
 Every name added here claims a construct the core owns. A name that turns out to belong to an
-author paints their variable as the language's, which reads as a lie about whose thing it is.
+author paints their variable as the language's, which lies to a reader about who owns it.
 The list stays short on purpose, and the wiki keeps it where an operator can weigh an addition
 against what the core actually documents.

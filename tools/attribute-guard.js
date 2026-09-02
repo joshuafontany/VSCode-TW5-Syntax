@@ -28,6 +28,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { parseTid } = require('./wiki-data.js');
 const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
 
 // Every value form parseutils.js reads, in its order.
@@ -118,10 +119,7 @@ if (require.main === module) {
   let tight = 0;
   const tightCases = new Set();
   for (const file of files) {
-    const text = fs.readFileSync(file, 'utf8');
-    const blank = text.indexOf('\n\n');
-    if (blank < 0) continue;
-    const body = text.slice(blank + 2);
+    const { body } = parseTid(fs.readFileSync(file, 'utf8'));
     for (const m of body.matchAll(/<\$?[A-Za-z]/g)) {
       let tag = extract(body, m.index);
       if (!tag || tag.length > 200) continue;

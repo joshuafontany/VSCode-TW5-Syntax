@@ -38,9 +38,10 @@ const selectors = (grammar, prefix) => Object.keys(grammar.injections || {}).fil
 
 // A shared injection stands in ONE grammar, registered to reach every scope that colours
 // wikitext. A TextMate injection keys on a scope name and a wrapper carries a different one, so an
-// injection written inside the base grammar fires only there — which explains why each wrapper once
-// copied it, and why a wrapper that forgot the copy lost colouring silently. A registration
-// forgotten leaves the injection reaching nobody, which this reads at once.
+// injection written inside the base grammar fires only there. Copying it into each wrapper answers
+// that, and costs a wrapper its colouring the moment somebody adds a fifth and forgets — silently,
+// since a missing injection paints nothing and reports nothing. One grammar registered to every
+// scope answers it instead, and a registration left out reaches nobody, which this reads at once.
 test('a shared injection stands in one grammar and reaches every scope', () => {
   const injections = fs.readdirSync(path.join(ROOT, 'syntaxes'))
     .filter((f) => f.endsWith('.json'))

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Snapshot tests: a whole file's tokenization, pinned beside it. No assertion is written
+# Snapshot tests: a whole file's tokenization, pinned beside it. Nobody writes an assertion
 # by hand, so a sample covers every construct it happens to contain — and any change to
 # any of them surfaces as a diff.
 #
