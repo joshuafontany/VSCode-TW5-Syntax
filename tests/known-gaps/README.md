@@ -18,4 +18,11 @@ way the specification travels with it.
 
 The count below answers to the directory, and the gate fails when the two disagree.
 
-**1 gap stands.**
+**2 gaps stand.**
+
+## What stands
+
+| specimen | what the grammar owes |
+|---|---|
+| `an-unparseable-attribute-refuses-the-tag.tw5.test` | a stretch that parses as no attribute refuses the whole tag, and TiddlyWiki yields plain text for all of it |
+| `a-pragma-after-a-block-reads-as-text.tw5.test` | TiddlyWiki leaves pragma mode at the first block and never returns, so a backslash directive standing after block content parses as prose |

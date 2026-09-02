@@ -1,0 +1,38 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A pragma stands only before the first block"
+
+# TiddlyWiki reads pragmas in a mode of its own, which the parser leaves at the first construct no
+# pragma rule matches. wikiparser.js runs parsePragmas() once, before parseBlocks(), and never
+# returns to it — so a backslash directive standing after any block content parses as ordinary text.
+#
+# The grammar reads one anywhere. Measured against the parser over the pinned samples, this accounts
+# for the bulk of the spans `npm run overreach` reports: every directive on lines the samples place
+# after their opening block, and everything the grammar sub-tokenizes inside one — parameter names,
+# filter operands, the trim and notrim keywords, the quoted defaults.
+#
+# The cost of the gap runs one way only. An author writing a pragma too far down sees it coloured as
+# a working directive, and TiddlyWiki renders the backslash line as prose. Nothing colours wrongly in
+# the other direction: a pragma in its proper place reads correctly.
+#
+# Closing it wants document position, which a TextMate grammar carries badly. A rule fires on a line
+# without knowing what stood before it, and the pragma zone ends at a condition — the first line no
+# pragma rule matches — rather than at a delimiter a begin/end pair could name. Two shapes worth
+# measuring before reopening this:
+#
+#   \A anchored region   Oniguruma anchors \A at the start of the SOURCE, and vscode-textmate feeds
+#                        the grammar a line at a time. Whether \A holds across that boundary decides
+#                        the approach, and it decides it per engine rather than per grammar.
+#   end-on-first-block   A region opening at the first line and closing on a lookahead for any block
+#                        opener would carry the pragma rules and nothing else. It costs a nesting
+#                        level over the whole document, and every rule outside it needs the level.
+#
+# `npm run overreach` measures the gap; the count falls when it closes.
+
+Ordinary prose stands here.
+
+\define greet(name)
+#<- - punctuation.definition.directive.tiddlywiki5
+hello $name$
+\end
+
+\rules except html
+#<- - punctuation.definition.directive.tiddlywiki5

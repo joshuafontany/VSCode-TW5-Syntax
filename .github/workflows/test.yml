@@ -59,9 +59,96 @@ jobs:
         run: npm run corpus
 
       # The deciding half of tools/upstream-coverage.js, against snapshots whose answer
-      # is stated rather than inferred.
+      # it states rather than infers.
       - name: Tool tests
         run: npm run test-tools
+
+  gates:
+    # Every witness the manifest names, run where it can answer. A gate nobody runs measures
+    # nothing, and CI reached six of twenty-two while the rest stood green in a developer's
+    # terminal and nowhere else. tools/ci-runs-the-gates.test.js holds this list to the manifest.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      # The guard the grammar does not adopt, measured against every tag in TiddlyWiki's tiddlers.
+      - name: Attribute guard
+        run: npm run attribute-guard
+
+      # A pattern a reader would feel stall, taken to unfinished input at growing sizes.
+      - name: Backtrack witness
+        run: npm run backtrack-witness
+
+      # The names TiddlyWiki's core owns, held to the judgement in the wiki.
+      - name: Built-in variables
+        run: npm run builtins
+
+      # Distinctions a reader needs, and the themes that paint them apart.
+      - name: Colour witness
+        run: npm run colour-witness
+
+      # Every scope innermost on a construct, against sixty-five themes.
+      - name: Dark constructs
+        run: npm run dark-construct
+
+      # A construct nested in a container still reads as itself.
+      - name: Nesting coverage
+        run: npm run nesting-coverage
+
+      # Every wikitext rule the host stands, the grammar reads.
+      - name: Rule coverage
+        run: npm run rule-coverage
+
+      # An opener that never closes, bounded where the parser bounds it.
+      - name: Swallow witness
+        run: npm run swallow-witness
+
+      # What a theme paints for this grammar against six comparator grammars.
+      - name: Theme parity
+        run: npm run theme-parity
+
+      # The dialect's own composition, and its corpus against the parser.
+      - name: Memetic composition
+        run: npm run compose-memetic
+      - name: Memetic corpus against the parser
+        run: npm run overreach-corpus-memetic
+
+      # A gap the grammar grew to meet wants moving out of tests/known-gaps.
+      - name: Known gaps
+        run: npm run tests-known-gaps
+
+  gates-host:
+    # Gates whose answer moves with the TiddlyWiki they read. The harvest names a version, and the
+    # overreach runs take the grammar to the host's own tiddlers — so upstream moving reports here
+    # rather than blocking a merge, the way the coverage job already does.
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Fetch TiddlyWiki5
+        run: git clone --depth 1 https://github.com/TiddlyWiki/TiddlyWiki5.git /tmp/tw5
+      - name: The harvest matches the TiddlyWiki this reads
+        run: npm run signals:check
+        env:
+          TW5_PATH: /tmp/tw5
+      - name: The grammar against the host's own tiddlers
+        run: npm run overreach-host
+        env:
+          TW5_PATH: /tmp/tw5
+      - name: The same, cut mid-keystroke
+        run: npm run overreach-cut
+        env:
+          TW5_PATH: /tmp/tw5
 
   package:
     # The package a user installs, so .vscodeignore and the manifest meet a build.

@@ -418,6 +418,28 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
   points at the one directory that stays outside: the coverage floor already measures those files,
   and a second copy would part from the first the day somebody edits one.
+- Continuous integration runs every witness the repository stands. It reached six of twenty-two,
+  and sixteen stood green in a developer's terminal and nowhere else — seven of them with nothing
+  in CI exercising their verdict at all. Two jobs carry them now: one that blocks a merge, and one
+  for the three whose answer moves with the TiddlyWiki they read, which reports the way the
+  coverage job already does. A gate holds the workflow to the manifest's own list, and
+  `$:/tw5-syntax/CIGates` carries the reason for the one gate that stays out.
+- The bleed canary reads inheritance from the parser rather than from a list. It passed over a
+  sample ending inside a block construct by matching scope-name prefixes, and `meta.styleblock`
+  arrived under a name no prefix covered — so two samples reported as bleeding while TiddlyWiki
+  carried the same text into the same construct and raised `unterminated-styleblock` saying so.
+  `--strict` drops the reading for a reader who wants the whole list.
+- Two samples ended with a stray `@@`, which opens a style block with no style and closes nothing.
+  It cost the canary and the composition gate a red each, and both stand green with it gone.
+- A pragma standing after block content reads as prose to TiddlyWiki and as a directive to this
+  grammar. `tests/known-gaps/a-pragma-after-a-block-reads-as-text.tw5.test` carries the
+  specification, the measurement, and the two approaches worth trying — the gap accounts for the
+  bulk of what `npm run overreach` reports.
+- `npm run overreach` reads `corpus/expected-divergence.txt`, like every other overreach run. The
+  one that did not stood permanently red over spans a ruling already explained.
+- `overreach-corpus` named the same run as `overreach-host` without its rulings or its excludes, so
+  it could only ever fail. `overreach-host` stands.
+
 - A gate reads a `.tid` the same on either line ending. Six tools split a tiddler by scanning for
   two newlines in a row, and that reading answers wrongly three ways: a file opening with a blank
   line hands back a fragment of its body, a CRLF file matches nothing and reads as bodiless, and a

@@ -44,12 +44,16 @@ function overlay(dir, sandbox) {
  * the samples as they stand; one provoking the grammar wants them as HEAD holds them, so the two
  * callers below ask for different overlays and share everything else.
  *
+ * `argv` names paths inside the sandbox and gets rewritten to point there. `extra` rides through
+ * untouched, for the flags and scope names a tool reads as words rather than as files.
+ *
  * @param {string[]} dirs                     directories to overlay from the working tree
  * @param {(sandbox: string) => void} mutate  writes the fault into the sandbox
  * @param {string[]} argv                     node arguments, relative to the sandbox
+ * @param {string[]} [extra]                  arguments passed through as written
  * @returns {{code:number, out:string}}
  */
-function inSandbox(dirs, mutate, argv) {
+function inSandbox(dirs, mutate, argv, extra = []) {
   const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), 'grammar-sandbox-'));
   try {
     execFileSync('git', ['worktree', 'add', '-q', '--detach', sandbox, 'HEAD'], { cwd: ROOT });
@@ -57,7 +61,7 @@ function inSandbox(dirs, mutate, argv) {
     fs.symlinkSync(path.join(ROOT, 'node_modules'), path.join(sandbox, 'node_modules'));
     for (const dir of dirs) overlay(dir, sandbox);
     mutate(sandbox);
-    return runNode(argv.map((a) => path.join(sandbox, a)), { cwd: sandbox });
+    return runNode([...argv.map((a) => path.join(sandbox, a)), ...extra], { cwd: sandbox });
   } finally {
     execFileSync('git', ['worktree', 'remove', '--force', sandbox], { cwd: ROOT, stdio: 'ignore' });
   }
@@ -71,18 +75,20 @@ const AT_HEAD = ['tools', 'syntaxes', 'editions'];
  *
  * @param {(sandbox: string) => void} mutate  writes the fault into the sandbox
  * @param {string[]} argv                     node arguments, relative to the sandbox
+ * @param {string[]} [extra]                  arguments passed through as written
  * @returns {{code:number, out:string}}
  */
-const runInSandbox = (mutate, argv) => inSandbox(WORKING, mutate, argv);
+const runInSandbox = (mutate, argv, extra) => inSandbox(WORKING, mutate, argv, extra);
 
 /**
  * Run a command inside a sandbox whose grammar carries `provoked`.
  *
  * @param {string} provoked   the grammar text to write
  * @param {string[]} argv     node arguments, relative to the sandbox
+ * @param {string[]} [extra]  arguments passed through as written
  * @returns {{code:number, out:string}}
  */
-const runProvoked = (provoked, argv) => inSandbox(AT_HEAD,
-  (sandbox) => fs.writeFileSync(path.join(sandbox, 'syntaxes', 'tiddlywiki5.json'), provoked), argv);
+const runProvoked = (provoked, argv, extra) => inSandbox(AT_HEAD,
+  (sandbox) => fs.writeFileSync(path.join(sandbox, 'syntaxes', 'tiddlywiki5.json'), provoked), argv, extra);
 
 module.exports = { runProvoked, runInSandbox, GRAMMAR: path.join(ROOT, 'syntaxes', 'tiddlywiki5.json') };

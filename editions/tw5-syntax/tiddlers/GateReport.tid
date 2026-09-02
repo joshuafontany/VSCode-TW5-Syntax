@@ -3,12 +3,12 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 18 of 22
+gates-held: 20 of 21
 
 {
-    "gates": 22,
-    "held": 18,
-    "failing": 4,
+    "gates": 21,
+    "held": 20,
+    "failing": 1,
     "results": [
         {
             "gate": "attribute-guard",
@@ -37,8 +37,8 @@ gates-held: 18 of 22
         },
         {
             "gate": "canary-wikitext",
-            "held": false,
-            "said": "bleed-canary  text.html.tiddlywiki5  22 samples, 2 bleeding"
+            "held": true,
+            "said": "bleed-canary  text.html.tiddlywiki5  22 samples, 0 bleeding"
         },
         {
             "gate": "colour-witness",
@@ -52,8 +52,8 @@ gates-held: 18 of 22
         },
         {
             "gate": "compose-wikitext",
-            "held": false,
-            "said": "composition-check  text.html.tiddlywiki5  22 pairs, 2 that do not compose"
+            "held": true,
+            "said": "composition-check  text.html.tiddlywiki5  22 pairs, 0 that do not compose"
         },
         {
             "gate": "corpus",
@@ -72,11 +72,6 @@ gates-held: 18 of 22
         },
         {
             "gate": "overreach",
-            "held": false,
-            "said": "0  span(s) the grammar CONDEMNS and TiddlyWiki builds"
-        },
-        {
-            "gate": "overreach-corpus",
             "held": false,
             "said": "0  span(s) the grammar CONDEMNS and TiddlyWiki builds"
         },

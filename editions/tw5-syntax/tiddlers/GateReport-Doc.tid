@@ -35,7 +35,7 @@ per-scope snapshot runs that `snap` already carries whole.
 Not every red names a defect, and the report shows each rather than hiding it.
 
 |!Gate |!Why it reads red |
-|`overreach` `overreach-corpus` |they measure spans where the grammar and the parser diverge, and report rather than judge |
+|`overreach` |it measures spans where the grammar and the parser diverge, and reports rather than judges |
 |`canary-wikitext` `compose-wikitext` |a specimen carries an unterminated styleblock, and TiddlyWiki swallows one to the end of the source — `void [styleblock] @0-28` — so the grammar agrees with the parser and the canary reads the agreement as a bleed |
 |`nesting-coverage` `upstream-coverage` |the manifest runs them with no argument, and each wants a path to a TiddlyWiki |
 

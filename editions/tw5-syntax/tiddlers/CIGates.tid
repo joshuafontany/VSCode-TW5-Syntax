@@ -1,0 +1,23 @@
+title: $:/tw5-syntax/CIGates
+type: application/json
+tags: $:/tags/TW5Syntax/GrammarData
+caption: CI gates
+description: Which gates continuous integration runs, and the reason for each one it does not
+
+{
+    "alsoGates": [
+        "tests-known-gaps"
+    ],
+    "reporting": [
+        "signals:check",
+        "overreach-host",
+        "overreach-cut",
+        "upstream-coverage"
+    ],
+    "skipped": [
+        {
+            "gate": "overreach",
+            "why": "161 spans stand where the grammar claims a pragma and TiddlyWiki reads prose, because TiddlyWiki leaves pragma mode at the first block and a TextMate rule fires without knowing what stood before it. tests/known-gaps/a-pragma-after-a-block-reads-as-text.tw5.test carries the specification and the two approaches worth measuring."
+        }
+    ]
+}
