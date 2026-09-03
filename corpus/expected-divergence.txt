@@ -1,13 +1,19 @@
 # Divergences that stand by ruling.
 #
 # Each line names a scope prefix, optionally scoped to one fixture, and the reason it stands.
-# A line carrying no reason is not a ruling. Every span these explain is one where TiddlyWiki
+# A line carrying no reason names no ruling. Every span these explain stands where TiddlyWiki
 # refuses and the grammar reads on anyway, deliberately.
 
 meta.link.wikilink                            # TiddlyWiki ships CamelCase linking disabled; the scope stands quiet so a wiki that enables it can colour it back
 meta.tag.metadata.doctype                     # a .tid may hold a whole TiddlyWiki HTML document, where a doctype reads; wikitext builds no node for one
 meta.tag.metadata.cdata                       # the same reading, for a CDATA section
 meta.tag.metadata.processing.xml              # the same reading, for an XML declaration
+html.basic.tw:punctuation.definition.tag       # the fixture holds a whole HTML document, whose DOCTYPE wikitext builds no node for — the three metadata families above name the same reading
+html.basic.tw:entity.name.tag                 # the same fixture
+html.basic.tw:entity.other.attribute-name     # the same fixture
+test.html.tw:punctuation.definition.tag       # the same reading, in the second fixture holding an HTML document
+test.html.tw:entity.name.tag                  # the same fixture
+test.html.tw:entity.other.attribute-name      # the same fixture
 metadata.tags.tw:punctuation.definition.tag   # the fixture exists to exercise the three metadata families above
 metadata.tags.tw:entity.name.tag              # the same fixture
 metadata.tags.tw:entity.other.attribute-name  # the same fixture
@@ -37,3 +43,26 @@ degenerate.nesting.tw:                        # a fixture written to nest wrongl
 
 markup.other.preformatted.hardlinebreaks  # TiddlyWiki builds no container node for a hardlinebreaks block — its text nodes and line breaks are all it emits — so a scope over the block's content stands over text by construction
 RangeWidget Example.tid:meta.transclusion  # a transclusion opening at the end of a widget tag that continues onto the next line
+
+# ── A STATE TOGGLE NEVER TAKES A COLOUR AWAY ─────────────────────────────────
+#
+# TiddlyWiki carries pragmas that change what its parser reads: `\rules except rules` turns the
+# rules pragma off, `\rules only table` leaves one rule standing, `\parsermode inline` reads the
+# rest of the tiddler as one inline run. After such a line the parser refuses constructs it would
+# otherwise build, and it refuses them for the rest of the tiddler.
+#
+# This grammar colours them anyway, and the ruling stands on what colouring DOES. At design time a
+# reader wants to see the base language: that a line IS a rules pragma, that a run IS bold, whatever
+# a toggle further up has switched off. The operator holds the tiller for render time — they wrote
+# the toggle, they know what it does, and they can read its effect from the toggle itself. A grammar
+# that greyed out everything below a `\rules except` line would hide the language from the person
+# editing it, to describe a state they authored.
+#
+# So a construct the grammar reads and a toggle disabled stands here, and the divergence gate reads
+# it as a ruling rather than as overreach.
+meta.directive.rules                          # the rules pragma keeps its colour after a toggle that disabled it — a reader edits the base language, and the toggle above says what the renderer will do
+keyword.control.directive.rules               # the same reading, for the directive's own keyword
+keyword.operator.only                         # the same reading, for the only operator inside one
+keyword.operator.except                       # the same reading, for the except operator inside one
+tiddlywiki5.tw:punctuation.definition.directive  # the same reading, for the backslash opening a rules pragma the fixture disabled above
+tiddlywiki5.tw:variable.parameter                # the same reading, for the rule names such a pragma lists

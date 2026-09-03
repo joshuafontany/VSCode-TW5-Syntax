@@ -396,7 +396,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: 236 spans stand explained by 25 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 37 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
   emits no container node, so a scope over its content stands over text by construction.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses
@@ -418,6 +418,17 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
   points at the one directory that stays outside: the coverage floor already measures those files,
   and a second copy would part from the first the day somebody edits one.
+- A STATE TOGGLE NEVER TAKES A COLOUR AWAY. TiddlyWiki carries pragmas that change what its parser
+  reads — `\rules except rules` turns the rules pragma off, `\parsermode inline` reads the rest of
+  the tiddler as one inline run — and after such a line the parser refuses constructs it would
+  otherwise build. This grammar colours them anyway, by ruling: at design time a reader wants to see
+  the base language, and the operator holds the tiller for render time, having written the toggle
+  themselves. A grammar that greyed out everything below a `\rules except` line would hide the
+  language from the person editing it, to describe a state they authored. 26 spans stand ruled.
+- The two fixtures holding a whole HTML document carry the ruling their DOCTYPE already carried. A
+  `.tw` may hold one, where a tag and its attributes read; wikitext builds no node for either. 8
+  spans join the three metadata families already named.
+
 - `\whitespace` and `\parsermode` open on the separator, the way TiddlyWiki opens them. Demanding a
   recognised value — `trim`, `notrim`, `block`, `inline` — refused the construct where the parser
   builds it, so a line carrying an unknown value read as prose here and as a directive there. The
