@@ -346,6 +346,7 @@
         "tiddlywiki": "5.4.1",
         "tm-grammars": "^1.32.9",
         "tm-themes": "^1.12.9",
+        "typescript": "7.0.2",
         "vscode-jsp": "https://github.com/pthorsson/vscode-jsp",
         "vscode-tmgrammar-test": "^0.1.3"
     },
@@ -382,6 +383,7 @@
         "signals:check": "node ./tools/grammar-signals.js --check",
         "rule-coverage": "node ./tools/rule-coverage.js",
         "edition:build": "node ./tools/edition-build.js",
+        "edition:check": "node ./tools/edition-build.js --check",
         "builtins": "node ./tools/builtins-sync.js",
         "colour-witness": "node ./tools/colour-witness.js",
         "compose-memes": "bash -c 'ok=0; for d in ${MEMES:-../bags/lares/ha.ka.ba/lares/docs ../bags/lares/ha.ka.ba/lares/api ../bags/lares/latent.attention.relation/agents/api}; do if compgen -G \"$d/*.mem\" >/dev/null; then ok=1; node ./tools/composition-check.js text.html.tiddlywiki5.memetic-wikitext \"$d/*.mem\"; fi; done; [ $ok = 1 ] || echo \"no memes beside this checkout — set MEMES to one or more directories\"'",

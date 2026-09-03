@@ -122,6 +122,11 @@ jobs:
       - name: Known gaps
         run: npm run tests-known-gaps
 
+      # The edition's modules ship compiled. A compiler stands in this repository's own dependencies,
+      # pinned, so this rebuilds them and asks whether the tree carries what the build writes.
+      - name: The compiled edition stands current
+        run: npm run edition:check
+
   gates-host:
     # Gates whose answer moves with the TiddlyWiki they read. The harvest names a version, and the
     # overreach runs take the grammar to the host's own tiddlers — so upstream moving reports here

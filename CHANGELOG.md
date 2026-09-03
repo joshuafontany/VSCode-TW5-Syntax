@@ -418,6 +418,18 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
   points at the one directory that stays outside: the coverage floor already measures those files,
   and a second copy would part from the first the day somebody edits one.
+- A TypeScript compiler stands in this repository's own dependencies, pinned to the version whose
+  bytes the committed modules carry. Continuous integration rebuilds the edition and asks whether the
+  tree holds what the build writes — `npm run edition:check` — so a source edited without a rebuild
+  fails a merge rather than shipping. The source weld stays beside it, because it wants no compiler
+  and still answers where a reader has none.
+- The backtrack witness answers to a control rather than to the machine. Its budget stands in wall
+  time, so run beside a dozen other gates the whole set slowed together and the slowest pattern
+  crossed eight milliseconds having done nothing different — 1.4ms alone, past 8 under the suite, on
+  the same bytes. A pattern now stalls only when it costs more than the budget AND more than twenty
+  times a control timed the same way, on the same inputs, under the same load. Both stand adjustable,
+  so the collision drives the reading rather than the machine.
+
 - The edition's compiled modules answer to the TypeScript standing beside them. TypeScript sits in
   no dependency of this repository — the build finds a compiler in a parent checkout — so nothing in
   continuous integration could rebuild and compare, and the compiled modules ARE the shipped

@@ -4,12 +4,15 @@
 // contributor editing the source and forgetting the build ships the OLD module: the wiki loads it,
 // the gates it carries run, and every reading comes back green from code nobody wrote.
 //
-// Nothing could notice. TypeScript stands in no dependency of this repository — the build finds a
-// compiler in a parent checkout — so continuous integration cannot rebuild and compare, and the
-// compiled modules ARE the shipped artifact.
+// Two readings answer, and each covers what the other cannot.
 //
-// So the build records the sha256 of every source it compiled, and this recomputes them. Verifying
-// wants no compiler; only rebuilding does.
+// The BUILD reading rebuilds and compares. A compiler stands in this repository's own dependencies,
+// pinned to the version whose bytes the committed modules carry, so `--check` answers whether the
+// tree holds what today's compiler writes — it trusts nothing, and it wants a toolchain.
+//
+// The WELD reading recomputes the sha256 of every source the build recorded. It answers only that
+// nobody edited a source since the last build, and it wants no compiler at all — so it still stands
+// where a reader has none.
 //
 // The build also named ONE module by hand and verified that one. A second arrived, compiled, and
 // stood unverified beside it — the shape a hand-written enumeration always takes.
@@ -62,6 +65,25 @@ test('the build verifies every module it compiles, not one it names', () => {
     const name = source.replace(/\.ts$/, '.js').replace(/\./g, '\\.');
     assert.match(out, new RegExp(name), `the build never named ${source}`);
   }
+});
+
+test('the compiler stands in this repository, not in a checkout above it', () => {
+  const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+  const pinned = (pkg.devDependencies || {}).typescript;
+  assert.ok(pinned, 'no compiler stands in this repository, so nothing here can rebuild the edition');
+  assert.match(pinned, /^\d+\.\d+\.\d+$/,
+    `typescript stands at ${pinned} — a range lets a newer compiler write different bytes than the tree carries`);
+  assert.ok(fs.existsSync(path.join(ROOT, 'node_modules', '.bin', 'tsc')),
+    'the pinned compiler stands installed nowhere');
+  const { data } = readData('EditionBuild.tid');
+  assert.ok(data.compiler.includes(pinned),
+    `the modules answer to ${data.compiler}, and this repository pins ${pinned}`);
+});
+
+test('the tree carries what today\'s compiler writes', { timeout: 300000 }, () => {
+  const { code, out } = runTool('edition-build.js', ['--check']);
+  assert.match(out, /the tree current/, out.slice(-400));
+  assert.strictEqual(code, 0, out.slice(-400));
 });
 
 test('a source edited since the build reads as stale', () => {

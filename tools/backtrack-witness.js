@@ -43,6 +43,15 @@ const SIZES = [8, 32];
 // provocation through the grammar proves nothing here.
 const BUDGET_MS = Number((process.argv.find((a) => a.startsWith('--budget=')) || '').slice(9)) || 8;
 
+// A wall-clock budget alone answers to the machine. Run beside a dozen other gates, the whole set
+// slows together and the slowest pattern crosses eight milliseconds having done nothing different —
+// measured, a run alone read 1.4ms where the same run under the suite read past 8. So a pattern
+// stalls only when it costs more than the budget AND more than this many times a CONTROL pattern
+// timed the same way, on the same inputs, under the same load. `--ratio=<n>` lowers it, so the
+// collision below can drive the reading rather than the machine.
+const BUDGET_RATIO = Number((process.argv.find((a) => a.startsWith('--ratio=')) || '').slice(8)) || 20;
+const CONTROL = 'x';
+
 // The openers this format writes. A pattern answers to every one of them, because deriving an
 // opener from a pattern's own characters reads its REGEX punctuation rather than the text it
 // matches — a witness built that way met the style rule with an open paren and a pipe and never
@@ -81,21 +90,33 @@ if (require.main === module) {
     }
 
     const CASES = specimens();
+
+    // The control, timed the way every pattern below gets timed. It matches at once, so what it
+    // costs names the run's own overhead rather than any pattern's work.
+    const time = (scanner, text) => {
+      scanner.findNextMatchSync(new oniguruma.OnigString(text), 0);
+      const started = process.hrtime.bigint();
+      for (let i = 0; i < 5; i += 1) scanner.findNextMatchSync(new oniguruma.OnigString(text), 0);
+      return Number(process.hrtime.bigint() - started) / 1e6 / 5;
+    };
+    const control = new oniguruma.OnigScanner([CONTROL]);
+    const baseline = Math.max(...CASES.map(([, text]) => time(control, text)));
+
     let worst = 0;
     const slow = [];
     for (const pattern of patterns) {
       let scanner;
       try { scanner = new oniguruma.OnigScanner([pattern]); } catch { continue; }
       for (const [size, text] of CASES) {
-        scanner.findNextMatchSync(new oniguruma.OnigString(text), 0);
-        const started = process.hrtime.bigint();
-        for (let i = 0; i < 5; i += 1) scanner.findNextMatchSync(new oniguruma.OnigString(text), 0);
-        const ms = Number(process.hrtime.bigint() - started) / 1e6 / 5;
+        const ms = time(scanner, text);
         if (ms > worst) worst = ms;
-        if (ms > BUDGET_MS) slow.push(`${ms.toFixed(1)}ms  on ${JSON.stringify(text.slice(0, 26))}...  pattern ${pattern.slice(0, 48)}`);
+        if (ms > BUDGET_MS && ms > baseline * BUDGET_RATIO) {
+          slow.push(`${ms.toFixed(1)}ms  (${(ms / baseline).toFixed(0)}x the control)  on ${JSON.stringify(text.slice(0, 26))}...  pattern ${pattern.slice(0, 48)}`);
+        }
       }
     }
-    console.log(`backtrack-witness  ${patterns.size} pattern(s), worst ${worst.toFixed(3)}ms against a budget of ${BUDGET_MS}ms`);
+    console.log(`backtrack-witness  ${patterns.size} pattern(s), worst ${worst.toFixed(3)}ms against a budget of ${BUDGET_MS}ms`
+      + ` and ${BUDGET_RATIO}x a control reading ${baseline.toFixed(3)}ms`);
     console.log(`  ${slow.length}  pattern(s) a reader would feel stall on unfinished input`);
     if (verbose) for (const s of [...new Set(slow)].slice(0, 10)) console.log(`     ${s}`);
     process.exit(slow.length ? 1 : 0);

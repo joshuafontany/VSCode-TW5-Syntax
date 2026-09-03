@@ -30,11 +30,20 @@ function resolveCompiler() {
   return candidates.find((c) => fs.existsSync(c)) ?? null;
 }
 
+const check = process.argv.includes('--check');
 const tsc = resolveCompiler();
 if (!tsc) {
   console.error('  no TypeScript compiler stands where this looked — set TSC_PATH, or install one');
   process.exit(2);
 }
+
+// What the tree carried before this build, so `--check` can say whether the build changed it.
+const SRC_DIR = path.join(ROOT, 'editions', 'tw5-syntax', 'src');
+const OUT_DIR = path.join(ROOT, 'editions', 'tw5-syntax', 'tiddlers');
+const before = Object.fromEntries(fs.readdirSync(SRC_DIR)
+  .filter((f) => f.endsWith('.ts') && !f.endsWith('.d.ts'))
+  .map((f) => f.replace(/\.ts$/, '.js'))
+  .map((f) => [f, fs.existsSync(path.join(OUT_DIR, f)) ? fs.readFileSync(path.join(OUT_DIR, f), 'utf8') : null]));
 
 try {
   execFileSync(tsc, ['-p', PROJECT], { cwd: ROOT, stdio: 'inherit' });
@@ -46,8 +55,8 @@ try {
 //
 // Every source compiles, so every source gets checked. Naming one by hand checked the one somebody
 // remembered: a second module arrived, compiled, and stood unverified beside it.
-const SRC = path.join(ROOT, 'editions', 'tw5-syntax', 'src');
-const TIDDLERS = path.join(ROOT, 'editions', 'tw5-syntax', 'tiddlers');
+const SRC = SRC_DIR;
+const TIDDLERS = OUT_DIR;
 const sources = fs.readdirSync(SRC).filter((f) => f.endsWith('.ts') && !f.endsWith('.d.ts'));
 
 const headerOf = (text) => new RegExp('^\\/\\*\\\\(?:\\r?\\n)((?:^[^\\r\\n]*(?:\\r?\\n))+?)(^\\\\\\*\\/$(?:\\r?\\n)?)', 'mg').exec(text);
@@ -91,5 +100,19 @@ fs.writeFileSync(path.join(TIDDLERS, 'EditionBuild.tid'),
     'description: What the compiled modules answer to — harvested by the build, never hand-written',
     '', `${JSON.stringify(record, null, 4)}\n`].join('\n'));
 
-console.log(`edition-build  ${built.length} module(s) from ${record.compiler}`);
+// A compiler stands in this repository's own dependencies now, so continuous integration can rebuild
+// and compare — a stronger reading than the weld, which answers only that nobody edited a source
+// since the last build. Both stand: the weld wants no compiler, and this wants no trust.
+if (check) {
+  const moved = Object.entries(before)
+    .filter(([name, text]) => text !== fs.readFileSync(path.join(TIDDLERS, name), 'utf8'))
+    .map(([name]) => name);
+  if (moved.length) {
+    console.error(`  ${moved.length} module(s) the build wrote differently: ${moved.join(', ')}`);
+    console.error('  the tree carries what an older build left — commit what this one wrote');
+    process.exit(1);
+  }
+}
+
+console.log(`edition-build  ${built.length} module(s) from ${record.compiler}${check ? ', the tree current' : ''}`);
 for (const line of built) console.log(`  ${line}`);

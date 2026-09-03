@@ -6,7 +6,8 @@ description: Which gates continuous integration runs, and the reason for each on
 
 {
     "alsoGates": [
-        "tests-known-gaps"
+        "tests-known-gaps",
+        "edition:check"
     ],
     "reporting": [
         "signals:check",
