@@ -22,12 +22,13 @@ const ROOT = path.resolve(__dirname, '..');
  * measurement — so `out` carries stdout and stderr together, the way a reader sees them.
  *
  * @param {string[]} argv        node's arguments, the script first
- * @param {{cwd?: string}} [opts]
+ * @param {{cwd?: string, env?: Record<string,string>}} [opts]  `env` adds to this process's own
  * @returns {{code: number, out: string}}
  */
-function runNode(argv, { cwd = ROOT } = {}) {
+function runNode(argv, { cwd = ROOT, env } = {}) {
   try {
-    return { code: 0, out: execFileSync('node', argv, { encoding: 'utf8', cwd }) };
+    return { code: 0, out: execFileSync('node', argv,
+      { encoding: 'utf8', cwd, env: env ? { ...process.env, ...env } : process.env }) };
   } catch (e) {
     return { code: e.status ?? 1, out: `${e.stdout ?? ''}${e.stderr ?? ''}` };
   }
@@ -38,7 +39,7 @@ function runNode(argv, { cwd = ROOT } = {}) {
  *
  * @param {string} tool  a file name under `tools/`, or an absolute path
  * @param {string[]} [args]
- * @param {{cwd?: string}} [opts]
+ * @param {{cwd?: string, env?: Record<string,string>}} [opts]
  * @returns {{code: number, out: string}}
  */
 function runTool(tool, args = [], opts) {

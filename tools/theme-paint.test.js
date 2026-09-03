@@ -17,7 +17,22 @@ test('a theme declares its selectors as a string, a comma list, or an array', ()
   assert.deepStrictEqual(themeRules({ tokenColors: [{ scope: 'markup.bold' }] }), ['markup.bold']);
   assert.deepStrictEqual(themeRules({ tokenColors: [{ scope: 'a, b ,c' }] }), ['a', 'b', 'c']);
   assert.deepStrictEqual(themeRules({ tokenColors: [{ scope: ['a', 'b'] }] }), ['a', 'b']);
-  assert.deepStrictEqual(themeRules({}), []);
+  // A shape carrying no tokenColors names no theme. It arrives when a caller hands back what the
+  // loader already flattened, and reading it as a theme with no rules turns a measurement over
+  // sixty-five themes into one over nothing, reported green.
+  assert.throws(() => themeRules({}), /takes a theme/);
+  assert.throws(() => themeRules([]), /takes a theme/);
+});
+
+// A theme this reader cannot open gets dropped, and a drop that says nothing turns every reading
+// above into one over fewer themes than it names.
+test('every theme in the set reads, and none goes quietly', () => {
+  const { loadThemes } = require('./theme-model.js');
+  loadThemes.dropped.length = 0;
+  const themes = loadThemes();
+  assert.deepStrictEqual(loadThemes.dropped, [], 'theme(s) the reader dropped without a word');
+  assert.ok(themes.length >= 60,
+    `${themes.length} theme(s) read, where this repository measures against sixty-five`);
 });
 
 test('a selector paints a scope it prefixes on a dot boundary', () => {

@@ -216,3 +216,37 @@ test('every association names a language the manifest declares, and names it onc
     byExtension.set(glob, id);
   }
 });
+
+// PATTERN INTEGRITY: a family carries every surface, or says why.
+//
+// Six languages stand declared, and each wants four things to read as a language rather than as
+// plain text: a grammar, a configuration, a file association, and the snippets its family offers.
+// Two went missing without a word — the dialect carried no snippets and two extensions asserted no
+// association — and neither shows as an error anywhere. A surface absent reads as a reader whose
+// editor simply does less, with nothing to name.
+test('every language this extension defines carries a grammar and a configuration', () => {
+  const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+  // `json` stands borrowed: this extension adds two suffixes to a language Microsoft owns, and
+  // Microsoft ships its grammar and its configuration.
+  const BORROWED = new Set(['json']);
+  const grammarFor = new Set(pkg.contributes.grammars.map((g) => g.language).filter(Boolean));
+  const bare = [];
+  for (const language of pkg.contributes.languages) {
+    if (BORROWED.has(language.id)) continue;
+    if (!grammarFor.has(language.id)) bare.push(`${language.id}: no grammar`);
+    if (!language.configuration) bare.push(`${language.id}: no configuration`);
+  }
+  assert.deepStrictEqual(bare, [],
+    'language(s) declared with a surface missing — the file opens, and reads as less than it is');
+});
+
+test('every configuration a language names, this repository holds and reads', () => {
+  const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+  for (const language of pkg.contributes.languages) {
+    if (!language.configuration) continue;
+    const file = path.join(ROOT, language.configuration.replace(/^\.\//, ''));
+    assert.ok(fs.existsSync(file), `${language.id} names ${language.configuration}, which nothing holds`);
+    assert.doesNotThrow(() => parseJsonc(fs.readFileSync(file, 'utf8')),
+      `${language.id}: the configuration reads as nothing VS Code would take`);
+  }
+});

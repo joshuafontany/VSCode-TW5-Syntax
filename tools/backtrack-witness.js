@@ -37,8 +37,11 @@ const ROOT = path.resolve(__dirname, '..');
 // becomes one somebody pasted, and every pattern here reads a pasted line more slowly than a
 // typed one without that costing anybody a keystroke.
 const SIZES = [8, 32];
-// A stall a reader feels, per pattern, on one line.
-const BUDGET_MS = 8;
+// A stall a reader feels, per pattern, on one line. `--budget=<ms>` lowers it, for a reader chasing
+// a pattern that costs more than its neighbours and for the collision that proves this gate can
+// fail — Oniguruma's optimizer refuses every classic catastrophic shape at these sizes, so a
+// provocation through the grammar proves nothing here.
+const BUDGET_MS = Number((process.argv.find((a) => a.startsWith('--budget=')) || '').slice(9)) || 8;
 
 // The openers this format writes. A pattern answers to every one of them, because deriving an
 // opener from a pattern's own characters reads its REGEX punctuation rather than the text it

@@ -89,3 +89,20 @@ test('every source line in a snapshot receives a verdict', () => {
     [true, false, false]
   );
 });
+
+// The gate reads a construct as UNSCOPED when its opening mark carries only base scopes. A reading
+// that answered "scoped" for everything would report full coverage against upstream and name no
+// gap ever — so the fault gets planted here and counted, rather than inferred from a clean run.
+test('a snapshot whose constructs carry nothing counts every one of them as a gap', () => {
+  const bare = [
+    '>! a heading',
+    '#^^^^^^^^^^^^ text.html.tiddlywiki5',
+    '>* a list item',
+    '#^^^^^^^^^^^^^ text.html.tiddlywiki5',
+    '>|a |b |',
+    '#^^^^^^^ text.html.tiddlywiki5'
+  ].join('\n');
+  const verdict = judgeSnapshot(bare);
+  const gaps = [...verdict.values()].filter((scoped) => !scoped);
+  assert.strictEqual(gaps.length, 3, `${gaps.length} of 3 constructs read as unscoped`);
+});

@@ -37,6 +37,12 @@ function loadTheme(file) {
 
 /** One theme object, flattened to its rules. */
 function flatten(theme) {
+  // A caller handing back what `loadTheme` already returned reads as a theme with no rules, and the
+  // gate above it measures sixty-five themes' worth of nothing while reporting green. So the shape
+  // answers before the reading does.
+  if (!theme || typeof theme !== 'object' || Array.isArray(theme) || !('tokenColors' in theme)) {
+    throw new TypeError('flatten takes a theme; rulesOf takes either a theme or the rules it flattened');
+  }
   const rules = [];
   (theme.tokenColors || []).forEach((rule, order) => {
     const scope = rule.scope;
@@ -52,10 +58,17 @@ function flatten(theme) {
 /** Every bundled theme, or an empty list where none stands. */
 function loadThemes() {
   if (!fs.existsSync(THEMES)) return [];
-  return fs.readdirSync(THEMES).filter((f) => f.endsWith('.json'))
-    .map((f) => { try { return loadTheme(path.join(THEMES, f)); } catch { return null; } })
-    .filter(Boolean);
+  const files = fs.readdirSync(THEMES).filter((f) => f.endsWith('.json'));
+  const loaded = [];
+  for (const file of files) {
+    try { loaded.push(loadTheme(path.join(THEMES, file))); }
+    catch { loadThemes.dropped.push(file); }
+  }
+  return loaded;
 }
+// What the last load could not read. A silent drop turns a measurement over sixty-five themes into
+// one over none, and a caller counting themes alone notices.
+loadThemes.dropped = [];
 
 /** Every bundled theme, by file name, for a caller naming one. */
 function loadThemesByName() {

@@ -418,6 +418,25 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
   points at the one directory that stays outside: the coverage floor already measures those files,
   and a second copy would part from the first the day somebody edits one.
+- The closing semicolon of a numeric or hexadecimal entity carries its punctuation scope. Both rules
+  named capture 3 where two groups stand — copied from the named-entity rule above them, which has
+  three — so `&#39;` and `&#x27;` coloured their `&` and left their `;` bare while `&amp;` coloured
+  both. A gate reads every capture in every grammar against the groups its regex opens.
+- A carriage return stops the snapshot reader dead, and says nothing. A regex ending on `$` matches
+  nothing on a CRLF line, so the reader answered a file full of annotations as one carrying none —
+  every gate over the pinned snapshots would have reported green having measured nothing.
+  `.gitattributes` already kept one out of a checkout; the reader takes one anyway, for a file that
+  arrives by another road, and a gate now holds the tree to that line rather than trusting it. A
+  byte-order mark answers the same way: `JSON.parse` refuses one, so a gate holds that nothing here
+  carries one.
+- A theme reader that could not read a theme dropped it silently, and a caller handing back what the
+  loader already flattened read as a theme with no rules. Sixty-five themes' worth of measurement
+  could have run over nothing and reported green. The loader counts what it drops, the flattener
+  refuses a shape it cannot read, and a gate holds the theme count to a floor.
+- The dialect's own snippets, the file associations and the language configurations answer to one
+  reading: every language this extension defines carries a grammar, a configuration, an association
+  and its family's snippets, or a ruling names what stands in the way.
+
 - Nothing this grammar emits stands unreached. The corpus reached 466 of the scopes it declares and
   three stood outside, and the three left by three different roads. A square-bracket string inside a
   macro call wanted a specimen and got one. The macro-call parameter separator sat last in a list

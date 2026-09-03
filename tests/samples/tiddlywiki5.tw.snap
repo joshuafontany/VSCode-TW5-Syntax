@@ -1141,17 +1141,20 @@
 #^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
 # ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
 #  ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.decimal.html.tiddlywiki5 punctuation.definition.entity.html.tiddlywiki5
-#   ^^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.decimal.html.tiddlywiki5
+#   ^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.decimal.html.tiddlywiki5
+#      ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.decimal.html.tiddlywiki5 punctuation.definition.entity.html.tiddlywiki5
 >* &#x26;
 #^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
 # ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
 #  ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.hexadecimal.html.tiddlywiki5 punctuation.definition.entity.html.tiddlywiki5
-#   ^^^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.hexadecimal.html.tiddlywiki5
+#   ^^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.hexadecimal.html.tiddlywiki5
+#       ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.hexadecimal.html.tiddlywiki5 punctuation.definition.entity.html.tiddlywiki5
 >* &#X26;
 #^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
 # ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
 #  ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.hexadecimal.html.tiddlywiki5 punctuation.definition.entity.html.tiddlywiki5
-#   ^^^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.hexadecimal.html.tiddlywiki5
+#   ^^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.hexadecimal.html.tiddlywiki5
+#       ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.hexadecimal.html.tiddlywiki5 punctuation.definition.entity.html.tiddlywiki5
 >* &amp;&#38;&#x26;&#X26;
 #^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
 # ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
@@ -1159,11 +1162,14 @@
 #   ^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.named.amp.html.tiddlywiki5
 #      ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.named.amp.html.tiddlywiki5 punctuation.definition.entity.html.tiddlywiki5
 #       ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.decimal.html.tiddlywiki5 punctuation.definition.entity.html.tiddlywiki5
-#        ^^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.decimal.html.tiddlywiki5
+#        ^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.decimal.html.tiddlywiki5
+#           ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.decimal.html.tiddlywiki5 punctuation.definition.entity.html.tiddlywiki5
 #            ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.hexadecimal.html.tiddlywiki5 punctuation.definition.entity.html.tiddlywiki5
-#             ^^^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.hexadecimal.html.tiddlywiki5
+#             ^^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.hexadecimal.html.tiddlywiki5
+#                 ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.hexadecimal.html.tiddlywiki5 punctuation.definition.entity.html.tiddlywiki5
 #                  ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.hexadecimal.html.tiddlywiki5 punctuation.definition.entity.html.tiddlywiki5
-#                   ^^^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.hexadecimal.html.tiddlywiki5
+#                   ^^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.hexadecimal.html.tiddlywiki5
+#                       ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 constant.character.entity.numeric.hexadecimal.html.tiddlywiki5 punctuation.definition.entity.html.tiddlywiki5
 >
 >* --
 #^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
