@@ -108,7 +108,7 @@ gates-held: 20 of 21
         {
             "gate": "theme-parity",
             "held": true,
-            "said": "theme-parity  7 construct(s) across 65 themes and 6 comparator grammars, 0 that themes reach less than the panel does"
+            "said": "theme-parity  7 construct(s) across 65 themes and 6 comparator grammars (markdown 7, asciidoc 7, rst 2, org 7, mediawiki 7, mdx 7), 0 that themes reach less than the panel does"
         },
         {
             "gate": "upstream-coverage",

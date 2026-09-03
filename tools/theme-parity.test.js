@@ -47,3 +47,32 @@ test('a heading named where no theme rules on reads as a gap', live, () => {
   assert.match(out, /Heading one: \d+% of themes colour it/, out.slice(-500));
   assert.notStrictEqual(code, 0, 'the witness must fail the gate, not only print');
 });
+
+// PATTERN INTEGRITY: an exemption answers to what it exempts — and so does a panel member.
+//
+// The bar this gate holds our grammar to comes from a median over six comparators. A comparator
+// carrying nothing still sits in the list, still gets counted in the summary, and quietly leaves the
+// median to whoever remains. Measured: rst names a heading on the UNDERLINE rather than on the text
+// and splits its emphasis runs where the construct's own words do not stand alone, so it carries two
+// constructs of seven. The summary says so now, per comparator, rather than naming six.
+test('the summary counts what each comparator actually carried', live, () => {
+  const { code, out } = run();
+  assert.strictEqual(code, 0, out.slice(-400));
+  const summary = out.split('\n').find((l) => l.startsWith('theme-parity'));
+  assert.ok(summary, out.slice(-300));
+  const counts = [...summary.matchAll(/(markdown|asciidoc|rst|org|mediawiki|mdx) (\d+)/g)]
+    .map(([, id, n]) => ({ id, n: Number(n) }));
+  assert.strictEqual(counts.length, 6, `the summary named ${counts.length} comparator(s) of six`);
+  const empty = counts.filter((c) => c.n === 0);
+  assert.deepStrictEqual(empty, [], 'comparator(s) carrying nothing while the panel counts them');
+});
+
+test('a construct the panel barely carries still answers to three comparators', live, () => {
+  const { out } = run();
+  const rows = out.split('\n').filter((l) => /^\s{2}\S.*%\s+\d+%\s+\d/.test(l));
+  assert.ok(rows.length >= 5, `the verbose table read ${rows.length} row(s)`);
+  for (const row of rows) {
+    const panel = Number(/%\s+(\d+)\s{2}/.exec(row)[1]);
+    assert.ok(panel >= 3, `a construct took its bar from ${panel} comparator(s): ${row.trim()}`);
+  }
+});

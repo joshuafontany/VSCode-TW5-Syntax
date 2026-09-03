@@ -43,14 +43,53 @@ try {
 }
 
 // A tiddler the host cannot read never runs as a module, and a boot reports nothing about it.
-const emitted = path.join(ROOT, 'editions', 'tw5-syntax', 'tiddlers', 'grammar-signals.js');
-const header = new RegExp('^\\/\\*\\\\(?:\\r?\\n)((?:^[^\\r\\n]*(?:\\r?\\n))+?)(^\\\\\\*\\/$(?:\\r?\\n)?)', 'mg');
-const text = fs.readFileSync(emitted, 'utf8');
-const match = header.exec(text);
-if (!match) {
-  console.error('  the compiled module carries no header TiddlyWiki can read, so the wiki would load nothing');
-  process.exit(1);
+//
+// Every source compiles, so every source gets checked. Naming one by hand checked the one somebody
+// remembered: a second module arrived, compiled, and stood unverified beside it.
+const SRC = path.join(ROOT, 'editions', 'tw5-syntax', 'src');
+const TIDDLERS = path.join(ROOT, 'editions', 'tw5-syntax', 'tiddlers');
+const sources = fs.readdirSync(SRC).filter((f) => f.endsWith('.ts') && !f.endsWith('.d.ts'));
+
+const headerOf = (text) => new RegExp('^\\/\\*\\\\(?:\\r?\\n)((?:^[^\\r\\n]*(?:\\r?\\n))+?)(^\\\\\\*\\/$(?:\\r?\\n)?)', 'mg').exec(text);
+
+const built = [];
+for (const source of sources) {
+  const emitted = path.join(TIDDLERS, source.replace(/\.ts$/, '.js'));
+  if (!fs.existsSync(emitted)) {
+    console.error(`  ${source} compiled to nothing the wiki would load — no ${path.basename(emitted)} stands`);
+    process.exit(1);
+  }
+  const match = headerOf(fs.readFileSync(emitted, 'utf8'));
+  if (!match) {
+    console.error(`  ${path.basename(emitted)} carries no header TiddlyWiki can read, so the wiki would load nothing`);
+    process.exit(1);
+  }
+  const fields = Object.fromEntries(match[1].split('\n').filter(Boolean)
+    .map((line) => line.split(/:\s*/)).map(([k, ...v]) => [k, v.join(': ')]));
+  built.push(`${path.basename(emitted)} → ${fields.title} (module-type: ${fields['module-type']})`);
 }
-const fields = Object.fromEntries(match[1].split('\n').filter(Boolean)
-  .map((line) => line.split(/:\s*/)).map(([k, ...v]) => [k, v.join(': ')]));
-console.log(`edition-build  ${path.basename(emitted)} → ${fields.title} (module-type: ${fields['module-type']})`);
+// The weld. Nothing in continuous integration carries a TypeScript compiler — the one this build
+// finds sits in a parent checkout — so nothing there can rebuild these modules and compare. A
+// contributor editing the source and forgetting the build would ship the OLD module: the wiki loads
+// it, the gates it carries run, and every reading comes back green from code nobody wrote.
+//
+// So the build records what it compiled FROM, and a gate recomputes that from the sources alone.
+// Verifying wants no compiler; only rebuilding does.
+const crypto = require('node:crypto');
+const record = {
+  compiler: (() => {
+    try { return execFileSync(tsc, ['--version'], { encoding: 'utf8' }).trim(); } catch { return 'unknown'; }
+  })(),
+  sources: Object.fromEntries(sources.map((source) =>
+    [source, crypto.createHash('sha256').update(fs.readFileSync(path.join(SRC, source))).digest('hex')]))
+};
+fs.writeFileSync(path.join(TIDDLERS, 'EditionBuild.tid'),
+  ['title: $:/tw5-syntax/EditionBuild',
+    'type: application/json',
+    'tags: $:/tags/TW5Syntax/GrammarData',
+    'caption: Edition build',
+    'description: What the compiled modules answer to — harvested by the build, never hand-written',
+    '', `${JSON.stringify(record, null, 4)}\n`].join('\n'));
+
+console.log(`edition-build  ${built.length} module(s) from ${record.compiler}`);
+for (const line of built) console.log(`  ${line}`);

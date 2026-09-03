@@ -1,0 +1,13 @@
+title: $:/tw5-syntax/EditionBuild
+type: application/json
+tags: $:/tags/TW5Syntax/GrammarData
+caption: Edition build
+description: What the compiled modules answer to — harvested by the build, never hand-written
+
+{
+    "compiler": "Version 7.0.2",
+    "sources": {
+        "grammar-commands.ts": "a45e970bf12740805ea3b5d8ea4b287cf06e0846d212ad65f901223c793abe36",
+        "grammar-signals.ts": "3fde221f1dc8be8629c98f8edf763c955af10483838458cb6030e64fdda14d58"
+    }
+}

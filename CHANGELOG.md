@@ -418,6 +418,22 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
   points at the one directory that stays outside: the coverage floor already measures those files,
   and a second copy would part from the first the day somebody edits one.
+- The edition's compiled modules answer to the TypeScript standing beside them. TypeScript sits in
+  no dependency of this repository — the build finds a compiler in a parent checkout — so nothing in
+  continuous integration could rebuild and compare, and the compiled modules ARE the shipped
+  artifact. A contributor editing a source and forgetting the build would have shipped the older
+  module: the wiki loads it, the gates it carries run, and every reading comes back green from code
+  nobody wrote. The build now records the sha256 of every source it compiled, and a gate recomputes
+  them — verifying wants no compiler, only rebuilding does.
+- The build verifies every module it compiles. It named one by hand and checked that one; a second
+  arrived, compiled, and stood unverified beside it.
+- The theme-parity panel says what each comparator carried. The bar this gate holds the grammar to
+  comes from a median over six grammars, and one of them carries two constructs of seven — rst names
+  a heading on the underline rather than on the text, and splits its emphasis runs where the
+  construct's own words do not stand alone. Five constructs took their bar from five comparators
+  under a line that said six. The count stands per comparator now, and a comparator carrying nothing
+  fails rather than sitting there.
+
 - The closing semicolon of a numeric or hexadecimal entity carries its punctuation scope. Both rules
   named capture 3 where two groups stand — copied from the named-entity rule above them, which has
   three — so `&#39;` and `&#x27;` coloured their `&` and left their `;` bare while `&amp;` coloured

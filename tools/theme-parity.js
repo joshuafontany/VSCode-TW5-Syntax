@@ -129,7 +129,7 @@ for (const construct of CONSTRUCTS) {
   }
   const bar = median(theirs.map((t) => t.pct));
   const pct = reach(mine);
-  rows.push({ construct, pct, bar, theirs });
+  rows.push({ construct, pct, bar, theirs, panel: theirs.length });
   if (bar - pct > TOLERANCE) {
     findings.push(`${construct}: ${pct}% of themes colour it, against a panel median of ${bar}%`);
   }
@@ -138,14 +138,27 @@ fs.rmSync(scratch, { recursive: true, force: true });
 
 if (verbose) {
   const ids = COMPARATORS.map((c) => c.id);
-  console.log(`  construct       ours  median  ${ids.map((i) => i.slice(0, 5).padStart(7)).join('')}`);
+  console.log(`  construct       ours  median   of  ${ids.map((i) => i.slice(0, 5).padStart(7)).join('')}`);
   for (const row of rows) {
     const by = Object.fromEntries(row.theirs.map((t) => [t.id, t.pct]));
-    console.log(`  ${row.construct.padEnd(14)}${String(`${row.pct}%`).padStart(5)}${String(`${row.bar}%`).padStart(8)}  `
+    console.log(`  ${row.construct.padEnd(14)}${String(`${row.pct}%`).padStart(5)}${String(`${row.bar}%`).padStart(8)}`
+      + String(row.panel).padStart(4) + '  '
       + ids.map((i) => String(by[i] === undefined ? '—' : `${by[i]}%`).padStart(7)).join(''));
   }
 }
+// A comparator carrying no construct sits in the panel and measures nothing while the summary counts
+// it. The rst grammar names a heading on the UNDERLINE rather than on the text, and its emphasis
+// runs split where the construct's own words do not stand alone — so it carries one construct of
+// seven, and the median for the other six comes from five comparators while a line saying "six"
+// stands underneath. What each one carried gets counted rather than assumed.
+const carried = Object.fromEntries(COMPARATORS.map((c) =>
+  [c.id, rows.filter((r) => r.theirs.some((t) => t.id === c.id)).length]));
+for (const [id, n] of Object.entries(carried)) {
+  if (n === 0) findings.push(`${id}: carries none of the ${rows.length} constructs — it sits in the panel and measures nothing`);
+}
+
 for (const finding of findings) console.error(`  ${finding}`);
-console.log(`theme-parity  ${rows.length} construct(s) across ${themes.length} themes and ${COMPARATORS.length} comparator grammars, `
+console.log(`theme-parity  ${rows.length} construct(s) across ${themes.length} themes and ${COMPARATORS.length} comparator grammars`
+  + ` (${Object.entries(carried).map(([id, n]) => `${id} ${n}`).join(', ')}), `
   + `${findings.length} that themes reach less than the panel does`);
 process.exit(findings.length === 0 ? 0 : 1);
