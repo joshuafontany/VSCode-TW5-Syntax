@@ -550,10 +550,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   `--strict` drops the reading for a reader who wants the whole list.
 - Two samples ended with a stray `@@`, which opens a style block with no style and closes nothing.
   It cost the canary and the composition gate a red each, and both stand green with it gone.
-- A pragma standing after block content reads as prose to TiddlyWiki and as a directive to this
-  grammar. `tests/known-gaps/a-pragma-after-a-block-reads-as-text.tw5.test` carries the
-  specification, the measurement, and the two approaches worth trying — the gap accounts for the
-  bulk of what `npm run overreach` reports.
+- A pragma standing after block content reads as prose, the way TiddlyWiki reads one.
+  `tests/tiddlywiki5/tiddlywiki5.pragma-zone.tw5.test` carries the specification and the
+  measurement; the entry above records how the zone came to stand.
 - `npm run overreach` reads `corpus/expected-divergence.txt`, like every other overreach run. The
   one that did not stood permanently red over spans a ruling already explained.
 - `overreach-corpus` named the same run as `overreach-host` without its rulings or its excludes, so

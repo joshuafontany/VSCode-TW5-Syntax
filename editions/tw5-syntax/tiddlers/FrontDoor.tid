@@ -30,6 +30,30 @@ Each judgement carries its own reason beside it. A reason belongs with the rulin
 a comment in a tool keeps it where nobody weighs it — so the wiki shows both, and a reason that
 stops answering to anything fails the gate that reads it, the same way a missing ruling does.
 
+!! The pragma zone, and why a fixture declares a different scope
+
+TiddlyWiki runs `parsePragmas()` once, before `parseBlocks()`, and never returns to it. A backslash
+directive standing after any block content renders as prose, so the grammar reads one only inside
+`#pragma-zone` — a region opening at the start of the source and closing at the first line that opens
+no pragma-mode rule.
+
+''Eight rules hold it open'', and TiddlyWiki names them itself: `commentblock`, `fnprocdef`,
+`import`, `macrodef`, `parameters`, `parsermode`, `rules`, `whitespace`. An HTML comment keeps
+reading pragmas exactly as a directive does. `npm run signals` harvests the set and a gate holds the
+zone's own account to it, so a rule the host adds to pragma mode surfaces here rather than closing a
+zone quietly.
+
+A fixture asserting pragma colouring declares `text.html.tiddlywiki5.test` rather than the base
+scope. A fixture stands as a fixture: its mandatory `# SYNTAX TEST` header reads as a numbered list
+under the base grammar, which closes the zone on line 1. The wrapper's container carries the pragma
+rules and names the base scope through `contentName`, so every assertion naming
+`text.html.tiddlywiki5` still finds it — an include compiles the other grammar's `$self`, which
+carries its `scopeName` and then flattens into its children, so nothing pushes it.
+
+<<lar-link "$:/tw5-syntax/tools/composition-check.js">> reads a prologue the same way: a file whose
+first construct opens the zone answers for standing FIRST, because preceding it puts the prologue
+where no prologue can stand.
+
 !! What continuous integration runs
 
 Every witness the manifest names, CI runs — or <<lar-link "$:/tw5-syntax/CIGates">> carries the
