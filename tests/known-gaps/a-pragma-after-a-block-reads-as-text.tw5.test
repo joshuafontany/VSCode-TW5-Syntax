@@ -13,19 +13,43 @@
 # a working directive, and TiddlyWiki renders the backslash line as prose. Nothing colours wrongly in
 # the other direction: a pragma in its proper place reads correctly.
 #
-# Closing it wants document position, which a TextMate grammar carries badly. A rule fires on a line
-# without knowing what stood before it, and the pragma zone ends at a condition — the first line no
-# pragma rule matches — rather than at a delimiter a begin/end pair could name. Two shapes worth
-# measuring before reopening this:
+# BOTH APPROACHES STAND MEASURED. One works, and the cost fell somewhere nobody expected.
 #
-#   \A anchored region   Oniguruma anchors \A at the start of the SOURCE, and vscode-textmate feeds
-#                        the grammar a line at a time. Whether \A holds across that boundary decides
-#                        the approach, and it decides it per engine rather than per grammar.
-#   end-on-first-block   A region opening at the first line and closing on a lookahead for any block
-#                        opener would carry the pragma rules and nothing else. It costs a nesting
-#                        level over the whole document, and every rule outside it needs the level.
+#   \A anchored region   REFUSED. vscode-textmate feeds the grammar a line at a time, so \A anchors
+#                        at each LINE start rather than at the source. \G answers no better: it moves
+#                        with the tokenizer, and a region keyed on it opened right after the first
+#                        line the injections consumed.
 #
-# `npm run overreach` measures the gap; the count falls when it closes.
+#   end-on-first-block   WORKS. Not as a region ending at the first block, but as its inverse: a
+#                        nameless region opening at the first line that carries content and opens no
+#                        pragma, and never closing. The pragma rules stand OUTSIDE it, so they reach
+#                        only what precedes it. Measured: a pragma after prose reads as prose, the
+#                        specimen below passes, and `npm run overreach` falls from 161 spans to 104.
+#
+#                        It costs no nesting level a reader sees — a region carrying no name adds
+#                        nothing to a scope stack. It costs two other things, both mendable:
+#
+#                        A caller reading a field VALUE opens mid-line, where the region's own begin
+#                        wants a line start it never sees. Splitting the region's patterns into a
+#                        rule of their own and including THAT from the field-value captures answers
+#                        it — measured, `multids.lines.tw5.test` goes green.
+#
+#                        The dialect's sigils stop reading, because a rule at the dialect's top level
+#                        cannot reach inside a base region. Injecting them at the base's root scope
+#                        answers it — measured, all eight memetic fixtures go green, and the sigil
+#                        reads in block contexts the old three-selector list had missed. That fix
+#                        stands on its own merit and landed without the region.
+#
+# WHAT BLOCKS IT: this assertion format. A `.tw5.test` fixture declaring `text.html.tiddlywiki5` gets
+# tokenized under the BASE grammar, where its own `# SYNTAX TEST` header reads as a numbered list —
+# content, so the pragma zone closes on line 1. Nine fixtures assert pragma colouring below that
+# line, and no rearrangement saves them: the header must stand first, and re-scoping a fixture to the
+# wrapper grammar drops the base root scope from every span it names.
+#
+# So closing this gap costs the repository its ability to assert pragma colouring at all, in the
+# format it asserts everything else in. That trade wants deciding before the grammar moves.
+#
+# `npm run overreach` measures the gap; the count falls from 161 to 104 when it closes.
 
 Ordinary prose stands here.
 

@@ -1,207 +1,258 @@
 {
     "Macro Definition Pragma": {
         "prefix": "\\define",
-        "body": "\\\\define ${1:twMacro}($2)\n$3\n\\\\end\n"
+        "body": "\\\\define ${1:twMacro}($2)\n$3\n\\\\end\n",
+        "description": "Defines a macro, whose body TiddlyWiki stores verbatim and substitutes parameters into by text replacement."
     },
     "Function Definition Pragma": {
         "prefix": "\\function",
-        "body": "\\\\function ${1:twFunc}($2)\n$3\n\\\\end\n"
+        "body": "\\\\function ${1:twFunc}($2)\n$3\n\\\\end\n",
+        "description": "Defines a function, whose body reaches the filter engine and returns the list it selects."
     },
     "Procedure Definition Pragma": {
         "prefix": "\\procedure",
-        "body": "\\\\procedure ${1:twProc}($2)\n$3\n\\\\end\n"
+        "body": "\\\\procedure ${1:twProc}($2)\n$3\n\\\\end\n",
+        "description": "Defines a procedure, whose body renders as wikitext with its parameters bound as variables."
     },
     "Widget Definition Pragma": {
         "prefix": "\\widget",
-        "body": "\\\\widget ${1:\\$tw.Widget}($2)\n$3\n\\\\end\n"
+        "body": "\\\\widget ${1:\\$tw.Widget}($2)\n$3\n\\\\end\n",
+        "description": "Defines a custom widget, whose body renders in place of the widget it names."
     },
     "Import Pragma": {
         "prefix": "\\import",
-        "body": "\\\\import [${1:title}[$0]]\n"
+        "body": "\\\\import [${1:title}[$0]]\n",
+        "description": "Imports the variables defined by every tiddler the filter selects."
     },
     "Rules Pragma": {
         "prefix": "\\rules",
-        "body": "\\\\rules ${1|only,except|} ${2:rules}$0\n"
+        "body": "\\\\rules ${1|only,except|} ${2:rules}$0\n",
+        "description": "Enables or disables named wikitext rules for the rest of the tiddler."
     },
     "Rules Stylesheet Pragma": {
         "prefix": "\\rulesstyle",
-        "body": "\\\\rules only filteredtranscludeinline transcludeinline macrodef fnprocdef macrocallinline$0\n"
+        "body": "\\\\rules only filteredtranscludeinline transcludeinline macrodef fnprocdef macrocallinline$0\n",
+        "description": "Leaves only the rules a stylesheet needs, so CSS reads as CSS and transclusions still resolve."
     },
     "Rules Plain Text Pragma": {
         "prefix": "\\rulesoff",
-        "body": "\\\\rules only rules\n\\\\rules except rules\n"
+        "body": "\\\\rules only rules\n\\\\rules except rules\n",
+        "description": "Disables every wikitext rule, so the tiddler renders as plain text."
     },
     "Whitespace Pragma": {
         "prefix": "\\whitespace",
-        "body": "\\\\whitespace ${1|trim,notrim|}\n"
+        "body": "\\\\whitespace ${1|trim,notrim|}\n",
+        "description": "Trims or keeps the whitespace TiddlyWiki finds between constructs."
     },
     "Parameters Pragma": {
         "prefix": "\\parameters",
-        "body": "\\\\parameters (${1:param}:\"${2:default}\")\n"
+        "body": "\\\\parameters (${1:param}:\"${2:default}\")\n",
+        "description": "Declares the parameters a procedure, function or widget takes, with their defaults."
     },
     "Parsermode Pragma": {
         "prefix": "\\parsermode",
-        "body": "\\\\parsermode ${1|block,inline|}\n"
+        "body": "\\\\parsermode ${1|block,inline|}\n",
+        "description": "Parses the rest of the tiddler as a block sequence or as a single inline run."
     },
     "Code": {
         "prefix": "```code",
-        "body": "```${1:js}\n$2\n```"
+        "body": "```${1:js}\n$2\n```",
+        "description": "A fenced code block, carrying a language the editor colours inside it."
     },
     "Typed Block": {
         "prefix": "$$$tb",
-        "body": "\\$\\$\\$${1:text/vnd.tiddlywiki}\n$2\n\\$\\$\\$"
+        "body": "\\$\\$\\$${1:text/vnd.tiddlywiki}\n$2\n\\$\\$\\$",
+        "description": "A block parsed as the content type it names rather than as wikitext."
     },
     "Typed Block With Render Type": {
         "prefix": "$$$tbt",
-        "body": "\\$\\$\\$${1:text/vnd.tiddlywiki} > ${2:text/html}\n$3\n\\$\\$\\$"
+        "body": "\\$\\$\\$${1:text/vnd.tiddlywiki} > ${2:text/html}\n$3\n\\$\\$\\$",
+        "description": "A block parsed as one content type and rendered as another."
     },
     "Style": {
         "prefix": "@@style",
-        "body": "@@${1:.class1.class2}\n@@${2:text-transform:uppercase;}\n$3\n@@"
+        "body": "@@${1:.class1.class2}\n@@${2:text-transform:uppercase;}\n$3\n@@",
+        "description": "Applies inline CSS and classes to the block that follows."
     },
     "Blockquote": {
         "prefix": "<<<bq",
-        "body": "<<<\n$1\n<<<"
+        "body": "<<<\n$1\n<<<",
+        "description": "A block quotation."
     },
     "Blockquote With Cite": {
         "prefix": "<<<bqc",
-        "body": "<<< ${1:cite}\n$2\n<<<"
+        "body": "<<< ${1:cite}\n$2\n<<<",
+        "description": "A block quotation carrying its citation above."
     },
     "Blockquote With Bottom Cite": {
         "prefix": "<<<bqbc",
-        "body": "<<<\n$1\n<<< ${2:cite}"
+        "body": "<<<\n$1\n<<< ${2:cite}",
+        "description": "A block quotation carrying its citation below."
     },
     "Filtered Transclusion": {
         "prefix": "{{{ftr",
-        "body": "{{{ ${1:[is[current]]} }}}$0"
+        "body": "{{{ ${1:[is[current]]} }}}$0",
+        "description": "Renders every tiddler the filter selects."
     },
     "Filtered Transclusion With Template": {
         "prefix": "{{{ftrt",
-        "body": "{{{ ${1:[is[current]]}||${2:template} }}}$0"
+        "body": "{{{ ${1:[is[current]]}||${2:template} }}}$0",
+        "description": "Renders every tiddler the filter selects, through a template."
     },
     "Transclusion": {
         "prefix": "{{tr",
-        "body": "{{${1:tiddler}}}$0"
+        "body": "{{${1:tiddler}}}$0",
+        "description": "Renders the text field of another tiddler in place."
     },
     "Transclusion Of Field": {
         "prefix": "{{tf",
-        "body": "{{${1:}!!${2:title}}}$0"
+        "body": "{{${1:}!!${2:title}}}$0",
+        "description": "Renders one field of another tiddler in place."
     },
     "Transclusion Of Data Index": {
         "prefix": "{{ti",
-        "body": "{{${1:}##${2:index}}}$0"
+        "body": "{{${1:}##${2:index}}}$0",
+        "description": "Renders one index of a data tiddler in place."
     },
     "Transclusion With Template": {
         "prefix": "{{trt",
-        "body": "{{${1:tiddler}||${2:template}}}$0"
+        "body": "{{${1:tiddler}||${2:template}}}$0",
+        "description": "Renders another tiddler through a template."
     },
     "Transclusion Of Field With Template": {
         "prefix": "{{tft",
-        "body": "{{${1:}!!${2:title}||${3:template}}}$0"
+        "body": "{{${1:}!!${2:title}||${3:template}}}$0",
+        "description": "Renders one field of another tiddler through a template."
     },
     "Transclusion Of Data Index With Template": {
         "prefix": "{{tit",
-        "body": "{{${1:}##${2:index}||${3:template}}}$0"
+        "body": "{{${1:}##${2:index}||${3:template}}}$0",
+        "description": "Renders one index of a data tiddler through a template."
     },
     "Table": {
         "prefix": "|table",
-        "body": "|${1:Data One}   |${2:Data Two}  |\n|${3:Data Three} |${4:Data Four} |"
+        "body": "|${1:Data One}   |${2:Data Two}  |\n|${3:Data Three} |${4:Data Four} |",
+        "description": "A table of data rows, each cell between pipes."
     },
     "Table With Row Headers": {
         "prefix": "|tabler",
-        "body": "|${1:Header One} |${2:Header Two} |h\n|${3:Data One}   |${4:Data Two}   |"
+        "body": "|${1:Header One} |${2:Header Two} |h\n|${3:Data One}   |${4:Data Two}   |",
+        "description": "A table whose first row reads as its headings."
     },
     "Table With Column Headers": {
         "prefix": "|tablec",
-        "body": "|!${1:Header One} |${2:Data One} |\n|!${3:Header Two} |${4:Data Two} |"
+        "body": "|!${1:Header One} |${2:Data One} |\n|!${3:Header Two} |${4:Data Two} |",
+        "description": "A table whose first column reads as its headings."
     },
     "Table With Row And Column Headers": {
         "prefix": "|tablerc",
-        "body": "|            | ${1:Header One} |h\n|!${2:Header One} |${3:Data One}    |\n|!${4:Header Two} |${5:Data Two}    |"
+        "body": "|            | ${1:Header One} |h\n|!${2:Header One} |${3:Data One}    |\n|!${4:Header Two} |${5:Data Two}    |",
+        "description": "A table carrying headings along its first row and its first column."
     },
     "Quote": {
         "prefix": ">q",
-        "body": "> "
+        "body": "> ",
+        "description": "A single quoted line, opening on a greater-than sign."
     },
     "Ordered List": {
         "prefix": "#ol",
-        "body": "# ${1:item 1}"
+        "body": "# ${1:item 1}",
+        "description": "A numbered list item."
     },
     "Unordered List": {
         "prefix": "*ul",
-        "body": "* ${1:item}"
+        "body": "* ${1:item}",
+        "description": "A bulleted list item."
     },
     "Description List": {
         "prefix": ";dl",
-        "body": "; ${1:term}\n  : ${2:description}"
+        "body": "; ${1:term}\n  : ${2:description}",
+        "description": "A term and the description standing under it."
     },
     "Heading": {
         "prefix": "!heading",
-        "body": "!$0 ${1:Heading 1}"
+        "body": "!$0 ${1:Heading 1}",
+        "description": "A heading, one level per exclamation mark."
     },
     "Horizontal Rule": {
         "prefix": "-hr",
-        "body": "---\n"
+        "body": "---\n",
+        "description": "A horizontal rule, on a line of three dashes."
     },
     "Bold": {
         "prefix": "''b",
-        "body": "''$1''$0"
+        "body": "''$1''$0",
+        "description": "Bold text, between two apostrophes on each side."
     },
     "Italic": {
         "prefix": "//i",
-        "body": "//$1//$0"
+        "body": "//$1//$0",
+        "description": "Italic text, between two slashes on each side."
     },
     "Underscore": {
         "prefix": "__u",
-        "body": "__$1__$0"
+        "body": "__$1__$0",
+        "description": "Underlined text, between two underscores on each side."
     },
     "Superscript": {
         "prefix": "^^ sup",
-        "body": "^^$1^^$0"
+        "body": "^^$1^^$0",
+        "description": "Superscript text, between two carets on each side."
     },
     "Subscript": {
         "prefix": ",, sub",
-        "body": ",,$1,,$0"
+        "body": ",,$1,,$0",
+        "description": "Subscript text, between two commas on each side."
     },
     "Strikethrough": {
         "prefix": "~~s",
-        "body": "~~$1~~$0"
+        "body": "~~$1~~$0",
+        "description": "Struck-through text, between two tildes on each side."
     },
     "Code Inline Single Backticks": {
         "prefix": "`code ic",
-        "body": "`$1`$0"
+        "body": "`$1`$0",
+        "description": "An inline code span."
     },
     "Code Inline Double Backticks": {
         "prefix": "``code ic",
-        "body": "``$1``$0"
+        "body": "``$1``$0",
+        "description": "An inline code span that may carry a backtick of its own."
     },
     "Preformatted Text": {
         "prefix": "\"\"\"pre",
-        "body": "\"\"\"\n$0\n\"\"\""
+        "body": "\"\"\"\n$0\n\"\"\"",
+        "description": "A block that renders exactly as written, with no wikitext read inside it."
     },
     "Image": {
         "prefix": "[img",
-        "body": "[img[${1:URL}]]$0"
+        "body": "[img[${1:URL}]]$0",
+        "description": "An image, by URL or tiddler title."
     },
     "Image With Tooltip": {
         "prefix": "[imgt",
-        "body": "[img[${1:Tooltip}|${2:URL}]]$0"
+        "body": "[img[${1:Tooltip}|${2:URL}]]$0",
+        "description": "An image carrying a tooltip."
     },
     "Link": {
         "prefix": "[[",
-        "body": "[[${2:URL}]]$0"
+        "body": "[[${2:URL}]]$0",
+        "description": "A link to a tiddler or a URL."
     },
     "Link With Title": {
         "prefix": "[[lt",
-        "body": "[[${1:Title}|${2:URL}]]$0"
+        "body": "[[${1:Title}|${2:URL}]]$0",
+        "description": "A link carrying its own visible text."
     },
     "Comment": {
         "prefix": "<!--",
-        "body": "<!-- $1 -->$0"
+        "body": "<!-- $1 -->$0",
+        "description": "A comment, which renders nothing."
     },
     "Macro Call": {
         "prefix": "<<a-macro",
-        "body": "<<${1:variable}>>$0"
+        "body": "<<${1:variable}>>$0",
+        "description": "Calls a macro, procedure or variable by name."
     },
     "Macro Csvtiddlers": {
         "description": "Returns the fields of a selection of tiddlers in CSV form, with one row per tiddler.",
@@ -282,7 +333,7 @@
         "body": "<<tabs tabsList:\"${1:[is[current]]}\" state:${2:\"$:/state/${3:state}\"}${4: class:\"${5:tc-vertical}\"}${6: explicitState:\"${7:$:/state/tab}\"}>>$0"
     },
     "Macro Thumbnail": {
-        "description": "",
+        "description": "Renders a thumbnail, from TiddlyWiki's own thumbnail macros.",
         "descriptionMoreURL": "http://tiddlywiki.com#thumbnail%20Macro",
         "prefix": "<<thumbnail",
         "body": "<<thumbnail $1>>$0"
@@ -367,7 +418,8 @@
     },
     "Widget List With Custom Variable": {
         "prefix": "<\\$listv",
-        "body": "<\\$list filter=\"${1:[all[current]]}\" variable=\"${2:item}\">\n\t${3:<<${2:item}>>}$0\n</\\$list>"
+        "body": "<\\$list filter=\"${1:[all[current]]}\" variable=\"${2:item}\">\n\t${3:<<${2:item}>>}$0\n</\\$list>",
+        "description": "Renders its body once per tiddler the filter selects, binding each to a variable you name."
     },
     "Widget List With All Parameters": {
         "prefix": "<\\$listz",
@@ -385,7 +437,8 @@
             ">",
             "\t<<${2:item}>>$0",
             "</\\$list>"
-        ]
+        ],
+        "description": "Renders its body once per tiddler the filter selects, with every parameter the widget takes."
     },
     "Widget Count": {
         "description": "Displays the number of matches to a filter expression.",
@@ -407,7 +460,8 @@
     },
     "Widget Reveal With Popup": {
         "prefix": "<\\$revealp",
-        "body": "<\\$reveal type=\"popup\" popup=${1:\"$:/state/${2:state}\"}>\n\t$0\n</\\$reveal>"
+        "body": "<\\$reveal type=\"popup\" popup=${1:\"$:/state/${2:state}\"}>\n\t$0\n</\\$reveal>",
+        "description": "Shows or hides its body according to a popup state tiddler."
     },
     "Widget Scrollable": {
         "description": "Wraps content in a scrollable frame.",
@@ -435,7 +489,8 @@
     },
     "Widget Checkbox Bound To Tag": {
         "prefix": "<\\$checkboxt",
-        "body": "<\\$checkbox ${1:tiddler=${2:<<currentTiddler>>}} tag=\"$3\">\n\t${4:Label}$0\n</\\$checkbox>"
+        "body": "<\\$checkbox ${1:tiddler=${2:<<currentTiddler>>}} tag=\"$3\">\n\t${4:Label}$0\n</\\$checkbox>",
+        "description": "A checkbox that adds or removes a tag on a tiddler."
     },
     "Widget Radio": {
         "description": "Displays an HTML radio input bound to a specified tiddler field.",
@@ -458,25 +513,30 @@
     },
     "Widget Button Send Message": {
         "prefix": "<\\$buttonm",
-        "body": "<\\$button message=\"${1:tm-notify}\" param=\"${2:<<currentTiddler>>}\">\n\t${3:Label}\n</\\$button>$0"
+        "body": "<\\$button message=\"${1:tm-notify}\" param=\"${2:<<currentTiddler>>}\">\n\t${3:Label}\n</\\$button>$0",
+        "description": "A button that sends a widget message when clicked."
     },
     "Widget Button Navigate To": {
         "prefix": "<\\$buttonn",
-        "body": "<\\$button to=${1:<<currentTiddler>>}>\n\t${2:Label}\n</\\$button>$0"
+        "body": "<\\$button to=${1:<<currentTiddler>>}>\n\t${2:Label}\n</\\$button>$0",
+        "description": "A button that navigates to a tiddler when clicked."
     },
     "Widget Button With Popup": {
         "prefix": "<\\$buttonp",
-        "body": "<\\$button popup=${1:\"$:/state/${2:state}\"}>\n\t${3:Label}\n</\\$button>$0"
+        "body": "<\\$button popup=${1:\"$:/state/${2:state}\"}>\n\t${3:Label}\n</\\$button>$0",
+        "description": "A button that opens a popup when clicked."
     },
     "Widget Button Set Value": {
         "prefix": "<\\$buttont",
-        "body": "<\\$button set=\"$1!!${2:title}\" setTo=\"${2:{{$3!!${4:title}\\}\\}}\">\n\t${5:Label}\n</\\$button>$0"
+        "body": "<\\$button set=\"$1!!${2:title}\" setTo=\"${2:{{$3!!${4:title}\\}\\}}\">\n\t${5:Label}\n</\\$button>$0",
+        "description": "A button that writes a value into a field when clicked."
     },
     "Shortcut - If EndIf": {
         "prefix": [
             "<% if endif"
         ],
-        "body": "<% if ${1:[${2:operator}[]]} %>\n\t${3:Content}\n<% endif %>$0"
+        "body": "<% if ${1:[${2:operator}[]]} %>\n\t${3:Content}\n<% endif %>$0",
+        "description": "Renders its body when the filter selects anything."
     },
     "Shortcut - If ElseIf Else EndIf": {
         "prefix": [
@@ -490,19 +550,22 @@
             "<% else %>",
             "\t${7:Content}",
             "<% endif %>$0"
-        ]
+        ],
+        "description": "Renders the first branch whose filter selects anything, or the else branch."
     },
     "Shortcut - Else If": {
         "prefix": [
             "<% elseif if"
         ],
-        "body": "<% elseif ${1:[${2:operator}[]]} %>\n\t${3:Content}\n$0"
+        "body": "<% elseif ${1:[${2:operator}[]]} %>\n\t${3:Content}\n$0",
+        "description": "A further branch, taken when its filter selects anything."
     },
     "Shortcut - Else": {
         "prefix": [
             "<% else no if"
         ],
-        "body": "<% else %>\n\t${1:Content}\n$0"
+        "body": "<% else %>\n\t${1:Content}\n$0",
+        "description": "The branch taken when no filter above it selected anything."
     },
     "Widget Genesis": {
         "description": "Dynamically creates a widget or HTML element at runtime.",
@@ -523,7 +586,8 @@
             ">",
             "\t$0",
             "</\\$genesis>"
-        ]
+        ],
+        "description": "Renders a widget chosen at run time, with every parameter the widget takes."
     },
     "Widget MessageCatcher": {
         "description": "Catches and handles messages dispatched by action widgets.",
@@ -541,7 +605,8 @@
             ">",
             "\t$0",
             "</\\$messagecatcher>"
-        ]
+        ],
+        "description": "Catches widget messages raised inside its body and runs actions for each."
     },
     "Widget EventCatcher": {
         "description": "Catches DOM events on child elements via event delegation.",
@@ -564,7 +629,8 @@
             ">",
             "\t$0",
             "</\\$eventcatcher>"
-        ]
+        ],
+        "description": "Catches DOM events raised inside its body and runs actions for each."
     },
     "Widget Fill": {
         "description": "Supplies a slot value for transclusion.",
@@ -602,7 +668,8 @@
             ">",
             "\t$0",
             "</\\$wikify>"
-        ]
+        ],
+        "description": "Renders wikitext to a string and binds it to a variable."
     },
     "Widget Range": {
         "description": "Displays an HTML range input slider bound to a tiddler field.",
@@ -665,7 +732,8 @@
             "\t\\$overwrite=\"${6|no,yes|}\"",
             "\t${7:tags}=\"${8:tag1 [[tag with spaces]]}\"",
             "/>$0"
-        ]
+        ],
+        "description": "Creates a tiddler when the action runs, with every parameter the widget takes."
     },
     "Widget ActionConfirm": {
         "description": "Prompts user for confirmation before proceeding with actions.",
@@ -682,19 +750,23 @@
     "Widget ActionLog All Variables": {
         "descriptionMoreURL": "https://tiddlywiki.com/#ActionLogWidget",
         "prefix": "<\\$action-logz",
-        "body": "<\\$action-log \\$\\$all=\"yes\" \\$\\$message=\"${1:debug}\"/>$0"
+        "body": "<\\$action-log \\$\\$all=\"yes\" \\$\\$message=\"${1:debug}\"/>$0",
+        "description": "Logs every variable in scope when the action runs."
     },
     "Widget ActionLog With Filter": {
         "descriptionMoreURL": "https://tiddlywiki.com/#ActionLogWidget",
         "prefix": "<\\$action-logv",
-        "body": "<\\$action-log \\$\\$filter=\"${1:[prefix[temp]]}\" \\$\\$message=\"${2:debug}\"/>$0"
+        "body": "<\\$action-log \\$\\$filter=\"${1:[prefix[temp]]}\" \\$\\$message=\"${2:debug}\"/>$0",
+        "description": "Logs the tiddlers a filter selects when the action runs."
     },
     "Substitute Filter": {
         "prefix": "sub-filter",
-        "body": "\\${ ${1:[[]]} }\\$$0"
+        "body": "\\${ ${1:[[]]} }\\$$0",
+        "description": "Substitutes the result of a filter into a macro body."
     },
     "Substitute Variable": {
         "prefix": "sub-variable",
-        "body": "\\$(${1:currentTiddler})\\$$0"
+        "body": "\\$(${1:currentTiddler})\\$$0",
+        "description": "Substitutes the value of a variable into a macro body."
     }
 }

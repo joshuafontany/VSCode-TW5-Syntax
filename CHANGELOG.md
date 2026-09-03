@@ -418,6 +418,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
   points at the one directory that stays outside: the coverage floor already measures those files,
   and a second copy would part from the first the day somebody edits one.
+- The dialect's sigils read everywhere the base grammar reads. Its injection named three block
+  contexts by hand, and a sigil inside an unordered list read as an ordinary macro call for it — the
+  selector reached the three somebody listed. One selector on the base's root scope reaches the whole
+  file, and the base's root stands on the stack wherever it reads.
+- Every snippet says what it inserts. 73 of the 125 carried no description, so a learner reaching for
+  `\rules` met a name and a body and nothing saying what the construct does. A gate holds the set to
+  it, and a description that only repeats its snippet's name reads as none.
+
 - A TypeScript compiler stands in this repository's own dependencies, pinned to the version whose
   bytes the committed modules carry. Continuous integration rebuilds the edition and asks whether the
   tree holds what the build writes — `npm run edition:check` — so a source edited without a rebuild

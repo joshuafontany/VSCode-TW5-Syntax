@@ -78,6 +78,19 @@ test('a snippet that never closes its construct reads as broken', live, () => {
     'the parser reports something other than an unterminated construct');
 });
 
+// A snippet's name reaches the picker and its description reaches the detail pane beside it. 73 of
+// the 125 carried none, so a learner reaching for `\\rules` met a name and a body and nothing saying
+// what the construct does.
+test('every snippet says what it inserts', () => {
+  const bare = [];
+  for (const { file, snippets } of sets) {
+    for (const [name, snippet] of Object.entries(snippets)) {
+      if (!snippet.description || snippet.description.length < 12) bare.push(`${file}: ${name}`);
+    }
+  }
+  assert.deepStrictEqual(bare, [], 'snippet(s) carrying no description — the picker shows a name alone');
+});
+
 test('every snippet carries a prefix, and no two in a set share one', () => {
   for (const { file, snippets } of sets) {
     const taken = new Map();
