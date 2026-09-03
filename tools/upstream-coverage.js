@@ -131,7 +131,12 @@ function main() {
       for (const m of text.matchAll(r.re)) {
         // Trailing whitespace never survives into a snapshot's source line, so nothing
         // could find a case carrying it again by its own text.
+        // A rule ENDING in [^\S\n] requires that whitespace: /\\rules[^\S\n]/ matches "\\rules "
+        // and the stripped case opens nothing, so the probe asked this grammar to scope a construct
+        // the parser refuses too and read the refusal as a gap. Only those rules keep it — reading
+        // "the match ended in space" alone put a separator on twelve rules that never wanted one.
         const hit = m[0].replace(/\s+$/, '');
+        const wantsSeparator = /\[\^\\S\\n\]$/.test(r.re.source) && /\s$/.test(m[0]);
         // One line, short enough to stand alone in a probe. Some rules match only their
         // opening delimiter — codeinline carries /(``?)/, the emphasis family /''/ and its
         // siblings — so the harvested span carries a delimiter with neither content nor
@@ -140,7 +145,7 @@ function main() {
         if (!/[A-Za-z0-9]/.test(hit)) continue;
         if (claimed.has(hit)) continue;
         claimed.add(hit);
-        found.get(r.name).add(hit);
+        found.get(r.name).add(wantsSeparator ? `${hit} ` : hit);
         if (found.get(r.name).size >= PER_RULE) break;
       }
     }
@@ -162,7 +167,10 @@ function main() {
   const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-upstream-'));
   const probes = cases.map((c, i) => {
     const file = path.join(scratch, `case-${String(i).padStart(4, '0')}.tw`);
-    fs.writeFileSync(file, c.hit + '\n');
+    // A case that wants its separator keeps it, and takes a word so the line carries something
+    // after the mark — a probe reads the OPENING token, and an opener alone answers for nothing.
+    c.line = /\s$/.test(c.hit) ? `${c.hit}probe` : c.hit;
+    fs.writeFileSync(file, c.line + '\n');
     return file;
   });
 
@@ -177,7 +185,10 @@ function main() {
     const snapFile = `${file}.snap`;
     if (!fs.existsSync(snapFile)) return;
     const v = judgeSnapshot(fs.readFileSync(snapFile, 'utf8'));
-    if (v.has(cases[i].hit)) scoped.set(i, v.get(cases[i].hit));
+    // The verdict keys on the line the probe WROTE. Keying on the case's own text found nothing for
+    // the three that grew a word, and read the absence as an unscoped construct.
+    const key = cases[i].line ?? cases[i].hit;
+    if (v.has(key)) scoped.set(i, v.get(key));
   });
   if (process.env.UC_KEEP) console.error(`UC_KEEP scratch: ${scratch}`);
   else fs.rmSync(scratch, { recursive: true, force: true });

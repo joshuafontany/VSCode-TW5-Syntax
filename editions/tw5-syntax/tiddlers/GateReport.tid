@@ -3,12 +3,12 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 19 of 21
+gates-held: 20 of 21
 
 {
     "gates": 21,
-    "held": 19,
-    "failing": 2,
+    "held": 20,
+    "failing": 1,
     "results": [
         {
             "gate": "attribute-guard",
@@ -112,8 +112,8 @@ gates-held: 19 of 21
         },
         {
             "gate": "upstream-coverage",
-            "held": false,
-            "said": "ok       transcludeinline         6/6  [inline]"
+            "held": true,
+            "said": "ok       whitespace               1/1  [pragma]"
         }
     ]
 }

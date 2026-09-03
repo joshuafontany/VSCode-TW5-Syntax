@@ -418,6 +418,16 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
   points at the one directory that stays outside: the coverage floor already measures those files,
   and a second copy would part from the first the day somebody edits one.
+- `\whitespace` and `\parsermode` open on the separator, the way TiddlyWiki opens them. Demanding a
+  recognised value — `trim`, `notrim`, `block`, `inline` — refused the construct where the parser
+  builds it, so a line carrying an unknown value read as prose here and as a directive there. The
+  keyword still names itself; the rest rides as the value.
+- The upstream-coverage gate stopped asking this grammar to scope constructs TiddlyWiki refuses. It
+  harvests a case from the host's own tiddlers and stripped its trailing whitespace — but a rule
+  ending in `[^\S\n]` REQUIRES that whitespace, so `\rules ` became `\rules` and opened nothing.
+  Those three cases keep the separator now and carry a word after it, and the verdict keys on the
+  line the probe wrote rather than on the case's own text.
+
 - A directive wants a space where TiddlyWiki wants one. vscode-textmate hands the scanner a line
   WITH its newline, so `\s+` after a keyword matched the line ending — and a bare `\rules`,
   `\import`, `\whitespace` or `\parsermode` coloured as a working directive where TiddlyWiki reads

@@ -525,7 +525,7 @@
 			}
 		},
 		"whitespace": {
-			"match": "^[ \\t]*(\\\\)(whitespace)[^\\S\\n]+(trim|notrim)?$",
+			"match": "^[ \\t]*(\\\\)(whitespace)[^\\S\\n]+(trim|notrim)?(.*)$",
 			"name": "meta.directive.whitespace.tiddlywiki5",
 			"captures": {
 				"1": {
@@ -540,7 +540,7 @@
 			}
 		},
 		"parsermode": {
-			"match": "^[ \\t]*(\\\\)(parsermode)[^\\S\\n]+(block|inline)?$",
+			"match": "^[ \\t]*(\\\\)(parsermode)[^\\S\\n]+(block|inline)?(.*)$",
 			"name": "meta.directive.parsermode.tiddlywiki5",
 			"captures": {
 				"1": {
