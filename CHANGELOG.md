@@ -418,6 +418,18 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
   points at the one directory that stays outside: the coverage floor already measures those files,
   and a second copy would part from the first the day somebody edits one.
+- A TIDDLER'S TYPE DECIDES WHAT LANGUAGE ITS BODY CARRIES. TiddlyWiki reads a body through the
+  parser its `type` field names, and this grammar read every `.tid` body as wikitext whatever the
+  field said — a JSON tiddler's braces coloured as prose, a plain-text tiddler's `!!` as a heading,
+  a CSS tiddler's selectors as nothing at all. Twelve content types now steer the body: JSON,
+  JavaScript, CSS, HTML, XML and SVG, Markdown, a tiddler dictionary, and plain text, which carries
+  no wikitext at all. A type this grammar does not name keeps reading as wikitext, which is what
+  TiddlyWiki does with a type it cannot parse.
+  Measured against TiddlyWiki's own tree: 115 of 5756 `.tid` files declare a type that is not
+  wikitext. The type line opens a region that never closes — the remaining header fields read inside
+  it, and the body after the blank line reads as the guest language — which is the shape the inline
+  parser mode and the pragma zone already carry.
+
 - THE DIVERGENCE GATE HOLDS. Nothing the grammar claims stands unexplained: 0 spans where it claims
   a construct TiddlyWiki refuses, 0 where it condemns one TiddlyWiki builds. It ran red for the whole
   of this release and closed on two operator rulings and four measurements.

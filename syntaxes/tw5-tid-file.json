@@ -1,30 +1,289 @@
 {
-  "name": "TiddlyWiki5 tid file",
-  "scopeName": "source.tiddlywiki5.tid-file",
-  "fileTypes": [
-    "tid"
-  ],
-  "patterns": [
-    {
-      "comment": "Tokenize tiddler text field.",
-      "begin": "(?<=^$)",
-      "contentName": "meta.text.html.tiddlywiki5 text.html.tiddlywiki5",
-      "patterns": [
-        {
-          "include": "text.html.tiddlywiki5"
-        }
-      ]
-    },
-    {
-      "comment": "Tokenize mandatory tiddler metadata.",
-      "begin": "^",
-      "end": "^$",
-      "contentName": "meta.text.tiddler.fields.tiddlywiki5",
-      "patterns": [
-        {
-          "include": "source.tiddlywiki5.fields"
-        }
-      ]
-    }
-  ]
+	"name": "TiddlyWiki5 tid file",
+	"scopeName": "source.tiddlywiki5.tid-file",
+	"fileTypes": [
+		"tid"
+	],
+	"patterns": [
+		{
+			"include": "#typed-body"
+		},
+		{
+			"comment": "Tokenize tiddler text field.",
+			"begin": "(?<=^$)",
+			"contentName": "meta.text.html.tiddlywiki5 text.html.tiddlywiki5",
+			"patterns": [
+				{
+					"include": "text.html.tiddlywiki5"
+				}
+			]
+		},
+		{
+			"comment": "Tokenize mandatory tiddler metadata.",
+			"begin": "^",
+			"end": "^$|(?=^[ \\t]*type[ \\t]*:[ \\t]*(?:application/json|application/javascript|text/javascript|text/css|text/html|image/svg\\+xml|text/xml|application/xml|text/x-markdown|text/markdown|application/x-tiddler-dictionary|text/plain)[ \\t]*$)",
+			"contentName": "meta.text.tiddler.fields.tiddlywiki5",
+			"patterns": [
+				{
+					"include": "source.tiddlywiki5.fields"
+				}
+			]
+		}
+	],
+	"repository": {
+		"typed-body": {
+			"comment": "A tiddler\u2019s `type` field decides what language its body carries, and TiddlyWiki reads the body through the parser that type names.\n\nA rule fires on a line without knowing what stood above it, so the type line opens a region of its own that never closes: the remaining header fields read inside it, and the body after the blank line reads as the guest language. The inline parser mode and the pragma zone in the wikitext grammar carry the same shape.\n\nThe header rule below ends just before such a line so this one can open. A type nothing here names leaves the body reading as wikitext, the way TiddlyWiki reads a type it cannot parse.",
+			"patterns": [
+				{
+					"comment": "A tiddler declaring application/json. The line reads as the field it is, and everything after the header reads as json.",
+					"begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:application/json)[ \\t]*)$",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.other.attribute-name.field.tiddlywiki5"
+						},
+						"2": {
+							"name": "punctuation.separator.key-value.field.tiddlywiki5"
+						},
+						"3": {
+							"name": "string.unquoted.field.value.tiddlywiki5"
+						}
+					},
+					"end": "(?!)",
+					"patterns": [
+						{
+							"comment": "The body, in the language the type names.",
+							"begin": "(?<=^$)",
+							"end": "(?!)",
+							"contentName": "meta.embedded.block.json source.json",
+							"patterns": [
+								{
+									"include": "source.json"
+								}
+							]
+						},
+						{
+							"include": "source.tiddlywiki5.fields"
+						}
+					]
+				},
+				{
+					"comment": "A tiddler declaring application/javascript or text/javascript. The line reads as the field it is, and everything after the header reads as javascript.",
+					"begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:application/javascript|text/javascript)[ \\t]*)$",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.other.attribute-name.field.tiddlywiki5"
+						},
+						"2": {
+							"name": "punctuation.separator.key-value.field.tiddlywiki5"
+						},
+						"3": {
+							"name": "string.unquoted.field.value.tiddlywiki5"
+						}
+					},
+					"end": "(?!)",
+					"patterns": [
+						{
+							"comment": "The body, in the language the type names.",
+							"begin": "(?<=^$)",
+							"end": "(?!)",
+							"contentName": "meta.embedded.block.javascript source.js",
+							"patterns": [
+								{
+									"include": "source.js"
+								}
+							]
+						},
+						{
+							"include": "source.tiddlywiki5.fields"
+						}
+					]
+				},
+				{
+					"comment": "A tiddler declaring text/css. The line reads as the field it is, and everything after the header reads as css.",
+					"begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:text/css)[ \\t]*)$",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.other.attribute-name.field.tiddlywiki5"
+						},
+						"2": {
+							"name": "punctuation.separator.key-value.field.tiddlywiki5"
+						},
+						"3": {
+							"name": "string.unquoted.field.value.tiddlywiki5"
+						}
+					},
+					"end": "(?!)",
+					"patterns": [
+						{
+							"comment": "The body, in the language the type names.",
+							"begin": "(?<=^$)",
+							"end": "(?!)",
+							"contentName": "meta.embedded.block.css source.css",
+							"patterns": [
+								{
+									"include": "source.css"
+								}
+							]
+						},
+						{
+							"include": "source.tiddlywiki5.fields"
+						}
+					]
+				},
+				{
+					"comment": "A tiddler declaring text/html. The line reads as the field it is, and everything after the header reads as html.",
+					"begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:text/html)[ \\t]*)$",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.other.attribute-name.field.tiddlywiki5"
+						},
+						"2": {
+							"name": "punctuation.separator.key-value.field.tiddlywiki5"
+						},
+						"3": {
+							"name": "string.unquoted.field.value.tiddlywiki5"
+						}
+					},
+					"end": "(?!)",
+					"patterns": [
+						{
+							"comment": "The body, in the language the type names.",
+							"begin": "(?<=^$)",
+							"end": "(?!)",
+							"contentName": "meta.embedded.block.html text.html.basic",
+							"patterns": [
+								{
+									"include": "text.html.basic"
+								}
+							]
+						},
+						{
+							"include": "source.tiddlywiki5.fields"
+						}
+					]
+				},
+				{
+					"comment": "A tiddler declaring image/svg\\+xml or text/xml or application/xml. The line reads as the field it is, and everything after the header reads as xml.",
+					"begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:image/svg\\+xml|text/xml|application/xml)[ \\t]*)$",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.other.attribute-name.field.tiddlywiki5"
+						},
+						"2": {
+							"name": "punctuation.separator.key-value.field.tiddlywiki5"
+						},
+						"3": {
+							"name": "string.unquoted.field.value.tiddlywiki5"
+						}
+					},
+					"end": "(?!)",
+					"patterns": [
+						{
+							"comment": "The body, in the language the type names.",
+							"begin": "(?<=^$)",
+							"end": "(?!)",
+							"contentName": "meta.embedded.block.xml text.xml",
+							"patterns": [
+								{
+									"include": "text.xml"
+								}
+							]
+						},
+						{
+							"include": "source.tiddlywiki5.fields"
+						}
+					]
+				},
+				{
+					"comment": "A tiddler declaring text/x-markdown or text/markdown. The line reads as the field it is, and everything after the header reads as markdown.",
+					"begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:text/x-markdown|text/markdown)[ \\t]*)$",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.other.attribute-name.field.tiddlywiki5"
+						},
+						"2": {
+							"name": "punctuation.separator.key-value.field.tiddlywiki5"
+						},
+						"3": {
+							"name": "string.unquoted.field.value.tiddlywiki5"
+						}
+					},
+					"end": "(?!)",
+					"patterns": [
+						{
+							"comment": "The body, in the language the type names.",
+							"begin": "(?<=^$)",
+							"end": "(?!)",
+							"contentName": "meta.embedded.block.markdown text.html.markdown",
+							"patterns": [
+								{
+									"include": "text.html.markdown"
+								}
+							]
+						},
+						{
+							"include": "source.tiddlywiki5.fields"
+						}
+					]
+				},
+				{
+					"comment": "A tiddler declaring application/x-tiddler-dictionary. The line reads as the field it is, and everything after the header reads as dictionary.",
+					"begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:application/x-tiddler-dictionary)[ \\t]*)$",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.other.attribute-name.field.tiddlywiki5"
+						},
+						"2": {
+							"name": "punctuation.separator.key-value.field.tiddlywiki5"
+						},
+						"3": {
+							"name": "string.unquoted.field.value.tiddlywiki5"
+						}
+					},
+					"end": "(?!)",
+					"patterns": [
+						{
+							"comment": "The body, in the language the type names.",
+							"begin": "(?<=^$)",
+							"end": "(?!)",
+							"patterns": [
+								{
+									"include": "source.tiddlywiki5.fields"
+								}
+							]
+						},
+						{
+							"include": "source.tiddlywiki5.fields"
+						}
+					]
+				},
+				{
+					"comment": "A tiddler declaring text/plain. The line reads as the field it is, and everything after the header reads as plain.",
+					"begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:text/plain)[ \\t]*)$",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.other.attribute-name.field.tiddlywiki5"
+						},
+						"2": {
+							"name": "punctuation.separator.key-value.field.tiddlywiki5"
+						},
+						"3": {
+							"name": "string.unquoted.field.value.tiddlywiki5"
+						}
+					},
+					"end": "(?!)",
+					"patterns": [
+						{
+							"comment": "The body, in the language the type names.",
+							"begin": "(?<=^$)",
+							"end": "(?!)"
+						},
+						{
+							"include": "source.tiddlywiki5.fields"
+						}
+					]
+				}
+			]
+		}
+	}
 }

@@ -1,0 +1,16 @@
+# SYNTAX TEST "source.tiddlywiki5.tid-file" "A plain-text tiddler carries no wikitext at all"
+# `type: text/plain` names no parser: TiddlyWiki renders the body as the characters it holds. A
+# heading marker there marks nothing, and colouring one tells a reader the opposite of what the
+# renderer will do. The region this opens carries no patterns, so the body reads as itself.
+# The same reading covers a type this grammar does not name, which keeps reading as wikitext —
+# TiddlyWiki does the same with a type it cannot parse.
+title: Probe
+type: text/plain
+#<- source.tiddlywiki5.tid-file entity.other.attribute-name.field.tiddlywiki5
+#    ^^^^^^^^^^^ source.tiddlywiki5.tid-file string.unquoted.field.value.tiddlywiki5
+
+!! Not a heading here
+#<- - markup.heading.2.tiddlywiki5
+#<- - text.html.tiddlywiki5
+''Not bold either''
+#<- - markup.bold.tiddlywiki5

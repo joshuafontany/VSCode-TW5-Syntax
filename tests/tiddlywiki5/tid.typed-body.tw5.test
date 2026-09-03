@@ -1,0 +1,24 @@
+# SYNTAX TEST "source.tiddlywiki5.tid-file" "A tiddler's type decides what language its body carries"
+# TiddlyWiki reads a tiddler's body through the parser its `type` field names. A .tid holding JSON
+# holds JSON, and reading it as wikitext colours a brace as prose and a heading marker as a heading
+# in a file that holds neither. Measured against TiddlyWiki's own tree: 115 of 5756 .tid files
+# declare a type other than wikitext.
+# A rule fires on a line without knowing what stood above it, so the type line opens a region of its
+# own that never closes: the remaining header fields read inside it, and the body after the blank
+# line reads as the guest language. The inline parser mode and the pragma zone carry the same shape.
+# No blank line stands above `title` on purpose — one would close the header and put every line
+# below it in the body.
+title: Probe
+type: application/json
+#<- source.tiddlywiki5.tid-file entity.other.attribute-name.field.tiddlywiki5
+#   ^ source.tiddlywiki5.tid-file punctuation.separator.key-value.field.tiddlywiki5
+#    ^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file string.unquoted.field.value.tiddlywiki5
+tags: One Two
+#<- source.tiddlywiki5.tid-file entity.other.attribute-name.field.tiddlywiki5
+
+{ "key": [1, true] }
+#<- source.tiddlywiki5.tid-file meta.embedded.block.json source.json
+#<- - text.html.tiddlywiki5
+# ^^^^^ source.json string.json
+#         ^ source.json constant.numeric.json
+#            ^^^^ source.json constant.language.json
