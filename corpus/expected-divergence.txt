@@ -97,15 +97,30 @@ tiddlywiki5.tw:punctuation.definition.tag        # and again
 # The same reading, in two fixtures that exercise degenerate forms on purpose. Each ruling names ONE
 # fixture, so the shape still reports anywhere else and this gate keeps its teeth.
 #
-# THREE STYLE OPENERS IN A ROW. `@@color:blue;`, `@@background-color:red;`, `@@.class1.class2` on
-# consecutive lines: this grammar reads three block openers, and TiddlyWiki reads an EMPTY style
-# block followed by a paragraph carrying an inline style run — its block-or-inline choice turns on
-# what follows the mark. An author wrote three openers, and the marks say so. Which one the renderer
-# takes stands one blank line away, and the operator puts it there.
+# THREE STYLE OPENERS IN A ROW, AND WHAT STANDS ABOVE THEM. `@@color:blue;`,
+# `@@background-color:red;`, `@@.class1.class2` on consecutive lines: this grammar reads three block
+# openers, and so, on its own, does TiddlyWiki — it accumulates all three into ONE element carrying
+# style="color:blue;background-color:red;" class="class1 class2". Measured on those three lines
+# alone, the class names read as BUILT and nothing diverges.
+#
+# What diverges comes from ABOVE them. The fixture opens with a bare `@@` pair — an empty style block
+# — and after it the parser reads the three openers as a paragraph: `color:blue;` arrives as plain
+# text, `background-color:red;` as an inline style run, `.class1.class2` as plain text again. The
+# same three lines, one empty block earlier in the tiddler, and the marks mean something else.
+#
+# No rule in this grammar can see that. A TextMate rule fires on a line without knowing which block
+# boundary a construct above it consumed, and the reading it would need — did an empty style block
+# eat the boundary — stands in the parser's state rather than in the text. So the marks carry the
+# colour, and the author reads what they wrote.
 #
 # AN IMAGE WITH A BLANK SOURCE. `[img[ ]]` carries every mark an image carries and no source between
 # them. TiddlyWiki refuses it; the marks still say what the author reached for, and a reader looking
 # at a coloured image shape with nothing inside it can see what the shape wants.
+#
+# The source may cross a line, and both readers follow it: `[img[pic` on one line and `.png]]` on the
+# next builds an image node upstream and colours as one here, tooltip form included. Measured, so a
+# reader wondering whether the mark stops at the line end can stop wondering. What TiddlyWiki refuses
+# stands narrower than that — a source that carries nothing at all.
 tiddlywiki5.basic.tw:punctuation.definition.style.markup      # three style openers in a row: the marks carry the colour, and TiddlyWiki reads the second and third as content of the first
 tiddlywiki5.basic.tw:punctuation.definition.entity.css        # the class marks inside such an opener
 tiddlywiki5.basic.tw:entity.other.attribute-name.class.css    # and the class names beside them
