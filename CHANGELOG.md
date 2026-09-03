@@ -396,7 +396,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 37 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 58 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
   emits no container node, so a scope over its content stands over text by construction.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses
@@ -418,6 +418,21 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
   points at the one directory that stays outside: the coverage floor already measures those files,
   and a second copy would part from the first the day somebody edits one.
+- THE DIVERGENCE GATE HOLDS. Nothing the grammar claims stands unexplained: 0 spans where it claims
+  a construct TiddlyWiki refuses, 0 where it condemns one TiddlyWiki builds. It ran red for the whole
+  of this release and closed on two operator rulings and four measurements.
+- The structural pattern carries the colour. A shortcut reads `<% keyword … %>`, and a wiki or a
+  plugin may register one this TiddlyWiki never shipped — so the grammar colours the shape and names
+  an unrecognised keyword as unrecognised, rather than refusing what this parser happens not to read
+  today. `meta.link.wikilink` already stood on that reading for a rule TiddlyWiki ships and disables;
+  this names the other direction. 21 spans stand ruled, and the cost stands accepted: prose that
+  NAMES the syntax colours as the syntax.
+- The mark carries the colour, whatever the parser makes of it. Three style openers in a row read as
+  three here and as an empty block plus an inline run there — TiddlyWiki's block-or-inline choice
+  turns on what follows the mark. An image with a blank source carries every mark an image carries.
+  Both stand ruled to ONE fixture each, so the shape still reports anywhere else: planted in a
+  fixture no ruling names, the same image reports six spans and fails the gate.
+
 - A STATE TOGGLE NEVER TAKES A COLOUR AWAY. TiddlyWiki carries pragmas that change what its parser
   reads — `\rules except rules` turns the rules pragma off, `\parsermode inline` reads the rest of
   the tiddler as one inline run — and after such a line the parser refuses constructs it would

@@ -118,6 +118,10 @@ jobs:
       - name: Memetic corpus against the parser
         run: npm run overreach-corpus-memetic
 
+      # Every span the grammar claims, against what TiddlyWiki builds there. Nothing unexplained.
+      - name: Divergence against the parser
+        run: npm run overreach
+
       # A gap the grammar grew to meet wants moving out of tests/known-gaps.
       - name: Known gaps
         run: npm run tests-known-gaps

@@ -66,3 +66,58 @@ keyword.operator.only                         # the same reading, for the only o
 keyword.operator.except                       # the same reading, for the except operator inside one
 tiddlywiki5.tw:punctuation.definition.directive  # the same reading, for the backslash opening a rules pragma the fixture disabled above
 tiddlywiki5.tw:variable.parameter                # the same reading, for the rule names such a pragma lists
+
+# ── THE STRUCTURAL PATTERN CARRIES THE COLOUR ────────────────────────────────
+#
+# A shortcut reads `<% keyword ... %>`, and the keywords this TiddlyWiki ships come from one rule
+# module — conditional.js wants `if`, and the family closes on `endif`. A wiki can carry more: a
+# tiddler or a plugin registers a wikirule of its own, and the shortcut a reader writes tomorrow
+# stands unknown to the parser booted here today.
+#
+# So the grammar colours the STRUCTURE — the `<%`, the `%>`, the keyword between them — and names an
+# unrecognised keyword as unrecognised rather than refusing the shape. A reader looking at
+# `<% iff %>` learns that they wrote something shortcut-shaped and that this wiki does not answer to
+# it; a reader looking at a shortcut their own plugin defines sees it read as one.
+#
+# `meta.link.wikilink` above stands on the same reading, for a rule TiddlyWiki ships and disables.
+# This names the other direction: a rule a wiki may add.
+#
+# The cost stands measured and stands accepted: prose that NAMES the syntax — "delimited with <% and
+# %>" — colours as a shortcut across the words between. A sentence about the language reads as the
+# language.
+meta.shortcut                                 # a wiki or a plugin may register a shortcut this TiddlyWiki never shipped, so the structural pattern carries the colour and the keyword names itself
+keyword.control.shortcut.unrecognized         # the reading that says so: shortcut-shaped, and no rule here answers to this keyword
+punctuation.definition.tag.shortcut           # the marks that open and close one
+newsyntax.tw:punctuation.definition.tag       # a sentence naming the syntax carries the marks it names
+tiddlywiki5.basic.tw:punctuation.definition.tag  # the same sentence, in the fixture that quotes it
+tiddlywiki5.tw:punctuation.definition.tag        # and again
+
+# ── THE MARK CARRIES THE COLOUR, WHATEVER THE PARSER MAKES OF IT ─────────────
+#
+# The same reading, in two fixtures that exercise degenerate forms on purpose. Each ruling names ONE
+# fixture, so the shape still reports anywhere else and this gate keeps its teeth.
+#
+# THREE STYLE OPENERS IN A ROW. `@@color:blue;`, `@@background-color:red;`, `@@.class1.class2` on
+# consecutive lines: this grammar reads three block openers, and TiddlyWiki reads an EMPTY style
+# block followed by a paragraph carrying an inline style run — its block-or-inline choice turns on
+# what follows the mark. An author wrote three openers, and the marks say so. Which one the renderer
+# takes stands one blank line away, and the operator puts it there.
+#
+# AN IMAGE WITH A BLANK SOURCE. `[img[ ]]` carries every mark an image carries and no source between
+# them. TiddlyWiki refuses it; the marks still say what the author reached for, and a reader looking
+# at a coloured image shape with nothing inside it can see what the shape wants.
+tiddlywiki5.basic.tw:punctuation.definition.style.markup      # three style openers in a row: the marks carry the colour, and TiddlyWiki reads the second and third as content of the first
+tiddlywiki5.basic.tw:punctuation.definition.entity.css        # the class marks inside such an opener
+tiddlywiki5.basic.tw:entity.other.attribute-name.class.css    # and the class names beside them
+tiddlywiki5.basic.tw:markup.bold                              # a bold run on the line after the closing mark, which the parser reads as content of the run above it
+tiddlywiki5.basic.tw:punctuation.definition.markup.begin.bold # the marks opening that run
+tiddlywiki5.basic.tw:punctuation.definition.markup.end.bold   # and closing it
+tiddlywiki5.tw:punctuation.definition.style.markup            # the same three openers, in the fixture that carries every construct
+tiddlywiki5.tw:punctuation.definition.entity.css              # the same reading
+tiddlywiki5.tw:entity.other.attribute-name.class.css          # the same reading
+tiddlywiki5.tw:markup.bold                                    # the same reading
+tiddlywiki5.tw:punctuation.definition.markup.begin.bold       # the same reading
+tiddlywiki5.tw:punctuation.definition.markup.end.bold         # the same reading
+tiddlywiki5.inline.links.tw:punctuation.definition.image      # an image with a blank source: the marks carry the colour, and TiddlyWiki refuses the construct
+tiddlywiki5.inline.links.tw:keyword.other.img                 # the img keyword inside one
+tiddlywiki5.inline.links.tw:markup.underline.link.image       # and the space standing where a source would

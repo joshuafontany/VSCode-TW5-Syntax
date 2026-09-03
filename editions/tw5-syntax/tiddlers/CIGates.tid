@@ -15,10 +15,5 @@ description: Which gates continuous integration runs, and the reason for each on
         "overreach-cut",
         "upstream-coverage"
     ],
-    "skipped": [
-        {
-            "gate": "overreach",
-            "why": "43 spans stand where the grammar claims a construct and TiddlyWiki reads prose, down from 161. Asked of the parser, every one reads kind=text: no construct covers them. Three families remain and each asks something different \u2014 21 from a shortcut opener wanting no keyword where TiddlyWiki wants one, 16 from a style block the parser reads as prose because no blank line opened it, and 6 from an image with a blank source. The state-toggle family and the HTML-document family stand ruled in corpus/expected-divergence.txt."
-        }
-    ]
+    "skipped": []
 }
