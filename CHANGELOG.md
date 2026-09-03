@@ -418,6 +418,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
   points at the one directory that stays outside: the coverage floor already measures those files,
   and a second copy would part from the first the day somebody edits one.
+- A directive wants a space where TiddlyWiki wants one. vscode-textmate hands the scanner a line
+  WITH its newline, so `\s+` after a keyword matched the line ending — and a bare `\rules`,
+  `\import`, `\whitespace` or `\parsermode` coloured as a working directive where TiddlyWiki reads
+  prose. Its own rule modules spell the separator `[^\S\n]`, and these four now say the same. The
+  divergence gate falls from 153 spans to 77.
+
 - A pragma reads as a pragma only where TiddlyWiki reads one. Its parser runs `parsePragmas()` once,
   before `parseBlocks()`, and never returns to it, so a backslash directive standing after any block
   content renders as prose — and the grammar coloured one as a working directive anywhere in a file.

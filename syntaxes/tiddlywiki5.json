@@ -336,7 +336,7 @@
 			]
 		},
 		"import": {
-			"match": "^\\s*(\\\\)(import)\\s+(.*)$",
+			"match": "^[ \\t]*(\\\\)(import)[^\\S\\n]+(.*)$",
 			"name": "meta.directive.import.tiddlywiki5",
 			"captures": {
 				"1": {
@@ -502,7 +502,7 @@
 			]
 		},
 		"rules": {
-			"match": "^\\s*(\\\\)(rules)\\s+(only|except)?(.*)$",
+			"match": "^[ \\t]*(\\\\)(rules)[^\\S\\n]+(only|except)?(.*)$",
 			"name": "meta.directive.rules.tiddlywiki5",
 			"captures": {
 				"1": {
@@ -525,7 +525,7 @@
 			}
 		},
 		"whitespace": {
-			"match": "^\\s*(\\\\)(whitespace)\\s+(trim|notrim)?$",
+			"match": "^[ \\t]*(\\\\)(whitespace)[^\\S\\n]+(trim|notrim)?$",
 			"name": "meta.directive.whitespace.tiddlywiki5",
 			"captures": {
 				"1": {
@@ -540,7 +540,7 @@
 			}
 		},
 		"parsermode": {
-			"match": "^\\s*(\\\\)(parsermode)\\s+(block|inline)?$",
+			"match": "^[ \\t]*(\\\\)(parsermode)[^\\S\\n]+(block|inline)?$",
 			"name": "meta.directive.parsermode.tiddlywiki5",
 			"captures": {
 				"1": {
@@ -7141,9 +7141,9 @@
 			"name": "variable.language.builtin.tiddlywiki5"
 		},
 		"pragma-zone": {
-			"comment": "The zone TiddlyWiki reads pragmas in, and nothing outside it.\n\nwikiparser.js runs parsePragmas() once, before parseBlocks(), and never returns to it — so a backslash directive standing after any block content parses as ORDINARY TEXT. The pragma rules live inside this region and nowhere else, so they reach only what it covers.\n\nIt opens at the START OF THE SOURCE and cannot reopen: vscode-textmate compiles \\A to something unmatchable on every line but the first, so `allowA` reads `isFirstLine`. \\G stands beside it for a caller that opens the grammar at a line of its own — a .tid body begins where its header ends, not at the source. It closes, zero-width, at the first line that opens no pragma-mode rule.\n\nEIGHT RULES HOLD IT OPEN, not the backslash family alone. TiddlyWiki declares the mode on each rule module and names these: commentblock, fnprocdef, import, macrodef, parameters, parsermode, rules, whitespace. A guard reading the backslash keywords alone misses commentblock, and an HTML comment then closes the zone where TiddlyWiki keeps reading — measured, that took fifty-four pragmas out of one sample while the parser built every one of them. `npm run signals` harvests the set and a gate holds this comment to it.\n\nThe begin and the end read the same shapes and disagree on every one of them, so the two cannot fire at the same position — a region that pushed and popped without advancing would abandon the rest of the line. `applyEndPatternLast` keeps a comment block that runs across lines from closing the zone underneath itself.",
-			"begin": "(?:\\A|\\G)(?=[ \\t]*$|[ \\t]*\\\\(?:define|end|function|procedure|widget|parameters|import|rules|whitespace|parsermode)\\b|[ \\t]*<!--)",
-			"end": "^(?![ \\t]*$|[ \\t]*\\\\(?:define|end|function|procedure|widget|parameters|import|rules|whitespace|parsermode)\\b|[ \\t]*<!--)",
+			"comment": "The zone TiddlyWiki reads pragmas in, and nothing outside it.\n\nwikiparser.js runs parsePragmas() once, before parseBlocks(), and never returns to it — so a backslash directive standing after any block content parses as ORDINARY TEXT. The pragma rules live inside this region and nowhere else, so they reach only what it covers.\n\nIt opens at the START OF THE SOURCE and cannot reopen: vscode-textmate compiles \\A to something unmatchable on every line but the first, so `allowA` reads `isFirstLine`. \\G stands beside it for a caller that opens the grammar at a line of its own — a .tid body begins where its header ends, not at the source. It closes, zero-width, at the first line that opens no pragma-mode rule.\n\nThe guard mirrors each rule module’s own regex rather than its keyword. A bare `\\rules` opens no pragma — rules.js carries /\\\\rules[^\\S\\n]/ and wants whitespace after the word — and a guard reading the keyword alone kept the zone open past it, claiming fifteen directives the parser had already left behind.\n\nEIGHT RULES HOLD IT OPEN, not the backslash family alone. TiddlyWiki declares the mode on each rule module and names these: commentblock, fnprocdef, import, macrodef, parameters, parsermode, rules, whitespace. A guard reading the backslash keywords alone misses commentblock, and an HTML comment then closes the zone where TiddlyWiki keeps reading — measured, that took fifty-four pragmas out of one sample while the parser built every one of them. `npm run signals` harvests the set and a gate holds this comment to it.\n\nThe begin and the end read the same shapes and disagree on every one of them, so the two cannot fire at the same position — a region that pushed and popped without advancing would abandon the rest of the line. `applyEndPatternLast` keeps a comment block that runs across lines from closing the zone underneath itself.",
+			"begin": "(?:\\A|\\G)(?=[ \\t]*$|[ \\t]*<!--|[ \\t]*\\\\define\\s+[^(\\s]+\\(|[ \\t]*\\\\(?:function|procedure|widget)\\s+[^(\\s]+\\(|[ \\t]*\\\\parameters\\s*\\(|[ \\t]*\\\\(?:import|rules|whitespace|parsermode)[^\\S\\n])",
+			"end": "^(?![ \\t]*$|[ \\t]*<!--|[ \\t]*\\\\define\\s+[^(\\s]+\\(|[ \\t]*\\\\(?:function|procedure|widget)\\s+[^(\\s]+\\(|[ \\t]*\\\\parameters\\s*\\(|[ \\t]*\\\\(?:import|rules|whitespace|parsermode)[^\\S\\n])",
 			"patterns": [
 				{
 					"include": "#htmlwidget-comment"

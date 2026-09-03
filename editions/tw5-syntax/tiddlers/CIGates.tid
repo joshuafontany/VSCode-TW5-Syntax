@@ -18,7 +18,7 @@ description: Which gates continuous integration runs, and the reason for each on
     "skipped": [
         {
             "gate": "overreach",
-            "why": "153 spans stand where the grammar claims a construct and TiddlyWiki reads prose, down from 161 since the pragma zone landed. The remaining spans sit inside constructs the parser builds as ONE node while the grammar names their parts \u2014 a directive\u2019s backslash, a parameter name, a shortcut\u2019s angle. The gate counts a part claimed inside a whole the parser built, which reads as a divergence and stands as sub-tokenization. Deciding that reading is the work this gate owes."
+            "why": "77 spans stand where the grammar claims a construct and TiddlyWiki reads prose, down from 161 across the pragma zone and the directive separator. What remains reads as one question: the gate counts a span inside a construct the parser built as ONE node \u2014 the single space between a directive keyword and its argument, a shortcut\u2019s angle \u2014 and calls it a divergence where it stands as sub-tokenization. Deciding that reading is the work this gate owes."
         }
     ]
 }

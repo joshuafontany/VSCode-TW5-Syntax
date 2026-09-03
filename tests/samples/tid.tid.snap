@@ -776,43 +776,22 @@
 #                     ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.rules.tiddlywiki5
 #                      ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.rules.tiddlywiki5 variable.parameter.tiddlywiki5
 >\rules
-#^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.rules.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.rules.tiddlywiki5 keyword.control.directive.rules.tiddlywiki5
+#^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >\whitespace trim
-#^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.whitespace.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.whitespace.tiddlywiki5 keyword.control.directive.whitespace.tiddlywiki5
-#           ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.whitespace.tiddlywiki5
-#            ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.whitespace.tiddlywiki5 keyword.operator.trim.tiddlywiki5
+#^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >\whitespace notrim
-#^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.whitespace.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.whitespace.tiddlywiki5 keyword.control.directive.whitespace.tiddlywiki5
-#           ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.whitespace.tiddlywiki5
-#            ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.whitespace.tiddlywiki5 keyword.operator.notrim.tiddlywiki5
+#^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >\import [filter[expression]]
-#^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.import.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.import.tiddlywiki5 keyword.control.directive.import.tiddlywiki5
-#       ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.import.tiddlywiki5
-#        ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.import.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
-#         ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.import.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.operator.filter.tiddlywiki5
-#               ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.import.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 string.punctuation.definition.operand.begin.tiddlywiki5
-#                ^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.import.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
-#                          ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.import.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 string.punctuation.definition.operand.end.tiddlywiki5
-#                           ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.import.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >
 >\define regionHelperClose()
-#^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 keyword.control.directive.define.tiddlywiki5
-#       ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5
-#        ^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 entity.name.variable.macro.tiddlywiki5
-#                         ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.begin.tiddlywiki5
-#                          ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.pragma.parameters.tiddlywiki5 punctuation.definition.variable.pragma.parameters.end.tiddlywiki5
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 ><!--#endregion -->
-#^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
-#    ^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 comment.block.html.tiddlywiki5
-#               ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 meta.variable.macro.body.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
+#^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
+#    ^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 comment.block.html.tiddlywiki5
+#               ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
 >\end
-#^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 meta.variable.macro-block.tiddlywiki5 keyword.control.directive.end.tiddlywiki5
+#^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >
 ><!--#region Simple Wikitext -->
 #^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
