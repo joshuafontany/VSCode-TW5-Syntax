@@ -22,34 +22,10 @@
 		"wikitext": {
 			"patterns": [
 				{
-					"comment": "An inline parser mode. The pragma sets parseAsInline for the whole tiddler, so TiddlyWiki parses one inline run from here on and every block marker after it yields plain text. The region carries no name of its own: it marks a mode, not a construct, and a scope nothing declares asks nothing of the corpus.",
-					"begin": "^[ \\t]*(\\\\)(parsermode)[ \\t]+(inline)[ \\t]*$",
-					"beginCaptures": {
-						"0": {
-							"name": "meta.directive.parsermode.tiddlywiki5"
-						},
-						"1": {
-							"name": "punctuation.definition.directive.tiddlywiki5"
-						},
-						"2": {
-							"name": "keyword.control.directive.parsermode.tiddlywiki5"
-						},
-						"3": {
-							"name": "keyword.operator.inline.tiddlywiki5"
-						}
-					},
-					"end": "(?!)",
-					"patterns": [
-						{
-							"include": "#pragma"
-						},
-						{
-							"include": "#inline"
-						}
-					]
+					"include": "#parsermode-inline-mode"
 				},
 				{
-					"include": "#pragma"
+					"include": "#pragma-zone"
 				},
 				{
 					"include": "#block"
@@ -7163,6 +7139,47 @@
 			"comment": "A variable TiddlyWiki's core defines. The names come from $:/tw5-syntax/BuiltInVariables in the edition, projected here by tools/builtins-sync.js — edit the tiddler, run the tool, and a gate holds the two together.",
 			"match": "(?<![A-Za-z0-9_$.-])(?:tv\\-[A-Za-z0-9_.-]*|currentTiddler|actionTiddler|storyTiddler|transclusion|thisTiddler|namespace|modifier)(?![A-Za-z0-9_$.-])",
 			"name": "variable.language.builtin.tiddlywiki5"
+		},
+		"pragma-zone": {
+			"comment": "The zone TiddlyWiki reads pragmas in, and nothing outside it.\n\nwikiparser.js runs parsePragmas() once, before parseBlocks(), and never returns to it — so a backslash directive standing after any block content parses as ORDINARY TEXT. The pragma rules live inside this region and nowhere else, so they reach only what it covers.\n\nIt opens at the START OF THE SOURCE and cannot reopen: vscode-textmate compiles \\A to something unmatchable on every line but the first, so `allowA` reads `isFirstLine`. \\G stands beside it for a caller that opens the grammar at a line of its own — a .tid body begins where its header ends, not at the source. It closes, zero-width, at the first line that opens no pragma-mode rule.\n\nEIGHT RULES HOLD IT OPEN, not the backslash family alone. TiddlyWiki declares the mode on each rule module and names these: commentblock, fnprocdef, import, macrodef, parameters, parsermode, rules, whitespace. A guard reading the backslash keywords alone misses commentblock, and an HTML comment then closes the zone where TiddlyWiki keeps reading — measured, that took fifty-four pragmas out of one sample while the parser built every one of them. `npm run signals` harvests the set and a gate holds this comment to it.\n\nThe begin and the end read the same shapes and disagree on every one of them, so the two cannot fire at the same position — a region that pushed and popped without advancing would abandon the rest of the line. `applyEndPatternLast` keeps a comment block that runs across lines from closing the zone underneath itself.",
+			"begin": "(?:\\A|\\G)(?=[ \\t]*$|[ \\t]*\\\\(?:define|end|function|procedure|widget|parameters|import|rules|whitespace|parsermode)\\b|[ \\t]*<!--)",
+			"end": "^(?![ \\t]*$|[ \\t]*\\\\(?:define|end|function|procedure|widget|parameters|import|rules|whitespace|parsermode)\\b|[ \\t]*<!--)",
+			"patterns": [
+				{
+					"include": "#htmlwidget-comment"
+				},
+				{
+					"include": "#pragma"
+				}
+			],
+			"applyEndPatternLast": 1
+		},
+		"parsermode-inline-mode": {
+			"comment": "An inline parser mode. The pragma sets parseAsInline for the whole tiddler, so TiddlyWiki parses one inline run from here on and every block marker after it yields plain text. The region carries no name of its own: it marks a mode, not a construct, and a scope nothing declares asks nothing of the corpus.",
+			"begin": "^[ \\t]*(\\\\)(parsermode)[ \\t]+(inline)[ \\t]*$",
+			"beginCaptures": {
+				"0": {
+					"name": "meta.directive.parsermode.tiddlywiki5"
+				},
+				"1": {
+					"name": "punctuation.definition.directive.tiddlywiki5"
+				},
+				"2": {
+					"name": "keyword.control.directive.parsermode.tiddlywiki5"
+				},
+				"3": {
+					"name": "keyword.operator.inline.tiddlywiki5"
+				}
+			},
+			"end": "(?!)",
+			"patterns": [
+				{
+					"include": "#pragma"
+				},
+				{
+					"include": "#inline"
+				}
+			]
 		}
 	}
 }

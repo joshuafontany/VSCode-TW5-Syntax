@@ -44,14 +44,7 @@
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >
 >\parameters (a:1)
-#^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
-# ^^^^^^^^^^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5 keyword.control.directive.parameters.tiddlywiki5
-#           ^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5
-#            ^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5 punctuation.definition.variable.parameters.begin.tiddlywiki5
-#             ^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5 meta.variable.parameter.tiddlywiki5 variable.parameter.tiddlywiki5
-#              ^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5 meta.variable.parameter.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
-#               ^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5 meta.variable.parameter.tiddlywiki5 string.unquoted.html.tiddlywiki5
-#                ^ text.html.tiddlywiki5 meta.directive.parameters.tiddlywiki5 punctuation.definition.variable.parameters.end.tiddlywiki5
+#^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >
 >And a rule line carrying trailing text, which TiddlyWiki reads as a dash and text:
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5

@@ -1,4 +1,4 @@
-# SYNTAX TEST "text.html.tiddlywiki5" "Every pragma TiddlyWiki declares, and the sequences it admits"
+# SYNTAX TEST "text.html.tiddlywiki5.test" "Every pragma TiddlyWiki declares, and the sequences it admits"
 
 # A pragma stands before the body. TiddlyWiki loops over them until one fails to
 # match, so a run of them reads as a run — including after a block-bodied define.

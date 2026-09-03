@@ -1,4 +1,4 @@
-# SYNTAX TEST "text.html.tiddlywiki5" "A definition name admits what TiddlyWiki admits"
+# SYNTAX TEST "text.html.tiddlywiki5.test" "A definition name admits what TiddlyWiki admits"
 
 # Both definition rules read the same name class — [^(\s]+ — so a dollar stands in a name of any
 # of the four kinds, and TiddlyWiki builds each one:

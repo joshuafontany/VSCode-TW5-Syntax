@@ -6,17 +6,9 @@
 	],
 	"patterns": [
 		{
-			"comment": "Every line reads as wikitext. The container carries no begin, so the include below claims the whole file.",
-			"patterns": [
-				{
-					"include": "text.html.tiddlywiki5"
-				}
-			]
-		}
-	],
-	"injections": {
-		"L:text.html.tiddlywiki5": {
-			"comment": "Comment out test lines",
+			"begin": "\\A",
+			"end": "(?!)",
+			"contentName": "text.html.tiddlywiki5",
 			"patterns": [
 				{
 					"comment": "Tokenize test comment text.",
@@ -28,8 +20,17 @@
 							"name": "punctuation.definition.comment.block.test.tiddlywiki5"
 						}
 					}
+				},
+				{
+					"include": "text.html.tiddlywiki5#parsermode-inline-mode"
+				},
+				{
+					"include": "text.html.tiddlywiki5#pragma"
+				},
+				{
+					"include": "text.html.tiddlywiki5"
 				}
 			]
 		}
-	}
+	]
 }

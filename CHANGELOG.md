@@ -418,6 +418,30 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
   points at the one directory that stays outside: the coverage floor already measures those files,
   and a second copy would part from the first the day somebody edits one.
+- A pragma reads as a pragma only where TiddlyWiki reads one. Its parser runs `parsePragmas()` once,
+  before `parseBlocks()`, and never returns to it, so a backslash directive standing after any block
+  content renders as prose — and the grammar coloured one as a working directive anywhere in a file.
+  A `#pragma-zone` region now opens at the start of the source and closes at the first line opening
+  no pragma-mode rule, with the pragma rules living inside it and nowhere else. The divergence gate
+  falls from 161 spans to 153.
+- Eight rules hold that zone open, not the backslash family alone. TiddlyWiki declares the mode on
+  each rule module and names `commentblock` among them, so an HTML comment keeps reading pragmas
+  exactly as a directive does. Reading the backslash keywords alone closed the zone on the first
+  `<!-- -->` line of a sample and took fifty-four pragmas with it, while the parser built every one.
+  `npm run signals` harvests the set from the host and a gate holds the zone's own account to it.
+- A comment naming a rule no longer counts as reading it. The coverage gate searched the whole
+  grammar including its prose, and two rules — `macrodef` and `fnprocdef` — read as covered because
+  a comment mentioned them. Both now carry a ruling naming what the grammar calls them instead.
+- The composition gate reads a prologue as position-dependent by construction. A file whose first
+  construct is a pragma cannot survive being preceded — that IS the construct, and markdown's front
+  matter carries the same property — so such a file answers for standing FIRST, and the parser
+  decides how far its prologue reaches rather than a walk over its lines.
+- A syntax-test fixture asserting pragma colouring declares the wrapper scope. A fixture is not a
+  tiddler: its mandatory header reads as content and would close the zone on line 1. The wrapper's
+  container carries the pragma rules and names the base scope through `contentName`, so every
+  assertion naming `text.html.tiddlywiki5` still finds it — an include compiles the other grammar's
+  `$self`, which carries its `scopeName` and then flattens into its children, so nothing pushes it.
+
 - The dialect's sigils read everywhere the base grammar reads. Its injection named three block
   contexts by hand, and a sigil inside an unordered list read as an ordinary macro call for it — the
   selector reached the three somebody listed. One selector on the base's root scope reaches the whole

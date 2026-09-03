@@ -26,6 +26,8 @@ const verbose = process.argv.includes('--verbose');
 
 // A rule this grammar reads under another name, and the name it wears.
 const ALIAS = {
+  macrodef: 'meta.directive.variable.macro.tiddlywiki5 — the grammar names the directive an author writes, \\define, where TiddlyWiki names the rule module',
+  fnprocdef: 'meta.directive.variable.{function,procedure,widget}.tiddlywiki5 — one rule upstream reads three directives, and each carries its own name here',
   commentblock: 'comment.block.html.tiddlywiki5 — the grammar names a comment by what it IS, never by the rule that reads it',
   commentinline: 'comment.block.html.tiddlywiki5 — TiddlyWiki splits a comment by position; a reader meets one thing',
   wikilinkprefix: 'meta.link.suppressed.wikilink.tiddlywiki5 — the rule declines a link, and the scope names the declining'
@@ -40,7 +42,20 @@ const version = fields['tw5-version'] ?? 'unknown';
 const grammar = JSON.parse(fs.readFileSync(GRAMMAR, 'utf8'));
 
 const keys = new Set(Object.keys(grammar.repository).map((k) => k.toLowerCase()));
-const blob = JSON.stringify(grammar).toLowerCase();
+// A comment naming a rule does not READ it. The grammar's own prose names the eight rules
+// TiddlyWiki reads in pragma mode, and reading that as coverage marked a rule read whose scope
+// nothing emits — so the search runs over the grammar with its comments taken out.
+const withoutComments = (node) => {
+  if (Array.isArray(node)) return node.map(withoutComments);
+  if (!node || typeof node !== 'object') return node;
+  const out = {};
+  for (const [key, value] of Object.entries(node)) {
+    if (key === 'comment') continue;
+    out[key] = withoutComments(value);
+  }
+  return out;
+};
+const blob = JSON.stringify(withoutComments(grammar)).toLowerCase();
 
 const read = [];
 const aliased = [];

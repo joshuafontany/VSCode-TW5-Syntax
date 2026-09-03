@@ -1,0 +1,35 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A pragma stands only before the first block"
+
+# TiddlyWiki reads pragmas in a mode of its own. wikiparser.js runs parsePragmas() once, before
+# parseBlocks(), and never returns to it — so a backslash directive standing after any block content
+# parses as ordinary text, and an author who writes one there sees it render as prose.
+#
+# The grammar reads the zone the same way. `#pragma-zone` opens at the start of the source and
+# nowhere else — vscode-textmate compiles \A to something unmatchable on every line but the first,
+# so `allowA` reads `isFirstLine`, and \G stands beside it for a caller opening the grammar at a
+# line of its own, the way a .tid body begins where its header ends. It closes, zero-width, at the
+# first line that opens no pragma-mode rule.
+#
+# EIGHT RULES, not the backslash family alone. TiddlyWiki names them itself — commentblock,
+# fnprocdef, import, macrodef, parameters, parsermode, rules, whitespace — so an HTML comment holds
+# the zone open exactly as a directive does. Reading the backslash family alone closed the zone on
+# the first `<!-- -->` line of a sample and took fifty-four pragmas with it. `npm run rule-coverage`
+# holds the grammar to the harvested set.
+#
+# THIS FILE CAN ONLY ASSERT THE NEGATIVE HALF. A fixture declaring the base scope reads under it,
+# and the mandatory `# SYNTAX TEST` header reads as a numbered list — content, which closes the
+# zone on line 1. So no pragma colours anywhere here, and the assertions below hold for a reason
+# beside the one they name. The positive half — a pragma at the top of a body colouring in full —
+# stands pinned in tests/samples/tiddlywiki5.pragma.tw.snap, and the fixtures that assert pragma
+# sub-tokenization declare the wrapper scope `text.html.tiddlywiki5.test`, whose container carries
+# the pragma rules, since a fixture stands as a fixture rather than as a tiddler.
+
+Ordinary prose stands here.
+
+\define greet(name)
+#<- - punctuation.definition.directive.tiddlywiki5
+hello $name$
+\end
+
+\rules except html
+#<- - punctuation.definition.directive.tiddlywiki5

@@ -22,9 +22,14 @@ After the widget the text reads plain.
 #                ^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 meta.attribute.unrecognized.actions.html.tiddlywiki5 string.unquoted.attribute.html.tiddlywiki5
 #                                   ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 meta.attribute.class.html.tiddlywiki5 string.unquoted.attribute.html.tiddlywiki5
 
+# A pragma standing here reads as PROSE, and the grammar says so. wikiparser.js runs parsePragmas()
+# once, before parseBlocks(), and never returns to it — so a backslash directive after any block
+# content parses as ordinary text. Everything above this line stands as block content, which closes
+# the zone. tests/tiddlywiki5/tiddlywiki5.pragmas.tw5.test carries the reading where a pragma DOES
+# stand, at the top of a body.
 \parsermode block
-#^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.directive.parsermode.tiddlywiki5 keyword.control.directive.parsermode.tiddlywiki5
-#           ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.directive.parsermode.tiddlywiki5 keyword.operator.block.tiddlywiki5
+#^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 - meta.directive.parsermode.tiddlywiki5
+#           ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 - keyword.operator.block.tiddlywiki5
 
 An MVV display: ((myVar)) and ((other||, )) here.
 #                 ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 variable.name.mvv-display.tiddlywiki5

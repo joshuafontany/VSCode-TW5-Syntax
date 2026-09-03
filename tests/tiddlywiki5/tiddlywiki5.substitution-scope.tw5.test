@@ -1,4 +1,4 @@
-# SYNTAX TEST "text.html.tiddlywiki5" "Parameter substitution belongs to the define body alone"
+# SYNTAX TEST "text.html.tiddlywiki5.test" "Parameter substitution belongs to the define body alone"
 
 # A definition body substitutes only where TiddlyWiki substitutes. widget.js gates both forms
 # behind one test — `if(variable.isMacroDefinition)` — so a body opened by \define takes

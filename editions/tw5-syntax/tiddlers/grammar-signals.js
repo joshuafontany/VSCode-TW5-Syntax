@@ -48,12 +48,30 @@ function widgetNames() {
         .filter(Boolean)
         .sort();
 }
+/**
+ * The rules TiddlyWiki reads in PRAGMA MODE, which it declares on each rule module.
+ *
+ * A grammar guarding the pragma zone by the backslash keywords alone reads seven of the eight:
+ * commentblock stands among them, so an HTML comment holds the zone open the way a directive does.
+ * Reading the family off a hand-written list closed the zone on the first comment line of a sample
+ * and took fifty-four pragmas with it.
+ */
+function pragmaRuleNames() {
+    const names = [];
+    $tw.modules.forEachModuleOfType("wikirule", function (title, exports) {
+        if (exports && exports.types && exports.types.pragma) {
+            names.push(exports.name || (/([^/]+)\.js$/.exec(title) || [, title])[1]);
+        }
+    });
+    return names.sort();
+}
 exports.startup = function () {
     const signals = {
         version: $tw.version,
         filterOperators: operatorNames(),
         widgets: widgetNames(),
-        wikiRules: namesOf("wikirule").map((t) => (/([^/]+)\.js$/.exec(t) || [, t])[1]).sort()
+        wikiRules: namesOf("wikirule").map((t) => (/([^/]+)\.js$/.exec(t) || [, t])[1]).sort(),
+        pragmaRules: pragmaRuleNames()
     };
     $tw.wiki.addTiddler({
         title: "$:/tw5-syntax/GrammarSignals",

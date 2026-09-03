@@ -1,4 +1,4 @@
-# SYNTAX TEST "text.html.tiddlywiki5" "A definition body carries the kind of definition holding it"
+# SYNTAX TEST "text.html.tiddlywiki5.test" "A definition body carries the kind of definition holding it"
 
 # TiddlyWiki keeps four definition pragmas and stores each body verbatim, stamping which kind it
 # holds — fnprocdef.js sets isFunctionDefinition, isProcedureDefinition or isWidgetDefinition, and

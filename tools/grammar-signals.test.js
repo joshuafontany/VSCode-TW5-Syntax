@@ -103,3 +103,39 @@ test('the command finds the repository without __dirname', () => {
   assert.ok(!/\b__dirname\b/.test(code), 'a module tiddler meets no __dirname');
   assert.match(source, /boot\.wikiPath/, 'the boot knows where it opened the wiki');
 });
+
+// PATTERN INTEGRITY: a guard names what the host names, not what somebody listed.
+//
+// TiddlyWiki reads eight rules in PRAGMA MODE and declares that on each rule module. The grammar's
+// pragma zone guards on a set of line shapes, and reading the backslash family alone missed
+// commentblock — an HTML comment holds the zone open exactly as a directive does. Measured: the
+// zone closed on the first `<!-- -->` line of a sample and took fifty-four pragmas with it, while
+// the parser built every one of them.
+//
+// So the harvest names the set, and the zone's own comment answers to it. A rule the host adds to
+// pragma mode fails here rather than closing a zone somewhere nobody looks.
+test('the pragma zone names every rule the host reads in pragma mode', live, () => {
+  const harvested = harvest().pragmaRules;
+  assert.ok(Array.isArray(harvested) && harvested.length > 0,
+    'the harvest names no pragma-mode rule, so this reading answers nothing');
+  const grammar = JSON.parse(fs.readFileSync(path.join(ROOT, 'syntaxes', 'tiddlywiki5.json'), 'utf8'));
+  const zone = grammar.repository['pragma-zone'];
+  assert.ok(zone, 'no pragma zone stands in the grammar');
+  const unnamed = harvested.filter((rule) => !zone.comment.includes(rule));
+  assert.deepStrictEqual(unnamed, [],
+    'pragma-mode rule(s) the zone never names — each one holds the zone open for TiddlyWiki and not here');
+});
+
+test('the zone opens on what it names, and closes on what it does not', live, () => {
+  // Collided against the parser rather than against the guard: for each shape, TiddlyWiki either
+  // keeps reading pragmas or stops, and the grammar answers the same way.
+  const grammar = JSON.parse(fs.readFileSync(path.join(ROOT, 'syntaxes', 'tiddlywiki5.json'), 'utf8'));
+  const zone = grammar.repository['pragma-zone'];
+  const opens = new RegExp(zone.begin.replace(/^\(\?:\\A\|\\G\)\(\?=/, '^(?:').replace(/\)$/, ')'));
+  for (const line of ['', '   ', '\\define d(x)', '\\rules except html', '<!-- a comment -->']) {
+    assert.ok(opens.test(line), `the zone closes on ${JSON.stringify(line)}, which holds it open for TiddlyWiki`);
+  }
+  for (const line of ['ordinary prose', '! a heading', '* a list item', '<$link to="x"/>']) {
+    assert.ok(!opens.test(line), `the zone stays open on ${JSON.stringify(line)}, which closes it for TiddlyWiki`);
+  }
+});

@@ -1,4 +1,4 @@
-# SYNTAX TEST "text.html.tiddlywiki5" "A define parameter list ends at the first closing paren"
+# SYNTAX TEST "text.html.tiddlywiki5.test" "A define parameter list ends at the first closing paren"
 
 # The two definition rules declare their parameter lists differently, and the difference decides
 # where the body starts.
@@ -17,7 +17,7 @@
 # earlier than the doubled form suggests. Painting an mvv default there invents a construct
 # TiddlyWiki does not build, and moves the body with it.
 #
-# No parse-tree check can see this: a definition is stored rather than parsed, so the parser holds
+# No parse-tree check can see this: TiddlyWiki stores a definition rather than parsing it, so the parser holds
 # no opinion about any span inside it.
 
 ! A procedure takes a multi-valued-variable default

@@ -13,7 +13,11 @@ declare const process: { cwd: () => string; env: Record<string, string | undefin
 declare const $tw: {
   version: string;
   boot?: { wikiPath?: string };
-  modules: { types: Record<string, Record<string, unknown>> };
+  modules: {
+    types: Record<string, Record<string, unknown>>;
+    /** Every module of one type, with its exports — how a rule declares the modes it reads in. */
+    forEachModuleOfType(type: string, callback: (title: string, exports: any) => void): void;
+  };
   wiki: { addTiddler: (fields: Record<string, string>) => void };
   utils: { each: (o: unknown, f: (v: unknown, k: string) => void) => void };
 };

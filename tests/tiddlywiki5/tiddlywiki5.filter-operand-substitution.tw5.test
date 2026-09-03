@@ -1,4 +1,4 @@
-# SYNTAX TEST "text.html.tiddlywiki5" "A filter operand substitutes only inside a define body"
+# SYNTAX TEST "text.html.tiddlywiki5.test" "A filter operand substitutes only inside a define body"
 
 # TiddlyWiki substitutes $name$ and $(name)$ where widget.js finds isMacroDefinition — in a
 # \define body — and inside substituted attribute values. A \function body reaches the filter

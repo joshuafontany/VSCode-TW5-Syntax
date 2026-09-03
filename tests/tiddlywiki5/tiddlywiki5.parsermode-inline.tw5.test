@@ -1,4 +1,4 @@
-# SYNTAX TEST "text.html.tiddlywiki5" "Under an inline parser mode no block rule stands"
+# SYNTAX TEST "text.html.tiddlywiki5.test" "Under an inline parser mode no block rule stands"
 
 # The parsermode pragma sets parseAsInline for the whole tiddler, so TiddlyWiki parses one
 # inline run and every block marker after it yields plain text. Measured: a heading marker

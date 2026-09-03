@@ -8,6 +8,6 @@ description: What the compiled modules answer to — harvested by the build, nev
     "compiler": "Version 7.0.2",
     "sources": {
         "grammar-commands.ts": "a45e970bf12740805ea3b5d8ea4b287cf06e0846d212ad65f901223c793abe36",
-        "grammar-signals.ts": "3fde221f1dc8be8629c98f8edf763c955af10483838458cb6030e64fdda14d58"
+        "grammar-signals.ts": "0556b6a9907e0742188783781caf853ed57242f1eab31257c6ecb2232fe9a41f"
     }
 }

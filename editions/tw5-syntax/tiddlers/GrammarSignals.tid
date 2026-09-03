@@ -209,5 +209,15 @@ tw5-version: 5.5.0-prerelease
         "whitespace",
         "wikilink",
         "wikilinkprefix"
+    ],
+    "pragmaRules": [
+        "commentblock",
+        "fnprocdef",
+        "import",
+        "macrodef",
+        "parameters",
+        "parsermode",
+        "rules",
+        "whitespace"
     ]
 }
