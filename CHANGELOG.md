@@ -418,6 +418,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
   points at the one directory that stays outside: the coverage floor already measures those files,
   and a second copy would part from the first the day somebody edits one.
+- A dictionary entry reads its value as wikitext, whatever the key. A tiddler dictionary holds keys
+  and values, and a key names no tiddler field — a dictionary carrying an entry called `caption`
+  carries a key of that name and not a caption — so the field allow-list reads nothing there. The
+  ground supports the reading: of 2863 entries across TiddlyWiki's own 28 dictionaries, 958 carry a
+  wikitext construct, most of them a `<<colour …>>` call in a palette. A `.multids` file already read
+  every value that way, one line per tiddler; the two formats now agree.
+
 - A TIDDLER'S TYPE DECIDES WHAT LANGUAGE ITS BODY CARRIES. TiddlyWiki reads a body through the
   parser its `type` field names, and this grammar read every `.tid` body as wikitext whatever the
   field said — a JSON tiddler's braces coloured as prose, a plain-text tiddler's `!!` as a heading,

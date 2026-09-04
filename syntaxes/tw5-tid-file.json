@@ -32,7 +32,7 @@
 	],
 	"repository": {
 		"typed-body": {
-			"comment": "A tiddler\u2019s `type` field decides what language its body carries, and TiddlyWiki reads the body through the parser that type names.\n\nA rule fires on a line without knowing what stood above it, so the type line opens a region of its own that never closes: the remaining header fields read inside it, and the body after the blank line reads as the guest language. The inline parser mode and the pragma zone in the wikitext grammar carry the same shape.\n\nThe header rule below ends just before such a line so this one can open. A type nothing here names leaves the body reading as wikitext, the way TiddlyWiki reads a type it cannot parse.",
+			"comment": "A tiddler’s `type` field decides what language its body carries, and TiddlyWiki reads the body through the parser that type names.\n\nA rule fires on a line without knowing what stood above it, so the type line opens a region of its own that never closes: the remaining header fields read inside it, and the body after the blank line reads as the guest language. The inline parser mode and the pragma zone in the wikitext grammar carry the same shape.\n\nThe header rule below ends just before such a line so this one can open. A type nothing here names leaves the body reading as wikitext, the way TiddlyWiki reads a type it cannot parse.",
 			"patterns": [
 				{
 					"comment": "A tiddler declaring application/json. The line reads as the field it is, and everything after the header reads as json.",
@@ -248,7 +248,10 @@
 							"end": "(?!)",
 							"patterns": [
 								{
-									"include": "source.tiddlywiki5.fields"
+									"include": "source.tiddlywiki5.fields#comment"
+								},
+								{
+									"include": "source.tiddlywiki5.fields#dictionary-entry"
 								}
 							]
 						},

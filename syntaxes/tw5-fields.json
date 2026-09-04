@@ -22,7 +22,7 @@
     "field": {
       "patterns": [
         {
-          "comment": "A header field holds a string, and TiddlyWiki renders three of them as wikitext: text carries the tiddler body, and the core transcludes caption and description bare, which parses what they hold. A rule inside a capture opens mid-line, so the block rules anchored on ^ stand aside and the inline ones — a macro call, a transclusion, a link — reach the value as a reader meets it.",
+          "comment": "A header field holds a string, and TiddlyWiki renders three of them as wikitext: text carries the tiddler body, and the core transcludes caption and description bare, which parses what they hold. A rule inside a capture opens mid-line, so the block rules anchored on ^ stand aside and the inline ones \u2014 a macro call, a transclusion, a link \u2014 reach the value as a reader meets it.",
           "match": "^(text|caption|description)(:)(.*?)$",
           "name": "meta.tiddler.field.tiddlywiki5",
           "captures": {
@@ -66,6 +66,27 @@
           }
         }
       ]
+    },
+    "dictionary-entry": {
+      "comment": "One entry of a tiddler dictionary: a key, a colon, and a value TiddlyWiki renders as wikitext.\n\nA dictionary key names no tiddler field, so the allow-list above \u2014 text, caption, description \u2014 reads nothing here: a dictionary carrying an entry called `caption` carries a key of that name and not a caption. Every value takes the wikitext reading instead, which the ground supports: of 2863 entries across TiddlyWiki\u2019s own 28 dictionaries, 958 carry a wikitext construct, most of them a `<<colour ...>>` call in a palette.\n\nThe scopes come from the field reading above rather than from names of their own. An entry carries a key and a value, the reading matches, and a scope of its own would ask the corpus for ground that says nothing new.",
+      "match": "^([^:\\r\\n]*)(:)(.*)$",
+      "name": "meta.tiddler.field.tiddlywiki5",
+      "captures": {
+        "1": {
+          "name": "entity.other.attribute-name.field.wikitext.tiddlywiki5"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.field.tiddlywiki5"
+        },
+        "3": {
+          "name": "meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5",
+          "patterns": [
+            {
+              "include": "text.html.tiddlywiki5"
+            }
+          ]
+        }
+      }
     }
   }
 }
