@@ -4679,6 +4679,22 @@
 					"while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
 				},
 				{
+					"comment": "A fence labelled for the memetic dialect. The dialect is wikitext with sigils added, so the fence reads wikitext here and the dialect's own injection supplies the sigils wherever it stands — in a .mem file, that is everywhere.\n\nThe base cannot include the dialect: the dialect already includes the base, and the cycle drops the include wherever it is spelled. The label still earns its place, because it names the tongue for a reader and keeps a memetic example out of the catch-all that would read it raw.",
+					"begin": "(?i)\\G(mem(?:etic(?:-wikitext)?)?)(?:[ \\t][^`\\n]*)?$",
+					"contentName": "meta.embedded.block.memetic text.html.tiddlywiki5",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.other.attribute-name.language.tiddlywiki5"
+						}
+					},
+					"patterns": [
+						{
+							"include": "$self"
+						}
+					],
+					"while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
+				},
+				{
 					"begin": "(?i)\\G(m(?:arkdown|d|kd(?:own)?))(?:[ \\t][^`\\n]*)?$",
 					"contentName": "meta.embedded.block.markdown source.gfm",
 					"beginCaptures": {
@@ -5039,6 +5055,17 @@
 					"while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
 				},
 				{
+					"comment": "A fence carrying no label, inside a file already written in wikitext.\n\nTiddlyWiki hands a code block's content to no parser, so a verdict cannot come from the reader here — the reading answers to what an author writing wikitext most often shows, and an author showing wikitext writes it unlabelled. The cost stands measured: across TiddlyWiki's own tree 525 unlabelled fences hold a wikitext example, 822 hold a command line and 465 hold prose or data that paints nothing. A command line pays for it — `--build <target>` takes an en-dash and an HTML tag — and a label spells the way out, with `bash` or `sh` naming the tongue a usage line actually speaks.\n\nThe rule stands last among the labelled ones and ahead of the catch-all, so any label at all wins over it.",
+					"begin": "\\G[ \\t]*$",
+					"contentName": "text.html.tiddlywiki5",
+					"patterns": [
+						{
+							"include": "text.html.tiddlywiki5"
+						}
+					],
+					"while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
+				},
+				{
 					"begin": "\\G([^` \\t\\n]*)(?:[ \\t][^`\\n]*)?$",
 					"contentName": "markup.inline.raw",
 					"beginCaptures": {
@@ -5239,9 +5266,37 @@
 						{
 							"match": "`",
 							"name": "markup.inline.raw.inner.tiddlywiki5"
+						},
+						{
+							"include": "#shortcut"
+						},
+						{
+							"include": "#emphasis"
+						},
+						{
+							"include": "#macrocallinline"
+						},
+						{
+							"include": "#filteredtranscludeinline"
+						},
+						{
+							"include": "#transcludeinline"
+						},
+						{
+							"include": "#mvvdisplayinline"
+						},
+						{
+							"include": "#image"
+						},
+						{
+							"include": "#link"
+						},
+						{
+							"include": "#dash"
 						}
 					],
-					"name": "markup.inline.raw.double.tiddlywiki5 markup.raw.inline.tiddlywiki5"
+					"name": "markup.inline.raw.double.tiddlywiki5 markup.raw.inline.tiddlywiki5",
+					"comment": "A tick span holds wikitext. TiddlyWiki parses nothing inside it, so no verdict stands here; an author writing wikitext who reaches for a tick is nearly always naming a construct, and naming it in colour reads it back to them.\n\nA tick closes with its line, so it admits only what closes with the line too. An HTML or widget element does not: `<svg>` in a tick opened a region that outlived the tick and read seven lines of French prose as SVG. The remaining inline rules were probed one at a time with an unterminated opener, and the sentence after each still read as a paragraph.\n\nA tick admits neither a tick nor a style run: `@@` opened a run that swallowed the closing backtick and read the rest of the line as raw, and letting a tick open inside another letting one open inside another re-paired the backticks on a line carrying three of them, and read the prose between two of them as raw."
 				},
 				{
 					"begin": "(?<!`)`(?!`)(?=[^\\n]*(?<!`)`(?!`))",
@@ -5256,7 +5311,37 @@
 							"name": "punctuation.definition.raw.markup.single.end.tiddlywiki5"
 						}
 					},
-					"name": "markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5"
+					"name": "markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5",
+					"patterns": [
+						{
+							"include": "#shortcut"
+						},
+						{
+							"include": "#emphasis"
+						},
+						{
+							"include": "#macrocallinline"
+						},
+						{
+							"include": "#filteredtranscludeinline"
+						},
+						{
+							"include": "#transcludeinline"
+						},
+						{
+							"include": "#mvvdisplayinline"
+						},
+						{
+							"include": "#image"
+						},
+						{
+							"include": "#link"
+						},
+						{
+							"include": "#dash"
+						}
+					],
+					"comment": "A tick span holds wikitext. TiddlyWiki parses nothing inside it, so no verdict stands here; an author writing wikitext who reaches for a tick is nearly always naming a construct, and naming it in colour reads it back to them.\n\nA tick closes with its line, so it admits only what closes with the line too. An HTML or widget element does not: `<svg>` in a tick opened a region that outlived the tick and read seven lines of French prose as SVG. The remaining inline rules were probed one at a time with an unterminated opener, and the sentence after each still read as a paragraph.\n\nA tick admits neither a tick nor a style run: `@@` opened a run that swallowed the closing backtick and read the rest of the line as raw, and letting a tick open inside another letting one open inside another re-paired the backticks on a line carrying three of them, and read the prose between two of them as raw."
 				}
 			]
 		},

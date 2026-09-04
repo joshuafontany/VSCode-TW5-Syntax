@@ -7,6 +7,23 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A tick span and an unlabelled fence hold wikitext. TiddlyWiki hands neither to a parser, so no
+  verdict comes from the reader here; the reading answers to what an author writing wikitext shows,
+  and an author showing wikitext writes it unlabelled. A label still wins — `js` stays JavaScript,
+  `tw` names the base tongue, and `mem` names the memetic dialect, whose own injection paints its
+  sigils wherever the dialect stands. The cost stands measured: across TiddlyWiki's own tree 525
+  unlabelled fences hold a wikitext example, 822 hold a command line and 465 hold prose or data
+  that paints nothing, and a command line pays for it — `--build <target>` takes an en-dash and an
+  HTML tag, where `bash` names the tongue it actually speaks.
+- A tick admits only what closes with its line. Handing it the whole grammar let a block rule open
+  inside it: `<svg>` in a tick opened an element region that outlived the tick and read seven lines
+  of French prose as SVG, and `@@` opened a style run that swallowed the closing backtick and read
+  the rest of the line as raw. An element, a style run and a nested tick each read as raw content
+  now, and the remaining inline rules were each probed with an unterminated opener — the sentence
+  after every one still reads as a paragraph.
+- The tilde that suppresses a CamelCase link reads like the link it suppresses. With CamelCase
+  linking off, TiddlyWiki builds text either way, and the mark still tells a reader what it does.
+
 - Every header field takes the wikitext reading unless a reader declares otherwise. Three names
   carried it before — `text`, `caption`, `description` — and that judgement missed eleven of every
   twelve marks in TiddlyWiki's own tree: 962 lines read rightly, 1945 stood unread. The brackets in
@@ -423,7 +440,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 58 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 59 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
   emits no container node, so a scope over its content stands over text by construction.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses

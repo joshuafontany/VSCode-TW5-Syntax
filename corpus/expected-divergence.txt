@@ -5,6 +5,7 @@
 # refuses and the grammar reads on anyway, deliberately.
 
 meta.link.wikilink                            # TiddlyWiki ships CamelCase linking disabled; the scope stands quiet so a wiki that enables it can colour it back
+meta.link.suppressed.wikilink                 # the same reading for the tilde that suppresses one: with CamelCase linking off the parser builds text either way, and the mark still tells a reader what it does
 meta.tag.metadata.doctype                     # a .tid may hold a whole TiddlyWiki HTML document, where a doctype reads; wikitext builds no node for one
 meta.tag.metadata.cdata                       # the same reading, for a CDATA section
 meta.tag.metadata.processing.xml              # the same reading, for an XML declaration

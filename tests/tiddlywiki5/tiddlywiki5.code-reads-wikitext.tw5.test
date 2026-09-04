@@ -1,0 +1,40 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A tick span and an unlabelled fence hold wikitext"
+# TiddlyWiki hands a code block and a tick span to no parser, so no verdict comes from the reader
+# here — the reading answers to what an author writing wikitext shows, and an author showing
+# wikitext writes it unlabelled. A label still wins: js stays raw, tw names the base tongue, and
+# mem names the memetic dialect, whose own injection paints its sigils where it stands.
+#
+# A tick opens mid-line, so only the inline rules stand inside it. Handing it the whole grammar let
+# a block rule open and swallow the closing tick.
+A tick holding `<<amacro>>` and prose.
+#               ^^ punctuation.definition.macrocallinline.begin.tiddlywiki5
+#                 ^^^^^^ variable.name.macro.tiddlywiki5
+#              ^ punctuation.definition.raw.markup.single.begin.tiddlywiki5
+#                         ^ punctuation.definition.raw.markup.single.end.tiddlywiki5
+
+```
+<$link to="X"/>
+#^ punctuation.definition.tag.widget.tiddlywiki5
+# ^^^^ entity.name.function.widget.tiddlywiki5
+```
+
+```js
+var x = 1;
+#<- meta.embedded.block.javascript source.js
+```
+
+```mem
+A macro <<amacro>> stands.
+#         ^^^^^^ variable.name.macro.tiddlywiki5
+```
+
+# A tick closes with its line, so it admits only what closes with the line. An element, a style
+# run and a nested tick each swallowed past the closing backtick; each now reads as raw content.
+An element `<svg width="1">` names itself.
+#           ^^^^ markup.raw.inline.tiddlywiki5
+A style run `@@color:red;` and a tick after it `x`.
+#            ^^^^^^^^^^^^ markup.raw.inline.tiddlywiki5
+#                                               ^ markup.raw.inline.tiddlywiki5
+
+An ordinary sentence stands here.
+#<- meta.paragraph.tiddlywiki5

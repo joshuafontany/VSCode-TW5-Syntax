@@ -1,0 +1,11 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A mem fence reads the dialect"
+# A fence labelled mem names the memetic dialect. The base reads its content as wikitext, and the
+# dialect's own injection supplies the sigils wherever the dialect stands — so in a .mem file the
+# fence carries both.
+```mem
+A sigil <<~ flow >> and a macro <<amacro>>.
+#       ^^ punctuation.definition.sigil.begin.memetic-wikitext
+#         ^ keyword.control.sharktooth.memetic-wikitext
+#           ^^^^ entity.name.function.sigil.memetic-wikitext
+#                                 ^^^^^^ variable.name.macro.tiddlywiki5
+```
