@@ -30,6 +30,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   `condition` alone painted 429 such spans — and a field carrying base-64 bytes paints 1622
   wikilinks and 429 italics out of an alphabet that holds `[[` and `//` by accident. Each ruling
   carries its reason in the wiki, and a gate holds the grammar to both.
+- A dictionary entry stands clear of the field rules on its own ground. A dictionary key names no
+  tiddler field, so an entry called `color` carries a key of that name and not the color field —
+  and a palette is exactly where such an entry holds a `<<colour ...>>` call worth reading. Every
+  dictionary value keeps the wikitext reading whatever its key spells.
 - The rulings a reader depends on stand where an operator can weigh them. Which distinctions a
   reader needs, which constructs read as prose, and which names TiddlyWiki's core owns — none of
   the three has a registry to answer it, and all three governed a gate from inside a tool where

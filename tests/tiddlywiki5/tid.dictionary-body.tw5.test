@@ -1,7 +1,7 @@
 # SYNTAX TEST "source.tiddlywiki5.tid-file" "A dictionary entry reads its value as wikitext, whatever the key"
 # A tiddler dictionary holds keys and values, and a key names no tiddler field: a dictionary
-# carrying an entry called `caption` carries a key of that name and not a caption. So the field
-# allow-list — text, caption, description — reads nothing here, and every value takes the wikitext
+# carrying an entry called `color` carries a key of that name and not the color field. So the rules
+# that hold a colour or a date plain reach nothing here, and every value takes the wikitext
 # reading. The ground supports it: of 2863 entries across TiddlyWiki's own 28 dictionaries, 958
 # carry a wikitext construct, most of them a <<colour ...>> call in a palette.
 # The header above the blank line keeps the field reading, so `type` stays a plain string.
@@ -16,3 +16,7 @@ blockquote-bar: <<colour muted-foreground>>
 #                 ^^^^^^ source.tiddlywiki5.tid-file meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
 caption: a ''bold'' value
 #            ^^^^ source.tiddlywiki5.tid-file markup.bold.tiddlywiki5
+color: <<colour foreground>>
+#      ^^ source.tiddlywiki5.tid-file meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5
+tags: [[Two Words]]
+#     ^ source.tiddlywiki5.tid-file punctuation.definition.link.outer.begin.tiddlywiki5
