@@ -65,13 +65,44 @@ function pragmaRuleNames() {
     });
     return names.sort();
 }
+/**
+ * What each field name declares about the value it holds.
+ *
+ * A header value carries a string, and nothing in the file says how to read it. The reader does:
+ * `$tw.Tiddler.fieldModules` holds a module per field name, and each declares how the value parses.
+ * boot.js registers five — created and modified through parseDate, color with editType "color",
+ * tags and list through parseStringArray — and `module-type: tiddlerfield` stays open, so a plugin
+ * that declares a field of its own lands here too.
+ *
+ * The grammar reads this to decide which values take the wikitext reading. A date and a colour
+ * name nothing, so they keep a plain reading; a title list names tiddlers in the same brackets a
+ * filter run spells them in, so it takes the wikitext reading like any other field. Harvesting the
+ * distinction beats retyping it: the day a release declares a sixth field, the gate says so.
+ */
+function fieldTypes() {
+    const declared = {};
+    const modules = $tw.Tiddler.fieldModules || {};
+    for (const name of Object.keys(modules).sort()) {
+        const field = modules[name];
+        if (field.parse === $tw.utils.parseStringArray)
+            declared[name] = "titles";
+        else if (field.parse === $tw.utils.parseDate)
+            declared[name] = "date";
+        else if (field.editType)
+            declared[name] = field.editType;
+        else
+            declared[name] = "string";
+    }
+    return declared;
+}
 exports.startup = function () {
     const signals = {
         version: $tw.version,
         filterOperators: operatorNames(),
         widgets: widgetNames(),
         wikiRules: namesOf("wikirule").map((t) => (/([^/]+)\.js$/.exec(t) || [, t])[1]).sort(),
-        pragmaRules: pragmaRuleNames()
+        pragmaRules: pragmaRuleNames(),
+        fieldTypes: fieldTypes()
     };
     $tw.wiki.addTiddler({
         title: "$:/tw5-syntax/GrammarSignals",

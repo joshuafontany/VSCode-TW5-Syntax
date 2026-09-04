@@ -1,0 +1,51 @@
+# SYNTAX TEST "source.tiddlywiki5.tid-file" "A broken value cannot swallow the field beneath it"
+# Opening every header value to wikitext raises one hazard above miscolour: a body rule reaching
+# past the end of a field. Pandoc met it — a Markdown title ending in two spaces took the hard-
+# linebreak rule, ate the field boundary, and put the date into the author field.
+#
+# It cannot reach here. A value reads inside a capture, and a capture confines to its own span, so
+# a construct left open at the end of a line closes with the line. Each pair below leaves one open
+# and asks the field under it to read as a field.
+title: Probe
+caption: [[unclosed
+modified: 20260101000000000
+#<- entity.other.attribute-name.field.tiddlywiki5
+#         ^^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5
+caption: ''unclosed
+modified: 20260101000000001
+#<- entity.other.attribute-name.field.tiddlywiki5
+#         ^^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5
+caption: {{unclosed
+modified: 20260101000000002
+#<- entity.other.attribute-name.field.tiddlywiki5
+#         ^^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5
+caption: <$link to="x"
+modified: 20260101000000003
+#<- entity.other.attribute-name.field.tiddlywiki5
+#         ^^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5
+caption: <!-- unclosed
+modified: 20260101000000004
+#<- entity.other.attribute-name.field.tiddlywiki5
+#         ^^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5
+caption: """
+modified: 20260101000000005
+#<- entity.other.attribute-name.field.tiddlywiki5
+#         ^^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5
+caption: @@color:red;
+modified: 20260101000000006
+#<- entity.other.attribute-name.field.tiddlywiki5
+#         ^^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5
+caption: ```
+modified: 20260101000000007
+#<- entity.other.attribute-name.field.tiddlywiki5
+#         ^^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5
+caption: a line \
+modified: 20260101000000008
+#<- entity.other.attribute-name.field.tiddlywiki5
+#         ^^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5
+caption: <<mymacro "arg
+modified: 20260101000000009
+#<- entity.other.attribute-name.field.tiddlywiki5
+#         ^^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5
+
+The body.

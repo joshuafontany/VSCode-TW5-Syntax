@@ -7,6 +7,29 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- Every header field takes the wikitext reading unless a reader declares otherwise. Three names
+  carried it before — `text`, `caption`, `description` — and that judgement missed eleven of every
+  twelve marks in TiddlyWiki's own tree: 962 lines read rightly, 1945 stood unread. The brackets in
+  `tags` and `list` were the largest missed class, and they are not a link pretending to be a title.
+  `boot.js` parses a title list with `parseStringArray`, whose bracketed member survives the round
+  trip through `stringifyList`, and `filters.js` reads those same brackets as a run whose empty
+  operator defaults to `title`; the `enlist` operator takes a string-array operand inside a filter
+  outright. One notation, two readers, so the mark carries the colour — `tags` paints 15317 spans
+  across the corpus and not one falls outside the tiddler-name family, and of 3122 bracketed
+  members none carries a pipe, so the shape that would part a quoted title from a pretty link
+  stands empty. Reading every field but the named exceptions: 11453 lines right, 19 wrong.
+- The exceptions come from the reader rather than from a list. `$tw.Tiddler.fieldModules` types
+  five field names, and the edition harvests it beside the pragma rules: `created` and `modified`
+  parse as dates, `color` carries `editType: "color"`, and those three keep a plain reading —
+  `color` alone painted 486 spans across 162 lines, every one of them a `#` read as a numbered list
+  item. `tags` and `list` type as title lists and stay open. `module-type: tiddlerfield` stays open
+  to a plugin, so a field a wiki declares for itself lands in the harvest too, and a release that
+  types a sixth reaches a gate rather than the grammar's silence.
+- Two exception sets stand as rulings, because TiddlyWiki types them nowhere. A filter-valued field
+  spells `<count>` and `<targetTiddler>`, which the wikitext reader takes for an HTML tag —
+  `condition` alone painted 429 such spans — and a field carrying base-64 bytes paints 1622
+  wikilinks and 429 italics out of an alphabet that holds `[[` and `//` by accident. Each ruling
+  carries its reason in the wiki, and a gate holds the grammar to both.
 - The rulings a reader depends on stand where an operator can weigh them. Which distinctions a
   reader needs, which constructs read as prose, and which names TiddlyWiki's core owns — none of
   the three has a registry to answer it, and all three governed a gate from inside a tool where

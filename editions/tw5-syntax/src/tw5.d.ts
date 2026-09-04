@@ -19,5 +19,14 @@ declare const $tw: {
     forEachModuleOfType(type: string, callback: (title: string, exports: any) => void): void;
   };
   wiki: { addTiddler: (fields: Record<string, string>) => void };
-  utils: { each: (o: unknown, f: (v: unknown, k: string) => void) => void };
+  utils: {
+    each: (o: unknown, f: (v: unknown, k: string) => void) => void;
+    /** A title list: "One [[Two Words]] Three". The reader that declares tags and list. */
+    parseStringArray: (value: string, allowDuplicate?: boolean) => string[] | null;
+    parseDate: (value: unknown) => Date | null;
+  };
+  Tiddler: {
+    /** What each field name declares about the value it holds, keyed by field name. */
+    fieldModules: Record<string, { parse?: unknown; stringify?: unknown; editType?: string }>;
+  };
 };

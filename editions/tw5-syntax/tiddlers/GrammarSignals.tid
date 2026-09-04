@@ -219,5 +219,12 @@ tw5-version: 5.5.0-prerelease
         "parsermode",
         "rules",
         "whitespace"
-    ]
+    ],
+    "fieldTypes": {
+        "color": "color",
+        "created": "date",
+        "list": "titles",
+        "modified": "date",
+        "tags": "titles"
+    }
 }

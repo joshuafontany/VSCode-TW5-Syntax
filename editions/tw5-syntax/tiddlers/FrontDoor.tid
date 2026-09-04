@@ -21,6 +21,7 @@ when the world moves and nobody notices. A harvest goes stale on a version, and 
 |<<lar-link "$:/tw5-syntax/BuiltInVariables">> |judgement — which names TiddlyWiki's core owns |
 |<<lar-link "$:/tw5-syntax/ReaderRelations">> |judgement — what a reader must meet as one, and what a reader must tell apart |
 |<<lar-link "$:/tw5-syntax/PlainConstructs">> |judgement — why a construct reads as prose rather than as a thing |
+|<<lar-link "$:/tw5-syntax/FieldReading">> |judgement — which header fields take the wikitext reading, and why each exception stands |
 |<<lar-link "$:/tw5-syntax/GrammarSignals">> |harvest — every filter operator, widget and wikitext rule this TiddlyWiki registers |
 |<<lar-link "$:/tw5-syntax/CIGates">> |judgement — which gates continuous integration runs, and the reason for each one it does not |
 |<<lar-link "$:/tw5-syntax/GateReport">> |harvest — what every gate said when it last ran |

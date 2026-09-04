@@ -1,34 +1,49 @@
 >field:value
-#^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.tiddlywiki5
+#^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.wikitext.tiddlywiki5
 #     ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 punctuation.separator.key-value.field.tiddlywiki5
-#      ^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 string.unquoted.field.value.tiddlywiki5
+#      ^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >field: value:value
-#^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.tiddlywiki5
+#^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.wikitext.tiddlywiki5
 #     ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 punctuation.separator.key-value.field.tiddlywiki5
-#      ^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 string.unquoted.field.value.tiddlywiki5
+#      ^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >field: : :field: value:
-#^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.tiddlywiki5
+#^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.wikitext.tiddlywiki5
 #     ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 punctuation.separator.key-value.field.tiddlywiki5
-#      ^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 string.unquoted.field.value.tiddlywiki5
+#      ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5
+#       ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.description.dl.dd.list.markup.tiddlywiki5
+#        ^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5
 > field   :  value
-#^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.tiddlywiki5
+#^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.wikitext.tiddlywiki5
 #         ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 punctuation.separator.key-value.field.tiddlywiki5
-#          ^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 string.unquoted.field.value.tiddlywiki5
+#          ^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >  field name   : :field value: <<macro attribute:"value">>
-#^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.tiddlywiki5
+#^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.wikitext.tiddlywiki5
 #               ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 punctuation.separator.key-value.field.tiddlywiki5
-#                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 string.unquoted.field.value.tiddlywiki5
+#                ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5
+#                 ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.description.dl.dd.list.markup.tiddlywiki5
+#                  ^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5
+#                               ^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5
+#                                 ^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
+#                                      ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
+#                                       ^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 meta.variable.macro.parameter.tw-attribute.tiddlywiki5 variable.parameter.tiddlywiki5
+#                                                ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 meta.variable.macro.parameter.tw-attribute.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#                                                 ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 meta.variable.macro.parameter.tw-attribute.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#                                                  ^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 meta.variable.macro.parameter.tw-attribute.tiddlywiki5 string.quoted.double.html.tiddlywiki5
+#                                                       ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 meta.variable.macro.parameter.tw-attribute.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
+#                                                        ^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5
 >Illegal_&Field:  
-#^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.tiddlywiki5
+#^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.wikitext.tiddlywiki5
 #              ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 punctuation.separator.key-value.field.tiddlywiki5
-#               ^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 string.unquoted.field.value.tiddlywiki5
+#               ^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5
 ><field>:
-#^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.tiddlywiki5
+#^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.wikitext.tiddlywiki5
 #       ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 punctuation.separator.key-value.field.tiddlywiki5
 >title: $:/tid/title/with/slashes
-#^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.tiddlywiki5
+#^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.wikitext.tiddlywiki5
 #     ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 punctuation.separator.key-value.field.tiddlywiki5
-#      ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 string.unquoted.field.value.tiddlywiki5
+#      ^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#       ^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.syslink.tiddlywiki5 punctuation.definition.link.syslink.tiddlywiki5
+#          ^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.syslink.tiddlywiki5
 >
 >\define regionHelperOpen()
 #^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 punctuation.definition.directive.tiddlywiki5

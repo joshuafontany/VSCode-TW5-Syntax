@@ -1,0 +1,36 @@
+# SYNTAX TEST "source.tiddlywiki5.tid-file" "Which header fields take the wikitext reading"
+# TiddlyWiki reads a header value as a plain string and leaves a template to decide what to make
+# of it. The grammar rules that a value takes the wikitext reading unless a reader declares
+# otherwise.
+#
+# boot.js registers a tiddlerfield module for five names. Three declare a non-text scalar — created
+# and modified parse through parseDate, color carries editType "color" — and those keep a plain
+# reading. The other two, tags and list, parse through parseStringArray, whose bracketed member
+# marks a quoted title; filters.js reads the same brackets as a run whose empty operator defaults
+# to title, and the enlist operator takes a string-array operand inside a filter. One notation,
+# two readers, so the mark carries the colour.
+#
+# Two sets stand as rulings rather than harvests, because TiddlyWiki declares no type for them: a
+# filter-valued field, whose <variable> the wikitext reader takes for an HTML tag, and a field
+# carrying base-64 bytes, which name no tiddler.
+title: A [[Linked Title]]
+#<- entity.other.attribute-name.field.wikitext.tiddlywiki5
+#          ^^^^^^^^^^^^ string.other.link.title.tiddlywiki5
+tags: One [[Two Words]] Three
+#         ^ punctuation.definition.link.outer.begin.tiddlywiki5
+#           ^^^^^^^^^ string.other.link.title.tiddlywiki5
+list: [[$:/core/ui/Foo]]
+#       ^^^^^^^^^^^^^^ constant.language.system.title.tiddlywiki5
+url: https://example.com/a
+#    ^^^^^ markup.underline.link.external.https.tiddlywiki5
+color: #ffddee
+#<- entity.other.attribute-name.field.tiddlywiki5
+#      ^^^^^^^ string.unquoted.field.value.tiddlywiki5
+modified: 20260101000000000
+#         ^^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5
+condition: [<count>compare:lte[1]]
+#          ^^^^^^^^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5
+avatar: /9j/4AAQSkZ//abc
+#       ^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5
+
+The body.
