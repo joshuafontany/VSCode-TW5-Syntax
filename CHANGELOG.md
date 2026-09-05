@@ -7,27 +7,27 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
-- A tick span and an unlabelled fence hold wikitext. TiddlyWiki hands neither to a parser, so no
-  verdict comes from the reader here; the reading answers to what an author writing wikitext shows,
-  and an author showing wikitext writes it unlabelled. A label still wins — `js` stays JavaScript,
-  `tw` names the base tongue, and `mem` names the memetic dialect, whose own injection paints its
-  sigils wherever the dialect stands. The cost stands measured: across TiddlyWiki's own tree 525
-  unlabelled fences hold a wikitext example, 822 hold a command line and 465 hold prose or data
-  that paints nothing, and a command line pays for it — `--build <target>` takes an en-dash and an
-  HTML tag, where `bash` names the tongue it actually speaks.
+- A code region reads literally, and a label types it. TiddlyWiki hands a tick span and a code
+  block to no parser, and every shipped grammar reached for agrees: VS Code's markdown, wooorm's
+  markdown-tm-language, Pygments, nvim-treesitter, Helix and tree-sitter-markdown all decline to
+  read inside an inline span, and none defaults an unlabelled fence to the host tongue. Neither
+  reads as wikitext here. A label still colours — and TiddlyWiki's own explicit typing, the `$$$`
+  block, dispatches a real parser on its type and always did.
+- The fence labels follow the shape the ecosystem keeps. Measured across the 242 grammars this
+  repository loads: 164 carry no alias at all, the mean is 0.43, the most any one carries is five,
+  and no alias anywhere holds a slash or a dot. Wikitext answers to `tiddlywiki` with `tw`, `tw5`,
+  `tiddlywiki5` and now `tid` beside it — an extension among the aliases, the way `js` carries
+  `cjs` and `yaml` carries `yml` — and the dialect answers to `mem`, `memetic` and
+  `memetic-wikitext`. Each keeps its MIME type too, against that shape, because a MIME type is
+  TiddlyWiki's own vocabulary: a `type` field spells one and a `$$$` block dispatches on one.
+  Neither claims `wikitext` or `wiki`; the ecosystem owns both, and they mean MediaWiki.
 - A tick span matches on one line rather than opening a region. Where no end pattern matches,
-  TextMate runs to the end of the document — the manual says so plainly — so an unterminated `<<`
-  or `{{` inside a tick took the rest of the file with it. The parser says the same thing a
-  bounded match says: `codeinline.js` finds no closing delimiter, records `unterminated-codeinline`
-  and renders the delimiter as literal text. Three grammars converged on this idiom independently —
-  VS Code's markdown, wooorm's markdown-tm-language and Pygments all match a tick on one line
-  rather than opening one, and the second carries a source comment rejecting begin/end for exactly
-  this reason. Wikitext reads inside the content capture, and a capture confines to its own span,
-  so nothing in a tick can reach the line below: nine inline rules probed with an unterminated
-  opener, nine boundaries held.
-- The tilde that suppresses a CamelCase link reads like the link it suppresses. With CamelCase
-  linking off, TiddlyWiki builds text either way, and the mark still tells a reader what it does.
-
+  TextMate runs to the end of the document — the manual says so plainly — so a begin/end pair
+  carries no bound at all. The parser says what a bounded match says: `codeinline.js` finds no
+  closing delimiter, records `unterminated-codeinline` and renders the delimiter as literal text,
+  and its end regex, built from the opening delimiter alone, carries no lookahead either. Three
+  grammars converged on this idiom independently, and one carries a source comment rejecting
+  begin/end for exactly this reason.
 - Every header field takes the wikitext reading unless a reader declares otherwise. Three names
   carried it before — `text`, `caption`, `description` — and that judgement missed eleven of every
   twelve marks in TiddlyWiki's own tree: 962 lines read rightly, 1945 stood unread. The brackets in
@@ -444,7 +444,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 59 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 58 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
   emits no container node, so a scope over its content stands over text by construction.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses

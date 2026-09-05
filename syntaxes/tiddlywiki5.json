@@ -4664,7 +4664,7 @@
 			},
 			"patterns": [
 				{
-					"begin": "(?i)\\G(t(?:ext/vnd\\.tiddlywiki|w|w5|iddlywiki5?))(?:[ \\t][^`\\n]*)?$",
+					"begin": "(?i)\\G(t(?:ext/vnd\\.tiddlywiki|w|w5|id|iddlywiki5?))(?:[ \\t][^`\\n]*)?$",
 					"contentName": "text.html.tiddlywiki5",
 					"beginCaptures": {
 						"1": {
@@ -4676,11 +4676,12 @@
 							"include": "text.html.tiddlywiki5"
 						}
 					],
-					"while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
+					"while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)",
+					"comment": "A fence labelled for wikitext.\n\nThe label set follows the shape the ecosystem keeps: a canonical name plus short aliases, and an extension among them the way js carries cjs and mjs and yaml carries yml. Measured across the 242 grammars this repository loads, 164 carry no alias at all, the mean is 0.43 and the most any one carries is five; no alias anywhere holds a slash or a dot.\n\nThe MIME type stands here anyway, against that shape, because it is TiddlyWiki's own vocabulary: a tiddler's `type` field spells it and a `$$$` typed block dispatches on it.\n\nNEVER claim `wikitext` or `wiki`. The ecosystem already owns both, and they mean MediaWiki."
 				},
 				{
-					"comment": "A fence labelled for the memetic dialect. The dialect is wikitext with sigils added, so the fence reads wikitext here and the dialect's own injection supplies the sigils wherever it stands — in a .mem file, that is everywhere.\n\nThe base cannot include the dialect: the dialect already includes the base, and the cycle drops the include wherever it is spelled. The label still earns its place, because it names the tongue for a reader and keeps a memetic example out of the catch-all that would read it raw.",
-					"begin": "(?i)\\G(mem(?:etic(?:-wikitext)?)?)(?:[ \\t][^`\\n]*)?$",
+					"comment": "A fence labelled for the memetic dialect. The dialect is wikitext with sigils added, so the fence reads wikitext here and the dialect's own injection supplies the sigils wherever it stands — in a .mem file, that is everywhere.\n\nThe base cannot include the dialect: the dialect already includes the base, and the cycle drops the include wherever it is spelled. The label still earns its place, because it names the tongue for a reader and keeps a memetic example out of the catch-all that would read it raw.\n\nThe set mirrors the base's: a canonical name, short aliases, and the mimetype the manifest declares.",
+					"begin": "(?i)\\G(mem(?:etic(?:-wikitext)?)?|text/memetic-wikitext\\+tiddlywiki)(?:[ \\t][^`\\n]*)?$",
 					"contentName": "meta.embedded.block.memetic text.html.tiddlywiki5",
 					"beginCaptures": {
 						"1": {
@@ -5055,17 +5056,6 @@
 					"while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
 				},
 				{
-					"comment": "A fence carrying no label, inside a file already written in wikitext.\n\nTiddlyWiki hands a code block's content to no parser, so a verdict cannot come from the reader here — the reading answers to what an author writing wikitext most often shows, and an author showing wikitext writes it unlabelled. The cost stands measured: across TiddlyWiki's own tree 525 unlabelled fences hold a wikitext example, 822 hold a command line and 465 hold prose or data that paints nothing. A command line pays for it — `--build <target>` takes an en-dash and an HTML tag — and a label spells the way out, with `bash` or `sh` naming the tongue a usage line actually speaks.\n\nThe rule stands last among the labelled ones and ahead of the catch-all, so any label at all wins over it.",
-					"begin": "\\G[ \\t]*$",
-					"contentName": "text.html.tiddlywiki5",
-					"patterns": [
-						{
-							"include": "text.html.tiddlywiki5"
-						}
-					],
-					"while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
-				},
-				{
 					"begin": "\\G([^` \\t\\n]*)(?:[ \\t][^`\\n]*)?$",
 					"contentName": "markup.inline.raw",
 					"beginCaptures": {
@@ -5250,91 +5240,33 @@
 		"codeinline": {
 			"patterns": [
 				{
-					"comment": "A tick span holds wikitext. TiddlyWiki parses nothing inside it, so no verdict stands here; an author writing wikitext who reaches for a tick is often naming a construct, and naming it in colour reads it back to them.\n\nThe rule matches rather than opening a region, and its content class excludes the newline. A begin/end pair carries no bound — the TextMate manual says that where no end matches, the end of the document is used — so an unterminated `<<` inside a tick took the rest of the file. Three grammars converged on this idiom independently: VS Code's markdown, wooorm's markdown-tm-language and Pygments all match a tick span on one line rather than opening one.\n\nThe reading is the parser's own. codeinline.js finds no closing delimiter, records `unterminated-codeinline` and renders the delimiter as literal text; a rule that fails to match says the same thing. Wikitext reads inside the content capture, and a capture confines to its own span, so nothing here can reach the line below.\n\nThe closing delimiter carries no lookahead, because the parser's carries none: codeinline.js builds its end regex from the opening delimiter alone. Refusing a closer that another backtick follows cost `raw``raw` its reading outright.",
+					"comment": "A tick span reads literally. TiddlyWiki parses nothing inside it, and every shipped grammar reached for — VS Code's markdown, wooorm's markdown-tm-language, Pygments, nvim-treesitter, Helix and tree-sitter-markdown — leaves an inline span's content alone.\n\nThe rule matches rather than opening a region. A begin/end pair carries no bound: the TextMate manual says that where no end matches, the end of the document is used. The parser agrees with a bounded match — codeinline.js finds no closing delimiter, records `unterminated-codeinline` and renders the delimiter as literal text — and its end regex, built from the opening delimiter alone, carries no lookahead either.",
 					"match": "(?<!`)(``)(?!`)((?:[^`\\n]|`(?!`))+?)(``)",
 					"name": "markup.inline.raw.double.tiddlywiki5 markup.raw.inline.tiddlywiki5",
 					"captures": {
 						"1": {
 							"name": "punctuation.definition.raw.markup.double.begin.tiddlywiki5"
 						},
+						"3": {
+							"name": "punctuation.definition.raw.markup.double.end.tiddlywiki5"
+						},
 						"2": {
 							"patterns": [
 								{
 									"match": "`",
 									"name": "markup.inline.raw.inner.tiddlywiki5"
-								},
-								{
-									"include": "#shortcut"
-								},
-								{
-									"include": "#emphasis"
-								},
-								{
-									"include": "#macrocallinline"
-								},
-								{
-									"include": "#filteredtranscludeinline"
-								},
-								{
-									"include": "#transcludeinline"
-								},
-								{
-									"include": "#mvvdisplayinline"
-								},
-								{
-									"include": "#image"
-								},
-								{
-									"include": "#link"
-								},
-								{
-									"include": "#dash"
 								}
 							]
-						},
-						"3": {
-							"name": "punctuation.definition.raw.markup.double.end.tiddlywiki5"
 						}
 					}
 				},
 				{
-					"comment": "A tick span holds wikitext. TiddlyWiki parses nothing inside it, so no verdict stands here; an author writing wikitext who reaches for a tick is often naming a construct, and naming it in colour reads it back to them.\n\nThe rule matches rather than opening a region, and its content class excludes the newline. A begin/end pair carries no bound — the TextMate manual says that where no end matches, the end of the document is used — so an unterminated `<<` inside a tick took the rest of the file. Three grammars converged on this idiom independently: VS Code's markdown, wooorm's markdown-tm-language and Pygments all match a tick span on one line rather than opening one.\n\nThe reading is the parser's own. codeinline.js finds no closing delimiter, records `unterminated-codeinline` and renders the delimiter as literal text; a rule that fails to match says the same thing. Wikitext reads inside the content capture, and a capture confines to its own span, so nothing here can reach the line below.\n\nThe closing delimiter carries no lookahead, because the parser's carries none: codeinline.js builds its end regex from the opening delimiter alone. Refusing a closer that another backtick follows cost `raw``raw` its reading outright.",
+					"comment": "A tick span reads literally. TiddlyWiki parses nothing inside it, and every shipped grammar reached for — VS Code's markdown, wooorm's markdown-tm-language, Pygments, nvim-treesitter, Helix and tree-sitter-markdown — leaves an inline span's content alone.\n\nThe rule matches rather than opening a region. A begin/end pair carries no bound: the TextMate manual says that where no end matches, the end of the document is used. The parser agrees with a bounded match — codeinline.js finds no closing delimiter, records `unterminated-codeinline` and renders the delimiter as literal text — and its end regex, built from the opening delimiter alone, carries no lookahead either.",
 					"match": "(?<!`)(`)(?!`)((?:[^`\\n]|`(?!`))+?)(`)",
 					"name": "markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5",
 					"captures": {
 						"1": {
 							"name": "punctuation.definition.raw.markup.single.begin.tiddlywiki5"
-						},
-						"2": {
-							"patterns": [
-								{
-									"include": "#shortcut"
-								},
-								{
-									"include": "#emphasis"
-								},
-								{
-									"include": "#macrocallinline"
-								},
-								{
-									"include": "#filteredtranscludeinline"
-								},
-								{
-									"include": "#transcludeinline"
-								},
-								{
-									"include": "#mvvdisplayinline"
-								},
-								{
-									"include": "#image"
-								},
-								{
-									"include": "#link"
-								},
-								{
-									"include": "#dash"
-								}
-							]
 						},
 						"3": {
 							"name": "punctuation.definition.raw.markup.single.end.tiddlywiki5"

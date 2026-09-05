@@ -1,5 +1,6 @@
 # SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A mem fence reads the dialect"
-# A fence labelled mem names the memetic dialect. The base reads its content as wikitext, and the
+# A fence labelled mem names the memetic dialect. An unlabelled fence reads literally; a label
+# types it. The base reads a mem fence as wikitext, and the
 # dialect's own injection supplies the sigils wherever the dialect stands — so in a .mem file the
 # fence carries both.
 ```mem

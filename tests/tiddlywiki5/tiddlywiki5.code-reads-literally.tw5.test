@@ -1,0 +1,44 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A code region reads literally until a label types it"
+# TiddlyWiki hands a code span and a code block to no parser, and every shipped grammar reached for
+# leaves them alone: VS Code's markdown, wooorm's markdown-tm-language, Pygments, nvim-treesitter,
+# Helix and tree-sitter-markdown all decline to read inside an inline span, and none defaults an
+# unlabelled fence to the host tongue. So neither reads as wikitext here.
+#
+# A label types it, and then it colours. The set follows the ecosystem's shape — a canonical name
+# plus short aliases, with an extension among them the way js carries cjs and yaml carries yml.
+# NEVER claim wikitext or wiki: the ecosystem owns both, and they mean MediaWiki.
+#
+# TiddlyWiki's own explicit typing is the $$$ block, which dispatches a real parser on its type.
+A tick `<<amacro>>` reads literally.
+#       ^^^^^^^^^^ markup.raw.inline.tiddlywiki5
+
+```
+<<amacro>> reads literally too.
+#<- markup.inline.raw.block.tiddlywiki5
+```
+
+```tw
+<<amacro>> colours under a label.
+# ^^^^^^ variable.name.macro.tiddlywiki5
+```
+
+```tid
+<<amacro>> colours under the extension alias.
+# ^^^^^^ variable.name.macro.tiddlywiki5
+```
+
+```mem
+<<amacro>> colours under the dialect label.
+# ^^^^^^ variable.name.macro.tiddlywiki5
+```
+
+$$$text/vnd.tiddlywiki
+<<amacro>> colours where the parser itself dispatches.
+# ^^^^^^ variable.name.macro.tiddlywiki5
+$$$
+
+An unterminated `tick stands as prose.
+#<- meta.paragraph.tiddlywiki5
+
+An ordinary sentence stands after it.
+#<- meta.paragraph.tiddlywiki5
