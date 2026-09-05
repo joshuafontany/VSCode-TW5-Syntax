@@ -28,7 +28,10 @@ A macro <<amacro>> stands.
 #         ^^^^^^ variable.name.macro.tiddlywiki5
 ```
 
-# A tick closes with its line, so it admits only what closes with the line. An element, a style
+# A tick matches on one line rather than opening a region: where no end pattern matches, TextMate
+# runs to the end of the document, and an unterminated `<<` inside a tick took the rest of the
+# file. The parser says the same — codeinline.js records `unterminated-codeinline` and renders the
+# delimiter as literal text, which a rule that fails to match spells exactly. An element, a style
 # run and a nested tick each swallowed past the closing backtick; each now reads as raw content.
 An element `<svg width="1">` names itself.
 #           ^^^^ markup.raw.inline.tiddlywiki5
@@ -37,4 +40,11 @@ A style run `@@color:red;` and a tick after it `x`.
 #                                               ^ markup.raw.inline.tiddlywiki5
 
 An ordinary sentence stands here.
+#<- meta.paragraph.tiddlywiki5
+
+An unterminated `tick stands as prose.
+#<- meta.paragraph.tiddlywiki5
+#               ^ meta.paragraph.tiddlywiki5
+
+An ordinary sentence stands after it.
 #<- meta.paragraph.tiddlywiki5

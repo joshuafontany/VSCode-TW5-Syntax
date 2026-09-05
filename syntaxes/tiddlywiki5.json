@@ -5250,98 +5250,96 @@
 		"codeinline": {
 			"patterns": [
 				{
-					"begin": "(?<!`)``(?!`)(?=[^\\n]*(?<!`)``(?!`))",
-					"end": "(?<!`)``(?!`)|(?=$)",
-					"beginCaptures": {
-						"0": {
+					"comment": "A tick span holds wikitext. TiddlyWiki parses nothing inside it, so no verdict stands here; an author writing wikitext who reaches for a tick is often naming a construct, and naming it in colour reads it back to them.\n\nThe rule matches rather than opening a region, and its content class excludes the newline. A begin/end pair carries no bound — the TextMate manual says that where no end matches, the end of the document is used — so an unterminated `<<` inside a tick took the rest of the file. Three grammars converged on this idiom independently: VS Code's markdown, wooorm's markdown-tm-language and Pygments all match a tick span on one line rather than opening one.\n\nThe reading is the parser's own. codeinline.js finds no closing delimiter, records `unterminated-codeinline` and renders the delimiter as literal text; a rule that fails to match says the same thing. Wikitext reads inside the content capture, and a capture confines to its own span, so nothing here can reach the line below.",
+					"match": "(?<!`)(``)(?!`)((?:[^`\\n]|`(?!`))+?)(``)(?!`)",
+					"name": "markup.inline.raw.double.tiddlywiki5 markup.raw.inline.tiddlywiki5",
+					"captures": {
+						"1": {
 							"name": "punctuation.definition.raw.markup.double.begin.tiddlywiki5"
-						}
-					},
-					"endCaptures": {
-						"0": {
+						},
+						"2": {
+							"patterns": [
+								{
+									"match": "`",
+									"name": "markup.inline.raw.inner.tiddlywiki5"
+								},
+								{
+									"include": "#shortcut"
+								},
+								{
+									"include": "#emphasis"
+								},
+								{
+									"include": "#macrocallinline"
+								},
+								{
+									"include": "#filteredtranscludeinline"
+								},
+								{
+									"include": "#transcludeinline"
+								},
+								{
+									"include": "#mvvdisplayinline"
+								},
+								{
+									"include": "#image"
+								},
+								{
+									"include": "#link"
+								},
+								{
+									"include": "#dash"
+								}
+							]
+						},
+						"3": {
 							"name": "punctuation.definition.raw.markup.double.end.tiddlywiki5"
 						}
-					},
-					"patterns": [
-						{
-							"match": "`",
-							"name": "markup.inline.raw.inner.tiddlywiki5"
-						},
-						{
-							"include": "#shortcut"
-						},
-						{
-							"include": "#emphasis"
-						},
-						{
-							"include": "#macrocallinline"
-						},
-						{
-							"include": "#filteredtranscludeinline"
-						},
-						{
-							"include": "#transcludeinline"
-						},
-						{
-							"include": "#mvvdisplayinline"
-						},
-						{
-							"include": "#image"
-						},
-						{
-							"include": "#link"
-						},
-						{
-							"include": "#dash"
-						}
-					],
-					"name": "markup.inline.raw.double.tiddlywiki5 markup.raw.inline.tiddlywiki5",
-					"comment": "A tick span holds wikitext. TiddlyWiki parses nothing inside it, so no verdict stands here; an author writing wikitext who reaches for a tick is nearly always naming a construct, and naming it in colour reads it back to them.\n\nA tick closes with its line, so it admits only what closes with the line too. An HTML or widget element does not: `<svg>` in a tick opened a region that outlived the tick and read seven lines of French prose as SVG. The remaining inline rules were probed one at a time with an unterminated opener, and the sentence after each still read as a paragraph.\n\nA tick admits neither a tick nor a style run: `@@` opened a run that swallowed the closing backtick and read the rest of the line as raw, and letting a tick open inside another letting one open inside another re-paired the backticks on a line carrying three of them, and read the prose between two of them as raw."
+					}
 				},
 				{
-					"begin": "(?<!`)`(?!`)(?=[^\\n]*(?<!`)`(?!`))",
-					"end": "(?<!`)`(?!`)|(?=$)",
-					"beginCaptures": {
-						"0": {
+					"comment": "A tick span holds wikitext. TiddlyWiki parses nothing inside it, so no verdict stands here; an author writing wikitext who reaches for a tick is often naming a construct, and naming it in colour reads it back to them.\n\nThe rule matches rather than opening a region, and its content class excludes the newline. A begin/end pair carries no bound — the TextMate manual says that where no end matches, the end of the document is used — so an unterminated `<<` inside a tick took the rest of the file. Three grammars converged on this idiom independently: VS Code's markdown, wooorm's markdown-tm-language and Pygments all match a tick span on one line rather than opening one.\n\nThe reading is the parser's own. codeinline.js finds no closing delimiter, records `unterminated-codeinline` and renders the delimiter as literal text; a rule that fails to match says the same thing. Wikitext reads inside the content capture, and a capture confines to its own span, so nothing here can reach the line below.",
+					"match": "(?<!`)(`)(?!`)((?:[^`\\n]|`(?!`))+?)(`)(?!`)",
+					"name": "markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5",
+					"captures": {
+						"1": {
 							"name": "punctuation.definition.raw.markup.single.begin.tiddlywiki5"
-						}
-					},
-					"endCaptures": {
-						"0": {
+						},
+						"2": {
+							"patterns": [
+								{
+									"include": "#shortcut"
+								},
+								{
+									"include": "#emphasis"
+								},
+								{
+									"include": "#macrocallinline"
+								},
+								{
+									"include": "#filteredtranscludeinline"
+								},
+								{
+									"include": "#transcludeinline"
+								},
+								{
+									"include": "#mvvdisplayinline"
+								},
+								{
+									"include": "#image"
+								},
+								{
+									"include": "#link"
+								},
+								{
+									"include": "#dash"
+								}
+							]
+						},
+						"3": {
 							"name": "punctuation.definition.raw.markup.single.end.tiddlywiki5"
 						}
-					},
-					"name": "markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5",
-					"patterns": [
-						{
-							"include": "#shortcut"
-						},
-						{
-							"include": "#emphasis"
-						},
-						{
-							"include": "#macrocallinline"
-						},
-						{
-							"include": "#filteredtranscludeinline"
-						},
-						{
-							"include": "#transcludeinline"
-						},
-						{
-							"include": "#mvvdisplayinline"
-						},
-						{
-							"include": "#image"
-						},
-						{
-							"include": "#link"
-						},
-						{
-							"include": "#dash"
-						}
-					],
-					"comment": "A tick span holds wikitext. TiddlyWiki parses nothing inside it, so no verdict stands here; an author writing wikitext who reaches for a tick is nearly always naming a construct, and naming it in colour reads it back to them.\n\nA tick closes with its line, so it admits only what closes with the line too. An HTML or widget element does not: `<svg>` in a tick opened a region that outlived the tick and read seven lines of French prose as SVG. The remaining inline rules were probed one at a time with an unterminated opener, and the sentence after each still read as a paragraph.\n\nA tick admits neither a tick nor a style run: `@@` opened a run that swallowed the closing backtick and read the rest of the line as raw, and letting a tick open inside another letting one open inside another re-paired the backticks on a line carrying three of them, and read the prose between two of them as raw."
+					}
 				}
 			]
 		},

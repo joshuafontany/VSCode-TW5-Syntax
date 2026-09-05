@@ -15,12 +15,16 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   unlabelled fences hold a wikitext example, 822 hold a command line and 465 hold prose or data
   that paints nothing, and a command line pays for it — `--build <target>` takes an en-dash and an
   HTML tag, where `bash` names the tongue it actually speaks.
-- A tick admits only what closes with its line. Handing it the whole grammar let a block rule open
-  inside it: `<svg>` in a tick opened an element region that outlived the tick and read seven lines
-  of French prose as SVG, and `@@` opened a style run that swallowed the closing backtick and read
-  the rest of the line as raw. An element, a style run and a nested tick each read as raw content
-  now, and the remaining inline rules were each probed with an unterminated opener — the sentence
-  after every one still reads as a paragraph.
+- A tick span matches on one line rather than opening a region. Where no end pattern matches,
+  TextMate runs to the end of the document — the manual says so plainly — so an unterminated `<<`
+  or `{{` inside a tick took the rest of the file with it. The parser says the same thing a
+  bounded match says: `codeinline.js` finds no closing delimiter, records `unterminated-codeinline`
+  and renders the delimiter as literal text. Three grammars converged on this idiom independently —
+  VS Code's markdown, wooorm's markdown-tm-language and Pygments all match a tick on one line
+  rather than opening one, and the second carries a source comment rejecting begin/end for exactly
+  this reason. Wikitext reads inside the content capture, and a capture confines to its own span,
+  so nothing in a tick can reach the line below: nine inline rules probed with an unterminated
+  opener, nine boundaries held.
 - The tilde that suppresses a CamelCase link reads like the link it suppresses. With CamelCase
   linking off, TiddlyWiki builds text either way, and the mark still tells a reader what it does.
 
