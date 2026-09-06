@@ -1,0 +1,252 @@
+<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext>>
+
+<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/differential-test-design>>
+```toml meta
+cacheable = true
+file-path = "docs/differential-test-design.mem"
+hydrate   = true
+l-space   = "stable"
+retain    = true
+role      = "the test design this repository builds to — two readers as two causal islands, the decidable test that sorts a structural divergence from a defect, and the six workstreams that follow"
+type      = "text/memetic-wikitext+tiddlywiki"
+uri-path  = "ha.ka.ba/lares/docs/vscode-tw5-syntax/differential-test-design"
+written   = "2026-09-06"
+```
+
+<<^ code="&#x0002;">>
+
+<<~ ahu #the-frame>>
+
+! THE FRAME — no global now, and two readers who never share one
+
+Two readers stand over the same bytes. TiddlyWiki's parser walks the whole source, looks ahead to
+its end, and answers about a document. A TextMate grammar reads one line, carries a rule stack
+across the newline, and answers about a line.
+
+''Neither reader holds a global now.'' The grammar's now spans one line and whatever its stack
+remembers; the parser's now spans the file. Each knows only //as of my own reach//, and no
+engineering closes the distance, because the distance names what the two machines ARE.
+
+So the founding sentence reads: ''agreement names a SYNC, never a truth.'' Where the readings
+coincide, two islands synced. Where they part, a difference opens a ''candidate'' — McKeeman's
+word, and he meant it strictly: //the results of two tested programs may differ and yet still be
+correct//.
+
+A harness counting disagreements as defects reclassifies every light-cone difference as a
+regression. A harness ruling them by hand reclassifies them as whatever the hand felt that
+afternoon. This design takes a third road: it ''measures which kind a divergence carries''.
+
+<<~/ahu>>
+
+<<~ ahu #the-decidable-test>>
+
+! THE DECIDABLE TEST — light-cone, never judgement
+
+Take any divergence standing at offset `i`.
+
+''The grammar's reach at `i`'' spans the line holding `i`, plus the rule stack the lines before it
+carried in. Nothing past the end of that line reaches the grammar's decision, because a pattern
+sees one line and no more — probed directly, an `end` spelling a newline never matches.
+
+''The probe.'' Alter the text lying OUTSIDE that reach — everything past the end of the line
+holding `i` — and ask the parser again.
+
+* The parser's verdict at `i` ''moves'' -> the deciding evidence sits outside the grammar's reach
+-> the divergence stands ''STRUCTURAL''. Permanent by construction. No grammar reaches it and no
+work retires it. RULED.
+* The parser's verdict at `i` ''holds'' -> the deciding evidence sat within reach all along -> the
+divergence names a ''DEFECT''. Temporary. OWED, with an owner and an expiry.
+
+That probe replaces a judgement with a measurement, and it sorts the ledger this repository already
+keeps. Four families ride that ledger under a reason written by hand — an unterminated comment, a
+definition block, an element with no closer, an element root — and each one names a lookahead the
+grammar cannot make. The probe decides all four without a hand, and decides the next one nobody has
+met yet.
+
+''The ledger gains a column: which probe ran, and what it answered.''
+
+<<~/ahu>>
+
+<<~ ahu #two-axes>>
+
+! TWO AXES, NEVER ONE COUNT
+
+A pseudo-oracle asks whether two readings match. Two readers computing different functions never
+satisfy that outright, so the mismatch gets absorbed into a growing ledger and the growth carries a
+structural source rather than a defect source. Program-analyser differential testing settled this
+by splitting the verdict, and the split maps onto the two defect families this grammar already
+names.
+
+* ''SWALLOW'' — the grammar assigns LESS structure than the parser. An under-approximation. A
+region runs past a boundary the parser closes, and constructs after it lose their reading.
+* ''INVENTION'' — the grammar names a scope where the parser names none. An over-approximation. A
+verdict fires on markup standing in plain sight, or a construct colours where the parser refused.
+
+''Two ratchets, opposite polarity, each with its own collision.'' One count fusing them lets either
+hide the other: a swallow retired and an invention added reads as no change at all.
+
+<<~/ahu>>
+
+<<~ ahu #the-specimen-law>>
+
+! THE SPECIMEN LAW
+
+!! Cut inside the line
+
+A TextMate engine tokenizes line by line and carries its stack across the newline, so a cut at a
+line boundary lands where that machine behaves most benignly — never mid-pattern, never splitting a
+multi-line opener, never leaving a partial match straddling the boundary. ''A generator cutting
+only at line boundaries avoids by construction the positions where the two readers most plausibly
+part.''
+
+Measured over this corpus: cutting at line boundaries finds 27 divergences across 9 classes;
+cutting at character offsets inside a line finds 2111 across 38, and ''29 of those classes the line
+cut never reaches at all'' — headings, lists, inline macro calls, six widget families, start tags,
+XML declarations, shortcuts.
+
+A mid-line cut also models the only reader who matters: a grammar earns its living on text under a
+cursor, and text under a cursor sits unterminated almost continuously.
+
+!! Vary the sentinel
+
+One sentinel held fixed across every specimen sits as an uncontrolled constant. The reading at an
+offset must not depend on WHICH construct follows it, so the sentinel varies and the invariance
+gets asserted rather than assumed.
+
+!! Omit features, never only sample them
+
+A corpus cut from real text carries every construct in real proportion, and real-world frequency
+diverges from defect-finding frequency. Swarm testing measures the gap: diversity through feature
+OMISSION found 42% more distinct compiler crashes than a tuned default, because some features
+actively suppress the behaviour a run hunts, and features compete for room inside one specimen.
+
+!! Ratchet diversity, never count
+
+A specimen costs nothing here, so a floor over specimen count rises forever while finding nothing.
+The ratchet rides the ''tuple of observed behaviours'' — the grammar's scope, the parser's node and
+the position — and a specimen earns its place by producing a tuple nobody has seen.
+
+<<~/ahu>>
+
+<<~ ahu #workstreams>>
+
+! THE SIX WORKSTREAMS
+
+Each names what it asserts, the collision proving it can refuse, the ratchet it carries, and the
+thing it MUST NOT do.
+
+!! W1 · The character-offset sweep
+
+''Asserts:'' at every character offset inside every corpus line, the two readers agree about the
+span at a known position, or the ledger explains the difference.
+''Collision:'' a grammar stripped of one bound spelling draws reports the ledger does not cover.
+''Ratchet:'' two disagreement counts, swallow and invention, each falling only.
+''Must not:'' fuse the two counts, and must not cut only at line boundaries.
+
+!! W2 · The engine differential
+
+A grammar green under one regex engine runs wrong under another, silently, because the host
+swallows what the engine refuses — probed here, a scanner accepts `(?<unclosed` and `a{2,1}` alike
+and raises nothing, so the swallow sits below the API and a second engine has to answer.
+
+''Asserts:'' every pattern this repository ships reads identically under each engine a reader may
+run — the WASM Oniguruma the editor loads, and a JavaScript translation of the same syntax.
+''Collision:'' a pattern using a construct only one engine implements draws a report.
+''Ratchet:'' a count of patterns whose readings part, falling only.
+''Must not:'' treat either engine as the authority. Both readings stand; the DIFFERENCE reports.
+
+!! W3 · The must-fail corpus
+
+Two senses live in one exclusion list today, and a list fusing them cannot stay readable: a
+specimen written to be malformed, and a specimen the grammar cannot yet handle.
+
+''Asserts:'' a specimen filed as must-fail DOES fail, and a specimen filed as a known divergence
+carries a reason, an owner and an expiry.
+''Collision:'' a must-fail specimen the grammar starts reading correctly fails the gate — a
+positive control that passes reports a control that stopped controlling.
+''Ratchet:'' the known-divergence list falls; the must-fail list grows freely.
+''Must not:'' hold both senses in one file.
+
+!! W4 · Generated collisions
+
+A hand-written collision proves a gate refuses for ONE reason somebody already imagined. The fault
+this whole harness exists to catch reappears here, one level up, inside its own tests.
+
+''Asserts:'' each gate kills a machine-generated mutation of the grammar — an `end` dropped, a
+character class widened, a `begin` anchor flipped, two patterns reordered, a bound removed.
+''Collision:'' the mutation score itself, measured against a gate deliberately weakened.
+''Ratchet:'' mutation score, rising only, and read as a FLOOR rather than a target, since the score
+correlates imperfectly with real fault detection.
+''Must not:'' retire the hand-written collisions. A generated mutant probes what the generator
+imagines; the two populations differ.
+
+!! W5 · Ledger expiry and ownership
+
+The largest running deployment of this design carries three files rather than one — the
+expectations, the ones that sat too long, and the ones nobody will fix. A ledger run long enough
+produces a stale-divergence file whether or not anyone plans one.
+
+''Asserts:'' every ledger entry carries a reason, an owner, the probe that classified it and an
+expiry; a structural entry expires never, a defect entry expires and re-adjudicates.
+''Collision:'' an entry past its expiry fails the gate.
+''Ratchet:'' the count of defect-class entries falls; the structural class carries no ratchet,
+because a light-cone difference retires only when a reader changes shape.
+''Must not:'' let the disagreement count fall by ledger growth. That reads identical to falling by
+repair and means the opposite.
+
+!! W6 · The fuzzer
+
+The oracle stands in-process, so generation costs almost nothing: generate, feed both readers, diff.
+
+''Asserts:'' no generated input produces a divergence outside a ruled class.
+''Collision:'' a seeded fault the fuzzer must find within a bounded budget.
+''Ratchet:'' distinct behaviour-tuples reached, rising only.
+''Must not:'' seed only from the corpus. The empty seed has out-yielded valid seeds in measurement,
+and a seed set drawn from one corpus inherits that corpus's blind spots whole.
+
+<<~/ahu>>
+
+<<~ ahu #what-this-declines>>
+
+! WHAT THIS DESIGN DECLINES, AND WHY
+
+* ''The render stage as an oracle.'' A rendered output answers what text MEANS once every reference
+resolves; a grammar answers what text LOOKS LIKE on local evidence alone. The two coincide across
+an easy middle and part exactly where a grammar errs, so the oracle stays quiet where it matters
+and speaks where nobody can act. Probed: an undefined macro call PARSES and renders NOTHING, and a
+grammar must colour it.
+* ''The round-trip property.'' A TextMate grammar reconstructs no source. Locality, monotonicity and
+invariance transfer; round-trip names a property this artifact cannot carry.
+* ''A naming gate where structure already wins.'' The grammar reads filter operators and run
+prefixes structurally, so an unknown name colours correctly and a list would demand maintenance for
+nothing. Behaviour gets asserted; names do not.
+* ''One disagreement count.'' See #two-axes.
+* ''An auto-blessed snapshot.'' A blesser recording whatever the run produced converts a check into
+a memory of the last run. Where an update path exists it refuses to bless a specimen whose
+reference-parser side reports an error.
+
+<<~/ahu>>
+
+<<~ ahu #standing-ground>>
+
+! THE GROUND THIS STANDS ON
+
+Searched from outside and returned empty: no project runs a TextMate grammar and a reference parser
+as a live differential oracle; no prior art names a truncation sweep of a highlighter; no rule-level
+coverage tooling exists for TextMate grammars; no academic literature covers testing syntax
+highlighters against reference parsers.
+
+''Read that twice.'' It grants novelty and it withholds a map. Nobody has published these failure
+modes, so every one arrives here first — which raises the price of each instrument reporting green,
+and raises the price of every collision left unwritten.
+
+One measured caution carries more weight than the silence. The author maintaining a reference
+markdown parser, its conformance fixtures AND the finest markdown TextMate grammar in existence
+tests that grammar against twelve hand-curated snapshots. The differential sat within his reach and
+he declined it. ''Cost signal, never permission.''
+
+<<~/ahu>>
+
+<<^ code="&#x0003;">>ni:///sha-256;-t7MjMPeG0-D-jfHmwOoPIaflmLc7CeOTomaLlzQmT0
+
+<<^ code="&#x0004;" -> to=?>>
