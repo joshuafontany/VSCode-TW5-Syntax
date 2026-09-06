@@ -1375,7 +1375,7 @@
 		"htmlwidget-math": {
 			"patterns": [
 				{
-					"begin": "(?i)(<)(math)(?=\\s|/?>)(?:(([^\"'>]|\"[^\"]*\"|'[^']*')*)((?<!>)>(?!>)))?",
+					"begin": "(?i)(<)(math)(?=\\s|/?>)(?:(([^\"'>]|\"[^\"]*\"|'[^']*')*)((?<![/>])>(?!>)))?",
 					"beginCaptures": {
 						"0": {
 							"name": "meta.tag.structure.$2.start.html.tiddlywiki5"
@@ -1397,7 +1397,7 @@
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
 						}
 					},
-					"end": "(?i)(</)(\\2)\\s*(>)",
+					"end": "(?i)(</)(\\2)\\s*(>)|(/>)",
 					"endCaptures": {
 						"0": {
 							"name": "meta.tag.structure.$2.end.html.tiddlywiki5"
@@ -1410,13 +1410,16 @@
 						},
 						"3": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
+						},
+						"4": {
+							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
 						}
 					},
 					"name": "meta.element.structure.$2.html.tiddlywiki5",
 					"patterns": [
 						{
 							"begin": "(?<!>)\\G",
-							"end": ">|(?=^$)",
+							"end": "(?=/>)|>|(?=^$)",
 							"endCaptures": {
 								"0": {
 									"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -1848,7 +1851,7 @@
 		"htmlwidget-svg": {
 			"patterns": [
 				{
-					"begin": "(?i)(<)(svg)(?=\\s|/?>)(?:(([^\"'>]|\"[^\"]*\"|'[^']*')*)((?<!>)>(?!>)))?",
+					"begin": "(?i)(<)(svg)(?=\\s|/?>)(?:(([^\"'>]|\"[^\"]*\"|'[^']*')*)((?<![/>])>(?!>)))?",
 					"beginCaptures": {
 						"0": {
 							"name": "meta.tag.structure.$2.start.html.tiddlywiki5"
@@ -1870,7 +1873,7 @@
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
 						}
 					},
-					"end": "(?i)(</)(\\2)\\s*(>)",
+					"end": "(?i)(</)(\\2)\\s*(>)|(/>)",
 					"endCaptures": {
 						"0": {
 							"name": "meta.tag.structure.$2.end.html.tiddlywiki5"
@@ -1883,13 +1886,16 @@
 						},
 						"3": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
+						},
+						"4": {
+							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
 						}
 					},
 					"name": "meta.element.structure.$2.html.tiddlywiki5",
 					"patterns": [
 						{
 							"begin": "(?<!>)\\G",
-							"end": ">|(?=^$)",
+							"end": "(?=/>)|>|(?=^$)",
 							"endCaptures": {
 								"0": {
 									"name": "punctuation.definition.tag.end.html.tiddlywiki5"

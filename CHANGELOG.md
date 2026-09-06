@@ -7,6 +7,38 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A self-closing `<svg …/>` closes its element. Twelve element families stand here and ten admit a
+  self-close in their end pattern; the two that did not name `<svg>` and `<math>`, the roots. A
+  sibling survives the gap because its end also breaks on the parent's closing tag, and a root has
+  no parent — so `$:/core/images/blank`, a one-line self-closing icon shipped in every wiki, held
+  its region to the end of the file. The fix takes three parts, and each one alone leaves it open:
+  the root's end admits `(/>)`, its start tag stops BEFORE the mark instead of eating it, and the
+  root's begin declines a self-closing `>` so the mark survives to reach either.
+- The cut sweep reads every corpus type the wikitext parser can answer for, not only `.tw`: 757
+  cuts across 35 files where 627 across 26 stood. A `.tid` keeps its header and takes the sentinel
+  into its BODY, which asks the sharpest question available here — cut inside the header, append a
+  body, and see whether a field value left open colours it. It does not: the field grammar, whose
+  values began reading as wikitext this week, carries 130 new cuts and no divergence, with the
+  known `<!--` runaway standing as the control that proves the reading can diverge at all. A
+  `.multids` carries no wikitext body for a parser to disagree over, and a syntax test reads its
+  own assertion lines as ordered lists; both stand named rather than omitted.
+- An unterminated start tag no longer takes the rest of the file. A tag region whose end names
+  only `>` runs to the end of the document where no `>` follows, and every construct after an
+  unclosed `<div` then colours as an attribute name. The grammar already held the bound for widget
+  tags and had never carried it to the other nine families; 43 tag regions and 7 attribute regions
+  now end at a blank line, chosen by what their end pattern awaits rather than by tag name. The
+  attribute regions matter as much as the tags: a child region on the stack keeps its parent's end
+  from ever being tested.
+- That bound was ruled unfixable an hour before it landed, and both halves of the ruling fell to
+  measurement. Counted across 2583 files, of 2348 start tags TiddlyWiki accepts, six carry a blank
+  line outside a quoted value — every one a widget tag, all in one core file, and all already
+  bounded — and no plain HTML tag anywhere carries one. So the bound costs nothing that stands.
+  The remedy the ruling proposed instead could not have been written at all: vscode-textmate hands
+  a pattern one line and no more, so an end pattern standing at a blank line cannot read the line
+  that would decide the question.
+- The swallow ledger fails on a ruling that explains nothing. A divergence gets fixed, its line
+  stays, and the record then carries more standing debt than the repository does — the same way a
+  list of openers outlived the rules it claimed to cover.
 - The corpus gate answers to the host as well as to itself. Its three readings all measure what
   this repository wrote — scopes declared, scopes reached, constructs contained — so a rule the
   grammar never learned reaches no scope, goes unmissed, and coverage reads full. A fourth reading

@@ -44,6 +44,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
+const { parseTid } = require('./wiki-data.js');
 
 const verbose = process.argv.includes('--verbose');
 const LEDGER = path.join(ROOT, 'corpus', 'swallow-ledger.txt');
@@ -58,10 +59,36 @@ const SENTINEL = '<<<\nQuoted\n<<<\n';
 // rules.
 const EXEMPT = (file, text) => /degenerate\./.test(path.basename(file)) || /^\\rules /m.test(text);
 
-/** Every corpus file the base grammar opens. */
+// What each file type opens under, and how a body reaches the parser.
+//
+// A `.tid` carries a header the wikitext parser never reads, so the specimen keeps the header and
+// the sentinel lands in the BODY — which makes the sharpest question available anywhere here: cut
+// inside the header, append a body, and see whether a field value left open colours it.
+//
+// Two types stand out, each for a reason rather than by omission. A `.multids` carries no wikitext
+// body at all — every line names a field — so no parser reading exists to disagree with. A syntax
+// test opens with a directive line and carries assertions on `#` lines, which the wikitext parser
+// reads as ordered lists; the two readers diverge there by construction, on every line.
+const READINGS = {
+  '.tw': { scope: 'text.html.tiddlywiki5' },
+  '.mem': { scope: 'text.html.tiddlywiki5.memetic-wikitext' },
+  '.tid': { scope: 'source.tiddlywiki5.tid-file', body: (text) => parseTid(text).body },
+  '.meta': { scope: 'source.tiddlywiki5.tid-file', body: (text) => parseTid(text).body }
+};
+
+/** Every corpus specimen a reading covers, with the reading it takes. */
 function specimens() {
-  const dir = path.join(ROOT, 'corpus', 'wikitext');
-  return fs.readdirSync(dir).filter((f) => f.endsWith('.tw')).sort().map((f) => path.join(dir, f));
+  const out = [];
+  const walk = (dir) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
+      const file = path.join(dir, entry.name);
+      if (entry.isDirectory()) { walk(file); continue; }
+      const reading = READINGS[path.extname(entry.name)];
+      if (reading) out.push({ file, ...reading });
+    }
+  };
+  walk(path.join(ROOT, 'corpus'));
+  return out;
 }
 
 /**
@@ -99,7 +126,7 @@ const grammarReads = (lines, at) => (lines[at] || [])
 /** What the grammar named where the sentinel should have opened. */
 function grammarNames(lines, at) {
   const scopes = (lines[at] || []).flatMap((t) => t.scopes)
-    .filter((s) => s !== 'text.html.tiddlywiki5' && !/quoteblock/.test(s));
+    .filter((s) => !/^(text\.html\.tiddlywiki5|source\.tiddlywiki5)[a-z.-]*$/.test(s) && !/quoteblock/.test(s));
   return scopes.find((s) => /^(meta|comment|source|string)\./.test(s)) || scopes[0] || '(bare text)';
 }
 
@@ -116,7 +143,7 @@ function parserHolds(text, at) {
   let probes = 0;
   let files = 0;
 
-  for (const file of specimens()) {
+  for (const { file, scope, body } of specimens()) {
     const text = fs.readFileSync(file, 'utf8');
     if (EXEMPT(file, text)) continue;
     files += 1;
@@ -125,16 +152,20 @@ function parserHolds(text, at) {
       const head = lines.slice(0, cut).join('\n').replace(/\n+$/, '');
       if (!head.trim()) continue;
       const specimen = `${head}\n\n${SENTINEL}`;
-      const at = head.length + 2;
-      const line = head.split('\n').length + 1;
+      // The parser reads a body; the grammar reads a file. A `.tid` cut inside its header hands
+      // the parser a body of the sentinel alone, and the blank line that ends the header is the
+      // same blank line the sentinel stands behind.
+      const read = body ? body(specimen) : specimen;
+      const at = read.lastIndexOf(SENTINEL);
+      const line = specimen.split('\n').length - 4;
+      if (at < 0) continue;
       probes += 1;
-      const parser = parserReads(specimen, at);
-      const grammar = grammarReads(await tokenize('text.html.tiddlywiki5', specimen), line);
+      const tokens = await tokenize(scope, specimen);
+      const parser = parserReads(read, at);
+      const grammar = grammarReads(tokens, line);
       if (parser === grammar) continue;
       const direction = parser ? 'runaway' : 'overbound';
-      const key = parser
-        ? grammarNames(await tokenize('text.html.tiddlywiki5', specimen), line)
-        : parserHolds(specimen, at);
+      const key = parser ? grammarNames(tokens, line) : parserHolds(read, at);
       const id = `${direction} ${key}`;
       if (!findings.has(id)) findings.set(id, { direction, key, hits: [] });
       findings.get(id).hits.push({ file: path.basename(file), cut, tail: lines[cut - 1].slice(0, 58) });
