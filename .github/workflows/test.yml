@@ -115,6 +115,8 @@ jobs:
         run: npm run light-cone
       - name: Every must-fail specimen still fails as declared
         run: npm run must-fail
+      - name: Every pattern crosses to the second regex engine
+        run: npm run engine-witness
 
       # What a theme paints for this grammar against six comparator grammars.
       - name: Theme parity

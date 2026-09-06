@@ -103,6 +103,8 @@ const READS_CONTENT_NAME = {
     'lists it among the keys TextMate defines, to catch a rule carrying a key TextMate does not',
   'terminator-closure.js':
     "reads one rule's own name while reporting on that rule, never a set over the grammar",
+  'engine-witness.js':
+    'names the rule a refused pattern belongs to, so a reader can find it — one label per refusal, never a set',
   'theme-parity.test.js':
     `strips one ${FIELD} from a copy of the grammar, to provoke the gate it collides`
 };

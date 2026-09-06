@@ -3,11 +3,11 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 25 of 25
+gates-held: 26 of 26
 
 {
-    "gates": 25,
-    "held": 25,
+    "gates": 26,
+    "held": 26,
     "failing": 0,
     "results": [
         {
@@ -69,6 +69,11 @@ gates-held: 25 of 25
             "gate": "dark-construct",
             "held": true,
             "said": "dark-construct  381 construct(s) over 65 themes, 13 plain, 0 unaccounted"
+        },
+        {
+            "gate": "engine-witness",
+            "held": true,
+            "said": "engine-witness  777 pattern(s) across 8 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "filter-witness",

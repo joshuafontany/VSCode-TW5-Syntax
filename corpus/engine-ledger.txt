@@ -1,0 +1,16 @@
+# Patterns one regex engine takes and the other refuses, and what this repository ruled about each.
+#
+# This grammar runs under more than one engine. An editor loads the WASM Oniguruma build; a
+# documentation site rendering through Shiki translates every pattern to JavaScript first. A
+# construct one engine implements and the other emulates differently colours differently there —
+# silently, for a reader who runs no gate and files no issue.
+#
+# NEITHER ENGINE HOLDS AUTHORITY, so this records a DIFFERENCE rather than a fault. Ruling the WASM
+# build correct would encode its quirks as law; ruling the translation correct would encode a
+# translator's coverage as the language.
+#
+#   <fragment of the refusal or of the pattern>   # why it stands
+#
+# THE FILE STANDS EMPTY, MEASURED. All 777 patterns across all 8 grammars cross to the second
+# engine. That reads as portability today and says nothing about tomorrow: the day a pattern
+# reaches for a construct only one engine carries, it lands here with a reason or it fails the gate.

@@ -7,6 +7,18 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- `engine-witness` reads every shipped pattern under a second regex engine. vscode-textmate raises
+  nothing when Oniguruma declines a pattern — the rule simply never matches, the corpus reaches
+  fewer scopes, the snapshots record the reduced reading as correct, and every gate passes. Probed
+  directly, the WASM engine takes `(?<unclosed`, `(`, `*bad` and `[z-a]` without a word, so the
+  swallow sits below the API and no reading of that engine can find a dead pattern. The second
+  engine refuses all four.
+- It answers a second question the first cannot reach. This grammar runs wherever a reader meets
+  it, and a documentation site rendering through Shiki translates every pattern to JavaScript
+  first; a construct one engine implements and the other emulates differently colours differently
+  there, silently, for a reader who runs no gate and files no issue. Measured: 777 patterns across
+  8 grammars, and every one crosses. `corpus/engine-ledger.txt` stands empty and says so, because
+  neither engine holds authority and the gate records a difference rather than a fault.
 - `must-fail` measures the degradation each malformed specimen still produces. A specimen written
   to fail stands exempt from the gates that read well-formed text, and that exemption costs nothing
   while the specimen degrades — the day the grammar improves past it, the specimen reads clean,

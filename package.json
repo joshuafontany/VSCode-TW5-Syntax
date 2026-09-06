@@ -348,6 +348,7 @@
     },
     "devDependencies": {
         "language-gfm": "https://github.com/atom/language-gfm",
+        "oniguruma-to-es": "^4.3.6",
         "tiddlywiki": "5.4.1",
         "tm-grammars": "^1.32.9",
         "tm-themes": "^1.12.9",
@@ -385,6 +386,7 @@
         "attribute-witness": "node ./tools/attribute-witness.js",
         "light-cone": "node ./tools/light-cone.js",
         "must-fail": "node ./tools/must-fail.js",
+        "engine-witness": "node ./tools/engine-witness.js",
         "backtrack-witness": "node ./tools/backtrack-witness.js",
         "dark-construct": "node ./tools/dark-construct.js",
         "gates": "node ./tools/gate-report.js",
