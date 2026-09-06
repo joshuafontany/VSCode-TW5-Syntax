@@ -30,6 +30,19 @@ opens, and each element family names that region for itself. These carry one ele
   class="a">math structure</mrow><mglyph
   class="a">math object</mglyph></math>
 
+A blank line ends a start tag here, where TiddlyWiki carries it: the parser skips whitespace
+across one while attributes keep parsing, so its own core writes tags this way. Counted across
+2583 files, six accepted start tags carry a blank line outside a quoted value and every one of
+them wears a widget name; no plain HTML tag anywhere carries one. So the bound costs six real
+constructs in a single core file and closes a region that otherwise takes the rest of the file.
+
+<$set
+
+  name="targetTiddler"
+  value=<<currentTiddler>>
+
+>the widget still holds its attributes</$set>
+
 A table caption stands above its rows.
 
 |A caption|c

@@ -1,0 +1,27 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A blank line ends a start tag, and one newline does not"
+
+# A start tag spans lines: TiddlyWiki skips whitespace between attributes, so the attributes of a
+# tag broken across lines keep their reading.
+
+<div
+#^^^^ text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5
+  class="a"
+# ^^^^^ text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 meta.attribute.class.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+  id="b">body</div>
+# ^^ text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 meta.attribute.id.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+
+# A BLANK line ends it. TiddlyWiki reads on — it skips a blank line the same way it skips a
+# space, and its own core writes a widget tag across one — but where no pattern matches an end,
+# TextMate runs a region to the end of the document, and an unclosed tag then colours every
+# construct after it as an attribute name. Counted across 2583 files, no plain HTML start tag
+# anywhere carries a blank line, and the six that do all wear a widget name in one core file.
+
+<div
+
+A paragraph, not an attribute.
+#^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+
+<<<
+Quoted
+#^^^^^ text.html.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5
+<<<

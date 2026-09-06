@@ -14,6 +14,16 @@
 # The key names the scope the grammar had open (runaway) or the rule TiddlyWiki had open
 # (overbound); `*` stands for any run of characters. A reason opening OWED records a divergence
 # rather than accepting it: the gate stays green and prints it as debt.
+#
+# A REASON CARRIES MEASUREMENTS, NEVER A REMEDY IT HAS NOT COLLIDED. A line stood here ruling the
+# unterminated start tag unfixable, and closed by naming the bound that would fit. Both halves
+# fell to measurement: no plain HTML start tag in 2583 files carries a blank line, so the bound
+# cost nothing and landed; and the remedy the line proposed could not have been written anyway,
+# since vscode-textmate hands a pattern one line and no more. A remedy nobody tried reads as work
+# owed and sends the next reader to build what will not build.
+#
+# A RULING THAT EXPLAINS NOTHING FAILS THE GATE. A divergence gets fixed and its line stays, and
+# the ledger then reads as a longer list of standing debt than the repository carries.
 
 # ── the lookahead the parser has and a grammar cannot ────────────────────────────────────────
 # Each of these turns on text TiddlyWiki reads BEYOND the construct, sometimes to the end of the
@@ -27,9 +37,9 @@ runaway meta.directive.variable.*   # a definition block runs to `\end`, across 
 runaway meta.embedded.block.html.*  # `<style>` and `<script>` with no closer: TiddlyWiki carries the element to the end of the tiddler — its own `unterminated-html` hint says so — and parses the body as WIKITEXT BLOCKS. Both readers carry; only the language of the interior differs, and CSS and JS there hold the convention every HTML grammar keeps
 runaway meta.element.*              # an SVG or MathML element reads the same way, for the same reason
 
+
 # ── recorded, not accepted ───────────────────────────────────────────────────────────────────
 
-runaway meta.tag.*.html.*           # OWED — an unterminated START TAG. TiddlyWiki skips whitespace across blank lines while attributes keep parsing, so `<div` newline newline `class="a">` builds a div; it refuses only where what follows parses as neither an attribute nor `>`. A TextMate end pattern cannot try-parse, so the region runs on and the file after an unclosed `<div` colours as attribute names. The bound that would fit reads what an attribute can open, which the grammar already spells
 runaway meta.transclusion.*         # OWED — `{{A/Tiddler||A` left open: TiddlyWiki refuses the transclusion and parses the block after the blank line; the grammar carries the region
-overbound html                      # OWED — an element with no closer: TiddlyWiki carries it to the end of the tiddler and says so in a hint, while the grammar closes it at the blank line. The reading costs the element its body wherever a closer goes missing
+overbound html                      # OWED — an element with no closer: TiddlyWiki carries it to the end of the tiddler and says so in its own hint, and reads the body as one inline run where no blank line follows the tag. The grammar opens no region over a block element's body at all — it colours the two tags and hands what lies between to the block rules, which tests/tiddlywiki5/tiddlywiki5.widget-body.tw5.test pins for the one-line form — so the text after an unclosed tag reads as ordinary blocks rather than as that element's content
 overbound codeblock                 # OWED — an unterminated fence takes the rest of the source in TiddlyWiki; the grammar ends it at the blank line

@@ -729,7 +729,7 @@
 						}
 					},
 					"comment": "HTML5 attributes, not event handlers",
-					"end": "(?=\\s*+[^=\\s])",
+					"end": "(?=\\s*+[^=\\s])|(?=^$)",
 					"name": "meta.attribute.$1.html.tiddlywiki5",
 					"patterns": [
 						{
@@ -745,7 +745,7 @@
 						}
 					},
 					"comment": "HTML5 style attribute",
-					"end": "(?=\\s*+[^=\\s])",
+					"end": "(?=\\s*+[^=\\s])|(?=^$)",
 					"name": "meta.attribute.style.html.tiddlywiki5",
 					"patterns": [
 						{
@@ -852,7 +852,7 @@
 						}
 					},
 					"comment": "HTML5 attributes, event handlers",
-					"end": "(?=\\s*+[^=\\s])",
+					"end": "(?=\\s*+[^=\\s])|(?=^$)",
 					"name": "meta.attribute.event-handler.$1.html.tiddlywiki5",
 					"patterns": [
 						{
@@ -1020,7 +1020,7 @@
 						}
 					},
 					"comment": "HTML5 attributes, data-*",
-					"end": "(?=\\s*+[^=\\s])",
+					"end": "(?=\\s*+[^=\\s])|(?=^$)",
 					"name": "meta.attribute.data-x.$1.html.tiddlywiki5",
 					"patterns": [
 						{
@@ -1036,7 +1036,7 @@
 						}
 					},
 					"comment": "HTML attributes, deprecated",
-					"end": "(?=\\s*+[^=\\s])",
+					"end": "(?=\\s*+[^=\\s])|(?=^$)",
 					"name": "meta.attribute.$1.html.tiddlywiki5",
 					"patterns": [
 						{
@@ -1290,7 +1290,7 @@
 					"name": "punctuation.definition.tag.begin.html.tiddlywiki5"
 				}
 			},
-			"end": ">",
+			"end": ">|(?=^$)",
 			"endCaptures": {
 				"0": {
 					"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -1416,7 +1416,7 @@
 					"patterns": [
 						{
 							"begin": "(?<!>)\\G",
-							"end": ">",
+							"end": ">|(?=^$)",
 							"endCaptures": {
 								"0": {
 									"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -1445,7 +1445,7 @@
 									"name": "entity.other.attribute-name.html.tiddlywiki5"
 								}
 							},
-							"end": "(?=\\s*+[^=\\s])",
+							"end": "(?=\\s*+[^=\\s])|(?=^$)",
 							"name": "meta.attribute.$1.html.tiddlywiki5",
 							"patterns": [
 								{
@@ -1553,7 +1553,7 @@
 							"patterns": [
 								{
 									"begin": "(?<!>)\\G",
-									"end": "(?=/>)|>",
+									"end": "(?=/>)|>|(?=^$)",
 									"endCaptures": {
 										"0": {
 											"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -1641,7 +1641,7 @@
 							"patterns": [
 								{
 									"begin": "(?<!>)\\G",
-									"end": "(?=/>)|>",
+									"end": "(?=/>)|>|(?=^$)",
 									"endCaptures": {
 										"0": {
 											"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -1729,7 +1729,7 @@
 							"patterns": [
 								{
 									"begin": "(?<!>)\\G",
-									"end": "(?=/>)|>",
+									"end": "(?=/>)|>|(?=^$)",
 									"endCaptures": {
 										"0": {
 											"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -1817,7 +1817,7 @@
 							"patterns": [
 								{
 									"begin": "(?<!>)\\G",
-									"end": "(?=/>)|>",
+									"end": "(?=/>)|>|(?=^$)",
 									"endCaptures": {
 										"0": {
 											"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -1889,7 +1889,7 @@
 					"patterns": [
 						{
 							"begin": "(?<!>)\\G",
-							"end": ">",
+							"end": ">|(?=^$)",
 							"endCaptures": {
 								"0": {
 									"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -1918,7 +1918,7 @@
 									"name": "entity.other.attribute-name.html.tiddlywiki5"
 								}
 							},
-							"end": "(?=\\s*+[^=\\s])",
+							"end": "(?=\\s*+[^=\\s])|(?=^$)",
 							"name": "meta.attribute.$1.html.tiddlywiki5",
 							"patterns": [
 								{
@@ -2026,7 +2026,7 @@
 							"patterns": [
 								{
 									"begin": "(?<!>)\\G",
-									"end": "(?=/>)|>",
+									"end": "(?=/>)|>|(?=^$)",
 									"endCaptures": {
 										"0": {
 											"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -2114,7 +2114,7 @@
 							"patterns": [
 								{
 									"begin": "(?<!>)\\G",
-									"end": "(?=/>)|>",
+									"end": "(?=/>)|>|(?=^$)",
 									"endCaptures": {
 										"0": {
 											"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -2202,7 +2202,7 @@
 							"patterns": [
 								{
 									"begin": "(?<!>)\\G",
-									"end": "(?=/>)|>",
+									"end": "(?=/>)|>|(?=^$)",
 									"endCaptures": {
 										"0": {
 											"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -2290,7 +2290,7 @@
 							"patterns": [
 								{
 									"begin": "(?<!>)\\G",
-									"end": "(?=/>)|>",
+									"end": "(?=/>)|>|(?=^$)",
 									"endCaptures": {
 										"0": {
 											"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -2387,7 +2387,7 @@
 							"patterns": [
 								{
 									"begin": "(?<!>)\\G",
-									"end": "(?=/>)|>",
+									"end": "(?=/>)|>|(?=^$)",
 									"endCaptures": {
 										"0": {
 											"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -2475,7 +2475,7 @@
 							"patterns": [
 								{
 									"begin": "(?<!>)\\G",
-									"end": "(?=/>)|>",
+									"end": "(?=/>)|>|(?=^$)",
 									"endCaptures": {
 										"0": {
 											"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -2515,7 +2515,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": "((?: ?/)?>)",
+					"end": "((?: ?/)?>)|(?=^$)",
 					"endCaptures": {
 						"1": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -2636,7 +2636,7 @@
 											"name": "punctuation.definition.tag.end.html.tiddlywiki5"
 										}
 									},
-									"end": "(>)",
+									"end": "(>)|(?=^$)",
 									"name": "meta.tag.metadata.style.start.html.tiddlywiki5",
 									"patterns": [
 										{
@@ -2799,7 +2799,7 @@
 											"patterns": [
 												{
 													"begin": "\\G",
-													"end": "(>)",
+													"end": "(>)|(?=^$)",
 													"endCaptures": {
 														"1": {
 															"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -2838,7 +2838,7 @@
 											"patterns": [
 												{
 													"begin": "\\G",
-													"end": "(>)",
+													"end": "(>)|(?=^$)",
 													"endCaptures": {
 														"1": {
 															"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -2874,7 +2874,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": "/?>",
+					"end": "/?>|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -2897,7 +2897,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": ">",
+					"end": ">|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -2920,7 +2920,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": ">",
+					"end": ">|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -2943,7 +2943,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": "/?>",
+					"end": "/?>|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -2966,7 +2966,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": ">",
+					"end": ">|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -2989,7 +2989,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": ">",
+					"end": ">|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3012,7 +3012,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": "/?>",
+					"end": "/?>|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3035,7 +3035,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": ">",
+					"end": ">|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3058,7 +3058,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": ">",
+					"end": ">|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3081,7 +3081,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": "/?>",
+					"end": "/?>|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3104,7 +3104,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": ">",
+					"end": ">|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3127,7 +3127,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": ">",
+					"end": ">|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3153,7 +3153,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": "/?>",
+					"end": "/?>|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3179,7 +3179,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": ">",
+					"end": ">|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3205,7 +3205,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": ">",
+					"end": ">|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3231,7 +3231,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": ">",
+					"end": ">|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3257,7 +3257,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": ">",
+					"end": ">|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3283,7 +3283,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": "/?>",
+					"end": "/?>|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3309,7 +3309,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": ">",
+					"end": ">|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3335,7 +3335,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": ">",
+					"end": ">|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3361,7 +3361,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": ">",
+					"end": ">|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3387,7 +3387,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": ">",
+					"end": ">|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3416,7 +3416,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": "/?>",
+					"end": "/?>|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3439,7 +3439,7 @@
 							"name": "entity.name.tag.html.tiddlywiki5"
 						}
 					},
-					"end": ">",
+					"end": ">|(?=^$)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.tag.end.html.tiddlywiki5"
@@ -3481,7 +3481,7 @@
 				},
 				{
 					"begin": "(<)([a-zA-Z0-9$.-]+)(?=\\s*\\/>)",
-					"end": "\\/>",
+					"end": "\\/>|(?=^$)",
 					"name": "meta.tag.other.unrecognized.html.tiddlywiki5",
 					"beginCaptures": {
 						"1": {
@@ -3504,7 +3504,7 @@
 				},
 				{
 					"begin": "(<\\/?)([a-zA-Z0-9$.-]+)(?<!\\/)(?=\\s|>)",
-					"end": "(?: ?/)?>",
+					"end": "(?: ?/)?>|(?=^$)",
 					"name": "meta.tag.other.unrecognized.html.tiddlywiki5",
 					"beginCaptures": {
 						"1": {

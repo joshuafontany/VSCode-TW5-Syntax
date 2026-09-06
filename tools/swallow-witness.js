@@ -145,10 +145,12 @@ function parserHolds(text, at) {
   // rules spell reaches the same ledger line. Reporting the reason once per RULING rather than
   // once per scope keeps the debt readable as the grammar grows names.
   const unruled = [];
+  const stale = new Set(rulings.map((r) => `${r.direction} ${r.key}`));
   const owed = new Map();
   for (const finding of findings.values()) {
     const ruling = rulings.find((r) => r.direction === finding.direction && r.re.test(finding.key));
     if (!ruling) { unruled.push(finding); continue; }
+    stale.delete(`${ruling.direction} ${ruling.key}`);
     if (!ruling.owed) continue;
     const id = `${ruling.direction} ${ruling.key}`;
     if (!owed.has(id)) owed.set(id, { ruling, keys: [], cuts: 0 });
@@ -168,6 +170,11 @@ function parserHolds(text, at) {
     console.log(`  owed  ${ruling.direction} ${ruling.key}  ${cuts} cut(s) across ${keys.length} scope(s)`);
     console.log(`        ${ruling.reason.replace(/^OWED\s*[\u2014-]?\s*/, '')}`);
   }
+  // A divergence gets fixed and its ruling stays, and the ledger then reads as more standing debt
+  // than the repository carries. A ruling explains a divergence or it explains nothing.
+  for (const key of stale) {
+    console.error(`  the ledger rules ${JSON.stringify(key)}, and no cut reads that way any more`);
+  }
   for (const finding of unruled) {
     const where = finding.hits[0];
     console.error(finding.direction === 'runaway'
@@ -177,6 +184,6 @@ function parserHolds(text, at) {
   }
 
   console.log(`swallow-witness  ${probes} cut(s) across ${files} corpus file(s), `
-    + `${findings.size} divergence(s), ${owed.size} recorded, ${unruled.length} unruled`);
-  process.exit(unruled.length === 0 ? 0 : 1);
+    + `${findings.size} divergence(s), ${owed.size} recorded, ${unruled.length} unruled, ${stale.size} ruling(s) explaining nothing`);
+  process.exit(unruled.length === 0 && stale.size === 0 ? 0 : 1);
 })();

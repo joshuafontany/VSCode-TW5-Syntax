@@ -6,7 +6,7 @@
 
 const test = require('node:test');
 const assert = require('node:assert');
-const { runProvoked } = require('./grammar-sandbox.js');
+const { runProvoked, runInSandbox } = require('./grammar-sandbox.js');
 const fs = require('node:fs');
 const path = require('node:path');
 const { runTool } = require('./run-tool.js');
@@ -66,4 +66,17 @@ test('a grammar stripped of its bounds reads as a swallow', live, () => {
   const { code, out } = runProvoked(provoked, ['tools/swallow-witness.js']);
   assert.match(out, /[1-9]\d* unruled/, out.slice(-800));
   assert.notStrictEqual(code, 0, 'the witness must fail the gate, not only print');
+});
+
+// A ledger outlives what it explains as easily as any other list. A divergence gets fixed, its
+// line stays, and the record then carries more standing debt than the repository does.
+test('a ruling explaining no divergence fails the gate', live, () => {
+  const invent = (sandbox) => {
+    const ledger = path.join(sandbox, 'corpus', 'swallow-ledger.txt');
+    fs.appendFileSync(ledger,
+      '\nrunaway meta.nothing.reads.this.way  # a ruling naming a divergence no cut produces\n');
+  };
+  const { code, out } = runInSandbox(invent, ['tools/swallow-witness.js']);
+  assert.match(out, /explaining nothing|no cut reads that way/, out.slice(-500));
+  assert.notStrictEqual(code, 0, 'a stale ruling stood and the gate held anyway');
 });
