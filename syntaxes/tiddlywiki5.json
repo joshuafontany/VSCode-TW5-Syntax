@@ -90,7 +90,7 @@
 			},
 			"patterns": [
 				{
-					"begin": "([\\w\\-]+)(?:\\s*(:)\\s*(?=\"\"\"))",
+					"begin": "(?<!\\w)([\\w\\-]+)(?:\\s*(:)\\s*(?=\"\"\"))",
 					"end": "(?<=\"\"\")",
 					"name": "meta.variable.pragma.parameter.tw-$1.tiddlywiki5",
 					"contentName": "entity.other.default.value.tiddlywiki5",
@@ -113,7 +113,7 @@
 					]
 				},
 				{
-					"begin": "([\\w\\-]+)(?:\\s*(:)\\s*(?=\"))",
+					"begin": "(?<!\\w)([\\w\\-]+)(?:\\s*(:)\\s*(?=\"))",
 					"end": "(?<=\")",
 					"name": "meta.variable.pragma.parameter.tw-$1.tiddlywiki5",
 					"contentName": "entity.other.default.value.tiddlywiki5",
@@ -136,7 +136,7 @@
 					]
 				},
 				{
-					"begin": "([\\w\\-]+)(?:\\s*(:)\\s*(?='))",
+					"begin": "(?<!\\w)([\\w\\-]+)(?:\\s*(:)\\s*(?='))",
 					"end": "(?<=')",
 					"name": "meta.variable.pragma.parameter.tw-$1.tiddlywiki5",
 					"contentName": "entity.other.default.value.tiddlywiki5",
@@ -159,7 +159,7 @@
 					]
 				},
 				{
-					"begin": "([\\w\\-]+)(?:\\s*(:)\\s*(?=\\[\\[))",
+					"begin": "(?<!\\w)([\\w\\-]+)(?:\\s*(:)\\s*(?=\\[\\[))",
 					"end": "(?<=\\]\\])",
 					"name": "meta.variable.pragma.parameter.tw-$1.tiddlywiki5",
 					"contentName": "entity.other.default.value.tiddlywiki5",
@@ -183,7 +183,7 @@
 				},
 				{
 					"comment": "MVV default value: param:((varname))",
-					"begin": "([\\w\\-]+)(?:\\s*(:)\\s*(?=\\(\\())",
+					"begin": "(?<!\\w)([\\w\\-]+)(?:\\s*(:)\\s*(?=\\(\\())",
 					"end": "(?<=\\)\\))",
 					"name": "meta.variable.pragma.parameter.tw-$1.tiddlywiki5",
 					"contentName": "variable.parameter.mvv.default.tiddlywiki5",
@@ -6492,7 +6492,7 @@
 			"comment": "Shared parameter patterns for macrocallblock and macrocallinline. Supports both : and = separators, string values, and dynamic value types (macro, filter, indirect, mvv, substituted, bracket).",
 			"patterns": [
 				{
-					"begin": "(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\"\"\")",
+					"begin": "(?<!\\w)(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\"\"\")",
 					"end": "(?<=\"\"\")",
 					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
 					"beginCaptures": {
@@ -6514,7 +6514,7 @@
 					]
 				},
 				{
-					"begin": "(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\")",
+					"begin": "(?<!\\w)(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\")",
 					"end": "(?<=\")",
 					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
 					"beginCaptures": {
@@ -6536,7 +6536,7 @@
 					]
 				},
 				{
-					"begin": "(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=')",
+					"begin": "(?<!\\w)(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=')",
 					"end": "(?<=')",
 					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
 					"beginCaptures": {
@@ -6558,7 +6558,7 @@
 					]
 				},
 				{
-					"begin": "(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\\[\\[)",
+					"begin": "(?<!\\w)(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\\[\\[)",
 					"end": "(?<=\\]\\])",
 					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
 					"beginCaptures": {
@@ -6581,7 +6581,7 @@
 				},
 				{
 					"comment": "Dynamic param: name=<<macro>>",
-					"begin": "([\\w\\-]+)\\s*(=)\\s*(?=<<[^>\\s]+)",
+					"begin": "(?<!\\w)([\\w\\-]+)\\s*(=)\\s*(?=<<[^>\\s]+)",
 					"end": "(?<=>{2})",
 					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
 					"contentName": "variable.macro.attribute.html.tiddlywiki5",
@@ -6677,7 +6677,7 @@
 				},
 				{
 					"comment": "Dynamic param: name=```substituted```",
-					"begin": "([\\w\\-]+)\\s*(=)\\s*(?=```)",
+					"begin": "(?<!\\w)([\\w\\-]+)\\s*(=)\\s*(?=```)",
 					"end": "(?<=```)(?=[\\s>]|$)",
 					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
 					"contentName": "text.substituted.triple.attribute.html.tiddlywiki5",
@@ -6716,7 +6716,7 @@
 				},
 				{
 					"comment": "Dynamic param: name=`substituted`",
-					"begin": "([\\w\\-]+)\\s*(=)\\s*(?=`)",
+					"begin": "(?<!\\w)([\\w\\-]+)\\s*(=)\\s*(?=`)",
 					"end": "(?<=`)(?=[\\s>]|$)",
 					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
 					"contentName": "text.substituted.single.attribute.html.tiddlywiki5",
@@ -7022,7 +7022,7 @@
 			},
 			"patterns": [
 				{
-					"begin": "([\\w\\-]+)(?:\\s*(:)\\s*(?=\"\"\"))",
+					"begin": "(?<!\\w)([\\w\\-]+)(?:\\s*(:)\\s*(?=\"\"\"))",
 					"end": "(?<=\"\"\")",
 					"name": "meta.variable.pragma.parameter.tw-$1.tiddlywiki5",
 					"contentName": "entity.other.default.value.tiddlywiki5",
@@ -7045,7 +7045,7 @@
 					]
 				},
 				{
-					"begin": "([\\w\\-]+)(?:\\s*(:)\\s*(?=\"))",
+					"begin": "(?<!\\w)([\\w\\-]+)(?:\\s*(:)\\s*(?=\"))",
 					"end": "(?<=\")",
 					"name": "meta.variable.pragma.parameter.tw-$1.tiddlywiki5",
 					"contentName": "entity.other.default.value.tiddlywiki5",
@@ -7068,7 +7068,7 @@
 					]
 				},
 				{
-					"begin": "([\\w\\-]+)(?:\\s*(:)\\s*(?='))",
+					"begin": "(?<!\\w)([\\w\\-]+)(?:\\s*(:)\\s*(?='))",
 					"end": "(?<=')",
 					"name": "meta.variable.pragma.parameter.tw-$1.tiddlywiki5",
 					"contentName": "entity.other.default.value.tiddlywiki5",
@@ -7091,7 +7091,7 @@
 					]
 				},
 				{
-					"begin": "([\\w\\-]+)(?:\\s*(:)\\s*(?=\\[\\[))",
+					"begin": "(?<!\\w)([\\w\\-]+)(?:\\s*(:)\\s*(?=\\[\\[))",
 					"end": "(?<=\\]\\])",
 					"name": "meta.variable.pragma.parameter.tw-$1.tiddlywiki5",
 					"contentName": "entity.other.default.value.tiddlywiki5",

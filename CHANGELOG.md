@@ -30,6 +30,21 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   its filename, so its scopes never counted and its constructs never got cut. The other reached for
   a bleed the dialect cannot produce: every region in the dialect grammar ends at its own line, all
   thirteen of them, so no dialect construct crosses a boundary at all.
+- An apostrophe inside a macro argument opens no parameter. A macro parameter carries an OPTIONAL
+  name, so its rule fired wherever a quote stood — including mid-word, where a quote starts no
+  parameter at all and the region then waits for a closer prose never supplies. `<<myMacro you'd
+  index>>` ran past the blank line and coloured every construct after it as that macro's arguments.
+  TiddlyWiki refuses the whole macro call there, so the reading carried an invention and a swallow
+  from one cause. A parameter now opens only where no word character precedes it — never at the
+  line's start alone, since a pragma signature separates its parameters with commas.
+- The corpus that found it: 677 memetic carriers in the parent tree, read under the base grammar.
+  19172 spans stood inside a runaway macro call there, and this repository's own wikitext corpus
+  could never surface it — a macro call in a test fixture carries no prose, and a carrier is prose
+  inside sigils almost entirely.
+- `attribute-witness` reads the value's whole span rather than one position inside it. A kind
+  region need not cover every character — a filtered value carries operators and operands under
+  scopes of their own — so a probe landing on one point reported whatever kind stood there. The
+  ceiling falls from 227 to 74; the point reading held 156 of them.
 - `light-cone` classifies a divergence by REACH rather than by a reason somebody wrote down. Two
   readers stand over one text and neither holds a global now: the parser walks a document, a grammar
   reads a line and whatever its stack carried in. Where a difference turns on evidence outside the

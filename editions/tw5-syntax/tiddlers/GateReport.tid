@@ -18,7 +18,7 @@ gates-held: 26 of 26
         {
             "gate": "attribute-witness",
             "held": true,
-            "said": "attribute-witness  10772 attribute(s) across 5 type(s), 10545 reading the kind TiddlyWiki assigned (ceiling 227)"
+            "said": "attribute-witness  10772 attribute(s) across 5 type(s), 10698 reading the kind TiddlyWiki assigned (ceiling 74)"
         },
         {
             "gate": "backtrack-witness",

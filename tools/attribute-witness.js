@@ -102,9 +102,22 @@ function tiddlers(dir, out = []) {
       const separator = text.indexOf('=', attribute.start);
       const from = separator >= 0 && separator < attribute.end ? separator + 1 : attribute.start;
       if (text.slice(from, attribute.end).includes('\n')) continue;
-      const [line, column] = place(Math.min(attribute.end - 1, Math.max(from, (from + attribute.end) >> 1)));
-      const token = (lines[line] ?? []).find((t) => t.startIndex <= column && t.endIndex > column);
-      const named = token ? token.scopes.filter((s) => ANY_KIND.test(s)).slice(-1)[0] : null;
+      // THE VALUE'S WHOLE SPAN, never one position inside it. A kind region need not cover every
+      // character of a value — a filtered value carries operators and operands under its own
+      // scopes, and a probe reading a single point lands inside one of those and reports the kind
+      // it found there. The kind stands wherever it stands.
+      const [line, column] = place(from);
+      const [lastLine, lastColumn] = place(Math.max(from, attribute.end - 1));
+      let named = null;
+      for (let row = line; row <= lastLine && !named; row += 1) {
+        for (const token of lines[row] ?? []) {
+          if (row === line && token.endIndex <= column) continue;
+          if (row === lastLine && token.startIndex > lastColumn) continue;
+          const kind = token.scopes.filter((s) => ANY_KIND.test(s)).slice(-1)[0];
+          if (kind && KINDS[attribute.type] && KINDS[attribute.type].test(kind)) { named = kind; break; }
+          if (kind && !named) named = kind;
+        }
+      }
       read += 1;
       counts.set(attribute.type, (counts.get(attribute.type) ?? 0) + 1);
       if (!KINDS[attribute.type]) continue;

@@ -1,4 +1,4 @@
-227
+74
 # Attributes whose value this grammar reads as a kind other than the one TiddlyWiki assigned.
 # The count may fall and may never rise.
 #
@@ -13,9 +13,10 @@
 # concentrates in two shapes worth separating before anyone drives the number down.
 #
 #   A VALUE CROSSING LINES stands over rather than answering wrongly, so nothing below counts one.
-#   THE PROBE READS ONE POSITION inside each value, chosen as its midpoint, and a value whose kind
-#   region does not cover that point reads as another kind through no fault of the grammar. The
-#   residue therefore names an upper bound on disagreement, never a count of defects.
+#   THE PROBE READS THE VALUE'S WHOLE SPAN. A kind region need not cover every character — a
+#   filtered value carries operators and operands under scopes of their own — so a reader landing
+#   on one position inside it reports whatever kind stands there. Reading a point rather than the
+#   span held 156 of these, and the residue below stands after that correction.
 #
 # A tiddler declaring a type other than text/vnd.tiddlywiki never enters the population: reading
 # an HTML template or a stylesheet as wikitext manufactures a disagreement nobody asked for.
