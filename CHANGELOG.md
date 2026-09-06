@@ -16,6 +16,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   the keyword. The guard finds itself — whichever pattern names the most harvested keywords IS the
   guard — and must then name them all. A keyword missing closes the zone on the line carrying it
   and drops every directive below into prose, which is the shape that once cost fifty-four pragmas.
+- Every pragma the host stands must reach the harvest carrying a token. A rule whose token never
+  arrives leaves the zone guard checked against a shorter list than TiddlyWiki registers, and the
+  run then reads green on the strength of what nobody harvested.
 - `filter-witness` reads what TiddlyWiki writes. A filter run colours structurally, so `:cascade`
   and `:nosuchprefix` read alike and a name the pattern cannot match simply reads as something
   else with nothing counting it. The gate stands 84 operators and 13 prefixes in filter position,

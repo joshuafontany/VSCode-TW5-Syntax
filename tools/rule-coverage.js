@@ -92,7 +92,14 @@ const collect = (node) => {
 };
 collect(grammar);
 
-const tokens = Object.values(signals.pragmaTokens ?? {}).flat();
+// Every pragma the host stands carries a token, or the guard gets checked against a short list
+// and passes on the strength of what nobody harvested.
+const tokensByRule = signals.pragmaTokens ?? {};
+const tokenless = (signals.pragmaRules ?? []).filter((rule) => !(tokensByRule[rule] ?? []).length);
+for (const rule of tokenless) {
+  console.error(`  the "${rule}" pragma reaches the harvest carrying no token, so the guard answers for one rule fewer`);
+}
+const tokens = Object.values(tokensByRule).flat();
 // The keyword stands on its own: a guard carrying `parsermodex` names no pragma, and a reader
 // asking whether one string sits inside another calls it named.
 const names = (pattern, token) => {
@@ -118,5 +125,5 @@ for (const rule of idle) {
 }
 console.log(`rule-coverage  TiddlyWiki ${version}: ${signals.wikiRules.length} rule(s), `
   + `${read.length} read, ${aliased.length} under another name, ${unread.length + idle.length} unaccounted; `
-  + `${tokens.length} pragma keyword(s) guarded`);
-process.exit(unread.length + idle.length + unguarded.length === 0 ? 0 : 1);
+  + `${tokens.length} pragma keyword(s) guarded across ${(signals.pragmaRules ?? []).length} rule(s)`);
+process.exit(unread.length + idle.length + unguarded.length + tokenless.length === 0 ? 0 : 1);
