@@ -61,3 +61,19 @@ test('a file whose construct bleeds onto the sentence after it fails the gate', 
   assert.notStrictEqual(code, 0, 'a file bled onto the sentence after it and the gate held anyway');
   assert.match(out, /bleed/, out.slice(-400));
 });
+
+// The fourth reading answers to the HOST rather than to this repository: every rule TiddlyWiki
+// stands must fire somewhere in the corpus. A corpus that stops exercising a rule leaves the
+// three readings above green — the scopes it would have reached are simply never asked for.
+test('a rule no corpus specimen fires any more fails the gate', live, () => {
+  const blind = (sandbox) => {
+    const dir = path.join(sandbox, 'corpus', 'wikitext');
+    for (const f of fs.readdirSync(dir)) {
+      const file = path.join(dir, f);
+      fs.writeFileSync(file, fs.readFileSync(file, 'utf8').split('<!--').join('[--'));
+    }
+  };
+  const { code, out } = runInSandbox(blind, ['tools/corpus-check.js']);
+  assert.match(out, /fire commentinline/, out.slice(-600));
+  assert.notStrictEqual(code, 0, 'the corpus stopped exercising a rule and the gate held anyway');
+});

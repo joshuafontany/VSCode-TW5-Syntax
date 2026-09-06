@@ -22,6 +22,7 @@ const VERBOSE = process.argv.includes('--verbose');
 const SENTINEL = 'The corpus sentinel stands plainly at the end.';
 
 const { declaredScopes } = require('./grammar-scopes.js');
+const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
 
 // The extensions the manifest claims. A corpus specimen carries one of them; a readme, a floor
 // and a ceiling carry none, and naming those one by one lets the next control file join the
@@ -134,7 +135,34 @@ const ceiling = fs.existsSync(ceilingFile)
   ? Number(fs.readFileSync(ceilingFile, 'utf8').split('\n')[0].trim())
   : Infinity;
 
-console.log(`corpus-check  ${corpus.length} files, ${declared.size} scopes declared, ${reachedCount} reached (floor ${floor})`);
+// ── RULE COVERAGE — every rule the PARSER stands, some specimen makes fire ────────────────────
+//
+// Coverage above reads the grammar's own scope names, so it answers whether this repository
+// exercises what it wrote. It cannot answer whether the corpus exercises what TiddlyWiki READS:
+// a construct the grammar never learned reaches no scope, goes unmissed, and the count reads full.
+// So the second population comes from the host. `activeRules` names the rules left standing after
+// $:/config/WikiParserRules has had its say, and a rule no specimen fires marks ground the corpus
+// does not cover — the fault a hand-written battery makes, one level up from the battery.
+//
+// A rule that builds NO NODE can never be witnessed by reading a tree, and naming it here as a
+// gap would report a permanent one. Measured, one such rule stands.
+const NO_NODE = {
+  whitespace: 'sets the parser\'s whitespace handling and builds nothing, so no tree carries its name'
+};
+const oracle = boot(resolveTiddlyWiki(), {});
+const active = oracle.activeRules();
+const standing = [...new Set([...active.block, ...active.inline, ...active.pragma])].sort();
+const fired = new Set();
+for (const f of corpus) {
+  // The host parses wikitext; a `.tid` or a `.multids` carries a header it never reads, and the
+  // dialect's own vocabulary rides on top of the same base.
+  if (!/\.(tw|mem)$/.test(f)) continue;
+  for (const node of flatten(oracle.parse(fs.readFileSync(f, 'utf8')).tree)) if (node.rule) fired.add(node.rule);
+}
+const unfired = standing.filter((r) => !fired.has(r) && !NO_NODE[r]);
+
+console.log(`corpus-check  ${corpus.length} files, ${declared.size} scopes declared, ${reachedCount} reached (floor ${floor}), `
+  + `${standing.length - unfired.length} of ${standing.length} parser rule(s) fired`);
 console.log(`  unreached: ${unreachedOurs.length} this grammar emits (ceiling ${ceiling}), ${unreachedHandoffs} handed to another grammar`);
 if (reachedCount < floor) {
   console.error(`  coverage fell from ${floor} to ${reachedCount}; a rule the floor counts as reached now goes unexercised`);
@@ -151,4 +179,9 @@ if (bleeding.length) {
   for (const b of [...new Set(bleeding)]) console.error(`    ${b}`);
 }
 console.log(`  containment: ${new Set(bleeding.map((b) => b.split('  ->')[0])).size} of ${corpus.length} files bleed`);
-process.exit(bleeding.length || reachedCount < floor || unreachedOurs.length > ceiling ? 1 : 0);
+console.log(`  rules: ${Object.keys(NO_NODE).length} of the rules TiddlyWiki stands build no node, so no tree carries them: `
+  + `${Object.entries(NO_NODE).map(([r, why]) => `${r} ${why}`).join('; ')}`);
+for (const rule of unfired) {
+  console.error(`  no corpus specimen makes TiddlyWiki fire ${rule}, so nothing here reads what it builds`);
+}
+process.exit(bleeding.length || unfired.length || reachedCount < floor || unreachedOurs.length > ceiling ? 1 : 0);
