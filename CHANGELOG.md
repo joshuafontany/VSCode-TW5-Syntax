@@ -7,6 +7,20 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- `light-cone` classifies a divergence by REACH rather than by a reason somebody wrote down. Two
+  readers stand over one text and neither holds a global now: the parser walks a document, a grammar
+  reads a line and whatever its stack carried in. Where a difference turns on evidence outside the
+  grammar's reach it stands permanent, and filing one as owed names a repair nobody can perform.
+- The probe carries two arms, and both alterations derive. The forward arm hands back the text a cut
+  removed — the file's own remainder — so the sentinel keeps its offset while the lookahead changes.
+  The backward arm strikes the pragma lines, spelled by the token each pragma rule opens on. Both
+  earn their place: the forward arm moves 14 verdicts and the backward arm moves 8, and a
+  forward-only probe misses every one of those 8. A `\rules` run stands as the worked counterexample
+  — its verdict holds under every alteration after the line and moves the moment the pragma changes.
+- A still arm proves nothing, and the gate says so. An alteration carries a closer only where the
+  file happened to hold one, so the reading runs one-sided: nothing filed as owed may reach out, and
+  a ruling standing over a class no arm moved reports as judgement rather than as proof. On its
+  first run the probe refuted one ledger entry and marked two rulings unproven.
 - `attribute-witness` compares the kind TiddlyWiki assigned a value against the kind this grammar
   names for the same span. parseutils.js declares five — a quoted or bare string, a text reference,
   a filter, a macro call, a backtick substitution — and the grammar spells all five again in its

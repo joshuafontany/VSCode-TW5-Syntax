@@ -40,30 +40,45 @@ afternoon. This design takes a third road: it ''measures which kind a divergence
 
 <<~ ahu #the-decidable-test>>
 
-! THE DECIDABLE TEST — light-cone, never judgement
+! THE DECIDABLE TEST — reach, measured, and one-sided by construction
 
 Take any divergence standing at offset `i`.
 
 ''The grammar's reach at `i`'' spans the line holding `i`, plus the rule stack the lines before it
-carried in. Nothing past the end of that line reaches the grammar's decision, because a pattern
-sees one line and no more — probed directly, an `end` spelling a newline never matches.
+carried in. Reach runs BOTH ways, and each way ends somewhere different. Forward reach stops at the
+line's end, because a pattern sees one line and no more. Backward reach travels only as far as a
+rule stack carries, and a stack carries regions rather than the parser's own configuration.
 
-''The probe.'' Alter the text lying OUTSIDE that reach — everything past the end of the line
-holding `i` — and ask the parser again.
+!! Two arms, and both alterations derive
 
-* The parser's verdict at `i` ''moves'' -> the deciding evidence sits outside the grammar's reach
--> the divergence stands ''STRUCTURAL''. Permanent by construction. No grammar reaches it and no
-work retires it. RULED.
-* The parser's verdict at `i` ''holds'' -> the deciding evidence sat within reach all along -> the
-divergence names a ''DEFECT''. Temporary. OWED, with an owner and an expiry.
+''The forward arm'' hands back the text a cut removed — the file's own remainder, replaced after the
+sentinel. The sentinel keeps its offset; only what lies past it changes.
 
-That probe replaces a judgement with a measurement, and it sorts the ledger this repository already
-keeps. Four families ride that ledger under a reason written by hand — an unterminated comment, a
-definition block, an element with no closer, an element root — and each one names a lookahead the
-grammar cannot make. The probe decides all four without a hand, and decides the next one nobody has
-met yet.
+''The backward arm'' strikes the pragma lines, spelled by the token each pragma rule opens on and
+harvested off that rule's own `matchRegExp`. A `\rules` run narrows the parser's active rule set and
+no stack carries that.
 
-''The ledger gains a column: which probe ran, and what it answered.''
+Neither alteration reads a list anybody typed, and both earn their place: measured over this
+corpus, the forward arm moves 14 verdicts and the backward arm moves 8. A forward-only probe misses
+every one of those 8, and the pragma case stands as the worked counterexample — its verdict holds
+under every alteration after the line and moves the moment the pragma changes.
+
+!! What a moved arm proves, and what a still arm does not
+
+* An arm ''MOVES'' the parser's verdict -> the deciding evidence sits outside the grammar's reach ->
+the divergence ''REACHES OUT''. Permanent by construction, and filing one as owed names a repair
+nobody can perform.
+* No arm moves -> ''UNPROVEN'', and that names the absence of a proof and nothing else. An
+alteration carries a closer only where the file happened to hold one, so a still arm reports no
+evidence rather than evidence of reach. Reading its silence as //the evidence sat within reach//
+would state a verdict on nothing — the move this whole probe exists to retire.
+
+''So the gate runs one-sided and says so:'' nothing filed as owed may reach out. A ruling of
+structural standing over an unproven class reports as a JUDGEMENT, marked as one, refusing nothing
+and awaiting a sharper arm.
+
+The probe sorted the ledger on its first run: one entry filed as owed reached past the grammar, and
+two rulings stood without proof and stand marked.
 
 <<~/ahu>>
 
@@ -247,6 +262,6 @@ he declined it. ''Cost signal, never permission.''
 
 <<~/ahu>>
 
-<<^ code="&#x0003;">>ni:///sha-256;-t7MjMPeG0-D-jfHmwOoPIaflmLc7CeOTomaLlzQmT0
+<<^ code="&#x0003;">>ni:///sha-256;vFIWNJgyY2h4akttR4BIX_OlcG4T9g2YFlu-GTaXKnk
 
 <<^ code="&#x0004;" -> to=?>>

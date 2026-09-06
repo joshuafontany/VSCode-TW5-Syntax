@@ -111,6 +111,8 @@ jobs:
         run: npm run filter-witness
       - name: An attribute reads the kind TiddlyWiki assigned
         run: npm run attribute-witness
+      - name: No owed divergence reaches past the grammar
+        run: npm run light-cone
 
       # What a theme paints for this grammar against six comparator grammars.
       - name: Theme parity

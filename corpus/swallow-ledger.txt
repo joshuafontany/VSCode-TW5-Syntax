@@ -42,6 +42,6 @@ runaway meta.tag.widget.*           # a quoted attribute value left open inside 
 
 # ── recorded, not accepted ───────────────────────────────────────────────────────────────────
 
-runaway meta.transclusion.*         # OWED — `{{A/Tiddler||A` left open: TiddlyWiki refuses the transclusion and parses the block after the blank line; the grammar carries the region
+runaway meta.transclusion.*         # `{{A/Tiddler||A` left open: TiddlyWiki refuses the transclusion and parses the block after the blank line, and the grammar carries the region. tools/light-cone.js moves the parser's verdict by handing back the text the cut removed, so the decision turns on a closer standing further down the source than any pattern reads
 overbound html                      # OWED — an element with no closer: TiddlyWiki carries it to the end of the tiddler and says so in its own hint, and reads the body as one inline run where no blank line follows the tag. The grammar opens no region over a block element's body at all — it colours the two tags and hands what lies between to the block rules, which tests/tiddlywiki5/tiddlywiki5.widget-body.tw5.test pins for the one-line form — so the text after an unclosed tag reads as ordinary blocks rather than as that element's content
 overbound codeblock                 # OWED — an unterminated fence takes the rest of the source in TiddlyWiki; the grammar ends it at the blank line
