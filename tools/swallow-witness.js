@@ -21,13 +21,13 @@
 // this asks both questions of the same specimens.
 //
 // THE BATTERY COMES FROM REAL TEXT. A list of openers written by hand probes what its author
-// remembered. The one that stood here named twenty-five strings and reached twelve of the
-// thirty-six body rules TiddlyWiki stands — the other twenty-four went unasked, and the openers
-// it did name were spelled by the same hand that spelled the grammar. So the specimens come from
-// the corpus instead: every file cut at every line, a blank line and a sentinel appended. Real
-// text carries constructs no hand enumerates, and a cut lands inside them by construction.
+// remembers, and it carries the grammar's own spelling into the check meant to question that
+// spelling. Measured: twenty-five such openers reach twelve of the thirty-six body rules
+// TiddlyWiki stands, leaving twenty-four unasked. So the specimens come from the corpus instead —
+// every file cut at every line, a blank line and a sentinel appended. Real text carries constructs
+// no hand enumerates, and a cut lands inside them by construction.
 //
-// ONE SPAN, ONE OFFSET, BOTH READERS. Three coarser readings misreported before this one:
+// ONE SPAN, ONE OFFSET, BOTH READERS. Three coarser readings of the same question misreport:
 //   * "does the sentinel exist anywhere" — TiddlyWiki carries an element with no closer to the
 //     end of the tiddler and parses BLOCKS inside it, so the sentinel stands there too, nested.
 //     That reading calls a correct grammar wrong.
@@ -155,8 +155,8 @@ function parserHolds(text, at) {
       if (!head.trim()) continue;
       const specimen = `${head}\n\n${SENTINEL}`;
       // The parser reads a body; the grammar reads a file. A `.tid` cut inside its header hands
-      // the parser a body of the sentinel alone, and the blank line that ends the header is the
-      // same blank line the sentinel stands behind.
+      // the parser a body of the sentinel alone, and the blank line ending that header doubles as
+      // the one the sentinel stands behind.
       const read = body ? body(specimen) : specimen;
       const at = read.lastIndexOf(SENTINEL);
       const line = specimen.split('\n').length - 4;

@@ -64,9 +64,9 @@ function declaredScopesIn(dir) {
  *
  * The dollar has to stand as an ANCHOR, so the reader walks the pattern rather than matching it.
  * A grammar spells the bound five ways — `$`, `(?=$)`, `^$`, `|$`, `(?=$|…)` — and a reader
- * naming any one of them by shape misses the other four; the count then reports safe regions as
- * debt, which is how six inline emphasis rules whose begin refuses to open without a closer on
- * the same line came to sit among the runaways.
+ * naming any one of them by shape misses the other four, so the count reports safe regions as
+ * debt. Six inline emphasis rules end `(?=$)` and open only where a closer stands later on the
+ * same line; a reader catching one spelling files every one of them among the runaways.
  *
  * A dollar the pattern means LITERALLY names no bound: TiddlyWiki's widget rules carry `\$` for
  * the tag prefix and the typed block spells `\$\$\$`, so a reader matching any dollar at all
@@ -93,8 +93,8 @@ function breaksOnALine(end) {
  * A region ending on `$` or on a blank line cannot outlive its line; every other one runs to the
  * end of the document where its closer never arrives. The count alarms and means little alone —
  * many stand open across a blank line and AGREE with the parser, because TiddlyWiki carries those
- * constructs too. What it answers is coverage: a region no specimen ever opens has not been found
- * sound, only left unasked.
+ * constructs too. It answers coverage instead: a region no specimen ever opens stands unasked
+ * rather than sound.
  *
  * The name carries `$1`-style back-references, which TextMate fills from the begin match, so the
  * matcher admits any one segment there.

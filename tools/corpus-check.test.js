@@ -64,7 +64,7 @@ test('a file whose construct bleeds onto the sentence after it fails the gate', 
 
 // The fourth reading answers to the HOST rather than to this repository: every rule TiddlyWiki
 // stands must fire somewhere in the corpus. A corpus that stops exercising a rule leaves the
-// three readings above green — the scopes it would have reached are simply never asked for.
+// three readings above green — nothing ever asks for the scopes it would have reached.
 test('a rule no corpus specimen fires any more fails the gate', live, () => {
   const blind = (sandbox) => {
     const dir = path.join(sandbox, 'corpus', 'wikitext');

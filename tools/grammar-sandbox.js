@@ -69,8 +69,8 @@ function inSandbox(dirs, mutate, argv, extra = []) {
 
 const WORKING = ['tools', 'syntaxes', 'editions', 'corpus', path.join('tests', 'samples')];
 // The corpus rides across too: swallow-witness draws its whole battery from it, and a run
-// reading HEAD's corpus would collide a working-tree grammar against specimens that no longer
-// stand — or against a ledger the working tree has yet to commit.
+// reading HEAD's corpus would collide a working-tree grammar against specimens the working tree
+// has since changed — or against a ledger it has yet to commit.
 const AT_HEAD = ['tools', 'syntaxes', 'editions', 'corpus'];
 
 /**

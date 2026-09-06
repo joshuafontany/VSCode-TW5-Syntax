@@ -59,10 +59,10 @@ test('every ledger line carries a reason', () => {
 // The collision runs against a COPY of the working tree, so it exercises the witness as it
 // stands now rather than as it stood at the last commit.
 test('a grammar stripped of its bounds reads as a swallow', live, () => {
-  // ONE SPELLING OF THE BOUND, across every rule that carries it — not one rule's bound. Stripping
-  // a single rule stopped provoking the moment a second rule bounded the same opener, and the
-  // collision then proved nothing while reading green; measured on the inline style run, which the
-  // style BLOCK also bounds.
+  // ONE SPELLING OF THE BOUND, across every rule that carries it — never one rule's bound. A
+  // single rule's bound provokes nothing wherever a second rule bounds the same opener, and the
+  // collision then reads green while proving nothing; the inline style run collides that way,
+  // since the style BLOCK bounds it too.
   //
   // The grammar spells the line bound five ways and this reaches one of them on purpose. Stripping
   // all five provokes LESS, not more: the inline emphasis rules then run to the end of the file and
@@ -88,7 +88,7 @@ test('a ruling explaining no divergence fails the gate', live, () => {
 });
 
 // The third ratchet. A region with no line bound that no specimen opens reads exactly like one
-// that was measured and found sound — both come back green.
+// measured and found sound — both come back green.
 test('a ceiling lowered past the regions no cut opens fails the gate', live, () => {
   const lower = (sandbox) => {
     const file = path.join(sandbox, 'corpus', 'unasked-regions-ceiling.txt');

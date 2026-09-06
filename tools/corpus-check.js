@@ -144,8 +144,8 @@ const ceiling = fs.existsSync(ceilingFile)
 // $:/config/WikiParserRules has had its say, and a rule no specimen fires marks ground the corpus
 // does not cover — the fault a hand-written battery makes, one level up from the battery.
 //
-// A rule that builds NO NODE can never be witnessed by reading a tree, and naming it here as a
-// gap would report a permanent one. Measured, one such rule stands.
+// A rule building NO NODE escapes any reading of a tree, and naming it here as a gap reports a
+// permanent one. Measured, one such rule stands.
 const NO_NODE = {
   whitespace: 'sets the parser\'s whitespace handling and builds nothing, so no tree carries its name'
 };

@@ -15,12 +15,13 @@
 # (overbound); `*` stands for any run of characters. A reason opening OWED records a divergence
 # rather than accepting it: the gate stays green and prints it as debt.
 #
-# A REASON CARRIES MEASUREMENTS, NEVER A REMEDY IT HAS NOT COLLIDED. A line stood here ruling the
-# unterminated start tag unfixable, and closed by naming the bound that would fit. Both halves
-# fell to measurement: no plain HTML start tag in 2583 files carries a blank line, so the bound
-# cost nothing and landed; and the remedy the line proposed could not have been written anyway,
-# since vscode-textmate hands a pattern one line and no more. A remedy nobody tried reads as work
-# owed and sends the next reader to build what will not build.
+# A REASON CARRIES MEASUREMENTS, NEVER A REMEDY IT HAS NOT COLLIDED. Two traps sit under that
+# rule. A ruling that calls a divergence unfixable wants its cost counted on BOTH sides — the bound
+# on start tags looks expensive and costs nothing, since no plain HTML start tag in 2583 files
+# carries a blank line. And a remedy that reads obvious may prove unwritable: vscode-textmate
+# hands a pattern one line and no more, so an end pattern standing at a blank line cannot read the
+# line that decides the question. A remedy nobody tried reads as work owed, and sends the next
+# reader to build what will not build.
 #
 # A RULING THAT EXPLAINS NOTHING FAILS THE GATE. A divergence gets fixed and its line stays, and
 # the ledger then reads as a longer list of standing debt than the repository carries.
@@ -30,7 +31,7 @@
 # source. A TextMate end pattern reads only forward from the line in front of it, one line at a
 # time, and carries no way to ask whether a closer stands anywhere later. Where the parser's
 # answer depends on that lookahead, the grammar carries the region — the reading that holds for
-# the terminated form, which is the form nearly all real text takes.
+# the terminated form — the form nearly all real text takes.
 
 runaway comment.block.html.*        # `<!--` with no `-->`: measured, TiddlyWiki carries a comment across every blank line between when a closer stands later in the source, and refuses the construct outright when none does. Carrying reads the terminated form right
 runaway meta.directive.variable.*   # a definition block runs to `\end`, across blank lines and all: measured, a `\define` body spans them freely when the terminator stands somewhere later, and keeps to its opening line when none does anywhere

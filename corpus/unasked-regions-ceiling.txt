@@ -8,18 +8,18 @@
 # `\end`, an element with no closer reaches the end of the tiddler. Standing open names no defect.
 # Disagreeing does, and the ledger beside this file holds all eight of those.
 #
-# What this count answers is COVERAGE. A region no specimen opens has not been found safe, only
-# left unasked, and the difference reads the same from outside: a green gate. Measured with 800
+# This count answers COVERAGE instead. A region no specimen opens stands unasked rather than safe,
+# and the two read alike from outside: a green gate. Measured with 800
 # upstream TiddlyWiki tiddlers added to the sweep, twelve more regions come open — so this corpus
 # under-covers its own grammar by a knowable amount, and the number below names the residue.
 #
-# THE COUNT ITSELF NEEDED A COLLIDE. It first read 118 and 79, because the reader looked for the
-# bound by shape — `(?=^$)` or a trailing dollar — and a grammar spells the same bound five ways.
-# Six inline emphasis rules ending `(?=$)`, whose begin refuses to open at all without a closer on
-# the same line, sat among the runaways; so did the paragraph rule, which spells `^$` with no
-# lookahead around it. Twenty regions were never unbounded, and seventeen of the residue were safe
-# by construction. The reader now walks the pattern for a dollar standing as an ANCHOR, and a
-# literal `\$` — which the widget rules and the typed block both carry — names no bound.
+# THE COUNT WANTS COLLIDING BEFORE IT MEANS ANYTHING. A grammar spells the line bound five ways —
+# `$`, `(?=$)`, `^$`, `|$`, `(?=$|…)` — and a reader naming it by shape catches one and files the
+# rest as debt. Six inline emphasis rules end `(?=$)` and open only where a closer stands later on
+# the same line; the paragraph rule spells `^$` with no lookahead around it. Reading by shape puts
+# twenty such regions among the runaways. So the reader walks the pattern for a dollar standing as
+# an ANCHOR, and skips one escaped or sitting in a character class — every widget rule carries `\$`
+# for the tag prefix, and the typed block spells `\$\$\$`.
 #
 # The families in the residue, largest first: pragma directives, embedded language blocks, macro
 # definition bodies, and the comment rules inside embedded JavaScript. Each wants a specimen that
