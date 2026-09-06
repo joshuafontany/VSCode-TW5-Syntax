@@ -3,17 +3,22 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 22 of 22
+gates-held: 23 of 23
 
 {
-    "gates": 22,
-    "held": 22,
+    "gates": 23,
+    "held": 23,
     "failing": 0,
     "results": [
         {
             "gate": "attribute-guard",
             "held": true,
             "said": "7  the guard refuses and the parser BUILDS — adopting it costs this"
+        },
+        {
+            "gate": "attribute-witness",
+            "held": true,
+            "said": "attribute-witness  10772 attribute(s) across 5 type(s), 10545 reading the kind TiddlyWiki assigned (ceiling 227)"
         },
         {
             "gate": "backtrack-witness",

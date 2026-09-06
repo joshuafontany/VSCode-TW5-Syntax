@@ -7,6 +7,18 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- `attribute-witness` compares the kind TiddlyWiki assigned a value against the kind this grammar
+  names for the same span. parseutils.js declares five — a quoted or bare string, a text reference,
+  a filter, a macro call, a backtick substitution — and the grammar spells all five again in its
+  own patterns, while every other gate here passes on a disagreement: the scope exists, the corpus
+  reaches it, the block boundary holds, and the kind still comes out different. The host writes
+  both halves, the type on each attribute it places and the extent to read it at, so this holds
+  only the vocabulary pairing them. Measured across TiddlyWiki's own wikitext tiddlers: 10772
+  attributes, 10545 agreeing, and a residue that stands as an upper bound rather than a defect
+  count — the probe reads one position inside each value, and a value crossing lines stands over.
+- The kind wears a word, never a position. An attribute value stands several regions deep, and
+  reading the outermost answers `meta.attribute.class` for every value while reading the innermost
+  answers with the operator inside a filtered value's first run.
 - Three populations TiddlyWiki registers now gate something. The signals harvest gains the token
   each pragma rule opens on — `\define`, `\parameters`, `\function|procedure|widget`, `<!--` —
   read off each rule module's own matchRegExp, and the run prefixes registered under

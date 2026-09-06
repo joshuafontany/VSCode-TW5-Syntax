@@ -382,6 +382,7 @@
         "theme-parity": "node ./tools/theme-parity.js",
         "swallow-witness": "node ./tools/swallow-witness.js",
         "filter-witness": "node ./tools/filter-witness.js",
+        "attribute-witness": "node ./tools/attribute-witness.js",
         "backtrack-witness": "node ./tools/backtrack-witness.js",
         "dark-construct": "node ./tools/dark-construct.js",
         "gates": "node ./tools/gate-report.js",

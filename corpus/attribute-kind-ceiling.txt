@@ -1,0 +1,21 @@
+227
+# Attributes whose value this grammar reads as a kind other than the one TiddlyWiki assigned.
+# The count may fall and may never rise.
+#
+# parseutils.js declares five kinds a value may wear — a quoted or bare STRING, a text reference
+# (INDIRECT), a FILTER, a MACRO call, a backtick SUBSTITUTION — and this grammar spells all five
+# again in its own patterns. Every other gate here passes while the two readings disagree: the
+# scope exists, the corpus reaches it, the block boundary holds, and the kind still comes out
+# different. So the host writes both halves — the type on each attribute it places, and the extent
+# to read it at — and this repository holds only the vocabulary that pairs them.
+#
+# Measured over TiddlyWiki's own wikitext tiddlers: two kinds agree outright, and the residue
+# concentrates in two shapes worth separating before anyone drives the number down.
+#
+#   A VALUE CROSSING LINES stands over rather than answering wrongly, so nothing below counts one.
+#   THE PROBE READS ONE POSITION inside each value, chosen as its midpoint, and a value whose kind
+#   region does not cover that point reads as another kind through no fault of the grammar. The
+#   residue therefore names an upper bound on disagreement, never a count of defects.
+#
+# A tiddler declaring a type other than text/vnd.tiddlywiki never enters the population: reading
+# an HTML template or a stylesheet as wikitext manufactures a disagreement nobody asked for.
