@@ -3,12 +3,12 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 26 of 26
+gates-held: 24 of 26
 
 {
     "gates": 26,
-    "held": 26,
-    "failing": 0,
+    "held": 24,
+    "failing": 2,
     "results": [
         {
             "gate": "attribute-guard",
@@ -47,8 +47,8 @@ gates-held: 26 of 26
         },
         {
             "gate": "colour-witness",
-            "held": true,
-            "said": "0  relation(s) that stopped checking anything"
+            "held": false,
+            "said": "2  relation(s) that stopped checking anything"
         },
         {
             "gate": "compose-memetic",
@@ -62,8 +62,8 @@ gates-held: 26 of 26
         },
         {
             "gate": "corpus",
-            "held": true,
-            "said": "corpus-check  43 files, 517 scopes declared, 469 reached (floor 469), 43 of 43 parser rule(s) fired"
+            "held": false,
+            "said": "corpus-check  43 files, 484 scopes declared, 435 reached (floor 469), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
@@ -73,7 +73,7 @@ gates-held: 26 of 26
         {
             "gate": "engine-witness",
             "held": true,
-            "said": "engine-witness  777 pattern(s) across 8 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "engine-witness  749 pattern(s) across 8 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "filter-witness",
