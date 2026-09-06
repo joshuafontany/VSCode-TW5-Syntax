@@ -7,6 +7,17 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A corpus specimen carries every construct that spans a line break — a pragma signature, a macro
+  argument, quoted and triple-quoted attribute values, a character-data payload, a comment inside
+  embedded JavaScript — each one CLOSED, so containment holds while an intermediate line end sits
+  inside the region. Regions no cut ever opens fall from 62 to 44 and scope coverage rises from 467
+  to 469. Two populations sit in what remains and only one wants a specimen: a region whose end can
+  match where its begin does closes inside its own line whatever a reader feeds it, which the dash
+  rules and the transclusion tokenizer both do.
+- A quoted attribute value left open inside a widget tag reads on, and stands ruled. TiddlyWiki
+  refuses the whole tag where no closing quote stands anywhere and builds the element across the
+  break where one does; of eleven accepted start tags carrying a blank line, eight carry it inside
+  a quoted value, so the string region carries on.
 - The count of unbounded regions needed colliding before it meant anything, and it read 118 and 79
   where 98 and 62 stand. A grammar spells the line bound five ways — `$`, `(?=$)`, `^$`, `|$`,
   `(?=$|…)` — and a reader naming it by shape misses the rest. Six inline emphasis rules ending

@@ -1,0 +1,36 @@
+Constructs that open on one line and close on another. A reader standing at the first line end
+sits inside each one, which is the position a region has to survive.
+
+\parameters (
+	size:"22pt"
+	colour:"red"
+)
+
+\procedure spans-its-signature(
+	a:"one"
+	b:"""a triple-quoted value
+carried to a second line"""
+)
+A body.
+\end
+
+<<spans-its-arguments a:"""an argument
+carried across a line""">>
+
+<$button class="a value
+carried across a line">a double-quoted attribute</$button>
+
+<$button class='a value
+carried across a line'>a single-quoted attribute</$button>
+
+<div>
+<![CDATA[
+a character-data payload across lines
+]]>
+</div>
+
+<script>
+/* a block comment
+carried across lines */
+var afterTheComment = 1; // a line comment
+</script>

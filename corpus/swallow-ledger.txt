@@ -37,6 +37,7 @@ runaway comment.block.html.*        # `<!--` with no `-->`: measured, TiddlyWiki
 runaway meta.directive.variable.*   # a definition block runs to `\end`, across blank lines and all: measured, a `\define` body spans them freely when the terminator stands somewhere later, and keeps to its opening line when none does anywhere
 runaway meta.embedded.block.html.*  # `<style>` and `<script>` with no closer: TiddlyWiki carries the element to the end of the tiddler — its own `unterminated-html` hint says so — and parses the body as WIKITEXT BLOCKS. Both readers carry; only the language of the interior differs, and CSS and JS there hold the convention every HTML grammar keeps
 runaway meta.element.*              # an SVG or MathML element reads the same way, for the same reason
+runaway meta.tag.widget.*           # a quoted attribute value left open inside a widget tag: TiddlyWiki refuses the whole tag where no closing quote stands anywhere, and builds the element across the line break where one does. A value spanning lines reads normally — of eleven accepted start tags carrying a blank line, eight carry it inside a quoted value — so the string region carries on, and the reading holds for every value that closes
 
 
 # ── recorded, not accepted ───────────────────────────────────────────────────────────────────

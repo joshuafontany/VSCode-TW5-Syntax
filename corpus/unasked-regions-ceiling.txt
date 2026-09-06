@@ -1,8 +1,8 @@
-62
+44
 # Regions whose end can never break on a line, and that no cut in this corpus ever leaves open.
 # The count may fall and may never rise.
 #
-# 98 regions carry no line bound. That number alarms and means little on its own: 36 of them stand
+# 98 regions carry no line bound. That number alarms and means little on its own: 54 of them stand
 # open across a blank line under some cut and AGREE with the parser, because TiddlyWiki carries
 # those constructs too — a `"""` attribute value spans blank lines, a definition body runs to its
 # `\end`, an element with no closer reaches the end of the tiddler. Standing open names no defect.
@@ -21,9 +21,13 @@
 # an ANCHOR, and skips one escaped or sitting in a character class — every widget rule carries `\$`
 # for the tag prefix, and the typed block spells `\$\$\$`.
 #
-# The families in the residue, largest first: pragma directives, embedded language blocks, macro
-# definition bodies, and the comment rules inside embedded JavaScript. Each wants a specimen that
-# leaves it open at a line boundary, and each such specimen lowers this number by one.
+# TWO POPULATIONS SIT IN THE RESIDUE, and only one of them wants a specimen. A region whose end can
+# match where its begin does closes inside its own line whatever a reader feeds it — the dash rules
+# and the transclusion tokenizer both read that way, and no cut anywhere can leave one open. The
+# rest want a specimen carrying the construct across a line break, which `spans.multiline.tw`
+# holds: a pragma signature, a macro argument, quoted and triple-quoted attribute values, a
+# character-data payload, and a comment inside embedded JavaScript. Each such construct lowers this
+# number, and the construct stays CLOSED — a corpus file that bleeds fails a different gate.
 #
 # A region arriving with no specimen that opens it raises the count and fails the gate. That reads
 # as the rule this whole battery exists to keep: a list nobody exercises cannot notice what it

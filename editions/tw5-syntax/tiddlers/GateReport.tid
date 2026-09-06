@@ -58,7 +58,7 @@ gates-held: 21 of 21
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  42 files, 517 scopes declared, 467 reached (floor 467), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  43 files, 517 scopes declared, 469 reached (floor 469), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
@@ -103,7 +103,7 @@ gates-held: 21 of 21
         {
             "gate": "swallow-witness",
             "held": true,
-            "said": "swallow-witness  757 cut(s) across 35 corpus file(s), 8 divergence(s), 3 recorded, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "swallow-witness  794 cut(s) across 36 corpus file(s), 9 divergence(s), 3 recorded, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "theme-parity",
