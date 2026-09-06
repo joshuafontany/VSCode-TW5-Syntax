@@ -7,6 +7,15 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- The count of unbounded regions needed colliding before it meant anything, and it read 118 and 79
+  where 98 and 62 stand. A grammar spells the line bound five ways — `$`, `(?=$)`, `^$`, `|$`,
+  `(?=$|…)` — and a reader naming it by shape misses the rest. Six inline emphasis rules ending
+  `(?=$)`, whose begin refuses to open at all without a closer on the same line, sat among the
+  runaways; so did the paragraph rule, which spells `^$` with no lookahead around it. Twenty
+  regions were never unbounded and seventeen of the residue were safe by construction. The reader
+  walks the pattern for a dollar standing as an ANCHOR now, and a literal `\$` — carried by every
+  widget rule and by the typed block — names no bound, which a control in
+  `tools/grammar-scopes.test.js` provokes directly.
 - The swallow gate holds a third ratchet: regions with no line bound that no cut ever opens. 118
   regions carry no such bound, which alarms and means little alone — 39 stand open across a blank
   line under some cut and AGREE with the parser, because TiddlyWiki carries those constructs too.

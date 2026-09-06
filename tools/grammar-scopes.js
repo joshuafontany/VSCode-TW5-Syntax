@@ -60,6 +60,34 @@ function declaredScopesIn(dir) {
 }
 
 /**
+ * Can this end pattern match at the end of a line?
+ *
+ * The dollar has to stand as an ANCHOR, so the reader walks the pattern rather than matching it.
+ * A grammar spells the bound five ways — `$`, `(?=$)`, `^$`, `|$`, `(?=$|…)` — and a reader
+ * naming any one of them by shape misses the other four; the count then reports safe regions as
+ * debt, which is how six inline emphasis rules whose begin refuses to open without a closer on
+ * the same line came to sit among the runaways.
+ *
+ * A dollar the pattern means LITERALLY names no bound: TiddlyWiki's widget rules carry `\$` for
+ * the tag prefix and the typed block spells `\$\$\$`, so a reader matching any dollar at all
+ * would call the whole grammar bounded — green, and blind.
+ *
+ * @param {string} end  a TextMate end pattern
+ * @returns {boolean}
+ */
+function breaksOnALine(end) {
+  let inClass = false;
+  for (let i = 0; i < end.length; i += 1) {
+    const c = end[i];
+    if (c === '\\') { i += 1; continue; }
+    if (inClass) { if (c === ']') inClass = false; continue; }
+    if (c === '[') { inClass = true; continue; }
+    if (c === '$') return true;
+  }
+  return false;
+}
+
+/**
  * The regions whose end can never break on a line, by the scope each one names.
  *
  * A region ending on `$` or on a blank line cannot outlive its line; every other one runs to the
@@ -82,7 +110,7 @@ function unboundedRegions(file) {
     if (!node || typeof node !== 'object') return;
     if (node.begin !== undefined && node.end !== undefined) {
       const name = node.name || node.contentName;
-      if (name && !/\(\?=\^\$\)/.test(node.end) && !/\$$/.test(node.end)) {
+      if (name && !breaksOnALine(node.end)) {
         const literal = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\\\$\d/g, '[^.]+');
         out.push({ name, re: new RegExp(`^${literal}$`) });
       }
