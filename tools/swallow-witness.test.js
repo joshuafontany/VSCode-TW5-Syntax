@@ -59,9 +59,15 @@ test('every ledger line carries a reason', () => {
 // The collision runs against a COPY of the working tree, so it exercises the witness as it
 // stands now rather than as it stood at the last commit.
 test('a grammar stripped of its bounds reads as a swallow', live, () => {
-  // Every block bound at once, not one rule's. Stripping a single rule stopped provoking the
-  // moment a second rule bounded the same opener, and the collision then proved nothing while
-  // reading green — measured on the inline style run, which the style BLOCK also bounds.
+  // ONE SPELLING OF THE BOUND, across every rule that carries it — not one rule's bound. Stripping
+  // a single rule stopped provoking the moment a second rule bounded the same opener, and the
+  // collision then proved nothing while reading green; measured on the inline style run, which the
+  // style BLOCK also bounds.
+  //
+  // The grammar spells the line bound five ways and this reaches one of them on purpose. Stripping
+  // all five provokes LESS, not more: the inline emphasis rules then run to the end of the file and
+  // swallow every other finding into a single paragraph runaway. Measured — one spelling yields 17
+  // divergences and 11 unruled, all five yield 12 and 7.
   const provoked = fs.readFileSync(GRAMMAR, 'utf8').split('|(?=^$)').join('');
   const { code, out } = runProvoked(provoked, ['tools/swallow-witness.js']);
   assert.match(out, /[1-9]\d* unruled/, out.slice(-800));
