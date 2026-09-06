@@ -7,6 +7,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- The swallow gate holds a third ratchet: regions with no line bound that no cut ever opens. 118
+  regions carry no such bound, which alarms and means little alone — 39 stand open across a blank
+  line under some cut and AGREE with the parser, because TiddlyWiki carries those constructs too.
+  Standing open names no defect; disagreeing does, and the ledger holds all eight of those. The 79
+  left over have not been found sound, only left unasked, and from outside the two read alike:
+  a green gate. Measured with 800 upstream tiddlers added, twelve more come open, so the corpus
+  under-covers its own grammar by a knowable amount. A region arriving without a specimen that
+  opens it now raises the count and fails.
 - A self-closing `<svg …/>` closes its element. Twelve element families stand here and ten admit a
   self-close in their end pattern; the two that did not name `<svg>` and `<math>`, the roots. A
   sibling survives the gap because its end also breaks on the parent's closing tag, and a root has

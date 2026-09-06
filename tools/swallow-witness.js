@@ -45,6 +45,7 @@ const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
 const { parseTid } = require('./wiki-data.js');
+const { unboundedRegions } = require('./grammar-scopes.js');
 
 const verbose = process.argv.includes('--verbose');
 const LEDGER = path.join(ROOT, 'corpus', 'swallow-ledger.txt');
@@ -140,6 +141,7 @@ function parserHolds(text, at) {
 (async () => {
   const rulings = ledger();
   const findings = new Map();
+  const standing = new Set();
   let probes = 0;
   let files = 0;
 
@@ -161,6 +163,7 @@ function parserHolds(text, at) {
       if (at < 0) continue;
       probes += 1;
       const tokens = await tokenize(scope, specimen);
+      for (const token of tokens[line] || []) for (const scope of token.scopes) standing.add(scope);
       const parser = parserReads(read, at);
       const grammar = grammarReads(tokens, line);
       if (parser === grammar) continue;
@@ -214,7 +217,21 @@ function parserHolds(text, at) {
     console.error(`     ${where.file}:${where.cut}  ${JSON.stringify(where.tail)}  (${finding.hits.length} cut(s))`);
   }
 
+  // A region no cut opens stands unasked. The ceiling may fall and may never rise: a new region
+  // arrives with a specimen that opens it, or it arrives unmeasured.
+  const unbounded = unboundedRegions(path.join(ROOT, 'syntaxes', 'tiddlywiki5.json'));
+  const unasked = unbounded.filter((r) => ![...standing].some((s) => r.re.test(s)));
+  const ceilingFile = path.join(ROOT, 'corpus', 'unasked-regions-ceiling.txt');
+  const ceiling = fs.existsSync(ceilingFile)
+    ? Number(fs.readFileSync(ceilingFile, 'utf8').split('\n')[0].trim()) : Infinity;
+  if (unasked.length > ceiling) {
+    console.error(`  ${unasked.length} region(s) with no line bound stand unasked, above the ceiling of ${ceiling}`);
+    for (const r of unasked.slice(0, 8)) console.error(`     ${r.name}`);
+  }
+  console.log(`  regions: ${unbounded.length} carry no line bound, ${unbounded.length - unasked.length} `
+    + `stand open under some cut, ${unasked.length} go unasked (ceiling ${ceiling})`);
+
   console.log(`swallow-witness  ${probes} cut(s) across ${files} corpus file(s), `
     + `${findings.size} divergence(s), ${owed.size} recorded, ${unruled.length} unruled, ${stale.size} ruling(s) explaining nothing`);
-  process.exit(unruled.length === 0 && stale.size === 0 ? 0 : 1);
+  process.exit(unruled.length === 0 && stale.size === 0 && unasked.length <= ceiling ? 0 : 1);
 })();

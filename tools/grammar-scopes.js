@@ -59,4 +59,38 @@ function declaredScopesIn(dir) {
   return out;
 }
 
-module.exports = { declaredScopes, declaredScopesIn };
+/**
+ * The regions whose end can never break on a line, by the scope each one names.
+ *
+ * A region ending on `$` or on a blank line cannot outlive its line; every other one runs to the
+ * end of the document where its closer never arrives. The count alarms and means little alone —
+ * many stand open across a blank line and AGREE with the parser, because TiddlyWiki carries those
+ * constructs too. What it answers is coverage: a region no specimen ever opens has not been found
+ * sound, only left unasked.
+ *
+ * The name carries `$1`-style back-references, which TextMate fills from the begin match, so the
+ * matcher admits any one segment there.
+ *
+ * @param {string} file  path to a .json grammar
+ * @returns {Array<{name: string, re: RegExp}>}
+ */
+function unboundedRegions(file) {
+  const grammar = JSON.parse(fs.readFileSync(file, 'utf8'));
+  const out = [];
+  const walk = (node) => {
+    if (Array.isArray(node)) { node.forEach(walk); return; }
+    if (!node || typeof node !== 'object') return;
+    if (node.begin !== undefined && node.end !== undefined) {
+      const name = node.name || node.contentName;
+      if (name && !/\(\?=\^\$\)/.test(node.end) && !/\$$/.test(node.end)) {
+        const literal = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\\\$\d/g, '[^.]+');
+        out.push({ name, re: new RegExp(`^${literal}$`) });
+      }
+    }
+    for (const value of Object.values(node)) walk(value);
+  };
+  walk(grammar);
+  return out;
+}
+
+module.exports = { declaredScopes, declaredScopesIn, unboundedRegions };

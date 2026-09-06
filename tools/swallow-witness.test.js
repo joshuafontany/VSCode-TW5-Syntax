@@ -80,3 +80,17 @@ test('a ruling explaining no divergence fails the gate', live, () => {
   assert.match(out, /explaining nothing|no cut reads that way/, out.slice(-500));
   assert.notStrictEqual(code, 0, 'a stale ruling stood and the gate held anyway');
 });
+
+// The third ratchet. A region with no line bound that no specimen opens reads exactly like one
+// that was measured and found sound — both come back green.
+test('a ceiling lowered past the regions no cut opens fails the gate', live, () => {
+  const lower = (sandbox) => {
+    const file = path.join(sandbox, 'corpus', 'unasked-regions-ceiling.txt');
+    const text = fs.readFileSync(file, 'utf8');
+    const now = Number(text.split('\n')[0]);
+    fs.writeFileSync(file, text.replace(String(now), String(Math.max(0, now - 5))));
+  };
+  const { code, out } = runInSandbox(lower, ['tools/swallow-witness.js']);
+  assert.match(out, /stand unasked, above the ceiling/, out.slice(-600));
+  assert.notStrictEqual(code, 0, 'the ceiling fell below what stands unasked and the gate held anyway');
+});

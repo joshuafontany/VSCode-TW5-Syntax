@@ -1,0 +1,23 @@
+79
+# Regions whose end can never break on a line, and that no cut in this corpus ever leaves open.
+# The count may fall and may never rise.
+#
+# 118 regions carry no line bound. That number alarms and means little on its own: 39 of them
+# stand open across a blank line under some cut and AGREE with the parser, because TiddlyWiki
+# carries those constructs too — a `"""` attribute value spans blank lines, a definition body runs
+# to its `\end`, an element with no closer reaches the end of the tiddler. Standing open names no
+# defect. Disagreeing does, and the ledger beside this file holds all eight of those.
+#
+# What this count answers is COVERAGE. A region no specimen opens has not been found safe, only
+# left unasked, and the difference reads the same from outside: a green gate. Measured with 800
+# upstream TiddlyWiki tiddlers added to the sweep, twelve more regions come open — so this corpus
+# under-covers its own grammar by a knowable amount, and the number below names the residue.
+#
+# The families in that residue, largest first: pragma directives, embedded language blocks, macro
+# definition bodies, the comment rules inside embedded JavaScript, and the inline markup pairs.
+# Each wants a specimen that leaves it open at a line boundary, and each such specimen lowers this
+# number by one.
+#
+# A region arriving with no specimen that opens it raises the count and fails the gate. That reads
+# as the rule this whole battery exists to keep: a list nobody exercises cannot notice what it
+# missed.
