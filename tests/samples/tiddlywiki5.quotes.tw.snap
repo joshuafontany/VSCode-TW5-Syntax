@@ -338,12 +338,11 @@
 #   ^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5
 #     ^^^^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.macro.tiddlywiki5
 #            ^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
->   <<myMacro >>
+>   <<myMacro>>
 #^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5
 #   ^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5
 #     ^^^^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.macro.tiddlywiki5
-#            ^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
-#             ^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+#            ^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
 >   <<myMacro
 #^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5
 #   ^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5

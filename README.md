@@ -29,8 +29,8 @@ TiddlyWiki wikitext used by the [Lares](https://github.com/amorphous-dreams) age
 `text.html.tiddlywiki5.memetic-wikitext`, includes the wikitext grammar, so ordinary wikitext highlights
 inside a `*.mem` file exactly as it does in a `*.tid` file. On top of that it highlights four additions:
 
-* `<<~ name … >>` and its closing form `<<~ /name >>`
-* `<<^ code="&#x0001;" … >>`, a set of document-structure markers
+* `<<~ name …>>` and its closing form `<<~ /name>>`
+* `<<^ code="&#x0001;" …>>`, a set of document-structure markers
 * `lar:` URIs, highlighted as addresses where they appear in prose
 * named parameters written `key=value`, which TiddlyWiki 5.4 accepts alongside `key:value`
 

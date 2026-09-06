@@ -1,12 +1,11 @@
-<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext >>
+<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext>>
 
-<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/synthesis >>
+<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/synthesis>>
 ```toml meta
 cacheable = true
 file-path = "docs/prior-art/synthesis.mem"
 hydrate   = true
 l-space   = "stable"
-register  = "Provisional-Synthesis"
 retain    = true
 role      = "the coordinating spirit's synthesis, read across all five handbacks TOGETHER — fourteen highlighting systems, what they converge on, where they genuinely disagree, the golden principles in their authors' own words, the surprises a TextMate author would not know, and the graceful-degradation law"
 type      = "text/memetic-wikitext+tiddlywiki"
@@ -14,9 +13,9 @@ uri-path  = "ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/synthesis"
 written   = "2026-09-01"
 ```
 
-<<^ code="&#x0002;" >>
+<<^ code="&#x0002;">>
 
-<<~ ahu #synthesis >>
+<<~ ahu #synthesis>>
 
 ! A — THE SYSTEMS SURVEYED, one line on each model
 
@@ -465,9 +464,9 @@ foreground from `keyword` and italic from `keyword.control` on the same token.
 # ''Kate's two-tier escape hatch.'' `dsNormal` = "no special highlighting required"; `dsOthers` = "when nothing else fits". Unmarked and deliberately-marked-but-unslotted are DIFFERENT states, and Kate is the only system that names both.
 # ''Emacs 29 as the model for growing a vocabulary.'' Every new slot shipped with an `:inherit` into the old set. Growth is safe exactly when each addition declares its parent.
 
-<<~/ahu >>
+<<~/ahu>>
 
-<<~ ahu #handoff >>
+<<~ ahu #handoff>>
 
 ! HANDOFF — what the coordinating spirit handed back, VERBATIM
 
@@ -537,8 +536,8 @@ Overusing `invalid` ("as they edit code"), styling `meta.*`, stacking meta varia
 
 ''Not verified:'' the claim that GtkSourceView's default styles form logical groups where a scheme need only define the first of each — the style-reference page as fetched does not say it; recorded as hearsay. Xcode has no Apple-published category list; the 27 keys come from the theme file format, marked community throughout.
 
-<<~/ahu >>
+<<~/ahu>>
 
-<<^ code="&#x0003;" >>ni:///sha-256;F2n9kZemyealvdm1urKUWMENu8irIMJo2rfnsEhciq0
+<<^ code="&#x0003;">>ni:///sha-256;F2n9kZemyealvdm1urKUWMENu8irIMJo2rfnsEhciq0
 
-<<^ code="&#x0004;" -> to=? >>
+<<^ code="&#x0004;" -> to=?>>

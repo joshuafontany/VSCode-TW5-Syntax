@@ -1,12 +1,11 @@
-<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext >>
+<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext>>
 
-<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/sublime-vs-textmate >>
+<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/sublime-vs-textmate>>
 ```toml meta
 cacheable = true
 file-path = "docs/prior-art/sublime-vs-textmate.mem"
 hydrate   = true
 l-space   = "stable"
-register  = "Provisional"
 retain    = true
 role      = "tasked spirit's handback, kept VERBATIM — the TextMate-lineage naming conventions read critically as ONE data point: Sublime's scope_naming principles, what .sublime-syntax deliberately changed (embed/escape, branch/fail, with_prototype), the ORIGIN doctrine in the TextMate 1 manual, VS Code's deferral, and the anti-patterns collected in their authors' own words"
 type      = "text/memetic-wikitext+tiddlywiki"
@@ -14,9 +13,9 @@ uri-path  = "ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/sublime-vs-textmate
 written   = "2026-09-01"
 ```
 
-<<^ code="&#x0002;" >>
+<<^ code="&#x0002;">>
 
-<<~ ahu #sublime-vs-textmate >>
+<<~ ahu #sublime-vs-textmate>>
 
 ! HANDBACK — kept verbatim below this line, unedited
 
@@ -310,8 +309,8 @@ The widely-circulated "TextMate grammars lie / are slow / are impossible to get 
 
 Sources: [[Sublime scope naming|https://www.sublimetext.com/docs/scope_naming.html]] · [[Sublime syntax reference|https://www.sublimetext.com/docs/syntax.html]] · [[Build 3084 announcement|https://forum.sublimetext.com/t/dev-build-3084/14887]] · [[Sublime Text 4|https://www.sublimetext.com/blog/articles/sublime-text-4]] · [[TextMate language grammars|https://macromates.com/manual/en/language_grammars]] · [[VS Code syntax highlight guide|https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide]] · [[VS Code semantic highlight guide|https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide]] · [[VS Code color theme guide|https://code.visualstudio.com/api/extension-guides/color-theme]] · [[Tree-sitter|https://tree-sitter.github.io/tree-sitter/]] · [[Strange Loop 2018|https://www.thestrangeloop.com/2018/tree-sitter---a-new-parsing-system-for-programming-tools.html]] · [[Pulsar: Modern Tree-sitter part 7|https://blog.pulsar-edit.dev/posts/20240902-savetheclocktower-modern-tree-sitter-part-7/]] · [[Ecmascript-Sublime|https://github.com/bathos/Ecmascript-Sublime]]
 
-<<~/ahu >>
+<<~/ahu>>
 
-<<^ code="&#x0003;" >>ni:///sha-256;nOCrURpdgH41DWmKokbOaHMveqwgPPrAiTsGwLiYm5s
+<<^ code="&#x0003;">>ni:///sha-256;nOCrURpdgH41DWmKokbOaHMveqwgPPrAiTsGwLiYm5s
 
-<<^ code="&#x0004;" -> to=? >>
+<<^ code="&#x0004;" -> to=?>>

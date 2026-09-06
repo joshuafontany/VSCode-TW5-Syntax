@@ -7,6 +7,29 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- The corpus gate answers to the host as well as to itself. Its three readings all measure what
+  this repository wrote — scopes declared, scopes reached, constructs contained — so a rule the
+  grammar never learned reaches no scope, goes unmissed, and coverage reads full. A fourth reading
+  takes its population from `activeRules`: every rule TiddlyWiki stands must fire in some specimen,
+  and 43 of 43 do. One rule, `whitespace`, builds no node at all and stands named with the reason.
+  A corpus that stops exercising a rule now says so instead of quietly narrowing.
+- The swallow witness draws its battery from real text instead of a table. It held twenty-five
+  openers written by hand, which reached twelve of the thirty-six body rules TiddlyWiki stands —
+  the other twenty-four went unasked, and the openers it did name were spelled by the same hand
+  that spelled the grammar. It now cuts every corpus file at every line, appends a blank line and
+  a sentinel, and asks both readers about the same offset: 614 cuts across 26 files, against 42
+  specimens before. Thirteen divergences surfaced where the table reported none, four of them
+  recorded as debt in `corpus/swallow-ledger.txt` and the rest ruled to TiddlyWiki's own
+  behaviour — measured, not reasoned: a comment, a definition block and an unterminated element
+  each turn on text the parser reads BEYOND the construct, which no TextMate end pattern can see.
+- Three coarser readings of that question misreported before this one, and each names a trap. A
+  reader asking whether the sentinel exists anywhere calls a correct grammar wrong, because
+  TiddlyWiki carries an element with no closer to the end of the tiddler and parses blocks inside
+  it. A reader asking whether it stands at the root calls every grammar wrong, because
+  parsePragmas nests every later block beneath the definition above it. A sentinel any specimen
+  can also open collides with the head it follows. So the sentinel stands at a known offset and
+  each reader answers for that offset alone.
+
 - A code region reads literally, and a label types it. TiddlyWiki hands a tick span and a code
   block to no parser, and every shipped grammar reached for agrees: VS Code's markdown, wooorm's
   markdown-tm-language, Pygments, nvim-treesitter, Helix and tree-sitter-markdown all decline to
@@ -124,7 +147,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   it, the way markdown, asciidoc and mdx all write it, agrees in 66%. A fenced block keeps a
   delimiter scope of its own, since 38 of 65 themes leave one nesting there uncoloured.
 - An angle bracket carries no verdict. TiddlyWiki builds a node for every one — measured against
-  twenty-four shapes and across five grounds, it refuses at none — so `<< not a sigil >>`, a `<`
+  twenty-four shapes and across five grounds, it refuses at none — so `<< not a sigil>>`, a `<`
   in prose, and a macro call the parser declines all read as the text they render. The verdict
   had marked one hundred and forty-four spans, seventy-four of them in TiddlyWiki's own
   documentation.
@@ -797,8 +820,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - A language configuration of its own: `<<` and `>>` bracket and auto-close as a pair, `[[…]]`
   with them, and a sigil name, a `#fragment` or a whole `lar:` URI each select as one word.
 - The sharktooth namespace claims both spacings, and the tooth stands at one dispatch position
-  so a close mirrors its open: `<<~name …>>` beside `<<~ name …>>`, `<<~ /ahu >>` beside
-  `<<~/ahu >>`, matching the plain register's `<<fragment …>>` / `<</fragment>>`.
+  so a close mirrors its open: `<<~name …>>` beside `<<~ name …>>`, `<<~ /ahu>>` beside
+  `<<~/ahu>>`, matching the plain register's `<<fragment …>>` / `<</fragment>>`.
 - The manifest registers the language and its grammar and the package carries both, so a
   `*.mem` file opens as Memetic-Wikitext in an editor.
 - `corpus/` and `npm run corpus`: broad ground gated on invariants rather than pinned tokens.

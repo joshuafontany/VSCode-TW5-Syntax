@@ -1,12 +1,11 @@
-<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext >>
+<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext>>
 
-<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/fixed-vocabularies >>
+<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/fixed-vocabularies>>
 ```toml meta
 cacheable = true
 file-path = "docs/prior-art/fixed-vocabularies.mem"
 hydrate   = true
 l-space   = "stable"
-register  = "Provisional"
 retain    = true
 role      = "tasked spirit's handback, kept VERBATIM — the FIXED enumerated vocabularies: Kate/KSyntaxHighlighting 32 default styles, Vim syntax groups + hi-link, Emacs font-lock faces and the Emacs 29 growth, JetBrains TextAttributesKey fallback chains, Xcode's provenance axis. The declare-a-parent discipline lands here"
 type      = "text/memetic-wikitext+tiddlywiki"
@@ -14,9 +13,9 @@ uri-path  = "ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/fixed-vocabularies"
 written   = "2026-09-01"
 ```
 
-<<^ code="&#x0002;" >>
+<<^ code="&#x0002;">>
 
-<<~ ahu #fixed-vocabularies >>
+<<~ ahu #fixed-vocabularies>>
 
 ! HANDBACK — kept verbatim below this line, unedited
 
@@ -397,8 +396,8 @@ Sources:
 * [[xcode-sunburst-theme .xccolortheme|https://github.com/ThatsJustCheesy/xcode-sunburst-theme]]
 * [[MateoCerquetella/xcode-theme|https://github.com/MateoCerquetella/xcode-theme]]
 
-<<~/ahu >>
+<<~/ahu>>
 
-<<^ code="&#x0003;" >>ni:///sha-256;827-dpPwV0OXM0vFa86vF0sTqFJd5mW-iPShL7D7wcU
+<<^ code="&#x0003;">>ni:///sha-256;827-dpPwV0OXM0vFa86vF0sTqFJd5mW-iPShL7D7wcU
 
-<<^ code="&#x0004;" -> to=? >>
+<<^ code="&#x0004;" -> to=?>>

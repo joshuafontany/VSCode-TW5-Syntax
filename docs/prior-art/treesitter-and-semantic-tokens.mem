@@ -1,12 +1,11 @@
-<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext >>
+<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext>>
 
-<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/treesitter-and-semantic-tokens >>
+<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/treesitter-and-semantic-tokens>>
 ```toml meta
 cacheable = true
 file-path = "docs/prior-art/treesitter-and-semantic-tokens.mem"
 hydrate   = true
 l-space   = "stable"
-register  = "Provisional"
 retain    = true
 role      = "tasked spirit's handback, kept VERBATIM — tree-sitter capture vocabularies (upstream, nvim, Helix, Zed, four INCOMPATIBLE sets), locals, injections, the markdown two-grammar split, and LSP semantic tokens with VS Code's 20-row TextMate fallback map"
 type      = "text/memetic-wikitext+tiddlywiki"
@@ -14,9 +13,9 @@ uri-path  = "ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/treesitter-and-sema
 written   = "2026-09-01"
 ```
 
-<<^ code="&#x0002;" >>
+<<^ code="&#x0002;">>
 
-<<~ ahu #treesitter-and-semantic-tokens >>
+<<~ ahu #treesitter-and-semantic-tokens>>
 
 ! HANDBACK — kept verbatim below this line, unedited
 
@@ -549,8 +548,8 @@ Tooling: the ''scope inspector'' (`/api/language-extensions/syntax-highlight-gui
 * https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_semanticTokens (raw: `microsoft/language-server-protocol` `_specifications/lsp/3.17/language/semanticTokens.md`)
 * https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide (raw: https://raw.githubusercontent.com/microsoft/vscode-docs/main/api/language-extensions/semantic-highlight-guide.md)
 
-<<~/ahu >>
+<<~/ahu>>
 
-<<^ code="&#x0003;" >>ni:///sha-256;FjyOEdcbAJEo8EM_FsMhV05H4R1SlWBBhulTQidhk4M
+<<^ code="&#x0003;">>ni:///sha-256;FjyOEdcbAJEo8EM_FsMhV05H4R1SlWBBhulTQidhk4M
 
-<<^ code="&#x0004;" -> to=? >>
+<<^ code="&#x0004;" -> to=?>>

@@ -1,12 +1,11 @@
-<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext >>
+<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext>>
 
-<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/coordinator-direct >>
+<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/coordinator-direct>>
 ```toml meta
 cacheable = true
 file-path = "docs/prior-art/coordinator-direct.mem"
 hydrate   = true
 l-space   = "stable"
-register  = "Provisional"
 retain    = true
 role      = "the coordinating spirit's own primary-source gathering — TextMate scope-selector ranking, GtkSourceView map-to and its fixed default-style list, Neovim's tree-sitter capture vocabulary with its fallback and priority rules, and the Neovim bridge table that links BOTH tree-sitter captures and LSP semantic token types down into the 1990s Vim group set"
 type      = "text/memetic-wikitext+tiddlywiki"
@@ -14,9 +13,9 @@ uri-path  = "ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/coordinator-direct"
 written   = "2026-09-01"
 ```
 
-<<^ code="&#x0002;" >>
+<<^ code="&#x0002;">>
 
-<<~ ahu #coordinator-direct >>
+<<~ ahu #coordinator-direct>>
 
 ! TextMate scope selectors — the ranking algorithm (AUTHORITATIVE)
 
@@ -388,8 +387,8 @@ Source: https://code.visualstudio.com/api/language-extensions/syntax-highlight-g
 This is TextMate-land's answer to `bo.commentstring` — same problem, declared in package.json
 rather than in the grammar.
 
-<<~/ahu >>
+<<~/ahu>>
 
-<<^ code="&#x0003;" >>ni:///sha-256;A8wOyspV23LZ2mTiWH8UtUod7BFzxrVoxiq4_su4Hbs
+<<^ code="&#x0003;">>ni:///sha-256;A8wOyspV23LZ2mTiWH8UtUod7BFzxrVoxiq4_su4Hbs
 
-<<^ code="&#x0004;" -> to=? >>
+<<^ code="&#x0004;" -> to=?>>

@@ -1,4 +1,4 @@
-><<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/containers >>
+><<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/containers>>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.declaration.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
 #  ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.declaration.memetic-wikitext keyword.control.declaration.memetic-wikitext
 #          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.declaration.memetic-wikitext
@@ -19,10 +19,9 @@
 #                                                                 ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.declaration.memetic-wikitext markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
 #                                                                     ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.declaration.memetic-wikitext markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
 #                                                                      ^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.declaration.memetic-wikitext markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
-#                                                                                ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.declaration.memetic-wikitext
-#                                                                                 ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.declaration.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
+#                                                                                ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.declaration.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
 >
-><<^ code="&#x0001;" namespace="⊙" from=? -> to=lar:///ha.ka.ba/lares/api/pono/containers >>
+><<^ code="&#x0001;" namespace="⊙" from=? -> to=lar:///ha.ka.ba/lares/api/pono/containers>>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
 #  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext constant.character.carrier.soh.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext
@@ -63,20 +62,11 @@
 #                                                                         ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
 #                                                                             ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
 #                                                                              ^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
-#                                                                                        ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext
-#                                                                                         ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
+#                                                                                        ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
 >```toml meta
 #^^^ text.html.tiddlywiki5.memetic-wikitext markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 keyword.control.raw.fence.tiddlywiki5 punctuation.definition.raw.markup.begin.tiddlywiki5
 #   ^^^^ text.html.tiddlywiki5.memetic-wikitext markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 entity.other.attribute-name.language.tiddlywiki5
 #       ^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5
->register = "Synthesis"
-#^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.toml source.toml variable.other.key.toml
-#        ^ text.html.tiddlywiki5.memetic-wikitext markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.toml source.toml
-#         ^ text.html.tiddlywiki5.memetic-wikitext markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.toml source.toml punctuation.separator.key-value.toml
-#          ^ text.html.tiddlywiki5.memetic-wikitext markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.toml source.toml
-#           ^ text.html.tiddlywiki5.memetic-wikitext markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.toml source.toml string.quoted.double.toml punctuation.definition.string.begin.toml
-#            ^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.toml source.toml string.quoted.double.toml
-#                     ^ text.html.tiddlywiki5.memetic-wikitext markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.toml source.toml string.quoted.double.toml punctuation.definition.string.end.toml
 >uri-path = "ha.ka.ba/lares/api/pono/containers"
 #^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.toml source.toml variable.other.key.toml
 #        ^ text.html.tiddlywiki5.memetic-wikitext markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.toml source.toml
@@ -88,7 +78,7 @@
 >```
 #^^^ text.html.tiddlywiki5.memetic-wikitext markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 keyword.control.raw.fence.tiddlywiki5 punctuation.definition.raw.markup.end.tiddlywiki5
 >
-><<^ code="&#x0002;" >>
+><<^ code="&#x0002;">>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
 #  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext constant.character.carrier.stx.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext
@@ -97,10 +87,9 @@
 #         ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext string.quoted.double.memetic-wikitext punctuation.definition.string.begin.memetic-wikitext
 #          ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext string.quoted.double.memetic-wikitext
 #                  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext string.quoted.double.memetic-wikitext punctuation.definition.string.end.memetic-wikitext
-#                   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext
-#                    ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
+#                   ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.stx.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
 >
-><<~ ahu #containers >>
+><<~ ahu #containers>>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
 #  ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext keyword.control.sharktooth.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext
@@ -108,41 +97,39 @@
 #       ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext
 #        ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext punctuation.definition.anchor.memetic-wikitext
 #         ^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext entity.name.tag.anchor.memetic-wikitext
-#                   ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext
-#                    ^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
+#                   ^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
 >
 >!! A sigil inside each block container
 #^^ text.html.tiddlywiki5.memetic-wikitext markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 punctuation.definition.heading.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
 #  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 entity.name.section.tiddlywiki5
 >
->A paragraph naming <<~ sigil >> and lar:///ha.ka.ba/lares/api/pono/containers.
+>A paragraph naming <<~ sigil>> and lar:///ha.ka.ba/lares/api/pono/containers.
 #^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
 #                   ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
 #                     ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.sigil.memetic-wikitext keyword.control.sharktooth.memetic-wikitext
 #                      ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.sigil.memetic-wikitext
 #                       ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.sigil.memetic-wikitext entity.name.function.sigil.memetic-wikitext
-#                            ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.sigil.memetic-wikitext
-#                             ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
-#                               ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
-#                                    ^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext
-#                                       ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext punctuation.separator.scheme.lar.memetic-wikitext
-#                                        ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.definition.authority.lar.memetic-wikitext
-#                                          ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
-#                                           ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext entity.name.tag.heading.lar.memetic-wikitext
-#                                             ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.root.lar.memetic-wikitext
-#                                              ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext entity.name.tag.angle.lar.memetic-wikitext
-#                                                ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.root.lar.memetic-wikitext
-#                                                 ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext entity.name.tag.dynamic.lar.memetic-wikitext
-#                                                   ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
-#                                                    ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
-#                                                         ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
-#                                                          ^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
-#                                                             ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
-#                                                              ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
-#                                                                  ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
-#                                                                   ^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
+#                            ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
+#                              ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+#                                   ^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext
+#                                      ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext punctuation.separator.scheme.lar.memetic-wikitext
+#                                       ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.definition.authority.lar.memetic-wikitext
+#                                         ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
+#                                          ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext entity.name.tag.heading.lar.memetic-wikitext
+#                                            ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.root.lar.memetic-wikitext
+#                                             ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext entity.name.tag.angle.lar.memetic-wikitext
+#                                               ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.root.lar.memetic-wikitext
+#                                                ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext entity.name.tag.dynamic.lar.memetic-wikitext
+#                                                  ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
+#                                                   ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
+#                                                        ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
+#                                                         ^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
+#                                                            ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
+#                                                             ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
+#                                                                 ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
+#                                                                  ^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
 >
->* unordered, carrying <<~ sigil name=value >>
+>* unordered, carrying <<~ sigil name=value>>
 #^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
 # ^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5
 #                      ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
@@ -153,9 +140,8 @@
 #                                ^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.sigil.memetic-wikitext entity.other.attribute-name.memetic-wikitext
 #                                    ^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.sigil.memetic-wikitext keyword.operator.assignment.memetic-wikitext
 #                                     ^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.sigil.memetic-wikitext string.unquoted.memetic-wikitext
-#                                          ^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.sigil.memetic-wikitext
-#                                           ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
->** nested, carrying <<~ loulou lar:///ha.ka.ba/lares/api/pono/containers >>
+#                                          ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
+>** nested, carrying <<~ loulou lar:///ha.ka.ba/lares/api/pono/containers>>
 #^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
 #  ^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5
 #                    ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
@@ -180,9 +166,8 @@
 #                                                         ^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.sigil.memetic-wikitext markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
 #                                                             ^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.sigil.memetic-wikitext markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
 #                                                              ^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.sigil.memetic-wikitext markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
-#                                                                        ^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.sigil.memetic-wikitext
-#                                                                         ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
-># ordered, carrying <<~ sigil bracket=[[a bracketed value]] >>
+#                                                                        ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
+># ordered, carrying <<~ sigil bracket=[[a bracketed value]]>>
 #^ text.html.tiddlywiki5.memetic-wikitext markup.list.numbered.ordered.ol.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.numbered.ordered.ol.li.list.markup.tiddlywiki5
 # ^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.numbered.ordered.ol.li.tiddlywiki5
 #                    ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.numbered.ordered.ol.li.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
@@ -195,18 +180,16 @@
 #                                      ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.numbered.ordered.ol.li.tiddlywiki5 meta.sigil.memetic-wikitext string.quoted.bracket.memetic-wikitext punctuation.definition.string.begin.memetic-wikitext
 #                                        ^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.numbered.ordered.ol.li.tiddlywiki5 meta.sigil.memetic-wikitext string.quoted.bracket.memetic-wikitext
 #                                                         ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.numbered.ordered.ol.li.tiddlywiki5 meta.sigil.memetic-wikitext string.quoted.bracket.memetic-wikitext punctuation.definition.string.end.memetic-wikitext
-#                                                           ^ text.html.tiddlywiki5.memetic-wikitext markup.list.numbered.ordered.ol.li.tiddlywiki5 meta.sigil.memetic-wikitext
-#                                                            ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.numbered.ordered.ol.li.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
->; a term carrying <<~ sigil >>
+#                                                           ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.numbered.ordered.ol.li.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
+>; a term carrying <<~ sigil>>
 #^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.term.dl.dt.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.term.dl.dt.list.markup.tiddlywiki5
 # ^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.term.dl.dt.tiddlywiki5
 #                  ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.term.dl.dt.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
 #                    ^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.term.dl.dt.tiddlywiki5 meta.sigil.memetic-wikitext keyword.control.sharktooth.memetic-wikitext
 #                     ^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.term.dl.dt.tiddlywiki5 meta.sigil.memetic-wikitext
 #                      ^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.term.dl.dt.tiddlywiki5 meta.sigil.memetic-wikitext entity.name.function.sigil.memetic-wikitext
-#                           ^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.term.dl.dt.tiddlywiki5 meta.sigil.memetic-wikitext
-#                            ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.term.dl.dt.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
->: its description carrying <<~ sigil single='quoted' >>
+#                           ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.term.dl.dt.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
+>: its description carrying <<~ sigil single='quoted'>>
 #^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.description.dl.dd.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.description.dl.dd.list.markup.tiddlywiki5
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.description.dl.dd.tiddlywiki5
 #                           ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.description.dl.dd.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
@@ -219,68 +202,63 @@
 #                                            ^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.description.dl.dd.tiddlywiki5 meta.sigil.memetic-wikitext string.quoted.single.memetic-wikitext punctuation.definition.string.begin.memetic-wikitext
 #                                             ^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.description.dl.dd.tiddlywiki5 meta.sigil.memetic-wikitext string.quoted.single.memetic-wikitext
 #                                                   ^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.description.dl.dd.tiddlywiki5 meta.sigil.memetic-wikitext string.quoted.single.memetic-wikitext punctuation.definition.string.end.memetic-wikitext
-#                                                    ^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.description.dl.dd.tiddlywiki5 meta.sigil.memetic-wikitext
-#                                                     ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.description.dl.dd.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
+#                                                    ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.unnumbered.description.dl.dd.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
 >
 ><<<
 #^^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 punctuation.definition.markup.quote.quoteblock.begin.tiddlywiki5
->a quoteblock carrying <<~ sigil >> and lar:///ha.ka.ba/lares/api/pono/containers
+>a quoteblock carrying <<~ sigil>> and lar:///ha.ka.ba/lares/api/pono/containers
 #^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5
 #                      ^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
 #                        ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.sigil.memetic-wikitext keyword.control.sharktooth.memetic-wikitext
 #                         ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.sigil.memetic-wikitext
 #                          ^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.sigil.memetic-wikitext entity.name.function.sigil.memetic-wikitext
-#                               ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.sigil.memetic-wikitext
-#                                ^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
-#                                  ^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5
-#                                       ^^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext
-#                                          ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext punctuation.separator.scheme.lar.memetic-wikitext
-#                                           ^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.definition.authority.lar.memetic-wikitext
-#                                             ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
-#                                              ^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext entity.name.tag.heading.lar.memetic-wikitext
-#                                                ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.root.lar.memetic-wikitext
-#                                                 ^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext entity.name.tag.angle.lar.memetic-wikitext
-#                                                   ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.root.lar.memetic-wikitext
-#                                                    ^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext entity.name.tag.dynamic.lar.memetic-wikitext
-#                                                      ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
-#                                                       ^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
-#                                                            ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
-#                                                             ^^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
-#                                                                ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
-#                                                                 ^^^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
-#                                                                     ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
-#                                                                      ^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
+#                               ^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
+#                                 ^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5
+#                                      ^^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext
+#                                         ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext punctuation.separator.scheme.lar.memetic-wikitext
+#                                          ^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.definition.authority.lar.memetic-wikitext
+#                                            ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
+#                                             ^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext entity.name.tag.heading.lar.memetic-wikitext
+#                                               ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.root.lar.memetic-wikitext
+#                                                ^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext entity.name.tag.angle.lar.memetic-wikitext
+#                                                  ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.root.lar.memetic-wikitext
+#                                                   ^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext entity.name.tag.dynamic.lar.memetic-wikitext
+#                                                     ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
+#                                                      ^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
+#                                                           ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
+#                                                            ^^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
+#                                                               ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
+#                                                                ^^^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
+#                                                                    ^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext
+#                                                                     ^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 meta.quote.quoteblock.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.underline.link.lar.memetic-wikitext string.unquoted.uri.lar.memetic-wikitext
 ><<<
 #^^^ text.html.tiddlywiki5.memetic-wikitext markup.quote.quoteblock.tiddlywiki5 punctuation.definition.markup.quote.quoteblock.end.tiddlywiki5
 >
->> a blockquote carrying <<~ sigil >>
+>> a blockquote carrying <<~ sigil>>
 #^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.listquote.quote.list.markup.tiddlywiki5
 # ^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5
 #                        ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
 #                          ^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.sigil.memetic-wikitext keyword.control.sharktooth.memetic-wikitext
 #                           ^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.sigil.memetic-wikitext
 #                            ^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.sigil.memetic-wikitext entity.name.function.sigil.memetic-wikitext
-#                                 ^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.sigil.memetic-wikitext
-#                                  ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
->>> nested, carrying <<~ sigil >>
+#                                 ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
+>>> nested, carrying <<~ sigil>>
 #^^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.listquote.quote.list.markup.tiddlywiki5
 #  ^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5
 #                    ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
 #                      ^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.sigil.memetic-wikitext keyword.control.sharktooth.memetic-wikitext
 #                       ^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.sigil.memetic-wikitext
 #                        ^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.sigil.memetic-wikitext entity.name.function.sigil.memetic-wikitext
-#                             ^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.sigil.memetic-wikitext
-#                              ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
+#                             ^^ text.html.tiddlywiki5.memetic-wikitext markup.list.listquote.quote.tiddlywiki5 meta.sigil.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
 >
-><<~/ahu >>
+><<~/ahu>>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
 #  ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext keyword.control.sharktooth.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext punctuation.definition.sigil.close.memetic-wikitext
 #    ^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext entity.name.function.sigil.memetic-wikitext
-#       ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext
-#        ^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
+#       ^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
 >
-><<^ code="&#x0003;" >>
+><<^ code="&#x0003;">>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
 #  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext constant.character.carrier.etx.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext
@@ -289,10 +267,9 @@
 #         ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext string.quoted.double.memetic-wikitext punctuation.definition.string.begin.memetic-wikitext
 #          ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext string.quoted.double.memetic-wikitext
 #                  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext string.quoted.double.memetic-wikitext punctuation.definition.string.end.memetic-wikitext
-#                   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext
-#                    ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
+#                   ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
 >
-><<^ code="&#x0004;" -> ? >>
+><<^ code="&#x0004;" -> ?>>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext punctuation.definition.sigil.begin.memetic-wikitext
 #  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext constant.character.carrier.eot.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext
@@ -303,6 +280,6 @@
 #                  ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext string.quoted.double.memetic-wikitext punctuation.definition.string.end.memetic-wikitext
 #                   ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext
 #                    ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext keyword.operator.bearing.arrow.memetic-wikitext
-#                      ^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext
-#                         ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
+#                      ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext
+#                        ^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext punctuation.definition.sigil.end.memetic-wikitext
 >

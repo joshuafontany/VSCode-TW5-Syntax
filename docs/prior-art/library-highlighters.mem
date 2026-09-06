@@ -1,12 +1,11 @@
-<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext >>
+<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext>>
 
-<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/library-highlighters >>
+<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/library-highlighters>>
 ```toml meta
 cacheable = true
 file-path = "docs/prior-art/library-highlighters.mem"
 hydrate   = true
 l-space   = "stable"
-register  = "Provisional"
 retain    = true
 role      = "tasked spirit's handback, kept VERBATIM — token vocabularies of the six library highlighters: Pygments, Rouge, Chroma, highlight.js, Prism, CodeMirror 6 @lezer/highlight. The fallback-by-lookup vs fallback-by-composition split lands here"
 type      = "text/memetic-wikitext+tiddlywiki"
@@ -14,9 +13,9 @@ uri-path  = "ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/library-highlighter
 written   = "2026-09-01"
 ```
 
-<<^ code="&#x0002;" >>
+<<^ code="&#x0002;">>
 
-<<~ ahu #library-highlighters >>
+<<~ ahu #library-highlighters>>
 
 ! HANDBACK — kept verbatim below this line, unedited
 
@@ -335,8 +334,8 @@ Sources:
 * [[Prism — Token types|https://prismjs.com/tokens.html]] · [[Prism — Extending|https://prismjs.com/extending.html]]
 * [[@lezer/highlight reference|https://lezer.codemirror.net/docs/ref/#highlight]] · [[highlight.ts source|https://raw.githubusercontent.com/lezer-parser/highlight/main/src/highlight.ts]] · [[CodeMirror syntaxHighlighting|https://codemirror.net/docs/ref/#language.syntaxHighlighting]]
 
-<<~/ahu >>
+<<~/ahu>>
 
-<<^ code="&#x0003;" >>ni:///sha-256;BsF4ueRazGqzGwZxOUlFMhaj9shoBQ3QUULPAiIzptI
+<<^ code="&#x0003;">>ni:///sha-256;BsF4ueRazGqzGwZxOUlFMhaj9shoBQ3QUULPAiIzptI
 
-<<^ code="&#x0004;" -> to=? >>
+<<^ code="&#x0004;" -> to=?>>

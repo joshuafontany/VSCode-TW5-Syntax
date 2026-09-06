@@ -315,7 +315,7 @@ wraps inline run""" into `HTMLSpanElement` @@
 <!--#region Inline Macros Wikitext -->
 
 * <<myMacro>>
-* <<myMacro >>
+* <<myMacro>>
 * <<myMacro
 >>
 * <<myMacro
@@ -861,7 +861,7 @@ for the bottom cite
 <!--#region Block Macro Wikitext -->
 
 <<myMacro>>
-<<myMacro >>
+<<myMacro>>
 <<myMacro
 >>
   <<myMacro

@@ -1,25 +1,24 @@
-<<~ aka https://example.com/reference >>
+<<~ aka https://example.com/reference>>
 
-<<~ ahu #a-section >>
+<<~ ahu #a-section>>
 
 A body inside the section.
 
-<<~ /ahu >>
+<<~ /ahu>>
 
-<<~/ahu >>
+<<~/ahu>>
 
-<<~ confidence 12/20 >>
 
-<<~ lares aim from=lar://alias:grant@host/a.b.c -> to=lar://alias:grant@host/d.e.f >>
+<<~ lares aim from=lar://alias:grant@host/a.b.c -> to=lar://alias:grant@host/d.e.f>>
 
-<<~ hud Focus(10) Feedback(3) >>
+<<~ hud Focus(10) Feedback(3)>>
 
-<<~! a pragma sigil >>
+<<~! a pragma sigil>>
 
-<<~? >>
+<<~?>>
 
-<<~ kahea greeting(name="Operator") >>
+<<~ kahea greeting(name="Operator")>>
 
-<<~ kahea greeting(name:"Operator") >>
+<<~ kahea greeting(name:"Operator")>>
 
-<<~ hoike lar:///a.b.c -> ? >>
+<<~ hoike lar:///a.b.c -> ?>>

@@ -1,12 +1,11 @@
-<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext >>
+<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext>>
 
-<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/scope-naming-prior-art >>
+<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/scope-naming-prior-art>>
 ```toml meta
 cacheable = true
 file-path = "docs/scope-naming-prior-art.mem"
 hydrate   = true
 l-space   = "stable"
-register  = "Provisional-Synthesis"
 retain    = true
 role      = "prior art gathered outside negentropy on TextMate scope-naming vocabulary — the tasked spirit's handoff, kept verbatim; the ground for aligning wikitext scope names to what a theme rules on"
 type      = "text/memetic-wikitext+tiddlywiki"
@@ -14,9 +13,9 @@ uri-path  = "ha.ka.ba/lares/docs/vscode-tw5-syntax/scope-naming-prior-art"
 written   = "2026-09-01"
 ```
 
-<<^ code="&#x0002;" >>
+<<^ code="&#x0002;">>
 
-<<~ ahu #house-ruling >>
+<<~ ahu #house-ruling>>
 
 ! HOUSE RULING — what this house takes from the survey, and what it declines
 
@@ -43,9 +42,9 @@ A second survey runs wider — across tree-sitter, semantic tokens, Pygments, KS
 font-lock and the rest — so the patterns here stand against systems that share none of this
 vocabulary.
 
-<<~/ahu >>
+<<~/ahu>>
 
-<<~ ahu #scope-naming-prior-art >>
+<<~ ahu #scope-naming-prior-art>>
 
 ! HANDOFF — the tasked spirit's survey, kept VERBATIM
 
@@ -319,9 +318,9 @@ Every surveyed prose grammar suffixes its ''own'' constructs (`markup.bold.quart
 
 `meta.embedded.*` shape is not uniform: `meta.embedded.block.<lang>` (AsciiDoc, Quarto, Shopify Liquid, VS Code Markdown) vs flat `meta.embedded.<lang>` (MDX) vs absent (Vue, Twig, Jinja, panoply Liquid).
 
-<<~/ahu >>
+<<~/ahu>>
 
-<<~ ahu #handoff >>
+<<~ ahu #handoff>>
 
 ! HANDOFF — what the spirit handed back, VERBATIM
 
@@ -447,8 +446,8 @@ One caution on `markup.fenced_code.block.tiddlywiki5`: it reaches only ''1/9'' o
 
 Sources: [[Sublime scope naming|https://www.sublimetext.com/docs/scope_naming.html]] · [[TextMate language grammars|https://macromates.com/manual/en/language_grammars]] · [[VS Code syntax highlight guide|https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide]] · [[vscode-textmate grammar.ts|https://github.com/microsoft/vscode-textmate/blob/main/src/grammar/grammar.ts]] · [[VS Code markdown grammar|https://raw.githubusercontent.com/microsoft/vscode/main/extensions/markdown-basics/syntaxes/markdown.tmLanguage.json]] · [[asciidoctor-vscode PR #1018|https://github.com/asciidoctor/asciidoctor-vscode/pull/1018]] · [[markdown-tm-language grammar.yml|https://raw.githubusercontent.com/wooorm/markdown-tm-language/main/grammar.yml]] · [[Quarto grammar|https://raw.githubusercontent.com/quarto-dev/quarto/main/apps/vscode/syntaxes/quarto.tmLanguage.yaml]] · [[Vue grammar|https://raw.githubusercontent.com/vuejs/language-tools/master/extensions/vscode/syntaxes/vue.tmLanguage.json]] · [[Shiki|https://shiki.style/guide/]]
 
-<<~/ahu >>
+<<~/ahu>>
 
-<<^ code="&#x0003;" >>ni:///sha-256;Ngd_DFiYAKdnLd5VHQjnTY9AoXmfICtVgL1liLxZZXA
+<<^ code="&#x0003;">>ni:///sha-256;Ngd_DFiYAKdnLd5VHQjnTY9AoXmfICtVgL1liLxZZXA
 
-<<^ code="&#x0004;" -> to=? >>
+<<^ code="&#x0004;" -> to=?>>

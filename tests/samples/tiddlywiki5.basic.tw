@@ -396,7 +396,7 @@ for the bottom cite
 <!--#region Block Macro Wikitext -->
 
 <<myMacro>>
-<<myMacro >>
+<<myMacro>>
 <<myMacro
 >>
   <<myMacro
