@@ -31,7 +31,6 @@ pragmas.tw:meta.directive                     # the same \rules run
 pragmas.tw:keyword.operator                   # the argument of a pragma the same \rules run removed
 degenerate.illegal.tw:                        # a fixture written to be malformed
 degenerate.unterminated.tw:                   # a fixture written to leave constructs open
-degenerate.nesting.tw:                        # a fixture written to nest wrongly
 
 # The dialect. memetic-wikitext+tiddlywiki includes the whole base grammar and adds a
 # vocabulary of its own — carriers, sigils, lar: addresses, block checks — which TiddlyWiki's

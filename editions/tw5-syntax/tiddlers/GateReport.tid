@@ -3,11 +3,11 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 24 of 24
+gates-held: 25 of 25
 
 {
-    "gates": 24,
-    "held": 24,
+    "gates": 25,
+    "held": 25,
     "failing": 0,
     "results": [
         {
@@ -81,6 +81,11 @@ gates-held: 24 of 24
             "said": "light-cone  35 divergence(s) across 10 class(es); forward arm moved 14, backward arm moved 8; 8 proven or unruled, 2 ruled without proof, 0 owed but reaching out"
         },
         {
+            "gate": "must-fail",
+            "held": true,
+            "said": "must-fail  2 specimen(s), 2 declaration(s), 0 that assert nothing"
+        },
+        {
             "gate": "nesting-coverage",
             "held": true,
             "said": "nesting-coverage  14 container/construct pairs from TiddlyWiki's own tiddlers"
@@ -118,7 +123,7 @@ gates-held: 24 of 24
         {
             "gate": "swallow-witness",
             "held": true,
-            "said": "swallow-witness  794 cut(s) across 36 corpus file(s), 9 divergence(s), 2 recorded, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "swallow-witness  822 cut(s) across 38 corpus file(s), 9 divergence(s), 2 recorded, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "theme-parity",

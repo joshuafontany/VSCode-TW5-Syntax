@@ -384,6 +384,7 @@
         "filter-witness": "node ./tools/filter-witness.js",
         "attribute-witness": "node ./tools/attribute-witness.js",
         "light-cone": "node ./tools/light-cone.js",
+        "must-fail": "node ./tools/must-fail.js",
         "backtrack-witness": "node ./tools/backtrack-witness.js",
         "dark-construct": "node ./tools/dark-construct.js",
         "gates": "node ./tools/gate-report.js",

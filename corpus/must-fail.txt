@@ -1,0 +1,24 @@
+# Specimens written to be malformed, and the degradation each one asserts.
+#
+# A specimen written to fail stands exempt from the gates that measure well-formed text: it bleeds
+# on purpose, so a containment check would refuse it forever. That exemption costs nothing while
+# the specimen still degrades — and the day the grammar improves past it, the specimen reads clean,
+# keeps its exemption, and every gate agrees that nothing stands wrong.
+#
+# So the exemption carries a declaration, and the declaration gets measured. Two files carrying the
+# degenerate name asserted nothing measurable and stand renamed into the swept corpus: one held
+# well-formed nesting throughout, and one reached for a dialect bleed the dialect cannot produce —
+# every region in the dialect grammar ends at its own line, all thirteen of them.
+#
+# HELD APART FROM THE DIVERGENCE LEDGERS ON PURPOSE. `swallow-ledger.txt` and
+# `expected-divergence.txt` record what this grammar CANNOT YET read; this file records what it
+# MUST NOT read. One list fusing both senses grows unreadable, and the entries then differ only by
+# whoever remembers which kind they meant.
+#
+#   <specimen>  <degradation>   # what it exists to prove
+#
+# `bleeds`  — a construct left open colours the sentinel standing after the file.
+# `verdict` — the grammar names an `invalid.` scope somewhere inside it.
+
+degenerate.unterminated.tw  bleeds   # constructs left open, each one reaching past its own block
+degenerate.illegal.tw       bleeds   # malformed markup the parser refuses, carried by the grammar

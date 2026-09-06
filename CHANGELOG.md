@@ -7,6 +7,17 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- `must-fail` measures the degradation each malformed specimen still produces. A specimen written
+  to fail stands exempt from the gates that read well-formed text, and that exemption costs nothing
+  while the specimen degrades — the day the grammar improves past it, the specimen reads clean,
+  keeps the exemption, and every gate agrees that nothing stands wrong. The declaration lives apart
+  from the divergence ledgers on purpose: those record what the grammar CANNOT YET read, this
+  records what it MUST NOT read, and one list fusing both senses grows unreadable.
+- Two files carrying the malformed name asserted nothing measurable and rejoin the swept corpus.
+  One held well-formed nesting throughout and had been exempt from every gate on the strength of
+  its filename, so its scopes never counted and its constructs never got cut. The other reached for
+  a bleed the dialect cannot produce: every region in the dialect grammar ends at its own line, all
+  thirteen of them, so no dialect construct crosses a boundary at all.
 - `light-cone` classifies a divergence by REACH rather than by a reason somebody wrote down. Two
   readers stand over one text and neither holds a global now: the parser walks a document, a grammar
   reads a line and whatever its stack carried in. Where a difference turns on evidence outside the
@@ -572,7 +583,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 58 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 57 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
   emits no container node, so a scope over its content stands over text by construction.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses
