@@ -69,6 +69,44 @@ for (const rule of signals.wikiRules) {
 // A reason that no longer answers to anything stops explaining, the way a stale relation does.
 const idle = Object.keys(ALIAS).filter((r) => !signals.wikiRules.includes(r) || read.includes(r));
 
+// ── THE PRAGMA ZONE ──────────────────────────────────────────────────────────────────────────
+//
+// A grammar guards the pragma zone with a keyword list, and no structural reading can replace it:
+// the zone has to tell a directive line from a line of prose, which turns on the keyword itself.
+// So the list goes stale on the release that adds a ninth pragma, and it fails quietly — a keyword
+// missing from the guard closes the zone on the line carrying it, and every directive below reads
+// as prose.
+//
+// The guard finds itself. Whichever pattern names the most harvested keywords IS the guard, so no
+// path or rule name written here points at the wrong one, and the guard must then name them ALL.
+//
+// The keyword reads as a WORD rather than as the token a rule spells: a guard carries several
+// directives in one alternation — `\\(?:function|procedure|widget)` — where the backslash stands
+// once for all three, and a reader demanding the whole token finds none of them.
+const patterns = [];
+const collect = (node) => {
+  if (Array.isArray(node)) { node.forEach(collect); return; }
+  if (!node || typeof node !== 'object') return;
+  for (const key of ['begin', 'end', 'match']) if (typeof node[key] === 'string') patterns.push(node[key]);
+  for (const value of Object.values(node)) collect(value);
+};
+collect(grammar);
+
+const tokens = Object.values(signals.pragmaTokens ?? {}).flat();
+// The keyword stands on its own: a guard carrying `parsermodex` names no pragma, and a reader
+// asking whether one string sits inside another calls it named.
+const names = (pattern, token) => {
+  const word = token.replace(/^\\/, '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`(?<![A-Za-z])${word}(?![A-Za-z])`).test(pattern);
+};
+const scores = patterns.map((p) => tokens.filter((t) => names(p, t)).length);
+const guard = patterns[scores.indexOf(Math.max(0, ...scores))] ?? '';
+const unguarded = tokens.filter((t) => !names(guard, t));
+
+for (const token of unguarded) {
+  console.error(`  the pragma zone never names "${token}", so it closes on the line that carries one`);
+}
+
 if (verbose) {
   for (const rule of aliased) console.log(`  ${rule.padEnd(20)}${ALIAS[rule]}`);
 }
@@ -79,5 +117,6 @@ for (const rule of idle) {
   console.error(`  "${rule}" carries a reason nothing needs — the grammar names it, or the host no longer stands it`);
 }
 console.log(`rule-coverage  TiddlyWiki ${version}: ${signals.wikiRules.length} rule(s), `
-  + `${read.length} read, ${aliased.length} under another name, ${unread.length + idle.length} unaccounted`);
-process.exit(unread.length + idle.length === 0 ? 0 : 1);
+  + `${read.length} read, ${aliased.length} under another name, ${unread.length + idle.length} unaccounted; `
+  + `${tokens.length} pragma keyword(s) guarded`);
+process.exit(unread.length + idle.length + unguarded.length === 0 ? 0 : 1);

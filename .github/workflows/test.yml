@@ -107,6 +107,8 @@ jobs:
       # An opener that never closes, bounded where the parser bounds it.
       - name: Swallow witness
         run: npm run swallow-witness
+      - name: Filters TiddlyWiki writes read without a verdict
+        run: npm run filter-witness
 
       # What a theme paints for this grammar against six comparator grammars.
       - name: Theme parity

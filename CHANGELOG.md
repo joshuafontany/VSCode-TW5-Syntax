@@ -7,6 +7,22 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- Three populations TiddlyWiki registers now gate something. The signals harvest gains the token
+  each pragma rule opens on — `\define`, `\parameters`, `\function|procedure|widget`, `<!--` —
+  read off each rule module's own matchRegExp, and the run prefixes registered under
+  `filterrunprefix`. Neither list gets retyped anywhere.
+- The pragma zone answers to that harvest. A grammar guards the zone with a keyword list, and no
+  structural reading replaces it: the zone has to tell a directive line from prose, which turns on
+  the keyword. The guard finds itself — whichever pattern names the most harvested keywords IS the
+  guard — and must then name them all. A keyword missing closes the zone on the line carrying it
+  and drops every directive below into prose, which is the shape that once cost fifty-four pragmas.
+- `filter-witness` reads what TiddlyWiki writes. A filter run colours structurally, so `:cascade`
+  and `:nosuchprefix` read alike and a name the pattern cannot match simply reads as something
+  else with nothing counting it. The gate stands 84 operators and 13 prefixes in filter position,
+  then takes every filter string from TiddlyWiki's own tiddlers — attribute values and filtered
+  transclusions — through TiddlyWiki's OWN compiler first: 781 compile, and all 781 read with no
+  verdict and no missing filter scope. The compiler decides the population, so no reading of the
+  format written here widens or narrows it.
 - A corpus specimen carries every construct that spans a line break — a pragma signature, a macro
   argument, quoted and triple-quoted attribute values, a character-data payload, a comment inside
   embedded JavaScript — each one CLOSED, so containment holds while an intermediate line end sits

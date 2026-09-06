@@ -3,11 +3,11 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 21 of 21
+gates-held: 22 of 22
 
 {
-    "gates": 21,
-    "held": 21,
+    "gates": 22,
+    "held": 22,
     "failing": 0,
     "results": [
         {
@@ -66,6 +66,11 @@ gates-held: 21 of 21
             "said": "dark-construct  381 construct(s) over 65 themes, 13 plain, 0 unaccounted"
         },
         {
+            "gate": "filter-witness",
+            "held": true,
+            "said": "filter-witness  781 filter(s) TiddlyWiki compiles, 84 operator(s), 13 prefix(es), 0 unread"
+        },
+        {
             "gate": "nesting-coverage",
             "held": true,
             "said": "nesting-coverage  14 container/construct pairs from TiddlyWiki's own tiddlers"
@@ -93,7 +98,7 @@ gates-held: 21 of 21
         {
             "gate": "rule-coverage",
             "held": true,
-            "said": "rule-coverage  TiddlyWiki 5.5.0-prerelease: 44 rule(s), 39 read, 5 under another name, 0 unaccounted"
+            "said": "rule-coverage  TiddlyWiki 5.5.0-prerelease: 44 rule(s), 39 read, 5 under another name, 0 unaccounted; 10 pragma keyword(s) guarded"
         },
         {
             "gate": "signals:check",

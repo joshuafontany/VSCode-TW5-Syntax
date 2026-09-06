@@ -220,6 +220,49 @@ tw5-version: 5.5.0-prerelease
         "rules",
         "whitespace"
     ],
+    "pragmaTokens": {
+        "commentblock": [
+            "<!--"
+        ],
+        "fnprocdef": [
+            "\\function",
+            "\\procedure",
+            "\\widget"
+        ],
+        "import": [
+            "\\import"
+        ],
+        "macrodef": [
+            "\\define"
+        ],
+        "parameters": [
+            "\\parameters"
+        ],
+        "parsermode": [
+            "\\parsermode"
+        ],
+        "rules": [
+            "\\rules"
+        ],
+        "whitespace": [
+            "\\whitespace"
+        ]
+    },
+    "filterRunPrefixes": [
+        "all",
+        "and",
+        "cascade",
+        "else",
+        "except",
+        "filter",
+        "intersection",
+        "let",
+        "map",
+        "or",
+        "reduce",
+        "sort",
+        "then"
+    ],
     "fieldTypes": {
         "color": "color",
         "created": "date",

@@ -71,6 +71,54 @@ function pragmaRuleNames(): string[] {
 }
 
 /**
+ * The token each pragma rule opens on, taken off the rule's own matchRegExp.
+ *
+ * A grammar guards the pragma zone by a keyword list, and a keyword missing from that list closes
+ * the zone on the line carrying it — every directive below then reads as prose. TiddlyWiki spells
+ * each keyword inside the rule module, so the list derives rather than gets retyped: a release
+ * adding a ninth pragma lands here, and the gate reading this says so.
+ *
+ * Three shapes carry an opener. A backslash and a name spells one directive; a backslash and an
+ * alternation spells several under one rule, as function, procedure and widget share fnprocdef;
+ * and a literal run spells a directive wearing no backslash at all, which the HTML comment does.
+ */
+function pragmaTokens(): Record<string, string[]> {
+  const tokens: Record<string, string[]> = {};
+  $tw.modules.forEachModuleOfType("wikirule", function (title: string, exports: any) {
+    if (!exports || !exports.types || !exports.types.pragma) return;
+    const name = exports.name || ((/([^/]+)\.js$/.exec(title) || [, title])[1] as string);
+    let source = "";
+    try {
+      const rule = Object.create(exports);
+      rule.init({});
+      source = rule.matchRegExp ? rule.matchRegExp.source : "";
+    } catch (e) {
+      source = "";
+    }
+    if (!source) return;
+    let found: string[] = [];
+    const alternation = /^\\\\\(([^)]*)\)/.exec(source);
+    const single = /^\\\\([A-Za-z]+)/.exec(source);
+    if (alternation) found = alternation[1].split("|").map((word) => "\\" + word);
+    else if (single) found = ["\\" + single[1]];
+    else {
+      const literal = /^([^\\[\](){}*+?^$|.]+)/.exec(source);
+      if (literal) found = [literal[1]];
+    }
+    if (found.length) tokens[name] = found;
+  });
+  return tokens;
+}
+
+/** The run prefixes a filter may open with, each registered under its own module type. */
+function filterRunPrefixes(): string[] {
+  return namesOf("filterrunprefix")
+    .map((title) => (/([^/]+)\.js$/.exec(title) || [, title])[1] as string)
+    .filter(Boolean)
+    .sort();
+}
+
+/**
  * What each field name declares about the value it holds.
  *
  * A header value carries a string, and nothing in the file says how to read it. The reader does:
@@ -104,6 +152,8 @@ exports.startup = function (): void {
     widgets: widgetNames(),
     wikiRules: namesOf("wikirule").map((t) => (/([^/]+)\.js$/.exec(t) || [, t])[1] as string).sort(),
     pragmaRules: pragmaRuleNames(),
+    pragmaTokens: pragmaTokens(),
+    filterRunPrefixes: filterRunPrefixes(),
     fieldTypes: fieldTypes()
   };
   $tw.wiki.addTiddler({
