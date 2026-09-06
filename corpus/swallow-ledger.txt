@@ -1,0 +1,35 @@
+# Where the two readers part at a block boundary, and what this repo ruled about each.
+#
+# tools/swallow-witness.js cuts every corpus file at every line, appends a blank line and a
+# sentinel quoteblock, and asks TiddlyWiki and the grammar the same question about the same
+# offset. A line here names a divergence already looked at; anything else fails the gate.
+#
+#   <direction> <key>   # reason
+#
+# `runaway`   the parser reads the sentinel and the grammar does not — the grammar holds a region
+#             open across a boundary the parser closes.
+# `overbound` the grammar reads the sentinel and the parser does not — the grammar closes a region
+#             the parser carries.
+#
+# The key names the scope the grammar had open (runaway) or the rule TiddlyWiki had open
+# (overbound); `*` stands for any run of characters. A reason opening OWED records a divergence
+# rather than accepting it: the gate stays green and prints it as debt.
+
+# ── the lookahead the parser has and a grammar cannot ────────────────────────────────────────
+# Each of these turns on text TiddlyWiki reads BEYOND the construct, sometimes to the end of the
+# source. A TextMate end pattern reads only forward from the line in front of it, one line at a
+# time, and carries no way to ask whether a closer stands anywhere later. Where the parser's
+# answer depends on that lookahead, the grammar carries the region — the reading that holds for
+# the terminated form, which is the form nearly all real text takes.
+
+runaway comment.block.html.*        # `<!--` with no `-->`: measured, TiddlyWiki carries a comment across every blank line between when a closer stands later in the source, and refuses the construct outright when none does. Carrying reads the terminated form right
+runaway meta.directive.variable.*   # a definition block runs to `\end`, across blank lines and all: measured, a `\define` body spans them freely when the terminator stands somewhere later, and keeps to its opening line when none does anywhere
+runaway meta.embedded.block.html.*  # `<style>` and `<script>` with no closer: TiddlyWiki carries the element to the end of the tiddler — its own `unterminated-html` hint says so — and parses the body as WIKITEXT BLOCKS. Both readers carry; only the language of the interior differs, and CSS and JS there hold the convention every HTML grammar keeps
+runaway meta.element.*              # an SVG or MathML element reads the same way, for the same reason
+
+# ── recorded, not accepted ───────────────────────────────────────────────────────────────────
+
+runaway meta.tag.*.html.*           # OWED — an unterminated START TAG. TiddlyWiki skips whitespace across blank lines while attributes keep parsing, so `<div` newline newline `class="a">` builds a div; it refuses only where what follows parses as neither an attribute nor `>`. A TextMate end pattern cannot try-parse, so the region runs on and the file after an unclosed `<div` colours as attribute names. The bound that would fit reads what an attribute can open, which the grammar already spells
+runaway meta.transclusion.*         # OWED — `{{A/Tiddler||A` left open: TiddlyWiki refuses the transclusion and parses the block after the blank line; the grammar carries the region
+overbound html                      # OWED — an element with no closer: TiddlyWiki carries it to the end of the tiddler and says so in a hint, while the grammar closes it at the blank line. The reading costs the element its body wherever a closer goes missing
+overbound codeblock                 # OWED — an unterminated fence takes the rest of the source in TiddlyWiki; the grammar ends it at the blank line

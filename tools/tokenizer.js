@@ -48,4 +48,70 @@ function snapshot(scope, files, options = {}) {
     { cwd: ROOT, stdio: options.quiet === false ? 'inherit' : 'ignore' });
 }
 
-module.exports = { ROOT, grammarArgs, snapshot };
+// ── the same grammars, read in this process ───────────────────────────────────────────────────
+//
+// The snapshotter spawns a process, writes a file and reads it back. A sweep asking one question
+// of several hundred specimens pays that cost several hundred times, which puts a whole class of
+// instrument out of reach — anything that probes real text at every position rather than a table
+// of examples.
+//
+// vscode-tmgrammar-test carries the registry the snapshotter itself builds, so loading it here
+// reads the same grammars under the same injections. Collided against every pinned snapshot in
+// tests/samples: 31 of 31 reproduce scope for scope.
+
+let registry = null;
+const loaded = new Map();
+
+/** The registry the snapshotter builds: the manifest's grammars, plus the extras grammars.sh names. */
+function grammarRegistry() {
+  if (registry) return registry;
+  const { createRegistry } = require('vscode-tmgrammar-test/dist/common/index.js');
+  const fs = require('node:fs');
+  const manifest = require(path.join(ROOT, 'package.json')).contributes || {};
+  const seen = new Set();
+  const grammars = [];
+  for (const g of manifest.grammars || []) {
+    const file = path.resolve(ROOT, g.path);
+    if (!fs.existsSync(file)) continue;
+    seen.add(file);
+    grammars.push({ path: file, scopeName: g.scopeName, injectTo: g.injectTo });
+  }
+  const args = grammarArgs();
+  for (let i = 0; i < args.length; i += 1) {
+    if (args[i] !== '-g') continue;
+    const file = path.resolve(ROOT, args[i + 1]);
+    if (seen.has(file) || !fs.existsSync(file)) continue;
+    seen.add(file);
+    grammars.push({ path: file });
+  }
+  registry = createRegistry(grammars);
+  return registry;
+}
+
+/**
+ * Every token a scope's grammar names in a text, line by line.
+ *
+ * A grammar this registry cannot resolve — one of the several dozen VS Code ships that a bare
+ * checkout carries none of — warns on stderr and drops out of the reading, the same way it does
+ * under the snapshotter.
+ *
+ * @param {string} scope  the grammar the text opens under
+ * @param {string} text
+ * @returns {Promise<Array<Array<{startIndex:number,endIndex:number,scopes:string[]}>>>}
+ */
+async function tokenize(scope, text) {
+  if (!loaded.has(scope)) loaded.set(scope, await grammarRegistry().loadGrammar(scope));
+  const grammar = loaded.get(scope);
+  if (!grammar) throw new Error(`no grammar stands under ${scope}`);
+  const lines = [];
+  let stack = null;
+  for (const line of text.split('\n')) {
+    const read = grammar.tokenizeLine(line, stack);
+    stack = read.ruleStack;
+    lines.push(read.tokens);
+  }
+  return lines;
+}
+
+module.exports = { ROOT, grammarArgs, snapshot, tokenize };
+

@@ -103,7 +103,7 @@ gates-held: 21 of 21
         {
             "gate": "swallow-witness",
             "held": true,
-            "said": "swallow-witness  25 opener(s) unterminated and 17 closed, 0 that read the block boundary differently from the parser"
+            "said": "swallow-witness  614 cut(s) across 26 corpus file(s), 13 divergence(s), 4 recorded, 0 unruled"
         },
         {
             "gate": "theme-parity",
