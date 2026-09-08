@@ -3993,7 +3993,7 @@
 		},
 		"macrocallblock": {
 			"begin": "^\\s*(?<!<)(<<)(?!<)([^\\s>\"'=:]+)",
-			"end": "(>>)",
+			"end": "(>>)|(?=^$)",
 			"name": "meta.variable.macrocallblock.tiddlywiki5",
 			"contentName": "meta.variable.macro.parameters.tiddlywiki5",
 			"beginCaptures": {
@@ -5338,7 +5338,7 @@
 		},
 		"macrocallinline": {
 			"begin": "(?<!<)(<<)(?!<)([^\\s>\"'=:]+)",
-			"end": "(>>)",
+			"end": "(>>)|(?=^$)",
 			"name": "meta.variable.macrocallinline.tiddlywiki5",
 			"contentName": "meta.variable.macro.parameters.tiddlywiki5",
 			"beginCaptures": {

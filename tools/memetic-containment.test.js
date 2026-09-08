@@ -2,8 +2,8 @@
 //
 // The bleed canary appends a sentence to the END of a sample and catches a construct that
 // swallows to the end of the file. A construct that corrupts the paragraph after it and then
-// recovers passes that canary untouched, and the dialect adds eleven opening constructs the
-// wikitext grammar has no rule for.
+// recovers passes that canary untouched, and the dialect adds opening constructs the wikitext
+// grammar has no rule for.
 //
 // This puts an ordinary sentence after EVERY construct the dialect opens on, and asks that each
 // sentence carry a paragraph and nothing else. The construct list comes from the grammar's own
@@ -21,17 +21,9 @@ const SENTENCE = 'An ordinary sentence stands here.';
 
 /** One specimen of each construct, taken from the rule's own opening pattern. */
 const SPECIMENS = {
-  declaration: '<<!DOCTYPE memetic-wikitext+tiddlywiki lar:///probe >>',
-  'control-soh': '<<^ code="&#x0001;" >>',
-  'control-stx': '<<^ code="&#x0002;" >>',
-  'control-etx': '<<^ code="&#x0003;" >>',
-  'control-eot': '<<^ code="&#x0004;" >>',
-  'control-other': '<<^ >>',
-  'sigil-close': '<<~/ahu >>',
-  'sigil-unresolved': '<<~? >>',
-  'sigil-pragma': '<<~! pragma >>',
-  sigil: '<<~ ahu #x >>',
-  'lar-uri': 'A lar:///a/b?k=v#/frag stands inline.'
+  'lar-uri': 'A lar:///a/b?k=v#/frag stands inline.',
+  fragment: 'An anchor #/two-clocks stands inline.',
+  bearing: 'A heading -> what it faces.'
 };
 
 const grammar = JSON.parse(fs.readFileSync(path.join(ROOT, 'syntaxes', 'memetic-wikitext.json'), 'utf8'));
@@ -73,7 +65,10 @@ test('a construct leaves the paragraph after it alone', { skip: grammars.length 
     .filter((extra) => extra.length);
   fs.rmSync(scratch, { recursive: true, force: true });
 
-  assert.ok(opens.length > 5, `the dialect opens on ${opens.length} construct(s) — the reader stopped matching`);
+  // The guard catches a reader that silently matched nothing, so it counts ANY construct rather
+  // than a number. A threshold set to the vocabulary of the day fails a grammar that grew smaller
+  // on purpose, and says the reader broke when the grammar changed.
+  assert.ok(opens.length > 0, `the dialect opens on ${opens.length} construct(s) — the reader stopped matching`);
   assert.deepStrictEqual(
     foreign.slice(0, 4), [],
     `${foreign.length} span(s) after a construct carry scopes the construct should have closed`

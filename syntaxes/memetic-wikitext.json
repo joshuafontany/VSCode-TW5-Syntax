@@ -141,6 +141,18 @@
                 }
             ],
             "comment": "The bearing arrow rides as an unnamed positional between two named ends. A bare `?` names nothing on its own — an end states itself as `from=?` or `to=?`, where the glyph reads as an ordinary value."
+        },
+        "named-param": {
+            "comment": "The memetic standard writes key=value. TiddlyWiki reads `=` as the new-style separator (parseMacroParameterAsAttribute in core/modules/parsers/parseutils.js), which admits a filtered, indirect or macro value; a colon admits neither and demands a strict identifier so $:/foo cannot mis-parse.",
+            "match": "\\b([A-Za-z0-9_-]+)\\s*(=)",
+            "captures": {
+                "1": {
+                    "name": "entity.other.attribute-name.memetic-wikitext"
+                },
+                "2": {
+                    "name": "keyword.operator.assignment.memetic-wikitext"
+                }
+            }
         }
     },
     "injections": {

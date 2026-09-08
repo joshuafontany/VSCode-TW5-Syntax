@@ -45,6 +45,23 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   region need not cover every character — a filtered value carries operators and operands under
   scopes of their own — so a probe landing on one point reported whatever kind stood there. The
   ceiling falls from 227 to 74; the point reading held 156 of them.
+- A macro call left unclosed no longer swallows the sentence after it. TiddlyWiki carries a call
+  across lines wherever its closer stands later and refuses it outright at a blank line, so the
+  region takes the blank-line bound the rest of the grammar already carries. The fixture that
+  caught it holds the gradient floor — a malformed sigil surfaces as itself and never swallows what
+  follows — and that floor stands independent of any vocabulary.
+- The dialect seed carries the query-parameter rule its lar URI reaches for. A named parameter
+  inside a URI's query string names ground wikitext has no rule for, where the same rule inside a
+  sigil would replace the base reading; one rule wore both jobs, and only the URI half survives.
+- The corpus floor re-seats after a grammar leaves. A floor counts what the corpus reaches across
+  the scopes a grammar DECLARES, so moving a grammar aside moves the denominator and the count
+  falls while nothing reads worse. The reader takes the number from the first line now, the way
+  every ceiling beside it does — one that read the whole file answered NaN the moment a floor
+  carried its reason.
+- Three gates carried an assumption the seed broke, and each one now states its purpose rather than
+  a number: a parity check compared a wrapper's selector against a source selector that does not
+  exist; a key check read a directory as a grammar; and a containment guard demanded more than five
+  constructs, failing a grammar that grew smaller on purpose.
 - `light-cone` classifies a divergence by REACH rather than by a reason somebody wrote down. Two
   readers stand over one text and neither holds a global now: the parser walks a document, a grammar
   reads a line and whatever its stack carried in. Where a difference turns on evidence outside the

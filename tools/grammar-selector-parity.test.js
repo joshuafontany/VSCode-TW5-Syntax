@@ -78,7 +78,10 @@ test('no grammar copies an injection a registered grammar already carries', () =
   }
 });
 
-// The exclusion selector still stands copied, so the copies answer to each other.
+// A copied exclusion selector must not drift from its source. Where the wikitext grammar carries no
+// late-ordered selector of its own, nothing stands to keep parity with, and a wrapper's `R:` then
+// names its own composition rather than a copy — one such selector lets the base read first and
+// brings the dialect's vocabulary only where the base named nothing.
 test('any late-ordered exclusion selector matches the wikitext grammar', () => {
   const wrappers = fs.readdirSync(path.join(ROOT, 'syntaxes'))
     .filter((f) => f.endsWith('.json'))
@@ -87,8 +90,9 @@ test('any late-ordered exclusion selector matches the wikitext grammar', () => {
       && JSON.stringify(g).includes(`"${wikitext.scopeName}`) && Object.keys(g.injections || {}).length > 0);
   for (const [name, grammar] of wrappers) {
     const own = selectors(grammar, 'R:');
-    if (own.length === 0) continue;
-    assert.strictEqual(own[0], selectors(wikitext, 'R:')[0],
+    const source = selectors(wikitext, 'R:');
+    if (own.length === 0 || source.length === 0) continue;
+    assert.strictEqual(own[0], source[0],
       `${name} excludes different regions from the bad-angle verdict than the wikitext grammar does`);
   }
 });
@@ -99,7 +103,9 @@ test('no pattern carries a key TextMate never reads', () => {
     'captures', 'beginCaptures', 'endCaptures', 'whileCaptures', 'include', 'applyEndPatternLast',
     'disabled', 'injections', 'injectionSelector', 'repository', 'scopeName', 'fileTypes', 'firstLineMatch',
     'foldingStartMarker', 'foldingStopMarker', 'uuid', 'version', '$schema', 'information_for_contributors']);
-  for (const file of fs.readdirSync(path.join(ROOT, 'syntaxes'))) {
+  // A grammar wears a `.json` name. The directory beside them holds what stands set aside, and
+  // reading a directory as a grammar answers with a key nobody wrote.
+  for (const file of fs.readdirSync(path.join(ROOT, 'syntaxes')).filter((f) => f.endsWith('.json'))) {
     const grammar = read(file);
     const seen = new Set();
     // `repository` and `injections` map names an author chooses to patterns. Their KEYS answer to

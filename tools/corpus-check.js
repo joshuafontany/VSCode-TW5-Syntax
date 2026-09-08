@@ -126,7 +126,11 @@ const unreachedHandoffs = unreached.length - unreachedOurs.length;
 
 const reachedCount = declared.size - unreached.length;
 const floorFile = path.join('corpus', 'coverage-floor.txt');
-const floor = fs.existsSync(floorFile) ? Number(fs.readFileSync(floorFile, 'utf8').trim()) : 0;
+// The number stands on the first line; what follows it explains the number, the way every ceiling
+// beside it reads. A reader taking the whole file answers NaN the moment a floor carries a reason.
+const floor = fs.existsSync(floorFile)
+  ? Number(fs.readFileSync(floorFile, 'utf8').split('\n')[0].trim())
+  : 0;
 
 // A ceiling, not a floor: the count of OUR OWN unreached scopes may fall and may never rise.
 const ceilingFile = path.join('corpus', 'unreached-ceiling.txt');
