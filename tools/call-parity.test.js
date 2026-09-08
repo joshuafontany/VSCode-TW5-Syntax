@@ -137,16 +137,15 @@ test('substitution paints where TiddlyWiki substitutes, and nowhere else', live,
 // — the call vocabulary first, the published name LAST, where `winner()` scores stack position and
 // the later scope takes any tie. Colours hold; the vocabulary widens.
 //
-// Two names carrying `macro` stand OUTSIDE this, and the test says which and why rather than
-// listing what stays: a definition-side name reads `\\define` and nothing else, and
-// `meta.tag.widget.macrocall.html` names a widget TiddlyWiki ships.
+// A definition-side name stands outside this: it reads `\\define` and nothing else. So does the
+// scope a `<$macrocall>` tag wears, which arises at READING time — every widget name in this grammar
+// derives from its match as `meta.tag.widget.$3`, so no declared field spells it and the sweep below
+// meets it nowhere. The reading asserts that separately, where the scope exists to be asserted.
 test('every call-side scope carries the call vocabulary beside its published name', () => {
   // The shapes a CALL paints. A definition-side name matches none of them.
   const CALL_SIDE = /(^|\s)(meta\.variable\.macrocall|punctuation\.definition\.macrocall|variable\.name\.macro\.|meta\.variable\.macro\.parameters?\.|meta\.variable\.macro\.parameter\.|variable\.macro\.attribute\.)/;
   const missing = [];
   for (const value of declaredNames(GRAMMAR)) {
-    // A widget TiddlyWiki ships answers to upstream's spelling, never to this vocabulary.
-    if (value.includes('meta.tag.widget.macrocall')) continue;
     if (!CALL_SIDE.test(value)) continue;
     if (!value.split(/\s+/).some((sc) => CALL.test(sc))) missing.push(value);
   }
@@ -163,4 +162,17 @@ test('a published call name stands LAST, so no theme rule changes hands', () => 
     if (CALL.test(scopes[scopes.length - 1])) wrong.push(value);
   }
   assert.deepStrictEqual(wrong, [], 'a call name stands last, where it outranks the published name on a tie and moves a reader\'s colour');
+});
+
+// A widget TiddlyWiki ships answers to upstream's spelling, never to the call vocabulary. The tag
+// `<$macrocall>` wears `meta.tag.widget.macrocall.html` at reading time, spelled by its own text
+// through the `$3` a widget name derives from, and a reader of DECLARED fields meets `$3` instead —
+// so a guard written against the declared form excludes nothing and reads as though it guards.
+test('a widget wearing the upstream spelling reads as a tag, never as a call', live, async () => {
+  const lines = await tokenize('text.html.tiddlywiki5', '<$macrocall $name="x"/>\n');
+  const scopes = lines[0].flatMap((t) => t.scopes);
+  assert.ok(scopes.includes('meta.tag.widget.macrocall.html.tiddlywiki5'),
+    `the tag wears no widget scope spelled by its own text: ${[...new Set(scopes)].join(' ')}`);
+  assert.ok(!scopes.some((sc) => CALL.test(sc)),
+    'a widget TiddlyWiki ships reads as a call, so the call vocabulary reaches a name that answers to upstream');
 });

@@ -6,6 +6,35 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## 2.3.0 — unreleased
 
+### Changed
+- A runaway names its region by KIND, innermost-first, in one vocabulary two witnesses read
+  (`tools/region-kind.js`). `still` and `swallow-witness` both keyed on the first
+  meta./source./string. scope in the stack, which stands OUTERMOST, so one cause filed under
+  whichever region enclosed it — a call opening a block keyed as a call, the same call opening
+  inside prose keyed as a paragraph. `markup.*` names no kind deliberately: it stands on 38% of
+  corpus tokens and would absorb any finding. A stack no kind claims reads UNCLASSIFIED and gets
+  examined rather than filed under its container.
+- Ledger keys speak that vocabulary. `comment.block.html.*` and `meta.embedded.block.html.*` move to
+  `comment.*` and `meta.embedded.*`; the carrier ledger's call and CSS rulings fold into
+  `meta.variable.call.*` and `meta.embedded.*`; and the paragraph ruling DISSOLVES — the kind
+  vocabulary absorbs the cause it named. The breadth guard tells a migration from a widening: a key
+  that no longer speaks the vocabulary cannot be compared to one that does.
+
+### Fixed
+- A ruling's breadth answers to the GROUND it stands on. The guard scored a key's shape — wildcards
+  and literal segments — and ranked ground backwards: `meta.codeblock.*` carries a wildcard and
+  stands on 3.5% of corpus tokens, `meta.paragraph.tiddlywiki5` carries none and stood on 18%. Worse,
+  it examined only a key that VANISHED, so an ADDITION passed unweighed however much ground it
+  claimed — and an addition is the shape a generous ruling takes. `corpus/ruled-ground-ceiling.txt`
+  ratchets what every ruling claims between them: 55.8%, down from 79.4% under container keys.
+- The ground reading counts TOKENS, never scopes. A token wears several scopes at once and the first
+  union summed per scope, reading 100.9% of a corpus — the only reason the fault surfaced rather
+  than settling in as a number nobody questioned.
+- `still.js` runs its sweep only as a command. Requiring it for one reading ran the whole pass.
+- `call-parity` asserts the `<$macrocall>` widget where that scope exists. The guard read declared
+  fields for `meta.tag.widget.macrocall`, which no grammar spells — every widget name derives from
+  its match as `meta.tag.widget.$3` — so a careful comment sat over a branch that excluded nothing.
+
 ### Fixed
 - A call's end no longer takes a blank-line bound. TiddlyWiki builds a call wherever `>>` stands
   ahead anywhere in the source — one blank line or many — so the bound cut a construct the host

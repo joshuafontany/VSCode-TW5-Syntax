@@ -50,9 +50,11 @@ test('an owed entry that reaches out fails the gate', live, () => {
   const swap = (sandbox) => {
     const file = path.join(sandbox, 'corpus', 'swallow-ledger.txt');
     const text = fs.readFileSync(file, 'utf8');
-    fs.writeFileSync(file, text.replace(/^(runaway comment\.block\.html\.\*\s+#)/m, '$1 OWED —'));
+    const marked = text.replace(/^(runaway comment\.\*\s+#)/m, '$1 OWED —');
+    assert.notStrictEqual(marked, text, 'the ledger holds no comment ruling to mark owed, so nothing gets planted');
+    fs.writeFileSync(file, marked);
   };
   const { code, out } = runInSandbox(swap, ['tools/light-cone.js']);
-  assert.match(out, /comment\.block[\s\S]*reaching out|reaches past the grammar/, out.slice(-700));
+  assert.match(out, /comment\.[\s\S]*reaching out|reaches past the grammar/, out.slice(-700));
   assert.notStrictEqual(code, 0, 'an owed entry reached past the grammar and the gate held anyway');
 });

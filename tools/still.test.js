@@ -37,11 +37,68 @@ test('a ledger key that broadened fails the gate', live, () => {
   const ledger = path.join(ROOT, 'corpus', 'swallow-ledger.txt');
   const before = fs.readFileSync(ledger, 'utf8');
   try {
-    fs.writeFileSync(ledger, before.replace(/^runaway comment\.block\.html\.\*/m, 'runaway comment.*'));
+    // Widened to a key naming NO kind, so the migration reading cannot excuse it, and standing on
+    // far more ground than the one it replaces.
+    fs.writeFileSync(ledger, before.replace(/^runaway comment\.\*/m, 'runaway meta.*'));
     const { code, out } = runTool('still.js', ['--over', path.join(ROOT, 'corpus'), '--sample', '4']);
     assert.match(out, /broadened|reaches further/, out.slice(-600));
     assert.notStrictEqual(code, 0, 'a ledger key widened and the gate held anyway');
   } finally {
     fs.writeFileSync(ledger, before);
   }
+});
+
+// A ruling's breadth answers to the GROUND it stands on, never to the punctuation in its name.
+//
+// The tool's own warning says the condition can be met by ruling generously, and the guard written
+// against that scored a key's SHAPE — wildcards and segment count. Measured over the corpus:
+// `meta.codeblock.*` scored widest and stands on 3.5% of tokens, `meta.paragraph.tiddlywiki5`
+// scored narrowest and stands on 18.2%. Exactly backwards, and a ruling on the second passed.
+test('a key standing on more ground reaches further than one standing on less', async () => {
+  const { groundOf } = require('./still.js');
+  const wide = await groundOf('meta.paragraph.tiddlywiki5');
+  const narrow = await groundOf('meta.codeblock.*');
+  assert.ok(wide > 0 && narrow > 0, `the corpus reaches neither key: ${wide} / ${narrow}`);
+  assert.ok(wide > narrow,
+    `a key on ${(100 * wide).toFixed(1)}% of the corpus reads narrower than one on ${(100 * narrow).toFixed(1)}%`);
+});
+
+// The guard examined only keys that VANISHED, pairing an old key with a new one that covers it. A
+// key nobody replaced — an ADDITION — passed unweighed however much ground it claimed, which is the
+// shape a generous ruling actually takes.
+test('the ground every ruling claims stands measured and ratcheted', async () => {
+  const { ruledGround, GROUND_CEILING, overCeiling } = require('./still.js');
+  const share = await ruledGround();
+  assert.ok(share > 0, 'the ledgers rule no ground at all, so the ceiling guards nothing');
+  assert.ok(!overCeiling(share),
+    `the ledgers rule ${(100 * share).toFixed(1)}% of corpus tokens against a ceiling of ${(100 * GROUND_CEILING).toFixed(1)}%`);
+});
+
+// One cause, one key — whatever encloses it.
+//
+// A runaway got keyed on the first meta./source./string. scope in the token's stack, which stands
+// OUTERMOST, so the same fault filed under `meta.variable.call.block` where a call opened a block
+// and under `meta.paragraph` where the same call opened inside prose. Two keys, one cause, and the
+// second stands on 18% of the corpus while naming a fault that reaches one construct.
+//
+// `attribute-witness` met innermost-versus-outermost three times and the house ruled it: read a
+// KIND vocabulary, never a position. This reads the same way.
+test('one cause keys the same however it stands enclosed', () => {
+  const { kindOf } = require('./still.js');
+  const inProse = ['text.html.tiddlywiki5', 'meta.paragraph.tiddlywiki5',
+    'meta.variable.call.inline.tiddlywiki5', 'meta.variable.macrocallinline.tiddlywiki5',
+    'meta.variable.call.parameter.tw-.tiddlywiki5', 'string.unquoted.html.tiddlywiki5'];
+  const atBlock = ['text.html.tiddlywiki5', 'meta.variable.call.block.tiddlywiki5',
+    'meta.variable.macrocallblock.tiddlywiki5', 'meta.variable.call.parameters.tiddlywiki5'];
+  assert.strictEqual(kindOf(inProse), kindOf(atBlock),
+    'the same open region keys two ways depending on what encloses it');
+  assert.match(kindOf(inProse), /call/, `a call keyed as ${kindOf(inProse)}`);
+});
+
+// A stack no kind claims must SAY SO. Falling back to whatever scope sits first hands back a key
+// that reads like a classification, and the ledger then holds a ruling about a container.
+test('a stack no kind claims reads as unclassified rather than as its container', () => {
+  const { kindOf } = require('./still.js');
+  const key = kindOf(['text.html.tiddlywiki5', 'meta.nothing.here.tiddlywiki5']);
+  assert.match(key, /unclassified/, `an unclaimed stack keyed as ${key}`);
 });

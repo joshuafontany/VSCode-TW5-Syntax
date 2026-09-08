@@ -46,6 +46,7 @@ const { ROOT, tokenize } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
 const { parseTid } = require('./wiki-data.js');
 const { unboundedRegions } = require('./grammar-scopes.js');
+const { kindOf } = require('./region-kind.js');
 
 const verbose = process.argv.includes('--verbose');
 const LEDGER = path.join(ROOT, 'corpus', 'swallow-ledger.txt');
@@ -128,7 +129,7 @@ const grammarReads = (lines, at) => (lines[at] || [])
 function grammarNames(lines, at) {
   const scopes = (lines[at] || []).flatMap((t) => t.scopes)
     .filter((s) => !/^(text\.html\.tiddlywiki5|source\.tiddlywiki5)[a-z.-]*$/.test(s) && !/quoteblock/.test(s));
-  return scopes.find((s) => /^(meta|comment|source|string)\./.test(s)) || scopes[0] || '(bare text)';
+  return kindOf(scopes);
 }
 
 /** The rule TiddlyWiki had open across the offset the sentinel stands at. */

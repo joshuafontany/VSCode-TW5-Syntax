@@ -1,0 +1,25 @@
+0.558
+# The share of corpus tokens every ruling in every ledger stands on between them. The count may
+# fall and may never rise.
+#
+# `still.js` opens with a warning: the stopping condition can be met by ruling generously. The guard
+# written against that scored a key's SHAPE — wildcards and literal segments — and ranked ground
+# exactly backwards: `meta.codeblock.*` carries a wildcard and stands on 3.5% of tokens, while
+# `meta.paragraph.tiddlywiki5` carries none and stood on 18%. Worse, it examined only a key that
+# VANISHED, pairing it with whatever replaced it, so an ADDITION passed unweighed however much
+# ground it claimed — and an addition is the shape a generous ruling actually takes. A ruling on
+# 18% of the corpus went in that way, off one cut in one file.
+#
+# THIS COUNTS TOKENS, NEVER SCOPES. A token wears several scopes at once, and a union summed per
+# scope counted one token once per scope it carried — reading 100.9% of a corpus, which is the only
+# reason the fault surfaced rather than settling in as a number nobody questioned.
+#
+# THE NUMBER MEASURES A PROXY AND WANTS READING AS ONE. Ground share rises with how COMMON a
+# construct stands as well as with how loosely a ruling reads: `meta.variable.call.*` names one
+# construct precisely and stands on 12% of tokens, because this corpus runs sigil-dense. So the
+# count guards a direction rather than a level — a ruling that needs more ground than the tree
+# already holds answers for it in writing, here.
+#
+# Seated at 55.8% on 2026-09-08, the day the ledgers moved to the kind vocabulary. It read 79.4%
+# under container keys, and keying by CAUSE dissolved the difference rather than any ruling changing
+# its mind.

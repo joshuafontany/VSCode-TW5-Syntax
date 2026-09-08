@@ -158,12 +158,12 @@ gates-held: 33 of 33
         {
             "gate": "still",
             "held": true,
-            "said": "still  12 of 38 carrier(s) at seed 1, 5 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened"
+            "said": "still  12 of 38 carrier(s) at seed 1, 5 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, 55.8% of corpus tokens ruled (ceiling 55.8%)"
         },
         {
             "gate": "swallow-witness",
             "held": true,
-            "said": "swallow-witness  824 cut(s) across 38 corpus file(s), 9 divergence(s), 2 recorded, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "swallow-witness  824 cut(s) across 38 corpus file(s), 8 divergence(s), 2 recorded, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "theme-parity",
