@@ -7,6 +7,19 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- `call-parity` holds the word `macro` in its three senses, which TiddlyWiki's own move to
+  procedures, functions and custom widgets at 5.3.0 split apart. The definition sense stands live:
+  `$param$` substitutes inside a body `\define` opened and stands literal inside one `\procedure`
+  opened, so `tw5-substitution-injection.json` injects on the macro body ALONE and the gate turns
+  red the moment that selector widens. The rule-module sense answers to upstream, which keeps
+  `macrodef`, `fnprocdef` and `macrocall*` for plugins that override a rule by name. The call sense
+  asserts what no call site carries — `<<name>>` calls all four kinds and TiddlyWiki builds a
+  `transclude` rather than guess — and `docs/scope-naming-prior-art.mem` records the reading, its
+  cost, and the non-breaking lever that answers it.
+- The parameter-boundary guard reaches every surface that takes one, measured rather than assumed:
+  a call, a `\define` signature, the three signatures fnprocdef reads, and the `\parameters`
+  pragma all hold an apostrophe inside a quoted value. Two controls carrying an unterminated value
+  run on, so a sweep reporting six clean surfaces reports a measurement.
 - `engine-witness` reads every shipped pattern under a second regex engine. vscode-textmate raises
   nothing when Oniguruma declines a pattern — the rule simply never matches, the corpus reaches
   fewer scopes, the snapshots record the reduced reading as correct, and every gate passes. Probed

@@ -42,6 +42,52 @@ A second survey runs wider — across tree-sitter, semantic tokens, Pygments, KS
 font-lock and the rest — so the patterns here stand against systems that share none of this
 vocabulary.
 
+
+!! THE WORD `macro` — measured 2026-09-08
+
+TiddlyWiki superseded macros at 5.3.0 with procedures, functions and custom widgets, and the word
+survives in three senses this grammar must hold apart. Measured against the checkout, not recalled:
+
+* ''A definition sense that stands LIVE.'' `\\define` defines a macro and nothing else does.
+  `$param$` substitutes inside a body `\\define` opened and stands as literal text inside one
+  `\\procedure` opened — TiddlyWiki renders `A hello B` for the first and `A $x$ B` for the second.
+  `syntaxes/tw5-substitution-injection.json` injects on `meta.variable.macro.body.tiddlywiki5`
+  alone for exactly that reason. Every `macro` name on the definition side —
+  `meta.directive.variable.macro`, `entity.name.variable.macro`, `meta.variable.macro.body`,
+  `meta.variable.macro-block`, `meta.variable.macro-inline`, and the `pragma-parameters-macro`
+  repository whose parameter list ends at the FIRST closing paren — names `\\define` and holds.
+  Widening any of them to reach a procedure would paint text TiddlyWiki hands through untouched.
+  `tools/call-parity.test.js` collides on that selector and turns red when it widens.
+
+* ''A rule-module sense that answers to upstream.'' TiddlyWiki keeps `macrodef`, `fnprocdef`,
+  `macrocallblock` and `macrocallinline` as module names so a plugin overriding a named rule keeps
+  working. Where a tool names a rule — `tools/rule-coverage.js`'s ALIAS table, `tw5-oracle`'s
+  probes, `GrammarSignals.tid` — it names the module and answers to upstream's spelling, never to
+  ours. The parse tree's attribute vocabulary carries `macro` too, documented at
+  `wikiparser.js:19`, which is why `tools/attribute-witness.js` spells that kind `macro`.
+
+* ''A CALL sense this grammar asserts and cannot see.'' `<<name …>>` calls a macro, a procedure, a
+  function or a custom widget through one syntax, and nothing at the call site says which — the
+  definition may stand in another tiddler. TiddlyWiki refuses to guess: `<<name>>` builds a node of
+  type `transclude` carrying `$variable`, and the docs retired even `Procedure Calls` at 5.4.0 in
+  favour of `Calls`. This grammar guesses, across `meta.variable.macrocallblock`,
+  `meta.variable.macrocallinline`, `variable.name.macro`, `meta.variable.macro.parameters`,
+  `meta.variable.macro.parameter.tw-*` and `variable.macro.attribute.html` — thirty-three sites
+  naming a definition kind the site cannot read.
+
+''What the reading costs today: nothing.'' A call painted under a name saying `macro` colours a
+procedure call identically; the imprecision sits in the vocabulary, not in the reading. Against
+that, a scope name stands as a published surface — a reader's `editor.tokenColorCustomizations`
+spells it by hand — so replacing one takes colour away silently from someone who never ran a gate.
+
+''The lever, measured:'' vscode-textmate honours a `name` carrying space-separated scopes and
+returns BOTH on the token, so a call-side rule can gain `meta.variable.call.*` while keeping the
+name it publishes. Widening, never replacing — the same shape the dialect's `R:` injection takes,
+where the base reads first and new vocabulary arrives only where nothing was named.
+
+''Owed:'' the operator's ruling on whether to widen. Held open, and pinned so it cannot be
+re-litigated from memory.
+
 <<~/ahu>>
 
 <<~ ahu #scope-naming-prior-art>>
