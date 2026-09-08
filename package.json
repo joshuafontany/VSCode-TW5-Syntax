@@ -387,6 +387,7 @@
         "light-cone": "node ./tools/light-cone.js",
         "must-fail": "node ./tools/must-fail.js",
         "engine-witness": "node ./tools/engine-witness.js",
+        "still": "node ./tools/still.js --over ./corpus --sample 12",
         "backtrack-witness": "node ./tools/backtrack-witness.js",
         "dark-construct": "node ./tools/dark-construct.js",
         "gates": "node ./tools/gate-report.js",

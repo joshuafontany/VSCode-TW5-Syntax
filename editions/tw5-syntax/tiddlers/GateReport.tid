@@ -3,11 +3,11 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 26 of 26
+gates-held: 27 of 27
 
 {
-    "gates": 26,
-    "held": 26,
+    "gates": 27,
+    "held": 27,
     "failing": 0,
     "results": [
         {
@@ -124,6 +124,11 @@ gates-held: 26 of 26
             "gate": "signals:check",
             "held": true,
             "said": "grammar-signals  TiddlyWiki 5.5.0-prerelease — 84 operator(s), 69 widget(s), 44 rule(s), the harvest current"
+        },
+        {
+            "gate": "still",
+            "held": true,
+            "said": "still  12 carrier(s), 4 divergence(s) across 3 class(es), 0 unnamed, 0 ruling(s) broadened"
         },
         {
             "gate": "swallow-witness",

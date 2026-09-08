@@ -1,0 +1,16 @@
+# Divergences the carrier ground surfaces, which this corpus holds no specimen for.
+#
+# `tools/still.js` passes over ground outside this repository — the memetic carriers — and asks
+# whether any divergence class stands unnamed. A class named here says the base held and the ground
+# merely widened; a class named nowhere says the base still moves.
+#
+# HELD APART FROM `swallow-ledger.txt` ON PURPOSE. That one rules what this corpus produces, and a
+# ruling there explaining nothing fails its gate — rightly, since a corpus ruling with no corpus
+# specimen has outlived its cause. A carrier class has no corpus specimen BY CONSTRUCTION, so it
+# needs a ledger whose entries answer to different ground.
+#
+#   <direction> <key>   # reason
+#
+# A reason opening OWED records a divergence rather than accepting it.
+
+runaway meta.codeblock.*   # OWED — a fenced block inside a carrier. Measured: a fence opening at a BLOCK START agrees, since TiddlyWiki's codeblock takes the rest of the source and the grammar carries too; a fence CONTINUING A PARAGRAPH parts them, because codeblock reads as a block rule and never fires there, so the parser ends the paragraph at the blank line while the grammar's fence region reads on. Reproduced at docs/peer-coordination.mem:177 across 14 cuts, and minimally by two lines of prose with a fence on the second

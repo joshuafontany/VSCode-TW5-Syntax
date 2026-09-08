@@ -45,6 +45,20 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   region need not cover every character — a filtered value carries operators and operands under
   scopes of their own — so a probe landing on one point reported whatever kind stood there. The
   ceiling falls from 227 to 74; the point reading held 156 of them.
+- `still` answers whether the base holds still. A pass over ground this corpus does not hold
+  surfaces divergences, and the answer turns on KIND rather than count: an instance of a class the
+  ledgers name says the base held and the ground merely widened, while a class named nowhere says
+  the base still moves. Meeting the condition yields the priority from healing to designing; it
+  does not end healing.
+- The condition guards itself against being met by ruling generously. Widen a ledger key far enough
+  and every finding falls inside it, which reads from outside exactly like a base that settled — so
+  a key's REACH gets gated beside its entries, against what the last commit held, since breadth
+  names a change rather than a state.
+- On its first pass over carrier ground it found one class nobody had named: a fence CONTINUING A
+  PARAGRAPH parts the two readers, because `codeblock` reads as a block rule and never fires there,
+  so the parser ends the paragraph at the blank line while the grammar's fence region reads on. A
+  fence at a block start agrees. `corpus/carrier-ledger.txt` records it, held apart from the
+  corpus ledgers because a carrier class has no corpus specimen by construction.
 - Two guards state their purpose where they carried a number. A threshold set to the vocabulary of
   the day fails a grammar that grew smaller deliberately and reports the reader broken when the
   grammar changed — one sat three scopes from doing exactly that, and another answered for how many

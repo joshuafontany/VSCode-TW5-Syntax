@@ -117,6 +117,8 @@ jobs:
         run: npm run must-fail
       - name: Every pattern crosses to the second regex engine
         run: npm run engine-witness
+      - name: A pass names every divergence class it finds
+        run: npm run still
 
       # What a theme paints for this grammar against six comparator grammars.
       - name: Theme parity
