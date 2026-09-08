@@ -113,9 +113,9 @@
 #                                                      ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.bold.tiddlywiki5
 #                                                              ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 punctuation.definition.markup.end.bold.tiddlywiki5
 #                                                                ^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
-#                                                                       ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
-#                                                                        ^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5
-#                                                                                 ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
+#                                                                       ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
+#                                                                        ^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5
+#                                                                                 ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
 #                                                                                  ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
 >
 ><<~ranks focus pulse@0..4 -> beat@5..8>>

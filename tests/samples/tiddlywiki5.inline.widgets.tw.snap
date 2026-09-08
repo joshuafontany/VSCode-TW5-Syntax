@@ -599,9 +599,9 @@
 >
 >    string-replaced-attribute=`value with <a href='link'>a link</a> ${[[and]]}$ ''wikitext'' $(here)$`
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
-#                              ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
-#                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5
-#                                                                                                     ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
+#                              ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
+#                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5
+#                                                                                                     ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
 >    string-replaced-attribute=`
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >        value with <a href='link'>a link</a> ${[[and]]}$ ''wikitext'' $(here)$
@@ -640,9 +640,9 @@
 #^^^^ text.html.tiddlywiki5 markup.heading.3.tiddlywiki5 meta.heading.heading-3.tiddlywiki5
 #    ^^^ text.html.tiddlywiki5 markup.heading.3.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 punctuation.definition.heading.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
 #       ^ text.html.tiddlywiki5 markup.heading.3.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 entity.name.section.tiddlywiki5
-#        ^ text.html.tiddlywiki5 markup.heading.3.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 entity.name.section.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
-#         ^^^^^^ text.html.tiddlywiki5 markup.heading.3.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 entity.name.section.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5
-#               ^ text.html.tiddlywiki5 markup.heading.3.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 entity.name.section.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
+#        ^ text.html.tiddlywiki5 markup.heading.3.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 entity.name.section.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
+#         ^^^^^^ text.html.tiddlywiki5 markup.heading.3.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 entity.name.section.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5
+#               ^ text.html.tiddlywiki5 markup.heading.3.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 entity.name.section.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
 #                ^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.heading.3.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 entity.name.section.tiddlywiki5
 >
 >    value with <a href='test'>a link</a> ${[[and]]}$ __inline__ ''wikitext'' ${here}$

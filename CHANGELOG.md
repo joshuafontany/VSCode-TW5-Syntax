@@ -6,6 +6,20 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## 2.3.0 — unreleased
 
+### Changed
+- A raw span carries `markup.inline.raw.string.tiddlywiki5` — the family shape markdown, asciidoc
+  and mediawiki all write, under this grammar's own suffix, standing FIRST so a theme naming this
+  grammar's own scopes keeps any tie. Measured over 65 bundled themes, a code span parted from prose
+  in 53 and parts in 56; no other pair of constructs reads closer, and the weakest pair anywhere
+  moves from 53 to 54.
+- The `string.` family stands taken, which the attempt surfaced. A wikilink wears
+  `string.other.link.title` and a transclusion wears `string.text-reference`, so a third construct
+  named into that family reads as those two wherever a theme rules on the family root: giving the
+  span `string.other` gained 4 themes against prose and cost 8 against a transclusion and 2 against
+  a wikilink. The per-pair floor caught the trade the run it landed. `string.quoted.other` reaches
+  58 and calls a raw run a quoted one; `support.type.raw` reaches 58 and calls it a type the
+  framework provides — both declined, the ruling `keyword.control.list` already drew at 100%.
+
 ### Added
 - `legibility` reads what a READER sees. Every other colour instrument reads scopes — whether an
   opener and its closer paint alike, whether a construct reaches themes at all — and none asks

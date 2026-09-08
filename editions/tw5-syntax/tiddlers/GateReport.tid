@@ -63,7 +63,7 @@ gates-held: 34 of 34
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  43 files, 495 scopes declared, 447 reached (floor 447), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  43 files, 496 scopes declared, 448 reached (floor 447), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
@@ -83,7 +83,7 @@ gates-held: 34 of 34
         {
             "gate": "legibility",
             "held": true,
-            "said": "construct-legibility  21 pair(s) over 65 theme(s), 0 fallen, 0 unseated, weakest 53/65"
+            "said": "construct-legibility  21 pair(s) over 65 theme(s), 0 fallen, 0 unseated, weakest 54/65"
         },
         {
             "gate": "light-cone",
