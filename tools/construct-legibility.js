@@ -29,7 +29,10 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
-const { loadThemesByName, winner } = require('./theme-model.js');
+const { loadThemesByName, winner, colourOf } = require('./theme-model.js');
+
+/** Whether a theme rules on a bare family root, which reaches every scope beginning there. */
+const paintsRoot = (root, theme) => Boolean(colourOf(root, theme));
 
 const verbose = process.argv.includes('--verbose');
 const FLOOR = path.join(ROOT, 'corpus', 'legibility-floor.txt');
@@ -63,9 +66,11 @@ const look = (tokens, theme) => {
   }
 
   const painted = {};
+  const claimed = {};
   for (const [name, source] of Object.entries(CONSTRUCTS)) {
     const lines = await tokenize('text.html.tiddlywiki5', `${source}\n`);
     painted[name] = themes.map(([, theme]) => look(lines[0], theme));
+    claimed[name] = lines[0].flatMap((token) => token.scopes).filter((sc) => !/^meta\.paragraph\./.test(sc));
   }
 
   const names = Object.keys(CONSTRUCTS).filter((n) => n !== 'prose');
@@ -105,6 +110,29 @@ const look = (tokens, theme) => {
   if (verbose) {
     for (const [pair, apart] of [...readings].sort((a, b) => a[1] - b[1])) {
       console.log(`  ${String(apart).padStart(3)}/${themes.length}  ${pair}${seated.has(pair) ? '' : '   (no floor seated)'}`);
+    }
+    // FAMILY PRESSURE, reported and never ratcheted. A theme rule naming a one-segment root reaches
+    // every construct whose scopes start there, so constructs sharing a root that themes rule on
+    // get pulled toward one colour and a deeper rule has to pull them back. Measured: `string` is
+    // claimed by five of these constructs and 62 of 65 themes rule on the bare root, which is the
+    // pressure behind every weak pair here; `markup` is claimed by two and one theme rules on its
+    // root, which is why a raw span takes its name from that family and collides with nothing. A
+    // ratchet wants a direction the tree can move in, and a family root is a naming decision rather
+    // than a number, so this reads and judges nothing.
+    console.log('  family pressure — constructs claiming a one-segment root, and themes ruling on it:');
+    const families = new Map();
+    for (const [name, source] of Object.entries(CONSTRUCTS)) {
+      if (name === 'prose') continue;
+      for (const scope of new Set(claimed[name])) {
+        const root = scope.split('.')[0];
+        if (root === 'text') continue;
+        if (!families.has(root)) families.set(root, new Set());
+        families.get(root).add(name);
+      }
+    }
+    for (const [root, holders] of [...families].sort((a, b) => b[1].size - a[1].size)) {
+      const rules = themes.filter(([, theme]) => themes && paintsRoot(root, theme)).length;
+      console.log(`    ${holders.size} construct(s), ${String(rules).padStart(2)}/${themes.length} themes rule on \`${root}\`   ${[...holders].join(', ')}`);
     }
   }
   for (const f of fallen) console.error(`  ${f}`);

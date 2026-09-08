@@ -6,7 +6,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## 2.3.0 — unreleased
 
-### Changed
+- `legibility --verbose` reports FAMILY PRESSURE, and ratchets nothing. A theme rule naming a
+  one-segment root reaches every scope beginning there, so constructs sharing such a root get pulled
+  toward one colour and a deeper rule must pull them back. Measured: `string` is claimed by five of
+  the six constructs and 62 of 65 themes rule on the bare root — the pressure behind every weak pair
+  here — while `markup` is claimed by two and one theme rules on its root, which is why a raw span
+  takes its name from that family and collides with nothing. A family root names a decision rather
+  than a number, so the reading judges nothing.
 - A raw span carries `markup.inline.raw.string.tiddlywiki5` — the family shape markdown, asciidoc
   and mediawiki all write, under this grammar's own suffix, standing FIRST so a theme naming this
   grammar's own scopes keeps any tie. Measured over 65 bundled themes, a code span parted from prose
