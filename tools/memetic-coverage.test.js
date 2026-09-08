@@ -36,9 +36,14 @@ function reachedScopes(suffix) {
 const declared = declaredScopes(path.join(ROOT, 'syntaxes', 'memetic-wikitext.json'));
 const reached = reachedScopes('.mem');
 
+// The guard catches a reader that matched nothing, so it counts ANY scope rather than a number.
+// A threshold set to the vocabulary of the day fails a grammar that grew smaller on purpose, and
+// reports the reader broken when the grammar changed — measured, this one sat three scopes from
+// doing exactly that. What the vocabulary must COVER stands asserted below, against the grammar's
+// own declaration rather than against a literal.
 test('the dialect declares scopes and specimens reach them', () => {
-  assert.ok(declared.size > 20, `the dialect declares ${declared.size} scope(s) — the reader stopped matching`);
-  assert.ok(reached.size > 20, `the pinned specimens reach ${reached.size} scope(s) — the snapshots went missing`);
+  assert.ok(declared.size > 0, `the dialect declares ${declared.size} scope(s) — the reader stopped matching`);
+  assert.ok(reached.size > 0, `the pinned specimens reach ${reached.size} scope(s) — the snapshots went missing`);
 });
 
 test('every scope the dialect declares stands exercised', () => {

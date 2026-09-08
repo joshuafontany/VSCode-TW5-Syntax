@@ -45,6 +45,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   region need not cover every character — a filtered value carries operators and operands under
   scopes of their own — so a probe landing on one point reported whatever kind stood there. The
   ceiling falls from 227 to 74; the point reading held 156 of them.
+- Two guards state their purpose where they carried a number. A threshold set to the vocabulary of
+  the day fails a grammar that grew smaller deliberately and reports the reader broken when the
+  grammar changed — one sat three scopes from doing exactly that, and another answered for how many
+  themes an external package ships. Both now ask only that the reader found something, and the
+  coverage each one guards stands asserted against the grammar's own declaration.
 - A macro call left unclosed no longer swallows the sentence after it. TiddlyWiki carries a call
   across lines wherever its closer stands later and refuses it outright at a blank line, so the
   region takes the blank-line bound the rest of the grammar already carries. The fixture that
