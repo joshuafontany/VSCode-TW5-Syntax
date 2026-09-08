@@ -75,18 +75,21 @@ survives in three senses this grammar must hold apart. Measured against the chec
   `meta.variable.macro.parameter.tw-*` and `variable.macro.attribute.html` — thirty-three sites
   naming a definition kind the site cannot read.
 
-''What the reading costs today: nothing.'' A call painted under a name saying `macro` colours a
-procedure call identically; the imprecision sits in the vocabulary, not in the reading. Against
-that, a scope name stands as a published surface — a reader's `editor.tokenColorCustomizations`
-spells it by hand — so replacing one takes colour away silently from someone who never ran a gate.
+''Operator ruling, 2026-09-08: WIDEN, never replace.'' A scope name stands as a published surface —
+a reader's `editor.tokenColorCustomizations` spells one by hand — so a call site carries the call
+vocabulary BESIDE the name it publishes, never in place of it. vscode-textmate returns every scope
+in a space-separated `name`, and `winner()` scores stack position, so the published name stands LAST
+and takes any tie. Twenty-five sites carry the pair. Measured across 3336 corpus tokens and 65
+themes: no colour moves — and the reason runs deeper than the ordering, since no bundled theme names
+the `.macro` tail at all; `variable.name.macro`, `variable.name.call`, `variable.name` and
+`variable` resolve alike in all 65. A user's own customization does name it, which is who the
+published name protects.
 
-''The lever, measured:'' vscode-textmate honours a `name` carrying space-separated scopes and
-returns BOTH on the token, so a call-side rule can gain `meta.variable.call.*` while keeping the
-name it publishes. Widening, never replacing — the same shape the dialect's `R:` injection takes,
-where the base reads first and new vocabulary arrives only where nothing was named.
+The same shape the dialect's `R:` injection takes: the base reads first, and new vocabulary arrives
+only where nothing was named.
 
-''Owed:'' the operator's ruling on whether to widen. Held open, and pinned so it cannot be
-re-litigated from memory.
+`tools/call-parity.test.js` holds both halves — every call-side name carries a call scope, and no
+call scope stands last.
 
 <<~/ahu>>
 

@@ -25,6 +25,23 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - The corpus floor's collision derives its raise from what the corpus reaches. A fixed step of five
   stopped provoking once the vocabulary widened past it, and the collision then passed while
   planting no fault.
+- `backtrack-witness` times a pattern by the LEAST of several rounds. Contention only ever adds
+  time — a scheduler taking the core away lengthens a reading and nothing shortens one — so one
+  round's average estimates what the machine was doing rather than what the pattern costs. The same
+  pattern over the same bytes read 1.7ms alone and 9.3ms beside a dozen gates, crossing an 8ms
+  budget having done nothing different, and two runs at rest disagreed 0 stalls against 6. The
+  budget names an absolute cost on purpose: the slowest pattern this grammar holds runs 874 times a
+  trivial control on adversarial input and costs under two milliseconds, so no ratio separates it
+  from a stall. Two gates stand beside it now — the worst reading keeps headroom against the budget,
+  and two runs read one verdict.
+- Two carrier classes stand ruled from a wider pass. A tiddler whose header declares a type that
+  hands its body to another grammar carries no wikitext node inside it: measured at
+  `sdm/procedures/tag-pill-styles.tid`, TiddlyWiki parses a `text/css` body into ONE `genesis` node
+  with no structure, where the same bytes under `text/vnd.tiddlywiki` build `element/parseblock`.
+  And a call opening inside prose files under the region that encloses it rather than under itself,
+  because `still` keys a runaway on the outermost scope in the stack — one cause, two keys. The
+  ledger records that grain rather than repairing it, since keying on the innermost region would
+  restate every ruling there.
 - Four dialect scopes stood unexercised: they paint a lar URI's query string, which no sample
   carried. The specimen carries one, and a bearing arrow standing in prose.
 

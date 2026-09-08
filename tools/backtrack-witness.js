@@ -93,11 +93,23 @@ if (require.main === module) {
 
     // The control, timed the way every pattern below gets timed. It matches at once, so what it
     // costs names the run's own overhead rather than any pattern's work.
+    // THE MINIMUM OF SEVERAL ROUNDS, never one round's average. Contention only ever ADDS time —
+    // a scheduler taking the core away lengthens a reading and nothing shortens one — so the least
+    // of several rounds estimates what the pattern costs while an average estimates what the
+    // machine was doing. Measured on one reading: the same pattern over the same bytes read 1.7ms
+    // alone and 9.3ms beside a dozen gates, crossing a budget of eight having done nothing
+    // different, and a second run at rest read 6 stalls where the first read none.
+    const ROUNDS = 5;
     const time = (scanner, text) => {
       scanner.findNextMatchSync(new oniguruma.OnigString(text), 0);
-      const started = process.hrtime.bigint();
-      for (let i = 0; i < 5; i += 1) scanner.findNextMatchSync(new oniguruma.OnigString(text), 0);
-      return Number(process.hrtime.bigint() - started) / 1e6 / 5;
+      let least = Infinity;
+      for (let round = 0; round < ROUNDS; round += 1) {
+        const started = process.hrtime.bigint();
+        for (let i = 0; i < 5; i += 1) scanner.findNextMatchSync(new oniguruma.OnigString(text), 0);
+        const ms = Number(process.hrtime.bigint() - started) / 1e6 / 5;
+        if (ms < least) least = ms;
+      }
+      return least;
     };
     const control = new oniguruma.OnigScanner([CONTROL]);
     const baseline = Math.max(...CASES.map(([, text]) => time(control, text)));
