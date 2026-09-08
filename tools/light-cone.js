@@ -64,7 +64,7 @@ const PRAGMA = (() => {
 
 /** Did TiddlyWiki build the sentinel quoteblock where the sentinel stands? */
 const parserReads = (text, at) =>
-  flatten(oracle.parse(text).tree).some((n) => n.rule === 'quoteblock' && n.start === at);
+  flatten(oracle.parse(text).tree, { sameSpace: true }).some((n) => n.rule === 'quoteblock' && n.start === at);
 
 /** Did the grammar open it, on the sentinel's own line? */
 const grammarReads = (lines, at) => (lines[at] ?? [])
@@ -153,7 +153,7 @@ function specimens() {
       const key = parser
         ? (scopes.find((s) => /^(meta|comment|source|string)\./.test(s)) || scopes[0] || '(bare text)')
         : (() => {
-          const covering = flatten(oracle.parse(read).tree)
+          const covering = flatten(oracle.parse(read).tree, { sameSpace: true })
             .filter((n) => typeof n.start === 'number' && n.start <= at && n.end >= at && n.rule);
           return covering.length ? covering[covering.length - 1].rule : '(nothing)';
         })();

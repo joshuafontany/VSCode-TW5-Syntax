@@ -12,7 +12,7 @@
 // gets gated beside its entries: a ruling may gain entries and may not gain breadth. The check
 // reads what the last commit held, since breadth names a change rather than a state.
 //
-//   node tools/still.js --over <dir> [--sample N] [--verbose]
+//   node tools/still.js --host | --over <dir> [--sample N] [--seed N] [--verbose]
 
 'use strict';
 
@@ -26,14 +26,27 @@ const { kindOf, KINDS } = require('./region-kind.js');
 
 const argv = process.argv.slice(2);
 const verbose = argv.includes('--verbose');
-const over = argv[argv.indexOf('--over') + 1];
+// `--host` names the ground every gate already needs a checkout for: TiddlyWiki's own tiddlers,
+// which stand OUTSIDE this repository's corpus. The instrument exists for ground the corpus does
+// not hold — a class the ledgers name says the base held and the ground merely widened, and ground
+// the corpus holds cannot widen anything. Pointed at `./corpus` this pass found 8 classes, every one
+// already named, and `swallow-witness` finds the same 8 over the same files with the same
+// comparison.
+const host = argv.includes('--host');
+const over = host
+  ? (resolveTiddlyWiki() ? path.join(resolveTiddlyWiki(), 'editions') : undefined)
+  : argv[argv.indexOf('--over') + 1];
 const sampleAt = argv.indexOf('--sample');
 const sample = sampleAt >= 0 ? Number(argv[sampleAt + 1]) : 40;
 const seedAt = argv.indexOf('--seed');
 const seed = seedAt >= 0 ? Number(argv[seedAt + 1]) : 1;
 // A caller reading one measurement off this asks for it by name. Only a RUN wants ground to sweep.
 if (require.main === module && (!over || !fs.existsSync(over))) {
-  console.error('still: name the ground to pass over — node tools/still.js --over <dir> [--sample N]');
+  if (host) {
+    console.log('still  no TiddlyWiki checkout resolved, so no host ground stands to pass over');
+    process.exit(0);
+  }
+  console.error('still: name the ground to pass over — node tools/still.js --host | --over <dir> [--sample N]');
   process.exit(2);
 }
 
@@ -236,7 +249,7 @@ if (require.main !== module) return;
       const line = specimen.split('\n').length - 4;
       if (at < 0) continue;
       const tokens = await tokenize(reading.scope, specimen);
-      const parser = flatten(oracle.parse(read).tree).some((n) => n.rule === 'quoteblock' && n.start === at);
+      const parser = flatten(oracle.parse(read).tree, { sameSpace: true }).some((n) => n.rule === 'quoteblock' && n.start === at);
       const grammar = (tokens[line] ?? [])
         .some((t) => t.scopes.some((s) => s.startsWith('punctuation.definition.markup.quote.quoteblock.begin')));
       if (parser === grammar) continue;
@@ -246,7 +259,7 @@ if (require.main !== module) return;
       const key = parser
         ? kindOf(scopes)
         : (() => {
-          const covering = flatten(oracle.parse(read).tree)
+          const covering = flatten(oracle.parse(read).tree, { sameSpace: true })
             .filter((n) => typeof n.start === 'number' && n.start <= at && n.end >= at && n.rule);
           return covering.length ? covering[covering.length - 1].rule : '(nothing)';
         })();

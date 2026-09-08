@@ -402,3 +402,32 @@ test('TiddlyWiki reads a pragma only before the body begins', live, () => {
   assert.strictEqual(boot(TW).readAt(first, ...span(first, '\\define foo(a) $a$')).kind, 'built');
   assert.strictEqual(boot(TW).readAt(late, ...span(late, '\\define foo(a) $a$')).kind, 'text');
 });
+
+// A NESTED PARSE RESTARTS OFFSETS, and a reader locating by offset must not cross into one.
+//
+// TiddlyWiki parses the body of a typed block as the type it declares, and the nodes that parse
+// builds carry offsets into the INNER text: measured, `$$$text/vnd.tiddlywiki` holding a quoteblock
+// reports the typed block at 23..42 and the quoteblock inside it at 0..14. A witness asking which
+// rule covers an absolute offset then reads the inner node as standing at the top of the document.
+// `still` reported a divergence class on exactly that, over TiddlyWiki's own tiddlers, where the
+// grammar's reading and the host's agree.
+//
+// The detection derives: a child whose span falls OUTSIDE its parent's names a restarted space, and
+// no list of node types goes stale behind it.
+test('a subtree whose offsets restart stands outside an offset reading', live, () => {
+  const oracle = boot(TW);
+  const nested = oracle.parse('$$$text/vnd.tiddlywiki\n<<<\nQuoted\n<<<\n$$$\n').tree;
+  const all = flatten(nested);
+  assert.ok(all.some((n) => n.rule === 'typedblock'), 'the probe builds no typed block');
+  assert.ok(all.some((n) => n.rule === 'quoteblock'), 'the probe builds no nested quoteblock');
+
+  const outer = flatten(nested, { sameSpace: true });
+  assert.ok(outer.some((n) => n.rule === 'typedblock'), 'the typed block itself stands in the outer space');
+  assert.ok(!outer.some((n) => n.rule === 'quoteblock'),
+    'a node carrying inner-text offsets reads as standing in the document, where it never stood');
+
+  // A tree with no nesting reads the same either way, so the pruning costs nothing where it applies.
+  const plain = oracle.parse('<<<\nQuoted\n<<<\n').tree;
+  assert.deepStrictEqual(flatten(plain, { sameSpace: true }).map((n) => n.rule),
+    flatten(plain).map((n) => n.rule), 'pruning changed a tree that restarts nothing');
+});

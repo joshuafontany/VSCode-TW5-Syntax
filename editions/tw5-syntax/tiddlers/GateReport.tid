@@ -88,7 +88,7 @@ gates-held: 34 of 34
         {
             "gate": "light-cone",
             "held": true,
-            "said": "light-cone  35 divergence(s) across 10 class(es); forward arm moved 14, backward arm moved 8; 8 proven or unruled, 2 ruled without proof, 0 owed but reaching out"
+            "said": "light-cone  112 divergence(s) across 8 class(es); forward arm moved 10, backward arm moved 83; 6 proven or unruled, 2 ruled without proof, 0 owed but reaching out"
         },
         {
             "gate": "must-fail",
@@ -163,7 +163,7 @@ gates-held: 34 of 34
         {
             "gate": "still",
             "held": true,
-            "said": "still  12 of 38 carrier(s) at seed 1, 5 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, 55.8% of corpus tokens ruled (ceiling 55.8%)"
+            "said": "still  25 of 4403 carrier(s) at seed 1, 76 divergence(s) across 5 class(es), 0 unnamed, 0 ruling(s) broadened, 55.8% of corpus tokens ruled (ceiling 55.8%)"
         },
         {
             "gate": "swallow-witness",

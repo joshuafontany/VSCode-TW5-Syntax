@@ -6,6 +6,29 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## 2.3.0 — unreleased
 
+### Fixed
+- Every offset reading stays in ONE coordinate space. A nested parse restarts offsets at zero —
+  measured, `$$$text/vnd.tiddlywiki` holding a quoteblock reports the typed block at 23..42 and the
+  quoteblock inside it at 0..14 — so a witness asking which rule covers an absolute offset read an
+  inner node as standing at the top of the document. Three witnesses did: `still`, `swallow-witness`
+  and `light-cone`. `flatten(tree, { sameSpace: true })` prunes a subtree whose span falls outside
+  its parent's, which derives the detection rather than listing node types that go stale.
+- The bogus matches had MASKED a real class. With the readings honest, a cut inside a `\define`
+  body reports what stands there: one `set/macrodef` node and nothing inside it, because TiddlyWiki
+  stores a macro body verbatim and never parses it, while the grammar paints wikitext in there on
+  purpose. Ruled in both ledgers, on their own ground.
+
+### Changed
+- `still` passes over ground this repository does not hold. The gate pointed at `./corpus`, where
+  `swallow-witness` already cuts all 38 files with the same comparison — measured, both find the
+  same 8 classes — so the pass reported `0 unnamed` as a stopping-condition verdict while measuring
+  what another gate had measured. `--host` names TiddlyWiki's own tiddlers, 4403 carriers standing
+  outside this corpus and inside a checkout other gates already need. It found an unnamed class on
+  its first run, in 3.4 seconds.
+- A definition-block ruling moved from the corpus ledger to the carrier ledger. No corpus cut reads
+  that way once every offset reading stays in one space, and a ruling with no specimen fails the
+  corpus gate by design; TiddlyWiki's own tiddlers carry it.
+
 - `legibility --verbose` reports FAMILY PRESSURE, and ratchets nothing. A theme rule naming a
   one-segment root reaches every scope beginning there, so constructs sharing such a root get pulled
   toward one colour and a deeper rule must pull them back. Measured: `string` is claimed by five of

@@ -31,26 +31,38 @@ const path = require('node:path');
  *
  * A macro-typed attribute value carries a whole node of its own, so the walk descends into it.
  *
+ * `sameSpace` keeps the walk inside ONE coordinate space. A nested parse restarts offsets at zero —
+ * measured, a `$$$text/vnd.tiddlywiki` block reports itself at 23..42 and the quoteblock inside it
+ * at 0..14 — so a caller asking which rule covers an absolute offset reads an inner node as standing
+ * at the top of the document. The detection derives: a child whose span falls outside its parent's
+ * names a restarted space, and no list of node types goes stale behind it.
+ *
  * @param {object[]} tree
+ * @param {{sameSpace?: boolean}} [options]
  * @returns {object[]}
  */
-function flatten(tree) {
+function flatten(tree, options = {}) {
+  const sameSpace = options.sameSpace === true;
+  const restarts = (parent, child) => typeof parent.start === 'number' && typeof parent.end === 'number'
+    && typeof child.start === 'number'
+    && (child.start < parent.start || child.start > parent.end);
   const out = [];
-  const visit = (nodes) => {
+  const visit = (nodes, parent) => {
     for (const n of nodes || []) {
       if (!n || typeof n !== 'object') continue;
+      if (sameSpace && parent && restarts(parent, n)) continue;
       out.push(n);
       for (const attribute of Object.values(n.attributes || {})) {
         if (!attribute || typeof attribute !== 'object') continue;
         // Only a placed attribute joins the spans; a name or a body carrying no extent cannot
         // answer for a column.
         if (typeof attribute.start === 'number' && typeof attribute.end === 'number') out.push(attribute);
-        if (attribute.value && typeof attribute.value === 'object') visit([attribute.value]);
+        if (attribute.value && typeof attribute.value === 'object') visit([attribute.value], n);
       }
-      visit(n.children);
+      visit(n.children, n);
     }
   };
-  visit(tree);
+  visit(tree, null);
   return out;
 }
 

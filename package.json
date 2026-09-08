@@ -388,7 +388,7 @@
         "legibility": "node ./tools/construct-legibility.js",
         "must-fail": "node ./tools/must-fail.js",
         "engine-witness": "node ./tools/engine-witness.js",
-        "still": "node ./tools/still.js --over ./corpus --sample 12",
+        "still": "node ./tools/still.js --host --sample 25",
         "backtrack-witness": "node ./tools/backtrack-witness.js",
         "dark-construct": "node ./tools/dark-construct.js",
         "gates": "node ./tools/gate-report.js",

@@ -102,3 +102,21 @@ test('a stack no kind claims reads as unclassified rather than as its container'
   const key = kindOf(['text.html.tiddlywiki5', 'meta.nothing.here.tiddlywiki5']);
   assert.match(key, /unclassified/, `an unclaimed stack keyed as ${key}`);
 });
+
+// The pass must cross ground THIS REPOSITORY DOES NOT HOLD.
+//
+// The instrument exists for exactly that: a class the ledgers already name says the base held and
+// the ground merely widened, and ground the corpus holds cannot widen anything. Measured with the
+// gate pointed at `./corpus`: 8 classes, every one already named, and `swallow-witness` finds the
+// same 8 over the same 38 files with the same comparison. The pass reported `0 unnamed` — which
+// reads as a stopping-condition verdict — while measuring what another gate had already measured.
+//
+// The host's own tiddlers stand outside this corpus and inside every checkout a gate already needs,
+// so the manifest points there.
+test('the gate passes over ground the corpus does not hold', () => {
+  const body = require(path.join(ROOT, 'package.json')).scripts.still;
+  assert.ok(body, 'the manifest names no still gate');
+  assert.ok(!/--over\s+\.?\/?corpus\b/.test(body),
+    `the gate passes over this repository's own corpus, where swallow-witness already rules: ${body}`);
+  assert.match(body, /--host\b/, `the gate names no ground outside the corpus: ${body}`);
+});

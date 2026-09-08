@@ -119,7 +119,7 @@ const oracle = boot(resolveTiddlyWiki(), {});
 
 /** Did TiddlyWiki build the sentinel quoteblock, where the sentinel stands? */
 const parserReads = (text, at) =>
-  flatten(oracle.parse(text).tree).some((n) => n.rule === 'quoteblock' && n.start === at);
+  flatten(oracle.parse(text).tree, { sameSpace: true }).some((n) => n.rule === 'quoteblock' && n.start === at);
 
 /** Did the grammar open the sentinel quoteblock, on the sentinel's own line? */
 const grammarReads = (lines, at) => (lines[at] || [])
@@ -134,7 +134,7 @@ function grammarNames(lines, at) {
 
 /** The rule TiddlyWiki had open across the offset the sentinel stands at. */
 function parserHolds(text, at) {
-  const covering = flatten(oracle.parse(text).tree)
+  const covering = flatten(oracle.parse(text).tree, { sameSpace: true })
     .filter((n) => typeof n.start === 'number' && n.start <= at && n.end >= at && n.rule);
   return covering.length ? covering[covering.length - 1].rule : '(nothing)';
 }
