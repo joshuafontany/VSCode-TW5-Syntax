@@ -6,6 +6,30 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## 2.3.0 — unreleased
 
+### Added
+- `legibility` reads what a READER sees. Every other colour instrument reads scopes — whether an
+  opener and its closer paint alike, whether a construct reaches themes at all — and none asks
+  whether a call looks like a filter run. Scopes can move, stay pinned, stay faithful to the parser,
+  and still cost a reader the difference between two constructs. 21 pairs over 65 themes, each with
+  its own floor in `corpus/legibility-floor.txt`; the weakest stands at 53, a code span against
+  prose, which carries `markup.raw.inline` and two backticks that twelve themes rule on none of.
+- The reading paints WHOLE constructs, and the gate asserts that it does. Measured on container
+  scopes alone, a call, a filter run, a transclusion and prose each resolve to one colour and 44 of
+  65 themes paint them identically — a gate built that way would rule a healthy grammar broken. The
+  distinction rides on the punctuation and name scopes inside, where every construct parts from
+  prose in all 65.
+- A floor PER PAIR, because one floor on the weakest pair reads green through a loss anywhere else:
+  stripping a call of every name a theme rules on left the weakest pair exactly where it stood. The
+  collision found that the day the gate stood up.
+
+### Fixed
+- A skip carries a ruling, never a sentence. The gate list holds back what renders no verdict, and
+  that exclusion answered to a comment — the comment claimed `snap` carried its per-scope runs whole
+  while `snap` stood outside the list. `CIGates.tid` gains `notGates`, where a script standing
+  outside the gates names why. Two more surfaced on the way: `lint-closure` and `package-contents`
+  run in CI, render verdicts, and stood in no gate list — hidden from the check written to find
+  exactly that, because it excluded runners by NAME PREFIX and both began with one.
+
 ### Changed
 - A runaway names its region by KIND, innermost-first, in one vocabulary two witnesses read
   (`tools/region-kind.js`). `still` and `swallow-witness` both keyed on the first

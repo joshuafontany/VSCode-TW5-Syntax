@@ -17,7 +17,7 @@ const scripts = require(path.join(ROOT, 'package.json')).scripts;
 
 // The tool exports its own derivation, so this reads the same list the report runs rather than
 // deriving a second one that could differ from it silently.
-const { gateNames } = require('./gate-report.js');
+const { gateNames, SKIP } = require('./gate-report.js');
 const gates = gateNames;
 
 test('the report takes its gate list from the manifest', () => {
@@ -76,8 +76,17 @@ test('a verdict the workflow runs stands among the gates', () => {
   const ruling = readData('CIGates.tid').data;
   const known = new Set([...gates(), ...ruling.alsoGates, ...ruling.reporting,
     ...ruling.skipped.map((r) => r.gate)]);
-  // A script CI runs by name. Test runners and builders answer elsewhere; a verdict does not.
-  const RUNNER = /^(test|tests-|vscode|package|compile|watch|lint|bench|edition|signals$)/;
+  // WHAT A SCRIPT DOES, never how its name starts. A prefix list excluded `lint-closure` and
+  // `package-contents` — two instruments CI runs, each rendering a verdict, neither standing in any
+  // gate list — because one began `lint` and the other `package`. A script rendering a verdict runs
+  // an instrument out of `tools/`; a test runner or a builder runs something else.
+  const renders = (name, seen = new Set()) => {
+    if (seen.has(name)) return false;
+    seen.add(name);
+    const body = scripts[name] || '';
+    if (/tools\/[\w.-]+\.(?:js|sh)/.test(body)) return true;
+    return [...body.matchAll(/npm run ([a-z0-9:-]+)/g)].some((m) => renders(m[1], seen));
+  };
   // A script gathering per-scope siblings answers through them, so it stands heard where each does.
   const gathers = (name) => {
     const parts = [...(scripts[name] || '').matchAll(/npm run ([a-z0-9:-]+)/g)].map((m) => m[1]);
@@ -86,9 +95,51 @@ test('a verdict the workflow runs stands among the gates', () => {
   const unheard = [];
   for (const m of workflow.matchAll(/npm run ([a-z0-9:-]+)/g)) {
     const name = m[1];
-    if (!scripts[name] || RUNNER.test(name) || known.has(name) || gathers(name)) continue;
+    if (!scripts[name] || known.has(name) || gathers(name) || !renders(name)) continue;
     unheard.push(name);
   }
   assert.deepStrictEqual([...new Set(unheard)], [],
     'script(s) CI reads a verdict from that the local gate sweep never runs, so a green sweep can stand beside a red CI');
+});
+
+// A skip carries a ruling, never a sentence.
+//
+// The gate list derives from the manifest by the shape of a script's body, and a skip pattern holds
+// back what renders no verdict — a builder, a server, a reporting tool answering a question rather
+// than judging one. That exclusion answered to a COMMENT, and the comment claimed `snap` carried
+// its per-scope runs whole while `snap` stood outside the list: `gates` reported every gate holding
+// beside eight drifted snapshots, and nothing anywhere could contradict the sentence.
+//
+// So a skipped script that runs an instrument NO gate runs must name itself in `CIGates.tid` —
+// among the gates CI reaches, among the reporting tools, or among the skipped with a reason. A
+// prose justification then has a reader.
+test('every skipped script running an instrument no gate runs carries a ruling', () => {
+  const { readData } = require('./wiki-data.js');
+  const ruling = readData('CIGates.tid').data;
+  const toolOf = (body) => (/tools\/([\w.-]+\.(?:js|sh))/.exec(body || '') || [])[1];
+  const run = new Set(gates().map((g) => toolOf(scripts[g])).filter(Boolean));
+  // `skipped` rules a GATE CI leaves alone; a script that is no gate at all answers in `notGates`.
+  const ruled = new Set([...ruling.alsoGates, ...ruling.reporting,
+    ...ruling.skipped.map((r) => r.gate), ...(ruling.notGates || []).map((r) => r.gate)]);
+  const bare = [];
+  for (const [name, body] of Object.entries(scripts)) {
+    // `gates` names the report itself, which would run itself and never stop.
+    if (!SKIP.test(name) || name === 'gates' || ruled.has(name)) continue;
+    const tool = toolOf(body);
+    if (tool && !run.has(tool)) bare.push(`${name} -> ${tool}`);
+  }
+  assert.deepStrictEqual(bare, [],
+    'skipped script(s) running an instrument no gate runs, with nothing saying why they stand outside');
+});
+
+// A script ruled out of the gate list must name a reason, and must actually stand outside it.
+test('every script ruled no gate carries a reason and stands outside the list', () => {
+  const { readData } = require('./wiki-data.js');
+  const ruling = readData('CIGates.tid').data;
+  for (const entry of ruling.notGates || []) {
+    assert.ok(scripts[entry.gate], `the ruling names ${entry.gate}, which the manifest holds no script for`);
+    assert.ok(entry.why && entry.why.length > 40, `the ruling for ${entry.gate} carries no reason`);
+    assert.ok(!gates().includes(entry.gate),
+      `${entry.gate} stands among the gates and carries a ruling saying it does not`);
+  }
 });

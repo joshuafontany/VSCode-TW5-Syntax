@@ -1,0 +1,44 @@
+# Of 65 bundled themes, how many tell each pair of constructs apart. Each count may rise and may
+# never fall, and a pair carrying no line here FAILS until somebody seats it — a construct joining
+# the list arrives unratcheted and says so rather than passing blind.
+#
+# ONE FLOOR ON THE WEAKEST PAIR READ GREEN THROUGH A LOSS ANYWHERE ELSE. Stripping a call of every
+# name a theme rules on left the weakest pair — a code span against prose — exactly where it stood,
+# and the gate held. The collision found that the day the gate stood up.
+#
+# THE READING MUST PAINT WHOLE CONSTRUCTS. Measured on CONTAINER scopes alone, a call, a filter run,
+# a transclusion and prose each resolve to one colour across all 65 — no theme rule reaches
+# `meta.variable.call.*` or `meta.transclusion.*`, so all four fall through to the default and 44 of
+# 65 themes paint the containers identically. That reading says a reader meets four constructs in
+# one ink; the whole-construct reading says every one of them parts from prose in all 65, because
+# the distinction rides on the punctuation and name scopes inside. A floor seated on containers
+# would rule a healthy grammar broken.
+#
+# Seated 2026-09-08. The weakest, a code span against prose: the span carries
+# `markup.raw.inline.tiddlywiki5` and its two backticks, and twelve themes rule on none of those
+# three, so the span reads as the sentence around it. Raising it wants a theme-reachable name on the
+# span itself rather than on its delimiters.
+#
+#   <themes that tell them apart>  <pair>
+
+65  a call  vs  a code span
+65  a call  vs  a transclusion
+65  a call  vs  a widget
+65  a call  vs  a wikilink
+65  a call  vs  prose
+65  a filter run  vs  a code span
+65  a filter run  vs  a widget
+65  a filter run  vs  a wikilink
+65  a filter run  vs  prose
+65  a transclusion  vs  a code span
+65  a transclusion  vs  a widget
+65  a transclusion  vs  prose
+65  a widget  vs  a code span
+65  a widget  vs  a wikilink
+65  a widget  vs  prose
+63  a filter run  vs  a transclusion
+62  a call  vs  a filter run
+61  a wikilink  vs  prose
+59  a wikilink  vs  a code span
+54  a transclusion  vs  a wikilink
+53  a code span  vs  prose

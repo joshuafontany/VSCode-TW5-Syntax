@@ -3,11 +3,11 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 33 of 33
+gates-held: 34 of 34
 
 {
-    "gates": 33,
-    "held": 33,
+    "gates": 34,
+    "held": 34,
     "failing": 0,
     "results": [
         {
@@ -79,6 +79,11 @@ gates-held: 33 of 33
             "gate": "filter-witness",
             "held": true,
             "said": "filter-witness  781 filter(s) TiddlyWiki compiles, 84 operator(s), 13 prefix(es), 0 unread"
+        },
+        {
+            "gate": "legibility",
+            "held": true,
+            "said": "construct-legibility  21 pair(s) over 65 theme(s), 0 fallen, 0 unseated, weakest 53/65"
         },
         {
             "gate": "light-cone",

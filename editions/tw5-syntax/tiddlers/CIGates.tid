@@ -6,8 +6,10 @@ description: Which gates continuous integration runs, and the reason for each on
 
 {
     "alsoGates": [
-        "tests-known-gaps",
-        "edition:check"
+        "edition:check",
+        "lint-closure",
+        "package-contents",
+        "tests-known-gaps"
     ],
     "reporting": [
         "signals:check",
@@ -15,5 +17,35 @@ description: Which gates continuous integration runs, and the reason for each on
         "overreach-cut",
         "upstream-coverage"
     ],
-    "skipped": []
+    "skipped": [],
+    "notGates": [
+        {
+            "gate": "tw5-oracle",
+            "why": "a reading rather than a verdict: it prints what TiddlyWiki made of a text, and answers a question the caller brought"
+        },
+        {
+            "gate": "rule-inventory",
+            "why": "a reading rather than a verdict: it lists the parser surface TiddlyWiki exposes, and judges nothing about this grammar"
+        },
+        {
+            "gate": "theme-paint",
+            "why": "a reading rather than a verdict: it reports how loudly a scope paints, and the gates that RULE on that stand separately"
+        },
+        {
+            "gate": "edition:build",
+            "why": "a builder. `edition:check` renders the verdict over what it produces, and stands among the gates"
+        },
+        {
+            "gate": "bench",
+            "why": "a server: it stands a disposable editor for a reader's own eyes, and reports nothing a gate could read"
+        },
+        {
+            "gate": "bench:packaged",
+            "why": "the same server over the packed extension, so a reader meets what a user installs rather than what the tree holds"
+        },
+        {
+            "gate": "bench:down",
+            "why": "the same server taken down, which restores the machine and reports nothing a gate could read"
+        }
+    ]
 }
