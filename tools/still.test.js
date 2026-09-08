@@ -23,7 +23,7 @@ const live = { timeout: 900000 };
 
 test('the pass reads carrier ground and names every class it finds', live, () => {
   const { code, out } = runTool('still.js', ['--over', path.join(ROOT, 'corpus'), '--sample', '12']);
-  assert.match(out, /still  \d+ carrier\(s\), \d+ divergence\(s\) across \d+ class\(es\)/, out.slice(-600));
+  assert.match(out, /still  \d+ of \d+ carrier\(s\) at seed \d+, \d+ divergence\(s\) across \d+ class\(es\)/, out.slice(-600));
   assert.strictEqual(code, 0, out.slice(-600));
 });
 

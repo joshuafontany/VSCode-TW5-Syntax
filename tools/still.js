@@ -93,10 +93,19 @@ const oracle = boot(resolveTiddlyWiki(), {});
     const keysOf = (text) => text.split('\n')
       .map((l) => l.replace(/^\s+/, '')).filter((l) => l && !l.startsWith('#'))
       .map((l) => { const b = l.split('#')[0].trim().split(/\s+/); return b.length > 1 ? [b[0], b[1]] : [b[0], b[0]]; });
-    const before = new Map(keysOf(was).map(([d, k]) => [d, k]));
-    for (const [direction, key] of keysOf(fs.readFileSync(path.join(ROOT, p), 'utf8'))) {
-      const old = before.get(direction);
-      if (old && reach(key) > reach(old)) broadened.push(`${file}: ${JSON.stringify(old)} -> ${JSON.stringify(key)}`);
+    // The KEY carries the identity, so a direction alone cannot pair two rulings — two entries
+    // sharing one direction would overwrite each other and the comparison would pair strangers.
+    // A broadening reads as an old key gone, and a new key that MATCHES it and reaches further.
+    const before = keysOf(was);
+    const now = keysOf(fs.readFileSync(path.join(ROOT, p), 'utf8'));
+    const nowKeys = new Set(now.map(([d, k]) => `${d} ${k}`));
+    for (const [direction, old] of before) {
+      if (nowKeys.has(`${direction} ${old}`)) continue;
+      for (const [d, key] of now) {
+        if (d !== direction || reach(key) <= reach(old)) continue;
+        const covers = new RegExp(`^${key.split('*').map((x) => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('.*')}$`);
+        if (covers.test(old)) broadened.push(`${file}: ${JSON.stringify(old)} -> ${JSON.stringify(key)}`);
+      }
     }
   }
 
