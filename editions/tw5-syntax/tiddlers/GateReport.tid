@@ -128,7 +128,7 @@ gates-held: 27 of 27
         {
             "gate": "still",
             "held": true,
-            "said": "still  12 carrier(s), 4 divergence(s) across 3 class(es), 0 unnamed, 0 ruling(s) broadened"
+            "said": "still  12 of 38 carrier(s) at seed 1, 5 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened"
         },
         {
             "gate": "swallow-witness",

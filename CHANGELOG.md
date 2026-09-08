@@ -45,6 +45,18 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   region need not cover every character — a filtered value carries operators and operands under
   scopes of their own — so a probe landing on one point reported whatever kind stood there. The
   ceiling falls from 227 to 74; the point reading held 156 of them.
+- The pass samples SHUFFLED, deterministically. Taking every Nth carrier walks directory order,
+  which groups them by bag and by whoever wrote them, so a class living in one author's habits sits
+  outside the sample and reads as absence. It did: widening from 60 carriers to 200 shuffled found
+  a class the narrow pass missed entirely, and the same widening lifted the corpus pass from 3
+  classes to 6. A seed keeps a finding reproducible.
+- That class stands ruled by the probe. A quoted parameter value left open runs on, and the obvious
+  bound is forbidden: TiddlyWiki carries a quoted parameter across a BLANK line and builds the call,
+  refusing only where the closing quote stands nowhere in the source. So the string region cannot
+  take a blank-line bound without cutting what the parser carries, and the macro call's own bound
+  never fires while that child region sits on the stack — the same shape the tag regions taught.
+  `light-cone` moves the verdict on the forward arm, so the evidence sits past what any pattern
+  reads. Reproduced by bisection to a single line.
 - The fence class the first pass surfaced stands RULED rather than owed, decided by the probe
   instead of by a reading. A fence continuing a paragraph opens nothing in either reader — they
   agree there, and a fixture pins it — but from that point the two pair the remaining backtick runs

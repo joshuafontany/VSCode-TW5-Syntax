@@ -26,7 +26,10 @@ const { parseTid } = require('./wiki-data.js');
 const argv = process.argv.slice(2);
 const verbose = argv.includes('--verbose');
 const over = argv[argv.indexOf('--over') + 1];
-const sample = Number(argv[argv.indexOf('--sample') + 1] || 40);
+const sampleAt = argv.indexOf('--sample');
+const sample = sampleAt >= 0 ? Number(argv[sampleAt + 1]) : 40;
+const seedAt = argv.indexOf('--seed');
+const seed = seedAt >= 0 ? Number(argv[seedAt + 1]) : 1;
 if (!over || !fs.existsSync(over)) {
   console.error('still: name the ground to pass over — node tools/still.js --over <dir> [--sample N]');
   process.exit(2);
@@ -98,9 +101,19 @@ const oracle = boot(resolveTiddlyWiki(), {});
   }
 
   const rulings = named();
+  // SHUFFLED, and deterministically so. Taking every Nth file walks directory order, which groups
+  // carriers by bag and by whoever wrote them — a class living in one author's habits or one bag's
+  // subject sits entirely outside such a sample and reads as absence. The seed keeps a finding
+  // reproducible: the same seed walks the same carriers.
   const files = carriers(over);
-  const step = Math.max(1, Math.floor(files.length / sample));
-  const chosen = files.filter((_, i) => i % step === 0).slice(0, sample);
+  let state = seed;
+  const roll = () => (state = (state * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
+  const shuffled = files.slice();
+  for (let i = shuffled.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(roll() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  const chosen = shuffled.slice(0, sample);
 
   const classes = new Map();
   let divergences = 0;
@@ -150,7 +163,7 @@ const oracle = boot(resolveTiddlyWiki(), {});
     console.error(`  ${JSON.stringify(id)} names a class no ledger holds — the base still moves`);
     console.error(`     ${seen.file}:${seen.cut}  (${seen.hits} cut(s))`);
   }
-  console.log(`still  ${chosen.length} carrier(s), ${divergences} divergence(s) across ${classes.size} class(es), `
+  console.log(`still  ${chosen.length} of ${files.length} carrier(s) at seed ${seed}, ${divergences} divergence(s) across ${classes.size} class(es), `
     + `${unnamed.length} unnamed, ${broadened.length} ruling(s) broadened`);
   process.exit(unnamed.length === 0 && broadened.length === 0 ? 0 : 1);
 })();
