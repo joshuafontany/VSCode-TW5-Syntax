@@ -45,6 +45,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   region need not cover every character — a filtered value carries operators and operands under
   scopes of their own — so a probe landing on one point reported whatever kind stood there. The
   ceiling falls from 227 to 74; the point reading held 156 of them.
+- The fence class the first pass surfaced stands RULED rather than owed, decided by the probe
+  instead of by a reading. A fence continuing a paragraph opens nothing in either reader — they
+  agree there, and a fixture pins it — but from that point the two pair the remaining backtick runs
+  differently, so a later fence at a block start opens for one and not the other. `light-cone` moves
+  the verdict on BOTH arms: returning the text after the cut, and striking the first fence. The
+  evidence sits outside the grammar's reach in both directions, so the parser stays canonical while
+  no pattern can follow it there.
 - `still` answers whether the base holds still. A pass over ground this corpus does not hold
   surfaces divergences, and the answer turns on KIND rather than count: an instance of a class the
   ledgers name says the base held and the ground merely widened, while a class named nowhere says
