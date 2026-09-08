@@ -46,6 +46,33 @@ function declaredScopes(file) {
 }
 
 /**
+ * The raw `name` and `contentName` strings one grammar file declares, in tree order.
+ *
+ * A caller asking which scopes a grammar names wants `declaredScopes`. A caller asking what one
+ * FIELD names — whether two families stand together in one string, and in which order — wants
+ * these, because splitting first loses the grouping that question turns on.
+ *
+ * @param {string} file  path to a .json grammar
+ * @returns {string[]}
+ */
+function declaredNames(file) {
+  const grammar = JSON.parse(fs.readFileSync(file, 'utf8'));
+  const out = [];
+  const walk = (node) => {
+    if (Array.isArray(node)) return node.forEach(walk);
+    if (!node || typeof node !== 'object') return;
+    if (node !== grammar) {
+      for (const key of ['name', 'contentName']) {
+        if (typeof node[key] === 'string') out.push(node[key]);
+      }
+    }
+    for (const value of Object.values(node)) walk(value);
+  };
+  walk(grammar);
+  return out;
+}
+
+/**
  * The scopes every grammar in a directory declares.
  *
  * @param {string} dir
@@ -97,7 +124,10 @@ function breaksOnALine(end) {
  * rather than sound.
  *
  * The name carries `$1`-style back-references, which TextMate fills from the begin match, so the
- * matcher admits any one segment there.
+ * matcher admits any one segment there. A name carrying SEVERAL scopes matches on any of them: a
+ * token wears each as its own scope, and a matcher built from the whole field matches no token at
+ * all — the region then reads as one no cut ever opens, which is a coverage gap the gate reports as
+ * a ratchet break rather than as the reader going blind.
  *
  * @param {string} file  path to a .json grammar
  * @returns {Array<{name: string, re: RegExp}>}
@@ -111,8 +141,9 @@ function unboundedRegions(file) {
     if (node.begin !== undefined && node.end !== undefined) {
       const name = node.name || node.contentName;
       if (name && !breaksOnALine(node.end)) {
-        const literal = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\\\$\d/g, '[^.]+');
-        out.push({ name, re: new RegExp(`^${literal}$`) });
+        const literal = (scope) => scope.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\\\$\d/g, '[^.]+');
+        const any = name.trim().split(/\s+/).map(literal).join('|');
+        out.push({ name, re: new RegExp(`^(?:${any})$`) });
       }
     }
     for (const value of Object.values(node)) walk(value);
@@ -121,4 +152,4 @@ function unboundedRegions(file) {
   return out;
 }
 
-module.exports = { declaredScopes, declaredScopesIn, unboundedRegions };
+module.exports = { declaredScopes, declaredNames, declaredScopesIn, unboundedRegions };

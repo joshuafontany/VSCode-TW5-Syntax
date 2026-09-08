@@ -3,11 +3,11 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 27 of 27
+gates-held: 33 of 33
 
 {
-    "gates": 27,
-    "held": 27,
+    "gates": 33,
+    "held": 33,
     "failing": 0,
     "results": [
         {
@@ -63,12 +63,12 @@ gates-held: 27 of 27
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  43 files, 486 scopes declared, 438 reached (floor 438), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  43 files, 495 scopes declared, 447 reached (floor 447), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
             "held": true,
-            "said": "dark-construct  381 construct(s) over 65 themes, 13 plain, 0 unaccounted"
+            "said": "dark-construct  357 construct(s) over 65 themes, 10 plain, 0 unaccounted"
         },
         {
             "gate": "engine-witness",
@@ -124,6 +124,36 @@ gates-held: 27 of 27
             "gate": "signals:check",
             "held": true,
             "said": "grammar-signals  TiddlyWiki 5.5.0-prerelease — 84 operator(s), 69 widget(s), 44 rule(s), the harvest current"
+        },
+        {
+            "gate": "snap-memetic",
+            "held": true,
+            "said": "snapshot-check  text.html.tiddlywiki5.memetic-wikitext  4 pinned, 0 drifted"
+        },
+        {
+            "gate": "snap-meta",
+            "held": true,
+            "said": "snapshot-check  source.tiddlywiki5.tid-file  1 pinned, 0 drifted"
+        },
+        {
+            "gate": "snap-multids",
+            "held": true,
+            "said": "snapshot-check  source.tiddlywiki5.multids-file  1 pinned, 0 drifted"
+        },
+        {
+            "gate": "snap-testfile",
+            "held": true,
+            "said": "snapshot-check  text.html.tiddlywiki5.test  1 pinned, 0 drifted"
+        },
+        {
+            "gate": "snap-tid",
+            "held": true,
+            "said": "snapshot-check  source.tiddlywiki5.tid-file  2 pinned, 0 drifted"
+        },
+        {
+            "gate": "snap-wikitext",
+            "held": true,
+            "said": "snapshot-check  text.html.tiddlywiki5  22 pinned, 0 drifted"
         },
         {
             "gate": "still",

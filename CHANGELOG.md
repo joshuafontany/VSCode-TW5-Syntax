@@ -7,6 +7,37 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A call's end no longer takes a blank-line bound. TiddlyWiki builds a call wherever `>>` stands
+  ahead anywhere in the source — one blank line or many — so the bound cut a construct the host
+  carries, and the closer then read as whatever its line looked like standing alone: a blockquote.
+  Measured over 700 carriers and 16087 openers, 116 close on a LATER line, and none lack a closer
+  entirely, which is the only case the bound would have helped. Eight pinned readings had said so
+  since the bound landed.
+- `snap` runs among the gates. The gate list derives from the manifest by the shape of a script's
+  body, `snap` gathers its per-scope siblings instead, and the skip pattern passed those over on
+  the strength of a comment saying `snap` carried them whole. So `gates` reported every gate
+  holding while eight snapshots stood drifted. The per-scope runs are gates now, each with a test
+  that plants the fault and watches the check find it, and `gate-report` derives its list once
+  rather than twice.
+- `unboundedRegions` reads a name carrying several scopes. It built one matcher from the whole
+  field, which matches no token, so six regions read as regions no cut ever opens — a coverage
+  ratchet reporting the reader's blindness as a loss of ground.
+- The corpus floor's collision derives its raise from what the corpus reaches. A fixed step of five
+  stopped provoking once the vocabulary widened past it, and the collision then passed while
+  planting no fault.
+- Four dialect scopes stood unexercised: they paint a lar URI's query string, which no sample
+  carried. The specimen carries one, and a bearing arrow standing in prose.
+
+### Changed
+- Every call site names a call beside the name it publishes. `<<name …>>` reaches a macro, a
+  procedure, a function or a custom widget, and nothing at the site says which — TiddlyWiki refuses
+  to guess and builds a `transclude` carrying `$variable`. Twenty-five sites gained
+  `meta.variable.call.*`, `punctuation.definition.call.*`, `variable.name.call` and
+  `variable.call.attribute.html`, each standing BEFORE the published name, which keeps the tie in
+  `winner()` and leaves a reader's `editor.tokenColorCustomizations` reaching what it always
+  reached. Measured across 3336 corpus tokens and 65 themes: no colour moves.
+
+### Fixed
 - `call-parity` holds the word `macro` in its three senses, which TiddlyWiki's own move to
   procedures, functions and custom widgets at 5.3.0 split apart. The definition sense stands live:
   `$param$` substitutes inside a body `\define` opened and stands literal inside one `\procedure`

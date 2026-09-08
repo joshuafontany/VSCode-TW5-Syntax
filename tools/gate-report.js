@@ -27,9 +27,9 @@ const check = process.argv.includes('--check');
 
 // A script that runs a tool and renders a VERDICT. The manifest names them; these stand aside:
 // a builder, a server, a reporting tool that answers a question rather than judging one, and the
-// per-scope snapshot runs that `snap` already carries whole.
+// per-scope runs of a gathering script that is not itself a gate.
 // `gates` names this tool, which would run itself and never stop.
-const SKIP = /^(gates$|bench|edition|snap-update|snap-[a-z]|signals$|test|tests-|vscode|package|watch|compile|lint|corpus-verbose|rule-inventory|theme-paint|tw5-oracle|overreach-corpus-files)/;
+const SKIP = /^(gates$|bench|edition|snap-update|signals$|test|tests-|vscode|package|watch|compile|lint|corpus-verbose|rule-inventory|theme-paint|tw5-oracle|overreach-corpus-files)/;
 
 const scripts = require(path.join(ROOT, 'package.json')).scripts;
 

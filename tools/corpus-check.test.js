@@ -26,12 +26,17 @@ test('the corpus stands, and every scope it declares it reaches', live, () => {
   assert.strictEqual(code, 0, out.slice(-400));
 });
 
+// The raise DERIVES from what the corpus reaches, never from a step somebody chose. A fixed step
+// stops provoking the moment the corpus outgrows it, and the collision then reads green because the
+// floor still sits under the count — a gate reporting that it works while it plants no fault.
 test('a floor raised past what the corpus reaches fails the gate', live, () => {
+  const reached = Number(/(\d+) reached \(floor/.exec(runTool('corpus-check.js').out)?.[1]);
+  assert.ok(reached > 0, 'the corpus reaches no scope, so nothing here provokes anything');
   const raise = (sandbox) => {
     const floor = path.join(sandbox, 'corpus', 'coverage-floor.txt');
     const text = fs.readFileSync(floor, 'utf8');
-    const now = Number(text.split('\n')[0]);
-    fs.writeFileSync(floor, text.replace(String(now), String(now + 5)));
+    const now = text.split('\n')[0];
+    fs.writeFileSync(floor, text.replace(now, String(reached + 1)));
   };
   const { code, out } = runInSandbox(raise, ['tools/corpus-check.js']);
   assert.notStrictEqual(code, 0, 'the floor rose past the corpus and the gate held anyway');

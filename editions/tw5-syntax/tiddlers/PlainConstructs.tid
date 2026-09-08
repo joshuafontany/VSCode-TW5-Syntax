@@ -12,6 +12,5 @@ description: Why a reader should meet each of these as prose — a judgement no 
     "meta.link.wikilink": "a CamelCase word the standing rule set does not autolink, so the parser builds no link to colour",
     "meta.multids.text.html": "a multids body line handed to the wikitext grammar, plain where no construct stands",
     "meta.text.tiddler.fields": "a field region, plain where no field stands",
-    "meta.sigil": "the gaps inside a sigil, between the parts a reader looks at",
-    "meta.carrier": "the framing region, whose marks and names carry the colour"
+    "meta.variable.macro.parameters": "the run between a call's parameters, which TiddlyWiki carries across blank lines to the closer"
 }

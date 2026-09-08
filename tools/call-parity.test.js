@@ -24,6 +24,11 @@ const test = require('node:test');
 const assert = require('node:assert');
 const { tokenize } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
+const { declaredNames } = require('./grammar-scopes.js');
+
+const GRAMMAR = require('node:path').join(__dirname, '..', 'syntaxes', 'tiddlywiki5.json');
+/** The call vocabulary, in one place, so the two structural readings cannot drift apart. */
+const CALL = /(^|\.)call(\.|$)/;
 
 const TW = resolveTiddlyWiki();
 const live = { skip: TW ? false : 'no TiddlyWiki checkout resolved', timeout: 600000 };
@@ -120,4 +125,42 @@ test('substitution paints where TiddlyWiki substitutes, and nowhere else', live,
     assert.strictEqual(rendered, substitutes ? 'A hello B' : 'A $x$ B',
       `TiddlyWiki no longer divides the two bodies by substitution: ${opener} rendered ${JSON.stringify(rendered)}`);
   }
+});
+
+// A call site names a call, beside the name it publishes.
+//
+// `<<name …>>` reaches a macro, a procedure, a function or a custom widget, and nothing at the site
+// says which — TiddlyWiki builds a `transclude` rather than guess. The scope names here guessed
+// `macro` for years, and a scope name stands as a published surface: a reader's
+// `editor.tokenColorCustomizations` spells one by hand, so dropping one takes their colour away
+// silently. vscode-textmate returns every scope in a space-separated `name`, so a rule carries both
+// — the call vocabulary first, the published name LAST, where `winner()` scores stack position and
+// the later scope takes any tie. Colours hold; the vocabulary widens.
+//
+// Two names carrying `macro` stand OUTSIDE this, and the test says which and why rather than
+// listing what stays: a definition-side name reads `\\define` and nothing else, and
+// `meta.tag.widget.macrocall.html` names a widget TiddlyWiki ships.
+test('every call-side scope carries the call vocabulary beside its published name', () => {
+  // The shapes a CALL paints. A definition-side name matches none of them.
+  const CALL_SIDE = /(^|\s)(meta\.variable\.macrocall|punctuation\.definition\.macrocall|variable\.name\.macro\.|meta\.variable\.macro\.parameters?\.|meta\.variable\.macro\.parameter\.|variable\.macro\.attribute\.)/;
+  const missing = [];
+  for (const value of declaredNames(GRAMMAR)) {
+    // A widget TiddlyWiki ships answers to upstream's spelling, never to this vocabulary.
+    if (value.includes('meta.tag.widget.macrocall')) continue;
+    if (!CALL_SIDE.test(value)) continue;
+    if (!value.split(/\s+/).some((sc) => CALL.test(sc))) missing.push(value);
+  }
+  assert.deepStrictEqual([...new Set(missing)], [],
+    'call site(s) naming a definition kind the site cannot read, with no call name beside it');
+});
+
+test('a published call name stands LAST, so no theme rule changes hands', () => {
+  const wrong = [];
+  for (const value of declaredNames(GRAMMAR)) {
+    if (!value.includes(' ')) continue;
+    const scopes = value.split(/\s+/);
+    if (!scopes.some((sc) => CALL.test(sc))) continue;
+    if (CALL.test(scopes[scopes.length - 1])) wrong.push(value);
+  }
+  assert.deepStrictEqual(wrong, [], 'a call name stands last, where it outranks the published name on a tie and moves a reader\'s colour');
 });

@@ -1,16 +1,27 @@
-# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "The gradient floor: a malformed sigil surfaces as itself and never swallows the rest"
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "The gradient floor: a sigil surfaces as itself and stops at its closer"
 
-# The floor stands independent of any vocabulary. A sigil the base reads as a macro call and a
-# sigil a dialect names for itself must BOTH leave the sentence after them standing alone.
+# The floor stands independent of any vocabulary. A sigil the base reads as a call and a sigil a
+# dialect names for itself must BOTH leave the sentence after their closer standing alone.
+#
+# The floor reaches as far as one line of lookahead reaches, and no further. TiddlyWiki builds a
+# call wherever `>>` stands ahead ANYWHERE in the source — the same line or twenty below — and
+# builds nothing at all where none does. A TextMate pattern sees one line, so it cannot tell those
+# two apart, and a blank-line bound that answered the second broke the first: measured over 700
+# carriers and 16087 openers, 116 close on a later line and NONE lack a closer entirely. So the
+# region runs to its closer, and `corpus/carrier-ledger.txt` rules the case that has no closer.
 
 <<~ ahu #broken
-# ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.macrocallblock.tiddlywiki5 variable.name.macro.tiddlywiki5
+
+  >>
+#  ^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 punctuation.definition.call.block.end.tiddlywiki5
 
 SENTINEL reads as an ordinary paragraph.
 #<- text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
 
-<<^ code="&#x0001;" ? -> lar:///unclosed.frame.opens
-# ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.macrocallblock.tiddlywiki5 variable.name.macro.tiddlywiki5
+<<^ code="&#x0001;" ? -> lar:///the.frame.opens
+
+>>
+#^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 punctuation.definition.call.block.end.tiddlywiki5
 
 SENTINEL reads as an ordinary paragraph.
 #<- text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5

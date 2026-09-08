@@ -761,7 +761,7 @@
 									"comment": "A macro call stands as an attribute value: reUnquotedAttribute excludes `<<` so the value reaches its own branch.",
 									"begin": "(?=<<[^>\\s]+)",
 									"end": "(?<=>{2})(?=(\\s|/?>|$))",
-									"contentName": "variable.macro.attribute.html.tiddlywiki5",
+									"contentName": "variable.call.attribute.html.tiddlywiki5 variable.macro.attribute.html.tiddlywiki5",
 									"patterns": [
 										{
 											"include": "#macrocallinline"
@@ -1084,7 +1084,7 @@
 						{
 							"begin": "(?=<<[^>\\s]+)",
 							"end": "(?<=>{2})(?=(\\s|/?>|$))",
-							"contentName": "variable.macro.attribute.html.tiddlywiki5",
+							"contentName": "variable.call.attribute.html.tiddlywiki5 variable.macro.attribute.html.tiddlywiki5",
 							"patterns": [
 								{
 									"include": "#macrocallinline"
@@ -3993,15 +3993,15 @@
 		},
 		"macrocallblock": {
 			"begin": "^\\s*(?<!<)(<<)(?!<)([^\\s>\"'=:]+)",
-			"end": "(>>)|(?=^$)",
-			"name": "meta.variable.macrocallblock.tiddlywiki5",
-			"contentName": "meta.variable.macro.parameters.tiddlywiki5",
+			"end": "(>>)",
+			"name": "meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5",
+			"contentName": "meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5",
 			"beginCaptures": {
 				"1": {
-					"name": "punctuation.definition.macrocallblock.begin.tiddlywiki5"
+					"name": "punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5"
 				},
 				"2": {
-					"name": "variable.name.macro.tiddlywiki5",
+					"name": "variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5",
 					"patterns": [
 						{
 							"include": "#builtin-variable"
@@ -4011,7 +4011,7 @@
 			},
 			"endCaptures": {
 				"1": {
-					"name": "punctuation.definition.macrocallblock.end.tiddlywiki5"
+					"name": "punctuation.definition.call.block.end.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5"
 				}
 			},
 			"patterns": [
@@ -5338,15 +5338,15 @@
 		},
 		"macrocallinline": {
 			"begin": "(?<!<)(<<)(?!<)([^\\s>\"'=:]+)",
-			"end": "(>>)|(?=^$)",
-			"name": "meta.variable.macrocallinline.tiddlywiki5",
-			"contentName": "meta.variable.macro.parameters.tiddlywiki5",
+			"end": "(>>)",
+			"name": "meta.variable.call.inline.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5",
+			"contentName": "meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5",
 			"beginCaptures": {
 				"1": {
-					"name": "punctuation.definition.macrocallinline.begin.tiddlywiki5"
+					"name": "punctuation.definition.call.inline.begin.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5"
 				},
 				"2": {
-					"name": "variable.name.macro.tiddlywiki5",
+					"name": "variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5",
 					"patterns": [
 						{
 							"include": "#builtin-variable"
@@ -5356,7 +5356,7 @@
 			},
 			"endCaptures": {
 				"1": {
-					"name": "punctuation.definition.macrocallinline.end.tiddlywiki5"
+					"name": "punctuation.definition.call.inline.end.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5"
 				}
 			},
 			"patterns": [
@@ -6494,7 +6494,7 @@
 				{
 					"begin": "(?<!\\w)(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\"\"\")",
 					"end": "(?<=\"\"\")",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
 					"beginCaptures": {
 						"1": {
 							"name": "variable.parameter.tiddlywiki5"
@@ -6516,7 +6516,7 @@
 				{
 					"begin": "(?<!\\w)(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\")",
 					"end": "(?<=\")",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
 					"beginCaptures": {
 						"1": {
 							"name": "variable.parameter.tiddlywiki5"
@@ -6538,7 +6538,7 @@
 				{
 					"begin": "(?<!\\w)(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=')",
 					"end": "(?<=')",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
 					"beginCaptures": {
 						"1": {
 							"name": "variable.parameter.tiddlywiki5"
@@ -6560,7 +6560,7 @@
 				{
 					"begin": "(?<!\\w)(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\\[\\[)",
 					"end": "(?<=\\]\\])",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
 					"beginCaptures": {
 						"1": {
 							"name": "variable.parameter.tiddlywiki5"
@@ -6583,8 +6583,8 @@
 					"comment": "Dynamic param: name=<<macro>>",
 					"begin": "(?<!\\w)([\\w\\-]+)\\s*(=)\\s*(?=<<[^>\\s]+)",
 					"end": "(?<=>{2})",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-					"contentName": "variable.macro.attribute.html.tiddlywiki5",
+					"name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"contentName": "variable.call.attribute.html.tiddlywiki5 variable.macro.attribute.html.tiddlywiki5",
 					"beginCaptures": {
 						"1": {
 							"name": "variable.parameter.tiddlywiki5"
@@ -6602,7 +6602,7 @@
 				{
 					"comment": "Dynamic param: name={{{filter}}}",
 					"match": "([\\w\\-]+)\\s*(=)\\s*(\\{{3})(.*?)(\\}{3})",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
 					"captures": {
 						"1": {
 							"name": "variable.parameter.tiddlywiki5"
@@ -6629,7 +6629,7 @@
 				{
 					"comment": "Dynamic param: name={{indirect}}",
 					"match": "([\\w\\-]+)\\s*(=)\\s*(\\{\\{)([^{]*?)(\\}\\})",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
 					"captures": {
 						"1": {
 							"name": "variable.parameter.tiddlywiki5"
@@ -6656,7 +6656,7 @@
 				{
 					"comment": "Dynamic param: name=((mvvvar))",
 					"match": "([\\w\\-]+)\\s*(=)\\s*(\\(\\()([^()|]+?)(\\)\\))",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
 					"captures": {
 						"1": {
 							"name": "variable.parameter.tiddlywiki5"
@@ -6679,7 +6679,7 @@
 					"comment": "Dynamic param: name=```substituted```",
 					"begin": "(?<!\\w)([\\w\\-]+)\\s*(=)\\s*(?=```)",
 					"end": "(?<=```)(?=[\\s>]|$)",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
 					"contentName": "text.substituted.triple.attribute.html.tiddlywiki5",
 					"beginCaptures": {
 						"1": {
@@ -6718,7 +6718,7 @@
 					"comment": "Dynamic param: name=`substituted`",
 					"begin": "(?<!\\w)([\\w\\-]+)\\s*(=)\\s*(?=`)",
 					"end": "(?<=`)(?=[\\s>]|$)",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
 					"contentName": "text.substituted.single.attribute.html.tiddlywiki5",
 					"beginCaptures": {
 						"1": {
@@ -6756,7 +6756,7 @@
 				{
 					"comment": "Dynamic param: name=[[bracket value]]",
 					"match": "([\\w\\-]+)\\s*(=)\\s*(\\[\\[)(.*?)(\\]\\])",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
 					"contentName": "string.quoted.bracket.attribute.html.tiddlywiki5",
 					"captures": {
 						"1": {
@@ -6778,7 +6778,7 @@
 				},
 				{
 					"match": "(?:([\\w\\-]+)\\s*([:=])\\s*)?([^\\>\"'\\s]+)",
-					"name": "meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+					"name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
 					"captures": {
 						"1": {
 							"name": "variable.parameter.tiddlywiki5"

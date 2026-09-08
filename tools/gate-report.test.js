@@ -58,3 +58,37 @@ test('every gate the report runs takes no argument the manifest withholds', () =
   assert.deepStrictEqual(needy, [],
     'gate(s) the manifest runs with no argument that demand one, so each reports a usage line');
 });
+
+// A verdict CI reads, the local sweep must read too.
+//
+// The gate list derives from the manifest by the SHAPE of a script's body — a script invoking a
+// tool directly. `snap` invokes its per-scope siblings instead, so the derivation passed it over
+// while the skip pattern's own comment recorded it as carrying them whole. Measured: `npm run
+// gates` reported 27 of 27 holding while `npm run snap` stood red on eight snapshots, one of them
+// a construct the grammar had stopped reading the way TiddlyWiki builds it. CI runs `snap` and
+// would have caught it; the sweep a reader runs locally never mentioned it.
+//
+// So every script the workflow runs that renders a verdict stands among the gates, or carries a
+// ruling saying why not — which is what `alsoGates` and `skipped` already spell for the rest.
+test('a verdict the workflow runs stands among the gates', () => {
+  const workflow = fs.readFileSync(path.join(ROOT, '.github', 'workflows', 'test.yml'), 'utf8');
+  const { readData } = require('./wiki-data.js');
+  const ruling = readData('CIGates.tid').data;
+  const known = new Set([...gates(), ...ruling.alsoGates, ...ruling.reporting,
+    ...ruling.skipped.map((r) => r.gate)]);
+  // A script CI runs by name. Test runners and builders answer elsewhere; a verdict does not.
+  const RUNNER = /^(test|tests-|vscode|package|compile|watch|lint|bench|edition|signals$)/;
+  // A script gathering per-scope siblings answers through them, so it stands heard where each does.
+  const gathers = (name) => {
+    const parts = [...(scripts[name] || '').matchAll(/npm run ([a-z0-9:-]+)/g)].map((m) => m[1]);
+    return parts.length > 0 && parts.every((part) => known.has(part));
+  };
+  const unheard = [];
+  for (const m of workflow.matchAll(/npm run ([a-z0-9:-]+)/g)) {
+    const name = m[1];
+    if (!scripts[name] || RUNNER.test(name) || known.has(name) || gathers(name)) continue;
+    unheard.push(name);
+  }
+  assert.deepStrictEqual([...new Set(unheard)], [],
+    'script(s) CI reads a verdict from that the local gate sweep never runs, so a green sweep can stand beside a red CI');
+});

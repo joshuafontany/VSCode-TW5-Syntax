@@ -1,0 +1,19 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A call crosses a blank line"
+
+# TiddlyWiki carries a call across a blank line and builds it — measured, one blank line or many,
+# inline and block alike. So no blank-line bound belongs on a call's end: cutting there reads the
+# closer as whatever the line looks like standing alone, and a reader loses a construct the host
+# keeps. Here the closer would read as a blockquote.
+#
+# corpus/carrier-ledger.txt rules the runaway this leaves standing, where a value's closing quote
+# reaches nowhere in the source and the region meets nothing to close on.
+
+* <<myCall
+
+  >>
+#  ^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5
+
+<<myCall
+
+>>
+#^^ text.html.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
