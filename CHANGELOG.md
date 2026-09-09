@@ -667,6 +667,22 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- `ceiling` names what a TextMate grammar CANNOT reach about TiddlyWiki, measured rather than
+  asserted, so a later reader — a language server, a tree-sitter grammar, a parser wired to the wiki
+  — inherits a mandate rather than a hunch. Five stand: whole-document lookahead (a call builds where
+  `>>` stands anywhere ahead and nowhere else), rule-set mutation (`\rules except html` deletes a
+  rule for the rest of the document), verbatim storage (a macro body builds one node with nothing
+  inside, and the grammar paints wikitext there on purpose), nested coordinate space (a typed block
+  reports 23..42 while the quoteblock inside it reports 0..14), and cross-tiddler resolution
+  (`<<d hello>>` renders `A hello B` or `A $x$ B` depending on a definition in another tiddler).
+- A ceiling RETIRES when somebody closes it, and the gate fails until it goes — the same discipline a
+  ruling explaining nothing answers to. Three collisions plant that: a host that stops parting its
+  two inputs, a grammar that starts parting them, and a phantom pointed where the grammar paints
+  nothing. Each entry states its evidence and the attempts measured against it, because a limit
+  carrying no attempt reads as an excuse dressed as architecture.
+- `\parsermode` stands measured and is NOT a ceiling. The host builds `element/heading` under
+  `block` and only `text` under `inline`, and this grammar already parts them through a dedicated
+  inline-mode region.
 - Specimens for 23 regions no cut in this corpus ever opened, and the unasked ceiling falls from 44
   to 21. `pragmas.signatures.tw` carries a `\define` signature closing on a later line in every
   default quoting the grammar holds a region for, and a `\parameters` directive behind it;

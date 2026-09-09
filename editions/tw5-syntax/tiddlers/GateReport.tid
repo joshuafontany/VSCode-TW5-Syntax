@@ -3,11 +3,11 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 35 of 35
+gates-held: 36 of 36
 
 {
-    "gates": 35,
-    "held": 35,
+    "gates": 36,
+    "held": 36,
     "failing": 0,
     "results": [
         {
@@ -44,6 +44,11 @@ gates-held: 35 of 35
             "gate": "canary-wikitext",
             "held": true,
             "said": "bleed-canary  text.html.tiddlywiki5  23 samples, 0 bleeding"
+        },
+        {
+            "gate": "ceiling",
+            "held": true,
+            "said": "textmate-ceiling  5 ceiling(s) measured against TiddlyWiki, 0 that no longer stand"
         },
         {
             "gate": "colour-witness",

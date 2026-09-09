@@ -115,6 +115,8 @@ jobs:
         run: npm run light-cone
       - name: Every construct a reader meets stands apart from the rest
         run: npm run legibility
+      - name: Every reading standing outside a TextMate grammar still stands outside it
+        run: npm run ceiling
       - name: Every must-fail specimen still fails as declared
         run: npm run must-fail
       - name: Every pattern crosses to the second regex engine
