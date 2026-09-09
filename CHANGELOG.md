@@ -7,6 +7,18 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A zone pragma reads after a comment on its own line. TiddlyWiki's four zone rules match
+  UNANCHORED — `/\\parsermode[^\\S\\n]/mg` and its siblings — and measured against the host,
+  `<!-- a -->\\parsermode block` builds `void/commentblock, void/parsermode`, two comments ahead of
+  it reading the same way. This grammar anchored all four to `^` and painted nothing there. THE ZONE
+  BOUNDS THE REACH, never the anchor: each pattern consumes to end of line, so a SECOND pragma on one
+  line reads as the first one's tail — with a comment between or without — which is what TiddlyWiki
+  reads there too, because the first rule moved the parser past the rest. Both halves stand asserted,
+  since a relaxation that gained the first reading and lost the second would read as an improvement.
+- A `.tw5.test` fixture cannot carry a pragma-zone shape at all. The file's own `# SYNTAX TEST`
+  header stands as line one and matches none of the zone's opening shapes, so the zone never opens
+  and every line inside reads as a paragraph. `tools/pragma-zone.test.js` reads against the
+  tokenizer instead, and says why in its own header.
 - A ledger collision plants its fault in a SANDBOX. Writing the ledger in place and restoring it in
   `finally` leaves the shared tree wrong for as long as the tool runs, and a second reader — another
   gate, another hand working the same tree — meets the planted fault as though it stood. One such

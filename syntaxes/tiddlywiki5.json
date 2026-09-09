@@ -336,7 +336,7 @@
             ]
         },
         "import": {
-            "match": "^[ \\t]*(\\\\)(import)[^\\S\\n]+(.*)$",
+            "match": "(?:^|(?<=-->))[ \\t]*(\\\\)(import)[^\\S\\n]+(.*)$",
             "name": "meta.directive.import.tiddlywiki5",
             "captures": {
                 "1": {
@@ -353,7 +353,8 @@
                         }
                     ]
                 }
-            }
+            },
+            "comment": "The zone's rules match unanchored upstream \u2014 `/\\\\parsermode[^\\\\S\\\\n]/mg` and its three siblings \u2014 so a pragma standing after a comment on the same line reads as a pragma: measured, `<!-- a -->\\\\parsermode block` builds `void/commentblock, void/parsermode`. THE ZONE BOUNDS THE REACH, never the anchor, and this pattern consumes to end of line \u2014 so a SECOND pragma on one line reads as the first one's tail, which is what TiddlyWiki reads there too."
         },
         "parameters": {
             "begin": "^\\s*(\\\\)(parameters)\\s*(\\()",
@@ -502,7 +503,7 @@
             ]
         },
         "rules": {
-            "match": "^[ \\t]*(\\\\)(rules)[^\\S\\n]+(only|except)?(.*)$",
+            "match": "(?:^|(?<=-->))[ \\t]*(\\\\)(rules)[^\\S\\n]+(only|except)?(.*)$",
             "name": "meta.directive.rules.tiddlywiki5",
             "captures": {
                 "1": {
@@ -522,10 +523,11 @@
                         }
                     ]
                 }
-            }
+            },
+            "comment": "The zone's rules match unanchored upstream \u2014 `/\\\\parsermode[^\\\\S\\\\n]/mg` and its three siblings \u2014 so a pragma standing after a comment on the same line reads as a pragma: measured, `<!-- a -->\\\\parsermode block` builds `void/commentblock, void/parsermode`. THE ZONE BOUNDS THE REACH, never the anchor, and this pattern consumes to end of line \u2014 so a SECOND pragma on one line reads as the first one's tail, which is what TiddlyWiki reads there too."
         },
         "whitespace": {
-            "match": "^[ \\t]*(\\\\)(whitespace)[^\\S\\n]+(trim|notrim)?(.*)$",
+            "match": "(?:^|(?<=-->))[ \\t]*(\\\\)(whitespace)[^\\S\\n]+(trim|notrim)?(.*)$",
             "name": "meta.directive.whitespace.tiddlywiki5",
             "captures": {
                 "1": {
@@ -537,10 +539,11 @@
                 "3": {
                     "name": "keyword.operator.$3.tiddlywiki5"
                 }
-            }
+            },
+            "comment": "The zone's rules match unanchored upstream \u2014 `/\\\\parsermode[^\\\\S\\\\n]/mg` and its three siblings \u2014 so a pragma standing after a comment on the same line reads as a pragma: measured, `<!-- a -->\\\\parsermode block` builds `void/commentblock, void/parsermode`. THE ZONE BOUNDS THE REACH, never the anchor, and this pattern consumes to end of line \u2014 so a SECOND pragma on one line reads as the first one's tail, which is what TiddlyWiki reads there too."
         },
         "parsermode": {
-            "match": "^[ \\t]*(\\\\)(parsermode)[^\\S\\n]+(block|inline)?(.*)$",
+            "match": "(?:^|(?<=-->))[ \\t]*(\\\\)(parsermode)[^\\S\\n]+(block|inline)?(.*)$",
             "name": "meta.directive.parsermode.tiddlywiki5",
             "captures": {
                 "1": {
@@ -552,7 +555,8 @@
                 "3": {
                     "name": "keyword.operator.$3.tiddlywiki5"
                 }
-            }
+            },
+            "comment": "The zone's rules match unanchored upstream \u2014 `/\\\\parsermode[^\\\\S\\\\n]/mg` and its three siblings \u2014 so a pragma standing after a comment on the same line reads as a pragma: measured, `<!-- a -->\\\\parsermode block` builds `void/commentblock, void/parsermode`. THE ZONE BOUNDS THE REACH, never the anchor, and this pattern consumes to end of line \u2014 so a SECOND pragma on one line reads as the first one's tail, which is what TiddlyWiki reads there too."
         },
         "widget": {
             "patterns": [
