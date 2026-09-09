@@ -7,6 +7,17 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- The `\parameters` divergence lands as evidence under `whole-document lookahead` rather than as a
+  ceiling of its own. `\parameters\s*\(([^)]*)\)` carries a signature across blank lines to a
+  closing paren ANYWHERE ahead and builds nothing where none stands — measured, a signature closing
+  on a later line or across a blank line agrees with the grammar exactly, and the two part only where
+  no `)` stands in the file at all. Same cause, same ceiling, no second entry.
+- The six `<<<<` attributes sit BEHIND that ceiling, and the reason now says so with the attempt.
+  TiddlyWiki builds a transclude whose `$variable` reads literally `<<.from-version` — its name regex
+  permits `<`, so the first `<<` opens the call and the next two join the name. Relaxing the opener's
+  guard to `(?!<<)` was measured: it leaves the case unfixed AND invents a call on `a <<< b` where
+  the host builds none. Matching the host needs the name to admit `<` and the opener to know whether
+  `>>` stands anywhere ahead — which is the ceiling. A reader holding the document closes these six.
 - Both OWED entries resolve, and neither records a debt. `overbound codeblock`'s reason stood
   STALE: an unterminated fence already agrees — host and grammar both carry to the end of the source
   — and a fence closing across a blank line agrees too. Measured over 4403 host carriers, 147 of

@@ -47,9 +47,17 @@
 #       The ruling buys the whole corpus at the cost of this file.
 #
 #    6  A CALL OPENING ON `<<<<`, all in `WidgetMessage_ tm-navigate.tid`, where the source reads
-#       `|field |<<<<.from-version "5.2.0">> text |`. TiddlyWiki finds its macrocall at the THIRD
-#       character; the grammar meets three angle brackets in a table cell first. The same call reads
-#       `string.quoted.double` correctly standing on its own.
+#       `|field |<<<<.from-version "5.2.0">> text |`. Measured: TiddlyWiki builds a transclude whose
+#       `$variable` reads literally `<<.from-version` — its name regex `[^\s>"'=:]+` permits `<`, so
+#       the FIRST `<<` opens the call and the next two become part of the name. The grammar's opener
+#       carries `(?<!<)(<<)(?!<)`, which refuses every offset in `<<<<`.
+#
+#       THIS SITS BEHIND A NAMED CEILING and wants no further attempt without one. Relaxing the
+#       guard to `(?!<<)` was measured: it leaves this case unfixed AND invents a call on `a <<< b`,
+#       where TiddlyWiki builds none — its rule finds no `>>` ahead and returns null. Matching the
+#       host here needs the name to admit `<` AND the opener to know whether `>>` stands anywhere
+#       ahead, which is `whole-document lookahead` in `tools/textmate-ceiling.js`. A reader holding
+#       the document closes these six; a pattern reading one line does not.
 #
 #    3  A TRIPLE-QUOTED MACRO PARAMETER. `"""..."""` reads as the call around it rather than as
 #       the string inside it.

@@ -14,7 +14,7 @@ ceilings-standing: 8 of 8
             "shape": "blind",
             "answeredBy": "a parser holding the whole document — tree-sitter answers this",
             "what": "a construct that opens only where its closer stands somewhere ahead",
-            "why": "TiddlyWiki scans to the end of the source for `>>` before building a call, and builds nothing at all where none stands. A pattern reads one line and the rule stack carried across it, so both inputs open the same region.",
+            "why": "TiddlyWiki scans to the end of the source for `>>` before building a call, and builds nothing at all where none stands. A pattern reads one line and the rule stack carried across it, so both inputs open the same region. THE SAME CEILING WEARS OTHER CONSTRUCTS: `\\parameters\\s*\\(([^)]*)\\)` carries a signature across blank lines to a closing paren anywhere ahead and builds nothing where none stands — measured, a signature with a closer on a later line or across a blank line agrees with the grammar exactly, and the two part only where no `)` stands in the file at all.",
             "tried": "a blank-line bound on the call end, which cut 116 real multi-line calls out of 16087 openers measured over 700 carriers while answering the 0 that carry no closer",
             "measured": "host parts (macrocallblock | parseblock), grammar reads alike"
         },
