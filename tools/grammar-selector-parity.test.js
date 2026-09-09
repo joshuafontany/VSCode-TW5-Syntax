@@ -3,13 +3,14 @@
 // Two grammars wrap the wikitext grammar — the test-file grammar and the memetic dialect — and
 // each carries injections of its own, because a TextMate injection keys on a scope name and no
 // grammar inherits another's. A wrapper that omits one loses what it paints; a wrapper that keeps
-// a stale copy paints something else. Both happened. Two selectors stand written three times: the
-// one narrowing substitution to the macro body, and the one excluding the bad-angle verdict from
-// regions that legitimately hold a `<`.
+// a stale copy paints something else. Two selectors stand written three times: the one narrowing
+// substitution to the macro body, and the one excluding the bad-angle verdict from regions that
+// legitimately hold a `<`.
 //
-// Drift here reads as a defect in the specimens rather than in the thing they specify. Measured
-// before this weld stood: identical bytes carried two bad-angle verdicts inside a .tw5.test file
-// and none inside a .tw file, and a procedure body substituted in one and not the other.
+// THE TRAP: drift here reads as a defect in the specimens rather than in the thing they specify.
+// Identical bytes carry two bad-angle verdicts inside a .tw5.test file and none inside a .tw file
+// the moment one wrapper's selectors part from another's, and a procedure body substitutes in one
+// and not the other — so a fixture disagreeing with its own grammar accuses the fixture.
 
 const test = require('node:test');
 const assert = require('node:assert');
