@@ -39,8 +39,10 @@ test('every ceiling this repository names still stands', live, () => {
   assert.strictEqual(code, 0, out.slice(-600));
 });
 
+// The evidence and the mandate print WITHOUT a flag. `gate-report` keeps the summary line alone, so
+// anything held back for `--verbose` never reaches the record a reader opens.
 test('the reading names every ceiling and the evidence under it', live, () => {
-  const { out } = runTool('textmate-ceiling.js', ['--verbose']);
+  const { out } = runTool('textmate-ceiling.js');
   for (const key of ['whole-document lookahead', 'rule-set mutation', 'verbatim storage',
     'nested coordinate space', 'cross-tiddler resolution', 'import by filter',
     'indirect attribute value', 'entity value']) {
@@ -51,6 +53,8 @@ test('the reading names every ceiling and the evidence under it', live, () => {
   assert.match(out, /typedblock at \d+\.\.\d+ and quoteblock at \d+\.\.\d+/, 'the space ceiling printed no offsets');
   assert.match(out, /one source, \d+ renderings/, 'no wiki ceiling printed its renderings');
   assert.match(out, /renders "… and —"; no scope carries it/, 'the value ceiling printed no computed value');
+  assert.match(out, /tree-sitter/, 'no ceiling named tree-sitter as the reader that closes it');
+  assert.match(out, /language server/, 'no ceiling named a language server as the reader that closes it');
 });
 
 // A ceiling stands on a distinction the HOST draws. Hand it two inputs the host reads alike and it
@@ -91,12 +95,15 @@ test('a phantom ceiling the grammar paints nothing for fails the gate', live, ()
 // excuse. Both get spelled, and the lengths keep a one-word placeholder from passing for either.
 test('every ceiling states its evidence and the attempts made against it', () => {
   const source = fs.readFileSync(TOOL, 'utf8');
-  const entries = [...source.matchAll(/key: '([^']+)',\s*\n\s*shape: '(\w+)',\s*\n\s*what: '([^']*)',\s*\n\s*why: '([^']*)',\s*\n\s*tried: '([^']*)'/g)];
+  const entries = [...source.matchAll(/key: '([^']+)',\s*\n\s*answeredBy: '([^']*)',\s*\n\s*shape: '(\w+)',\s*\n\s*what: '([^']*)',\s*\n\s*why: '([^']*)',\s*\n\s*tried: '([^']*)'/g)];
   assert.ok(entries.length >= 5, `only ${entries.length} ceiling(s) parse as entries, so the check reads less than the list`);
-  for (const [, key, , what, why, tried] of entries) {
+  for (const [, key, answeredBy, , what, why, tried] of entries) {
     assert.ok(what.length > 20, `${key} states what it names in ${what.length} characters`);
     assert.ok(why.length > 80, `${key} carries ${why.length} characters of evidence, which reads as a claim rather than a measurement`);
     assert.ok(tried.length > 20, `${key} names no attempt against it, which reads as an excuse rather than a limit`);
+    // A limit nobody can act on reads as a complaint. The field that turns this list into a mandate
+    // must name a KIND OF READER, so a later effort sorts on it rather than re-deriving the answer.
+    assert.ok(answeredBy.length > 30, `${key} names no reader that closes it, so the entry states a limit and no mandate`);
   }
 });
 

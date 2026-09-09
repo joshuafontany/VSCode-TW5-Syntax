@@ -73,6 +73,8 @@ Based primarily on the grammars found below, with heavy tweaking and editing.
 * `npm run theme-paint -- <scope>` — how many bundled themes paint a scope, and `-- --families` the whole grammar ranked
 * `npm run overreach-corpus-files` / `overreach-corpus-memetic` — the corpus, in both dialects, against the parser and the written rulings
 * `npm run compose-memes` — composition over whatever memetic writing stands beside this checkout; set `MEMES` to one or more directories
+* `npm run legibility` — whether a reader can tell one construct from another: every pair over every bundled theme, each carrying its own floor
+* `npm run ceiling` — what a TextMate grammar CANNOT reach about TiddlyWiki, measured against the host and naming the kind of reader that closes each one. A ceiling somebody closes RETIRES, and the gate fails until it goes
 * `npm run package-contents` — every path the manifest names, checked inside the built package
 * `npm run bench` — a disposable editor in a container, so you can look at the grammar with your own eyes
 

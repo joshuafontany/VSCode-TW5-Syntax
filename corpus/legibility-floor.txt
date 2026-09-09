@@ -71,6 +71,16 @@
 # filter does not catch it — the token measures one character wide — and not asking for the line
 # does.
 #
+# A PAIR AT 0 NAMES A THEME-SIDE FACT, NEVER A GRAMMAR DEFECT — check before healing one.
+# Measured on the six that stand at 0: this grammar names every one of them DISTINCTLY —
+# `markup.subscript` against `markup.superscript`, `meta.directive.variable.macro` against
+# `.procedure`, `markup.other.style.styleblock` against `markup.other.style`,
+# `meta.directive.parsermode` against `meta.directive.whitespace`. No theme rules on any of those
+# names, so all of them fall to one default and the pair reads 0. Adding a name that reaches a theme
+# would buy the reading by misnaming, which the house declined on `keyword.control.list` at 100% and
+# again on `string.quoted.other` at 58. A reader still parts them by their TEXT: `,,x,,` from
+# `^^x^^`, `\define` from `\procedure`. The floor records the colour reading and nothing wider.
+#
 #   <themes that tell them apart>  <pair>
 
 65  a bare external link  vs  a CamelCase link

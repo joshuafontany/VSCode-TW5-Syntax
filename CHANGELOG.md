@@ -7,6 +7,23 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- Every ceiling names the KIND OF READER that closes it, which turns a list of limits into a
+  mandate a later effort can sort on: a parser holding the whole document, a reader carrying parser
+  state, a reader carrying a span together with its space, a symbol table over the wiki, a filter
+  engine wired to a live wiki, a resolver reading tiddler fields. Three of the eight answer to
+  tree-sitter; four want a language server; one wants the render layer.
+- The evidence and the mandate print WITHOUT a flag. `gate-report` keeps a tool's summary line
+  alone, so anything held for `--verbose` never reaches the record a reader opens — and a mandate
+  nobody reads guides nobody.
+- A clean wiki per state. Every wiki-shaped ceiling wrote into one wiki, so a state left standing
+  decided the entry after it — an order the list never declared.
+- A PAIR AT 0 NAMES A THEME-SIDE FACT, never a grammar defect, and the legibility floor says so now.
+  Measured on all six that stand at 0: this grammar names each of them DISTINCTLY —
+  `markup.subscript` against `markup.superscript`, `meta.directive.variable.macro` against
+  `.procedure`, `markup.other.style.styleblock` against `markup.other.style`. No theme rules on any
+  of those names, so all fall to one default. Adding a name that reached a theme would buy the
+  reading by misnaming, and a reader still parts them by their text.
+- The README names `legibility` and `ceiling`, which it had not.
 - A tiddler's OWN type picks its parser. Three witnesses parsed a `.tid` body as wikitext while
   discarding the `type:` field they had just read out of its header — and this grammar honours that
   field, so the two answered different questions. Measured over TiddlyWiki's `core/`:

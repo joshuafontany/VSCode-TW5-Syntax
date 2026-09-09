@@ -64,10 +64,13 @@ const painted = async (source, line, scope = 'text.html.tiddlywiki5') => {
 // ── the ceilings ────────────────────────────────────────────────────────────────────────────────
 //
 // Each entry carries the specimen it stands on, so a reader meets the evidence rather than the
-// claim. `tried` names constructions somebody measured and watched fail.
+// claim. `tried` names constructions somebody measured and watched fail. `answeredBy` names WHAT
+// KIND OF READER closes it — the field that turns this list from a set of limits into a mandate,
+// and the one a later effort sorts on when it asks which of these it must supply.
 const CEILINGS = [
   {
     key: 'whole-document lookahead',
+    answeredBy: 'a parser holding the whole document — tree-sitter answers this',
     shape: 'blind',
     what: 'a construct that opens only where its closer stands somewhere ahead',
     why: 'TiddlyWiki scans to the end of the source for `>>` before building a call, and builds nothing at all where none stands. A pattern reads one line and the rule stack carried across it, so both inputs open the same region.',
@@ -78,6 +81,7 @@ const CEILINGS = [
   },
   {
     key: 'rule-set mutation',
+    answeredBy: 'a reader carrying parser STATE across a document — a language server holds it; a static grammar does not',
     shape: 'phantom',
     what: 'a pragma that deletes a rule for the rest of the document',
     why: '`\\rules except html` removes the html rule from the parser instance, so a tag below it builds nothing. A grammar carries a static rule set and paints the tag either way.',
@@ -89,6 +93,7 @@ const CEILINGS = [
   },
   {
     key: 'verbatim storage',
+    answeredBy: 'a reader parsing a stored body on demand, at the moment something renders it — the widget layer, never a syntax layer',
     shape: 'phantom',
     what: 'a body the host stores and never parses',
     why: 'TiddlyWiki keeps a macro body as text and builds one `set/macrodef` node with nothing inside it; the body becomes a tree only at widget time. The grammar paints wikitext in there on purpose, since a reader meets it rendered.',
@@ -100,6 +105,7 @@ const CEILINGS = [
   },
   {
     key: 'nested coordinate space',
+    answeredBy: 'a reader carrying a span TOGETHER WITH its space — tree-sitter injections answer this; a flat scope list does not',
     shape: 'space',
     what: 'a body the host parses in offsets of its own',
     why: 'A typed block declaring wikitext parses its body as wikitext, and the nodes that parse builds carry offsets into the INNER text. A grammar carries one coordinate space per document, so no scope can name which space a span belongs to.',
@@ -110,6 +116,7 @@ const CEILINGS = [
   },
   {
     key: 'cross-tiddler resolution',
+    answeredBy: 'a symbol table over the wiki — a language server, and nothing below one',
     shape: 'wiki',
     what: 'bytes whose meaning stands in another tiddler',
     why: '`<<d hello>>` reaches a macro, a procedure, a function or a custom widget, and the definition may live anywhere in the wiki. TiddlyWiki refuses to guess at parse time and builds a `transclude`; the difference surfaces only at render, where a macro substitutes `$x$` and a procedure hands it through.',
@@ -123,6 +130,7 @@ const CEILINGS = [
   },
   {
     key: 'import by filter',
+    answeredBy: 'a filter engine running against a live wiki — a language server wired to the wiki, never a grammar',
     shape: 'wiki',
     what: 'a pragma whose effect a filter over the wiki decides',
     why: '`\\import` takes a FILTER, not a title, so which definitions arrive depends on what the wiki holds when it runs. Measured: `\\import [tag[GapTag]]` renders `IMPORTED` and `\\import [tag[NoSuchTag]]` renders nothing, on identical calling bytes.',
@@ -136,6 +144,7 @@ const CEILINGS = [
   },
   {
     key: 'indirect attribute value',
+    answeredBy: 'a resolver reading tiddler fields — a language server for hover and completion; the render layer for the value itself',
     shape: 'wiki',
     what: 'an attribute whose value stands in another tiddler field',
     why: 'TiddlyWiki types an attribute `indirect` and resolves the reference at widget time. Measured: `<$text text={{CeilingField!!myfield}}/>` renders the field where it stands and nothing where it does not, on identical bytes.',
@@ -149,6 +158,7 @@ const CEILINGS = [
   },
   {
     key: 'entity value',
+    answeredBy: 'a reader that reports a VALUE beside a span — hover in a language server, or the render layer',
     shape: 'value',
     what: 'a construct the grammar names whose VALUE the host computes',
     why: 'An entity parses to an `entity` node and renders to the character it names — `&hellip; and &#x2014;` renders `… and —`. The grammar names the entity exactly and carries no scope for what it stands for, because a scope names a span and never a value.',
@@ -190,7 +200,10 @@ const CEILINGS = [
       // ONE SOURCE, SEVERAL WIKIS. The bytes never move; what the wiki holds around them does, and
       // the reading parts. A grammar reads the bytes.
       const rendered = {};
+      // A CLEAN WIKI PER STATE. Every entry writes into one wiki, and a state left standing decides
+      // the entry after it — an order the list never declares and nobody reading it would expect.
       for (const [state, tiddlers] of Object.entries(c.states)) {
+        for (const t of Object.values(c.states).flat()) oracle.$tw.wiki.deleteTiddler(t.title);
         for (const t of tiddlers) oracle.$tw.wiki.addTiddler(t);
         oracle.$tw.wiki.addTiddler({ title: 'CeilingSource', text: c.source });
         rendered[state] = oracle.$tw.wiki.renderTiddler('text/plain', 'CeilingSource').trim();
@@ -214,8 +227,14 @@ const CEILINGS = [
     }
   }
 
-  if (verbose) {
-    for (const [key, reading] of readings) console.log(`  ${key}\n     ${reading}`);
+  // THE EVIDENCE PRINTS BY DEFAULT. This gate exists to hand a later reader a mandate, and a mandate
+  // behind a flag reaches nobody: `gate-report` keeps the summary line alone, so anything held back
+  // for `--verbose` never reaches the record a reader opens.
+  for (const [key, reading] of readings) {
+    const c = CEILINGS.find((x) => x.key === key);
+    console.log(`  ${key} — ${c.answeredBy}`);
+    console.log(`     ${reading}`);
+    if (verbose) console.log(`     ${c.why}`);
   }
   for (const b of broken) console.error(`  ${b}`);
   console.log(`textmate-ceiling  ${CEILINGS.length} ceiling(s) measured against TiddlyWiki, ${broken.length} that no longer stand`);
