@@ -17,6 +17,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { runNode } = require('./run-tool.js');
+const { resolveTiddlyWiki } = require('./tw5-oracle.js');
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -61,7 +62,14 @@ function inSandbox(dirs, mutate, argv, extra = []) {
     fs.symlinkSync(path.join(ROOT, 'node_modules'), path.join(sandbox, 'node_modules'));
     for (const dir of dirs) overlay(dir, sandbox);
     mutate(sandbox);
-    return runNode([...argv.map((a) => path.join(sandbox, a)), ...extra], { cwd: sandbox });
+    // THE SANDBOX MEETS THE HOST THIS TREE MEETS. `resolveTiddlyWiki` prefers a checkout standing
+    // beside the repository and falls back to the pinned package; a sandbox stands in the system
+    // temp directory, where no checkout stands beside it, so every run here resolved the package —
+    // measured, 5.4.1 against the checkout's 5.5.0-prerelease. A collision then proved its gate
+    // against a parser the gate never runs on. `TW5_PATH` outranks every candidate.
+    const host = resolveTiddlyWiki();
+    const env = host ? { ...process.env, TW5_PATH: host } : process.env;
+    return runNode([...argv.map((a) => path.join(sandbox, a)), ...extra], { cwd: sandbox, env });
   } finally {
     execFileSync('git', ['worktree', 'remove', '--force', sandbox], { cwd: ROOT, stdio: 'ignore' });
   }

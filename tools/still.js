@@ -21,7 +21,7 @@ const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const { ROOT, tokenize, tokenizeFrom } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
-const { parseTid } = require('./wiki-data.js');
+const { READINGS, DEFAULT_TYPE } = require('./carrier-reading.js');
 const { kindOf, KINDS } = require('./region-kind.js');
 
 const argv = process.argv.slice(2);
@@ -54,11 +54,6 @@ if (require.main === module && (!over || !fs.existsSync(over))) {
 }
 
 const SENTINEL = '<<<\nQuoted\n<<<\n';
-const READINGS = {
-  '.tw': { scope: 'text.html.tiddlywiki5' },
-  '.mem': { scope: 'text.html.tiddlywiki5.memetic-wikitext' },
-  '.tid': { scope: 'source.tiddlywiki5.tid-file', body: (t) => parseTid(t).body }
-};
 const LEDGERS = ['swallow-ledger.txt', 'engine-ledger.txt', 'carrier-ledger.txt'];
 
 /** Every ruling key the ledgers name, as matchers. */
@@ -219,13 +214,16 @@ async function divergencesIn(file) {
     if (!head.trim()) continue;
     const specimen = `${head}\n\n${SENTINEL}`;
     const read = reading.body ? reading.body(specimen) : specimen;
+    // The tiddler's OWN type picks its parser. A dictionary body forced through wikitext builds a
+    // paragraph, two calls and a quoteblock where the host builds one `genesis` node.
+    const type = reading.type ? reading.type(specimen) : DEFAULT_TYPE;
     const at = read.lastIndexOf(SENTINEL);
     if (at < 0) continue;
     // The head after its trailing blank lines come off — the lines the file's own reading covered.
     const held = head.split('\n').length;
     const { tokens } = await tokenizeFrom(reading.scope, ['', '<<<'], stacks[held - 1]);
     const sentinel = tokens[1] ?? [];
-    const tree = flatten(oracle.parse(read).tree, { sameSpace: true });
+    const tree = flatten(oracle.parseAs(type, read).tree, { sameSpace: true });
     const parser = tree.some((n) => n.rule === 'quoteblock' && n.start === at);
     const grammar = sentinel
       .some((t) => t.scopes.some((s) => s.startsWith('punctuation.definition.markup.quote.quoteblock.begin')));

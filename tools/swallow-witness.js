@@ -44,7 +44,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
-const { parseTid } = require('./wiki-data.js');
+const { READINGS, DEFAULT_TYPE } = require('./carrier-reading.js');
 const { unboundedRegions } = require('./grammar-scopes.js');
 const { kindOf } = require('./region-kind.js');
 
@@ -71,12 +71,6 @@ const EXEMPT = (file, text) => /degenerate\./.test(path.basename(file)) || /^\\r
 // body at all — every line names a field — so no parser reading exists to disagree with. A syntax
 // test opens with a directive line and carries assertions on `#` lines, which the wikitext parser
 // reads as ordered lists; the two readers diverge there by construction, on every line.
-const READINGS = {
-  '.tw': { scope: 'text.html.tiddlywiki5' },
-  '.mem': { scope: 'text.html.tiddlywiki5.memetic-wikitext' },
-  '.tid': { scope: 'source.tiddlywiki5.tid-file', body: (text) => parseTid(text).body },
-  '.meta': { scope: 'source.tiddlywiki5.tid-file', body: (text) => parseTid(text).body }
-};
 
 /** Every corpus specimen a reading covers, with the reading it takes. */
 function specimens() {
@@ -118,8 +112,8 @@ function ledger() {
 const oracle = boot(resolveTiddlyWiki(), {});
 
 /** Did TiddlyWiki build the sentinel quoteblock, where the sentinel stands? */
-const parserReads = (text, at) =>
-  flatten(oracle.parse(text).tree, { sameSpace: true }).some((n) => n.rule === 'quoteblock' && n.start === at);
+const parserReads = (text, at, type = DEFAULT_TYPE) =>
+  flatten(oracle.parseAs(type, text).tree, { sameSpace: true }).some((n) => n.rule === 'quoteblock' && n.start === at);
 
 /** Did the grammar open the sentinel quoteblock, on the sentinel's own line? */
 const grammarReads = (lines, at) => (lines[at] || [])
@@ -133,8 +127,8 @@ function grammarNames(lines, at) {
 }
 
 /** The rule TiddlyWiki had open across the offset the sentinel stands at. */
-function parserHolds(text, at) {
-  const covering = flatten(oracle.parse(text).tree, { sameSpace: true })
+function parserHolds(text, at, type = DEFAULT_TYPE) {
+  const covering = flatten(oracle.parseAs(type, text).tree, { sameSpace: true })
     .filter((n) => typeof n.start === 'number' && n.start <= at && n.end >= at && n.rule);
   return covering.length ? covering[covering.length - 1].rule : '(nothing)';
 }
@@ -146,7 +140,7 @@ function parserHolds(text, at) {
   let probes = 0;
   let files = 0;
 
-  for (const { file, scope, body } of specimens()) {
+  for (const { file, scope, body, type: typeOf } of specimens()) {
     const text = fs.readFileSync(file, 'utf8');
     if (EXEMPT(file, text)) continue;
     files += 1;
@@ -159,17 +153,20 @@ function parserHolds(text, at) {
       // the parser a body of the sentinel alone, and the blank line ending that header doubles as
       // the one the sentinel stands behind.
       const read = body ? body(specimen) : specimen;
+      // The tiddler's OWN type picks its parser: a dictionary body forced through wikitext builds
+      // a paragraph, two calls and a quoteblock where the host builds one `genesis` node.
+      const type = typeOf ? typeOf(specimen) : DEFAULT_TYPE;
       const at = read.lastIndexOf(SENTINEL);
       const line = specimen.split('\n').length - 4;
       if (at < 0) continue;
       probes += 1;
       const tokens = await tokenize(scope, specimen);
       for (const token of tokens[line] || []) for (const scope of token.scopes) standing.add(scope);
-      const parser = parserReads(read, at);
+      const parser = parserReads(read, at, type);
       const grammar = grammarReads(tokens, line);
       if (parser === grammar) continue;
       const direction = parser ? 'runaway' : 'overbound';
-      const key = parser ? grammarNames(tokens, line) : parserHolds(read, at);
+      const key = parser ? grammarNames(tokens, line) : parserHolds(read, at, type);
       const id = `${direction} ${key}`;
       if (!findings.has(id)) findings.set(id, { direction, key, hits: [] });
       findings.get(id).hits.push({ file: path.basename(file), cut, tail: lines[cut - 1].slice(0, 58) });

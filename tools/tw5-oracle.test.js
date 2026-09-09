@@ -431,3 +431,23 @@ test('a subtree whose offsets restart stands outside an offset reading', live, (
   assert.deepStrictEqual(flatten(plain, { sameSpace: true }).map((n) => n.rule),
     flatten(plain).map((n) => n.rule), 'pruning changed a tree that restarts nothing');
 });
+
+// A TIDDLER'S OWN TYPE PICKS ITS PARSER, and a reader forcing wikitext compares against a reading
+// TiddlyWiki never produces.
+//
+// Measured over TiddlyWiki's own `core/`: `$:/palettes/Nord` declares
+// `type: application/x-tiddler-dictionary`, and the host parses that body into ONE `genesis` node.
+// Forced through the wikitext parser the same bytes build `parseblock, macrocallinline,
+// macrocallinline, quoteblock, parseblock` — and a sweep comparing THAT against a grammar which
+// honours the declared type reported 252 cuts of divergence on one file. Twenty dictionaries stand
+// in `core/` alone.
+test('the oracle parses a body as the type its tiddler declares', live, () => {
+  const oracle = boot(TW);
+  const body = 'alert-border: <<colour x>>\n\nPlain prose here.\n';
+  const wikitext = oracle.parseAs('text/vnd.tiddlywiki', body).tree.map((n) => n.type);
+  const dictionary = oracle.parseAs('application/x-tiddler-dictionary', body).tree.map((n) => n.type);
+  assert.notDeepStrictEqual(dictionary, wikitext,
+    'the oracle reads a dictionary and a wikitext body alike, so the type picks nothing');
+  assert.deepStrictEqual(wikitext, oracle.parse(body).tree.map((n) => n.type),
+    'the wikitext reading moved, so `parse` no longer names the default it always named');
+});

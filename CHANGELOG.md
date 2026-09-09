@@ -7,6 +7,25 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A tiddler's OWN type picks its parser. Three witnesses parsed a `.tid` body as wikitext while
+  discarding the `type:` field they had just read out of its header — and this grammar honours that
+  field, so the two answered different questions. Measured over TiddlyWiki's `core/`:
+  `$:/palettes/Nord` declares `application/x-tiddler-dictionary` and the host builds ONE `genesis`
+  node, where the same bytes forced through wikitext build `parseblock, macrocallinline,
+  macrocallinline, quoteblock, parseblock`. A sweep of 60 core carriers read 1027 divergences across
+  7 classes with one unnamed; honouring the declaration reads 773 across 6, none unnamed. Twenty
+  dictionaries stand in `core/` alone, and the corpus holds none, so nothing here had ever shown it.
+- A SIDECAR'S `type:` names the file BESIDE it. `sidecar.meta` declares `image/png` and holds no body
+  of its own, so a reader handing the sidecar's own text to the image parser reads a tiddler nobody
+  wrote — measured, that took light-cone from 35 divergences to 134.
+- A sandbox meets the host the tree meets. `resolveTiddlyWiki` prefers a checkout beside this
+  repository and falls back to the pinned package; a sandbox stands in the system temp directory
+  where no checkout stands beside it, so EVERY collision run there resolved 5.4.1 against the
+  checkout's 5.5.0-prerelease. A collision proving a gate catches a fault proved it against a parser
+  the gate never runs on. `TW5_PATH` outranks every candidate and nothing was passing it.
+- One reading map, shared. Three witnesses each carried their own copy; they had drifted — one swept
+  no `.meta` sidecar at all — and the same type defect sat in all three because the map sat in three
+  places.
 - A zone pragma reads after a comment on its own line. TiddlyWiki's four zone rules match
   UNANCHORED — `/\\parsermode[^\\S\\n]/mg` and its siblings — and measured against the host,
   `<!-- a -->\\parsermode block` builds `void/commentblock, void/parsermode`, two comments ahead of

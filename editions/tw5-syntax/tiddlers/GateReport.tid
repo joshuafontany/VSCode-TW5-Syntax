@@ -168,12 +168,12 @@ gates-held: 36 of 36
         {
             "gate": "still",
             "held": true,
-            "said": "still  25 of 4403 carrier(s) at seed 1, 76 divergence(s) across 5 class(es), 0 unnamed, 0 ruling(s) broadened, 56.6% of corpus tokens ruled (ceiling 56.6%)"
+            "said": "still  25 of 4550 carrier(s) at seed 1, 51 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, 56.5% of corpus tokens ruled (ceiling 56.6%)"
         },
         {
             "gate": "still-reach",
             "held": true,
-            "said": "reach  4342 of 4365 carrier(s) stand fully named, 99.5% (floor 99.5%); 38 carrier(s) no cut reads, 12593 divergence(s), 5 class(es) blocking"
+            "said": "reach  4492 of 4512 carrier(s) stand fully named, 99.6% (floor 99.5%); 38 carrier(s) no cut reads, 11809 divergence(s), 4 class(es) blocking"
         },
         {
             "gate": "swallow-witness",

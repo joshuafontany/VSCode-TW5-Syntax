@@ -261,11 +261,18 @@ function boot(twPath, options = {}) {
   }
   if (!ready) throw new Error('TiddlyWiki booted asynchronously; this oracle needs it synchronous');
 
-  const parse = (text, parserOptions = {}) => $tw.wiki.parseText('text/vnd.tiddlywiki', text, parserOptions);
+  // A TIDDLER'S OWN TYPE PICKS ITS PARSER. `$:/palettes/Nord` declares
+  // `application/x-tiddler-dictionary` and the host parses its body into ONE `genesis` node, where
+  // the same bytes forced through wikitext build a paragraph, two calls and a quoteblock. A reader
+  // comparing that against a grammar which honours the declared type reads 252 cuts of divergence
+  // on one file, and names none of them a fault of either reader.
+  const parseAs = (type, text, parserOptions = {}) => $tw.wiki.parseText(type, text, parserOptions);
+  const parse = (text, parserOptions = {}) => parseAs('text/vnd.tiddlywiki', text, parserOptions);
 
   const oracle = {
     $tw,
     parse,
+    parseAs,
     /** Every span TiddlyWiki built from this source, depth-first. */
     spans: (text, parserOptions) => flatten(parse(text, parserOptions).tree),
     /** What TiddlyWiki made of source[start..end). */

@@ -38,19 +38,13 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
-const { parseTid } = require('./wiki-data.js');
+const { READINGS, DEFAULT_TYPE } = require('./carrier-reading.js');
 const { readData } = require('./wiki-data.js');
 
 const verbose = process.argv.includes('--verbose');
 const LEDGER = path.join(ROOT, 'corpus', 'swallow-ledger.txt');
 const SENTINEL = '<<<\nQuoted\n<<<\n';
 
-const READINGS = {
-  '.tw': { scope: 'text.html.tiddlywiki5' },
-  '.mem': { scope: 'text.html.tiddlywiki5.memetic-wikitext' },
-  '.tid': { scope: 'source.tiddlywiki5.tid-file', body: (text) => parseTid(text).body },
-  '.meta': { scope: 'source.tiddlywiki5.tid-file', body: (text) => parseTid(text).body }
-};
 
 const oracle = boot(resolveTiddlyWiki(), {});
 const { data: signals } = readData('GrammarSignals.tid');
@@ -63,8 +57,8 @@ const PRAGMA = (() => {
 })();
 
 /** Did TiddlyWiki build the sentinel quoteblock where the sentinel stands? */
-const parserReads = (text, at) =>
-  flatten(oracle.parse(text).tree, { sameSpace: true }).some((n) => n.rule === 'quoteblock' && n.start === at);
+const parserReads = (text, at, type = DEFAULT_TYPE) =>
+  flatten(oracle.parseAs(type, text).tree, { sameSpace: true }).some((n) => n.rule === 'quoteblock' && n.start === at);
 
 /** Did the grammar open it, on the sentinel's own line? */
 const grammarReads = (lines, at) => (lines[at] ?? [])
@@ -111,7 +105,7 @@ function specimens() {
   let forwardMoves = 0;
   let backwardMoves = 0;
 
-  for (const { file, scope, body } of specimens()) {
+  for (const { file, scope, body, type: typeOf } of specimens()) {
     const text = fs.readFileSync(file, 'utf8');
     if (/degenerate\./.test(path.basename(file))) continue;
     const lines = text.split('\n');
@@ -121,11 +115,13 @@ function specimens() {
       const rest = lines.slice(cut).join('\n');
       const specimen = `${head}\n\n${SENTINEL}`;
       const read = body ? body(specimen) : specimen;
+      // The tiddler's OWN type picks its parser, and both arms answer through the same one.
+      const type = typeOf ? typeOf(specimen) : DEFAULT_TYPE;
       const at = read.lastIndexOf(SENTINEL);
       const line = specimen.split('\n').length - 4;
       if (at < 0) continue;
       const tokens = await tokenize(scope, specimen);
-      const parser = parserReads(read, at);
+      const parser = parserReads(read, at, type);
       const grammar = grammarReads(tokens, line);
       if (parser === grammar) continue;
       divergences += 1;
@@ -134,7 +130,7 @@ function specimens() {
       // lies past it changes, which is exactly the evidence no pattern reaches.
       const ahead = `${head}\n\n${SENTINEL}${rest}`;
       const aheadRead = body ? body(ahead) : ahead;
-      const forward = parserReads(aheadRead, aheadRead.lastIndexOf(SENTINEL)) !== parser;
+      const forward = parserReads(aheadRead, aheadRead.lastIndexOf(SENTINEL), type) !== parser;
 
       // BACKWARD ARM — strike the pragma lines. A rule stack carries regions, never the parser's
       // own rule set, so a verdict turning on one turns on evidence the grammar never held.
@@ -143,7 +139,7 @@ function specimens() {
       if (struck !== head && struck.trim()) {
         const behind = `${struck}\n\n${SENTINEL}`;
         const behindRead = body ? body(behind) : behind;
-        backward = parserReads(behindRead, behindRead.lastIndexOf(SENTINEL)) !== parser;
+        backward = parserReads(behindRead, behindRead.lastIndexOf(SENTINEL), type) !== parser;
       }
       if (forward) forwardMoves += 1;
       if (backward) backwardMoves += 1;
@@ -153,7 +149,7 @@ function specimens() {
       const key = parser
         ? (scopes.find((s) => /^(meta|comment|source|string)\./.test(s)) || scopes[0] || '(bare text)')
         : (() => {
-          const covering = flatten(oracle.parse(read).tree, { sameSpace: true })
+          const covering = flatten(oracle.parseAs(type, read).tree, { sameSpace: true })
             .filter((n) => typeof n.start === 'number' && n.start <= at && n.end >= at && n.rule);
           return covering.length ? covering[covering.length - 1].rule : '(nothing)';
         })();
