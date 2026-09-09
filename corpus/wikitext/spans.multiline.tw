@@ -34,3 +34,44 @@ a character-data payload across lines
 carried across lines */
 var afterTheComment = 1; // a line comment
 </script>
+
+\define spans-its-pragma-signature(a:"one"
+b:"two")
+A macro body.
+\end
+
+\procedure carries-four-quotings(a:"""a triple-quoted default
+""" b:'a single-quoted default
+' c:[[a bracketed default
+]] d:((a variable default
+)))
+A body.
+\end
+
+A paragraph carrying <<spans-its-arguments a:"one"
+b:"two">> mid-line.
+
+<$button filter={{{ [tag[done]]
+}}}>a filtered attribute</$button>
+
+<$button field={{a title
+!!a field}}>an indirect attribute</$button>
+
+<$button v=((a variable
+name))>a variable attribute</$button>
+
+<$button title=[[a bracketed
+value]]>a bracketed attribute</$button>
+
+<$button title=`a substituted
+value`>a substituted attribute</$button>
+
+<?xml version="1.0"
+standalone="yes"?>
+
+<math><notanelement
+>an element name no grammar claims</notanelement></math>
+
+<script type="text/x-unknown">
+a payload under a type no grammar claims
+</script>

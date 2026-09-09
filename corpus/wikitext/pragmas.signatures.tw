@@ -1,0 +1,12 @@
+\define spans-its-signature(a:"one"
+b:"""a triple-quoted default
+""" c:'a single-quoted default
+' d:[[a bracketed default
+]] e:((a variable default
+)))
+A macro body carrying $a$ and $e$.
+\end
+\parameters (size:"22pt"
+colour:"red")
+A pragma signature opens on one line and closes on another. Every default quoting stands here,
+because the grammar carries one region per quoting and a reader sits inside whichever it opened.

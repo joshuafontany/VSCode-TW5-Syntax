@@ -1,4 +1,4 @@
-0.558
+0.566
 # The share of corpus tokens every ruling in every ledger stands on between them. The count may
 # fall and may never rise.
 #
@@ -23,3 +23,19 @@
 # Seated at 55.8% on 2026-09-08, the day the ledgers moved to the kind vocabulary. It read 79.4%
 # under container keys, and keying by CAUSE dissolved the difference rather than any ruling changing
 # its mind.
+#
+# RE-SEATED AT 56.6% on 2026-09-09, and NOT because a ruling moved — the same run reported 0
+# rulings broadened, which is the guard that actually catches generosity. THE SHARE READS THE
+# CORPUS'S COMPOSITION, so it moves when the corpus does. `unasked-regions-ceiling.txt` beside this
+# file fell from 44 to 21 that day, and it falls only by adding constructs that carry across a line
+# break: pragma signatures in five default quotings, five widget attribute values, an inline call,
+# an XML processing instruction, a script under an unclaimed type. Every one of those wears a scope
+# a ruling already names — necessarily, because a construct that CAN run away is exactly what a
+# runaway ruling covers. So the two ratchets pull against each other by construction: lowering the
+# coverage ceiling raises this share without any ruling gaining an inch.
+#
+# THE PAIR WANTS READING TOGETHER. This number alone cannot tell a ledger widening from a corpus
+# growing, and the broadening guard inside `still.js` can — it weighs a key against the key that
+# replaced it, and `still --reach` measures what the rulings actually cover on ground outside this
+# repository altogether. Read as a direction, this still says what it said: a ruling that needs
+# more ground than the tree holds answers for it in writing, here.

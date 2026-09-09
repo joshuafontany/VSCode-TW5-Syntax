@@ -1,12 +1,12 @@
-44
+21
 # Regions whose end can never break on a line, and that no cut in this corpus ever leaves open.
 # The count may fall and may never rise.
 #
-# 98 regions carry no line bound. That number alarms and means little on its own: 54 of them stand
+# 98 regions carry no line bound. That number alarms and means little on its own: 77 of them stand
 # open across a blank line under some cut and AGREE with the parser, because TiddlyWiki carries
 # those constructs too — a `"""` attribute value spans blank lines, a definition body runs to its
 # `\end`, an element with no closer reaches the end of the tiddler. Standing open names no defect.
-# Disagreeing does, and the ledger beside this file holds all eight of those.
+# Disagreeing does, and the ledger beside this file holds those.
 #
 # This count answers COVERAGE instead. A region no specimen opens stands unasked rather than safe,
 # and the two read alike from outside: a green gate. Measured with 800
@@ -21,13 +21,40 @@
 # an ANCHOR, and skips one escaped or sitting in a character class — every widget rule carries `\$`
 # for the tag prefix, and the typed block spells `\$\$\$`.
 #
-# TWO POPULATIONS SIT IN THE RESIDUE, and only one of them wants a specimen. A region whose end can
-# match where its begin does closes inside its own line whatever a reader feeds it — the dash rules
-# and the transclusion tokenizer both read that way, and no cut anywhere can leave one open. The
-# rest want a specimen carrying the construct across a line break, which `spans.multiline.tw`
-# holds: a pragma signature, a macro argument, quoted and triple-quoted attribute values, a
-# character-data payload, and a comment inside embedded JavaScript. Each such construct lowers this
-# number, and the construct stays CLOSED — a corpus file that bleeds fails a different gate.
+# WHAT A SPECIMEN CAN REACH, AND WHAT NO SPECIMEN CAN. A region wants a specimen carrying its
+# construct across a line break, and `spans.multiline.tw` and `pragmas.signatures.tw` hold them:
+# quoted, triple-quoted, bracketed, variable and substituted attribute values; a widget attribute
+# holding a filter, an indirect reference or a variable; a pragma signature in every default
+# quoting the grammar carries a region for; a `\parameters` directive; an inline call; an XML
+# processing instruction; a script under a type no grammar claims; an element name no grammar
+# claims inside math. Seated at 21 on 2026-09-09, down from 44 — the constructs above account for
+# the 23 that closed.
+#
+# THREE POPULATIONS SIT IN THE RESIDUE, AND NONE OF THEM WANTS A SPECIMEN.
+#
+#   ITS END MATCHES WHERE ITS BEGIN DOES. The dash rules close inside their own line whatever a
+#   reader feeds them; a filter-run prefix ends on a zero-width lookahead one character along; a
+#   pretty link opens only where `[^\n]*\]\]` stands on the same line; the transclusion tokenizer
+#   and the script start tag read the same way. No cut anywhere can leave one open. Eight entries.
+#
+#   THE SENTINEL'S OWN DELIMITER CLOSES IT. Every transclusion rule ends
+#   `(\}\})|(?=^(?:!|\*|#|;|:|>|<<<|\||---|\\))` — and `<<<` is the sentinel. So the region closes
+#   on the line the probe reads, for every specimen ever written, and the instrument cannot ask
+#   these regions the question at all. Seven entries: the inline transclusion, the filtered pair,
+#   and the text reference and filter regions nested inside them, which the same close pops. A
+#   probe carrying a different sentinel would reach them, and would trade this blind spot for
+#   another.
+#
+#   IT CANNOT SPAN A LINE. A JavaScript `//` comment ends at its line end whatever the vendored
+#   grammar spells, three entries' worth.
+#
+# TWO CONSTRUCTS CAME OUT AGAIN AFTER MEASURING. A `<%if …%>` shortcut and a `(((…)))` variable
+# display each opened their region under a cut, and each keyed UNCLASSIFIED — the kind vocabulary
+# reads innermost-first, and the innermost region standing open under both is a `meta.filter.run`
+# the grammar RE-OPENS on whatever follows the cut. Its openness therefore carries no information
+# about which construct ran away, so a kind naming it would file two different causes under one
+# key and read like a classification. They cost three regions and stand recorded here rather than
+# ruled on a key that names the wrong thing.
 #
 # A region arriving with no specimen that opens it raises the count and fails the gate. That reads
 # as the rule this whole battery exists to keep: a list nobody exercises cannot notice what it

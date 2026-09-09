@@ -7,6 +7,17 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Added
+- Specimens for 23 regions no cut in this corpus ever opened, and the unasked ceiling falls from 44
+  to 21. `pragmas.signatures.tw` carries a `\define` signature closing on a later line in every
+  default quoting the grammar holds a region for, and a `\parameters` directive behind it;
+  `spans.multiline.tw` gains five widget attribute values — filtered, indirect, variable, bracketed
+  and substituted — an inline call mid-paragraph, an XML processing instruction, a script under a
+  type no grammar claims, and an element name no grammar claims inside math. A pragma signature at
+  the TOP of `spans.multiline.tw` was measured and taken out again: it wraps every later cut in a
+  parameters node, which collapsed 60 cuts to one ruled class and hid two real divergences the file
+  already surfaced. The residue holds three populations and none wants a specimen — a region whose
+  end matches where its begin does, a region every transclusion rule closes on `<<<` because the
+  probe's own sentinel appears in its end pattern, and a JavaScript line comment.
 - `still --reach` crosses EVERY carrier and ratchets the share it finds fully named, seated in
   `corpus/carrier-reach-floor.txt` at 4342 of 4365. A sampled run reads 25 of 4403 carriers and
   prints a verdict on the ground; measured over the whole of it, 23 carriers carry a class no ledger
@@ -33,6 +44,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   inner node as standing at the top of the document. Three witnesses did: `still`, `swallow-witness`
   and `light-cone`. `flatten(tree, { sameSpace: true })` prunes a subtree whose span falls outside
   its parent's, which derives the detection rather than listing node types that go stale.
+- A pragma signature left open, ruled on corpus ground rather than carrier ground. The ruling stood
+  in the carrier ledger because no corpus cut read that way and a corpus ruling with no corpus
+  specimen fails its own gate; `pragmas.signatures.tw` now carries the specimen. Measured at four
+  cuts, one per default quoting: the forward arm moves the parser's verdict on all four, trailing
+  nonsense as the control moves nothing, and handing back the closing `)` alone moves it — which
+  names the deciding evidence exactly.
 - A cut inside a conditional body whose opener carries text on the next line. TiddlyWiki reads ONE
   bit off the source directly after `%>` — a double linebreak standing there — and that bit fixes the
   parsing mode for the WHOLE remaining body: block mode builds the constructs that follow, inline
@@ -51,6 +68,15 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   purpose. Ruled in both ledgers, on their own ground.
 
 ### Changed
+- The ruled-ground ceiling re-seats at 56.6%, with no ruling broadened — the same run reports zero.
+  The share reads the CORPUS'S composition, and the corpus grew to lower the unasked ceiling; every
+  construct that lowers it wears a scope a ruling already names, necessarily, because a construct
+  that can run away is exactly what a runaway ruling covers. The two ratchets pull against each
+  other by construction, and the pair wants reading together: the broadening guard weighs a key
+  against the key that replaced it, and `still --reach` measures what the rulings cover on ground
+  outside this repository altogether.
+- `swallow-witness --verbose` names the regions standing unasked. A ceiling nobody can act on falls
+  by luck; lowering it means writing a specimen that opens a NAMED region.
 - One grammar reading per carrier, resumed at each cut from the stack that cut's head ends on.
   A grammar reads strictly left to right, so the stack after a line answers to nothing following it;
   re-reading each head in full cost the SQUARE of a file's length and measured at 90% of a sampled

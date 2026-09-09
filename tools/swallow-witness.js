@@ -229,6 +229,9 @@ function parserHolds(text, at) {
     console.error(`  ${unasked.length} region(s) with no line bound stand unasked, above the ceiling of ${ceiling}`);
     for (const r of unasked.slice(0, 8)) console.error(`     ${r.name}`);
   }
+  // A ceiling nobody can act on falls by luck. Lowering it means writing a specimen that opens a
+  // NAMED region, so a verbose run says which regions stand waiting for one.
+  if (verbose) for (const r of unasked) console.log(`  unasked  ${r.name}`);
   console.log(`  regions: ${unbounded.length} carry no line bound, ${unbounded.length - unasked.length} `
     + `stand open under some cut, ${unasked.length} go unasked (ceiling ${ceiling})`);
 
