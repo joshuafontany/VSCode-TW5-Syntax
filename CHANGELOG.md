@@ -19,6 +19,15 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   purpose. Ruled in both ledgers, on their own ground.
 
 ### Changed
+- A text reference carries `variable.other.reference.tiddlywiki5` beside the name it publishes. The
+  `string.` family carried five of six constructs against 62 of 65 themes, and the weakest pair in
+  the table sat squarely in it: a transclusion wears `string.text-reference`, a wikilink wears
+  `string.other.link.title`, and a theme ruling on the one-segment root painted both bodies one
+  colour while both punctuations fell to the default. Traced on `andromeeda` before the aggregate
+  was believed. TiddlyWiki's parser assigns a text reference the INDIRECT kind — a name it
+  dereferences against the store, never string content — so the family shape stands FIRST and
+  `string.text-reference` stands LAST and keeps any tie. Measured: a transclusion parts from a
+  wikilink in 58 of 65 rather than 54, and no other pair of the seven specimens moves.
 - `still` passes over ground this repository does not hold. The gate pointed at `./corpus`, where
   `swallow-witness` already cuts all 38 files with the same comparison — measured, both find the
   same 8 classes — so the pass reported `0 unnamed` as a stopping-condition verdict while measuring

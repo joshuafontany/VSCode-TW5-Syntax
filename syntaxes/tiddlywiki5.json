@@ -6292,7 +6292,8 @@
             "name": "meta.support.text-reference.tiddlywiki5",
             "captures": {
                 "0": {
-                    "name": "string.text-reference.tiddlywiki5"
+                    "comment": "A text reference carries the family shape a theme rules on beside the name this grammar publishes. TiddlyWiki's parser assigns this value the INDIRECT kind \u2014 a name it dereferences against the store, never string content \u2014 and `variable.other.reference` writes the shape a theme already rules on for a name standing in for a stored value. It stands FIRST so a theme naming `string.text-reference` keeps any tie. Measured over 65 bundled themes: a transclusion parted from a wikilink in 54 and parts in 58, and no other pair moved. The bare `string.` root carried the collision \u2014 a wikilink wears `string.other.link.title`, so a theme ruling on the one-segment root painted both bodies one colour while both punctuations fell to the default.",
+                    "name": "variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5"
                 },
                 "1": {
                     "name": "entity.name.tiddler.field.title.tiddlywiki5"

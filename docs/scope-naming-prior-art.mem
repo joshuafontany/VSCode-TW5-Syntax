@@ -88,6 +88,25 @@ published name protects.
 The same shape the dialect's `R:` injection takes: the base reads first, and new vocabulary arrives
 only where nothing was named.
 
+''Worked once more, 2026-09-08: the `string.` family.'' `legibility --verbose` reported five of six
+constructs claiming the `string` root against 62 of 65 themes, and the weakest pair in the table sat
+inside it. Read construct by construct: a call and a widget wear `string.quoted.double` on a QUOTED
+LITERAL and the name states what stands there; a filter operand wears `string.entity.filter.operand`
+on the literal between its brackets, also true. A wikilink's `string.other.link.title` names a link
+target, and markdown, asciidoc and mediawiki all seat a link title there — the family-shape argument
+the raw span already answers to, so it stands. Only a transclusion's `string.text-reference` reads
+string BY INHERITANCE: TiddlyWiki's parser assigns that value the INDIRECT kind, a name it
+dereferences against the store. Widened with `variable.other.reference.tiddlywiki5` FIRST and the
+published name LAST, a transclusion parts from a wikilink in 58 of 65 rather than 54, and no other
+pair moves.
+
+Two things this did NOT buy, kept because a reach that buys nothing still costs a published surface.
+The filter operand's BRACKETS wear `string.punctuation.definition.operand.begin` — a delimiter
+seated inside the string family rather than in `punctuation.definition`, where every grammar writes
+one. Widening them moved no pair, so the misfiling stands reported rather than shipped. And the
+family-pressure table still reads five constructs on `string`, because widening never retires a
+claim; the reading stays honest about what the published names still reach.
+
 `tools/call-parity.test.js` holds both halves — every call-side name carries a call scope, and no
 call scope stands last.
 
