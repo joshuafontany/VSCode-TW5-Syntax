@@ -11,7 +11,7 @@
 // it, exactly the way a ruling explaining nothing fails its own gate. So the list cannot quietly
 // grow into a catalogue of things nobody tried.
 //
-// A CEILING WEARS ONE OF TWO SHAPES, and each carries its own falsification.
+// A CEILING WEARS ONE OF FIVE SHAPES, and each carries its own falsification.
 //
 //   BLIND    Two inputs the host tells apart, read alike by the grammar. The gate holds only while
 //            the host STILL parts them and the grammar STILL cannot: a host that stops parting them
@@ -22,6 +22,13 @@
 //            body renders as wikitext at widget time, so a reader wants it coloured — but it names a
 //            reading no parse tree will ever confirm, and a tool trusting the scopes as structure
 //            reads a tree the host never built.
+//   SPACE    A body the host parses in offsets of its own. A grammar carries one coordinate space
+//            per document, so no scope names which space a span belongs to.
+//   WIKI     ONE source, several wikis. The bytes never move; what the wiki holds around them does,
+//            and the reading parts. A grammar reads the bytes. This is the shape a language server
+//            answers and a tree-sitter grammar does not.
+//   VALUE    A construct the grammar NAMES correctly and whose meaning the host computes. A scope
+//            names a span, never a value, so the entity stands named and unresolved.
 //
 // NEITHER SHAPE PROVES IMPOSSIBILITY, and this file never claims one. It measures that the host
 // draws a distinction, and that this grammar as it stands does not. Where somebody tried
@@ -107,8 +114,47 @@ const CEILINGS = [
     what: 'bytes whose meaning stands in another tiddler',
     why: '`<<d hello>>` reaches a macro, a procedure, a function or a custom widget, and the definition may live anywhere in the wiki. TiddlyWiki refuses to guess at parse time and builds a `transclude`; the difference surfaces only at render, where a macro substitutes `$x$` and a procedure hands it through.',
     tried: 'nothing — a grammar reads one file and holds no symbol table. This is the ceiling a language server exists to answer.',
-    call: '\\import [[CeilingDefinition]]\n<<d hello>>',
-    definitions: { macro: '\\define d(x)\nA $x$ B\n\\end', procedure: '\\procedure d(x)\nA $x$ B\n\\end' }
+    source: '\\import [[CeilingDefinition]]\n<<d hello>>',
+    paints: /meta\.variable\.call\./,
+    states: {
+      macro: [{ title: 'CeilingDefinition', text: '\\define d(x)\nA $x$ B\n\\end', tags: '$:/tags/Macro' }],
+      procedure: [{ title: 'CeilingDefinition', text: '\\procedure d(x)\nA $x$ B\n\\end', tags: '$:/tags/Macro' }]
+    }
+  },
+  {
+    key: 'import by filter',
+    shape: 'wiki',
+    what: 'a pragma whose effect a filter over the wiki decides',
+    why: '`\\import` takes a FILTER, not a title, so which definitions arrive depends on what the wiki holds when it runs. Measured: `\\import [tag[GapTag]]` renders `IMPORTED` and `\\import [tag[NoSuchTag]]` renders nothing, on identical calling bytes.',
+    tried: 'nothing — a filter runs against a wiki, and a grammar holds no wiki. A language server holds one; a tree-sitter grammar does not.',
+    source: '\\import [tag[CeilingTag]]\n<<imported>>',
+    paints: /meta\.directive\.import\./,
+    states: {
+      tagged: [{ title: 'CeilingImport', text: '\\define imported() IMPORTED', tags: 'CeilingTag' }],
+      untagged: [{ title: 'CeilingImport', text: '\\define imported() IMPORTED', tags: 'OtherTag' }]
+    }
+  },
+  {
+    key: 'indirect attribute value',
+    shape: 'wiki',
+    what: 'an attribute whose value stands in another tiddler field',
+    why: 'TiddlyWiki types an attribute `indirect` and resolves the reference at widget time. Measured: `<$text text={{CeilingField!!myfield}}/>` renders the field where it stands and nothing where it does not, on identical bytes.',
+    tried: 'nothing at the grammar, which names the reference correctly and can never resolve it. `attribute-witness` reads the KIND TiddlyWiki assigns and stops there, on purpose.',
+    source: '<$text text={{CeilingField!!myfield}}/>',
+    paints: /string\.text-reference\.|meta\.attribute\./,
+    states: {
+      present: [{ title: 'CeilingField', text: '', myfield: 'the value' }],
+      absent: [{ title: 'CeilingField', text: '', myfield: '' }]
+    }
+  },
+  {
+    key: 'entity value',
+    shape: 'value',
+    what: 'a construct the grammar names whose VALUE the host computes',
+    why: 'An entity parses to an `entity` node and renders to the character it names — `&hellip; and &#x2014;` renders `… and —`. The grammar names the entity exactly and carries no scope for what it stands for, because a scope names a span and never a value.',
+    tried: 'nothing, and nothing should. The ceiling names what a tool must not expect from scopes: a reader wanting the character reads the host, never the grammar.',
+    source: '&hellip; and &#x2014;',
+    paints: /constant\.character\.|entity/
   }
 ];
 
@@ -141,17 +187,30 @@ const CEILINGS = [
       if (one.some((n) => n.rule === c.inner)) broken.push(`${c.key} — the inner node reads inside one space, so nothing separates the two`);
       readings.push([c.key, nested && outer ? `host reports ${c.outer} at ${outer.start}..${outer.end} and ${c.inner} at ${nested.start}..${nested.end}` : 'unmeasured']);
     } else if (c.shape === 'wiki') {
+      // ONE SOURCE, SEVERAL WIKIS. The bytes never move; what the wiki holds around them does, and
+      // the reading parts. A grammar reads the bytes.
       const rendered = {};
-      for (const [kind, text] of Object.entries(c.definitions)) {
-        oracle.$tw.wiki.addTiddler({ title: 'CeilingDefinition', text, tags: '$:/tags/Macro' });
-        oracle.$tw.wiki.addTiddler({ title: 'CeilingCall', text: c.call });
-        rendered[kind] = oracle.$tw.wiki.renderTiddler('text/plain', 'CeilingCall').trim();
+      for (const [state, tiddlers] of Object.entries(c.states)) {
+        for (const t of tiddlers) oracle.$tw.wiki.addTiddler(t);
+        oracle.$tw.wiki.addTiddler({ title: 'CeilingSource', text: c.source });
+        rendered[state] = oracle.$tw.wiki.renderTiddler('text/plain', 'CeilingSource').trim();
       }
       const looks = new Set(Object.values(rendered));
-      if (looks.size < 2) broken.push(`${c.key} — the wiki renders every definition kind alike (${[...looks].join(' | ')}), so no distinction stands outside the file`);
-      const grammar = await painted(`${c.call}\n`, 1);
-      if (!/meta\.variable\.call\./.test(grammar)) broken.push(`${c.key} — the grammar paints no call, so the probe reads the wrong span`);
-      readings.push([c.key, `one call, two renderings: ${Object.entries(rendered).map(([k, v]) => `${k} ${JSON.stringify(v)}`).join(' vs ')}`]);
+      if (looks.size < 2) broken.push(`${c.key} — every wiki state renders alike (${[...looks].join(' | ')}), so no distinction stands outside the file`);
+      const lines = c.source.split('\n');
+      const grammar = (await Promise.all(lines.map((_, i) => painted(`${c.source}\n`, i)))).join(' ');
+      if (!c.paints.test(grammar)) broken.push(`${c.key} — the grammar paints nothing the entry names, so the probe reads the wrong span`);
+      readings.push([c.key, `one source, ${looks.size} renderings: ${Object.entries(rendered).map(([k, v]) => `${k} ${JSON.stringify(v)}`).join(' vs ')}`]);
+    } else if (c.shape === 'value') {
+      // The grammar NAMES the construct and carries no scope for what it stands for: a scope names
+      // a span, never a value.
+      oracle.$tw.wiki.addTiddler({ title: 'CeilingSource', text: c.source });
+      const rendered = oracle.$tw.wiki.renderTiddler('text/plain', 'CeilingSource').trim();
+      if (rendered === c.source.trim()) broken.push(`${c.key} — the host renders the source unchanged, so it computes no value to stand outside of`);
+      const grammar = await painted(`${c.source}\n`, 0);
+      if (!c.paints.test(grammar)) broken.push(`${c.key} — the grammar names no such construct, so it claims nothing it cannot resolve`);
+      if (grammar.includes(rendered)) broken.push(`${c.key} — a scope carries the rendered value, so the grammar reaches it after all`);
+      readings.push([c.key, `source ${JSON.stringify(c.source)} renders ${JSON.stringify(rendered)}; no scope carries it`]);
     }
   }
 

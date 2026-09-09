@@ -686,6 +686,19 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- Three more ceilings, each measured against the host and each naming a capability a later reader
+  must supply. IMPORT BY FILTER: `\import` takes a filter, not a title, so which definitions arrive
+  depends on what the wiki holds — `[tag[CeilingTag]]` renders `IMPORTED` and `[tag[OtherTag]]`
+  renders nothing, on identical calling bytes. INDIRECT ATTRIBUTE VALUE: `<$text
+  text={{X!!myfield}}/>` renders the field where it stands and nothing where it does not. ENTITY
+  VALUE: `&hellip; and &#x2014;` renders `… and —`, and the grammar names the entity exactly while
+  carrying no scope for what it stands for, because a scope names a span and never a value.
+- The ceiling shapes read five now — blind, phantom, space, wiki, value — and the two new ones carry
+  their own collisions: a wiki ceiling whose states render alike, and a value ceiling whose host
+  renders the source unchanged, both fail the gate.
+- Measured and NOT encoded: `\whitespace trim` leaves the tree identical on the specimen tried, and
+  rule-order precedence wants a genuine two-rule conflict nobody has constructed. Neither reads as a
+  ceiling on the evidence in hand, and a claim without a measurement stays out.
 - `ceiling` names what a TextMate grammar CANNOT reach about TiddlyWiki, measured rather than
   asserted, so a later reader — a language server, a tree-sitter grammar, a parser wired to the wiki
   — inherits a mandate rather than a hunch. Five stand: whole-document lookahead (a call builds where

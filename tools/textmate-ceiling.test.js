@@ -42,13 +42,15 @@ test('every ceiling this repository names still stands', live, () => {
 test('the reading names every ceiling and the evidence under it', live, () => {
   const { out } = runTool('textmate-ceiling.js', ['--verbose']);
   for (const key of ['whole-document lookahead', 'rule-set mutation', 'verbatim storage',
-    'nested coordinate space', 'cross-tiddler resolution']) {
+    'nested coordinate space', 'cross-tiddler resolution', 'import by filter',
+    'indirect attribute value', 'entity value']) {
     assert.ok(out.includes(key), `the reading names no ${key}`);
   }
   // Each ceiling prints what it MEASURED, never only what it claims.
   assert.match(out, /host parts \([^)]+\), grammar reads alike/, 'no blind ceiling printed its two host readings');
   assert.match(out, /typedblock at \d+\.\.\d+ and quoteblock at \d+\.\.\d+/, 'the space ceiling printed no offsets');
-  assert.match(out, /one call, two renderings/, 'the wiki ceiling printed no renderings');
+  assert.match(out, /one source, \d+ renderings/, 'no wiki ceiling printed its renderings');
+  assert.match(out, /renders "… and —"; no scope carries it/, 'the value ceiling printed no computed value');
 });
 
 // A ceiling stands on a distinction the HOST draws. Hand it two inputs the host reads alike and it
@@ -96,4 +98,25 @@ test('every ceiling states its evidence and the attempts made against it', () =>
     assert.ok(why.length > 80, `${key} carries ${why.length} characters of evidence, which reads as a claim rather than a measurement`);
     assert.ok(tried.length > 20, `${key} names no attempt against it, which reads as an excuse rather than a limit`);
   }
+});
+
+// A WIKI ceiling stands on what the wiki holds AROUND the bytes. Hand it two states that render
+// alike and it names nothing standing outside the file.
+test('a wiki ceiling whose states render alike fails the gate', live, () => {
+  const { code, out } = runInSandbox(
+    provoke("      untagged: [{ title: 'CeilingImport', text: '\\\\define imported() IMPORTED', tags: 'OtherTag' }]",
+      "      untagged: [{ title: 'CeilingImport', text: '\\\\define imported() IMPORTED', tags: 'CeilingTag' }]"),
+    ['tools/textmate-ceiling.js']);
+  assert.match(out, /every wiki state renders alike/, out.slice(-600));
+  assert.notStrictEqual(code, 0, 'a wiki ceiling standing on no distinction held the gate anyway');
+});
+
+// A VALUE ceiling stands on the host computing something the source does not say. Hand it a source
+// the host renders unchanged and it names no value to stand outside of.
+test('a value ceiling the host renders unchanged fails the gate', live, () => {
+  const { code, out } = runInSandbox(
+    provoke("    source: '&hellip; and &#x2014;',", "    source: 'plain words only',"),
+    ['tools/textmate-ceiling.js']);
+  assert.match(out, /renders the source unchanged/, out.slice(-600));
+  assert.notStrictEqual(code, 0, 'a value ceiling computing nothing held the gate anyway');
 });

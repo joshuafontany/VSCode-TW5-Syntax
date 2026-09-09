@@ -48,7 +48,7 @@ gates-held: 36 of 36
         {
             "gate": "ceiling",
             "held": true,
-            "said": "textmate-ceiling  5 ceiling(s) measured against TiddlyWiki, 0 that no longer stand"
+            "said": "textmate-ceiling  8 ceiling(s) measured against TiddlyWiki, 0 that no longer stand"
         },
         {
             "gate": "colour-witness",
