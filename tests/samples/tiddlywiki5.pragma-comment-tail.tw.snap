@@ -1,0 +1,28 @@
+><!--
+#^^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
+>
+>This template is used for saving tiddlers as raw HTML
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5
+>
+>--><$view field="text" format="htmlwikified" />
+#^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
+#   ^ text.html.tiddlywiki5 meta.tag.widget.view.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#    ^ text.html.tiddlywiki5 meta.tag.widget.view.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 entity.name.function.widget.tiddlywiki5 punctuation.definition.tag.widget.tiddlywiki5
+#     ^^^^ text.html.tiddlywiki5 meta.tag.widget.view.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5 entity.name.function.widget.tiddlywiki5
+#         ^ text.html.tiddlywiki5 meta.tag.widget.view.html.tiddlywiki5
+#          ^^^^^ text.html.tiddlywiki5 meta.tag.widget.view.html.tiddlywiki5 meta.attribute.unrecognized.field.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#               ^ text.html.tiddlywiki5 meta.tag.widget.view.html.tiddlywiki5 meta.attribute.unrecognized.field.html.tiddlywiki5 punctuation.separator.key-value.html.tiddlywiki5
+#                ^ text.html.tiddlywiki5 meta.tag.widget.view.html.tiddlywiki5 meta.attribute.unrecognized.field.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#                 ^^^^ text.html.tiddlywiki5 meta.tag.widget.view.html.tiddlywiki5 meta.attribute.unrecognized.field.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5
+#                     ^ text.html.tiddlywiki5 meta.tag.widget.view.html.tiddlywiki5 meta.attribute.unrecognized.field.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
+#                      ^ text.html.tiddlywiki5 meta.tag.widget.view.html.tiddlywiki5
+#                       ^^^^^^ text.html.tiddlywiki5 meta.tag.widget.view.html.tiddlywiki5 meta.attribute.unrecognized.format.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#                             ^ text.html.tiddlywiki5 meta.tag.widget.view.html.tiddlywiki5 meta.attribute.unrecognized.format.html.tiddlywiki5 punctuation.separator.key-value.html.tiddlywiki5
+#                              ^ text.html.tiddlywiki5 meta.tag.widget.view.html.tiddlywiki5 meta.attribute.unrecognized.format.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#                               ^^^^^^^^^^^^ text.html.tiddlywiki5 meta.tag.widget.view.html.tiddlywiki5 meta.attribute.unrecognized.format.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5
+#                                           ^ text.html.tiddlywiki5 meta.tag.widget.view.html.tiddlywiki5 meta.attribute.unrecognized.format.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
+#                                            ^^^ text.html.tiddlywiki5 meta.tag.widget.view.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+>
+>A paragraph standing after the template.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+>

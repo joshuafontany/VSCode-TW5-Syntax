@@ -3,11 +3,11 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 34 of 34
+gates-held: 35 of 35
 
 {
-    "gates": 34,
-    "held": 34,
+    "gates": 35,
+    "held": 35,
     "failing": 0,
     "results": [
         {
@@ -18,7 +18,7 @@ gates-held: 34 of 34
         {
             "gate": "attribute-witness",
             "held": true,
-            "said": "attribute-witness  10772 attribute(s) across 5 type(s), 10698 reading the kind TiddlyWiki assigned (ceiling 74)"
+            "said": "attribute-witness  10772 attribute(s) across 5 type(s), 10720 reading the kind TiddlyWiki assigned (ceiling 52)"
         },
         {
             "gate": "backtrack-witness",
@@ -43,7 +43,7 @@ gates-held: 34 of 34
         {
             "gate": "canary-wikitext",
             "held": true,
-            "said": "bleed-canary  text.html.tiddlywiki5  22 samples, 0 bleeding"
+            "said": "bleed-canary  text.html.tiddlywiki5  23 samples, 0 bleeding"
         },
         {
             "gate": "colour-witness",
@@ -58,7 +58,7 @@ gates-held: 34 of 34
         {
             "gate": "compose-wikitext",
             "held": true,
-            "said": "composition-check  text.html.tiddlywiki5  22 pairs, 0 that do not compose"
+            "said": "composition-check  text.html.tiddlywiki5  23 pairs, 0 that do not compose"
         },
         {
             "gate": "corpus",
@@ -158,12 +158,17 @@ gates-held: 34 of 34
         {
             "gate": "snap-wikitext",
             "held": true,
-            "said": "snapshot-check  text.html.tiddlywiki5  22 pinned, 0 drifted"
+            "said": "snapshot-check  text.html.tiddlywiki5  23 pinned, 0 drifted"
         },
         {
             "gate": "still",
             "held": true,
             "said": "still  25 of 4403 carrier(s) at seed 1, 76 divergence(s) across 5 class(es), 0 unnamed, 0 ruling(s) broadened, 55.8% of corpus tokens ruled (ceiling 55.8%)"
+        },
+        {
+            "gate": "still-reach",
+            "held": true,
+            "said": "reach  4342 of 4365 carrier(s) stand fully named, 99.5% (floor 99.5%); 38 carrier(s) no cut reads, 12593 divergence(s), 5 class(es) blocking"
         },
         {
             "gate": "swallow-witness",

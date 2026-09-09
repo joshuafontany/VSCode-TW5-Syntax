@@ -125,6 +125,16 @@ function tiddlers(dir, out = []) {
       disagreements.push({
         type: attribute.type,
         named: named ?? '(no kind named)',
+        // A VALUELESS ATTRIBUTE CARRIES NO VALUE TO NAME A KIND OVER. TiddlyWiki types a bare
+        // `allowfullscreen` as a string and SYNTHESISES the value "true", and the span it hands
+        // back covers the attribute's NAME. Naming that span a string would paint the name as its
+        // own value, so the two readings part here by construction rather than by defect.
+        //
+        // The absence of an `=` does NOT name this class. A positional macro parameter carries no
+        // separator either and its whole span IS its value — `<<.from-version "5.2.0">>` places one
+        // named `0` — so reading the separator alone counted 29 where 17 stand. The span standing
+        // equal to the attribute's own name is what says the source holds no value.
+        valueless: text.slice(attribute.start, attribute.end).trim() === attribute.name,
         text: text.slice(attribute.start, attribute.end).trim().slice(0, 52),
         file: path.basename(file)
       });
@@ -145,8 +155,10 @@ function tiddlers(dir, out = []) {
     for (const [type, n] of [...counts].sort()) {
       console.log(`  ${type.padEnd(12)} ${String(n).padStart(5)} read, ${String(byType.get(type) ?? 0).padStart(4)} reading another kind`);
     }
-    for (const d of disagreements.slice(0, 12)) {
-      console.log(`     ${d.type.padEnd(12)} ${d.named.padEnd(42)} ${JSON.stringify(d.text)}  ${d.file}`);
+    const valueless = disagreements.filter((d) => d.valueless).length;
+    console.log(`  ${valueless} of ${disagreements.length} disagreement(s) stand on an attribute carrying NO value in the source`);
+    for (const d of disagreements) {
+      console.log(`     ${d.valueless ? 'bare  ' : 'valued'} ${d.type.padEnd(12)} ${d.named.padEnd(42)} ${JSON.stringify(d.text)}  ${d.file}`);
     }
   }
   if (disagreements.length > ceiling) {

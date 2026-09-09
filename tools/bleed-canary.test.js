@@ -28,7 +28,7 @@ const live = { timeout: 600000 };
 
 test('no sample colours the sentence after it', live, () => {
   const { code, out } = runTool('bleed-canary.js', ARGS);
-  assert.match(out, /22 samples, 0 bleeding/, out.slice(-400));
+  assert.match(out, /23 samples, 0 bleeding/, out.slice(-400));
   assert.strictEqual(code, 0, out.slice(-400));
 });
 

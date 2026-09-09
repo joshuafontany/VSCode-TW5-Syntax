@@ -56,3 +56,30 @@ test('a ceiling lowered past the disagreements fails the gate', live, () => {
   assert.match(out, /above the ceiling/, out.slice(-600));
   assert.notStrictEqual(code, 0, 'the ceiling fell below the disagreements and the gate held anyway');
 });
+
+// A COMMENT THE PRAGMA ZONE HOLDS ENDS MID-LINE, and whatever follows on that line stands OUTSIDE
+// the zone. TiddlyWiki reads commentblock in pragma mode, so a comment opening a tiddler sits
+// inside it; parsePragmas() consumes the comment, looks again from wherever it ended, finds no
+// pragma and hands the rest to parseBlocks(). Eight of TiddlyWiki's own core templates open exactly
+// that way. A zone that can only close at a line START keeps them, and every attribute after the
+// `-->` goes unpainted while the parser places all of them.
+test('a pragma zone that can only close at a line start loses a comment\'s own tail', live, () => {
+  const held = (sandbox) => {
+    const file = path.join(sandbox, 'syntaxes', 'tiddlywiki5.json');
+    const grammar = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const zone = grammar.repository['pragma-zone'];
+    const before = zone.end;
+    // Back to the line-start-only close: drop the mid-line alternative and its wrapper.
+    zone.end = before.replace(/^\(\?:/, '').replace(/\|\(\?<=-->\)\(\?!.*\)\)$/, '');
+    assert.notStrictEqual(zone.end, before, 'the provocation changed nothing, so it plants no fault');
+    assert.match(zone.end, /^\^\(\?!/, `the provocation left ${zone.end}`);
+    fs.writeFileSync(file, JSON.stringify(grammar, null, 4));
+  };
+  const clean = /(\d+) reading the kind TiddlyWiki assigned \(ceiling (\d+)\)/.exec(runTool('attribute-witness.js').out);
+  assert.ok(clean, 'no reading stands to collide against');
+  const { out } = runInSandbox(held, ['tools/attribute-witness.js']);
+  const provoked = /(\d+) reading the kind TiddlyWiki assigned/.exec(out);
+  assert.ok(provoked, out.slice(-600));
+  assert.ok(Number(provoked[1]) < Number(clean[1]),
+    `the zone kept the tail and the same ${provoked[1]} attributes still read their kind, so the close proves nothing`);
+});

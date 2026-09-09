@@ -1,4 +1,4 @@
-74
+52
 # Attributes whose value this grammar reads as a kind other than the one TiddlyWiki assigned.
 # The count may fall and may never rise.
 #
@@ -20,3 +20,41 @@
 #
 # A tiddler declaring a type other than text/vnd.tiddlywiki never enters the population: reading
 # an HTML template or a stylesheet as wikitext manufactures a disagreement nobody asked for.
+#
+# WHAT STANDS AT 52, measured class by class. The count fell from 74 when the PRAGMA ZONE learned to
+# close mid-line. TiddlyWiki reads commentblock in pragma mode, so a comment opening a tiddler sits
+# inside the zone; parsePragmas() consumes it, looks again from wherever it ended — which may be the
+# MIDDLE of a line — finds no pragma, and hands the rest to parseBlocks(). A zone that could only
+# close at a line start kept eight of TiddlyWiki's own core templates, every one of which writes
+# `--><$view field="text" .../>` on one line, and every attribute after the `-->` went unpainted
+# while the parser placed all of them. 22 attributes came back. The controls hold: a pragma standing
+# after the same `-->` keeps the zone, and so does a second comment.
+#
+#   15  AN ATTRIBUTE CARRYING NO VALUE IN THE SOURCE. TiddlyWiki types a bare `allowfullscreen` as a
+#       string and SYNTHESISES the value "true", and the span it hands back covers the attribute's
+#       NAME. Naming that span a string would paint the name as its own value. Permanent by
+#       construction — the two readings answer different questions rather than the same one twice.
+#       The absence of an `=` does not name this class: a positional macro parameter carries no
+#       separator either and its whole span IS its value, so reading the separator alone counted 29
+#       where 17 stand. The span standing equal to the attribute's own name is the test.
+#
+#   ~10 A START TAG BROKEN ACROSS A BLANK LINE, all in `$:/core/ui/EditTemplate/body/editor`. Ruled
+#       already, in `tests/tiddlywiki5/tiddlywiki5.tag-blank-line-bound.tw5.test`: TiddlyWiki skips a
+#       blank line between attributes the way it skips a space, but where no pattern matches an end
+#       TextMate runs a region to the end of the document, and an unclosed tag then colours every
+#       construct after it as an attribute name. Counted across 2583 files, no plain HTML start tag
+#       anywhere carries a blank line, and the six that do all wear a widget name in that one file.
+#       The ruling buys the whole corpus at the cost of this file.
+#
+#    6  A CALL OPENING ON `<<<<`, all in `WidgetMessage_ tm-navigate.tid`, where the source reads
+#       `|field |<<<<.from-version "5.2.0">> text |`. TiddlyWiki finds its macrocall at the THIRD
+#       character; the grammar meets three angle brackets in a table cell first. The same call reads
+#       `string.quoted.double` correctly standing on its own.
+#
+#    3  A TRIPLE-QUOTED MACRO PARAMETER. `"""..."""` reads as the call around it rather than as
+#       the string inside it.
+#
+#    5  A FILTERED OR INDIRECT VALUE reading a neighbouring kind — `string.text-reference` and
+#       `string.quoted.double` for a filtered value, `string.unquoted` for an indirect one.
+#
+# The remainder stand in templates that wrap their whole body in a backtick raw span.
