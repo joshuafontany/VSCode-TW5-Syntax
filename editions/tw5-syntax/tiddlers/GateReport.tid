@@ -48,7 +48,7 @@ gates-held: 36 of 36
         {
             "gate": "ceiling",
             "held": true,
-            "said": "textmate-ceiling  8 ceiling(s) measured against TiddlyWiki, 0 that no longer stand"
+            "said": "textmate-ceiling  8 ceiling(s) measured against TiddlyWiki, 0 that no longer stand, written"
         },
         {
             "gate": "colour-witness",
@@ -93,7 +93,7 @@ gates-held: 36 of 36
         {
             "gate": "light-cone",
             "held": true,
-            "said": "light-cone  131 divergence(s) across 11 class(es); forward arm moved 19, backward arm moved 97; 9 proven or unruled, 2 ruled without proof, 0 owed but reaching out"
+            "said": "light-cone  131 divergence(s) across 11 class(es); forward arm moved 19, backward arm moved 97; 7 proven or unruled, 4 ruled without proof, 0 owed but reaching out"
         },
         {
             "gate": "must-fail",
@@ -178,7 +178,7 @@ gates-held: 36 of 36
         {
             "gate": "swallow-witness",
             "held": true,
-            "said": "swallow-witness  878 cut(s) across 39 corpus file(s), 9 divergence(s), 2 recorded, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "swallow-witness  878 cut(s) across 39 corpus file(s), 9 divergence(s), 0 recorded, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "theme-parity",

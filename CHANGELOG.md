@@ -7,6 +7,23 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- Both OWED entries resolve, and neither records a debt. `overbound codeblock`'s reason stood
+  STALE: an unterminated fence already agrees — host and grammar both carry to the end of the source
+  — and a fence closing across a blank line agrees too. Measured over 4403 host carriers, 147 of
+  1099 fence openers close across a blank line against 4 that never close, so no blank-line bound
+  belongs there. The 2 remaining cuts sit on ```text/vnd.tiddlywiki, a fence declaring a type this
+  grammar EMBEDS: the host builds one `codeblock` node and parses nothing inside, and the grammar
+  hands the body to the rules the declaration names — the family `textmate-ceiling` calls `nested
+  coordinate space`. `overbound html` states its own design and a fixture pins it. Both stand
+  accepted with the measurement written in, and `swallow-witness` reads 0 recorded where it read 2.
+- Writing is a FLAG, never a side effect of reading. The ceiling wrote its tiddler on every run while
+  the suite invoked it in parallel and other tests read that directory — a gate turning its own suite
+  into shared mutable state, which read as a legibility test losing a line it had every other run.
+  `npm run ceiling` carries `--write`; the test compares the committed harvest against the live one.
+- The headroom check reads the least of several RUNS, for the reason the witness itself takes the
+  least of several rounds: contention only ever adds time. It read 1.4ms alone and crossed 4 beside
+  386 tests, where every round of one run met the same contention — so the statistic wants applying
+  one level up, or the check measures the machine exactly as the reading it guards once did.
 - Every ceiling names the KIND OF READER that closes it, which turns a list of limits into a
   mandate a later effort can sort on: a parser holding the whole document, a reader carrying parser
   state, a reader carrying a span together with its space, a symbol table over the wiki, a filter

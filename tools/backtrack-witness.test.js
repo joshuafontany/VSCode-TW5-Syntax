@@ -65,8 +65,14 @@ test('a lowered budget changes nothing about the patterns themselves', live, () 
 // Headroom is the property, and it wants asserting rather than assuming: a worst reading sitting
 // just under the budget passes today and fails whenever the machine breathes.
 test('the worst reading keeps headroom against the budget', live, () => {
-  const { out } = runTool('backtrack-witness.js');
-  const worst = Number(/worst ([\d.]+)ms against a budget of ([\d.]+)ms/.exec(out)[1]);
+  // THE LEAST OF SEVERAL RUNS, for the reason the witness itself takes the least of several rounds:
+  // contention only ever adds time. The witness reads 1.4ms alone and crossed 4 beside 386 tests,
+  // where every round of a single run met the same contention — so the statistic wants applying one
+  // level up, or this check measures the machine exactly as the reading it guards once did.
+  const runs = [runTool('backtrack-witness.js'), runTool('backtrack-witness.js'), runTool('backtrack-witness.js')];
+  const readings = runs.map((r) => Number(/worst ([\d.]+)ms against a budget of ([\d.]+)ms/.exec(r.out)[1]));
+  const out = runs[readings.indexOf(Math.min(...readings))].out;
+  const worst = Math.min(...readings);
   const budget = Number(/worst [\d.]+ms against a budget of ([\d.]+)ms/.exec(out)[1]);
   assert.ok(worst > 0, 'the witness timed nothing, so the budget guards nothing');
   assert.ok(worst * 2 < budget,

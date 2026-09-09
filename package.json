@@ -386,7 +386,7 @@
         "attribute-witness": "node ./tools/attribute-witness.js",
         "light-cone": "node ./tools/light-cone.js",
         "legibility": "node ./tools/construct-legibility.js",
-        "ceiling": "node ./tools/textmate-ceiling.js",
+        "ceiling": "node ./tools/textmate-ceiling.js --write",
         "must-fail": "node ./tools/must-fail.js",
         "engine-witness": "node ./tools/engine-witness.js",
         "still": "node ./tools/still.js --host --sample 25",

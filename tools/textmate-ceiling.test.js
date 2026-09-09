@@ -39,6 +39,34 @@ test('every ceiling this repository names still stands', live, () => {
   assert.strictEqual(code, 0, out.slice(-600));
 });
 
+// THE MANDATE MUST REACH THE WIKI. A list living only in a tool reaches whoever runs the tool; a
+// later effort scoping a language server or a tree-sitter grammar opens the wiki. The tiddler is a
+// HARVEST — hand-editing it goes stale the moment the tree moves.
+// The tiddler stands COMMITTED and this test never writes it: the suite runs in parallel and other
+// tests read that directory, so a check that wrote would make its own suite race. `npm run ceiling`
+// carries `--write`, and the comparison below catches a harvest left behind.
+test('the wiki carries the mandate, harvested and current', live, () => {
+  const tid = path.join(ROOT, 'editions', 'tw5-syntax', 'tiddlers', 'TextMateCeiling.tid');
+  assert.ok(fs.existsSync(tid), 'the ceiling writes no tiddler, so the wiki carries no mandate');
+  const body = JSON.parse(fs.readFileSync(tid, 'utf8').split('\n\n').slice(1).join('\n\n'));
+  assert.strictEqual(body.standing, body.ceilings, `${body.ceilings - body.standing} ceiling(s) no longer stand`);
+  for (const entry of body.entries) {
+    assert.ok(entry.answeredBy && entry.answeredBy.length > 30, `${entry.key} reaches the wiki naming no reader that closes it`);
+    assert.ok(entry.measured && entry.measured.length > 10, `${entry.key} reaches the wiki carrying no measurement`);
+  }
+  // The harvest names the kinds a later effort sorts on, so the wiki answers the question directly.
+  const answers = body.entries.map((e) => e.answeredBy).join(' ');
+  assert.match(answers, /tree-sitter/, 'the harvest names no ceiling tree-sitter closes');
+  assert.match(answers, /language server/, 'the harvest names no ceiling a language server closes');
+
+  // A HARVEST LEFT BEHIND reads as a record of a tree that moved on. The live reading names the same
+  // ceilings, or somebody changed the list and never ran the gate.
+  const live = runTool('textmate-ceiling.js').out;
+  for (const entry of body.entries) {
+    assert.ok(live.includes(entry.key), `the wiki carries ${entry.key}, which the tool no longer measures`);
+  }
+});
+
 // The evidence and the mandate print WITHOUT a flag. `gate-report` keeps the summary line alone, so
 // anything held back for `--verbose` never reaches the record a reader opens.
 test('the reading names every ceiling and the evidence under it', live, () => {

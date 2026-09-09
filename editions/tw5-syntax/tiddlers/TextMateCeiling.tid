@@ -1,0 +1,85 @@
+title: $:/tw5-syntax/TextMateCeiling
+type: application/json
+tags: $:/tags/TW5Syntax/GrammarData
+caption: TextMate ceiling
+description: What a TextMate grammar cannot reach about TiddlyWiki, and which kind of reader closes each one — harvested, never hand-written
+ceilings-standing: 8 of 8
+
+{
+    "ceilings": 8,
+    "standing": 8,
+    "entries": [
+        {
+            "key": "whole-document lookahead",
+            "shape": "blind",
+            "answeredBy": "a parser holding the whole document — tree-sitter answers this",
+            "what": "a construct that opens only where its closer stands somewhere ahead",
+            "why": "TiddlyWiki scans to the end of the source for `>>` before building a call, and builds nothing at all where none stands. A pattern reads one line and the rule stack carried across it, so both inputs open the same region.",
+            "tried": "a blank-line bound on the call end, which cut 116 real multi-line calls out of 16087 openers measured over 700 carriers while answering the 0 that carry no closer",
+            "measured": "host parts (macrocallblock | parseblock), grammar reads alike"
+        },
+        {
+            "key": "rule-set mutation",
+            "shape": "phantom",
+            "answeredBy": "a reader carrying parser STATE across a document — a language server holds it; a static grammar does not",
+            "what": "a pragma that deletes a rule for the rest of the document",
+            "why": "`\\rules except html` removes the html rule from the parser instance, so a tag below it builds nothing. A grammar carries a static rule set and paints the tag either way.",
+            "tried": "nothing — a TextMate grammar names its patterns at load time, and no measured construction removes one at read time",
+            "measured": "host builds rules, grammar paints structure inside it"
+        },
+        {
+            "key": "verbatim storage",
+            "shape": "phantom",
+            "answeredBy": "a reader parsing a stored body on demand, at the moment something renders it — the widget layer, never a syntax layer",
+            "what": "a body the host stores and never parses",
+            "why": "TiddlyWiki keeps a macro body as text and builds one `set/macrodef` node with nothing inside it; the body becomes a tree only at widget time. The grammar paints wikitext in there on purpose, since a reader meets it rendered.",
+            "tried": "nothing, and nothing should — painting it serves the reader. The ceiling names what a tool must not INFER from those scopes: no parse tree confirms them.",
+            "measured": "host builds macrodef, grammar paints structure inside it"
+        },
+        {
+            "key": "nested coordinate space",
+            "shape": "space",
+            "answeredBy": "a reader carrying a span TOGETHER WITH its space — tree-sitter injections answer this; a flat scope list does not",
+            "what": "a body the host parses in offsets of its own",
+            "why": "A typed block declaring wikitext parses its body as wikitext, and the nodes that parse builds carry offsets into the INNER text. A grammar carries one coordinate space per document, so no scope can name which space a span belongs to.",
+            "tried": "nothing at the grammar; `flatten(tree, { sameSpace: true })` answers it on the READING side, by refusing to cross into a restarted space at all",
+            "measured": "host reports typedblock at 23..42 and quoteblock at 0..14"
+        },
+        {
+            "key": "cross-tiddler resolution",
+            "shape": "wiki",
+            "answeredBy": "a symbol table over the wiki — a language server, and nothing below one",
+            "what": "bytes whose meaning stands in another tiddler",
+            "why": "`<<d hello>>` reaches a macro, a procedure, a function or a custom widget, and the definition may live anywhere in the wiki. TiddlyWiki refuses to guess at parse time and builds a `transclude`; the difference surfaces only at render, where a macro substitutes `$x$` and a procedure hands it through.",
+            "tried": "nothing — a grammar reads one file and holds no symbol table. This is the ceiling a language server exists to answer.",
+            "measured": "one source, 2 renderings: macro \"A hello B\" vs procedure \"A $x$ B\""
+        },
+        {
+            "key": "import by filter",
+            "shape": "wiki",
+            "answeredBy": "a filter engine running against a live wiki — a language server wired to the wiki, never a grammar",
+            "what": "a pragma whose effect a filter over the wiki decides",
+            "why": "`\\import` takes a FILTER, not a title, so which definitions arrive depends on what the wiki holds when it runs. Measured: `\\import [tag[GapTag]]` renders `IMPORTED` and `\\import [tag[NoSuchTag]]` renders nothing, on identical calling bytes.",
+            "tried": "nothing — a filter runs against a wiki, and a grammar holds no wiki. A language server holds one; a tree-sitter grammar does not.",
+            "measured": "one source, 2 renderings: tagged \"IMPORTED\" vs untagged \"\""
+        },
+        {
+            "key": "indirect attribute value",
+            "shape": "wiki",
+            "answeredBy": "a resolver reading tiddler fields — a language server for hover and completion; the render layer for the value itself",
+            "what": "an attribute whose value stands in another tiddler field",
+            "why": "TiddlyWiki types an attribute `indirect` and resolves the reference at widget time. Measured: `<$text text={{CeilingField!!myfield}}/>` renders the field where it stands and nothing where it does not, on identical bytes.",
+            "tried": "nothing at the grammar, which names the reference correctly and can never resolve it. `attribute-witness` reads the KIND TiddlyWiki assigns and stops there, on purpose.",
+            "measured": "one source, 2 renderings: present \"the value\" vs absent \"\""
+        },
+        {
+            "key": "entity value",
+            "shape": "value",
+            "answeredBy": "a reader that reports a VALUE beside a span — hover in a language server, or the render layer",
+            "what": "a construct the grammar names whose VALUE the host computes",
+            "why": "An entity parses to an `entity` node and renders to the character it names — `&hellip; and &#x2014;` renders `… and —`. The grammar names the entity exactly and carries no scope for what it stands for, because a scope names a span and never a value.",
+            "tried": "nothing, and nothing should. The ceiling names what a tool must not expect from scopes: a reader wanting the character reads the host, never the grammar.",
+            "measured": "source \"&hellip; and &#x2014;\" renders \"… and —\"; no scope carries it"
+        }
+    ]
+}

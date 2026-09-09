@@ -39,11 +39,17 @@
 
 'use strict';
 
+const fs = require('node:fs');
 const path = require('node:path');
 const { tokenize } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
 
 const verbose = process.argv.includes('--verbose');
+// WRITING IS A FLAG, never a side effect of reading. Tests invoke this tool in parallel and other
+// tests read the tiddlers directory beside it; a gate that writes on every run turns its own suite
+// into shared mutable state. `npm run ceiling` passes the flag, so the harvest stays current.
+const write = process.argv.includes('--write');
+const OUT = path.join(__dirname, '..', 'editions', 'tw5-syntax', 'tiddlers', 'TextMateCeiling.tid');
 const TW = resolveTiddlyWiki();
 if (!TW) {
   console.log('textmate-ceiling  no TiddlyWiki checkout resolved, so no host stands to measure against');
@@ -237,6 +243,31 @@ const CEILINGS = [
     if (verbose) console.log(`     ${c.why}`);
   }
   for (const b of broken) console.error(`  ${b}`);
-  console.log(`textmate-ceiling  ${CEILINGS.length} ceiling(s) measured against TiddlyWiki, ${broken.length} that no longer stand`);
+  // THE MANDATE LANDS IN THE WIKI, harvested the way the gate report is. A list living only in a
+  // tool reaches whoever runs the tool; a later effort scoping a language server or a tree-sitter
+  // grammar opens the wiki. Hand-editing it goes stale the moment the tree moves, so nobody should.
+  const reading = new Map(readings);
+  const body = {
+    ceilings: CEILINGS.length,
+    standing: CEILINGS.length - broken.length,
+    entries: CEILINGS.map((c) => ({
+      key: c.key,
+      shape: c.shape,
+      answeredBy: c.answeredBy,
+      what: c.what,
+      why: c.why,
+      tried: c.tried,
+      measured: reading.get(c.key) || ''
+    }))
+  };
+  if (write) fs.writeFileSync(OUT, 'title: $:/tw5-syntax/TextMateCeiling\n'
+    + 'type: application/json\n'
+    + 'tags: $:/tags/TW5Syntax/GrammarData\n'
+    + 'caption: TextMate ceiling\n'
+    + 'description: What a TextMate grammar cannot reach about TiddlyWiki, and which kind of reader closes each one — harvested, never hand-written\n'
+    + `ceilings-standing: ${body.standing} of ${body.ceilings}\n`
+    + `\n${JSON.stringify(body, null, 4)}\n`);
+
+  console.log(`textmate-ceiling  ${CEILINGS.length} ceiling(s) measured against TiddlyWiki, ${broken.length} that no longer stand${write ? ', written' : ''}`);
   process.exit(broken.length === 0 ? 0 : 1);
 })();
