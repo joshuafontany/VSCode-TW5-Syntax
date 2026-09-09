@@ -17,6 +17,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const { runTool } = require('./run-tool.js');
+const { runInSandbox } = require('./grammar-sandbox.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const live = { timeout: 900000 };
@@ -33,19 +34,24 @@ test('a class no ledger names reads as the base still moving', live, () => {
 });
 
 // The guard the floor asked for: a ruling may gain entries and may not gain reach.
+// THE FAULT GETS PLANTED IN A SANDBOX, never in the tree this suite runs against. A collision that
+// writes a ledger in place and restores it in `finally` leaves the shared tree wrong for as long as
+// the tool runs, and a second reader — another gate, another agent — meets the planted fault as
+// though it stood. One such race left a floor file holding a provoked value and failed the next gate
+// run for no reason in the tree at all.
 test('a ledger key that broadened fails the gate', live, () => {
-  const ledger = path.join(ROOT, 'corpus', 'swallow-ledger.txt');
-  const before = fs.readFileSync(ledger, 'utf8');
-  try {
+  const widen = (sandbox) => {
+    const ledger = path.join(sandbox, 'corpus', 'swallow-ledger.txt');
+    const before = fs.readFileSync(ledger, 'utf8');
     // Widened to a key naming NO kind, so the migration reading cannot excuse it, and standing on
     // far more ground than the one it replaces.
-    fs.writeFileSync(ledger, before.replace(/^runaway comment\.\*/m, 'runaway meta.*'));
-    const { code, out } = runTool('still.js', ['--over', path.join(ROOT, 'corpus'), '--sample', '4']);
-    assert.match(out, /broadened|reaches further/, out.slice(-600));
-    assert.notStrictEqual(code, 0, 'a ledger key widened and the gate held anyway');
-  } finally {
-    fs.writeFileSync(ledger, before);
-  }
+    const after = before.replace(/^runaway comment\.\*/m, 'runaway meta.*');
+    assert.notStrictEqual(after, before, 'the ledger holds no comment ruling to widen, so nothing gets planted');
+    fs.writeFileSync(ledger, after);
+  };
+  const { code, out } = runInSandbox(widen, ['tools/still.js'], ['--over', 'corpus', '--sample', '4']);
+  assert.match(out, /broadened|reaches further/, out.slice(-600));
+  assert.notStrictEqual(code, 0, 'a ledger key widened and the gate held anyway');
 });
 
 // A ruling's breadth answers to the GROUND it stands on, never to the punctuation in its name.

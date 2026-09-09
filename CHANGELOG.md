@@ -6,30 +6,15 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## 2.3.0 — unreleased
 
-### Added
-- Specimens for 23 regions no cut in this corpus ever opened, and the unasked ceiling falls from 44
-  to 21. `pragmas.signatures.tw` carries a `\define` signature closing on a later line in every
-  default quoting the grammar holds a region for, and a `\parameters` directive behind it;
-  `spans.multiline.tw` gains five widget attribute values — filtered, indirect, variable, bracketed
-  and substituted — an inline call mid-paragraph, an XML processing instruction, a script under a
-  type no grammar claims, and an element name no grammar claims inside math. A pragma signature at
-  the TOP of `spans.multiline.tw` was measured and taken out again: it wraps every later cut in a
-  parameters node, which collapsed 60 cuts to one ruled class and hid two real divergences the file
-  already surfaced. The residue holds three populations and none wants a specimen — a region whose
-  end matches where its begin does, a region every transclusion rule closes on `<<<` because the
-  probe's own sentinel appears in its end pattern, and a JavaScript line comment.
-- `still --reach` crosses EVERY carrier and ratchets the share it finds fully named, seated in
-  `corpus/carrier-reach-floor.txt` at 4342 of 4365. A sampled run reads 25 of 4403 carriers and
-  prints a verdict on the ground; measured over the whole of it, 23 carriers carry a class no ledger
-  names, so a draw of 25 misses all 23 about seven times in eight — seeds 1, 2, 9 and 13 read green
-  and seed 5 read red off one unchanged tree. The ratchet counts a CARRIER, never a seed and never a
-  class: 200 seeds at sample 25 draw five thousand carriers and reach 2979 distinct ones, so a seed
-  count names a budget rather than a coverage, and a count of classes named rises by ruling
-  generously — the move the ground ceiling beside it exists to weigh. A carrier no cut reads stands
-  UNSWEPT rather than clean and rides the other side of the denominator. Collided by withdrawing
-  every corpus ruling, with the whole ledger as the control.
-
 ### Fixed
+- A ledger collision plants its fault in a SANDBOX. Writing the ledger in place and restoring it in
+  `finally` leaves the shared tree wrong for as long as the tool runs, and a second reader — another
+  gate, another hand working the same tree — meets the planted fault as though it stood. One such
+  race left a floor file holding a provoked value and failed the next gate run for no reason in the
+  tree at all.
+- The release record reads as one record. Ten heading blocks stood under `## 2.3.0 — unreleased`
+  where the house writes Fixed, Added, Changed once each; regrouped, 213 bullets in and 213 out,
+  none altered.
 - The pragma zone closes MID-LINE, where a comment it holds ends mid-line. TiddlyWiki reads
   `commentblock` in pragma mode, so a comment opening a tiddler stands inside the zone;
   parsePragmas() consumes it, looks again from wherever it ended, finds no pragma, and hands the
@@ -66,129 +51,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   body reports what stands there: one `set/macrodef` node and nothing inside it, because TiddlyWiki
   stores a macro body verbatim and never parses it, while the grammar paints wikitext in there on
   purpose. Ruled in both ledgers, on their own ground.
-
-### Changed
-- The ruled-ground ceiling re-seats at 56.6%, with no ruling broadened — the same run reports zero.
-  The share reads the CORPUS'S composition, and the corpus grew to lower the unasked ceiling; every
-  construct that lowers it wears a scope a ruling already names, necessarily, because a construct
-  that can run away is exactly what a runaway ruling covers. The two ratchets pull against each
-  other by construction, and the pair wants reading together: the broadening guard weighs a key
-  against the key that replaced it, and `still --reach` measures what the rulings cover on ground
-  outside this repository altogether.
-- `swallow-witness --verbose` names the regions standing unasked. A ceiling nobody can act on falls
-  by luck; lowering it means writing a specimen that opens a NAMED region.
-- One grammar reading per carrier, resumed at each cut from the stack that cut's head ends on.
-  A grammar reads strictly left to right, so the stack after a line answers to nothing following it;
-  re-reading each head in full cost the SQUARE of a file's length and measured at 90% of a sampled
-  run's time, which put the whole ground out of a gate's reach. The full pass now crosses 4403
-  carriers in 31 seconds. `tokenizeFrom` holds the reading, so `tokenize` and the resumed walk stay
-  one implementation, and `still.test.js` collides the two readings cut for cut with a control
-  against a draw that diverges nowhere.
-- `attribute-witness --verbose` counts the disagreements standing on an attribute that carries NO
-  value in the source. TiddlyWiki types a bare `allowfullscreen` as a string and SYNTHESISES the
-  value "true", and the span it hands back covers the attribute's NAME, so naming that span a string
-  would paint the name as its own value — 15 of the 52 part that way, by construction. Reading the
-  absence of an `=` counted 29: a positional macro parameter carries no separator either and its
-  whole span IS its value, so the test is the span standing equal to the attribute's own name.
-- `legibility` takes its POPULATION from the host. Seven specimens stood in the tool by hand and the
-  standing lesson answered: a hand-written enumeration cannot notice what it missed. It carried no
-  emphasis at all, and emphasis holds the weakest readings in the table — a procedure definition
-  against a macro definition at 0 of 65, subscript against superscript at 0, strikethrough against
-  underline at 17, none of them visible before. `$tw.modules.types.wikirule` names 44 rules and the
-  harvest records that answer, so 40 constructs measure and four leave by declaration: TiddlyWiki
-  splits comment, filtered transclusion, call and transclusion by POSITION, and a reader meets one
-  thing either way. A rule the host adds arrives unmeasured and says so; a specimen naming a rule
-  the host dropped reads as outliving what it explains. 820 floors re-seated.
-- The reading carries `fontStyle` beside foreground. A reader tells bold from italic without reading
-  a word and most themes carry that in fontStyle alone: measured on foreground by itself, bold
-  parted from italic in 23 of 65 and the gate would have called a healthy grammar broken one family
-  further along. Two pairs seated under the older reading ROSE — a wikilink against prose from 61 to
-  65, a code span against a wikilink from 59 to 65 — because a wikilink's underline never showed in
-  a foreground. Nothing fell.
-- A specimen carries no trailing newline, and a specimen that fires no rule fails. An empty last
-  line takes a token of width 1 from vscode-textmate for the newline it stands before — base scope,
-  no character painted — and flattened into the reading it hands every specimen the default colour:
-  on `snazzy-light` that gave a transclusion a look the filter run's unpainted space had held alone,
-  and the pair read 62 where it stands at 63. A zero-width filter does not catch it; not asking for
-  the line does.
-- A text reference carries `variable.other.reference.tiddlywiki5` beside the name it publishes. The
-  `string.` family carried five of six constructs against 62 of 65 themes, and the weakest pair in
-  the table sat squarely in it: a transclusion wears `string.text-reference`, a wikilink wears
-  `string.other.link.title`, and a theme ruling on the one-segment root painted both bodies one
-  colour while both punctuations fell to the default. Traced on `andromeeda` before the aggregate
-  was believed. TiddlyWiki's parser assigns a text reference the INDIRECT kind — a name it
-  dereferences against the store, never string content — so the family shape stands FIRST and
-  `string.text-reference` stands LAST and keeps any tie. Measured: a transclusion parts from a
-  wikilink in 58 of 65 rather than 54, and no other pair of the seven specimens moves.
-- `still` passes over ground this repository does not hold. The gate pointed at `./corpus`, where
-  `swallow-witness` already cuts all 38 files with the same comparison — measured, both find the
-  same 8 classes — so the pass reported `0 unnamed` as a stopping-condition verdict while measuring
-  what another gate had measured. `--host` names TiddlyWiki's own tiddlers, 4403 carriers standing
-  outside this corpus and inside a checkout other gates already need. It found an unnamed class on
-  its first run, in 3.4 seconds.
-- A definition-block ruling moved from the corpus ledger to the carrier ledger. No corpus cut reads
-  that way once every offset reading stays in one space, and a ruling with no specimen fails the
-  corpus gate by design; TiddlyWiki's own tiddlers carry it.
-
-- `legibility --verbose` reports FAMILY PRESSURE, and ratchets nothing. A theme rule naming a
-  one-segment root reaches every scope beginning there, so constructs sharing such a root get pulled
-  toward one colour and a deeper rule must pull them back. Measured: `string` is claimed by five of
-  the six constructs and 62 of 65 themes rule on the bare root — the pressure behind every weak pair
-  here — while `markup` is claimed by two and one theme rules on its root, which is why a raw span
-  takes its name from that family and collides with nothing. A family root names a decision rather
-  than a number, so the reading judges nothing.
-- A raw span carries `markup.inline.raw.string.tiddlywiki5` — the family shape markdown, asciidoc
-  and mediawiki all write, under this grammar's own suffix, standing FIRST so a theme naming this
-  grammar's own scopes keeps any tie. Measured over 65 bundled themes, a code span parted from prose
-  in 53 and parts in 56; no other pair of constructs reads closer, and the weakest pair anywhere
-  moves from 53 to 54.
-- The `string.` family stands taken, which the attempt surfaced. A wikilink wears
-  `string.other.link.title` and a transclusion wears `string.text-reference`, so a third construct
-  named into that family reads as those two wherever a theme rules on the family root: giving the
-  span `string.other` gained 4 themes against prose and cost 8 against a transclusion and 2 against
-  a wikilink. The per-pair floor caught the trade the run it landed. `string.quoted.other` reaches
-  58 and calls a raw run a quoted one; `support.type.raw` reaches 58 and calls it a type the
-  framework provides — both declined, the ruling `keyword.control.list` already drew at 100%.
-
-### Added
-- `legibility` reads what a READER sees. Every other colour instrument reads scopes — whether an
-  opener and its closer paint alike, whether a construct reaches themes at all — and none asks
-  whether a call looks like a filter run. Scopes can move, stay pinned, stay faithful to the parser,
-  and still cost a reader the difference between two constructs. 21 pairs over 65 themes, each with
-  its own floor in `corpus/legibility-floor.txt`; the weakest stands at 53, a code span against
-  prose, which carries `markup.raw.inline` and two backticks that twelve themes rule on none of.
-- The reading paints WHOLE constructs, and the gate asserts that it does. Measured on container
-  scopes alone, a call, a filter run, a transclusion and prose each resolve to one colour and 44 of
-  65 themes paint them identically — a gate built that way would rule a healthy grammar broken. The
-  distinction rides on the punctuation and name scopes inside, where every construct parts from
-  prose in all 65.
-- A floor PER PAIR, because one floor on the weakest pair reads green through a loss anywhere else:
-  stripping a call of every name a theme rules on left the weakest pair exactly where it stood. The
-  collision found that the day the gate stood up.
-
-### Fixed
 - A skip carries a ruling, never a sentence. The gate list holds back what renders no verdict, and
   that exclusion answered to a comment — the comment claimed `snap` carried its per-scope runs whole
   while `snap` stood outside the list. `CIGates.tid` gains `notGates`, where a script standing
   outside the gates names why. Two more surfaced on the way: `lint-closure` and `package-contents`
   run in CI, render verdicts, and stood in no gate list — hidden from the check written to find
   exactly that, because it excluded runners by NAME PREFIX and both began with one.
-
-### Changed
-- A runaway names its region by KIND, innermost-first, in one vocabulary two witnesses read
-  (`tools/region-kind.js`). `still` and `swallow-witness` both keyed on the first
-  meta./source./string. scope in the stack, which stands OUTERMOST, so one cause filed under
-  whichever region enclosed it — a call opening a block keyed as a call, the same call opening
-  inside prose keyed as a paragraph. `markup.*` names no kind deliberately: it stands on 38% of
-  corpus tokens and would absorb any finding. A stack no kind claims reads UNCLASSIFIED and gets
-  examined rather than filed under its container.
-- Ledger keys speak that vocabulary. `comment.block.html.*` and `meta.embedded.block.html.*` move to
-  `comment.*` and `meta.embedded.*`; the carrier ledger's call and CSS rulings fold into
-  `meta.variable.call.*` and `meta.embedded.*`; and the paragraph ruling DISSOLVES — the kind
-  vocabulary absorbs the cause it named. The breadth guard tells a migration from a widening: a key
-  that no longer speaks the vocabulary cannot be compared to one that does.
-
-### Fixed
 - A ruling's breadth answers to the GROUND it stands on. The guard scored a key's shape — wildcards
   and literal segments — and ranked ground backwards: `meta.codeblock.*` carries a wildcard and
   stands on 3.5% of corpus tokens, `meta.paragraph.tiddlywiki5` carries none and stood on 18%. Worse,
@@ -202,8 +70,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - `call-parity` asserts the `<$macrocall>` widget where that scope exists. The guard read declared
   fields for `meta.tag.widget.macrocall`, which no grammar spells — every widget name derives from
   its match as `meta.tag.widget.$3` — so a careful comment sat over a branch that excluded nothing.
-
-### Fixed
 - A call's end no longer takes a blank-line bound. TiddlyWiki builds a call wherever `>>` stands
   ahead anywhere in the source — one blank line or many — so the bound cut a construct the host
   carries, and the closer then read as whatever its line looked like standing alone: a blockquote.
@@ -241,17 +107,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   restate every ruling there.
 - Four dialect scopes stood unexercised: they paint a lar URI's query string, which no sample
   carried. The specimen carries one, and a bearing arrow standing in prose.
-
-### Changed
-- Every call site names a call beside the name it publishes. `<<name …>>` reaches a macro, a
-  procedure, a function or a custom widget, and nothing at the site says which — TiddlyWiki refuses
-  to guess and builds a `transclude` carrying `$variable`. Twenty-five sites gained
-  `meta.variable.call.*`, `punctuation.definition.call.*`, `variable.name.call` and
-  `variable.call.attribute.html`, each standing BEFORE the published name, which keeps the tie in
-  `winner()` and leaves a reader's `editor.tokenColorCustomizations` reaching what it always
-  reached. Measured across 3336 corpus tokens and 65 themes: no colour moves.
-
-### Fixed
 - `call-parity` holds the word `macro` in its three senses, which TiddlyWiki's own move to
   procedures, functions and custom widgets at 5.3.0 split apart. The definition sense stands live:
   `$param$` substitutes inside a body `\define` opened and stands literal inside one `\procedure`
@@ -485,7 +340,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   parsePragmas nests every later block beneath the definition above it. A sentinel any specimen
   can also open collides with the head it follows. So the sentinel stands at a known offset and
   each reader answers for that offset alone.
-
 - A code region reads literally, and a label types it. TiddlyWiki hands a tick span and a code
   block to no parser, and every shipped grammar reached for agrees: VS Code's markdown, wooorm's
   markdown-tm-language, Pygments, nvim-treesitter, Helix and tree-sitter-markdown all decline to
@@ -801,6 +655,41 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- Specimens for 23 regions no cut in this corpus ever opened, and the unasked ceiling falls from 44
+  to 21. `pragmas.signatures.tw` carries a `\define` signature closing on a later line in every
+  default quoting the grammar holds a region for, and a `\parameters` directive behind it;
+  `spans.multiline.tw` gains five widget attribute values — filtered, indirect, variable, bracketed
+  and substituted — an inline call mid-paragraph, an XML processing instruction, a script under a
+  type no grammar claims, and an element name no grammar claims inside math. A pragma signature at
+  the TOP of `spans.multiline.tw` was measured and taken out again: it wraps every later cut in a
+  parameters node, which collapsed 60 cuts to one ruled class and hid two real divergences the file
+  already surfaced. The residue holds three populations and none wants a specimen — a region whose
+  end matches where its begin does, a region every transclusion rule closes on `<<<` because the
+  probe's own sentinel appears in its end pattern, and a JavaScript line comment.
+- `still --reach` crosses EVERY carrier and ratchets the share it finds fully named, seated in
+  `corpus/carrier-reach-floor.txt` at 4342 of 4365. A sampled run reads 25 of 4403 carriers and
+  prints a verdict on the ground; measured over the whole of it, 23 carriers carry a class no ledger
+  names, so a draw of 25 misses all 23 about seven times in eight — seeds 1, 2, 9 and 13 read green
+  and seed 5 read red off one unchanged tree. The ratchet counts a CARRIER, never a seed and never a
+  class: 200 seeds at sample 25 draw five thousand carriers and reach 2979 distinct ones, so a seed
+  count names a budget rather than a coverage, and a count of classes named rises by ruling
+  generously — the move the ground ceiling beside it exists to weigh. A carrier no cut reads stands
+  UNSWEPT rather than clean and rides the other side of the denominator. Collided by withdrawing
+  every corpus ruling, with the whole ledger as the control.
+- `legibility` reads what a READER sees. Every other colour instrument reads scopes — whether an
+  opener and its closer paint alike, whether a construct reaches themes at all — and none asks
+  whether a call looks like a filter run. Scopes can move, stay pinned, stay faithful to the parser,
+  and still cost a reader the difference between two constructs. 21 pairs over 65 themes, each with
+  its own floor in `corpus/legibility-floor.txt`; the weakest stands at 53, a code span against
+  prose, which carries `markup.raw.inline` and two backticks that twelve themes rule on none of.
+- The reading paints WHOLE constructs, and the gate asserts that it does. Measured on container
+  scopes alone, a call, a filter run, a transclusion and prose each resolve to one colour and 44 of
+  65 themes paint them identically — a gate built that way would rule a healthy grammar broken. The
+  distinction rides on the punctuation and name scopes inside, where every construct parts from
+  prose in all 65.
+- A floor PER PAIR, because one floor on the weakest pair reads green through a loss anywhere else:
+  stripping a call of every name a theme rules on left the weakest pair exactly where it stood. The
+  collision found that the day the gate stood up.
 - A witness for what a reader sees. Every other gate reads scope names, and a name comes apart
   from a colour in both directions: two names paint alike when no theme rule reaches past their
   shared family, and one construct paints two ways when its parts sit in different families.
@@ -951,7 +840,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   ground supports the reading: of 2863 entries across TiddlyWiki's own 28 dictionaries, 958 carry a
   wikitext construct, most of them a `<<colour …>>` call in a palette. A `.multids` file already read
   every value that way, one line per tiddler; the two formats now agree.
-
 - A TIDDLER'S TYPE DECIDES WHAT LANGUAGE ITS BODY CARRIES. TiddlyWiki reads a body through the
   parser its `type` field names, and this grammar read every `.tid` body as wikitext whatever the
   field said — a JSON tiddler's braces coloured as prose, a plain-text tiddler's `!!` as a heading,
@@ -963,7 +851,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   wikitext. The type line opens a region that never closes — the remaining header fields read inside
   it, and the body after the blank line reads as the guest language — which is the shape the inline
   parser mode and the pragma zone already carry.
-
 - THE DIVERGENCE GATE HOLDS. Nothing the grammar claims stands unexplained: 0 spans where it claims
   a construct TiddlyWiki refuses, 0 where it condemns one TiddlyWiki builds. It ran red for the whole
   of this release and closed on two operator rulings and four measurements.
@@ -978,7 +865,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   turns on what follows the mark. An image with a blank source carries every mark an image carries.
   Both stand ruled to ONE fixture each, so the shape still reports anywhere else: planted in a
   fixture no ruling names, the same image reports six spans and fails the gate.
-
 - A STATE TOGGLE NEVER TAKES A COLOUR AWAY. TiddlyWiki carries pragmas that change what its parser
   reads — `\rules except rules` turns the rules pragma off, `\parsermode inline` reads the rest of
   the tiddler as one inline run — and after such a line the parser refuses constructs it would
@@ -989,7 +875,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - The two fixtures holding a whole HTML document carry the ruling their DOCTYPE already carried. A
   `.tw` may hold one, where a tag and its attributes read; wikitext builds no node for either. 8
   spans join the three metadata families already named.
-
 - `\whitespace` and `\parsermode` open on the separator, the way TiddlyWiki opens them. Demanding a
   recognised value — `trim`, `notrim`, `block`, `inline` — refused the construct where the parser
   builds it, so a line carrying an unknown value read as prose here and as a directive there. The
@@ -999,13 +884,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   ending in `[^\S\n]` REQUIRES that whitespace, so `\rules ` became `\rules` and opened nothing.
   Those three cases keep the separator now and carry a word after it, and the verdict keys on the
   line the probe wrote rather than on the case's own text.
-
 - A directive wants a space where TiddlyWiki wants one. vscode-textmate hands the scanner a line
   WITH its newline, so `\s+` after a keyword matched the line ending — and a bare `\rules`,
   `\import`, `\whitespace` or `\parsermode` coloured as a working directive where TiddlyWiki reads
   prose. Its own rule modules spell the separator `[^\S\n]`, and these four now say the same. The
   divergence gate falls from 153 spans to 77.
-
 - A pragma reads as a pragma only where TiddlyWiki reads one. Its parser runs `parsePragmas()` once,
   before `parseBlocks()`, and never returns to it, so a backslash directive standing after any block
   content renders as prose — and the grammar coloured one as a working directive anywhere in a file.
@@ -1029,7 +912,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   container carries the pragma rules and names the base scope through `contentName`, so every
   assertion naming `text.html.tiddlywiki5` still finds it — an include compiles the other grammar's
   `$self`, which carries its `scopeName` and then flattens into its children, so nothing pushes it.
-
 - The dialect's sigils read everywhere the base grammar reads. Its injection named three block
   contexts by hand, and a sigil inside an unordered list read as an ordinary macro call for it — the
   selector reached the three somebody listed. One selector on the base's root scope reaches the whole
@@ -1037,7 +919,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Every snippet says what it inserts. 73 of the 125 carried no description, so a learner reaching for
   `\rules` met a name and a body and nothing saying what the construct does. A gate holds the set to
   it, and a description that only repeats its snippet's name reads as none.
-
 - A TypeScript compiler stands in this repository's own dependencies, pinned to the version whose
   bytes the committed modules carry. Continuous integration rebuilds the edition and asks whether the
   tree holds what the build writes — `npm run edition:check` — so a source edited without a rebuild
@@ -1049,7 +930,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   the same bytes. A pattern now stalls only when it costs more than the budget AND more than twenty
   times a control timed the same way, on the same inputs, under the same load. Both stand adjustable,
   so the collision drives the reading rather than the machine.
-
 - The edition's compiled modules answer to the TypeScript standing beside them. TypeScript sits in
   no dependency of this repository — the build finds a compiler in a parent checkout — so nothing in
   continuous integration could rebuild and compare, and the compiled modules ARE the shipped
@@ -1065,7 +945,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   construct's own words do not stand alone. Five constructs took their bar from five comparators
   under a line that said six. The count stands per comparator now, and a comparator carrying nothing
   fails rather than sitting there.
-
 - The closing semicolon of a numeric or hexadecimal entity carries its punctuation scope. Both rules
   named capture 3 where two groups stand — copied from the named-entity rule above them, which has
   three — so `&#39;` and `&#x27;` coloured their `&` and left their `;` bare while `&amp;` coloured
@@ -1084,7 +963,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - The dialect's own snippets, the file associations and the language configurations answer to one
   reading: every language this extension defines carries a grammar, a configuration, an association
   and its family's snippets, or a ruling names what stands in the way.
-
 - Nothing this grammar emits stands unreached. The corpus reached 466 of the scopes it declares and
   three stood outside, and the three left by three different roads. A square-bracket string inside a
   macro call wanted a specimen and got one. The macro-call parameter separator sat last in a list
@@ -1104,7 +982,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - The snippet reader honours VS Code's escapes. A body spells a pragma `\\define` and INSERTS
   `\define`, so reading it verbatim handed the parser two backslashes — every pragma snippet then
   read clean for the wrong reason, and read as prose against the grammar for the same one.
-
 - The dialect carries the wikitext snippets. `memetic-wikitext` held the grammar and the language
   configuration and not the 125 snippets the base offers, so an author writing a `.mem` reached for
   a widget snippet and met nothing, with no error anywhere naming the absence. The syntax-test
@@ -1124,7 +1001,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   TextMate's own two rules: an include resolves against the nearest enclosing repository, and a
   rule's own repository stands in scope only inside it. This grammar carries two nested repositories,
   and a walker reading only the top level calls twelve working includes broken.
-
 - Continuous integration runs every witness the repository stands. It reached six of twenty-two,
   and sixteen stood green in a developer's terminal and nowhere else — seven of them with nothing
   in CI exercising their verdict at all. Two jobs carry them now: one that blocks a merge, and one
@@ -1145,7 +1021,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   one that did not stood permanently red over spans a ruling already explained.
 - `overreach-corpus` named the same run as `overreach-host` without its rulings or its excludes, so
   it could only ever fail. `overreach-host` stands.
-
 - A gate reads a `.tid` the same on either line ending. Six tools split a tiddler by scanning for
   two newlines in a row, and that reading answers wrongly three ways: a file opening with a blank
   line hands back a fragment of its body, a CRLF file matches nothing and reads as bodiless, and a
@@ -1164,7 +1039,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   gate holds the directory to it: a grammar here that no runner loads fails, and so does a path
   `grammars.sh` names that nothing holds. A grammar nothing loads costs an assertion its meaning
   silently — every reading against it comes back absent rather than wrong.
-
 - An instrument and the test that collides it stand in one directory. A second `tools/` under
   `tests/` held the tests, and the name promised a mirror the directory never held: of 29 tests
   there, 15 answered a question about the whole repository and 14 instruments carried no test under
@@ -1183,13 +1057,106 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   `.meta` sidecar outranks a spec's own fields, taking both halves of the pair out of the house
   namespace.
 
-### Removed
-- `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`
-  excluded the directory, and no tool, test or doc read from it. Git holds them.
-- A bare `?` carries no bearing scope. An end names itself — `from=?`, `to=?` — so the glyph rides as
-  an ordinary value, and standing alone it reads as content like any other character.
-
 ### Changed
+- The ruled-ground ceiling re-seats at 56.6%, with no ruling broadened — the same run reports zero.
+  The share reads the CORPUS'S composition, and the corpus grew to lower the unasked ceiling; every
+  construct that lowers it wears a scope a ruling already names, necessarily, because a construct
+  that can run away is exactly what a runaway ruling covers. The two ratchets pull against each
+  other by construction, and the pair wants reading together: the broadening guard weighs a key
+  against the key that replaced it, and `still --reach` measures what the rulings cover on ground
+  outside this repository altogether.
+- `swallow-witness --verbose` names the regions standing unasked. A ceiling nobody can act on falls
+  by luck; lowering it means writing a specimen that opens a NAMED region.
+- One grammar reading per carrier, resumed at each cut from the stack that cut's head ends on.
+  A grammar reads strictly left to right, so the stack after a line answers to nothing following it;
+  re-reading each head in full cost the SQUARE of a file's length and measured at 90% of a sampled
+  run's time, which put the whole ground out of a gate's reach. The full pass now crosses 4403
+  carriers in 31 seconds. `tokenizeFrom` holds the reading, so `tokenize` and the resumed walk stay
+  one implementation, and `still.test.js` collides the two readings cut for cut with a control
+  against a draw that diverges nowhere.
+- `attribute-witness --verbose` counts the disagreements standing on an attribute that carries NO
+  value in the source. TiddlyWiki types a bare `allowfullscreen` as a string and SYNTHESISES the
+  value "true", and the span it hands back covers the attribute's NAME, so naming that span a string
+  would paint the name as its own value — 15 of the 52 part that way, by construction. Reading the
+  absence of an `=` counted 29: a positional macro parameter carries no separator either and its
+  whole span IS its value, so the test is the span standing equal to the attribute's own name.
+- `legibility` takes its POPULATION from the host. Seven specimens stood in the tool by hand and the
+  standing lesson answered: a hand-written enumeration cannot notice what it missed. It carried no
+  emphasis at all, and emphasis holds the weakest readings in the table — a procedure definition
+  against a macro definition at 0 of 65, subscript against superscript at 0, strikethrough against
+  underline at 17, none of them visible before. `$tw.modules.types.wikirule` names 44 rules and the
+  harvest records that answer, so 40 constructs measure and four leave by declaration: TiddlyWiki
+  splits comment, filtered transclusion, call and transclusion by POSITION, and a reader meets one
+  thing either way. A rule the host adds arrives unmeasured and says so; a specimen naming a rule
+  the host dropped reads as outliving what it explains. 820 floors re-seated.
+- The reading carries `fontStyle` beside foreground. A reader tells bold from italic without reading
+  a word and most themes carry that in fontStyle alone: measured on foreground by itself, bold
+  parted from italic in 23 of 65 and the gate would have called a healthy grammar broken one family
+  further along. Two pairs seated under the older reading ROSE — a wikilink against prose from 61 to
+  65, a code span against a wikilink from 59 to 65 — because a wikilink's underline never showed in
+  a foreground. Nothing fell.
+- A specimen carries no trailing newline, and a specimen that fires no rule fails. An empty last
+  line takes a token of width 1 from vscode-textmate for the newline it stands before — base scope,
+  no character painted — and flattened into the reading it hands every specimen the default colour:
+  on `snazzy-light` that gave a transclusion a look the filter run's unpainted space had held alone,
+  and the pair read 62 where it stands at 63. A zero-width filter does not catch it; not asking for
+  the line does.
+- A text reference carries `variable.other.reference.tiddlywiki5` beside the name it publishes. The
+  `string.` family carried five of six constructs against 62 of 65 themes, and the weakest pair in
+  the table sat squarely in it: a transclusion wears `string.text-reference`, a wikilink wears
+  `string.other.link.title`, and a theme ruling on the one-segment root painted both bodies one
+  colour while both punctuations fell to the default. Traced on `andromeeda` before the aggregate
+  was believed. TiddlyWiki's parser assigns a text reference the INDIRECT kind — a name it
+  dereferences against the store, never string content — so the family shape stands FIRST and
+  `string.text-reference` stands LAST and keeps any tie. Measured: a transclusion parts from a
+  wikilink in 58 of 65 rather than 54, and no other pair of the seven specimens moves.
+- `still` passes over ground this repository does not hold. The gate pointed at `./corpus`, where
+  `swallow-witness` already cuts all 38 files with the same comparison — measured, both find the
+  same 8 classes — so the pass reported `0 unnamed` as a stopping-condition verdict while measuring
+  what another gate had measured. `--host` names TiddlyWiki's own tiddlers, 4403 carriers standing
+  outside this corpus and inside a checkout other gates already need. It found an unnamed class on
+  its first run, in 3.4 seconds.
+- A definition-block ruling moved from the corpus ledger to the carrier ledger. No corpus cut reads
+  that way once every offset reading stays in one space, and a ruling with no specimen fails the
+  corpus gate by design; TiddlyWiki's own tiddlers carry it.
+- `legibility --verbose` reports FAMILY PRESSURE, and ratchets nothing. A theme rule naming a
+  one-segment root reaches every scope beginning there, so constructs sharing such a root get pulled
+  toward one colour and a deeper rule must pull them back. Measured: `string` is claimed by five of
+  the six constructs and 62 of 65 themes rule on the bare root — the pressure behind every weak pair
+  here — while `markup` is claimed by two and one theme rules on its root, which is why a raw span
+  takes its name from that family and collides with nothing. A family root names a decision rather
+  than a number, so the reading judges nothing.
+- A raw span carries `markup.inline.raw.string.tiddlywiki5` — the family shape markdown, asciidoc
+  and mediawiki all write, under this grammar's own suffix, standing FIRST so a theme naming this
+  grammar's own scopes keeps any tie. Measured over 65 bundled themes, a code span parted from prose
+  in 53 and parts in 56; no other pair of constructs reads closer, and the weakest pair anywhere
+  moves from 53 to 54.
+- The `string.` family stands taken, which the attempt surfaced. A wikilink wears
+  `string.other.link.title` and a transclusion wears `string.text-reference`, so a third construct
+  named into that family reads as those two wherever a theme rules on the family root: giving the
+  span `string.other` gained 4 themes against prose and cost 8 against a transclusion and 2 against
+  a wikilink. The per-pair floor caught the trade the run it landed. `string.quoted.other` reaches
+  58 and calls a raw run a quoted one; `support.type.raw` reaches 58 and calls it a type the
+  framework provides — both declined, the ruling `keyword.control.list` already drew at 100%.
+- A runaway names its region by KIND, innermost-first, in one vocabulary two witnesses read
+  (`tools/region-kind.js`). `still` and `swallow-witness` both keyed on the first
+  meta./source./string. scope in the stack, which stands OUTERMOST, so one cause filed under
+  whichever region enclosed it — a call opening a block keyed as a call, the same call opening
+  inside prose keyed as a paragraph. `markup.*` names no kind deliberately: it stands on 38% of
+  corpus tokens and would absorb any finding. A stack no kind claims reads UNCLASSIFIED and gets
+  examined rather than filed under its container.
+- Ledger keys speak that vocabulary. `comment.block.html.*` and `meta.embedded.block.html.*` move to
+  `comment.*` and `meta.embedded.*`; the carrier ledger's call and CSS rulings fold into
+  `meta.variable.call.*` and `meta.embedded.*`; and the paragraph ruling DISSOLVES — the kind
+  vocabulary absorbs the cause it named. The breadth guard tells a migration from a widening: a key
+  that no longer speaks the vocabulary cannot be compared to one that does.
+- Every call site names a call beside the name it publishes. `<<name …>>` reaches a macro, a
+  procedure, a function or a custom widget, and nothing at the site says which — TiddlyWiki refuses
+  to guess and builds a `transclude` carrying `$variable`. Twenty-five sites gained
+  `meta.variable.call.*`, `punctuation.definition.call.*`, `variable.name.call` and
+  `variable.call.attribute.html`, each standing BEFORE the published name, which keeps the tie in
+  `winner()` and leaves a reader's `editor.tokenColorCustomizations` reaching what it always
+  reached. Measured across 3336 corpus tokens and 65 themes: no colour moves.
 - A shared injection stands in one grammar and reaches every scope. A TextMate injection keys on a
   scope name, and a grammar wrapping another carries a different one — so an injection written
   inside the wikitext grammar fires only there, and each of the four wrappers had to copy it.
@@ -1218,6 +1185,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   language claimed, so VS Code loaded it and no document ever reached it: a `.meta` sidecar
   carries fields and no body, and the `tid` language already lists `.meta` among its extensions
   and colours one correctly.
+
+### Removed
+- `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`
+  excluded the directory, and no tool, test or doc read from it. Git holds them.
+- A bare `?` carries no bearing scope. An end names itself — `from=?`, `to=?` — so the glyph rides as
+  an ordinary value, and standing alone it reads as content like any other character.
 
 ## 2.2.1
 
