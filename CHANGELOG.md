@@ -6,19 +6,64 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## 2.3.0 — unreleased
 
+### Added
+- `still --reach` crosses EVERY carrier and ratchets the share it finds fully named, seated in
+  `corpus/carrier-reach-floor.txt` at 4342 of 4365. A sampled run reads 25 of 4403 carriers and
+  prints a verdict on the ground; measured over the whole of it, 23 carriers carry a class no ledger
+  names, so a draw of 25 misses all 23 about seven times in eight — seeds 1, 2, 9 and 13 read green
+  and seed 5 read red off one unchanged tree. The ratchet counts a CARRIER, never a seed and never a
+  class: 200 seeds at sample 25 draw five thousand carriers and reach 2979 distinct ones, so a seed
+  count names a budget rather than a coverage, and a count of classes named rises by ruling
+  generously — the move the ground ceiling beside it exists to weigh. A carrier no cut reads stands
+  UNSWEPT rather than clean and rides the other side of the denominator. Collided by withdrawing
+  every corpus ruling, with the whole ledger as the control.
+
 ### Fixed
+- The pragma zone closes MID-LINE, where a comment it holds ends mid-line. TiddlyWiki reads
+  `commentblock` in pragma mode, so a comment opening a tiddler stands inside the zone;
+  parsePragmas() consumes it, looks again from wherever it ended, finds no pragma, and hands the
+  rest to parseBlocks(). A zone that could only close at a line START kept eight of TiddlyWiki's own
+  core templates, each of which writes `--><$view field="text" .../>` on one line, and every
+  attribute after the `-->` went unpainted while the parser placed all of them. 22 attributes came
+  back and the ceiling fell from 74 to 52. Controls: a pragma standing after the same `-->` keeps
+  the zone, and so does a second comment.
 - Every offset reading stays in ONE coordinate space. A nested parse restarts offsets at zero —
   measured, `$$$text/vnd.tiddlywiki` holding a quoteblock reports the typed block at 23..42 and the
   quoteblock inside it at 0..14 — so a witness asking which rule covers an absolute offset read an
   inner node as standing at the top of the document. Three witnesses did: `still`, `swallow-witness`
   and `light-cone`. `flatten(tree, { sameSpace: true })` prunes a subtree whose span falls outside
   its parent's, which derives the detection rather than listing node types that go stale.
+- A cut inside a conditional body whose opener carries text on the next line. TiddlyWiki reads ONE
+  bit off the source directly after `%>` — a double linebreak standing there — and that bit fixes the
+  parsing mode for the WHOLE remaining body: block mode builds the constructs that follow, inline
+  mode runs a flat text run to the end of the source and carries blank lines and `<<<` alike inside
+  it. Measured at `Conditional.tid`, cut 7 ends on the opener and the parser builds a quoteblock,
+  cut 8 hands it one line of body and the parser builds one text node covering the sentinel. Neither
+  light-cone arm moves it; inserting a blank line directly after the opener moves it on all four
+  cuts, with trailing nonsense as the control. Five constructions collided and every one paints in
+  inline mode — an `end` consuming the newline, an `end` on a blank-line lookahead, a `while` on a
+  non-blank line, that `while` holding a never-ending child, and `end` `^` under
+  `applyEndPatternLast`. A stack carries regions, never the line count that tells the blank line
+  closing a block-mode body apart from a blank line inside an inline run. Ruled on carrier ground.
 - The bogus matches had MASKED a real class. With the readings honest, a cut inside a `\define`
   body reports what stands there: one `set/macrodef` node and nothing inside it, because TiddlyWiki
   stores a macro body verbatim and never parses it, while the grammar paints wikitext in there on
   purpose. Ruled in both ledgers, on their own ground.
 
 ### Changed
+- One grammar reading per carrier, resumed at each cut from the stack that cut's head ends on.
+  A grammar reads strictly left to right, so the stack after a line answers to nothing following it;
+  re-reading each head in full cost the SQUARE of a file's length and measured at 90% of a sampled
+  run's time, which put the whole ground out of a gate's reach. The full pass now crosses 4403
+  carriers in 31 seconds. `tokenizeFrom` holds the reading, so `tokenize` and the resumed walk stay
+  one implementation, and `still.test.js` collides the two readings cut for cut with a control
+  against a draw that diverges nowhere.
+- `attribute-witness --verbose` counts the disagreements standing on an attribute that carries NO
+  value in the source. TiddlyWiki types a bare `allowfullscreen` as a string and SYNTHESISES the
+  value "true", and the span it hands back covers the attribute's NAME, so naming that span a string
+  would paint the name as its own value — 15 of the 52 part that way, by construction. Reading the
+  absence of an `=` counted 29: a positional macro parameter carries no separator either and its
+  whole span IS its value, so the test is the span standing equal to the attribute's own name.
 - `legibility` takes its POPULATION from the host. Seven specimens stood in the tool by hand and the
   standing lesson answered: a hand-written enumeration cannot notice what it missed. It carried no
   emphasis at all, and emphasis holds the weakest readings in the table — a procedure definition

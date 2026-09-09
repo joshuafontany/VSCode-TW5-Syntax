@@ -12,20 +12,23 @@
 // gets gated beside its entries: a ruling may gain entries and may not gain breadth. The check
 // reads what the last commit held, since breadth names a change rather than a state.
 //
-//   node tools/still.js --host | --over <dir> [--sample N] [--seed N] [--verbose]
+//   node tools/still.js --host | --over <dir> [--sample N] [--seed N] [--reach] [--verbose]
 
 'use strict';
 
 const fs = require('node:fs');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
-const { ROOT, tokenize } = require('./tokenizer.js');
+const { ROOT, tokenize, tokenizeFrom } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
 const { parseTid } = require('./wiki-data.js');
 const { kindOf, KINDS } = require('./region-kind.js');
 
 const argv = process.argv.slice(2);
 const verbose = argv.includes('--verbose');
+// A DRAW DECIDES A SAMPLED RUN. `--reach` drops the draw and crosses every carrier, so the verdict
+// answers to the ground rather than to the seed.
+const reach = argv.includes('--reach');
 // `--host` names the ground every gate already needs a checkout for: TiddlyWiki's own tiddlers,
 // which stand OUTSIDE this repository's corpus. The instrument exists for ground the corpus does
 // not hold — a class the ledgers name says the base held and the ground merely widened, and ground
@@ -179,7 +182,71 @@ function carriers(dir) {
 
 const oracle = boot(resolveTiddlyWiki(), {});
 
-module.exports = { groundOf, ruledGround, GROUND_CEILING, overCeiling, named, matcher, kindOf };
+// ── the reach a verdict rests on ──────────────────────────────────────────────────────────────
+//
+// A sampled run reads 25 of 4403 carriers and reports a verdict on all of them. Measured over the
+// whole ground: 23 carriers carry a class no ledger names, so a draw of 25 misses every one of them
+// about seven times in eight — which is why seeds 1, 2, 9 and 13 read green and seed 5 read red off
+// one tree. The floor names how much of the ground the pass has actually crossed and found named.
+const REACH_FLOOR = (() => {
+  const p = path.join(ROOT, 'corpus', 'carrier-reach-floor.txt');
+  return fs.existsSync(p) ? Number(fs.readFileSync(p, 'utf8').split('\n')[0]) : 0;
+})();
+
+/** Whether a measured reach falls below the floor, read at the precision the run REPORTS. */
+const underFloor = (share) => Number((100 * share).toFixed(1)) < Number((100 * REACH_FLOOR).toFixed(1));
+
+/**
+ * Every divergence a carrier holds, as a class id per cut — or `null` where no cut reads.
+ *
+ * ONE GRAMMAR READING PER CARRIER. A grammar reads strictly left to right, so the stack a head ends
+ * on stands the same whether the reader arrives there through the whole file or through that head
+ * alone; the sentinel's own lines then read from that stack. Re-reading each head in full costs the
+ * SQUARE of the file's length, and measured at 90% of a sampled run's time — which put the whole
+ * ground out of a gate's reach. `tools/still.test.js` collides the two readings cut for cut.
+ */
+async function divergencesIn(file) {
+  const reading = READINGS[path.extname(file)];
+  const text = fs.readFileSync(file, 'utf8');
+  const lines = text.split('\n');
+  // A `\rules` pragma narrows the parser's own rule set, which no rule stack carries; a long file
+  // costs its own length squared on the parser side, which no reading here collapses.
+  if (/^\\rules /m.test(text) || lines.length > 400) return null;
+  const { stacks } = await tokenizeFrom(reading.scope, lines);
+  const found = [];
+  for (let cut = 1; cut <= lines.length; cut += 1) {
+    const head = lines.slice(0, cut).join('\n').replace(/\n+$/, '');
+    if (!head.trim()) continue;
+    const specimen = `${head}\n\n${SENTINEL}`;
+    const read = reading.body ? reading.body(specimen) : specimen;
+    const at = read.lastIndexOf(SENTINEL);
+    if (at < 0) continue;
+    // The head after its trailing blank lines come off — the lines the file's own reading covered.
+    const held = head.split('\n').length;
+    const { tokens } = await tokenizeFrom(reading.scope, ['', '<<<'], stacks[held - 1]);
+    const sentinel = tokens[1] ?? [];
+    const tree = flatten(oracle.parse(read).tree, { sameSpace: true });
+    const parser = tree.some((n) => n.rule === 'quoteblock' && n.start === at);
+    const grammar = sentinel
+      .some((t) => t.scopes.some((s) => s.startsWith('punctuation.definition.markup.quote.quoteblock.begin')));
+    if (parser === grammar) continue;
+    const scopes = sentinel.flatMap((t) => t.scopes)
+      .filter((s) => !/^(text\.html\.tiddlywiki5|source\.tiddlywiki5)[a-z.-]*$/.test(s) && !/quoteblock/.test(s));
+    const key = parser
+      ? kindOf(scopes)
+      : (() => {
+        const covering = tree.filter((n) => typeof n.start === 'number' && n.start <= at && n.end >= at && n.rule);
+        return covering.length ? covering[covering.length - 1].rule : '(nothing)';
+      })();
+    found.push({ cut, id: `${parser ? 'runaway' : 'overbound'} ${key}` });
+  }
+  return found;
+}
+
+module.exports = {
+  groundOf, ruledGround, GROUND_CEILING, overCeiling, named, matcher, kindOf,
+  REACH_FLOOR, underFloor, divergencesIn, carriers, READINGS
+};
 
 if (require.main !== module) return;
 
@@ -219,6 +286,48 @@ if (require.main !== module) return;
   }
 
   const rulings = named();
+  const unruled = (id) => !rulings.some((r) => r.re.test(id.split(' ').slice(1).join(' ')));
+
+  // ── the reach ratchet ───────────────────────────────────────────────────────────────────────
+  //
+  // A CARRIER, never a seed and never a class. Seeds and carriers do not agree: 200 seeds at sample
+  // 25 draw 5000 carriers and reach 2979 distinct ones, so a count of seeds names a budget rather
+  // than a coverage. A count of classes NAMED rises by ruling generously, which is the one move
+  // every other ratchet here exists to weigh. A carrier whose every divergence falls inside a
+  // ruling is the thing a green verdict actually claims, one per carrier, counted once.
+  if (reach) {
+    const files = carriers(over);
+    let clean = 0;
+    let skipped = 0;
+    let divergences = 0;
+    const blocking = new Map();
+    for (const file of files) {
+      const found = await divergencesIn(file);
+      // A carrier no cut reads stands UNSWEPT, never clean. Counting it as named would raise the
+      // reach by adding ground nobody crossed — the shape a lucky draw already takes.
+      if (found === null) { skipped += 1; continue; }
+      divergences += found.length;
+      const here = new Set(found.map((d) => d.id).filter(unruled));
+      if (!here.size) { clean += 1; continue; }
+      for (const id of here) {
+        if (!blocking.has(id)) blocking.set(id, { carriers: 0, file: path.basename(file), cut: found.find((d) => d.id === id).cut });
+        blocking.get(id).carriers += 1;
+      }
+    }
+    const swept = files.length - skipped;
+    const share = swept ? clean / swept : 0;
+    const under = underFloor(share);
+    for (const [id, seen] of [...blocking].sort((a, b) => b[1].carriers - a[1].carriers)) {
+      console.log(`  ${String(seen.carriers).padStart(4)} carrier(s) blocked by ${JSON.stringify(id)} — e.g. ${seen.file}:${seen.cut}`);
+    }
+    if (under) {
+      console.error(`  the pass reaches ${(100 * share).toFixed(1)}% of swept carriers fully named, below the floor of ${(100 * REACH_FLOOR).toFixed(1)}%`);
+    }
+    console.log(`reach  ${clean} of ${swept} carrier(s) stand fully named, ${(100 * share).toFixed(1)}% (floor ${(100 * REACH_FLOOR).toFixed(1)}%); `
+      + `${skipped} carrier(s) no cut reads, ${divergences} divergence(s), ${blocking.size} class(es) blocking`);
+    process.exit(!under && broadened.length === 0 ? 0 : 1);
+  }
+
   // SHUFFLED, and deterministically so. Taking every Nth file walks directory order, which groups
   // carriers by bag and by whoever wrote them — a class living in one author's habits or one bag's
   // subject sits entirely outside such a sample and reads as absence. The seed keeps a finding
@@ -236,40 +345,14 @@ if (require.main !== module) return;
   const classes = new Map();
   let divergences = 0;
   for (const file of chosen) {
-    const reading = READINGS[path.extname(file)];
-    const text = fs.readFileSync(file, 'utf8');
-    const lines = text.split('\n');
-    if (/^\\rules /m.test(text) || lines.length > 400) continue;
-    for (let cut = 1; cut <= lines.length; cut += 1) {
-      const head = lines.slice(0, cut).join('\n').replace(/\n+$/, '');
-      if (!head.trim()) continue;
-      const specimen = `${head}\n\n${SENTINEL}`;
-      const read = reading.body ? reading.body(specimen) : specimen;
-      const at = read.lastIndexOf(SENTINEL);
-      const line = specimen.split('\n').length - 4;
-      if (at < 0) continue;
-      const tokens = await tokenize(reading.scope, specimen);
-      const parser = flatten(oracle.parse(read).tree, { sameSpace: true }).some((n) => n.rule === 'quoteblock' && n.start === at);
-      const grammar = (tokens[line] ?? [])
-        .some((t) => t.scopes.some((s) => s.startsWith('punctuation.definition.markup.quote.quoteblock.begin')));
-      if (parser === grammar) continue;
+    for (const { cut, id } of (await divergencesIn(file)) ?? []) {
       divergences += 1;
-      const scopes = (tokens[line] ?? []).flatMap((t) => t.scopes)
-        .filter((s) => !/^(text\.html\.tiddlywiki5|source\.tiddlywiki5)[a-z.-]*$/.test(s) && !/quoteblock/.test(s));
-      const key = parser
-        ? kindOf(scopes)
-        : (() => {
-          const covering = flatten(oracle.parse(read).tree, { sameSpace: true })
-            .filter((n) => typeof n.start === 'number' && n.start <= at && n.end >= at && n.rule);
-          return covering.length ? covering[covering.length - 1].rule : '(nothing)';
-        })();
-      const id = `${parser ? 'runaway' : 'overbound'} ${key}`;
       if (!classes.has(id)) classes.set(id, { hits: 0, file: path.basename(file), cut });
       classes.get(id).hits += 1;
     }
   }
 
-  const unnamed = [...classes].filter(([id]) => !rulings.some((r) => r.re.test(id.split(' ').slice(1).join(' '))));
+  const unnamed = [...classes].filter(([id]) => unruled(id));
   if (verbose) {
     for (const [id, seen] of [...classes].sort((a, b) => b[1].hits - a[1].hits)) {
       const known = rulings.some((r) => r.re.test(id.split(' ').slice(1).join(' ')));

@@ -1,0 +1,34 @@
+0.9947
+# The share of swept carriers whose every divergence falls inside a ruling. The count may rise and
+# may never fall.
+#
+# A sampled run reads 25 of 4403 carriers and prints a verdict. Measured over the whole ground:
+# 23 carriers carry a class no ledger names, so a draw of 25 misses all 23 about seven times in
+# eight — and that is not a hypothetical. Seeds 1, 2, 9 and 13 read green and seed 5 read red off
+# one unchanged tree, and the class seed 5 surfaced sat in ONE file of 4403. A green run at sample
+# 25 reported the draw.
+#
+# A CARRIER, NEVER A SEED AND NEVER A CLASS. Seeds and carriers do not agree: 200 seeds at sample
+# 25 draw five thousand carriers and reach 2979 distinct ones, so a seed count names a budget
+# rather than a coverage, and doubling it buys less each time. A count of CLASSES NAMED rises by
+# ruling generously — the one move `ruled-ground-ceiling.txt` beside this file exists to weigh —
+# so a ratchet on it would reward the fault its neighbour guards. What a green verdict actually
+# claims is that a carrier's divergences all fall inside a ruling, and that claim counts once per
+# carrier however many cuts or classes it holds.
+#
+# A CARRIER NO CUT READS STANDS UNSWEPT, NEVER CLEAN. 38 carriers reach the pass and leave it with
+# no reading: a `\rules` pragma narrows the parser's own rule set, which no rule stack carries, and
+# a file past 400 lines costs its own length squared on the parser side. Counting those as named
+# would raise the reach by adding ground nobody crossed, which is the shape a lucky draw already
+# takes. They ride the denominator's other side and the run prints them.
+#
+# THE FLOOR MOVES ONLY BY RULING. Seated at 4342 of 4365 on 2026-09-08. Five classes hold the
+# remaining 23 carriers: two unclassified runaways at 10 carriers each, and three single-carrier
+# classes — `overbound hardlinebreaks`, `overbound parseblock`, and a fifth unclassified runaway
+# whose stack runs five scopes deep. Each carries a ruling or a repair, and each one lands raises
+# this number.
+#
+# READ AT ONE DECIMAL OF A PERCENT, the precision the run prints, so a gate and its test cannot
+# round two ways. That grants about four carriers of slack in 4365 — narrow enough that a class
+# arriving anywhere in the ground crosses it, wide enough that the upstream checkout gaining or
+# losing a file does not.

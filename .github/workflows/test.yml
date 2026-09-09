@@ -121,6 +121,8 @@ jobs:
         run: npm run engine-witness
       - name: A pass names every divergence class it finds
         run: npm run still
+      - name: The share of carrier ground the pass crosses fully named
+        run: npm run still-reach
 
       # What a theme paints for this grammar against six comparator grammars.
       - name: Theme parity

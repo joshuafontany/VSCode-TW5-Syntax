@@ -100,18 +100,36 @@ function grammarRegistry() {
  * @returns {Promise<Array<Array<{startIndex:number,endIndex:number,scopes:string[]}>>>}
  */
 async function tokenize(scope, text) {
+  return (await tokenizeFrom(scope, text.split('\n'))).tokens;
+}
+
+/**
+ * The same reading, handing back the RULE STACK each line ends on.
+ *
+ * A grammar reads strictly left to right, so the stack a line ends on depends on the lines before
+ * it and on nothing after. A caller asking one question of a text at every cut can therefore read
+ * the text ONCE and resume from the stack a cut ends on, where re-reading the whole prefix at every
+ * cut costs the square of the file's length. `still --reach` reads 4403 carriers that way.
+ *
+ * @param {string} scope  the grammar the lines open under
+ * @param {string[]} lines  the lines, without their newlines
+ * @param {unknown} [stack]  the stack to resume from, or nothing to open fresh
+ * @returns {Promise<{tokens: Array<Array<{startIndex:number,endIndex:number,scopes:string[]}>>, stacks: unknown[]}>}
+ */
+async function tokenizeFrom(scope, lines, stack = null) {
   if (!loaded.has(scope)) loaded.set(scope, await grammarRegistry().loadGrammar(scope));
   const grammar = loaded.get(scope);
   if (!grammar) throw new Error(`no grammar stands under ${scope}`);
-  const lines = [];
-  let stack = null;
-  for (const line of text.split('\n')) {
+  const tokens = [];
+  const stacks = [];
+  for (const line of lines) {
     const read = grammar.tokenizeLine(line, stack);
     stack = read.ruleStack;
-    lines.push(read.tokens);
+    tokens.push(read.tokens);
+    stacks.push(stack);
   }
-  return lines;
+  return { tokens, stacks };
 }
 
-module.exports = { ROOT, grammarArgs, snapshot, tokenize };
+module.exports = { ROOT, grammarArgs, snapshot, tokenize, tokenizeFrom };
 
