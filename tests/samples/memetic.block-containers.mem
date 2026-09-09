@@ -1,6 +1,6 @@
 <<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/containers>>
 
-<<^ code="&#x0001;" namespace="⊙" from=? -> to=lar:///ha.ka.ba/lares/api/pono/containers>>
+<<^ code="&#x0001;" namespace="⊙" from="?" -> to="lar:///ha.ka.ba/lares/api/pono/containers">>
 ```toml meta
 uri-path = "ha.ka.ba/lares/api/pono/containers"
 ```
@@ -13,7 +13,7 @@ uri-path = "ha.ka.ba/lares/api/pono/containers"
 
 A paragraph naming <<~ sigil>> and lar:///ha.ka.ba/lares/api/pono/containers.
 
-* unordered, carrying <<~ sigil name=value>>
+* unordered, carrying <<~ sigil name="value">>
 ** nested, carrying <<~ loulou lar:///ha.ka.ba/lares/api/pono/containers>>
 # ordered, carrying <<~ sigil bracket=[[a bracketed value]]>>
 ; a term carrying <<~ sigil>>

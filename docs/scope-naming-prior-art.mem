@@ -1,6 +1,6 @@
 <<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext>>
 
-<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/scope-naming-prior-art>>
+<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/scope-naming-prior-art">>
 ```toml meta
 cacheable = true
 file-path = "docs/scope-naming-prior-art.mem"
@@ -516,6 +516,6 @@ Sources: [[Sublime scope naming|https://www.sublimetext.com/docs/scope_naming.ht
 
 <<~/ahu>>
 
-<<^ code="&#x0003;">>ni:///sha-256;Ngd_DFiYAKdnLd5VHQjnTY9AoXmfICtVgL1liLxZZXA
+<<^ code="&#x0003;">>ni:///sha-256;iV-m0vBnWFqzbObOAVKyKNX8E7hQ_1j7PZvbVdIDCe4
 
-<<^ code="&#x0004;" -> to=?>>
+<<^ code="&#x0004;" -> to="?">>

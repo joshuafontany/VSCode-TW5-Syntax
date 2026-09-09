@@ -9,7 +9,7 @@ A body inside the section.
 <<~/ahu>>
 
 
-<<~ lares aim from=lar://alias:grant@host/a.b.c -> to=lar://alias:grant@host/d.e.f>>
+<<~ lares aim from="lar://alias:grant@host/a.b.c" -> to="lar://alias:grant@host/d.e.f">>
 
 <<~ hud Focus(10) Feedback(3)>>
 

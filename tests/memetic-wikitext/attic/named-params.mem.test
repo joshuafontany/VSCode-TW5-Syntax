@@ -12,7 +12,7 @@
 #                             ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext keyword.operator.assignment.memetic-wikitext
 
 # A lar: URI claims its own value, so the address reads as an address.
-<<~ lares aim from=lar:///a.b.c -> to=lar:///d.e.f >>
+<<~ lares aim from="lar:///a.b.c" -> to="lar:///d.e.f" >>
 #             ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext entity.other.attribute-name.memetic-wikitext
 #                 ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext keyword.operator.assignment.memetic-wikitext
 #                  ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext markup.underline.link.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext
@@ -43,7 +43,7 @@
 <<~ hoike ? >>
 #          ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext - constant.language.bearing.unresolved.memetic-wikitext
 
-<<~ hoike from=? >>
+<<~ hoike from="?" >>
 #              ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext string.unquoted.memetic-wikitext
 
 # Only = names a parameter, so only = introduces a parameter VALUE. A scheme colon introduces a path.

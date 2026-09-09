@@ -1,6 +1,6 @@
 <<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext>>
 
-<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/sublime-vs-textmate>>
+<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/sublime-vs-textmate">>
 ```toml meta
 cacheable = true
 file-path = "docs/prior-art/sublime-vs-textmate.mem"
@@ -311,6 +311,6 @@ Sources: [[Sublime scope naming|https://www.sublimetext.com/docs/scope_naming.ht
 
 <<~/ahu>>
 
-<<^ code="&#x0003;">>ni:///sha-256;nOCrURpdgH41DWmKokbOaHMveqwgPPrAiTsGwLiYm5s
+<<^ code="&#x0003;">>ni:///sha-256;_h0YFl87WEeb9nB-_tKg3oLCUMdWx0EZTQxDXJd-Uxg
 
-<<^ code="&#x0004;" -> to=?>>
+<<^ code="&#x0004;" -> to="?">>

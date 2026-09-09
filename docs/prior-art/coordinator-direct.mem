@@ -1,6 +1,6 @@
 <<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext>>
 
-<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/coordinator-direct>>
+<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/coordinator-direct">>
 ```toml meta
 cacheable = true
 file-path = "docs/prior-art/coordinator-direct.mem"
@@ -389,6 +389,6 @@ rather than in the grammar.
 
 <<~/ahu>>
 
-<<^ code="&#x0003;">>ni:///sha-256;A8wOyspV23LZ2mTiWH8UtUod7BFzxrVoxiq4_su4Hbs
+<<^ code="&#x0003;">>ni:///sha-256;1_V9jhcX8FZlBR4zZWAwZb2Ma-QJN_EkBsoDPFXGh0Y
 
-<<^ code="&#x0004;" -> to=?>>
+<<^ code="&#x0004;" -> to="?">>

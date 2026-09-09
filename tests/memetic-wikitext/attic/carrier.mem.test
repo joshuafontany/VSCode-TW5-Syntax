@@ -27,7 +27,7 @@
 #  ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext punctuation.definition.sigil.close.memetic-wikitext
 #   ^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext entity.name.function.sigil.memetic-wikitext
 
-<<^ code:"&#x0003;" >>ni:///sha-256;abc_DEF-123
+<<^ code:"&#x0003;" >>ni:///sha-256;i6CDBC66EKm5vpVig2BxP-mjZLm9KI0gi9NooILv9hI
 # ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext constant.character.carrier.etx.memetic-wikitext
 #                     ^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.etx.memetic-wikitext constant.other.blockcheck.memetic-wikitext
 
@@ -37,7 +37,7 @@
 #                      ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.eot.memetic-wikitext - constant.language.bearing.unresolved.memetic-wikitext
 
 # The framing sigil names its ends; the arrow rides between them as an unnamed positional.
-<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/x >>
+<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/x" >>
 #                   ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext entity.other.attribute-name.memetic-wikitext
 #                       ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext keyword.operator.assignment.memetic-wikitext
 #                        ^ text.html.tiddlywiki5.memetic-wikitext meta.carrier.control.soh.memetic-wikitext string.unquoted.memetic-wikitext

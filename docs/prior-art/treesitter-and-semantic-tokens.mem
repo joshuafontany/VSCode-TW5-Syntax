@@ -1,6 +1,6 @@
 <<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext>>
 
-<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/treesitter-and-semantic-tokens>>
+<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/treesitter-and-semantic-tokens">>
 ```toml meta
 cacheable = true
 file-path = "docs/prior-art/treesitter-and-semantic-tokens.mem"
@@ -550,6 +550,6 @@ Tooling: the ''scope inspector'' (`/api/language-extensions/syntax-highlight-gui
 
 <<~/ahu>>
 
-<<^ code="&#x0003;">>ni:///sha-256;FjyOEdcbAJEo8EM_FsMhV05H4R1SlWBBhulTQidhk4M
+<<^ code="&#x0003;">>ni:///sha-256;HV2TarIS2uVPRxKPxvbucvD2sms2nx4pR4uLCDs8eGE
 
-<<^ code="&#x0004;" -> to=?>>
+<<^ code="&#x0004;" -> to="?">>

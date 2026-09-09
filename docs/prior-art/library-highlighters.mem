@@ -1,6 +1,6 @@
 <<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext>>
 
-<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/library-highlighters>>
+<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/library-highlighters">>
 ```toml meta
 cacheable = true
 file-path = "docs/prior-art/library-highlighters.mem"
@@ -336,6 +336,6 @@ Sources:
 
 <<~/ahu>>
 
-<<^ code="&#x0003;">>ni:///sha-256;BsF4ueRazGqzGwZxOUlFMhaj9shoBQ3QUULPAiIzptI
+<<^ code="&#x0003;">>ni:///sha-256;xon_tXRXE1sqCybyzDju0ZSO-MFVtcK4p5BOSSmZbQ4
 
-<<^ code="&#x0004;" -> to=?>>
+<<^ code="&#x0004;" -> to="?">>

@@ -1,6 +1,6 @@
 <<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext>>
 
-<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/differential-test-design>>
+<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/differential-test-design">>
 ```toml meta
 cacheable = true
 file-path = "docs/differential-test-design.mem"
@@ -264,4 +264,4 @@ he declined it. ''Cost signal, never permission.''
 
 <<^ code="&#x0003;">>ni:///sha-256;vFIWNJgyY2h4akttR4BIX_OlcG4T9g2YFlu-GTaXKnk
 
-<<^ code="&#x0004;" -> to=?>>
+<<^ code="&#x0004;" -> to="?">>

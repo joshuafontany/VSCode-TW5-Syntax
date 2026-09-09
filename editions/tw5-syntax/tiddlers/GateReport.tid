@@ -168,7 +168,7 @@ gates-held: 36 of 36
         {
             "gate": "still",
             "held": true,
-            "said": "still  25 of 4550 carrier(s) at seed 1, 51 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, 56.5% of corpus tokens ruled (ceiling 56.6%)"
+            "said": "still  25 of 4550 carrier(s) at seed 1, 51 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, 57.2% of corpus tokens ruled (ceiling 57.2%)"
         },
         {
             "gate": "still-reach",

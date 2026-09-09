@@ -1,6 +1,6 @@
 <<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/carriers>>
 
-<<^ code="&#x0001;" namespace="⊙" from=? -> to=lar:///ha.ka.ba/lares/api/pono/carriers>>
+<<^ code="&#x0001;" namespace="⊙" from="?" -> to="lar:///ha.ka.ba/lares/api/pono/carriers">>
 ```toml meta
 uri-path = "ha.ka.ba/lares/api/pono/carriers"
 ```
@@ -16,7 +16,7 @@ opens a carrier:
 
 <<^>>
 
-<<^ from=lar:///ha.ka.ba/lares/api/pono/carriers>>
+<<^ from="lar:///ha.ka.ba/lares/api/pono/carriers">>
 
 !! A lar URI carrying a query and a fragment
 

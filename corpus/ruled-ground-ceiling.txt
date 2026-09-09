@@ -1,4 +1,4 @@
-0.566
+0.572
 # The share of corpus tokens every ruling in every ledger stands on between them. The count may
 # fall and may never rise.
 #
@@ -39,3 +39,10 @@
 # replaced it, and `still --reach` measures what the rulings actually cover on ground outside this
 # repository altogether. Read as a direction, this still says what it said: a ruling that needs
 # more ground than the tree holds answers for it in writing, here.
+
+# 2026-09-09: RE-SEATED to 57.2%, and the cause reads as composition rather than generosity. Every
+# named parameter carrying a `lar:` URI or a `?` took quotes, which is TW5 call syntax — a bare
+# positional binds a phantom parameter and the slot receives nothing. Quoting adds a
+# `string.quoted` token INSIDE each call region, and those tokens wear `meta.variable.call.*`, so
+# that key rose 12.2% to 13.3% while no ruling changed its mind and none broadened. The pair with
+# `unasked-regions-ceiling.txt` wants reading together, the same way it did at 55.8% to 56.6%.

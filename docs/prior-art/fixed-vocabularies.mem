@@ -1,6 +1,6 @@
 <<!DOCTYPE memetic-wikitext+tiddlywiki lar:///ha.ka.ba/lares/api/pono/memetic-wikitext>>
 
-<<^ code="&#x0001;" from=? -> to=lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/fixed-vocabularies>>
+<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/fixed-vocabularies">>
 ```toml meta
 cacheable = true
 file-path = "docs/prior-art/fixed-vocabularies.mem"
@@ -398,6 +398,6 @@ Sources:
 
 <<~/ahu>>
 
-<<^ code="&#x0003;">>ni:///sha-256;827-dpPwV0OXM0vFa86vF0sTqFJd5mW-iPShL7D7wcU
+<<^ code="&#x0003;">>ni:///sha-256;w4s58Hm_EvRdHwEcR6CWDPULbsiNCKZHIOG7Rdc_W6A
 
-<<^ code="&#x0004;" -> to=?>>
+<<^ code="&#x0004;" -> to="?">>

@@ -1163,6 +1163,26 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   namespace.
 
 ### Changed
+- Every named parameter carrying a `lar:` URI or a `?` takes quotes. `param=value` reads as TW5 call
+  syntax and a URI scheme spells with the characters a parameter name admits, so a bare
+  `to=lar:///x` risks binding a phantom parameter while the slot receives nothing — silently, with
+  no error a reader would notice. 47 values across 18 carriers: 44 through the house's own
+  parser-classified `quote-named-params`, which refuses any value whose TYPE would change and
+  re-parses every file before writing it, and 3 in retired fixtures the parent's tool cannot reach —
+  it lists carriers through `git ls-files` at the parent root, where this submodule stands as one
+  gitlink entry.
+- POSITIONAL values stay as they stand, deliberately. The boot seed's own
+  `<<!DOCTYPE … lar:///…>>` reads bare, and the house holds a separate tool for the positional
+  hazard with a declared exemption for the carrier whose lesson IS the broken form. Quoting them
+  here would diverge from canon.
+- Eleven block checks restamped through `bccOf`, never by hand. Ten verify `ok`; the specimen that
+  carries a deliberately fake check beside a real one reads `unchecked` exactly as it did before.
+  Reported and NOT restamped: nothing — every carrier this touched got its stamp, and the carriers it
+  did not touch keep whatever verdict they already held.
+- `ruled-ground-ceiling` re-seated to 57.2% from 56.6%, and the cause reads as composition rather
+  than generosity: quoting adds a `string.quoted` token INSIDE each call region, and those tokens
+  wear `meta.variable.call.*`, so that key rose 12.2% to 13.3% while no ruling changed its mind and
+  none broadened.
 - The ruled-ground ceiling re-seats at 56.6%, with no ruling broadened — the same run reports zero.
   The share reads the CORPUS'S composition, and the corpus grew to lower the unasked ceiling; every
   construct that lowers it wears a scope a ruling already names, necessarily, because a construct
