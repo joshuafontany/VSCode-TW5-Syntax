@@ -19,6 +19,27 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   purpose. Ruled in both ledgers, on their own ground.
 
 ### Changed
+- `legibility` takes its POPULATION from the host. Seven specimens stood in the tool by hand and the
+  standing lesson answered: a hand-written enumeration cannot notice what it missed. It carried no
+  emphasis at all, and emphasis holds the weakest readings in the table — a procedure definition
+  against a macro definition at 0 of 65, subscript against superscript at 0, strikethrough against
+  underline at 17, none of them visible before. `$tw.modules.types.wikirule` names 44 rules and the
+  harvest records that answer, so 40 constructs measure and four leave by declaration: TiddlyWiki
+  splits comment, filtered transclusion, call and transclusion by POSITION, and a reader meets one
+  thing either way. A rule the host adds arrives unmeasured and says so; a specimen naming a rule
+  the host dropped reads as outliving what it explains. 820 floors re-seated.
+- The reading carries `fontStyle` beside foreground. A reader tells bold from italic without reading
+  a word and most themes carry that in fontStyle alone: measured on foreground by itself, bold
+  parted from italic in 23 of 65 and the gate would have called a healthy grammar broken one family
+  further along. Two pairs seated under the older reading ROSE — a wikilink against prose from 61 to
+  65, a code span against a wikilink from 59 to 65 — because a wikilink's underline never showed in
+  a foreground. Nothing fell.
+- A specimen carries no trailing newline, and a specimen that fires no rule fails. An empty last
+  line takes a token of width 1 from vscode-textmate for the newline it stands before — base scope,
+  no character painted — and flattened into the reading it hands every specimen the default colour:
+  on `snazzy-light` that gave a transclusion a look the filter run's unpainted space had held alone,
+  and the pair read 62 where it stands at 63. A zero-width filter does not catch it; not asking for
+  the line does.
 - A text reference carries `variable.other.reference.tiddlywiki5` beside the name it publishes. The
   `string.` family carried five of six constructs against 62 of 65 themes, and the weakest pair in
   the table sat squarely in it: a transclusion wears `string.text-reference`, a wikilink wears

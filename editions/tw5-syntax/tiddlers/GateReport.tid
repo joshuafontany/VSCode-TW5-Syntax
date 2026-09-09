@@ -83,7 +83,7 @@ gates-held: 34 of 34
         {
             "gate": "legibility",
             "held": true,
-            "said": "construct-legibility  21 pair(s) over 65 theme(s), 0 fallen, 0 unseated, weakest 56/65"
+            "said": "construct-legibility  40 construct(s) from 44 host rule(s), 820 pair(s) over 65 theme(s), 0 fallen, 0 unseated, weakest 0/65"
         },
         {
             "gate": "light-cone",

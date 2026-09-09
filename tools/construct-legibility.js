@@ -10,17 +10,23 @@
 // a transclusion and prose each resolve to one colour — no theme rule reaches `meta.variable.call.*`
 // or `meta.transclusion.*`, so all four fall through to the default and 44 of 65 themes paint the
 // containers identically. Reading that alone says a reader meets four constructs in one ink. Reading
-// the WHOLE construct says the opposite: every one of them reads differently from prose in all 65,
-// because the distinction rides entirely on the punctuation and name scopes inside. A gate built on
-// containers would have ruled a healthy grammar broken.
+// the WHOLE construct says the opposite, because the distinction rides entirely on the punctuation
+// and name scopes inside. A gate built on containers would have ruled a healthy grammar broken.
 //
-// So this paints whole specimens and compares what a reader sees. A pair that stops being
-// distinguishable names a real loss no snapshot catches: scopes can move, stay pinned, stay
-// faithful to the parser, and cost a reader the difference between two constructs.
+// THE POPULATION COMES FROM THE HOST. `$tw.modules.types.wikirule` names every rule TiddlyWiki
+// stands and the harvest in the edition records that answer, so the constructs measured here are
+// the ones the host declares rather than the ones somebody thought to list. A hand-written
+// enumeration cannot notice what it missed: the seven specimens this held before carried no
+// emphasis at all, and emphasis turned out to hold the weakest reading in the whole table. A rule
+// the host adds arrives here unmeasured and SAYS SO rather than passing blind.
 //
-// WHICH constructs a reader must tell apart asks a judgement no measurement settles, so the
-// specimens stand declared — the same reason `colour-witness` declares its distinctions rather than
-// deriving them. The FLOOR each pair holds comes from measurement.
+// What stays declared is a NAME and a SPECIMEN per rule, and which rules a reader meets as one
+// construct — a judgement no measurement settles. Neither adds a member the host did not name.
+//
+// THE READING CARRIES fontStyle. A reader tells bold from italic instantly, and both wear the same
+// foreground in most themes: measured on foreground alone, bold parts from italic in 23 of 65 and
+// this gate would have called a healthy grammar broken again, one family further along. Foreground
+// and fontStyle together read 56.
 //
 //   node tools/construct-legibility.js [--verbose]
 
@@ -30,6 +36,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
 const { loadThemesByName, winner, colourOf } = require('./theme-model.js');
+const { readData } = require('./wiki-data.js');
 
 /** Whether a theme rules on a bare family root, which reaches every scope beginning there. */
 const paintsRoot = (root, theme) => Boolean(colourOf(root, theme));
@@ -37,25 +44,83 @@ const paintsRoot = (root, theme) => Boolean(colourOf(root, theme));
 const verbose = process.argv.includes('--verbose');
 const FLOOR = path.join(ROOT, 'corpus', 'legibility-floor.txt');
 
-// One specimen per construct a reader meets constantly and must not confuse. Each stands minimal:
-// a longer specimen borrows colour from whatever else it carries.
+// One specimen per rule the host stands, and the name a reader knows it by. The name names; it
+// never admits a member. Each specimen stands minimal — a longer one borrows colour from whatever
+// else it carries — and must paint ink beyond the base scope, which the run below checks.
 const CONSTRUCTS = {
-  'a call': '<<myproc param:"v">>',
-  'a filter run': '{{{ [tag[x]sort[y]] }}}',
-  'a transclusion': '{{SomeTiddler}}',
-  'a widget': '<$link to="x">go</$link>',
-  'a wikilink': '[[Some Title]]',
-  'a code span': '`some code`',
-  'prose': 'an ordinary sentence here'
+  bold: ['bold', "''bold text''"],
+  codeblock: ['a code block', '```\ncode here\n```'],
+  codeinline: ['a code span', '`some code`'],
+  commentblock: ['a comment', '<!-- a comment -->'],
+  conditional: ['a conditional', '<% if [{x}] %>yes<% endif %>'],
+  dash: ['a dash', 'one -- two'],
+  entity: ['an entity', '&amp;'],
+  extlink: ['a bare external link', 'https://example.com'],
+  filteredtranscludeblock: ['a filter run', '{{{ [tag[x]sort[y]] }}}'],
+  fnprocdef: ['a procedure definition', '\\procedure greet(who) Hello'],
+  hardlinebreaks: ['a hard-linebreak run', '"""\nline one\n"""'],
+  heading: ['a heading', '! A heading'],
+  horizrule: ['a horizontal rule', '---'],
+  html: ['a widget', '<$link to="x">go</$link>'],
+  image: ['an image', '[img[picture.png]]'],
+  import: ['an import directive', '\\import [tag[Macro]]'],
+  italic: ['italic', '//italic text//'],
+  list: ['a list item', '* an item'],
+  macrocallblock: ['a call', '<<myproc param:"v">>'],
+  macrodef: ['a macro definition', '\\define greet(who) Hello'],
+  mvvdisplayinline: ['a multi-value display', '((varname))'],
+  parameters: ['a parameters directive', '\\parameters(who:"world")'],
+  parsermode: ['a parsermode directive', '\\parsermode block'],
+  prettyextlink: ['a captioned external link', '[ext[Caption|https://example.com]]'],
+  prettylink: ['a wikilink', '[[Some Title]]'],
+  quoteblock: ['a quote block', '<<<\nquoted line\n<<<'],
+  rules: ['a rules directive', '\\rules except html'],
+  strikethrough: ['strikethrough', '~~struck out~~'],
+  styleblock: ['a styled block', '@@color:red;\nstyled\n@@'],
+  styleinline: ['a styled span', '@@color:red;styled@@'],
+  subscript: ['subscript', ',,subscript,,'],
+  superscript: ['superscript', '^^superscript^^'],
+  syslink: ['a system link', '$:/core/ui/PageTemplate'],
+  table: ['a table row', '|cell one|cell two|'],
+  transcludeblock: ['a transclusion', '{{SomeTiddler}}'],
+  typedblock: ['a typed block', '$$$text/html\n<b>x</b>\n$$$'],
+  underscore: ['underline', '__underlined__'],
+  whitespace: ['a whitespace directive', '\\whitespace trim'],
+  wikilink: ['a CamelCase link', 'HelloThere'],
+  wikilinkprefix: ['a suppressed link', '~HelloThere']
 };
 
-/** The colours one theme paints a specimen, as a set — what a reader takes in at a glance. */
+// Rules a reader meets as ONE construct. TiddlyWiki splits four of them by POSITION — the same
+// syntax read in block context and in inline context — and a reader meets one thing either way.
+// This is the only place a host rule leaves the table, and it names the rule that carries it.
+const TOGETHER = {
+  commentinline: 'commentblock',
+  filteredtranscludeinline: 'filteredtranscludeblock',
+  macrocallinline: 'macrocallblock',
+  transcludeinline: 'transcludeblock'
+};
+
+// The baseline every construct answers to. Prose stands outside the host's rule list by nature —
+// it names what the parser builds when NO rule fires — so it is declared, and the run below checks
+// that it paints no ink, which is the control the specimens are read against.
+const PROSE = ['prose', 'an ordinary sentence here'];
+
+/** Whether a scope belongs to the ground every specimen stands on rather than to a construct. */
+const isBase = (scope) => /^(text\.html\.tiddlywiki5$|meta\.paragraph\.)/.test(scope);
+
+/**
+ * The look one theme gives a specimen, as a set — what a reader takes in at a glance.
+ *
+ * FOREGROUND AND fontStyle BOTH. A reader tells bold from italic without reading a word, and most
+ * themes carry that difference in fontStyle alone; foreground by itself reports 23 of 65.
+ */
 const look = (tokens, theme) => {
-  const colours = new Set(tokens.map((token) => {
+  const looks = new Set(tokens.map((token) => {
     const rule = winner(token.scopes, theme);
-    return (rule && rule.settings && rule.settings.foreground) || '-';
+    const settings = (rule && rule.settings) || {};
+    return `${settings.foreground || '-'}/${settings.fontStyle || '-'}`;
   }));
-  return [...colours].sort().join('|');
+  return [...looks].sort().join('|');
 };
 
 (async () => {
@@ -65,31 +130,59 @@ const look = (tokens, theme) => {
     process.exit(2);
   }
 
+  // THE HOST DECLARES THE POPULATION. A rule it stands and this table never measures reads as a
+  // construct nobody checked; a rule this table names and the host dropped reads as a specimen
+  // outliving what it explains. Both fail, the same way an unseated floor does.
+  const { data: signals } = readData('GrammarSignals.tid');
+  const host = new Set(signals.wikiRules || []);
+  const named = new Set([...Object.keys(CONSTRUCTS), ...Object.keys(TOGETHER)]);
+  const unmeasured = [...host].filter((rule) => !named.has(rule)).sort();
+  const orphaned = [...named].filter((rule) => !host.has(rule)).sort();
+
+  const specimens = { ...CONSTRUCTS, __prose: PROSE };
   const painted = {};
   const claimed = {};
-  for (const [name, source] of Object.entries(CONSTRUCTS)) {
-    const lines = await tokenize('text.html.tiddlywiki5', `${source}\n`);
-    painted[name] = themes.map(([, theme]) => look(lines[0], theme));
-    claimed[name] = lines[0].flatMap((token) => token.scopes).filter((sc) => !/^meta\.paragraph\./.test(sc));
+  const label = {};
+  const dead = [];
+  const inert = [];
+  for (const [rule, [reads, source]] of Object.entries(specimens)) {
+    // THE SPECIMEN CARRIES NO TRAILING NEWLINE. A trailing one splits into an empty last line, and
+    // vscode-textmate hands an empty line a token of width 1 for the newline it stands in front of
+    // — base scope, no character painted. Flattened in, that token adds the DEFAULT colour to every
+    // specimen's look and collapses distinctions that stand: measured on `snazzy-light`, a filter
+    // run and a transclusion each painted `#ADB1C2` and `#CF9C00`, the filter run alone carried an
+    // unpainted space, and the phantom handed the transclusion that third look for free. The pair
+    // read 63 of 65 without it and 62 with. A zero-width filter does not catch it; not asking for
+    // the line does.
+    const tokens = (await tokenize('text.html.tiddlywiki5', source)).flat();
+    label[rule] = reads;
+    painted[rule] = themes.map(([, theme]) => look(tokens, theme));
+    const scopes = tokens.flatMap((token) => token.scopes).filter((scope) => !isBase(scope));
+    claimed[rule] = scopes;
+    // A specimen that fails to fire its rule measures PROSE under a construct's name and reports a
+    // healthy pair. Prose carries the same check inverted: ink under it would make the baseline a
+    // construct.
+    if (rule === '__prose') { if (scopes.length) inert.push(`${reads} paints ${scopes.length} scope(s) beyond the base, so the baseline is not prose`); }
+    else if (!scopes.length) dead.push(`${reads} — the specimen ${JSON.stringify(source)} paints no scope beyond the base, so it measures prose`);
   }
 
-  const names = Object.keys(CONSTRUCTS).filter((n) => n !== 'prose');
+  const names = Object.keys(CONSTRUCTS);
   const readings = [];
-  for (const name of names) {
-    const apart = painted[name].filter((c, i) => c !== painted.prose[i]).length;
-    readings.push([`${name}  vs  prose`, apart]);
+  for (const rule of names) {
+    const apart = painted[rule].filter((c, i) => c !== painted.__prose[i]).length;
+    readings.push([`${label[rule]}  vs  prose`, apart]);
   }
   for (let i = 0; i < names.length; i += 1) {
     for (let j = i + 1; j < names.length; j += 1) {
       const apart = painted[names[i]].filter((c, k) => c !== painted[names[j]][k]).length;
-      readings.push([`${names[i]}  vs  ${names[j]}`, apart]);
+      readings.push([`${label[names[i]]}  vs  ${label[names[j]]}`, apart]);
     }
   }
 
   // A FLOOR PER PAIR. One floor on the weakest pair cannot see a loss anywhere else: stripping a
-  // call of every name a theme rules on left the weakest pair — a code span against prose — exactly
-  // where it stood, and the gate held. A pair carrying no floor line fails until somebody seats it,
-  // so a construct joining the list arrives unratcheted and says so rather than passing blind.
+  // call of every name a theme rules on left the weakest pair exactly where it stood, and the gate
+  // held. A pair carrying no floor line fails until somebody seats it, so a construct joining the
+  // list arrives unratcheted and says so rather than passing blind.
   const seated = new Map();
   if (fs.existsSync(FLOOR)) {
     for (const raw of fs.readFileSync(FLOOR, 'utf8').split('\n')) {
@@ -113,32 +206,33 @@ const look = (tokens, theme) => {
     }
     // FAMILY PRESSURE, reported and never ratcheted. A theme rule naming a one-segment root reaches
     // every construct whose scopes start there, so constructs sharing a root that themes rule on
-    // get pulled toward one colour and a deeper rule has to pull them back. Measured: `string` is
-    // claimed by five of these constructs and 62 of 65 themes rule on the bare root, which is the
-    // pressure behind every weak pair here; `markup` is claimed by two and one theme rules on its
-    // root, which is why a raw span takes its name from that family and collides with nothing. A
-    // ratchet wants a direction the tree can move in, and a family root is a naming decision rather
-    // than a number, so this reads and judges nothing.
+    // get pulled toward one colour and a deeper rule has to pull them back. A ratchet wants a
+    // direction the tree can move in, and a family root is a naming decision rather than a number,
+    // so this reads and judges nothing.
     console.log('  family pressure — constructs claiming a one-segment root, and themes ruling on it:');
     const families = new Map();
-    for (const [name, source] of Object.entries(CONSTRUCTS)) {
-      if (name === 'prose') continue;
-      for (const scope of new Set(claimed[name])) {
+    for (const rule of names) {
+      for (const scope of new Set(claimed[rule])) {
         const root = scope.split('.')[0];
         if (root === 'text') continue;
         if (!families.has(root)) families.set(root, new Set());
-        families.get(root).add(name);
+        families.get(root).add(label[rule]);
       }
     }
     for (const [root, holders] of [...families].sort((a, b) => b[1].size - a[1].size)) {
-      const rules = themes.filter(([, theme]) => themes && paintsRoot(root, theme)).length;
-      console.log(`    ${holders.size} construct(s), ${String(rules).padStart(2)}/${themes.length} themes rule on \`${root}\`   ${[...holders].join(', ')}`);
+      const rules = themes.filter(([, theme]) => paintsRoot(root, theme)).length;
+      console.log(`    ${String(holders.size).padStart(2)} construct(s), ${String(rules).padStart(2)}/${themes.length} themes rule on \`${root}\``);
     }
   }
+  for (const d of dead) console.error(`  ${d}`);
+  for (const i of inert) console.error(`  ${i}`);
+  for (const u of unmeasured) console.error(`  ${u} — TiddlyWiki stands this rule and no specimen measures it`);
+  for (const o of orphaned) console.error(`  ${o} — no rule of this name stands in the harvest, so the specimen outlives what it explains`);
   for (const f of fallen) console.error(`  ${f}`);
   for (const u of unseated) console.error(`  ${u} — no floor stands, so nothing ratchets it`);
   const weakest = readings.reduce((a, b) => (b[1] < a[1] ? b : a));
-  console.log(`construct-legibility  ${readings.length} pair(s) over ${themes.length} theme(s), ${fallen.length} fallen, ${unseated.length} unseated, weakest ${weakest[1]}/${themes.length}`);
+  const held = !fallen.length && !unseated.length && !unmeasured.length && !orphaned.length && !dead.length && !inert.length;
+  console.log(`construct-legibility  ${names.length} construct(s) from ${host.size} host rule(s), ${readings.length} pair(s) over ${themes.length} theme(s), ${fallen.length} fallen, ${unseated.length} unseated, weakest ${weakest[1]}/${themes.length}`);
   console.log(`  ${weakest[0]}`);
-  process.exit(fallen.length === 0 && unseated.length === 0 ? 0 : 1);
+  process.exit(held ? 0 : 1);
 })();

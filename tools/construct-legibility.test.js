@@ -19,7 +19,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { runProvoked } = require('./grammar-sandbox.js');
+const { runProvoked, runInSandbox } = require('./grammar-sandbox.js');
 const { runTool, ROOT } = require('./run-tool.js');
 const { THEMES } = require('./theme-model.js');
 
@@ -65,4 +65,69 @@ test('a construct stripped of the names themes rule on reads as a loss', live, (
   assert.ok(fallen(out) > 0,
     `a call stripped of every name a theme rules on read as legible as before: ${out.split('\n').filter((l) => /vs/.test(l)).slice(-3).join(' | ')}`);
   assert.notStrictEqual(code, 0, 'a pair fell below its floor and the gate held anyway');
+});
+
+// THE POPULATION MUST COME FROM THE HOST. Seven specimens stood here by hand and carried no
+// emphasis at all, while emphasis holds the weakest readings in the table. A hand-written list
+// cannot notice what it missed, so the harvest names the members and the gate answers to it.
+test('a rule TiddlyWiki stands and no specimen measures reads as unmeasured', live, () => {
+  const { code, out } = runInSandbox(
+    (sandbox) => {
+      const file = path.join(sandbox, 'editions', 'tw5-syntax', 'tiddlers', 'GrammarSignals.tid');
+      const before = fs.readFileSync(file, 'utf8');
+      const after = before.replace('"wikiRules": [', '"wikiRules": [\n        "invented",');
+      assert.notStrictEqual(after, before, 'the provocation changed nothing, so it plants no fault');
+      fs.writeFileSync(file, after);
+    },
+    ['tools/construct-legibility.js']);
+  assert.match(out, /invented — TiddlyWiki stands this rule and no specimen measures it/, out.slice(-600));
+  assert.notStrictEqual(code, 0, 'a host rule went unmeasured and the gate held anyway');
+});
+
+// The same list read the other way. A specimen naming a rule the host dropped explains nothing, and
+// a table that keeps it reports coverage it no longer has.
+test('a specimen naming a rule the host dropped reads as orphaned', live, () => {
+  const { code, out } = runInSandbox(
+    (sandbox) => {
+      const file = path.join(sandbox, 'editions', 'tw5-syntax', 'tiddlers', 'GrammarSignals.tid');
+      const before = fs.readFileSync(file, 'utf8');
+      const after = before.replace('        "subscript",\n', '');
+      assert.notStrictEqual(after, before, 'the provocation changed nothing, so it plants no fault');
+      fs.writeFileSync(file, after);
+    },
+    ['tools/construct-legibility.js']);
+  assert.match(out, /subscript — no rule of this name stands in the harvest/, out.slice(-600));
+  assert.notStrictEqual(code, 0, 'a specimen outlived the rule it explains and the gate held anyway');
+});
+
+// A specimen that fails to fire its rule measures PROSE under a construct's name, and every pair it
+// stands in reads as healthy as prose does. Nothing but this check tells the two apart.
+test('a specimen that fires no rule reads as measuring prose', live, () => {
+  const { code, out } = runInSandbox(
+    (sandbox) => {
+      const file = path.join(sandbox, 'tools', 'construct-legibility.js');
+      const before = fs.readFileSync(file, 'utf8');
+      const after = before.replace("bold: ['bold', \"''bold text''\"]", "bold: ['bold', 'bold text']");
+      assert.notStrictEqual(after, before, 'the provocation changed nothing, so it plants no fault');
+      fs.writeFileSync(file, after);
+    },
+    ['tools/construct-legibility.js']);
+  assert.match(out, /bold — the specimen .* paints no scope beyond the base, so it measures prose/, out.slice(-600));
+  assert.notStrictEqual(code, 0, 'a specimen measured prose under a construct name and the gate held anyway');
+});
+
+// THE READING CARRIES fontStyle, and load-bearing. Most themes part bold from italic in fontStyle
+// alone, so a foreground-only reading calls a grammar every reader parses instantly illegible.
+test('a reading that drops fontStyle loses the emphasis constructs', live, () => {
+  const { code, out } = runInSandbox(
+    (sandbox) => {
+      const file = path.join(sandbox, 'tools', 'construct-legibility.js');
+      const before = fs.readFileSync(file, 'utf8');
+      const after = before.replace('return `${settings.foreground || \'-\'}/${settings.fontStyle || \'-\'}`;', "return settings.foreground || '-';");
+      assert.notStrictEqual(after, before, 'the provocation changed nothing, so it plants no fault');
+      fs.writeFileSync(file, after);
+    },
+    ['tools/construct-legibility.js']);
+  assert.ok(fallen(out) > 0, `a foreground-only reading reported every pair as legible as before: ${out.slice(-400)}`);
+  assert.notStrictEqual(code, 0, 'pairs fell below their floors and the gate held anyway');
 });
