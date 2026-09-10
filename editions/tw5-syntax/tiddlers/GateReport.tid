@@ -3,11 +3,11 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 36 of 36
+gates-held: 37 of 37
 
 {
-    "gates": 36,
-    "held": 36,
+    "gates": 37,
+    "held": 37,
     "failing": 0,
     "results": [
         {
@@ -131,6 +131,11 @@ gates-held: 36 of 36
             "said": "rule-coverage  TiddlyWiki 5.5.0-prerelease: 44 rule(s), 39 read, 5 under another name, 0 unaccounted; 10 pragma keyword(s) guarded across 8 rule(s)"
         },
         {
+            "gate": "sigil-vocabulary",
+            "held": true,
+            "said": "sigil-vocabulary  18 sigil(s) the seed writes across 10 specimen(s), 0 unexercised, 11 carried beyond the seed"
+        },
+        {
             "gate": "signals:check",
             "held": true,
             "said": "grammar-signals  TiddlyWiki 5.5.0-prerelease — 84 operator(s), 69 widget(s), 44 rule(s), the harvest current"
@@ -168,7 +173,7 @@ gates-held: 36 of 36
         {
             "gate": "still",
             "held": true,
-            "said": "still  25 of 4550 carrier(s) at seed 1, 51 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, 57.2% of corpus tokens ruled (ceiling 57.2%)"
+            "said": "still  25 of 4550 carrier(s) at seed 1, 51 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, 60.0% of corpus tokens ruled (ceiling 60.0%)"
         },
         {
             "gate": "still-reach",
@@ -178,7 +183,7 @@ gates-held: 36 of 36
         {
             "gate": "swallow-witness",
             "held": true,
-            "said": "swallow-witness  878 cut(s) across 39 corpus file(s), 9 divergence(s), 0 recorded, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "swallow-witness  906 cut(s) across 39 corpus file(s), 9 divergence(s), 0 recorded, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "theme-parity",

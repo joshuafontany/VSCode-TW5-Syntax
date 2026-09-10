@@ -117,6 +117,8 @@ jobs:
         run: npm run legibility
       - name: Every reading standing outside a TextMate grammar still stands outside it
         run: npm run ceiling
+      - name: Every sigil the boot seed writes stands in a specimen
+        run: npm run sigil-vocabulary
       - name: Every must-fail specimen still fails as declared
         run: npm run must-fail
       - name: Every pattern crosses to the second regex engine

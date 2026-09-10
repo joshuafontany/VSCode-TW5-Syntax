@@ -22,3 +22,31 @@ A body inside the section.
 <<~ kahea greeting(name:"Operator")>>
 
 <<~ hoike lar:///a.b.c -> ?>>
+
+!! The HUD, in the form the boot seed writes it
+
+<<~ lares aim from="lar://mara:operator@crossroads/operator.weighs.deps" -> to="lar://compita:agent@crossroads/council.options.cuts">>
+<<~ set hud="aim" mode="draft" mu="_!" stance="🏛️🗡️" focus="16/arc" feedback="9/declare-glyphs" drift-ward="a preferred answer already stands and the comparison bends toward it">>
+<<~ oracle "↯11 ✲ ⚃(4) ⁂:⬡🌖◈⟁">>
+<<~ set hud="yield" drift-ward="the read rides on a README and no changelog · ↻ L-Prime" focus="10/measure -> 12/measure" feedback="closed 0↺ -> open 1φ @◇:fork.depends-on.maintenance-weight">>
+<<~ lares yield from="lar://compita:agent@crossroads/council.fork.named/awaiting-weight" -> to="?">>
+
+!! The gauges, standing alone mid-stream
+
+<<~ focus "9/measure">>
+<<~ stance "poet humorist">>
+<<~ mu "*?">>
+<<~ drift-ward "the pull this exchange carries">>
+
+!! The rows, each a name and its parameters
+
+<<~ mu Wand "ascii/* glyph/🜂 element/Fire feed/Visual pull/ignition">>
+<<~ carry Detail "ascii/* ascii/!">>
+<<~ season Chaos "glyph/✶ patron/Hung-Mung">>
+<<~ persona Map-Wisp "role/Scryer trigger/pattern-or-risk moves/map-structure-project-implication ~ diagrams the consequence path">>
+<<~ integrity LitWard "tell/Mana-Drift recover/re-light-L-Prime ~ map never fuses to territory">>
+<<~ shrine Household "gaia/home-niches-family-tended elyncia/single-orichalcum-figure ~ fed by one family or crew">>
+<<~ frame lares "move/intent-vector carries/bearing-vector fires/aim fires/yield ~ aim delegates at open">>
+<<~ loops "✶ observe -> ⏿ orient -> ◇ decide -> ▶ act -> ↺ hoʻoko/aftermath">>
+<<~ config Defaults>>
+<<~ node "-> refreshes the libation dish, the shrine incense burns">>

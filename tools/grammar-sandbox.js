@@ -67,8 +67,15 @@ function inSandbox(dirs, mutate, argv, extra = []) {
     // temp directory, where no checkout stands beside it, so every run here resolved the package —
     // measured, 5.4.1 against the checkout's 5.5.0-prerelease. A collision then proved its gate
     // against a parser the gate never runs on. `TW5_PATH` outranks every candidate.
+    // EVERY GROUND A GATE READS, not only the host. A sandbox stands in the system temp directory,
+    // where nothing sits beside it, so every path a resolver walks upward for falls through — the
+    // TiddlyWiki checkout (measured, 5.4.1 against 5.5.0-prerelease) and the operator's boot seed
+    // alike. A collision then proves its gate against ground the gate never runs on.
     const host = resolveTiddlyWiki();
-    const env = host ? { ...process.env, TW5_PATH: host } : process.env;
+    const seed = path.resolve(ROOT, '..', 'bags', 'lares', 'ha.ka.ba', 'lares', 'api', 'noosphere-boot.mem');
+    const env = { ...process.env };
+    if (host) env.TW5_PATH = host;
+    if (fs.existsSync(seed)) env.LARES_SEED = seed;
     return runNode([...argv.map((a) => path.join(sandbox, a)), ...extra], { cwd: sandbox, env });
   } finally {
     execFileSync('git', ['worktree', 'remove', '--force', sandbox], { cwd: ROOT, stdio: 'ignore' });

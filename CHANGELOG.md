@@ -731,6 +731,24 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
 
 ### Added
+- `sigil-vocabulary` reads whether the specimens exercise the vocabulary the HOUSE writes, deriving
+  the population from the boot seed rather than from a list here. `memetic-coverage` asks whether
+  every scope the dialect declares gets reached; this asks from the other side, and the two answers
+  came apart badly: the specimens carried `<<~ hud Focus(10) Feedback(3)>>` and `<<~ syad 🏛️>>`,
+  forms the seed had retired, while carrying NONE of `set`, `oracle`, `stance`, `carry`, `focus`,
+  `drift-ward`, `frame` or `loops` — 14 of 18 unexercised. `corpus/memetic/sigils.mem` now carries
+  the whole HUD chiasmus, the stand-alone gauges, and every row form, in the shapes the seed writes.
+- A sigil the seed never writes reads as a FINDING, never a fault — `hoike` and `kue` come from the
+  talk-story carrier, `loulou` names a wikilink, and `unknown-sigil` stands as a deliberate control.
+- A NAME FOLLOWED BY AN ELLIPSIS NAMES NOTHING. The seed explains its own grammar in its own grammar
+  — `<<~ name …>>` invokes `<<~name …>>` — and the first derivation read that metavariable as a
+  sigil, then demanded a specimen invent one.
+- A sandbox meets EVERY ground a gate reads, not only the host. It stands in the system temp
+  directory where nothing sits beside it, so the boot seed resolved nowhere there and a collision
+  proved its gate against a vocabulary that never answered — the same shape as the TiddlyWiki
+  checkout resolving 5.4.1 against 5.5.0-prerelease.
+- One resolver, and the house's own gate caught the second. `resolveSeed` stands beside
+  `resolveTiddlyWiki` in the oracle rather than in the tool that wanted it.
 - Three more ceilings, each measured against the host and each naming a capability a later reader
   must supply. IMPORT BY FILTER: `\import` takes a filter, not a title, so which definitions arrive
   depends on what the wiki holds — `[tag[CeilingTag]]` renders `IMPORTED` and `[tag[OtherTag]]`

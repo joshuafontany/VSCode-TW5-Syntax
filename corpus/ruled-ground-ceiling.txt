@@ -1,4 +1,4 @@
-0.572
+0.600
 # The share of corpus tokens every ruling in every ledger stands on between them. The count may
 # fall and may never rise.
 #
@@ -46,3 +46,15 @@
 # `string.quoted` token INSIDE each call region, and those tokens wear `meta.variable.call.*`, so
 # that key rose 12.2% to 13.3% while no ruling changed its mind and none broadened. The pair with
 # `unasked-regions-ceiling.txt` wants reading together, the same way it did at 55.8% to 56.6%.
+
+# 2026-09-09: RE-SEATED to 60.0%, and THIS IS THE THIRD RE-SEAT IN ONE SESSION — 55.8, 56.6, 57.2,
+# 60.0, every one explained as composition and every one honest. `corpus/memetic/sigils.mem` gained
+# twenty lines carrying the HUD forms the boot seed writes, so `meta.variable.call.*` rose 13.3% to
+# 19.3% without a ruling changing its mind or broadening.
+#
+# WHICH NAMES THE GUARD'S LIMIT, and the limit wants stating rather than bumping past. The corpus is
+# AUTHORED, so anyone who adds specimens of a ruled kind raises this number and re-seats it with a
+# true reason. A ratchet that moves whenever the ground moves guards a direction and not much else.
+# The sharper measure this reason has asked for twice now counts DISTINCT CAUSES a key can absorb,
+# which no author inflates by writing more of what already stands ruled. Unbuilt, and named here so
+# the next re-seat meets the question rather than the habit.

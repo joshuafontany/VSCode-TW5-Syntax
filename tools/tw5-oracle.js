@@ -199,6 +199,23 @@ function verdictAt(spans, start, end) {
  *
  * @returns {string|null}
  */
+/**
+ * The operator's boot seed, where it stands beside this checkout.
+ *
+ * The seed names the vocabulary a memetic carrier writes, and it lives in the operator's own bags
+ * rather than in this repository — so a contributor holding only this checkout meets none, and a
+ * caller reads `null` and says so. `LARES_SEED` names one outright.
+ *
+ * It stands HERE beside `resolveTiddlyWiki` because the house keeps one resolver: a tool growing a
+ * second walks its own candidate list, and the two answer differently the day a path moves.
+ */
+function resolveSeed() {
+  const candidates = [];
+  if (process.env.LARES_SEED) candidates.push(process.env.LARES_SEED);
+  candidates.push(path.resolve(__dirname, '..', '..', 'bags', 'lares', 'ha.ka.ba', 'lares', 'api', 'noosphere-boot.mem'));
+  return candidates.find((c) => c && fs.existsSync(c)) || null;
+}
+
 function resolveTiddlyWiki() {
   const candidates = [];
   // TW5_PATH names a checkout outright and outranks everything.
@@ -297,7 +314,7 @@ function boot(twPath, options = {}) {
   return oracle;
 }
 
-module.exports = { flatten, isPlainText, isOpaqueBody, verdictAt, resolveTiddlyWiki, boot };
+module.exports = { flatten, resolveSeed, isPlainText, isOpaqueBody, verdictAt, resolveTiddlyWiki, boot };
 
 if (require.main === module) {
   const tw = resolveTiddlyWiki();
