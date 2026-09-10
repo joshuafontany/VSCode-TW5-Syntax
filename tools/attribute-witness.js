@@ -109,14 +109,31 @@ function tiddlers(dir, out = []) {
       const [line, column] = place(from);
       const [lastLine, lastColumn] = place(Math.max(from, attribute.end - 1));
       let named = null;
+      // The WHOLE scope chain, not the kind alone. A disagreement keys to the structure that
+      // produced it, and that structure names itself in the outer scopes — a raw span, an
+      // embedded stylesheet, a macro-call parameter region left open — never in the kind word.
+      let chain = '';
       for (let row = line; row <= lastLine && !named; row += 1) {
         for (const token of lines[row] ?? []) {
           if (row === line && token.endIndex <= column) continue;
           if (row === lastLine && token.startIndex > lastColumn) continue;
+          if (!chain) chain = token.scopes.join(' ');
           const kind = token.scopes.filter((s) => ANY_KIND.test(s)).slice(-1)[0];
-          if (kind && KINDS[attribute.type] && KINDS[attribute.type].test(kind)) { named = kind; break; }
-          if (kind && !named) named = kind;
+          if (kind && KINDS[attribute.type] && KINDS[attribute.type].test(kind)) { named = kind; chain = token.scopes.join(' '); break; }
+          if (kind && !named) { named = kind; chain = token.scopes.join(' '); }
         }
+      }
+      // The nearest call opener standing before the value, and the START TAG that carries it.
+      // A `<` opening a call is not a tag opener: reading the nearest `<` of any shape put the
+      // opener inside a `<<macro>>` value on the line above, and the two attributes after it then
+      // keyed to nothing while the tag they sit in spans a blank line.
+      const opener = text.lastIndexOf('<<', attribute.start);
+      let tagOpen = -1;
+      for (let i = attribute.start; i >= 0; i -= 1) {
+        if (text[i] !== '<' || text[i - 1] === '<' || text[i + 1] === '<') continue;
+        if (!/[A-Za-z$/]/.test(text[i + 1] ?? '')) continue;
+        tagOpen = i;
+        break;
       }
       read += 1;
       counts.set(attribute.type, (counts.get(attribute.type) ?? 0) + 1);
@@ -136,9 +153,40 @@ function tiddlers(dir, out = []) {
         // equal to the attribute's own name is what says the source holds no value.
         valueless: text.slice(attribute.start, attribute.end).trim() === attribute.name,
         text: text.slice(attribute.start, attribute.end).trim().slice(0, 52),
-        file: path.basename(file)
+        chain,
+        value: text.slice(from, attribute.end).trim(),
+        quadOpener: opener > 1 && text.slice(opener - 2, opener) === '<<',
+        blankLineTag: tagOpen >= 0 && /\n[ \t]*\n/.test(text.slice(tagOpen, attribute.end)),
+        file: path.relative(host, file)
       });
     }
+  }
+
+  // WHAT PRODUCED EACH DISAGREEMENT, keyed by the structure rather than by the file it sits in.
+  // Every class here answers a question the two readings ask differently, and each key states the
+  // shape a fix would have to reach. A disagreement matching no key stands UNCLASSIFIED and fails
+  // the gate: a residue counted but unpartitioned hides a class that grew behind a class that
+  // shrank, and the total holds while the grammar moves underneath it.
+  //
+  // The ladder reads in order and the first key wins, so a structural cause outranks the kind
+  // word it produced. Reading the kind word first put five disagreements under a "neighbouring
+  // kind" heading that had nothing in common: two sat inside a raw span, two inside a start tag
+  // broken across a blank line, and one inside a parameter region no `\end` could close.
+  const CLASSES = [
+    ['an attribute carrying no value in the source', (d) => d.valueless],
+    ['inside a backtick raw span the grammar paired against the host', (d) => /markup\.raw\.inline/.test(d.chain)],
+    ['inside an embedded stylesheet the grammar hands to CSS', (d) => /source\.css/.test(d.chain)],
+    ['a call opening on `<<<<`', (d) => d.quadOpener],
+    ['a triple-quoted macro parameter', (d) => d.value.startsWith('"""')],
+    ['inside a macro-call parameter region the grammar never closed', (d) => /meta\.variable\.call\.parameter/.test(d.chain)],
+    ['a start tag broken across a blank line', (d) => d.blankLineTag]
+  ];
+  const classed = new Map(CLASSES.map(([name]) => [name, 0]));
+  const unclassified = [];
+  for (const d of disagreements) {
+    const hit = CLASSES.find(([, holds]) => holds(d));
+    if (hit) classed.set(hit[0], classed.get(hit[0]) + 1);
+    else unclassified.push(d);
   }
 
   const untyped = [...counts.keys()].filter((type) => !KINDS[type]);
@@ -167,7 +215,13 @@ function tiddlers(dir, out = []) {
       console.error(`     ${d.type} read as ${d.named} — ${JSON.stringify(d.text)} in ${d.file}`);
     }
   }
+  for (const [name, n] of classed) if (n || verbose) console.log(`  ${String(n).padStart(4)}  ${name}`);
+  for (const d of unclassified) {
+    console.error(`  UNCLASSIFIED  ${d.type} read as ${d.named} — ${JSON.stringify(d.text)} in ${d.file}`);
+    console.error(`                ${d.chain}`);
+  }
+  console.log(`  ${disagreements.length} disagreement(s) across ${[...classed.values()].filter(Boolean).length} named class(es), ${unclassified.length} unclassified`);
   console.log(`attribute-witness  ${read} attribute(s) across ${counts.size} type(s), `
     + `${read - disagreements.length} reading the kind TiddlyWiki assigned (ceiling ${ceiling})`);
-  process.exit(untyped.length === 0 && disagreements.length <= ceiling ? 0 : 1);
+  process.exit(untyped.length === 0 && unclassified.length === 0 && disagreements.length <= ceiling ? 0 : 1);
 })();

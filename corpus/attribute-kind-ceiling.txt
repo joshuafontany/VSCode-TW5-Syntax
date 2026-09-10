@@ -9,8 +9,8 @@
 # different. So the host writes both halves — the type on each attribute it places, and the extent
 # to read it at — and this repository holds only the vocabulary that pairs them.
 #
-# Measured over TiddlyWiki's own wikitext tiddlers: two kinds agree outright, and the residue
-# concentrates in two shapes worth separating before anyone drives the number down.
+# Measured over TiddlyWiki's own wikitext tiddlers: one kind agrees outright, and the residue keys
+# to seven structural causes, each named below with the specimen that carries it.
 #
 #   A VALUE CROSSING LINES stands over rather than answering wrongly, so nothing below counts one.
 #   THE PROBE READS THE VALUE'S WHOLE SPAN. A kind region need not cover every character — a
@@ -30,6 +30,19 @@
 # while the parser placed all of them. 22 attributes came back. The controls hold: a pragma standing
 # after the same `-->` keeps the zone, and so does a second comment.
 #
+# THE PARTITION RUNS IN THE TOOL, NOT IN THIS FILE. `tools/attribute-witness.js` carries a ladder of
+# structural predicates and keys every disagreement to one; a disagreement keying to nothing stands
+# UNCLASSIFIED and fails the gate. A residue counted but unpartitioned reads like a measurement and
+# carries none — a class that grows hides behind a class that shrinks, and the total holds while the
+# grammar moves underneath it.
+#
+# READING THE KIND WORD FIRST MANUFACTURED A CLASS. A "filtered or indirect value reading a
+# neighbouring kind" heading held five entries that shared nothing: two sat inside a backtick raw
+# span, two inside a start tag broken across a blank line, and one inside a parameter region no
+# `\end` could close. Each already had a structural cause, and the kind word named none of them. The
+# ladder therefore reads the STRUCTURE first and the kind word never — the heading is gone, and the
+# five went home to the classes that produced them.
+#
 #   15  AN ATTRIBUTE CARRYING NO VALUE IN THE SOURCE. TiddlyWiki types a bare `allowfullscreen` as a
 #       string and SYNTHESISES the value "true", and the span it hands back covers the attribute's
 #       NAME. Naming that span a string would paint the name as its own value. Permanent by
@@ -38,13 +51,47 @@
 #       separator either and its whole span IS its value, so reading the separator alone counted 29
 #       where 17 stand. The span standing equal to the attribute's own name is the test.
 #
-#   ~10 A START TAG BROKEN ACROSS A BLANK LINE, all in `$:/core/ui/EditTemplate/body/editor`. Ruled
+#   13  A START TAG BROKEN ACROSS A BLANK LINE, all in `$:/core/ui/EditTemplate/body/editor`. Ruled
 #       already, in `tests/tiddlywiki5/tiddlywiki5.tag-blank-line-bound.tw5.test`: TiddlyWiki skips a
 #       blank line between attributes the way it skips a space, but where no pattern matches an end
 #       TextMate runs a region to the end of the document, and an unclosed tag then colours every
 #       construct after it as an attribute name. Counted across 2583 files, no plain HTML start tag
 #       anywhere carries a blank line, and the six that do all wear a widget name in that one file.
 #       The ruling buys the whole corpus at the cost of this file.
+#
+#       THIRTEEN, RE-DERIVED PER ATTRIBUTE — the figure once read off the file as "~10" and missed
+#       the two `{{{ }}}` values the runaway leaves standing as filtered transclusions in paragraph
+#       text rather than as attribute values. The six tags account for all thirteen: `<$edit` 5,
+#       `<$set` 1, the first `<$list` 1, `<$reveal` 3, `<$transclude` 2, the second `<$list` 1. The
+#       tag opener wants deriving too — the NEAREST `<` sits inside the `<<config-visibility-title>>`
+#       value on the line above, and reading that one left two of the thirteen keyed to nothing.
+#
+#   10  INSIDE A BACKTICK RAW SPAN THE GRAMMAR PAIRED AGAINST THE HOST, across five templates:
+#       `static.tiddler.html` 4, `tiddlywiki.js.tiddlers` 2, `html-div-tiddler` 2, and one each in
+#       `tiddlywiki5.html` and `tiddlywiki5-external-js.html`.
+#
+#       MEASURED, ONE SPECIMEN AT A TIME. `codeinline.js` opens on ``(``?)`` and then runs
+#       `reEnd.exec(this.parser.source)` over the WHOLE source, so a TiddlyWiki code run crosses line
+#       breaks freely. This grammar spells the same construct as a `match` — ``(?<!`)(`)(?!`)((?:
+#       [^`\n]|`(?!`))+?)(`)`` — and `[^`\n]` refuses a newline, so the two pair DIFFERENT backticks
+#       and the mis-pairing alternates: every span the host reads as raw this grammar reads as
+#       wikitext, and every span the host reads as wikitext this grammar paints raw. In
+#       `html-div-tiddler` the host pairs `` `>\n<pre>` `` and parses the `<$view field="text"
+#       format="htmltextencoded" />` after it; the grammar cannot pair across that newline, so it
+#       pairs the `<$view .../>` instead and paints the widget as raw text.
+#
+#       THIS SITS BEHIND `whole-document lookahead` in `tools/textmate-ceiling.js`, the same ceiling
+#       the `<<<<` class sits behind, and a relaxation was measured rather than assumed. A `match`
+#       cannot span a line, so closing the class means a `begin`/`end` pair — and TextMate runs an
+#       unmatched `begin` to the end of the document while TiddlyWiki renders an unterminated
+#       delimiter as literal text and carries on. Over the 2493 tiddlers this sweep reads, 9 carry an
+#       unterminated code run (`mono-block`, `splitregexp Operator`, `CallParameterValue`,
+#       `tm-new-tiddler`, `Serving TW5 from Android`, `#9739-empty-codeblock`, `Release 5.3.0`,
+#       `Linking in WikiText`, `Substituted Attribute Values`) and every one of them would run away.
+#       Bounding the end at a blank line was measured too and does not close the class: 8 tiddlers
+#       carry a code run that legitimately crosses a blank line, so a blank-line bound mis-pairs
+#       those exactly as `[^`\n]` mis-pairs these. Matching the host wants knowing whether a closing
+#       backtick stands anywhere ahead in the document.
 #
 #    6  A CALL OPENING ON `<<<<`, all in `WidgetMessage_ tm-navigate.tid`, where the source reads
 #       `|field |<<<<.from-version "5.2.0">> text |`. Measured: TiddlyWiki builds a transclude whose
@@ -59,10 +106,29 @@
 #       ahead, which is `whole-document lookahead` in `tools/textmate-ceiling.js`. A reader holding
 #       the document closes these six; a pattern reading one line does not.
 #
+#    4  INSIDE AN EMBEDDED STYLESHEET THE GRAMMAR HANDS TO CSS, all in `$:/SplashScreen`, where
+#       `<style scoped>` carries `<<colour foreground>>`, `<<colour page-background>>` and
+#       `<<box-shadow "2px 2px 10px rgba(0, 0, 0, 0.5)">>`. TiddlyWiki parses a `<style>` element's
+#       content as WIKITEXT and places the macro parameters; this grammar hands the whole element to
+#       `source.css` under `meta.embedded.block.html`, so no wikitext construct inside it is read at
+#       all. NO CEILING BOUNDS THIS ONE — an injection carrying the macrocall rules into the embedded
+#       stylesheet reaches all four, and the cost wants measuring against every `<style>` block in
+#       the corpus before anyone spells it.
+#
 #    3  A TRIPLE-QUOTED MACRO PARAMETER. `"""..."""` reads as the call around it rather than as
 #       the string inside it.
 #
-#    5  A FILTERED OR INDIRECT VALUE reading a neighbouring kind — `string.text-reference` and
-#       `string.quoted.double` for a filtered value, `string.unquoted` for an indirect one.
+#    1  INSIDE A MACRO-CALL PARAMETER REGION THE GRAMMAR NEVER CLOSED, in `Macro Calls in WikiText
+#       (Examples)`, and the cause is the triple-quote rule one class up. The source writes
+#       `<<sayhi "Mickey Mouse" """"Mouse House",` — a triple-quoted parameter whose CONTENT opens
+#       with a quote. TiddlyWiki's `"""([\s\S]*?)"""` matches lazily and takes the content whole;
+#       this grammar guards its opener `(?<!")"""(?!")`, which matches NO offset in `""""`, so the
+#       parameter region never opens, the call region never closes, and everything after it — past
+#       the `\end` that should close the definition — reads as one unquoted macro parameter. The
+#       control holds: the same specimen with `"""` closes cleanly and the following widget reads as
+#       a widget.
 #
-# The remainder stand in templates that wrap their whole body in a backtick raw span.
+#       THE PROBE NEARLY MISSED IT. The runaway paints every following construct `string.unquoted`,
+#       and `string` is the type TiddlyWiki assigns 88% of attributes — so a swallow that eats a
+#       whole tiddler surfaces here as ONE disagreement, the single `indirect` value it happened to
+#       cross. The count under-reads the reach of this class by construction.

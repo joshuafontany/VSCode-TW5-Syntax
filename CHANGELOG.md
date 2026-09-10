@@ -729,7 +729,26 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - The corpus and samples carry the framing form the graph now writes: a control sigil names its ends,
   `from=? -> to=lar:///…`, with the bearing arrow riding between them as an unnamed positional. The
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
-
+- The attribute residue partitions class by class, and one class dissolved under the reading. A
+  "filtered or indirect value reading a neighbouring kind" heading held five entries that shared
+  nothing: two sat inside a backtick raw span, two inside a start tag broken across a blank line, and
+  one inside a macro-call parameter region no `\end` could close. The heading came from reading the
+  KIND WORD first; reading the structure first sends all five home and the heading is gone. The
+  blank-line class re-derives per attribute at 13 rather than the ~10 read off the file, and its
+  tag opener wants deriving too — the nearest `<` sits inside a `<<macro>>` value on the line above.
+- Two classes stood unmeasured behind one wrong sentence, "templates that wrap their whole body in a
+  backtick raw span". Ten attributes sit inside a raw span the grammar PAIRED AGAINST THE HOST:
+  `codeinline.js` runs `reEnd.exec(source)` over the whole document so a TiddlyWiki code run crosses
+  line breaks, while this grammar spells the construct as a `match` whose content class reads
+  `[^`\n]` — so the two pair different backticks and the mis-pairing alternates, every span the host
+  reads raw reading as wikitext and back. Four more sit inside `<style scoped>`, whose content
+  TiddlyWiki parses as WIKITEXT while this grammar hands the whole element to `source.css`.
+- The `<<<` sentinel blocks seven region entries and the earlier reading named the wrong ones. The
+  sweep ran three times over the same 906 cuts under a quoteblock, a typed block and a style block:
+  21 unasked, 14, 15, and 14 under the union. The seven that come open are the BLOCK filtered
+  transclusion and the filter, tokenize and text-reference regions the same close pops — the two
+  OUTER inline transclusion regions stay unasked under every sentinel, because they want a cut
+  standing inside a line and the probe cuts at line boundaries.
 ### Added
 - `sigil-vocabulary` reads whether the specimens exercise the vocabulary the HOUSE writes, deriving
   the population from the boot seed rather than from a list here. `memetic-coverage` asks whether
@@ -1179,7 +1198,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   hazards a spec carries: a `tiddlywiki.files` REPLACES the scan of the directory holding it, and a
   `.meta` sidecar outranks a spec's own fields, taking both halves of the pair out of the house
   namespace.
-
+- `attribute-witness` keys every disagreement to the structure that produced it and fails on one
+  that keys to nothing. A residue counted but unpartitioned reads like a measurement and carries
+  none: a class that grows hides behind a class that shrinks while the total holds. Seven classes
+  stand — 15 valueless, 13 in a start tag broken across a blank line, 10 in a mis-paired raw span, 6
+  on a `<<<<` opener, 4 in an embedded stylesheet, 3 triple-quoted parameters, 1 in a parameter
+  region the grammar never closed — and the ladder reads structure before kind word, so a cause
+  outranks the symptom it produced. The control cuts one class from the ladder and the gate reds.
 ### Changed
 - A RULING'S BREADTH ANSWERS TO HOW MANY CAUSES IT CAN ABSORB, never to how much ground it covers.
   `ruled-ground-ceiling.txt` counted the share of corpus tokens every ruling stood on and re-seated

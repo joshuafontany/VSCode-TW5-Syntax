@@ -30,31 +30,67 @@
 # claims inside math. Seated at 21 on 2026-09-09, down from 44 — the constructs above account for
 # the 23 that closed.
 #
-# THREE POPULATIONS SIT IN THE RESIDUE, AND NONE OF THEM WANTS A SPECIMEN.
+# THE RESIDUE, RE-MEASURED 2026-09-09 UNDER THREE SENTINELS. The sweep ran three times over the
+# same 906 cuts, appending a quoteblock (`<<<`), a typed block (`$$$text/plain`) and a style block
+# (`@@`) in turn, and collected the scopes standing at the sentinel's own line each time. The
+# quoteblock run reproduces 21 exactly, which is the control: the reading below comes off the same
+# instrument that seats the ceiling.
+#
+#   21 unasked under the quoteblock · 14 under a typed block · 15 under a style block · 14 under
+#   the union of all three.
+#
+# SEVEN ENTRIES COME OPEN THE MOMENT THE SENTINEL STOPS COLLIDING, and no more. Every transclusion
+# rule ends `(\}\})|(?=^(?:!|\*|#|;|:|>|<<<|\||---|\\))` — `<<<` stands in that alternation, so
+# the region closes on the line the probe reads and the instrument cannot ask it at all. The seven:
+# `meta.transclusion.filteredtranscludeblock`, the two `meta.filter` regions (one under
+# `filteredtranscludeblock`, one under `filteredtranscludeinline`), the two
+# `meta.transclusion.tokenize` regions and the two `meta.transclusion.text-reference` regions (one
+# each under `transcludeblock` and `transcludeinline`). The text-reference regions carry no `<<<`
+# in their own end — `(?=\|\||\}\})` — and come open because the enclosing close pops them.
+#
+#   TRACED, ONE SPECIMEN: `corpus/wikitext/inline.transclusions.tw:25`, cut after `{{{ [tag[Done]]`.
+#   Under a typed-block sentinel the sentinel's line reads `$$$text/plain` and wears
+#   `meta.transclusion.filteredtranscludeblock` · `meta.filter` · `meta.filter.run` ·
+#   `entity.filter.operator.title` · `string.unquoted`. Under the quoteblock sentinel NO cut in the
+#   corpus opens that region, and the control holds for all three traced names.
+#
+# THE EARLIER READING NAMED THE WRONG MEMBERS. It counted seven and called them "the inline
+# transclusion, the filtered pair, and the text reference and filter regions nested inside them".
+# Measured, the two OUTER inline regions — `meta.transclusion.filteredtranscludeinline` and
+# `meta.transclusion.transcludeinline` — stay unasked under every sentinel tried, while the block
+# spelling and the nested regions come open. An outer inline region wants a cut standing INSIDE a
+# line, and this probe cuts at line boundaries only.
+#
+# AND THE INSTRUMENT CANNOT TELL TWO OF THEM APART. `unboundedRegions` matches a region by the
+# SCOPE NAME it declares, and `meta.filter`, `meta.transclusion.tokenize` and
+# `meta.transclusion.text-reference` each stand under both a block rule and an inline one. One
+# specimen opening the block spelling therefore answers for both entries. The seven above read as
+# seven ENTRIES across four distinct scope names, and no specimen can separate the pair.
+#
+# FOURTEEN STAND WHATEVER SENTINEL ARRIVES, and none of them wants one.
 #
 #   ITS END MATCHES WHERE ITS BEGIN DOES. The dash rules close inside their own line whatever a
-#   reader feeds them; a filter-run prefix ends on a zero-width lookahead one character along; a
-#   pretty link opens only where `[^\n]*\]\]` stands on the same line; the transclusion tokenizer
-#   and the script start tag read the same way. No cut anywhere can leave one open. Eight entries.
+#   reader feeds them (`ndash`, `mdash`); a filter-run prefix ends on a zero-width lookahead one
+#   character along (two entries); a pretty link opens only where `[^\n]*\]\]` stands on the same
+#   line; the script start tag ends `(>)|(?=^$)`. No cut anywhere can leave one open. Six entries.
 #
-#   THE SENTINEL'S OWN DELIMITER CLOSES IT. Every transclusion rule ends
-#   `(\}\})|(?=^(?:!|\*|#|;|:|>|<<<|\||---|\\))` — and `<<<` is the sentinel. So the region closes
-#   on the line the probe reads, for every specimen ever written, and the instrument cannot ask
-#   these regions the question at all. Seven entries: the inline transclusion, the filtered pair,
-#   and the text reference and filter regions nested inside them, which the same close pops. A
-#   probe carrying a different sentinel would reach them, and would trade this blind spot for
-#   another.
+#   IT CANNOT SPAN A LINE. A JavaScript `//` comment ends `\n` whatever the vendored grammar
+#   spells, three entries' worth.
 #
-#   IT CANNOT SPAN A LINE. A JavaScript `//` comment ends at its line end whatever the vendored
-#   grammar spells, three entries' worth.
+#   IT WANTS A CUT INSIDE A LINE. The two outer inline transclusion regions. This probe cuts at
+#   line boundaries, so an inline construct always closes on the line that opened it. Two entries.
 #
-# TWO CONSTRUCTS CAME OUT AGAIN AFTER MEASURING. A `<%if …%>` shortcut and a `(((…)))` variable
-# display each opened their region under a cut, and each keyed UNCLASSIFIED — the kind vocabulary
-# reads innermost-first, and the innermost region standing open under both is a `meta.filter.run`
-# the grammar RE-OPENS on whatever follows the cut. Its openness therefore carries no information
-# about which construct ran away, so a kind naming it would file two different causes under one
-# key and read like a classification. They cost three regions and stand recorded here rather than
-# ruled on a key that names the wrong thing.
+#   IT KEYS UNCLASSIFIED AND A KEY WOULD NAME THE WRONG CAUSE. A `<%if …%>` shortcut
+#   (`meta.shortcut`, `meta.conditional.content`) and a `(((…)))` variable display
+#   (`meta.filter.mvv-display`) each opened a region under a cut, and the kind vocabulary reads
+#   innermost-first — the innermost region standing open under both is a `meta.filter.run` the
+#   grammar RE-OPENS on whatever follows the cut. Its openness therefore carries no information
+#   about which construct ran away, so a kind naming it would file two different causes under one
+#   key and read like a classification. Three entries.
+#
+# THE CEILING STAYS AT 21 HERE. Lowering it means adding a specimen to `corpus/**`, and the count
+# falls on its own the moment the sentinel stops colliding: 14 stands as the figure to compare
+# against after that change lands.
 #
 # A region arriving with no specimen that opens it raises the count and fails the gate. That reads
 # as the rule this whole battery exists to keep: a list nobody exercises cannot notice what it

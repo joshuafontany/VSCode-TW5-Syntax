@@ -83,3 +83,32 @@ test('a pragma zone that can only close at a line start loses a comment\'s own t
   assert.ok(Number(provoked[1]) < Number(clean[1]),
     `the zone kept the tail and the same ${provoked[1]} attributes still read their kind, so the close proves nothing`);
 });
+
+// EVERY DISAGREEMENT WANTS A NAMED CAUSE. A residue counted but not partitioned reads like a
+// measurement and carries none: a class that grows and a class that shrinks cancel in the total,
+// and the ceiling holds while the grammar moves underneath it. So each disagreement keys to the
+// structure that produced it, and one keying to nothing fails the gate.
+test('every disagreement keys to a named class', live, () => {
+  const { code, out } = runTool('attribute-witness.js');
+  const m = /(\d+) disagreement\(s\) across (\d+) named class\(es\), (\d+) unclassified/.exec(out);
+  assert.ok(m, out.slice(-600));
+  assert.strictEqual(Number(m[3]), 0, `${m[3]} disagreement(s) key to no class`);
+  assert.strictEqual(code, 0, out.slice(-600));
+});
+
+// THE CONTROL: a class the reading loses must surface as unclassified rather than fold into a
+// neighbour. A ladder whose last rung catches everything reports zero forever.
+test('a class lost from the reading fails the gate', live, () => {
+  const blind = (sandbox) => {
+    const file = path.join(sandbox, 'tools', 'attribute-witness.js');
+    const text = fs.readFileSync(file, 'utf8');
+    const cut = text.replace(/^ *\['a start tag broken across a blank line'.*$/m, '');
+    assert.notStrictEqual(cut, text, 'the provocation changed nothing, so it plants no fault');
+    fs.writeFileSync(file, cut);
+  };
+  const { code, out } = runInSandbox(blind, ['tools/attribute-witness.js']);
+  const m = /(\d+) unclassified/.exec(out);
+  assert.ok(m, out.slice(-600));
+  assert.ok(Number(m[1]) > 0, 'a class went missing and every disagreement still found one');
+  assert.notStrictEqual(code, 0, 'a disagreement keyed to nothing and the gate held anyway');
+});
