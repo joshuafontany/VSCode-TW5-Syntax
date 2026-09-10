@@ -77,12 +77,11 @@ test('the worst reading keeps headroom against the budget', live, () => {
   assert.ok(worst > 0, 'the witness timed nothing, so the budget guards nothing');
   assert.ok(worst * 2 < budget,
     `the worst pattern reads ${worst}ms against a budget of ${budget}ms, which ordinary noise crosses`);
-});
 
-// Two runs, one verdict. A witness whose reading wanders decides by whichever run somebody looked at.
-test('two runs read the same verdict', live, () => {
-  const stalls = (out) => /(\d+)\s+pattern\(s\) a reader would feel stall/.exec(out)[1];
-  const first = runTool('backtrack-witness.js');
-  const second = runTool('backtrack-witness.js');
-  assert.strictEqual(stalls(first.out), stalls(second.out), 'the same tree read two verdicts');
+  // ONE VERDICT ACROSS THE RUNS ALREADY PAID FOR. A witness whose reading wanders decides by
+  // whichever run somebody looked at, and these three runs answer that without timing a fourth:
+  // every run of this witness sweeps each pattern over 170 unfinished specimens, so a run bought to
+  // assert stability alone spends the machine and reads nothing about the grammar.
+  const stalls = runs.map((r) => /(\d+)\s+pattern\(s\) a reader would feel stall/.exec(r.out)[1]);
+  assert.strictEqual(new Set(stalls).size, 1, `the same tree read ${stalls.join(', ')} stalls`);
 });

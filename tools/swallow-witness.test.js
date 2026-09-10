@@ -58,22 +58,22 @@ test('every ledger line carries a reason', () => {
 
 // The collision runs against a COPY of the working tree, so it exercises the witness as it
 // stands now rather than as it stood at the last commit.
-test('a grammar stripped of its bounds reads as a swallow', live, () => {
-  // ONE SPELLING OF THE BOUND, across every rule that carries it — never one rule's bound. A
-  // single rule's bound provokes nothing wherever a second rule bounds the same opener, and the
-  // collision then reads green while proving nothing; the inline style run collides that way,
-  // since the style BLOCK bounds it too.
-  //
-  // The grammar spells the line bound five ways and this reaches one of them on purpose. Stripping
-  // all five provokes LESS, not more: the inline emphasis rules then run to the end of the file and
-  // swallow every other finding into a single paragraph runaway. Measured — one spelling yields 17
-  // divergences and 11 unruled, all five yield 12 and 7.
-  const provoked = fs.readFileSync(GRAMMAR, 'utf8').split('|(?=^$)').join('');
+//
+// THE BOUND STRIPPED MUST BE ONE THIS WITNESS CAN SEE. The witness asks a single question — does a
+// quoteblock open where the sentinel stands — so a bound whose loss never reaches that question
+// provokes nothing however badly it breaks the grammar. Measured: the paragraph's blank-line bound,
+// stripped in one spelling and in all five, moves the reading not at all; taking the line anchor off
+// every block opener moves it not at all. The quoteblock's OWN end bound moves it, and reaches
+// 24 cuts doing so, because a quote that never closes swallows every sentinel after it.
+test('a grammar stripped of a bound reads as a swallow', live, () => {
+  const provoked = fs.readFileSync(GRAMMAR, 'utf8')
+    .split('"end": "\\\\s*(<<<)(?!<)"').join('"end": "\\\\s*(?!)"');
+  assert.notStrictEqual(provoked, fs.readFileSync(GRAMMAR, 'utf8'),
+    'the provocation changed nothing, so it strips no bound');
   const { code, out } = runProvoked(provoked, ['tools/swallow-witness.js']);
   assert.match(out, /[1-9]\d* unruled/, out.slice(-800));
   assert.notStrictEqual(code, 0, 'the witness must fail the gate, not only print');
 });
-
 // A ledger outlives what it explains as easily as any other list. A divergence gets fixed, its
 // line stays, and the record then carries more standing debt than the repository does.
 test('a ruling explaining no divergence fails the gate', live, () => {

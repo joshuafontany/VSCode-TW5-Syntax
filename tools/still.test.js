@@ -24,7 +24,7 @@ const live = { timeout: 900000 };
 
 test('the pass reads carrier ground and names every class it finds', live, () => {
   const { code, out } = runTool('still.js', ['--over', path.join(ROOT, 'corpus'), '--sample', '12']);
-  assert.match(out, /still  \d+ of \d+ carrier\(s\) at seed \d+, \d+ divergence\(s\) across \d+ class\(es\)/, out.slice(-600));
+  assert.match(out, /still  \d+ of \d+ carrier\(s\) at seed \d+, \d+ quote\(s\) closed to ask, \d+ divergence\(s\) across \d+ class\(es\)/, out.slice(-600));
   assert.strictEqual(code, 0, out.slice(-600));
 });
 
@@ -258,4 +258,34 @@ test('one reading per carrier finds the cuts that re-reading each head finds', l
   }
   // THE CONTROL. Two readings that both find nothing agree perfectly and prove nothing.
   assert.ok(cuts > 0, 'no carrier in the draw diverges at any cut, so the two readings agree over nothing');
+});
+
+// A SENTINEL MUST STAND ALONE.
+//
+// The probe appends `<<<`/`<<<` and asks whether both readers open a quoteblock there. Where the cut
+// leaves the CARRIER's own quote open, the sentinel lands inside it: the parser holds a quote whose
+// start is the carrier's marker rather than the probe's, the grammar opens a nested one, and the
+// difference names a fault in neither reader. Measured at `ListWidget.tid:28`; 186 host tiddlers
+// carry a line-start `<<<`.
+//
+// The probe CLOSES what the head left open rather than declining the cut. Declining costs real
+// findings — every cut in the quoteblock corpus sits under an open marker by design.
+test('a cut leaving a quote open gets it closed, so the sentinel still answers', () => {
+  const { closers, sentinelBlocked } = require('./sentinel.js');
+  // The shape `ListWidget.tid` carries: a marker the cut never closes.
+  assert.strictEqual(sentinelBlocked('a paragraph\n\n<<<\nquoted and never closed\n'), true,
+    'a head leaving a quote open reads as standing alone, so the sentinel answers inside it');
+  assert.deepStrictEqual(closers('a paragraph\n\n<<<\nquoted and never closed\n'), ['<<<']);
+
+  // A CLOSER ANSWERS TO ITS OWN WIDTH. TiddlyWiki closes on the marker it opened with, so a quote
+  // opened with four `<` outlives a closer carrying three — which opens a nested quote instead.
+  assert.deepStrictEqual(closers('<<<<\nouter\n<<<\ninner'), ['<<<', '<<<<'],
+    'a nested quote closes by width, innermost first');
+  // Same width closes even carrying a cite: the trailing text reads as the quote\'s cite.
+  assert.deepStrictEqual(closers('<<<\nquoted\n<<< Somebody'), []);
+
+  // The controls: a head closing what it opens, and one that opens nothing.
+  assert.strictEqual(sentinelBlocked('a paragraph\n\n<<<\nquoted\n<<<\n'), false,
+    'a head closing its own quote reads as blocked, so the probe closes where nothing stands open');
+  assert.strictEqual(sentinelBlocked('just prose here\n'), false, 'plain prose reads as blocked');
 });

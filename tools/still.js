@@ -53,7 +53,11 @@ if (require.main === module && (!over || !fs.existsSync(over))) {
   process.exit(2);
 }
 
-const SENTINEL = '<<<\nQuoted\n<<<\n';
+const { SENTINEL, closers, standAlone } = require('./sentinel.js');
+
+// Cuts the probe DECLINES, counted across the whole pass: a sentinel landing inside the carrier's
+// own quoteblock answers nothing, and a decline nobody counts reads as a cleaner base.
+let closed = 0;
 const LEDGERS = ['swallow-ledger.txt', 'engine-ledger.txt', 'carrier-ledger.txt'];
 
 /** Every ruling key the ledgers name, as matchers. */
@@ -238,7 +242,13 @@ async function divergencesIn(file) {
   for (let cut = 1; cut <= lines.length; cut += 1) {
     const head = lines.slice(0, cut).join('\n').replace(/\n+$/, '');
     if (!head.trim()) continue;
-    const specimen = `${head}\n\n${SENTINEL}`;
+    // A SENTINEL MUST STAND ALONE. A cut leaving the carrier's own quoteblock open puts it inside
+    // one, where the parser holds a quote starting at the CARRIER's `<<<` and the grammar opens a
+    // nested one; the closer restores both readers to the same depth. Declining the cut instead
+    // costs real findings — every cut in the quoteblock corpus sits under an open `<<<` by design.
+    const stem = standAlone(head);
+    if (stem !== head) closed += 1;
+    const specimen = `${stem}\n\n${SENTINEL}`;
     const read = reading.body ? reading.body(specimen) : specimen;
     // The tiddler's OWN type picks its parser. A dictionary body forced through wikitext builds a
     // paragraph, two calls and a quoteblock where the host builds one `genesis` node.
@@ -247,8 +257,13 @@ async function divergencesIn(file) {
     if (at < 0) continue;
     // The head after its trailing blank lines come off — the lines the file's own reading covered.
     const held = head.split('\n').length;
-    const { tokens } = await tokenizeFrom(reading.scope, ['', '<<<'], stacks[held - 1]);
-    const sentinel = tokens[1] ?? [];
+    // BOTH READERS MEET THE SAME LINES. The grammar side resumes from the head's own stack rather
+    // than re-reading the head, so a closer added for the parser must reach this stack too — added
+    // to one side alone it reads as 177 host runaways, the closer's own asymmetry wearing the
+    // grammar's name.
+    const bridge = [...closers(head), '', '<<<'];
+    const { tokens } = await tokenizeFrom(reading.scope, bridge, stacks[held - 1]);
+    const sentinel = tokens[bridge.length - 1] ?? [];
     const tree = flatten(oracle.parseAs(type, read).tree, { sameSpace: true });
     const parser = tree.some((n) => n.rule === 'quoteblock' && n.start === at);
     const grammar = sentinel
@@ -406,7 +421,7 @@ if (require.main !== module) return;
       if (n > BREADTH_CEILING) console.error(`     ${n} cause(s)  ${key}`);
     }
   }
-  console.log(`still  ${chosen.length} of ${files.length} carrier(s) at seed ${seed}, ${divergences} divergence(s) across ${classes.size} class(es), `
+  console.log(`still  ${chosen.length} of ${files.length} carrier(s) at seed ${seed}, ${closed} quote(s) closed to ask, ${divergences} divergence(s) across ${classes.size} class(es), `
     + `${unnamed.length} unnamed, ${broadened.length} ruling(s) broadened, widest ruling spans ${widest.kinds} cause(s) (ceiling ${BREADTH_CEILING}), `
     + `${(100 * ground).toFixed(1)}% of corpus tokens ruled`);
   process.exit(unnamed.length === 0 && broadened.length === 0 && !overBreadth ? 0 : 1);

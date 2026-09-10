@@ -53,7 +53,7 @@ const LEDGER = path.join(ROOT, 'corpus', 'swallow-ledger.txt');
 
 // A quoteblock reads well as the sentinel: it opens and closes on its own line, both readers name
 // it plainly, and neither reader's rule set changes underneath it.
-const SENTINEL = '<<<\nQuoted\n<<<\n';
+const { SENTINEL, standAlone } = require('./sentinel.js');
 
 // Specimens the corpus carries on purpose, which this question has no business asking of them.
 // A degenerate fixture exists to leave constructs open; a `\rules` run narrows the parser's own
@@ -138,6 +138,7 @@ function parserHolds(text, at, type = DEFAULT_TYPE) {
   const findings = new Map();
   const standing = new Set();
   let probes = 0;
+let closed = 0;
   let files = 0;
 
   for (const { file, scope, body, type: typeOf } of specimens()) {
@@ -148,7 +149,13 @@ function parserHolds(text, at, type = DEFAULT_TYPE) {
     for (let cut = 1; cut <= lines.length; cut += 1) {
       const head = lines.slice(0, cut).join('\n').replace(/\n+$/, '');
       if (!head.trim()) continue;
-      const specimen = `${head}\n\n${SENTINEL}`;
+      // A SENTINEL MUST STAND ALONE. A cut leaving the carrier's own quoteblock open puts it inside
+      // one, where the parser holds a quote starting at the CARRIER's `<<<` and the grammar opens a
+      // nested one; the closer restores both readers to the same depth. Declining the cut instead
+      // costs real findings — every cut in the quoteblock corpus sits under an open `<<<` by design.
+      const stem = standAlone(head);
+      if (stem !== head) closed += 1;
+      const specimen = `${stem}\n\n${SENTINEL}`;
       // The parser reads a body; the grammar reads a file. A `.tid` cut inside its header hands
       // the parser a body of the sentinel alone, and the blank line ending that header doubles as
       // the one the sentinel stands behind.
@@ -232,7 +239,7 @@ function parserHolds(text, at, type = DEFAULT_TYPE) {
   console.log(`  regions: ${unbounded.length} carry no line bound, ${unbounded.length - unasked.length} `
     + `stand open under some cut, ${unasked.length} go unasked (ceiling ${ceiling})`);
 
-  console.log(`swallow-witness  ${probes} cut(s) across ${files} corpus file(s), `
+  console.log(`swallow-witness  ${probes} cut(s) across ${files} corpus file(s), ${closed} quote(s) closed to ask, `
     + `${findings.size} divergence(s), ${owed.size} recorded, ${unruled.length} unruled, ${stale.size} ruling(s) explaining nothing`);
   process.exit(unruled.length === 0 && stale.size === 0 && unasked.length <= ceiling ? 0 : 1);
 })();

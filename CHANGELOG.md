@@ -7,6 +7,489 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Fixed
+- A SENTINEL MUST STAND ALONE. Three witnesses cut a carrier short, append `<<<`/`<<<` and ask
+  whether both readers open a quoteblock there. Where the cut leaves the carrier's OWN quote open the
+  sentinel lands inside it, the parser holds a quote starting at the carrier's marker, the grammar
+  opens a nested one, and the difference names a fault in neither reader — measured at
+  `ListWidget.tid:28`, 186 host tiddlers carrying a line-start `<<<`. `tools/sentinel.js` now closes
+  what the head left open, by WIDTH: TiddlyWiki opens on `(<<<+)` and closes on that same marker, so
+  a quote opened with four `<` outlives a closer carrying three and nests instead. Declining those
+  cuts was tried and refused — it cost the one divergence the bound-stripping collision existed to
+  provoke, since every cut in the quoteblock corpus sits under an open marker by design.
+- Both readers meet the same lines. `still` resumes the grammar side from the head's own stack rather
+  than re-reading the head, so a closer added for the parser alone read as 177 host runaways — the
+  closer's own asymmetry wearing the grammar's name. Host reach reads 99.5% with the bridge symmetric.
+- The swallow collision strips a bound this witness can SEE. The paragraph's blank-line bound, taken
+  out in one spelling and in all five, moves the reading not at all, and neither does taking the line
+  anchor off every block opener; the gate had decayed to resting on a single artifact cut. The
+  quoteblock's own end bound moves it across 24 cuts, because a quote that never closes swallows
+  every sentinel after it.
+
+### Added
+- `sigil-vocabulary` reads whether the specimens exercise the vocabulary the HOUSE writes, deriving
+  the population from the boot seed rather than from a list here. `memetic-coverage` asks whether
+  every scope the dialect declares gets reached; this asks from the other side, and the two answers
+  came apart badly: the specimens carried `<<~ hud Focus(10) Feedback(3)>>` and `<<~ syad 🏛️>>`,
+  forms the seed had retired, while carrying NONE of `set`, `oracle`, `stance`, `carry`, `focus`,
+  `drift-ward`, `frame` or `loops` — 14 of 18 unexercised. `corpus/memetic/sigils.mem` now carries
+  the whole HUD chiasmus, the stand-alone gauges, and every row form, in the shapes the seed writes.
+- A sigil the seed never writes reads as a FINDING, never a fault — `hoike` and `kue` come from the
+  talk-story carrier, `loulou` names a wikilink, and `unknown-sigil` stands as a deliberate control.
+- A NAME FOLLOWED BY AN ELLIPSIS NAMES NOTHING. The seed explains its own grammar in its own grammar
+  — `<<~ name …>>` invokes `<<~name …>>` — and the first derivation read that metavariable as a
+  sigil, then demanded a specimen invent one.
+- A sandbox meets EVERY ground a gate reads, not only the host. It stands in the system temp
+  directory where nothing sits beside it, so the boot seed resolved nowhere there and a collision
+  proved its gate against a vocabulary that never answered — the same shape as the TiddlyWiki
+  checkout resolving 5.4.1 against 5.5.0-prerelease.
+- One resolver, and the house's own gate caught the second. `resolveSeed` stands beside
+  `resolveTiddlyWiki` in the oracle rather than in the tool that wanted it.
+- Three more ceilings, each measured against the host and each naming a capability a later reader
+  must supply. IMPORT BY FILTER: `\import` takes a filter, not a title, so which definitions arrive
+  depends on what the wiki holds — `[tag[CeilingTag]]` renders `IMPORTED` and `[tag[OtherTag]]`
+  renders nothing, on identical calling bytes. INDIRECT ATTRIBUTE VALUE: `<$text
+  text={{X!!myfield}}/>` renders the field where it stands and nothing where it does not. ENTITY
+  VALUE: `&hellip; and &#x2014;` renders `… and —`, and the grammar names the entity exactly while
+  carrying no scope for what it stands for, because a scope names a span and never a value.
+- The ceiling shapes read five now — blind, phantom, space, wiki, value — and the two new ones carry
+  their own collisions: a wiki ceiling whose states render alike, and a value ceiling whose host
+  renders the source unchanged, both fail the gate.
+- Measured and NOT encoded: `\whitespace trim` leaves the tree identical on the specimen tried, and
+  rule-order precedence wants a genuine two-rule conflict nobody has constructed. Neither reads as a
+  ceiling on the evidence in hand, and a claim without a measurement stays out.
+- `ceiling` names what a TextMate grammar CANNOT reach about TiddlyWiki, measured rather than
+  asserted, so a later reader — a language server, a tree-sitter grammar, a parser wired to the wiki
+  — inherits a mandate rather than a hunch. Five stand: whole-document lookahead (a call builds where
+  `>>` stands anywhere ahead and nowhere else), rule-set mutation (`\rules except html` deletes a
+  rule for the rest of the document), verbatim storage (a macro body builds one node with nothing
+  inside, and the grammar paints wikitext there on purpose), nested coordinate space (a typed block
+  reports 23..42 while the quoteblock inside it reports 0..14), and cross-tiddler resolution
+  (`<<d hello>>` renders `A hello B` or `A $x$ B` depending on a definition in another tiddler).
+- A ceiling RETIRES when somebody closes it, and the gate fails until it goes — the same discipline a
+  ruling explaining nothing answers to. Three collisions plant that: a host that stops parting its
+  two inputs, a grammar that starts parting them, and a phantom pointed where the grammar paints
+  nothing. Each entry states its evidence and the attempts measured against it, because a limit
+  carrying no attempt reads as an excuse dressed as architecture.
+- `\parsermode` stands measured and is NOT a ceiling. The host builds `element/heading` under
+  `block` and only `text` under `inline`, and this grammar already parts them through a dedicated
+  inline-mode region.
+- Specimens for 23 regions no cut in this corpus ever opened, and the unasked ceiling falls from 44
+  to 21. `pragmas.signatures.tw` carries a `\define` signature closing on a later line in every
+  default quoting the grammar holds a region for, and a `\parameters` directive behind it;
+  `spans.multiline.tw` gains five widget attribute values — filtered, indirect, variable, bracketed
+  and substituted — an inline call mid-paragraph, an XML processing instruction, a script under a
+  type no grammar claims, and an element name no grammar claims inside math. A pragma signature at
+  the TOP of `spans.multiline.tw` was measured and taken out again: it wraps every later cut in a
+  parameters node, which collapsed 60 cuts to one ruled class and hid two real divergences the file
+  already surfaced. The residue holds three populations and none wants a specimen — a region whose
+  end matches where its begin does, a region every transclusion rule closes on `<<<` because the
+  probe's own sentinel appears in its end pattern, and a JavaScript line comment.
+- `still --reach` crosses EVERY carrier and ratchets the share it finds fully named, seated in
+  `corpus/carrier-reach-floor.txt` at 4342 of 4365. A sampled run reads 25 of 4403 carriers and
+  prints a verdict on the ground; measured over the whole of it, 23 carriers carry a class no ledger
+  names, so a draw of 25 misses all 23 about seven times in eight — seeds 1, 2, 9 and 13 read green
+  and seed 5 read red off one unchanged tree. The ratchet counts a CARRIER, never a seed and never a
+  class: 200 seeds at sample 25 draw five thousand carriers and reach 2979 distinct ones, so a seed
+  count names a budget rather than a coverage, and a count of classes named rises by ruling
+  generously — the move the ground ceiling beside it exists to weigh. A carrier no cut reads stands
+  UNSWEPT rather than clean and rides the other side of the denominator. Collided by withdrawing
+  every corpus ruling, with the whole ledger as the control.
+- `legibility` reads what a READER sees. Every other colour instrument reads scopes — whether an
+  opener and its closer paint alike, whether a construct reaches themes at all — and none asks
+  whether a call looks like a filter run. Scopes can move, stay pinned, stay faithful to the parser,
+  and still cost a reader the difference between two constructs. 21 pairs over 65 themes, each with
+  its own floor in `corpus/legibility-floor.txt`; the weakest stands at 53, a code span against
+  prose, which carries `markup.raw.inline` and two backticks that twelve themes rule on none of.
+- The reading paints WHOLE constructs, and the gate asserts that it does. Measured on container
+  scopes alone, a call, a filter run, a transclusion and prose each resolve to one colour and 44 of
+  65 themes paint them identically — a gate built that way would rule a healthy grammar broken. The
+  distinction rides on the punctuation and name scopes inside, where every construct parts from
+  prose in all 65.
+- A floor PER PAIR, because one floor on the weakest pair reads green through a loss anywhere else:
+  stripping a call of every name a theme rules on left the weakest pair exactly where it stood. The
+  collision found that the day the gate stood up.
+- A witness for what a reader sees. Every other gate reads scope names, and a name comes apart
+  from a colour in both directions: two names paint alike when no theme rule reaches past their
+  shared family, and one construct paints two ways when its parts sit in different families.
+  Neither shows in a snapshot and both show at a glance. `npm run colour-witness` resolves every
+  scope against each bundled theme and holds two relations — an opener and its closer read alike,
+  taken from the names themselves so a construct added later joins the check; and a declared
+  distinction reaches enough themes to show, and a thing a reader meets as one reads as one
+  colour. The last two stand declared, because whether a difference should show asks a judgement
+  no measurement settles — and the last names a specimen and the words inside it rather than two
+  scope names, since a relation over names stays true when a rule swaps which capture carries
+  which. It fails when a relation stops checking anything: a
+  scope no grammar emits, or a pair list that shrinks below its floor.
+- A witness for what a half-typed construct costs. A grammar meets unfinished input on every
+  keystroke, and a pattern reading cheaply on a finished construct can read expensively on an
+  unfinished one. `npm run backtrack-witness` takes every pattern in every grammar to openers this
+  format writes, followed by a repeating body and no close, and reports any whose cost a reader
+  would feel. It measures sizes a reader reaches while typing: past those a line stops being one
+  somebody wrote and becomes one somebody pasted.
+- A memetic construct leaves the paragraph after it alone. The bleed canary appends a sentence to
+  the END of a sample, so it catches a construct swallowing to the end of a file and misses one
+  that corrupts the next paragraph and recovers — and the dialect adds eleven opening constructs
+  the wikitext grammar has no rule for. A gate puts an ordinary sentence after every one of them
+  and asks that each carry a paragraph and nothing else. The construct list comes from the
+  grammar's own top-level patterns, so a rule added later joins the probe and reports if nobody
+  writes it a specimen. Measured: none of the eleven bleeds, and an unterminated one recovers
+  rather than swallowing what follows.
+- The memetic dialect holds wikitext entire, by measurement. It includes the wikitext grammar
+  rather than reimplementing it, which makes the superset claim look structural — and a TextMate
+  injection keys on a scope name, so a wrapper fires none of the wrapped grammar's. A wikitext
+  file read under the dialect lost 34 spans until the dialect carried those injections itself. A
+  gate reads every wikitext corpus file under both grammars and holds the dialect to losing no
+  span and stripping no scope, since a superset may only add.
+- Three gates ran nothing and reported green. `test(name, options, fn)` takes one options object,
+  and each of these passed two — so the runner took the second as the test body and the real body
+  never ran. Two of them had stood that way since they were written, including both readings over
+  cut ground. Each now runs for seconds rather than a millisecond, and each fails when its subject
+  breaks.
+- Typing `[[` or `<<` closes itself, and both pairs match. Wikitext writes a bracketed title and a
+  macro call far more often than it writes a bare angle bracket, and the base configuration named
+  neither as a bracket nor as a closing pair — while the memetic dialect that wraps it named both.
+  Longest match wins, so `<<` and `[[` pair before `<` and `[`, and a bare `<` still opens an HTML
+  tag and closes nothing. The dialect gains `<%` `%>` in return, which belongs to the wikitext it
+  wraps.
+- A double-click takes a TiddlyWiki word. VS Code's default word pattern breaks a system title at
+  its first character — `$:/core/ui/ViewTemplate` selects as `$` — and halves a hyphenated
+  variable name, so `tv-config-toolbar` selects as `tv`. Both stand among the commonest tokens an
+  author touches, and the same pattern decides word-wise cursor movement and what Ctrl+D matches.
+  A system title travels whole with its slashes, a pragma with its backslash, a hyphenated name
+  entire, and each stops at the delimiter around it: `<<myMacro>>` gives `myMacro`, `{{$:/foo}}`
+  gives `$:/foo`. The memetic dialect already carried one; wikitext, `.tid` and `.multids` did not.
+- Twelve scopes the corpus never reached now stand exercised. Each element family names its own
+  continuation region — the one a start tag opens when its attributes span lines, and a
+  single-line tag never opens — so reaching them wanted one element per family, and the families
+  run narrow: the math object family holds `mglyph` and nothing else. Four remain, each carrying a
+  near-sibling that claims the same text first, and the ceiling holds them from growing.
+- Coverage counts two populations separately. A scope this grammar emits and a scope it hands to
+  another grammar — `source.python`, `text.html.php`, `comment.block.js` — answered to one floor,
+  and reaching the second kind wants a specimen carrying that language, which a wikitext corpus
+  holds no reason to keep. The check reports each, and the count of this grammar's own unreached
+  scopes carries a ceiling that may fall and never rise. Most of them want a start tag whose
+  attributes span lines, which opens a continuation region a single-line tag never does.
+- The corpus reads specimens, named by the extensions the manifest claims rather than by a list of
+  what to skip. That list held two names and let a third control file through: the divergence
+  rulings answered every corpus run as though they were wikitext.
+- Every scope the memetic dialect declares stands exercised. The base grammar answers to
+  twenty-seven corpus files and a coverage floor; the dialect carried a fraction of that, and six
+  of its scopes had no specimen at all — a carrier naming no control code, a query separator
+  inside a `lar:` URI, and two of the three quotings a parameter value takes. Two of those hid for
+  one reason: they answer to the colon spelling, `key:"value"`, and every specimen wrote the
+  equals spelling, which hands its value to the unquoted rule before the string rule sees it. A
+  specimen carries all six and a gate holds the set.
+- Every declared contribution packs. The ignore list names directories rather than contributions,
+  so an edit there can drop a grammar the manifest still declares — and VS Code then loads that
+  language, finds no grammar, and colours nothing without saying so. A gate takes every grammar,
+  snippet file and language configuration the manifest names and asks the packager whether it
+  ships. Compared file by file, what a release carries stands byte-identical to what the gates
+  read, apart from the two transformations the packager performs: a licence renamed, and bare
+  issue references rewritten as links.
+- The gates answer to a TiddlyWiki that always resolves. They take their verdicts from
+  TiddlyWiki's own parser, and without one they skipped politely while the suite still reported no
+  failures — so a contributor could break every divergence gate and read green. `tiddlywiki`
+  stands as an exactly pinned devDependency, and resolution puts a checkout beside this repository
+  ahead of it: parser work happens in a checkout, and a released parser answering for gates aimed
+  at unreleased work would report agreement with something nobody is editing. `TW5_PATH` outranks
+  both. The pin ships to nobody — the package carries no runtime dependency, and nothing
+  executable packs.
+- The extension ships colouring and nothing that runs, by measurement. A TextMate grammar decides
+  how loudly a construct reads and never which parser rules a wiki stands, so the configuration
+  offered here works by scope naming and theme rules. That reading of the VS Code API answers to
+  Microsoft's tree; its consequence answers to this one, and a gate holds it — no entry point, no
+  activation events, only contributions VS Code reads without running anything, no runtime
+  dependency, and nothing executable packed into the release.
+- The four definition kinds carry ground that reports a regression. Each of them differs from the
+  others in what its body means, what its parameter list admits and what its name admits, and none
+  of those shapes stood in any sample or corpus file — so a fix to one could be lost silently.
+  The pragma sample carries a one-line body of each kind, a doubled-paren default under both
+  parameter laws, a dollar-named definition of each kind, and a body whose dollars stay literal.
+  Reverting each fix in turn moves the pinned snapshot; leaving them all in place moves nothing.
+  Coverage and divergence cannot stand in for this: a definition is stored rather than parsed, so
+  no parse-tree check holds an opinion inside one, and a refused definition reaches the same scopes
+  as the prose it reads as.
+- A gap that closes reports itself. A known-gap specimen asserts what the grammar does not yet do,
+  so it fails, and the gate that ran it read that failure as an absence and announced no gap
+  standing. `tests/known-gaps/README.md` names the moment worth catching — the grammar grows to
+  meet a gap, the specimen passes, and it wants moving to `tests/tiddlywiki5/` with its
+  specification. The gate reports standing gaps and fails on a closed one.
+- The corpus carries substitution where substitution holds. Its only ground for the placeholder
+  scopes stood inside procedure bodies, where TiddlyWiki performs none, so narrowing the
+  injection left eight scopes unexercised. A `\define` body now carries each placeholder form,
+  including one inside a filtered transclusion, and a substituted attribute value carries them
+  outside any definition.
+- The grammar answers on cut ground as well as whole. TiddlyWiki's own tiddlers carry the
+  best-formed wikitext in existence, and a learner writes from the other end of that
+  distribution. `overreach-check --truncate=<seed>` cuts every specimen short at a seeded offset —
+  an opener with no close, a table missing its last row, a macro body cut mid-parameter — and asks
+  the same question there. Two readings of the result flatter the grammar and the check refuses
+  both: a construct whose close lies past the cut refuses for that reason alone, and the whole
+  tiddler settles whether the cut is the entire reason, since truncation takes a prefix and an
+  offset means the same in both texts; a macro body is stored rather than parsed, so the parser
+  rules on nothing inside it and the check reports those spans as unanswered rather than clear.
+  Across four seeds no claim stands over text the whole tiddler also refuses.
+- Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
+  unexplained: every span stands explained by 57 written rulings, and none by a number somebody
+  wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
+  emits no container node, so a scope over its content stands over text by construction.
+- Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses
+  deliberately — a scope the host ships disabled, a `\rules` run narrowing a rule set no
+  TextMate grammar can follow, a fixture carrying deliberate faults, and the memetic dialect's own
+  vocabulary. `corpus/expected-divergence.txt` names each with its reason, and a line carrying no
+  reason names no ruling. Over the corpus, in both dialects, nothing now diverges unexplained.
+- A second memetic sample, so the composition gate over that dialect can run. It compares
+  neighbouring samples and needs two; the dialect carried one, so the check reported a missing
+  source rather than a result, every time anyone asked.
+- A `lar:` URI reads its own structure. The path, each `?key=value` in the query, the `&` between
+  them and a `#/fragment` now carry their own scopes instead of riding in one unbroken string, so
+  an address colours the way the rest of a call does.
+- **Colour toggles** in the README: the two scope groups worth turning, and the
+  `editor.tokenColorCustomizations` block that turns each, per workspace folder.
+- The repository reads from inside the wiki. `tools/`, `syntaxes/`, `snippets/`, `docs/` and
+  `tests/` reach the edition as tiddlers through a `tiddlywiki.files` spec that names each
+  directory by relative path — nothing gets copied, so a reader who opens a tiddler looks at the
+  same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
+  points at the one directory that stays outside: the coverage floor already measures those files,
+  and a second copy would part from the first the day somebody edits one.
+- A dictionary entry reads its value as wikitext, whatever the key. A tiddler dictionary holds keys
+  and values, and a key names no tiddler field — a dictionary carrying an entry called `caption`
+  carries a key of that name and not a caption — so the field allow-list reads nothing there. The
+  ground supports the reading: of 2863 entries across TiddlyWiki's own 28 dictionaries, 958 carry a
+  wikitext construct, most of them a `<<colour …>>` call in a palette. A `.multids` file already read
+  every value that way, one line per tiddler; the two formats now agree.
+- A TIDDLER'S TYPE DECIDES WHAT LANGUAGE ITS BODY CARRIES. TiddlyWiki reads a body through the
+  parser its `type` field names, and this grammar read every `.tid` body as wikitext whatever the
+  field said — a JSON tiddler's braces coloured as prose, a plain-text tiddler's `!!` as a heading,
+  a CSS tiddler's selectors as nothing at all. Twelve content types now steer the body: JSON,
+  JavaScript, CSS, HTML, XML and SVG, Markdown, a tiddler dictionary, and plain text, which carries
+  no wikitext at all. A type this grammar does not name keeps reading as wikitext, which is what
+  TiddlyWiki does with a type it cannot parse.
+  Measured against TiddlyWiki's own tree: 115 of 5756 `.tid` files declare a type that is not
+  wikitext. The type line opens a region that never closes — the remaining header fields read inside
+  it, and the body after the blank line reads as the guest language — which is the shape the inline
+  parser mode and the pragma zone already carry.
+- THE DIVERGENCE GATE HOLDS. Nothing the grammar claims stands unexplained: 0 spans where it claims
+  a construct TiddlyWiki refuses, 0 where it condemns one TiddlyWiki builds. It ran red for the whole
+  of this release and closed on two operator rulings and four measurements.
+- The structural pattern carries the colour. A shortcut reads `<% keyword … %>`, and a wiki or a
+  plugin may register one this TiddlyWiki never shipped — so the grammar colours the shape and names
+  an unrecognised keyword as unrecognised, rather than refusing what this parser happens not to read
+  today. `meta.link.wikilink` already stood on that reading for a rule TiddlyWiki ships and disables;
+  this names the other direction. 21 spans stand ruled, and the cost stands accepted: prose that
+  NAMES the syntax colours as the syntax.
+- The mark carries the colour, whatever the parser makes of it. Three style openers in a row read as
+  three here and as an empty block plus an inline run there — TiddlyWiki's block-or-inline choice
+  turns on what follows the mark. An image with a blank source carries every mark an image carries.
+  Both stand ruled to ONE fixture each, so the shape still reports anywhere else: planted in a
+  fixture no ruling names, the same image reports six spans and fails the gate.
+- A STATE TOGGLE NEVER TAKES A COLOUR AWAY. TiddlyWiki carries pragmas that change what its parser
+  reads — `\rules except rules` turns the rules pragma off, `\parsermode inline` reads the rest of
+  the tiddler as one inline run — and after such a line the parser refuses constructs it would
+  otherwise build. This grammar colours them anyway, by ruling: at design time a reader wants to see
+  the base language, and the operator holds the tiller for render time, having written the toggle
+  themselves. A grammar that greyed out everything below a `\rules except` line would hide the
+  language from the person editing it, to describe a state they authored. 26 spans stand ruled.
+- The two fixtures holding a whole HTML document carry the ruling their DOCTYPE already carried. A
+  `.tw` may hold one, where a tag and its attributes read; wikitext builds no node for either. 8
+  spans join the three metadata families already named.
+- `\whitespace` and `\parsermode` open on the separator, the way TiddlyWiki opens them. Demanding a
+  recognised value — `trim`, `notrim`, `block`, `inline` — refused the construct where the parser
+  builds it, so a line carrying an unknown value read as prose here and as a directive there. The
+  keyword still names itself; the rest rides as the value.
+- The upstream-coverage gate stopped asking this grammar to scope constructs TiddlyWiki refuses. It
+  harvests a case from the host's own tiddlers and stripped its trailing whitespace — but a rule
+  ending in `[^\S\n]` REQUIRES that whitespace, so `\rules ` became `\rules` and opened nothing.
+  Those three cases keep the separator now and carry a word after it, and the verdict keys on the
+  line the probe wrote rather than on the case's own text.
+- A directive wants a space where TiddlyWiki wants one. vscode-textmate hands the scanner a line
+  WITH its newline, so `\s+` after a keyword matched the line ending — and a bare `\rules`,
+  `\import`, `\whitespace` or `\parsermode` coloured as a working directive where TiddlyWiki reads
+  prose. Its own rule modules spell the separator `[^\S\n]`, and these four now say the same. The
+  divergence gate falls from 153 spans to 77.
+- A pragma reads as a pragma only where TiddlyWiki reads one. Its parser runs `parsePragmas()` once,
+  before `parseBlocks()`, and never returns to it, so a backslash directive standing after any block
+  content renders as prose — and the grammar coloured one as a working directive anywhere in a file.
+  A `#pragma-zone` region now opens at the start of the source and closes at the first line opening
+  no pragma-mode rule, with the pragma rules living inside it and nowhere else. The divergence gate
+  falls from 161 spans to 153.
+- Eight rules hold that zone open, not the backslash family alone. TiddlyWiki declares the mode on
+  each rule module and names `commentblock` among them, so an HTML comment keeps reading pragmas
+  exactly as a directive does. Reading the backslash keywords alone closed the zone on the first
+  `<!-- -->` line of a sample and took fifty-four pragmas with it, while the parser built every one.
+  `npm run signals` harvests the set from the host and a gate holds the zone's own account to it.
+- A comment naming a rule no longer counts as reading it. The coverage gate searched the whole
+  grammar including its prose, and two rules — `macrodef` and `fnprocdef` — read as covered because
+  a comment mentioned them. Both now carry a ruling naming what the grammar calls them instead.
+- The composition gate reads a prologue as position-dependent by construction. A file whose first
+  construct is a pragma cannot survive being preceded — that IS the construct, and markdown's front
+  matter carries the same property — so such a file answers for standing FIRST, and the parser
+  decides how far its prologue reaches rather than a walk over its lines.
+- A syntax-test fixture asserting pragma colouring declares the wrapper scope. A fixture is not a
+  tiddler: its mandatory header reads as content and would close the zone on line 1. The wrapper's
+  container carries the pragma rules and names the base scope through `contentName`, so every
+  assertion naming `text.html.tiddlywiki5` still finds it — an include compiles the other grammar's
+  `$self`, which carries its `scopeName` and then flattens into its children, so nothing pushes it.
+- The dialect's sigils read everywhere the base grammar reads. Its injection named three block
+  contexts by hand, and a sigil inside an unordered list read as an ordinary macro call for it — the
+  selector reached the three somebody listed. One selector on the base's root scope reaches the whole
+  file, and the base's root stands on the stack wherever it reads.
+- Every snippet says what it inserts. 73 of the 125 carried no description, so a learner reaching for
+  `\rules` met a name and a body and nothing saying what the construct does. A gate holds the set to
+  it, and a description that only repeats its snippet's name reads as none.
+- A TypeScript compiler stands in this repository's own dependencies, pinned to the version whose
+  bytes the committed modules carry. Continuous integration rebuilds the edition and asks whether the
+  tree holds what the build writes — `npm run edition:check` — so a source edited without a rebuild
+  fails a merge rather than shipping. The source weld stays beside it, because it wants no compiler
+  and still answers where a reader has none.
+- The backtrack witness answers to a control rather than to the machine. Its budget stands in wall
+  time, so run beside a dozen other gates the whole set slowed together and the slowest pattern
+  crossed eight milliseconds having done nothing different — 1.4ms alone, past 8 under the suite, on
+  the same bytes. A pattern now stalls only when it costs more than the budget AND more than twenty
+  times a control timed the same way, on the same inputs, under the same load. Both stand adjustable,
+  so the collision drives the reading rather than the machine.
+- The edition's compiled modules answer to the TypeScript standing beside them. TypeScript sits in
+  no dependency of this repository — the build finds a compiler in a parent checkout — so nothing in
+  continuous integration could rebuild and compare, and the compiled modules ARE the shipped
+  artifact. A contributor editing a source and forgetting the build would have shipped the older
+  module: the wiki loads it, the gates it carries run, and every reading comes back green from code
+  nobody wrote. The build now records the sha256 of every source it compiled, and a gate recomputes
+  them — verifying wants no compiler, only rebuilding does.
+- The build verifies every module it compiles. It named one by hand and checked that one; a second
+  arrived, compiled, and stood unverified beside it.
+- The theme-parity panel says what each comparator carried. The bar this gate holds the grammar to
+  comes from a median over six grammars, and one of them carries two constructs of seven — rst names
+  a heading on the underline rather than on the text, and splits its emphasis runs where the
+  construct's own words do not stand alone. Five constructs took their bar from five comparators
+  under a line that said six. The count stands per comparator now, and a comparator carrying nothing
+  fails rather than sitting there.
+- The closing semicolon of a numeric or hexadecimal entity carries its punctuation scope. Both rules
+  named capture 3 where two groups stand — copied from the named-entity rule above them, which has
+  three — so `&#39;` and `&#x27;` coloured their `&` and left their `;` bare while `&amp;` coloured
+  both. A gate reads every capture in every grammar against the groups its regex opens.
+- A carriage return stops the snapshot reader dead, and says nothing. A regex ending on `$` matches
+  nothing on a CRLF line, so the reader answered a file full of annotations as one carrying none —
+  every gate over the pinned snapshots would have reported green having measured nothing.
+  `.gitattributes` already kept one out of a checkout; the reader takes one anyway, for a file that
+  arrives by another road, and a gate now holds the tree to that line rather than trusting it. A
+  byte-order mark answers the same way: `JSON.parse` refuses one, so a gate holds that nothing here
+  carries one.
+- A theme reader that could not read a theme dropped it silently, and a caller handing back what the
+  loader already flattened read as a theme with no rules. Sixty-five themes' worth of measurement
+  could have run over nothing and reported green. The loader counts what it drops, the flattener
+  refuses a shape it cannot read, and a gate holds the theme count to a floor.
+- The dialect's own snippets, the file associations and the language configurations answer to one
+  reading: every language this extension defines carries a grammar, a configuration, an association
+  and its family's snippets, or a ruling names what stands in the way.
+- Nothing this grammar emits stands unreached. The corpus reached 466 of the scopes it declares and
+  three stood outside, and the three left by three different roads. A square-bracket string inside a
+  macro call wanted a specimen and got one. The macro-call parameter separator sat last in a list
+  whose previous pattern takes any run of non-space, non-quote, non-angle characters, so every
+  character it accepts that pattern claims first — twenty-nine tried in a macro call, and it fired
+  for none. The table body row carried a name on an EMPTY capture group: its three siblings name the
+  markup family on the `c`, `h` or `f` ending the line, a body row ends on nothing, and a zero-width
+  capture produces no token. Both dead names are gone, the floor stands at 467 and the ceiling at 0.
+- A grammar's own `name` stopped counting as a scope. It sits beside `scopeName` and names the
+  language, and three collectors read it as a scope — nine words across eight grammars, none of them
+  reachable by anything, each inflating the count the corpus answers to and standing forever among
+  the scopes reported as handed to another grammar. 526 declared reads 515. The collectors collapsed
+  onto the one that already had it right, in a comment beside the check.
+- Every snippet inserts a construct this grammar colours, not only one TiddlyWiki parses. One reads
+  as prose by ruling: a substitution colours inside a macro definition body and nowhere else, so it
+  reads as text standing alone, exactly as TiddlyWiki reads it there.
+- The snippet reader honours VS Code's escapes. A body spells a pragma `\\define` and INSERTS
+  `\define`, so reading it verbatim handed the parser two backslashes — every pragma snippet then
+  read clean for the wrong reason, and read as prose against the grammar for the same one.
+- The dialect carries the wikitext snippets. `memetic-wikitext` held the grammar and the language
+  configuration and not the 125 snippets the base offers, so an author writing a `.mem` reached for
+  a widget snippet and met nothing, with no error anywhere naming the absence. The syntax-test
+  language still takes none, by ruling: a `.tw5.test` body carries wikitext under assertion comments
+  that pin every token, and a snippet inserted there moves the columns the file exists to name.
+- `.mem` and `.tiddlywiki5.test` assert their own file associations, the way every other extension
+  this repository defines already did. An association outranks another publisher claiming the same
+  suffix; without one, whoever else claims it wins. A gate holds both directions — an extension no
+  association asserts, and an association naming a language or suffix the manifest never declares.
+- Every snippet inserts a construct TiddlyWiki closes. Nothing asked before, and a snippet is the
+  one surface here that writes into a reader's file: a mis-coloured construct costs a colour, an
+  inserted broken one costs a tiddler that renders wrong. All 128 pass; the parser's own
+  `unterminated-*` diagnostics answer the question.
+- Every repository rule in every grammar stands reachable from some root. An orphaned rule loads,
+  validates and colours nothing, and its scopes still count among the declared ones the corpus must
+  reach — so it reads as corpus work owed where the fault sits in the grammar. The walk follows
+  TextMate's own two rules: an include resolves against the nearest enclosing repository, and a
+  rule's own repository stands in scope only inside it. This grammar carries two nested repositories,
+  and a walker reading only the top level calls twelve working includes broken.
+- Continuous integration runs every witness the repository stands. It reached six of twenty-two,
+  and sixteen stood green in a developer's terminal and nowhere else — seven of them with nothing
+  in CI exercising their verdict at all. Two jobs carry them now: one that blocks a merge, and one
+  for the three whose answer moves with the TiddlyWiki they read, which reports the way the
+  coverage job already does. A gate holds the workflow to the manifest's own list, and
+  `$:/tw5-syntax/CIGates` carries the reason for the one gate that stays out.
+- The bleed canary reads inheritance from the parser rather than from a list. It passed over a
+  sample ending inside a block construct by matching scope-name prefixes, and `meta.styleblock`
+  arrived under a name no prefix covered — so two samples reported as bleeding while TiddlyWiki
+  carried the same text into the same construct and raised `unterminated-styleblock` saying so.
+  `--strict` drops the reading for a reader who wants the whole list.
+- Two samples ended with a stray `@@`, which opens a style block with no style and closes nothing.
+  It cost the canary and the composition gate a red each, and both stand green with it gone.
+- A pragma standing after block content reads as prose, the way TiddlyWiki reads one.
+  `tests/tiddlywiki5/tiddlywiki5.pragma-zone.tw5.test` carries the specification and the
+  measurement; the entry above records how the zone came to stand.
+- `npm run overreach` reads `corpus/expected-divergence.txt`, like every other overreach run. The
+  one that did not stood permanently red over spans a ruling already explained.
+- `overreach-corpus` named the same run as `overreach-host` without its rulings or its excludes, so
+  it could only ever fail. `overreach-host` stands.
+- A gate reads a `.tid` the same on either line ending. Six tools split a tiddler by scanning for
+  two newlines in a row, and that reading answers wrongly three ways: a file opening with a blank
+  line hands back a fragment of its body, a CRLF file matches nothing and reads as bodiless, and a
+  blank line carrying a space reads on into the first paragraph break. 34 of TiddlyWiki's own
+  tiddlers answer differently under the two readings — one of them with 1373 characters a gate read
+  as none. All six now read line-wise, and the attribute guard sees 23,682 tags where it saw
+  23,627, at the same 99.95% agreement.
+- Spawning a child and reading both halves of the answer stands in one place. Ten sites carried the
+  same seven lines — five running an instrument, three booting the edition, two inside the sandbox
+  — and each one that let the throw escape read a failing gate as a broken test. The swallow
+  witness now says so out loud: its two readings test a regex against the parser's output, so an
+  oracle that died would have answered every question with "no" and reported agreement everywhere.
+- The two sandbox runners share one body. They differed in which directories the sandbox takes from
+  the working tree, which is now the argument rather than a second copy of everything else.
+- The vendored grammars stand in `tests/grammars/` with an account of where they came from, and a
+  gate holds the directory to it: a grammar here that no runner loads fails, and so does a path
+  `grammars.sh` names that nothing holds. A grammar nothing loads costs an assertion its meaning
+  silently — every reading against it comes back absent rather than wrong.
+- An instrument and the test that collides it stand in one directory. A second `tools/` under
+  `tests/` held the tests, and the name promised a mirror the directory never held: of 29 tests
+  there, 15 answered a question about the whole repository and 14 instruments carried no test under
+  their own name. `tests/` now holds one kind of thing — the declarative grammar assertions
+  `vscode-tmgrammar-test` reads — and `tools/` holds the other, which `node --test` runs. The wiki
+  tells them apart by tag.
+- Two tests resolved the TiddlyWiki this repo answers to by hand, reading the environment and
+  falling back to a sibling checkout, where the oracle already tries three more candidates behind
+  that. A contributor whose checkout stood somewhere only the oracle finds saw those two skip while
+  every other gate ran. Both go through the oracle now, and the one-implementation gate reaches
+  tests as well as tools.
+- A gate holds that claim. It boots the edition, compares every arriving tiddler against the bytes
+  on disk, and derives its expectation from the specs rather than listing the directories again —
+  so a sixth directory gets checked without anybody editing the gate. It also holds the two
+  hazards a spec carries: a `tiddlywiki.files` REPLACES the scan of the directory holding it, and a
+  `.meta` sidecar outranks a spec's own fields, taking both halves of the pair out of the house
+  namespace.
+- `attribute-witness` keys every disagreement to the structure that produced it and fails on one
+  that keys to nothing. A residue counted but unpartitioned reads like a measurement and carries
+  none: a class that grows hides behind a class that shrinks while the total holds. Seven classes
+  stand — 15 valueless, 13 in a start tag broken across a blank line, 10 in a mis-paired raw span, 6
+  on a `<<<<` opener, 4 in an embedded stylesheet, 3 triple-quoted parameters, 1 in a parameter
+  region the grammar never closed — and the ladder reads structure before kind word, so a cause
+  outranks the symptom it produced. The control cuts one class from the ladder and the gate reds.
+### Changed
+
+- `test-tools` caps the runner at four files in parallel. On twelve cores Node ran eleven test files
+  at once, each spawning children that boot TiddlyWiki and read 65 themes; measured, that pressure
+  killed `construct-legibility` mid-run and reported a pair as missing that stands at 65/65. Four in
+  parallel reads 394 pass, 0 fail, and costs 34 seconds.
+- The backtrack witness reads its verdict off the three runs the headroom check already pays for. A
+  fourth and fifth run bought stability alone: every run sweeps each pattern over 170 unfinished
+  specimens, spending the machine and reading nothing about the grammar.
 - The `\parameters` divergence lands as evidence under `whole-document lookahead` rather than as a
   ceiling of its own. `\parameters\s*\(([^)]*)\)` carries a signature across blank lines to a
   closing paren ANYWHERE ahead and builds nothing where none stands — measured, a signature closing
@@ -749,463 +1232,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   transclusion and the filter, tokenize and text-reference regions the same close pops — the two
   OUTER inline transclusion regions stay unasked under every sentinel, because they want a cut
   standing inside a line and the probe cuts at line boundaries.
-### Added
-- `sigil-vocabulary` reads whether the specimens exercise the vocabulary the HOUSE writes, deriving
-  the population from the boot seed rather than from a list here. `memetic-coverage` asks whether
-  every scope the dialect declares gets reached; this asks from the other side, and the two answers
-  came apart badly: the specimens carried `<<~ hud Focus(10) Feedback(3)>>` and `<<~ syad 🏛️>>`,
-  forms the seed had retired, while carrying NONE of `set`, `oracle`, `stance`, `carry`, `focus`,
-  `drift-ward`, `frame` or `loops` — 14 of 18 unexercised. `corpus/memetic/sigils.mem` now carries
-  the whole HUD chiasmus, the stand-alone gauges, and every row form, in the shapes the seed writes.
-- A sigil the seed never writes reads as a FINDING, never a fault — `hoike` and `kue` come from the
-  talk-story carrier, `loulou` names a wikilink, and `unknown-sigil` stands as a deliberate control.
-- A NAME FOLLOWED BY AN ELLIPSIS NAMES NOTHING. The seed explains its own grammar in its own grammar
-  — `<<~ name …>>` invokes `<<~name …>>` — and the first derivation read that metavariable as a
-  sigil, then demanded a specimen invent one.
-- A sandbox meets EVERY ground a gate reads, not only the host. It stands in the system temp
-  directory where nothing sits beside it, so the boot seed resolved nowhere there and a collision
-  proved its gate against a vocabulary that never answered — the same shape as the TiddlyWiki
-  checkout resolving 5.4.1 against 5.5.0-prerelease.
-- One resolver, and the house's own gate caught the second. `resolveSeed` stands beside
-  `resolveTiddlyWiki` in the oracle rather than in the tool that wanted it.
-- Three more ceilings, each measured against the host and each naming a capability a later reader
-  must supply. IMPORT BY FILTER: `\import` takes a filter, not a title, so which definitions arrive
-  depends on what the wiki holds — `[tag[CeilingTag]]` renders `IMPORTED` and `[tag[OtherTag]]`
-  renders nothing, on identical calling bytes. INDIRECT ATTRIBUTE VALUE: `<$text
-  text={{X!!myfield}}/>` renders the field where it stands and nothing where it does not. ENTITY
-  VALUE: `&hellip; and &#x2014;` renders `… and —`, and the grammar names the entity exactly while
-  carrying no scope for what it stands for, because a scope names a span and never a value.
-- The ceiling shapes read five now — blind, phantom, space, wiki, value — and the two new ones carry
-  their own collisions: a wiki ceiling whose states render alike, and a value ceiling whose host
-  renders the source unchanged, both fail the gate.
-- Measured and NOT encoded: `\whitespace trim` leaves the tree identical on the specimen tried, and
-  rule-order precedence wants a genuine two-rule conflict nobody has constructed. Neither reads as a
-  ceiling on the evidence in hand, and a claim without a measurement stays out.
-- `ceiling` names what a TextMate grammar CANNOT reach about TiddlyWiki, measured rather than
-  asserted, so a later reader — a language server, a tree-sitter grammar, a parser wired to the wiki
-  — inherits a mandate rather than a hunch. Five stand: whole-document lookahead (a call builds where
-  `>>` stands anywhere ahead and nowhere else), rule-set mutation (`\rules except html` deletes a
-  rule for the rest of the document), verbatim storage (a macro body builds one node with nothing
-  inside, and the grammar paints wikitext there on purpose), nested coordinate space (a typed block
-  reports 23..42 while the quoteblock inside it reports 0..14), and cross-tiddler resolution
-  (`<<d hello>>` renders `A hello B` or `A $x$ B` depending on a definition in another tiddler).
-- A ceiling RETIRES when somebody closes it, and the gate fails until it goes — the same discipline a
-  ruling explaining nothing answers to. Three collisions plant that: a host that stops parting its
-  two inputs, a grammar that starts parting them, and a phantom pointed where the grammar paints
-  nothing. Each entry states its evidence and the attempts measured against it, because a limit
-  carrying no attempt reads as an excuse dressed as architecture.
-- `\parsermode` stands measured and is NOT a ceiling. The host builds `element/heading` under
-  `block` and only `text` under `inline`, and this grammar already parts them through a dedicated
-  inline-mode region.
-- Specimens for 23 regions no cut in this corpus ever opened, and the unasked ceiling falls from 44
-  to 21. `pragmas.signatures.tw` carries a `\define` signature closing on a later line in every
-  default quoting the grammar holds a region for, and a `\parameters` directive behind it;
-  `spans.multiline.tw` gains five widget attribute values — filtered, indirect, variable, bracketed
-  and substituted — an inline call mid-paragraph, an XML processing instruction, a script under a
-  type no grammar claims, and an element name no grammar claims inside math. A pragma signature at
-  the TOP of `spans.multiline.tw` was measured and taken out again: it wraps every later cut in a
-  parameters node, which collapsed 60 cuts to one ruled class and hid two real divergences the file
-  already surfaced. The residue holds three populations and none wants a specimen — a region whose
-  end matches where its begin does, a region every transclusion rule closes on `<<<` because the
-  probe's own sentinel appears in its end pattern, and a JavaScript line comment.
-- `still --reach` crosses EVERY carrier and ratchets the share it finds fully named, seated in
-  `corpus/carrier-reach-floor.txt` at 4342 of 4365. A sampled run reads 25 of 4403 carriers and
-  prints a verdict on the ground; measured over the whole of it, 23 carriers carry a class no ledger
-  names, so a draw of 25 misses all 23 about seven times in eight — seeds 1, 2, 9 and 13 read green
-  and seed 5 read red off one unchanged tree. The ratchet counts a CARRIER, never a seed and never a
-  class: 200 seeds at sample 25 draw five thousand carriers and reach 2979 distinct ones, so a seed
-  count names a budget rather than a coverage, and a count of classes named rises by ruling
-  generously — the move the ground ceiling beside it exists to weigh. A carrier no cut reads stands
-  UNSWEPT rather than clean and rides the other side of the denominator. Collided by withdrawing
-  every corpus ruling, with the whole ledger as the control.
-- `legibility` reads what a READER sees. Every other colour instrument reads scopes — whether an
-  opener and its closer paint alike, whether a construct reaches themes at all — and none asks
-  whether a call looks like a filter run. Scopes can move, stay pinned, stay faithful to the parser,
-  and still cost a reader the difference between two constructs. 21 pairs over 65 themes, each with
-  its own floor in `corpus/legibility-floor.txt`; the weakest stands at 53, a code span against
-  prose, which carries `markup.raw.inline` and two backticks that twelve themes rule on none of.
-- The reading paints WHOLE constructs, and the gate asserts that it does. Measured on container
-  scopes alone, a call, a filter run, a transclusion and prose each resolve to one colour and 44 of
-  65 themes paint them identically — a gate built that way would rule a healthy grammar broken. The
-  distinction rides on the punctuation and name scopes inside, where every construct parts from
-  prose in all 65.
-- A floor PER PAIR, because one floor on the weakest pair reads green through a loss anywhere else:
-  stripping a call of every name a theme rules on left the weakest pair exactly where it stood. The
-  collision found that the day the gate stood up.
-- A witness for what a reader sees. Every other gate reads scope names, and a name comes apart
-  from a colour in both directions: two names paint alike when no theme rule reaches past their
-  shared family, and one construct paints two ways when its parts sit in different families.
-  Neither shows in a snapshot and both show at a glance. `npm run colour-witness` resolves every
-  scope against each bundled theme and holds two relations — an opener and its closer read alike,
-  taken from the names themselves so a construct added later joins the check; and a declared
-  distinction reaches enough themes to show, and a thing a reader meets as one reads as one
-  colour. The last two stand declared, because whether a difference should show asks a judgement
-  no measurement settles — and the last names a specimen and the words inside it rather than two
-  scope names, since a relation over names stays true when a rule swaps which capture carries
-  which. It fails when a relation stops checking anything: a
-  scope no grammar emits, or a pair list that shrinks below its floor.
-- A witness for what a half-typed construct costs. A grammar meets unfinished input on every
-  keystroke, and a pattern reading cheaply on a finished construct can read expensively on an
-  unfinished one. `npm run backtrack-witness` takes every pattern in every grammar to openers this
-  format writes, followed by a repeating body and no close, and reports any whose cost a reader
-  would feel. It measures sizes a reader reaches while typing: past those a line stops being one
-  somebody wrote and becomes one somebody pasted.
-- A memetic construct leaves the paragraph after it alone. The bleed canary appends a sentence to
-  the END of a sample, so it catches a construct swallowing to the end of a file and misses one
-  that corrupts the next paragraph and recovers — and the dialect adds eleven opening constructs
-  the wikitext grammar has no rule for. A gate puts an ordinary sentence after every one of them
-  and asks that each carry a paragraph and nothing else. The construct list comes from the
-  grammar's own top-level patterns, so a rule added later joins the probe and reports if nobody
-  writes it a specimen. Measured: none of the eleven bleeds, and an unterminated one recovers
-  rather than swallowing what follows.
-- The memetic dialect holds wikitext entire, by measurement. It includes the wikitext grammar
-  rather than reimplementing it, which makes the superset claim look structural — and a TextMate
-  injection keys on a scope name, so a wrapper fires none of the wrapped grammar's. A wikitext
-  file read under the dialect lost 34 spans until the dialect carried those injections itself. A
-  gate reads every wikitext corpus file under both grammars and holds the dialect to losing no
-  span and stripping no scope, since a superset may only add.
-- Three gates ran nothing and reported green. `test(name, options, fn)` takes one options object,
-  and each of these passed two — so the runner took the second as the test body and the real body
-  never ran. Two of them had stood that way since they were written, including both readings over
-  cut ground. Each now runs for seconds rather than a millisecond, and each fails when its subject
-  breaks.
-- Typing `[[` or `<<` closes itself, and both pairs match. Wikitext writes a bracketed title and a
-  macro call far more often than it writes a bare angle bracket, and the base configuration named
-  neither as a bracket nor as a closing pair — while the memetic dialect that wraps it named both.
-  Longest match wins, so `<<` and `[[` pair before `<` and `[`, and a bare `<` still opens an HTML
-  tag and closes nothing. The dialect gains `<%` `%>` in return, which belongs to the wikitext it
-  wraps.
-- A double-click takes a TiddlyWiki word. VS Code's default word pattern breaks a system title at
-  its first character — `$:/core/ui/ViewTemplate` selects as `$` — and halves a hyphenated
-  variable name, so `tv-config-toolbar` selects as `tv`. Both stand among the commonest tokens an
-  author touches, and the same pattern decides word-wise cursor movement and what Ctrl+D matches.
-  A system title travels whole with its slashes, a pragma with its backslash, a hyphenated name
-  entire, and each stops at the delimiter around it: `<<myMacro>>` gives `myMacro`, `{{$:/foo}}`
-  gives `$:/foo`. The memetic dialect already carried one; wikitext, `.tid` and `.multids` did not.
-- Twelve scopes the corpus never reached now stand exercised. Each element family names its own
-  continuation region — the one a start tag opens when its attributes span lines, and a
-  single-line tag never opens — so reaching them wanted one element per family, and the families
-  run narrow: the math object family holds `mglyph` and nothing else. Four remain, each carrying a
-  near-sibling that claims the same text first, and the ceiling holds them from growing.
-- Coverage counts two populations separately. A scope this grammar emits and a scope it hands to
-  another grammar — `source.python`, `text.html.php`, `comment.block.js` — answered to one floor,
-  and reaching the second kind wants a specimen carrying that language, which a wikitext corpus
-  holds no reason to keep. The check reports each, and the count of this grammar's own unreached
-  scopes carries a ceiling that may fall and never rise. Most of them want a start tag whose
-  attributes span lines, which opens a continuation region a single-line tag never does.
-- The corpus reads specimens, named by the extensions the manifest claims rather than by a list of
-  what to skip. That list held two names and let a third control file through: the divergence
-  rulings answered every corpus run as though they were wikitext.
-- Every scope the memetic dialect declares stands exercised. The base grammar answers to
-  twenty-seven corpus files and a coverage floor; the dialect carried a fraction of that, and six
-  of its scopes had no specimen at all — a carrier naming no control code, a query separator
-  inside a `lar:` URI, and two of the three quotings a parameter value takes. Two of those hid for
-  one reason: they answer to the colon spelling, `key:"value"`, and every specimen wrote the
-  equals spelling, which hands its value to the unquoted rule before the string rule sees it. A
-  specimen carries all six and a gate holds the set.
-- Every declared contribution packs. The ignore list names directories rather than contributions,
-  so an edit there can drop a grammar the manifest still declares — and VS Code then loads that
-  language, finds no grammar, and colours nothing without saying so. A gate takes every grammar,
-  snippet file and language configuration the manifest names and asks the packager whether it
-  ships. Compared file by file, what a release carries stands byte-identical to what the gates
-  read, apart from the two transformations the packager performs: a licence renamed, and bare
-  issue references rewritten as links.
-- The gates answer to a TiddlyWiki that always resolves. They take their verdicts from
-  TiddlyWiki's own parser, and without one they skipped politely while the suite still reported no
-  failures — so a contributor could break every divergence gate and read green. `tiddlywiki`
-  stands as an exactly pinned devDependency, and resolution puts a checkout beside this repository
-  ahead of it: parser work happens in a checkout, and a released parser answering for gates aimed
-  at unreleased work would report agreement with something nobody is editing. `TW5_PATH` outranks
-  both. The pin ships to nobody — the package carries no runtime dependency, and nothing
-  executable packs.
-- The extension ships colouring and nothing that runs, by measurement. A TextMate grammar decides
-  how loudly a construct reads and never which parser rules a wiki stands, so the configuration
-  offered here works by scope naming and theme rules. That reading of the VS Code API answers to
-  Microsoft's tree; its consequence answers to this one, and a gate holds it — no entry point, no
-  activation events, only contributions VS Code reads without running anything, no runtime
-  dependency, and nothing executable packed into the release.
-- The four definition kinds carry ground that reports a regression. Each of them differs from the
-  others in what its body means, what its parameter list admits and what its name admits, and none
-  of those shapes stood in any sample or corpus file — so a fix to one could be lost silently.
-  The pragma sample carries a one-line body of each kind, a doubled-paren default under both
-  parameter laws, a dollar-named definition of each kind, and a body whose dollars stay literal.
-  Reverting each fix in turn moves the pinned snapshot; leaving them all in place moves nothing.
-  Coverage and divergence cannot stand in for this: a definition is stored rather than parsed, so
-  no parse-tree check holds an opinion inside one, and a refused definition reaches the same scopes
-  as the prose it reads as.
-- A gap that closes reports itself. A known-gap specimen asserts what the grammar does not yet do,
-  so it fails, and the gate that ran it read that failure as an absence and announced no gap
-  standing. `tests/known-gaps/README.md` names the moment worth catching — the grammar grows to
-  meet a gap, the specimen passes, and it wants moving to `tests/tiddlywiki5/` with its
-  specification. The gate reports standing gaps and fails on a closed one.
-- The corpus carries substitution where substitution holds. Its only ground for the placeholder
-  scopes stood inside procedure bodies, where TiddlyWiki performs none, so narrowing the
-  injection left eight scopes unexercised. A `\define` body now carries each placeholder form,
-  including one inside a filtered transclusion, and a substituted attribute value carries them
-  outside any definition.
-- The grammar answers on cut ground as well as whole. TiddlyWiki's own tiddlers carry the
-  best-formed wikitext in existence, and a learner writes from the other end of that
-  distribution. `overreach-check --truncate=<seed>` cuts every specimen short at a seeded offset —
-  an opener with no close, a table missing its last row, a macro body cut mid-parameter — and asks
-  the same question there. Two readings of the result flatter the grammar and the check refuses
-  both: a construct whose close lies past the cut refuses for that reason alone, and the whole
-  tiddler settles whether the cut is the entire reason, since truncation takes a prefix and an
-  offset means the same in both texts; a macro body is stored rather than parsed, so the parser
-  rules on nothing inside it and the check reports those spans as unanswered rather than clear.
-  Across four seeds no claim stands over text the whole tiddler also refuses.
-- Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 57 written rulings, and none by a number somebody
-  wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
-  emits no container node, so a scope over its content stands over text by construction.
-- Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses
-  deliberately — a scope the host ships disabled, a `\rules` run narrowing a rule set no
-  TextMate grammar can follow, a fixture carrying deliberate faults, and the memetic dialect's own
-  vocabulary. `corpus/expected-divergence.txt` names each with its reason, and a line carrying no
-  reason names no ruling. Over the corpus, in both dialects, nothing now diverges unexplained.
-- A second memetic sample, so the composition gate over that dialect can run. It compares
-  neighbouring samples and needs two; the dialect carried one, so the check reported a missing
-  source rather than a result, every time anyone asked.
-- A `lar:` URI reads its own structure. The path, each `?key=value` in the query, the `&` between
-  them and a `#/fragment` now carry their own scopes instead of riding in one unbroken string, so
-  an address colours the way the rest of a call does.
-- **Colour toggles** in the README: the two scope groups worth turning, and the
-  `editor.tokenColorCustomizations` block that turns each, per workspace folder.
-- The repository reads from inside the wiki. `tools/`, `syntaxes/`, `snippets/`, `docs/` and
-  `tests/` reach the edition as tiddlers through a `tiddlywiki.files` spec that names each
-  directory by relative path — nothing gets copied, so a reader who opens a tiddler looks at the
-  same bytes a gate reads, and an edit on disk shows up at the next boot. `$:/tw5-syntax/Corpus`
-  points at the one directory that stays outside: the coverage floor already measures those files,
-  and a second copy would part from the first the day somebody edits one.
-- A dictionary entry reads its value as wikitext, whatever the key. A tiddler dictionary holds keys
-  and values, and a key names no tiddler field — a dictionary carrying an entry called `caption`
-  carries a key of that name and not a caption — so the field allow-list reads nothing there. The
-  ground supports the reading: of 2863 entries across TiddlyWiki's own 28 dictionaries, 958 carry a
-  wikitext construct, most of them a `<<colour …>>` call in a palette. A `.multids` file already read
-  every value that way, one line per tiddler; the two formats now agree.
-- A TIDDLER'S TYPE DECIDES WHAT LANGUAGE ITS BODY CARRIES. TiddlyWiki reads a body through the
-  parser its `type` field names, and this grammar read every `.tid` body as wikitext whatever the
-  field said — a JSON tiddler's braces coloured as prose, a plain-text tiddler's `!!` as a heading,
-  a CSS tiddler's selectors as nothing at all. Twelve content types now steer the body: JSON,
-  JavaScript, CSS, HTML, XML and SVG, Markdown, a tiddler dictionary, and plain text, which carries
-  no wikitext at all. A type this grammar does not name keeps reading as wikitext, which is what
-  TiddlyWiki does with a type it cannot parse.
-  Measured against TiddlyWiki's own tree: 115 of 5756 `.tid` files declare a type that is not
-  wikitext. The type line opens a region that never closes — the remaining header fields read inside
-  it, and the body after the blank line reads as the guest language — which is the shape the inline
-  parser mode and the pragma zone already carry.
-- THE DIVERGENCE GATE HOLDS. Nothing the grammar claims stands unexplained: 0 spans where it claims
-  a construct TiddlyWiki refuses, 0 where it condemns one TiddlyWiki builds. It ran red for the whole
-  of this release and closed on two operator rulings and four measurements.
-- The structural pattern carries the colour. A shortcut reads `<% keyword … %>`, and a wiki or a
-  plugin may register one this TiddlyWiki never shipped — so the grammar colours the shape and names
-  an unrecognised keyword as unrecognised, rather than refusing what this parser happens not to read
-  today. `meta.link.wikilink` already stood on that reading for a rule TiddlyWiki ships and disables;
-  this names the other direction. 21 spans stand ruled, and the cost stands accepted: prose that
-  NAMES the syntax colours as the syntax.
-- The mark carries the colour, whatever the parser makes of it. Three style openers in a row read as
-  three here and as an empty block plus an inline run there — TiddlyWiki's block-or-inline choice
-  turns on what follows the mark. An image with a blank source carries every mark an image carries.
-  Both stand ruled to ONE fixture each, so the shape still reports anywhere else: planted in a
-  fixture no ruling names, the same image reports six spans and fails the gate.
-- A STATE TOGGLE NEVER TAKES A COLOUR AWAY. TiddlyWiki carries pragmas that change what its parser
-  reads — `\rules except rules` turns the rules pragma off, `\parsermode inline` reads the rest of
-  the tiddler as one inline run — and after such a line the parser refuses constructs it would
-  otherwise build. This grammar colours them anyway, by ruling: at design time a reader wants to see
-  the base language, and the operator holds the tiller for render time, having written the toggle
-  themselves. A grammar that greyed out everything below a `\rules except` line would hide the
-  language from the person editing it, to describe a state they authored. 26 spans stand ruled.
-- The two fixtures holding a whole HTML document carry the ruling their DOCTYPE already carried. A
-  `.tw` may hold one, where a tag and its attributes read; wikitext builds no node for either. 8
-  spans join the three metadata families already named.
-- `\whitespace` and `\parsermode` open on the separator, the way TiddlyWiki opens them. Demanding a
-  recognised value — `trim`, `notrim`, `block`, `inline` — refused the construct where the parser
-  builds it, so a line carrying an unknown value read as prose here and as a directive there. The
-  keyword still names itself; the rest rides as the value.
-- The upstream-coverage gate stopped asking this grammar to scope constructs TiddlyWiki refuses. It
-  harvests a case from the host's own tiddlers and stripped its trailing whitespace — but a rule
-  ending in `[^\S\n]` REQUIRES that whitespace, so `\rules ` became `\rules` and opened nothing.
-  Those three cases keep the separator now and carry a word after it, and the verdict keys on the
-  line the probe wrote rather than on the case's own text.
-- A directive wants a space where TiddlyWiki wants one. vscode-textmate hands the scanner a line
-  WITH its newline, so `\s+` after a keyword matched the line ending — and a bare `\rules`,
-  `\import`, `\whitespace` or `\parsermode` coloured as a working directive where TiddlyWiki reads
-  prose. Its own rule modules spell the separator `[^\S\n]`, and these four now say the same. The
-  divergence gate falls from 153 spans to 77.
-- A pragma reads as a pragma only where TiddlyWiki reads one. Its parser runs `parsePragmas()` once,
-  before `parseBlocks()`, and never returns to it, so a backslash directive standing after any block
-  content renders as prose — and the grammar coloured one as a working directive anywhere in a file.
-  A `#pragma-zone` region now opens at the start of the source and closes at the first line opening
-  no pragma-mode rule, with the pragma rules living inside it and nowhere else. The divergence gate
-  falls from 161 spans to 153.
-- Eight rules hold that zone open, not the backslash family alone. TiddlyWiki declares the mode on
-  each rule module and names `commentblock` among them, so an HTML comment keeps reading pragmas
-  exactly as a directive does. Reading the backslash keywords alone closed the zone on the first
-  `<!-- -->` line of a sample and took fifty-four pragmas with it, while the parser built every one.
-  `npm run signals` harvests the set from the host and a gate holds the zone's own account to it.
-- A comment naming a rule no longer counts as reading it. The coverage gate searched the whole
-  grammar including its prose, and two rules — `macrodef` and `fnprocdef` — read as covered because
-  a comment mentioned them. Both now carry a ruling naming what the grammar calls them instead.
-- The composition gate reads a prologue as position-dependent by construction. A file whose first
-  construct is a pragma cannot survive being preceded — that IS the construct, and markdown's front
-  matter carries the same property — so such a file answers for standing FIRST, and the parser
-  decides how far its prologue reaches rather than a walk over its lines.
-- A syntax-test fixture asserting pragma colouring declares the wrapper scope. A fixture is not a
-  tiddler: its mandatory header reads as content and would close the zone on line 1. The wrapper's
-  container carries the pragma rules and names the base scope through `contentName`, so every
-  assertion naming `text.html.tiddlywiki5` still finds it — an include compiles the other grammar's
-  `$self`, which carries its `scopeName` and then flattens into its children, so nothing pushes it.
-- The dialect's sigils read everywhere the base grammar reads. Its injection named three block
-  contexts by hand, and a sigil inside an unordered list read as an ordinary macro call for it — the
-  selector reached the three somebody listed. One selector on the base's root scope reaches the whole
-  file, and the base's root stands on the stack wherever it reads.
-- Every snippet says what it inserts. 73 of the 125 carried no description, so a learner reaching for
-  `\rules` met a name and a body and nothing saying what the construct does. A gate holds the set to
-  it, and a description that only repeats its snippet's name reads as none.
-- A TypeScript compiler stands in this repository's own dependencies, pinned to the version whose
-  bytes the committed modules carry. Continuous integration rebuilds the edition and asks whether the
-  tree holds what the build writes — `npm run edition:check` — so a source edited without a rebuild
-  fails a merge rather than shipping. The source weld stays beside it, because it wants no compiler
-  and still answers where a reader has none.
-- The backtrack witness answers to a control rather than to the machine. Its budget stands in wall
-  time, so run beside a dozen other gates the whole set slowed together and the slowest pattern
-  crossed eight milliseconds having done nothing different — 1.4ms alone, past 8 under the suite, on
-  the same bytes. A pattern now stalls only when it costs more than the budget AND more than twenty
-  times a control timed the same way, on the same inputs, under the same load. Both stand adjustable,
-  so the collision drives the reading rather than the machine.
-- The edition's compiled modules answer to the TypeScript standing beside them. TypeScript sits in
-  no dependency of this repository — the build finds a compiler in a parent checkout — so nothing in
-  continuous integration could rebuild and compare, and the compiled modules ARE the shipped
-  artifact. A contributor editing a source and forgetting the build would have shipped the older
-  module: the wiki loads it, the gates it carries run, and every reading comes back green from code
-  nobody wrote. The build now records the sha256 of every source it compiled, and a gate recomputes
-  them — verifying wants no compiler, only rebuilding does.
-- The build verifies every module it compiles. It named one by hand and checked that one; a second
-  arrived, compiled, and stood unverified beside it.
-- The theme-parity panel says what each comparator carried. The bar this gate holds the grammar to
-  comes from a median over six grammars, and one of them carries two constructs of seven — rst names
-  a heading on the underline rather than on the text, and splits its emphasis runs where the
-  construct's own words do not stand alone. Five constructs took their bar from five comparators
-  under a line that said six. The count stands per comparator now, and a comparator carrying nothing
-  fails rather than sitting there.
-- The closing semicolon of a numeric or hexadecimal entity carries its punctuation scope. Both rules
-  named capture 3 where two groups stand — copied from the named-entity rule above them, which has
-  three — so `&#39;` and `&#x27;` coloured their `&` and left their `;` bare while `&amp;` coloured
-  both. A gate reads every capture in every grammar against the groups its regex opens.
-- A carriage return stops the snapshot reader dead, and says nothing. A regex ending on `$` matches
-  nothing on a CRLF line, so the reader answered a file full of annotations as one carrying none —
-  every gate over the pinned snapshots would have reported green having measured nothing.
-  `.gitattributes` already kept one out of a checkout; the reader takes one anyway, for a file that
-  arrives by another road, and a gate now holds the tree to that line rather than trusting it. A
-  byte-order mark answers the same way: `JSON.parse` refuses one, so a gate holds that nothing here
-  carries one.
-- A theme reader that could not read a theme dropped it silently, and a caller handing back what the
-  loader already flattened read as a theme with no rules. Sixty-five themes' worth of measurement
-  could have run over nothing and reported green. The loader counts what it drops, the flattener
-  refuses a shape it cannot read, and a gate holds the theme count to a floor.
-- The dialect's own snippets, the file associations and the language configurations answer to one
-  reading: every language this extension defines carries a grammar, a configuration, an association
-  and its family's snippets, or a ruling names what stands in the way.
-- Nothing this grammar emits stands unreached. The corpus reached 466 of the scopes it declares and
-  three stood outside, and the three left by three different roads. A square-bracket string inside a
-  macro call wanted a specimen and got one. The macro-call parameter separator sat last in a list
-  whose previous pattern takes any run of non-space, non-quote, non-angle characters, so every
-  character it accepts that pattern claims first — twenty-nine tried in a macro call, and it fired
-  for none. The table body row carried a name on an EMPTY capture group: its three siblings name the
-  markup family on the `c`, `h` or `f` ending the line, a body row ends on nothing, and a zero-width
-  capture produces no token. Both dead names are gone, the floor stands at 467 and the ceiling at 0.
-- A grammar's own `name` stopped counting as a scope. It sits beside `scopeName` and names the
-  language, and three collectors read it as a scope — nine words across eight grammars, none of them
-  reachable by anything, each inflating the count the corpus answers to and standing forever among
-  the scopes reported as handed to another grammar. 526 declared reads 515. The collectors collapsed
-  onto the one that already had it right, in a comment beside the check.
-- Every snippet inserts a construct this grammar colours, not only one TiddlyWiki parses. One reads
-  as prose by ruling: a substitution colours inside a macro definition body and nowhere else, so it
-  reads as text standing alone, exactly as TiddlyWiki reads it there.
-- The snippet reader honours VS Code's escapes. A body spells a pragma `\\define` and INSERTS
-  `\define`, so reading it verbatim handed the parser two backslashes — every pragma snippet then
-  read clean for the wrong reason, and read as prose against the grammar for the same one.
-- The dialect carries the wikitext snippets. `memetic-wikitext` held the grammar and the language
-  configuration and not the 125 snippets the base offers, so an author writing a `.mem` reached for
-  a widget snippet and met nothing, with no error anywhere naming the absence. The syntax-test
-  language still takes none, by ruling: a `.tw5.test` body carries wikitext under assertion comments
-  that pin every token, and a snippet inserted there moves the columns the file exists to name.
-- `.mem` and `.tiddlywiki5.test` assert their own file associations, the way every other extension
-  this repository defines already did. An association outranks another publisher claiming the same
-  suffix; without one, whoever else claims it wins. A gate holds both directions — an extension no
-  association asserts, and an association naming a language or suffix the manifest never declares.
-- Every snippet inserts a construct TiddlyWiki closes. Nothing asked before, and a snippet is the
-  one surface here that writes into a reader's file: a mis-coloured construct costs a colour, an
-  inserted broken one costs a tiddler that renders wrong. All 128 pass; the parser's own
-  `unterminated-*` diagnostics answer the question.
-- Every repository rule in every grammar stands reachable from some root. An orphaned rule loads,
-  validates and colours nothing, and its scopes still count among the declared ones the corpus must
-  reach — so it reads as corpus work owed where the fault sits in the grammar. The walk follows
-  TextMate's own two rules: an include resolves against the nearest enclosing repository, and a
-  rule's own repository stands in scope only inside it. This grammar carries two nested repositories,
-  and a walker reading only the top level calls twelve working includes broken.
-- Continuous integration runs every witness the repository stands. It reached six of twenty-two,
-  and sixteen stood green in a developer's terminal and nowhere else — seven of them with nothing
-  in CI exercising their verdict at all. Two jobs carry them now: one that blocks a merge, and one
-  for the three whose answer moves with the TiddlyWiki they read, which reports the way the
-  coverage job already does. A gate holds the workflow to the manifest's own list, and
-  `$:/tw5-syntax/CIGates` carries the reason for the one gate that stays out.
-- The bleed canary reads inheritance from the parser rather than from a list. It passed over a
-  sample ending inside a block construct by matching scope-name prefixes, and `meta.styleblock`
-  arrived under a name no prefix covered — so two samples reported as bleeding while TiddlyWiki
-  carried the same text into the same construct and raised `unterminated-styleblock` saying so.
-  `--strict` drops the reading for a reader who wants the whole list.
-- Two samples ended with a stray `@@`, which opens a style block with no style and closes nothing.
-  It cost the canary and the composition gate a red each, and both stand green with it gone.
-- A pragma standing after block content reads as prose, the way TiddlyWiki reads one.
-  `tests/tiddlywiki5/tiddlywiki5.pragma-zone.tw5.test` carries the specification and the
-  measurement; the entry above records how the zone came to stand.
-- `npm run overreach` reads `corpus/expected-divergence.txt`, like every other overreach run. The
-  one that did not stood permanently red over spans a ruling already explained.
-- `overreach-corpus` named the same run as `overreach-host` without its rulings or its excludes, so
-  it could only ever fail. `overreach-host` stands.
-- A gate reads a `.tid` the same on either line ending. Six tools split a tiddler by scanning for
-  two newlines in a row, and that reading answers wrongly three ways: a file opening with a blank
-  line hands back a fragment of its body, a CRLF file matches nothing and reads as bodiless, and a
-  blank line carrying a space reads on into the first paragraph break. 34 of TiddlyWiki's own
-  tiddlers answer differently under the two readings — one of them with 1373 characters a gate read
-  as none. All six now read line-wise, and the attribute guard sees 23,682 tags where it saw
-  23,627, at the same 99.95% agreement.
-- Spawning a child and reading both halves of the answer stands in one place. Ten sites carried the
-  same seven lines — five running an instrument, three booting the edition, two inside the sandbox
-  — and each one that let the throw escape read a failing gate as a broken test. The swallow
-  witness now says so out loud: its two readings test a regex against the parser's output, so an
-  oracle that died would have answered every question with "no" and reported agreement everywhere.
-- The two sandbox runners share one body. They differed in which directories the sandbox takes from
-  the working tree, which is now the argument rather than a second copy of everything else.
-- The vendored grammars stand in `tests/grammars/` with an account of where they came from, and a
-  gate holds the directory to it: a grammar here that no runner loads fails, and so does a path
-  `grammars.sh` names that nothing holds. A grammar nothing loads costs an assertion its meaning
-  silently — every reading against it comes back absent rather than wrong.
-- An instrument and the test that collides it stand in one directory. A second `tools/` under
-  `tests/` held the tests, and the name promised a mirror the directory never held: of 29 tests
-  there, 15 answered a question about the whole repository and 14 instruments carried no test under
-  their own name. `tests/` now holds one kind of thing — the declarative grammar assertions
-  `vscode-tmgrammar-test` reads — and `tools/` holds the other, which `node --test` runs. The wiki
-  tells them apart by tag.
-- Two tests resolved the TiddlyWiki this repo answers to by hand, reading the environment and
-  falling back to a sibling checkout, where the oracle already tries three more candidates behind
-  that. A contributor whose checkout stood somewhere only the oracle finds saw those two skip while
-  every other gate ran. Both go through the oracle now, and the one-implementation gate reaches
-  tests as well as tools.
-- A gate holds that claim. It boots the edition, compares every arriving tiddler against the bytes
-  on disk, and derives its expectation from the specs rather than listing the directories again —
-  so a sixth directory gets checked without anybody editing the gate. It also holds the two
-  hazards a spec carries: a `tiddlywiki.files` REPLACES the scan of the directory holding it, and a
-  `.meta` sidecar outranks a spec's own fields, taking both halves of the pair out of the house
-  namespace.
-- `attribute-witness` keys every disagreement to the structure that produced it and fails on one
-  that keys to nothing. A residue counted but unpartitioned reads like a measurement and carries
-  none: a class that grows hides behind a class that shrinks while the total holds. Seven classes
-  stand — 15 valueless, 13 in a start tag broken across a blank line, 10 in a mis-paired raw span, 6
-  on a `<<<<` opener, 4 in an embedded stylesheet, 3 triple-quoted parameters, 1 in a parameter
-  region the grammar never closed — and the ladder reads structure before kind word, so a cause
-  outranks the symptom it produced. The control cuts one class from the ladder and the gate reds.
-### Changed
 - A RULING'S BREADTH ANSWERS TO HOW MANY CAUSES IT CAN ABSORB, never to how much ground it covers.
   `ruled-ground-ceiling.txt` counted the share of corpus tokens every ruling stood on and re-seated
   four times across one session — 55.8%, 56.6%, 57.2%, 60.0% — with a true reason every time. The

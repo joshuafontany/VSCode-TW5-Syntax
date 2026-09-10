@@ -43,7 +43,7 @@ const { readData } = require('./wiki-data.js');
 
 const verbose = process.argv.includes('--verbose');
 const LEDGER = path.join(ROOT, 'corpus', 'swallow-ledger.txt');
-const SENTINEL = '<<<\nQuoted\n<<<\n';
+const { SENTINEL, standAlone } = require('./sentinel.js');
 
 
 const oracle = boot(resolveTiddlyWiki(), {});
@@ -102,6 +102,7 @@ function specimens() {
   const rulings = ledger();
   const measured = new Map();
   let divergences = 0;
+let closed = 0;
   let forwardMoves = 0;
   let backwardMoves = 0;
 
@@ -113,7 +114,13 @@ function specimens() {
       const head = lines.slice(0, cut).join('\n').replace(/\n+$/, '');
       if (!head.trim()) continue;
       const rest = lines.slice(cut).join('\n');
-      const specimen = `${head}\n\n${SENTINEL}`;
+      // A SENTINEL MUST STAND ALONE. A cut leaving the carrier's own quoteblock open puts it inside
+      // one, where the parser holds a quote starting at the CARRIER's `<<<` and the grammar opens a
+      // nested one; the closer restores both readers to the same depth. Declining the cut instead
+      // costs real findings — every cut in the quoteblock corpus sits under an open `<<<` by design.
+      const stem = standAlone(head);
+      if (stem !== head) closed += 1;
+      const specimen = `${stem}\n\n${SENTINEL}`;
       const read = body ? body(specimen) : specimen;
       // The tiddler's OWN type picks its parser, and both arms answer through the same one.
       const type = typeOf ? typeOf(specimen) : DEFAULT_TYPE;
@@ -128,15 +135,15 @@ function specimens() {
 
       // FORWARD ARM — hand back the text the cut removed. The sentinel keeps its offset; only what
       // lies past it changes, which is exactly the evidence no pattern reaches.
-      const ahead = `${head}\n\n${SENTINEL}${rest}`;
+      const ahead = `${stem}\n\n${SENTINEL}${rest}`;
       const aheadRead = body ? body(ahead) : ahead;
       const forward = parserReads(aheadRead, aheadRead.lastIndexOf(SENTINEL), type) !== parser;
 
       // BACKWARD ARM — strike the pragma lines. A rule stack carries regions, never the parser's
       // own rule set, so a verdict turning on one turns on evidence the grammar never held.
-      const struck = head.split('\n').filter((l) => !PRAGMA.test(l)).join('\n');
+      const struck = standAlone(head.split('\n').filter((l) => !PRAGMA.test(l)).join('\n'));
       let backward = false;
-      if (struck !== head && struck.trim()) {
+      if (struck !== stem && struck.trim()) {
         const behind = `${struck}\n\n${SENTINEL}`;
         const behindRead = body ? body(behind) : behind;
         backward = parserReads(behindRead, behindRead.lastIndexOf(SENTINEL), type) !== parser;
@@ -193,7 +200,7 @@ function specimens() {
     console.error(`  the ledger files ${JSON.stringify(w.id)} as owed, and an arm reaches past the grammar`);
     console.error('     a difference deciding on evidence no pattern sees names a repair nobody can perform');
   }
-  console.log(`light-cone  ${divergences} divergence(s) across ${measured.size} class(es); `
+  console.log(`light-cone  ${divergences} divergence(s) across ${measured.size} class(es), ${closed} quote(s) closed to ask; `
     + `forward arm moved ${forwardMoves}, backward arm moved ${backwardMoves}; `
     + `${measured.size - unproven.length - wrong.length} proven or unruled, ${unproven.length} ruled without proof, `
     + `${wrong.length} owed but reaching out`);
