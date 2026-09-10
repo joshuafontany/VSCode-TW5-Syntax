@@ -133,7 +133,7 @@ gates-held: 37 of 37
         {
             "gate": "sigil-vocabulary",
             "held": true,
-            "said": "sigil-vocabulary  18 sigil(s) the seed writes across 10 specimen(s), 0 unexercised, 11 carried beyond the seed"
+            "said": "sigil-vocabulary  18 sigil(s) the seed writes across 10 specimen(s), 0 unexercised, 7 carried beyond the seed"
         },
         {
             "gate": "signals:check",
@@ -173,7 +173,7 @@ gates-held: 37 of 37
         {
             "gate": "still",
             "held": true,
-            "said": "still  25 of 4550 carrier(s) at seed 1, 51 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, 60.0% of corpus tokens ruled (ceiling 60.0%)"
+            "said": "still  25 of 4550 carrier(s) at seed 1, 51 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 59.8% of corpus tokens ruled"
         },
         {
             "gate": "still-reach",

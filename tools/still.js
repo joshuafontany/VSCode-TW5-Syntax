@@ -145,21 +145,47 @@ async function shareOf(matchers) {
   return hits / total;
 }
 
+
+// ── how wide a ruling reaches, in CAUSES ────────────────────────────────────────────────────────
+//
+// A key's TOKEN SHARE tracks authoring, never generosity. Measured across one session: 55.8, 56.6,
+// 57.2, 60.0, and every re-seat carried a true reason — the corpus is AUTHORED and this house
+// authors into it constantly, so writing more of what already stands ruled raises the number. A
+// guard that re-seats on every honest change has stopped guarding.
+//
+// The hazard the warning at the head of this file names reads: widen a key far enough and every
+// finding falls inside it. That names CAUSES, and `region-kind.js` already spells them. So a key
+// spanning ONE kind names one cause however common that cause runs, and a key spanning several
+// absorbs findings nobody reasoned about. Authoring a thousand carriers moves neither count.
+//
+// The token share still READS, beside the verdict, because a reader wants to know how much ground
+// stands ruled. It ratchets nothing.
+
+/** How many KINDS one ruling key reaches — the causes it can absorb. */
+async function kindsSpanned(key) {
+  const re = matcher(key);
+  return KINDS.filter(([kind]) => re.test(kind) || matcher(kind).test(key)).length;
+}
+
+/** The ruling that spans the most causes, and how many. */
+async function widestRuling() {
+  let widest = { key: '(none)', kinds: 0 };
+  for (const key of new Set(named().map((r) => r.key))) {
+    const kinds = await kindsSpanned(key);
+    if (kinds > widest.kinds) widest = { key, kinds };
+  }
+  return widest;
+}
+
+// A ruling may name one cause and may never name two. The ceiling stands beside the other ratchets
+// and carries its own reason.
+const BREADTH_CEILING = (() => {
+  const p = path.join(ROOT, 'corpus', 'ruling-breadth-ceiling.txt');
+  return fs.existsSync(p) ? Number(fs.readFileSync(p, 'utf8').split('\n')[0]) : 99;
+})();
+
 // A ruling may gain entries and may never gain ground. The ceiling stands beside the other ratchets
 // and carries its own reason; a ruling that needs more ground than this answers for it in writing.
-/**
- * Whether a measured share stands above the ceiling, read at the precision the run REPORTS.
- *
- * A ratchet on a real number seated at a printed figure fails on the digits nobody printed: 55.8%
- * measured sits a fraction above 0.558 written down. One reading serves the run and every caller,
- * so a gate and its test cannot round two ways.
- */
-const overCeiling = (share) => Number((100 * share).toFixed(1)) > Number((100 * GROUND_CEILING).toFixed(1));
-
-const GROUND_CEILING = (() => {
-  const p = path.join(ROOT, 'corpus', 'ruled-ground-ceiling.txt');
-  return fs.existsSync(p) ? Number(fs.readFileSync(p, 'utf8').split('\n')[0]) : 1;
-})();
 
 function carriers(dir) {
   const out = [];
@@ -242,7 +268,10 @@ async function divergencesIn(file) {
 }
 
 module.exports = {
-  groundOf, ruledGround, GROUND_CEILING, overCeiling, named, matcher, kindOf,
+  kindsSpanned,
+  widestRuling,
+  BREADTH_CEILING,
+  groundOf, ruledGround, named, matcher, kindOf,
   REACH_FLOOR, underFloor, divergencesIn, carriers, READINGS
 };
 
@@ -368,14 +397,17 @@ if (require.main !== module) return;
   // ground it claims, and an addition is the shape a generous ruling actually takes. So the ground
   // every ruling stands on between them answers to a ratchet of its own.
   const ground = await ruledGround();
-  const overGround = overCeiling(ground);
-  if (overGround) {
-    console.error(`  the ledgers rule ${(100 * ground).toFixed(1)}% of corpus tokens, above the ceiling of ${(100 * GROUND_CEILING).toFixed(1)}%`);
+  const widest = await widestRuling();
+  const overBreadth = widest.kinds > BREADTH_CEILING;
+  if (overBreadth) {
+    console.error(`  \`${widest.key}\` spans ${widest.kinds} cause(s), above the ceiling of ${BREADTH_CEILING}`);
     for (const key of [...new Set(rulings.map((r) => r.key))].sort()) {
-      console.error(`     ${(100 * await groundOf(key)).toFixed(1).padStart(5)}%  ${key}`);
+      const n = await kindsSpanned(key);
+      if (n > BREADTH_CEILING) console.error(`     ${n} cause(s)  ${key}`);
     }
   }
   console.log(`still  ${chosen.length} of ${files.length} carrier(s) at seed ${seed}, ${divergences} divergence(s) across ${classes.size} class(es), `
-    + `${unnamed.length} unnamed, ${broadened.length} ruling(s) broadened, ${(100 * ground).toFixed(1)}% of corpus tokens ruled (ceiling ${(100 * GROUND_CEILING).toFixed(1)}%)`);
-  process.exit(unnamed.length === 0 && broadened.length === 0 && !overGround ? 0 : 1);
+    + `${unnamed.length} unnamed, ${broadened.length} ruling(s) broadened, widest ruling spans ${widest.kinds} cause(s) (ceiling ${BREADTH_CEILING}), `
+    + `${(100 * ground).toFixed(1)}% of corpus tokens ruled`);
+  process.exit(unnamed.length === 0 && broadened.length === 0 && !overBreadth ? 0 : 1);
 })();

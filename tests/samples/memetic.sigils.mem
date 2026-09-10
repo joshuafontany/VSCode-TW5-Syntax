@@ -11,10 +11,10 @@ uri-path = "ha.ka.ba/lares/api/pono/sigils"
 
 !! Sigils, each on its own line
 
-<<~ syad 🏛️ 🗡️>>
+<<~ stance "🏛️ 🗡️">>
 <<~ mu Wand "ascii/* glyph/🜂 element/Fire">>
-<<~ moves identity/predication -> scoped-carry on/lit-ward>>
-<<~ aka https://www.rfc-editor.org/rfc/rfc2119>>
+<<~ carry Detail "ascii/* ascii/!">>
+<<~ aka "https://www.rfc-editor.org/rfc/rfc2119">>
 
 An address in prose: lar://alias:grant@host/heading.angle.dynamic/path#/fragment and one
 without an authority: lar:///ha.ka.ba/lares/docs/handoff#shift-grammar-watch.

@@ -11,7 +11,7 @@
 # A CARRIER, NEVER A SEED AND NEVER A CLASS. Seeds and carriers do not agree: 200 seeds at sample
 # 25 draw five thousand carriers and reach 2979 distinct ones, so a seed count names a budget
 # rather than a coverage, and doubling it buys less each time. A count of CLASSES NAMED rises by
-# ruling generously — the one move `ruled-ground-ceiling.txt` beside this file exists to weigh —
+# ruling generously — the one move `ruling-breadth-ceiling.txt` beside this file exists to weigh —
 # so a ratchet on it would reward the fault its neighbour guards. What a green verdict actually
 # claims is that a carrier's divergences all fall inside a ruling, and that claim counts once per
 # carrier however many cuts or classes it holds.

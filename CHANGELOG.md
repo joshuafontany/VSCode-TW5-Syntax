@@ -1181,6 +1181,24 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   namespace.
 
 ### Changed
+- A RULING'S BREADTH ANSWERS TO HOW MANY CAUSES IT CAN ABSORB, never to how much ground it covers.
+  `ruled-ground-ceiling.txt` counted the share of corpus tokens every ruling stood on and re-seated
+  four times across one session — 55.8%, 56.6%, 57.2%, 60.0% — with a true reason every time. The
+  corpus is AUTHORED and this house authors into it constantly, so writing more of what already
+  stands ruled raises the share without widening one key. A guard that re-seats on every honest
+  change has stopped guarding, and its own reason had asked twice for what stands here.
+  `corpus/ruling-breadth-ceiling.txt` counts the KINDS a key spans — `region-kind.js` already spells
+  the causes — seated at 1: every ruling in every ledger names exactly one. `meta.*` spans 8 and
+  fails; `meta.variable.call.*` spans 1 however common a call runs.
+- AUTHORING MOVES THE NEW READING BY NOTHING, and a sandbox proves it rather than the prose claiming
+  it: forty more calls appended to a corpus file leave every key spanning the kinds it spanned
+  before. The token share still READS beside the verdict, because a reader wants to know how much
+  ground stands ruled, and it ratchets nothing.
+- Five retired sigil forms leave the specimens, each measured to reach 0 scopes no current form
+  reaches: `<<~ hud Focus(10) Feedback(3)>>`, the two parenthesised `kahea` calls, `<<~ syad>>` and
+  `<<~ moves>>`. The bare `<<~ aka https://…>>` STAYS, labelled: it uniquely reaches
+  `meta.variable.call.parameter.tw-https`, because a bare URL binds a phantom parameter named
+  `https` — it demonstrates the hazard every quoted value in this house exists to answer.
 - Every named parameter carrying a `lar:` URI or a `?` takes quotes. `param=value` reads as TW5 call
   syntax and a URI scheme spells with the characters a parameter name admits, so a bare
   `to=lar:///x` risks binding a phantom parameter while the slot receives nothing — silently, with

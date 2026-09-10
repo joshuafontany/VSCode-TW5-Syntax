@@ -54,30 +54,47 @@ test('a ledger key that broadened fails the gate', live, () => {
   assert.notStrictEqual(code, 0, 'a ledger key widened and the gate held anyway');
 });
 
-// A ruling's breadth answers to the GROUND it stands on, never to the punctuation in its name.
+// A RULING'S BREADTH ANSWERS TO HOW MANY CAUSES IT CAN ABSORB, never to how much ground it covers.
 //
-// The tool's own warning says the condition can be met by ruling generously, and the guard written
-// against that scored a key's SHAPE — wildcards and segment count. Measured over the corpus:
-// `meta.codeblock.*` scored widest and stands on 3.5% of tokens, `meta.paragraph.tiddlywiki5`
-// scored narrowest and stands on 18.2%. Exactly backwards, and a ruling on the second passed.
-test('a key standing on more ground reaches further than one standing on less', async () => {
-  const { groundOf } = require('./still.js');
-  const wide = await groundOf('meta.paragraph.tiddlywiki5');
-  const narrow = await groundOf('meta.codeblock.*');
-  assert.ok(wide > 0 && narrow > 0, `the corpus reaches neither key: ${wide} / ${narrow}`);
-  assert.ok(wide > narrow,
-    `a key on ${(100 * wide).toFixed(1)}% of the corpus reads narrower than one on ${(100 * narrow).toFixed(1)}%`);
+// The token-share ratchet re-seated three times in one session — 55.8, 56.6, 57.2, 60.0 — and every
+// reason was true: the corpus is AUTHORED, and this house authors into it constantly. A key's share
+// rises when somebody writes more of what already stands ruled, so the number tracks authoring and
+// not generosity, and a guard that re-seats on every honest change has stopped guarding.
+//
+// The hazard it was built for reads: widen a key far enough and every finding falls inside it. That
+// names CAUSES, and `region-kind.js` already spells the causes. So a key that spans ONE kind names
+// one cause however common that cause runs; a key spanning several absorbs findings nobody reasoned
+// about. Authoring a thousand carriers moves neither count.
+test('a ruling spans one cause, and the widest stands ratcheted', async () => {
+  const { widestRuling, BREADTH_CEILING } = require('./still.js');
+  const widest = await widestRuling();
+  assert.ok(widest.kinds >= 1, `the widest ruling spans ${widest.kinds} kind(s), so the reading found no ruling at all`);
+  assert.ok(widest.kinds <= BREADTH_CEILING,
+    `\`${widest.key}\` spans ${widest.kinds} cause(s) against a ceiling of ${BREADTH_CEILING}`);
 });
 
-// The guard examined only keys that VANISHED, pairing an old key with a new one that covers it. A
-// key nobody replaced — an ADDITION — passed unweighed however much ground it claimed, which is the
-// shape a generous ruling actually takes.
-test('the ground every ruling claims stands measured and ratcheted', async () => {
-  const { ruledGround, GROUND_CEILING, overCeiling } = require('./still.js');
-  const share = await ruledGround();
-  assert.ok(share > 0, 'the ledgers rule no ground at all, so the ceiling guards nothing');
-  assert.ok(!overCeiling(share),
-    `the ledgers rule ${(100 * share).toFixed(1)}% of corpus tokens against a ceiling of ${(100 * GROUND_CEILING).toFixed(1)}%`);
+// The fault the ceiling exists for: a key wide enough to swallow causes nobody reasoned about.
+test('a key spanning several causes reads wider than one spanning a common cause', async () => {
+  const { kindsSpanned } = require('./still.js');
+  const wide = await kindsSpanned('meta.*');
+  const precise = await kindsSpanned('meta.variable.call.*');
+  assert.ok(wide > precise, `a key over every meta scope spans ${wide} cause(s) where a call spans ${precise}`);
+  assert.strictEqual(precise, 1, `a call ruling spans ${precise} cause(s), where it names exactly one`);
+});
+
+// And the reading stays authoring-invariant, which is the whole point of the move.
+test('the breadth of a ruling never moves when the corpus grows', async () => {
+  const { kindsSpanned } = require('./still.js');
+  const before = await kindsSpanned('meta.variable.call.*');
+  const { runInSandbox } = require('./grammar-sandbox.js');
+  const { out } = runInSandbox(
+    (sandbox) => {
+      const file = path.join(sandbox, 'corpus', 'memetic', 'sigils.mem');
+      fs.appendFileSync(file, '\n' + '<<~ loulou "lar:///a.b.c">>\n'.repeat(40));
+    },
+    ['tools/still-breadth.js'], ['meta.variable.call.*']);
+  assert.strictEqual(Number(out.trim().split('\n').pop()), before,
+    'forty more calls in the corpus moved a ruling\'s breadth, so it reads authoring rather than generosity');
 });
 
 // One cause, one key — whatever encloses it.

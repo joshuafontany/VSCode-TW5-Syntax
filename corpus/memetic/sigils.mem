@@ -1,4 +1,10 @@
+A BARE VALUE BINDS A PHANTOM PARAMETER, and this line stands to show it. TiddlyWiki reads
+`https` as a parameter name and the positional slot receives nothing — the reason every sigil
+value in this house takes quotes. The form below carries the hazard on purpose.
+
 <<~ aka https://example.com/reference>>
+
+<<~ aka "https://example.com/reference">>
 
 <<~ ahu #a-section>>
 
@@ -11,15 +17,9 @@ A body inside the section.
 
 <<~ lares aim from="lar://alias:grant@host/a.b.c" -> to="lar://alias:grant@host/d.e.f">>
 
-<<~ hud Focus(10) Feedback(3)>>
-
 <<~! a pragma sigil>>
 
 <<~?>>
-
-<<~ kahea greeting(name="Operator")>>
-
-<<~ kahea greeting(name:"Operator")>>
 
 <<~ hoike lar:///a.b.c -> ?>>
 
