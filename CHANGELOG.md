@@ -54,8 +54,45 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   records the reading, the three levers the ecosystem ships instead, and what rust-analyzer's
   punctuation dial costs here: a provider needs `main` and `activationEvents`, and
   `tools/ships-no-runtime.test.js` forbids both.
+- A known gap records what a `<style>` element owes. TiddlyWiki carries NO notion of a scoped
+  stylesheet — `scoped` names an ordinary attribute and the word stands nowhere in its source — so a
+  `<style>` takes the html rule like any other and its children parse as wikitext. Measured over
+  every carrier TiddlyWiki ships: 25 style elements across 25 carriers, one carrying `scoped`, the
+  host building calls at four sites inside them, and NO sigil run where the host builds nothing, so
+  the false-positive cost a macrocall rule reaching into ordinary CSS would carry measures zero on
+  this ground. `$:/SplashScreen` reaches the same paint by another road and answers to a different
+  ceiling: it opens `\rules only filteredtranscludeinline transcludeinline macrocallinline`, which
+  deletes the html rule, so the host builds no style element there at all. Recorded rather than
+  enacted, and the specimen names what an enactment owes first — `macrocallinline` carries no line
+  bound and a child region standing open refuses its parent's end, so a `<<` in a stylesheet with no
+  `>>` ahead runs past `</style>` and takes the rest of the tiddler.
+- The whole-document lookahead ceiling wears a third construct. `codeinline.js` runs
+  `reEnd.exec(this.parser.source)` over the WHOLE source, so a code run crosses line breaks freely
+  and an unterminated delimiter renders as literal text carrying no node — the ceiling's own question
+  exactly, and the reader it names decides both the pairing and the unterminated case. The evidence
+  stood in `corpus/attribute-kind-ceiling.txt` pointing at an entry that named two constructs and not
+  this one. It now carries the third with its cost, 10 attributes across five templates, and the two
+  relaxations that ran on this arm and failed: a `begin`/`end` pair runs away in the 9 tiddlers
+  holding an unterminated code run, and a blank-line bound mis-pairs the 8 whose runs legitimately
+  cross one. No pattern moved.
 
 ### Fixed
+- A TRIPLE-QUOTED VALUE CARRIES THE QUOTE IT TOUCHES. TiddlyWiki spells all three of its string sites
+  `"""([\s\S]*?)"""` — lazy, and carrying no lookaround — so a value opens on the FIRST triple and
+  closes on the NEXT one, and its content may begin or end with a quote. The lookarounds on `#string`
+  refused every such reading: against `""""value"""` no offset matched, the string region never
+  opened, its call never closed, and the rest of the tiddler read as one unquoted parameter. That
+  swallow hid by construction — it paints everything `string.unquoted`, which the attribute
+  vocabulary ACCEPTS for the 88% of attributes typed `string`, so a tiddler-wide runaway surfaced as
+  one disagreement. Counted as carriers instead: three host carriers moved, two of them swallowed end
+  to end, and host divergences fall 11964 to 11953. The guard protected a real case and keeps a
+  narrower form — a run of four quotes with no closing triple, where the host reads two empty
+  double-quoted strings, declines through a second begin alternative demanding a closer on the line,
+  since opening a triple at that offset swallows the tiddler. Two sites stand unhealed, a
+  quote-adjacent triple whose closer sits four lines down; a line-local reader cannot see that closer
+  and the whole-document lookahead ceiling names the reader that can. Invention checked by reading all
+  546 host carriers holding a triple quote under both grammars, token for token: exactly the three
+  intended moved, 543 byte-identical.
 - A SENTINEL MUST STAND ALONE. Three witnesses cut a carrier short, append `<<<`/`<<<` and ask
   whether both readers open a quoteblock there. Where the cut leaves the carrier's OWN quote open the
   sentinel lands inside it, the parser holds a quote starting at the carrier's marker, the grammar
