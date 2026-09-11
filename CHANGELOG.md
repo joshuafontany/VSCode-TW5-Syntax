@@ -165,7 +165,46 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   onto `tiddlywiki5` and left a name no selector reaches from either side. Both stand pinned at their
   floor rather than cured. The fourth rule stays prose, because the only name a mechanical check
   flags names an XML processing instruction, where `xml` says what the span holds.
+- `tools/theme-collision.js` collides the colour model against the engine that paints. Every colour
+  number this repository carries rests on `theme-model.js`, and nothing had ever asked
+  `vscode-textmate` whether it says the same. The engine answers through `tokenizeLine2` metadata and
+  `getColorMap`, and where the two part the model stands wrong. Both offsets stand SETTLED rather than
+  assumed, by a one-rule theme whose target index lands at offset 15 and at no other — two earlier
+  readings of that field named the BACKGROUND and an offset that looked right on one specimen. The
+  gate carries `--must-fail`, which paints theme N while answering for theme N+1 and reads 89.4%
+  divergence, so a comparison of one reading against itself cannot pass here.
+- `tools/page-palette.js` takes the reading nobody had taken. Ware's six-to-twelve limit acts per
+  SCREEN, through contrast effects and colour-category confusion, and every measurement here read one
+  construct at a time. Measured over whole pages across 65 themes: the corpus spends a median of 5
+  colours a page and the host's own tiddlers 6, crossing 12 in 1 of 2340 and 6 of 2600 readings. A
+  page of wikitext sits at the LOW end of Ware's band and essentially never crosses it. It REPORTS and
+  never ratchets — a colour count belongs to the theme at least as much as to the grammar, and this
+  house declines gauges that re-seat on every honest change.
 ### Fixed
+- THE RULER WAS WRONG, AND FOUR GATES REPEATED IT IN ONE VOICE. `theme-model.js` ranked a selector's
+  DEPTH above its POSITION in the scope stack. `vscode-textmate` does the opposite: a grammar pushes a
+  token's scopes outermost first and the theme answers at every push, so the INNERMOST scope any rule
+  reaches decides the colour outright and depth breaks a tie only among rules reaching the SAME scope.
+  Each property resolves on its own, and a token no rule reaches falls through to
+  `colors['editor.foreground']` rather than to a scopeless `tokenColors` entry, which VS Code drops —
+  "the default rule (scope empty) is always the first rule. Ignore all other default rules." Measured
+  over 36 corpus specimens and 65 themes, the old model parted from the engine in 6.6% of
+  token-readings, concentrated in exactly the shape the inversion predicts: it handed
+  `markup.underline.link` on a link's CONTAINER where the engine hands `string` on the caption INSIDE
+  it. The settled model parts in 0 of 199 615 readings. `winner()` retires for `reaches()` and
+  `styleOf()`, and `paints()` now asks whether a theme rule DECIDES the colour rather than whether any
+  rule's last element covers any scope in the stack.
+- A HARNESS COMPARING TWO DEFAULTS REPORTS THE GAP BETWEEN THEM AS A GRAMMAR FINDING. Three earlier
+  readings of this divergence — 64.5%, 42.7%, 27.0% — each fell to the next, and the residue of the
+  last concentrated in `meta.paragraph` because the engine fell through to a scopeless rule while the
+  comparison preferred `colors['editor.foreground']`. `engineTheme()` now builds the engine's own rule
+  list from the same reading `styleOf()` falls through to, so both sides answer to one default by
+  construction. A colour normalises the way VS Code normalises one, so `#D50` and `#DD5500` stop
+  reading as a divergence that stands nowhere on screen.
+- 150 `construct-legibility` floors fell, 82 rose and 588 stood under the settled ruler, for a net of
+  -270 theme-readings, and one `ReaderRelations` floor re-seats from 47 to 45. Both files say so in
+  those terms: a floor re-seated because the RULER got more truthful, never because one loosened, with
+  the before and after beside it.
 - A conditional wraps BLOCKS, so TiddlyWiki carries it across a blank line the way it carries a quote
   block — `conditional.js` parses its body with `parseBlocks` and closes only on `<%endif%>`. The
   grammar bounds the region at a blank line, cutting a conditional that holds more than one
