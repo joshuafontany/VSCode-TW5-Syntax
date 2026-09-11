@@ -76,6 +76,11 @@ test('a verdict the workflow runs stands among the gates', () => {
   const ruling = readData('CIGates.tid').data;
   const known = new Set([...gates(), ...ruling.alsoGates, ...ruling.reporting,
     ...ruling.skipped.map((r) => r.gate)]);
+  // `package-contents.js` carries no test file of its own, and the reason names a cost rather than a
+  // decision: its whole claim lives in a .vsix, so a collision must BUILD one — an npx fetch and a
+  // package per run, against a gate CI already runs every push. `lint-closure` stands collided in
+  // `terminator-closure.test.js`, where the fault costs a scratch file.
+  //
   // WHAT A SCRIPT DOES, never how its name starts. A prefix list excluded `lint-closure` and
   // `package-contents` — two instruments CI runs, each rendering a verdict, neither standing in any
   // gate list — because one began `lint` and the other `package`. A script rendering a verdict runs

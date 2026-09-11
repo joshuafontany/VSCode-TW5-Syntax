@@ -20,6 +20,9 @@ const { resolveTiddlyWiki } = require('./tw5-oracle.js');
 const live = { skip: resolveTiddlyWiki() ? false : 'no TiddlyWiki checkout resolved', timeout: 600000 };
 
 test('a sandbox resolves the same TiddlyWiki the tree resolves', live, () => {
+  // `tw5-oracle-path.js` carries no test file of its own BY DESIGN: it prints one path and nothing
+  // else, and which host a run resolved only differs INSIDE a sandbox, where no checkout stands
+  // beside it. This reading is the only place the answer can vary.
   const { out } = runInSandbox(() => {}, ['tools/tw5-oracle-path.js']);
   const printed = out.trim().split('\n').filter((l) => l.trim()).pop();
   assert.ok(printed, `the probe printed nothing at all: ${out.slice(-300)}`);
