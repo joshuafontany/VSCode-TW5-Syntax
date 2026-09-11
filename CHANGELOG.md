@@ -7,6 +7,27 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Added
+- `MIGRATION.md` names every scope a reader's theme rule lost. 460 scope names stand at `v2.2.1` and
+  497 here; 94 went, 131 arrived. A theme rule and an `editor.tokenColorCustomizations` entry both
+  name a scope, and when one moves VS Code reports nothing — the rule stops matching and the
+  construct goes the colour of prose. 39 of the 94 moved for one reason: they carried a qualifier in
+  FRONT of their family root, where a dot-bounded selector never reached them, so they painted prose
+  in all 65 bundled themes from the day they were written. The record derives from both grammars and
+  `tools/invariants/scope-migration.test.js` holds it to them — a name called gone that still stands,
+  a replacement nothing emits, or a gone name the record never mentions each fail that gate.
+- Eight shared modules under `tools/` carry tests of their own, ordered by a require graph rather
+  than by a reading of names: `run-tool` backs 26 files, `tokenizer` 22, `snapshot-format` 9,
+  `theme-model` 8. Each collides its deciding half against constructed input and ships a control —
+  the resumed reading against the whole-prefix one, segment-bounded selector reach, the snapshot
+  column convention, a closer answering to its own width, a tiddler's own type picking its parser.
+  `lint-closure` stands collided for the first time: a child eating its parent's terminator now
+  plants a finding rather than waiting for the shipped grammar to grow one.
+- Both sides of the corpus ledger derive. Thirteen ledger and ceiling files stand under `corpus/`,
+  each seated by a measurement, and nothing held them to their readers: a ledger outliving its
+  instrument keeps a number nobody consults while reading exactly like a guard, and an instrument
+  naming a ledger nothing holds reads an absent file as an empty ruling. The disk says what stands;
+  the instruments' CODE says what gets opened, comments stripped, since a name in a comment opens
+  nothing. Measured: 13 of 13 read, no orphan, no phantom.
 - The canon reads the paint. A council measured how this grammar paints its bracketed constructs and
   ruled the reading noisy; collided against both naming references, twenty fetched and tokenized
   grammars, and a re-derivation over the 65 bundled themes, four of the six findings OVERTURN.
@@ -568,6 +589,19 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   region the grammar never closed — and the ladder reads structure before kind word, so a cause
   outranks the symptom it produced. The control cuts one class from the ladder and the gate reds.
 ### Changed
+
+- `tools/` holds its instruments and its invariants apart. Forty-two test files stand beside the
+  instrument they collide; twenty-five tested the grammar, the manifest, the workflow and the record
+  instead, and lived under `tools/` only because a glob pointed there. Those move to
+  `tools/invariants/`, classified by reading each — `reader-tolerance.test.js` stays, carrying no
+  repository claim at all, and `bytes-on-disk.test.js` moves carrying two reader collisions with it.
+  `test-tools` widens to `./tools/**/*.test.js`: 67 files where the shallow pattern reaches 42.
+- The test population derives from a walk. A glob states where somebody expected files to stand, and
+  a file standing anywhere else drops out of the run in silence — the same shape that hid
+  `lint-closure` and `package-contents` from every gate list. `every-gate-collides` and
+  `one-implementation` listed one directory and would have read a collider one level down as absent;
+  both now walk. `every-test-runs` holds the runner to the tree: every `*.test.js` this repository
+  authors stands inside some declared script's reach, asked of the same globber the runner uses.
 
 - `test-tools` caps the runner at four files in parallel. On twelve cores Node ran eleven test files
   at once, each spawning children that boot TiddlyWiki and read 65 themes; measured, that pressure

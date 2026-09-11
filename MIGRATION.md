@@ -1,0 +1,170 @@
+# Scope name migration — 2.2.1 to 2.3.0
+
+A theme rule and an `editor.tokenColorCustomizations` entry both name a scope. A scope that
+moves takes the reader's colour with it, and VS Code reports nothing: the rule simply stops
+matching, and the construct goes the colour of prose.
+
+This repository declares **460** scope names at `v2.2.1` and **497** at `2.3.0`. Between them,
+**94** names stand gone and **131** stand new. Every gone name appears below, with what it
+stands as now or why it retired.
+
+The table derives from the two grammars rather than from a hand-written list, and
+`tools/invariants/scope-migration.test.js` holds it to them: a name this record calls gone that
+still stands, or a replacement the grammar does not declare, fails that gate.
+
+## The principle most of these share
+
+A TextMate selector reaches a scope by a **dot-bounded prefix**, so only the segments at the
+FRONT of a name can be selected on. A name carrying its qualifier in front of its family root —
+`bold.punctuation.definition.markup.begin`, `caption.markup.other.table`,
+`colspan.left.meta.cell.td`, `numbered.ordered.ol.li.markup.list`, `mvv.attribute.html` —
+stands outside every theme rule written against `punctuation`, `markup`, `meta` or `entity`. No
+theme's root selector ever reached them, which is why nothing reported the names as broken:
+they painted the colour of prose in every bundled theme, and they did so from the day they
+were written.
+
+Their replacements put the root first and keep the qualifier as a suffix, so a rule on the
+family root reaches the construct and a deeper rule can still single it out. **39 of the 94**
+gone names moved for exactly that reason.
+
+If your customization named one of these, it was already painting nothing. Adopting the new
+name is the first time it will take effect.
+
+## Names that moved
+
+| gone at 2.2.1 | stands as at 2.3.0 | why |
+| --- | --- | --- |
+| `bold.punctuation.definition.markup.begin.tiddlywiki5` | `punctuation.definition.markup.begin.bold.tiddlywiki5` | root first |
+| `bold.punctuation.definition.markup.end.tiddlywiki5` | `punctuation.definition.markup.end.bold.tiddlywiki5` | root first |
+| `caption.markup.other.table.tiddlywiki5` | `markup.other.table.caption.tiddlywiki5` | root first |
+| `caption.meta.table.tiddlywiki5` | `meta.table.caption.tiddlywiki5` | root first |
+| `classes.markup.other.table.tiddlywiki5` | `markup.other.table.classes.tiddlywiki5` | root first |
+| `classes.meta.table.tiddlywiki5` | `meta.table.classes.tiddlywiki5` | root first |
+| `colspan.left.meta.cell.td.tiddlywiki5` | `meta.cell.td.colspan.left.tiddlywiki5` | root first |
+| `colspan.left.punctuation.definition.cell.tiddlywiki5` | `punctuation.definition.cell.colspan.left.tiddlywiki5` | root first |
+| `colspan.right.meta.cell.td.tiddlywiki5` | `meta.cell.td.colspan.right.tiddlywiki5` | root first |
+| `colspan.right.punctuation.definition.cell.tiddlywiki5` | `punctuation.definition.cell.colspan.right.tiddlywiki5` | root first |
+| `entity.name.variable-parameter.tiddlywiki5` | `variable.name.substitute-variable.tiddlywiki5` | substitution vocabulary |
+| `filtered.attribute.html.tiddlywiki5` | `meta.attribute.filtered.html.tiddlywiki5` | root first |
+| `heading.th.meta.cell.tiddlywiki5` | `meta.cell.heading.th.tiddlywiki5` | root first |
+| `indirect.attribute.html.tiddlywiki5` | `meta.attribute.indirect.html.tiddlywiki5` | root first |
+| `italic.punctuation.definition.markup.begin.tiddlywiki5` | `punctuation.definition.markup.begin.italic.tiddlywiki5` | root first |
+| `italic.punctuation.definition.markup.end.tiddlywiki5` | `punctuation.definition.markup.end.italic.tiddlywiki5` | root first |
+| `keyword.control.directive.function.html.tiddlywiki5` | `keyword.control.directive.function.tiddlywiki5` | names this grammar, not HTML |
+| `keyword.control.directive.procedure.html.tiddlywiki5` | `keyword.control.directive.procedure.tiddlywiki5` | names this grammar, not HTML |
+| `keyword.control.directive.widget.html.tiddlywiki5` | `keyword.control.directive.widget.tiddlywiki5` | names this grammar, not HTML |
+| `keyword.control.raw.tick.tiddlywiki5` | `keyword.control.raw.fence.tiddlywiki5` | names what it marks |
+| `keyword.other.variable.variable-parameter.begin.tiddlywiki5` | `keyword.other.variable.substitute-parameter.begin.tiddlywiki5` | substitution vocabulary |
+| `keyword.other.variable.variable-parameter.end.tiddlywiki5` | `keyword.other.variable.substitute-parameter.end.tiddlywiki5` | substitution vocabulary |
+| `keyword.other.variable.variable-reference.begin.tiddlywiki5` | `keyword.other.variable.substitute-variable.begin.tiddlywiki5` | substitution vocabulary |
+| `keyword.other.variable.variable-reference.end.tiddlywiki5` | `keyword.other.variable.substitute-variable.end.tiddlywiki5` | substitution vocabulary |
+| `list.attribute.image.tiddlywiki5` | `meta.attribute.list.image.tiddlywiki5` | root first |
+| `listquote.quote.markup.list.tiddlywiki5` | `markup.list.listquote.quote.tiddlywiki5` | root first |
+| `markup.other.variable.variable-parameter.tiddlywiki5` | `markup.other.variable.substitute-parameter.tiddlywiki5` | substitution vocabulary |
+| `markup.other.variable.variable-reference.tiddlywiki5` | `markup.other.variable.substitute-variable.tiddlywiki5` | substitution vocabulary |
+| `markup.underline.link.wikilink.tiddlywiki5` | `meta.link.wikilink.tiddlywiki5` | family a theme rules on |
+| `meta.tiddler.fields.tiddlywiki5` | `meta.text.tiddler.fields.tiddlywiki5` | root first |
+| `mvv.attribute.html.tiddlywiki5` | `meta.attribute.mvv.html.tiddlywiki5` | root first |
+| `mvv.default.parameter.tiddlywiki5` | `variable.parameter.mvv.default.tiddlywiki5` | root first |
+| `numbered.ordered.ol.li.markup.list.tiddlywiki5` | `markup.list.numbered.ordered.ol.li.tiddlywiki5` | root first |
+| `punctuation.definition.substituted.triple..attribute.begin.tiddlywiki5` | `punctuation.definition.substituted.triple.attribute.begin.tiddlywiki5` | empty segment |
+| `punctuation.definition.text-reference.index..tiddlywiki5` | `punctuation.definition.text-reference.index.tiddlywiki5` | empty segment |
+| `punctuation.separator.function.macro.parameter.tiddlywiki5` | `punctuation.separator.parameters.tiddlywiki5` | call vocabulary |
+| `row.tbody.body.meta.table.tiddlywiki5` | `meta.table.row.tbody.body.tiddlywiki5` | root first |
+| `row.tfoot.footer.markup.other.table.tiddlywiki5` | `markup.other.table.row.tfoot.footer.tiddlywiki5` | root first |
+| `row.tfoot.footer.meta.table.tiddlywiki5` | `meta.table.row.tfoot.footer.tiddlywiki5` | root first |
+| `row.thead.header.markup.other.table.tiddlywiki5` | `markup.other.table.row.thead.header.tiddlywiki5` | root first |
+| `row.thead.header.meta.table.tiddlywiki5` | `meta.table.row.thead.header.tiddlywiki5` | root first |
+| `rowspan.down.meta.cell.td.tiddlywiki5` | `meta.cell.td.rowspan.down.tiddlywiki5` | root first |
+| `rowspan.down.punctuation.definition.cell.tiddlywiki5` | `punctuation.definition.cell.rowspan.down.tiddlywiki5` | root first |
+| `strikethrough.punctuation.definition.markup.begin.tiddlywiki5` | `punctuation.definition.markup.begin.strikethrough.tiddlywiki5` | root first |
+| `strikethrough.punctuation.definition.markup.end.tiddlywiki5` | `punctuation.definition.markup.end.strikethrough.tiddlywiki5` | root first |
+| `subscript.punctuation.definition.markup.begin.tiddlywiki5` | `punctuation.definition.markup.begin.subscript.tiddlywiki5` | root first |
+| `subscript.punctuation.definition.markup.end.tiddlywiki5` | `punctuation.definition.markup.end.subscript.tiddlywiki5` | root first |
+| `superscript.punctuation.definition.markup.begin.tiddlywiki5` | `punctuation.definition.markup.begin.superscript.tiddlywiki5` | root first |
+| `superscript.punctuation.definition.markup.end.tiddlywiki5` | `punctuation.definition.markup.end.superscript.tiddlywiki5` | root first |
+| `underscore.punctuation.definition.markup.begin.tiddlywiki5` | `punctuation.definition.markup.begin.underscore.tiddlywiki5` | root first |
+| `underscore.punctuation.definition.markup.end.tiddlywiki5` | `punctuation.definition.markup.end.underscore.tiddlywiki5` | root first |
+| `unnumbered.description.dl.dd.markup.list.tiddlywiki5` | `markup.list.unnumbered.description.dl.dd.tiddlywiki5` | root first |
+| `unnumbered.term.dl.dt.markup.list.tiddlywiki5` | `markup.list.unnumbered.term.dl.dt.tiddlywiki5` | root first |
+| `unnumbered.unordered.ul.li.markup.list.tiddlywiki5` | `markup.list.unnumbered.unordered.ul.li.tiddlywiki5` | root first |
+| `variable.name.variable-reference.tiddlywiki5` | `variable.name.substitute-variable.tiddlywiki5` | substitution vocabulary |
+
+## Names that retired
+
+### The `invalid.*` family, 12 names to 4
+
+A grammar marks invalid what TiddlyWiki refuses, never what a different language retired.
+TiddlyWiki parses any tag name and any attribute name into a node, so `<center>`, `<dir>` and
+`align=` build and render. Every verdict resting on HTML's deprecations came out — fourteen
+sites — and the tags and attributes carry their ordinary `entity.name.tag` and
+`entity.other.attribute-name` names. A construct that drew a verdict and no longer draws one
+now paints as what it is.
+
+| retired | why |
+| --- | --- |
+| `invalid.deprecated.entity.other.attribute-name.html.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
+| `invalid.deprecated.html.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
+| `invalid.illegal.bad-angle-bracket.html.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
+| `invalid.illegal.characters-not-allowed-here.html.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
+| `invalid.illegal.event-handler-in-wikitext.html.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
+| `invalid.illegal.no-longer-supported.html.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
+| `invalid.illegal.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
+| `invalid.illegal.unrecognized-tag.html.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
+
+### The memetic dialect's own vocabulary, 30 names
+
+`memetic-wikitext` holds wikitext entire and adds to it. A sigil call `<<~ name arg >>` reads as
+a wikitext macro call, so it paints under the call vocabulary the base grammar already writes —
+`meta.variable.call.*`, `punctuation.definition.call.*`, `variable.name.call` — rather than
+under a parallel `meta.sigil.*` family only this dialect knew. The dialect's remaining names
+cover what wikitext has no construct for: a `lar://` URI and its parts.
+
+A theme rule naming any of these painted `.mem` files alone. A rule on the wikitext call
+vocabulary now reaches both.
+
+| retired | reads through |
+| --- | --- |
+| `constant.language.bearing.unresolved.memetic-wikitext` | the base grammar's own vocabulary |
+| `constant.other.blockcheck.memetic-wikitext` | the base grammar's own vocabulary |
+| `entity.name.function.sigil.definition.memetic-wikitext` | the base grammar's own vocabulary |
+| `entity.name.function.sigil.memetic-wikitext` | the base grammar's own vocabulary |
+| `keyword.control.carrier.eot.memetic-wikitext` | the base grammar's own vocabulary |
+| `keyword.control.carrier.etx.memetic-wikitext` | the base grammar's own vocabulary |
+| `keyword.control.carrier.memetic-wikitext` | the base grammar's own vocabulary |
+| `keyword.control.carrier.soh.memetic-wikitext` | the base grammar's own vocabulary |
+| `keyword.control.carrier.stx.memetic-wikitext` | the base grammar's own vocabulary |
+| `keyword.control.declaration.memetic-wikitext` | the base grammar's own vocabulary |
+| `keyword.control.sharktooth.memetic-wikitext` | the base grammar's own vocabulary |
+| `keyword.control.sharktooth.pragma.memetic-wikitext` | the base grammar's own vocabulary |
+| `keyword.control.sharktooth.unresolved.memetic-wikitext` | the base grammar's own vocabulary |
+| `meta.carrier.control.eot.memetic-wikitext` | the base grammar's own vocabulary |
+| `meta.carrier.control.etx.memetic-wikitext` | the base grammar's own vocabulary |
+| `meta.carrier.control.memetic-wikitext` | the base grammar's own vocabulary |
+| `meta.carrier.control.soh.memetic-wikitext` | the base grammar's own vocabulary |
+| `meta.carrier.control.stx.memetic-wikitext` | the base grammar's own vocabulary |
+| `meta.carrier.declaration.memetic-wikitext` | the base grammar's own vocabulary |
+| `meta.sigil.close.memetic-wikitext` | the base grammar's own vocabulary |
+| `meta.sigil.memetic-wikitext` | the base grammar's own vocabulary |
+| `meta.sigil.pragma.memetic-wikitext` | the base grammar's own vocabulary |
+| `meta.sigil.unresolved.memetic-wikitext` | the base grammar's own vocabulary |
+| `punctuation.definition.sigil.begin.memetic-wikitext` | the base grammar's own vocabulary |
+| `punctuation.definition.sigil.close.memetic-wikitext` | the base grammar's own vocabulary |
+| `punctuation.definition.sigil.end.memetic-wikitext` | the base grammar's own vocabulary |
+| `punctuation.separator.key-value.memetic-wikitext` | the base grammar's own vocabulary |
+| `string.quoted.bracket.memetic-wikitext` | the base grammar's own vocabulary |
+| `string.quoted.double.memetic-wikitext` | the base grammar's own vocabulary |
+| `string.quoted.single.memetic-wikitext` | the base grammar's own vocabulary |
+
+### One name standing alone
+
+| retired | why |
+| --- | --- |
+| `row.tbody.body.markup.other.table.tiddlywiki5` | the markup twin of a table body row — its `meta.table.row.tbody.body` counterpart stands, and the `thead` and `tfoot` rows keep both names |
+
+## Reading the new names yourself
+
+```
+npm run rule-inventory      # every scope the grammars declare, by the rule declaring it
+npm run theme-paint         # what each bundled theme paints a construct
+```
