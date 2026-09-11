@@ -52,7 +52,9 @@ Based primarily on the grammars found below, with heavy tweaking and editing.
 
 ## For contributors
 
-`contributing.md` carries the detail. In short, the grammars answer to more than their own tests:
+`contributing.md` carries the detail and `SCOPE-NAMES.md` carries the rule this repository names its
+scopes by — what a name promises, the three precedents that settled it, and the three parts of it a gate
+checks. In short, the grammars answer to more than their own tests:
 
 * `npm test` — assertion files stating what each construct should scope
 * `npm run test-tools` — the tools themselves, which the gates read through
