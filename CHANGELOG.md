@@ -6,6 +6,55 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## 2.3.0 — unreleased
 
+### Added
+- The canon reads the paint. A council measured how this grammar paints its bracketed constructs and
+  ruled the reading noisy; collided against both naming references, twenty fetched and tokenized
+  grammars, and a re-derivation over the 65 bundled themes, four of the six findings OVERTURN.
+  `punctuation.*` names do not buy one binary — 142 of the 145 this grammar emits get reached by a
+  selector deeper than the bare root in at least one bundled theme, 121 at `punctuation.definition`,
+  and `punctuation.definition.tag.begin.html.tiddlywiki5` reaches 44 themes that way against 8
+  through the root. A 44.1% punctuation token share over `corpus/wikitext`, read on the criterion the
+  outside measurement uses, sits BELOW html's 45.4% and link-dense markdown's 49.7%. `meta.*` painting
+  0/65 reads as the contract holding, quoted from both references, and VS Code's own html grammar
+  interpolates a capture into a scope name 79 times, 52 of them under `meta.`. And no grammar in the
+  measured population — VS Code's bundles, Vue, AsciiDoc, MediaWiki, Org, DokuWiki, Creole,
+  reStructuredText among them — splits a multi-character delimiter into two named tokens; `</` stands
+  as ONE token in html, and this grammar's own call already fuses `<<` while carrying a paired name
+  on it.
+- The delimiter that reads with its content wants the device already shipped here, not a compound
+  root. `string.punctuation.definition.operand.*` and its five siblings across `variable.` and
+  `entity.name.` put an invented segment above the tail, so they degrade to `entity.name` and never to
+  `punctuation.definition` — the house's own law names that as severing a chain, a literal search for
+  `string.punctuation` across thirteen flagship grammars returns zero, and the two grammars that come
+  close each carry an accompanying defect. The heading already writes the canonical spelling,
+  `punctuation.definition.heading.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5`, an
+  intact chain first and the painting family last — the exact order VS Code's own Python grammar uses
+  twelve times. Measured: the conversion costs the delimiter-reads-with-content relation in one to
+  four themes per operand kind, so it stands recorded rather than shipped.
+- A container names what every glyph inside it falls back to, and two of them name almost nothing.
+  `markup.link.tiddlywiki5` paints 8 of 65 and `markup.other.image.tiddlywiki5` paints 2; under
+  `markup.underline.link` and `markup.underline.link.image` both paint 48, and a pretty link's
+  brackets read its caption's colour in 29 themes rather than 5 — the whole fold effect, with no
+  punctuation name touched and nothing invented. AsciiDoc reaches it the same way, by declining to
+  capture its macro brackets at all.
+- TiddlyWiki parts a call's named parameter from a widget attribute, measured against the checkout
+  rather than read off the source. A call's parameter carries `assignmentOperator` in the tree and may
+  spell `:` or `=`; a widget attribute carries no such field and admits only `=`; a call admits a
+  positional parameter and a widget does not; and the two name regexps differ over the colon. So the
+  `=` families stand correctly apart. The argument NAME does not: it reads one colour in 6 of 65
+  themes across the two constructs, and the closest analogue anywhere — MediaWiki's
+  `{{Template|name=value}}` — seats a named argument on a markup surface at
+  `entity.other.attribute-name`.
+- `contributes.configurationDefaults` carrying `editor.tokenColorCustomizations` stands legal, traced
+  through VS Code's own validation: the setting registers at WINDOW scope, which its extension point's
+  allow-list admits, and 450 shipped manifests do it. It also cannot be narrowed to a language — the
+  themes owner closed that request — and defaults deep-merge into the reader's own settings, so
+  contributed rules survive a reader's edit and want an explicit empty array to remove. VS Code's own
+  twenty-four bundled extensions using the surface set no colour at all. `docs/prior-art/paint-and-delimiters.mem`
+  records the reading, the three levers the ecosystem ships instead, and what rust-analyzer's
+  punctuation dial costs here: a provider needs `main` and `activationEvents`, and
+  `tools/ships-no-runtime.test.js` forbids both.
+
 ### Fixed
 - A SENTINEL MUST STAND ALONE. Three witnesses cut a carrier short, append `<<<`/`<<<` and ask
   whether both readers open a quoteblock there. Where the cut leaves the carrier's OWN quote open the
