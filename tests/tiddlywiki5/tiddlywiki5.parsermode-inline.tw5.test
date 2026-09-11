@@ -8,13 +8,13 @@
 
 \parsermode block
 ! A heading here
-#<- text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<- text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.tiddlywiki5
 
 ! Under inline mode the same marker reads as content
 
 \parsermode inline
 ! Not a heading here
-#<- - markup.heading.punctuation.definition.tiddlywiki5
+#<- - markup.heading.tiddlywiki5
 #<- - meta.heading.heading-1.tiddlywiki5
 * Not a list item
 #<- - punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5

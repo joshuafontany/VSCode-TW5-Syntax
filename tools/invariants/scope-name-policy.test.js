@@ -5,10 +5,9 @@
 // Most of that answers to judgement and no gate will ever decide it — whether a name is TRUE stays
 // a reading. Three parts of it a machine can check, and this checks those.
 //
-// EACH CARRIES A FLOOR rather than a bare assertion. One of the three stands violated today, at
-// a site `corpus/delimiter-ledger.txt` and the policy both record. A floor fails when the count
-// GROWS, and fails again when it shrinks without somebody lowering the floor — so a cure lands
-// with its gain pinned, and nothing quietly regrows.
+// EACH CARRIES A FLOOR rather than a bare assertion, and all three stand at zero. A floor fails
+// when the count GROWS, and fails again when it shrinks without somebody lowering the floor — so
+// a cure lands with its gain pinned, and nothing quietly regrows.
 //
 // The population reads from the grammars through the one collector, so no hand-kept list drifts.
 //
@@ -96,10 +95,10 @@ test('every scope opens on the root a theme writes rules against', () => {
   assert.ok(bad.length <= ROOT_LAST_FLOOR, `${bad.length} name(s) opening on no TextMate root, floor ${ROOT_LAST_FLOOR}:${report(bad)}`);
 });
 
-// PUNCTUATION STACKS, NEVER NESTS. One name stands nested: the heading mark that already carries
-// the additive device the wrong way round. The filter operand's brackets, which wore the shape
-// three ways, stand stacked. `corpus/delimiter-ledger.txt` records the heading one as OWED.
-const NESTED_PUNCTUATION_FLOOR = 1;
+// PUNCTUATION STACKS, NEVER NESTS. Nothing stands nested. The filter operand's brackets wore the
+// shape three ways and a heading's `!` mark carried the additive device backwards; all four spell
+// the stacked form now, and `corpus/delimiter-ledger.txt` rules every delimiter each one bounds.
+const NESTED_PUNCTUATION_FLOOR = 0;
 
 test('no scope nests punctuation under a content root, above the floor', () => {
   const bad = ours().filter(nestedPunctuation);

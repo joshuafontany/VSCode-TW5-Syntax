@@ -150,7 +150,7 @@
 # ^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.list.unnumbered.description.dl.dd.tiddlywiki5
 >
 >"""
-#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 punctuation.definition.hardlinebreaks.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 punctuation.definition.hardlinebreaks.begin.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
 >TEST TEXT BLOCK <$transclude tiddler="test"/>
 #^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
 #                ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
@@ -164,7 +164,7 @@
 #                                          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 meta.attribute.unrecognized.tiddler.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
 #                                           ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 >"""
-#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 punctuation.definition.hardlinebreaks.end.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 punctuation.definition.hardlinebreaks.end.tiddlywiki5 markup.other.preformatted.hardlinebreaks.tiddlywiki5
 >
 ><<variable>>
 #^^ text.html.tiddlywiki5 meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5

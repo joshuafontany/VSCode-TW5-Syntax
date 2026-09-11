@@ -20,7 +20,7 @@
 #        ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.memetic-wikitext entity.name.tag.anchor.memetic-wikitext
 
 ! A heading, read by the base grammar
-#<- text.html.tiddlywiki5.memetic-wikitext meta.heading.heading-1.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<- text.html.tiddlywiki5.memetic-wikitext meta.heading.heading-1.tiddlywiki5 markup.heading.tiddlywiki5
 
 <<~/ahu >>
 # ^ text.html.tiddlywiki5.memetic-wikitext meta.sigil.close.memetic-wikitext keyword.control.sharktooth.memetic-wikitext

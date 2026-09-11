@@ -25,10 +25,11 @@
 # theme ruling on the bare root paints every one of them alike. Read one at a time: a call and a
 # widget each wear `string.quoted.double` on a QUOTED LITERAL, which the name states truly. A filter
 # operand wears `string.entity.filter.operand` on the literal text between its brackets, also true —
-# though the BRACKETS wear `string.punctuation.definition.operand.begin`, which seats a delimiter
+# though the BRACKETS wore `string.punctuation.definition.operand.begin`, which seated a delimiter
 # inside the string family rather than in `punctuation.definition` where every grammar writes one.
-# Widening those two brackets moved NO pair of the seven specimens, so the misfiling stands reported
-# and unchanged rather than shipped as a published surface no measurement asked for.
+# They stand stacked instead — `punctuation.definition.operand.string.begin` first and
+# `string.entity.filter.operand` last — which keeps the string colour those 62 themes painted, adds
+# the 40 themes ruling on `punctuation`, and moved NO pair of the 820.
 #
 # The remaining two hold no string content at all. A wikilink's `string.other.link.title` names a
 # link target, and markdown, asciidoc and mediawiki all seat a link title there — the same family-

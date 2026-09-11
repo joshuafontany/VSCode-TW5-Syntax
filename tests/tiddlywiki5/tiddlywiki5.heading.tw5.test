@@ -1,25 +1,25 @@
 # SYNTAX TEST "text.html.tiddlywiki5" "Test for header syntaxes"
 
 ! Header
-#<- text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<- text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.tiddlywiki5
 #^ text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5
 
 !! Header
-#<-- text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<-- text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 markup.heading.tiddlywiki5
 # ^ text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5
 
 !!! Header
-#<-- text.html.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<-- text.html.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 markup.heading.tiddlywiki5
 #  ^ text.html.tiddlywiki5 meta.heading.heading-3.tiddlywiki5
 
 !!!! Header
-#<-- text.html.tiddlywiki5 meta.heading.heading-4.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<-- text.html.tiddlywiki5 meta.heading.heading-4.tiddlywiki5 markup.heading.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.heading.heading-4.tiddlywiki5
 
 !!!!! Header
-#<-- text.html.tiddlywiki5 meta.heading.heading-5.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<-- text.html.tiddlywiki5 meta.heading.heading-5.tiddlywiki5 markup.heading.tiddlywiki5
 #    ^ text.html.tiddlywiki5 meta.heading.heading-5.tiddlywiki5
 
 !!!!!! Header
-#<-- text.html.tiddlywiki5 meta.heading.heading-6.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<-- text.html.tiddlywiki5 meta.heading.heading-6.tiddlywiki5 markup.heading.tiddlywiki5
 #     ^ text.html.tiddlywiki5 meta.heading.heading-6.tiddlywiki5

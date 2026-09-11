@@ -636,7 +636,7 @@
 >
 >    !!! `header` doesn't highlight here
 #^^^^ text.html.tiddlywiki5 markup.heading.3.tiddlywiki5 meta.heading.heading-3.tiddlywiki5
-#    ^^^ text.html.tiddlywiki5 markup.heading.3.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 punctuation.definition.heading.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#    ^^^ text.html.tiddlywiki5 markup.heading.3.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 punctuation.definition.heading.tiddlywiki5 markup.heading.tiddlywiki5
 #       ^ text.html.tiddlywiki5 markup.heading.3.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 entity.name.section.tiddlywiki5
 #        ^ text.html.tiddlywiki5 markup.heading.3.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 entity.name.section.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
 #         ^^^^^^ text.html.tiddlywiki5 markup.heading.3.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 entity.name.section.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5

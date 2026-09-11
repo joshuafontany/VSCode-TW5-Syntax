@@ -1,25 +1,25 @@
 # SYNTAX TEST "text.html.tiddlywiki5" "Block rules, read from TiddlyWiki's own matchRegExp"
 
 ! heading 1
-#<- text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<- text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.tiddlywiki5
 
 !! heading 2
-#<- text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<- text.html.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 markup.heading.tiddlywiki5
 
 !!! heading 3
-#<- text.html.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<- text.html.tiddlywiki5 meta.heading.heading-3.tiddlywiki5 markup.heading.tiddlywiki5
 
 !!!! heading 4
-#<- text.html.tiddlywiki5 meta.heading.heading-4.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<- text.html.tiddlywiki5 meta.heading.heading-4.tiddlywiki5 markup.heading.tiddlywiki5
 
 !!!!! heading 5
-#<- text.html.tiddlywiki5 meta.heading.heading-5.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<- text.html.tiddlywiki5 meta.heading.heading-5.tiddlywiki5 markup.heading.tiddlywiki5
 
 !!!!!! heading 6
-#<- text.html.tiddlywiki5 meta.heading.heading-6.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<- text.html.tiddlywiki5 meta.heading.heading-6.tiddlywiki5 markup.heading.tiddlywiki5
 
 !!!!!!! seven marks take six
-#<- text.html.tiddlywiki5 meta.heading.heading-6.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<- text.html.tiddlywiki5 meta.heading.heading-6.tiddlywiki5 markup.heading.tiddlywiki5
 
 * list star
 #<- text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5

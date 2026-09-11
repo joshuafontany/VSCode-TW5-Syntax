@@ -5,7 +5,7 @@ moves takes the reader's colour with it, and VS Code reports nothing: the rule s
 matching, and the construct goes the colour of prose.
 
 This repository declares **460** scope names at `v2.2.1` and **497** at `2.3.0`. Between them,
-**104** names stand gone and **141** stand new. Every gone name appears below, with what it
+**105** names stand gone and **142** stand new. Every gone name appears below, with what it
 stands as now or why it retired.
 
 The table derives from the two grammars rather than from a hand-written list, and
@@ -24,13 +24,13 @@ they painted the colour of prose in every bundled theme, and they did so from th
 were written.
 
 Their replacements put the root first and keep the qualifier as a suffix, so a rule on the
-family root reaches the construct and a deeper rule can still single it out. **39 of the 104**
+family root reaches the construct and a deeper rule can still single it out. **39 of the 105**
 gone names moved for exactly that reason.
 
 If your customization named one of these, it was already painting nothing. Adopting the new
 name is the first time it will take effect.
 
-## Six that keep their colour
+## Seven that keep their colour
 
 A filter operand's brackets spelled themselves `string.punctuation.definition.operand.begin`,
 `variable.…` and `entity.name.…`, nesting `punctuation` under the content root. A theme reached
@@ -43,6 +43,11 @@ and the content family the mark bounds LAST. The content scope stands innermost,
 paints these marks exactly the colour it painted before, and a rule written against
 `punctuation` now reaches them as well. A customization naming one of the gone names wants the
 new punctuation name; a customization naming `string`, `variable` or `entity` needs no change.
+
+A heading's `!` mark wore the same fault from the other side. It carried two scopes already —
+`punctuation.definition.heading` and `markup.heading.punctuation.definition` — the second of
+which nested punctuation under a content root. It stands as `markup.heading`, which reaches the
+same 55 of 65 themes through the same `markup.heading` rules, so nothing a reader sees moves.
 
 ## Names that moved
 
@@ -76,6 +81,7 @@ new punctuation name; a customization naming `string`, `variable` or `entity` ne
 | `keyword.other.variable.variable-reference.end.tiddlywiki5` | `keyword.other.variable.substitute-variable.end.tiddlywiki5` | substitution vocabulary |
 | `list.attribute.image.tiddlywiki5` | `meta.attribute.list.image.tiddlywiki5` | root first |
 | `listquote.quote.markup.list.tiddlywiki5` | `markup.list.listquote.quote.tiddlywiki5` | root first |
+| `markup.heading.punctuation.definition.tiddlywiki5` | `markup.heading.tiddlywiki5` | punctuation stacks, never nests |
 | `markup.other.variable.variable-parameter.tiddlywiki5` | `markup.other.variable.substitute-parameter.tiddlywiki5` | substitution vocabulary |
 | `markup.other.variable.variable-reference.tiddlywiki5` | `markup.other.variable.substitute-variable.tiddlywiki5` | substitution vocabulary |
 | `markup.underline.link.wikilink.tiddlywiki5` | `meta.link.wikilink.tiddlywiki5` | family a theme rules on |

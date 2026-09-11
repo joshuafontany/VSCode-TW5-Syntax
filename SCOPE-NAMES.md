@@ -17,7 +17,7 @@ scopes, so the names reach people whatever the grammar intends.
 ## Why this page sits here
 
 `MIGRATION.md` records what moved between two versions and names the principle behind 39 of the
-94 moves. It carries no rule, because a migration record answers about the past. `contributing.md`
+105 moves. It carries no rule, because a migration record answers about the past. `contributing.md`
 carries how to work the tree. `README.md` tells a reader which scope to name in their own settings.
 Each of the three needs this one, and none of them should hold it: a rule living inside a record
 goes stale with the record, and a rule living inside a contributor guide never reaches the reader
@@ -48,9 +48,9 @@ reach. The gain came entirely from markdown's popularity, not from any claim abo
 > parses.** TiddlyWiki's list markup is not markdown's, and a name that says otherwise trades a
 > true statement for a colour.
 
-### 2.3.0 — 94 names moved, 39 of them for one reason
+### 2.3.0 — 105 names moved, 39 of them for one reason
 
-The `2.3.0` release moved **94** of 460 declared names and added **131**. Thirty-nine moved for a
+The `2.3.0` release moved **105** of 460 declared names and added **142**. Thirty-nine moved for a
 single shape: a qualifier standing in front of the family root —
 `bold.punctuation.definition.markup.begin`, `caption.markup.other.table`, `mvv.attribute.html`.
 
@@ -76,7 +76,7 @@ Where a mark should take its content's family, the second family goes on the mar
 scope, space-separated**, with the published name kept and the new one last:
 
 ```
-"name": "punctuation.definition.markup.begin.bold.tiddlywiki5 markup.bold.tiddlywiki5"
+"name": "punctuation.definition.markup.begin.subscript.tiddlywiki5 markup.subscript.tiddlywiki5"
 ```
 
 The rejected alternative writes one name that NESTS punctuation under a content root —
@@ -90,7 +90,7 @@ MagicPython ships twelve of them, both for exactly this reason — `contentName`
 region's interior, so a delimiter loses whatever its content carries unless somebody puts it back
 by hand.
 
-**Checked, at a floor of 1.** A filter operand's brackets wore the nested shape three ways —
+**Checked, at a floor of 0.** A filter operand's brackets wore the nested shape three ways —
 `string.`, `variable.` and `entity.name.punctuation.definition.operand.*` — and each stands as
 two scopes on one span, the punctuation name first and the content family last. A theme reached
 those marks through the content root alone, `string` in 62 of the 65 bundled themes, `variable`
@@ -98,9 +98,20 @@ in 58 and `entity` in 40, and through `punctuation` in none; the stacked spellin
 of those and adds the 40 `punctuation` rules that never reached them. Measured after: 424 scopes,
 zero readings moved in `colour-witness`, zero in `construct-legibility`, zero snapshots drifted.
 
-One stands: a heading's `!` mark, which already carries the additive device and spells it
-backwards. `corpus/delimiter-ledger.txt` records that one as owed, beside the six emphasis
-families whose marks carry no content family at all.
+A heading's `!` mark carried the additive device and spelled it backwards, nesting
+`punctuation.definition` under `markup.heading`; it stands as
+`punctuation.definition.heading.tiddlywiki5 markup.heading.tiddlywiki5`, reaching the same 55 of
+65 themes through the same rules.
+
+**The device answers to measurement, not to symmetry.** `corpus/delimiter-ledger.txt` carries the
+same cure declined four times: stacking an emphasis run's family onto its own marks makes the
+whole construct read in one ink, and a construct reading in one ink stops parting from a
+NEIGHBOUR reading in that same ink. Measured one family at a time against a control arm stacking
+nothing, bold cost three pairs, italic three, and the underline and strikethrough families four
+between them — the worst a fall from 46 themes to 28 on a system link against an underline run.
+`corpus/legibility-floor.txt` rules that a count may rise and may never fall, so those four stand
+declined with the numbers that declined them. Three where the cure cost nothing — subscript,
+superscript and the hard-linebreak run — stand cured.
 
 ### One segment, one word
 

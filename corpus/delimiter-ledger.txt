@@ -70,21 +70,41 @@ parts meta.variable <- punctuation.definition+variable.name   # a call's paramet
 parts entity.filter <- punctuation.definition   # a filter run's operand against the `[` and `]` that bound it. The brackets read as punctuation and the operand as a name, which is the reading a filter wants
 parts string.other <- punctuation.definition   # inline data inside a tag against the tag's own angles. The angles belong to the tag, never to the data between them
 
-# ── a parting that costs a reader ───────────────────────────────────────────────────────────────
-# A mark that belongs TO its content. An emphasis run's marks say nothing a reader needs to see
-# apart from the run: they open it, and they wear the run's own weight in the rendered text. A
-# theme rule on `markup.bold` sets a weight and reaches the run alone, so the marks beside a bold
-# run read as ordinary punctuation. THE CURE IS ADDITIVE AND STACKS, NEVER NESTS — a space-separated
-# multi-scope name on the mark's own capture, the published name kept and the content family LAST,
-# the device VS Code's TypeScript grammar ships on its backticks for exactly this reason.
+# ── a mark that wears its content ───────────────────────────────────────────────────────────────
+# A mark that belongs TO its content, where stacking the content's family onto the mark COSTS NO
+# READER. Each capture carries its published punctuation name FIRST and the content's families
+# LAST, space-separated, the device VS Code's TypeScript grammar ships on its template backticks
+# and MagicPython ships twelve times. The content scope stands innermost, so a theme's rendering
+# reaches the marks and the punctuation name still reaches every rule it reached before.
+#
+# MEASURED AT THE CURE, against a control arm stacking nothing: `construct-legibility` reads 820
+# pairs over 65 themes and NONE of these three moved one. Each content family here reaches a rule
+# in 2 of the 65 bundled themes, so in 63 the marks keep the punctuation colour they carried and in
+# 2 they join their run. The cure adds in every theme and takes nothing in any.
 
-parts markup.bold <- punctuation.definition   # OWED the additive cure. The `''` marks carry `punctuation.definition.markup.begin.bold` and nothing of `markup.bold`, so a theme's bold weight stops at the text and the marks stand beside it unweighted
-parts markup.italic <- punctuation.definition   # OWED the additive cure. The `//` marks stand outside `markup.italic`, so a theme's italic slant stops at the text and the marks stand upright beside it
-parts markup.underline <- punctuation.definition   # OWED the additive cure. Two rules wear this — the underline run and the strikethrough run, whose content names both `markup.underline.strikethrough` and `markup.strikethrough`
-parts markup.subscript <- punctuation.definition   # OWED the additive cure. The `,,` marks stand outside `markup.subscript`, so a theme lowering the run leaves the marks on the baseline beside it
-parts markup.superscript <- punctuation.definition   # OWED the additive cure. The `^^` marks stand outside `markup.superscript`, so a theme raising the run leaves the marks on the baseline beside it
-parts markup.other <- punctuation.definition   # OWED the additive cure. A hard-linebreak run, `"""`, whose marks stand outside `markup.other.preformatted.hardlinebreaks`
-parts entity.name <- markup.heading+punctuation.definition   # OWED A RE-SPELLING, not a cure — this one already carries the additive device and writes it the wrong way round. A heading's `!` marks carry `punctuation.definition.heading.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5`, which NESTS `punctuation.definition` under a content root. A scope name says what a span IS, and no span is a kind of heading-punctuation; the stacked form says the same thing truthfully and reaches the same rules — `punctuation.definition.heading.tiddlywiki5 markup.heading.tiddlywiki5`
+inherits markup.subscript <- markup.subscript+punctuation.definition   # the `,,` marks of a subscript run. Two themes lower the run and now lower its marks with it; the other sixty-three paint the marks as punctuation, exactly as before
+inherits markup.superscript <- markup.superscript+punctuation.definition   # the `^^` marks of a superscript run. Same two themes, same reading, and the same zero cost across all 820 pairs
+inherits markup.other <- markup.other+punctuation.definition   # the `"""` marks of a hard-linebreak run, `markup.other.preformatted.hardlinebreaks`. The marks read as the preformatted run they fence, and no pair moved
+
+# ── a cure that costs a reader, DECLINED ────────────────────────────────────────────────────────
+# THE SAME DEVICE, MEASURED, AND IT TAKES MORE THAN IT GIVES. Stacking an emphasis run's family onto
+# its own marks makes the whole construct read in one ink, and a construct reading in one ink stops
+# parting from a NEIGHBOUR that reads in that same ink. `corpus/legibility-floor.txt` rules that a
+# count may rise and may never fall; each cure below drops one, so each stands declined with the
+# number that declined it. Measured one family at a time, against a control arm stacking nothing
+# and reading zero.
+#
+# The two deepest falls share one cause, and it sits OUTSIDE these rules: this grammar names a link
+# `markup.underline.link.*`, so a theme ruling on `markup.underline` paints links and underline runs
+# alike. Curing the mark widens the underline family over the whole run and the collision surfaces.
+# `MIGRATION.md` already moved `markup.underline.link.wikilink` to `meta.link.wikilink` for that
+# reason; the syslink, image and external-link twins still carry it. THESE FOUR WANT THAT NAME
+# MOVED FIRST, and the cure re-measured after.
+
+parts markup.bold <- punctuation.definition   # OWED A RULING, not a cure. The `''` marks stand outside `markup.bold`, so a theme's bold weight stops at the text. Stacking `markup.bold` onto them gains that weight in 59 of 65 themes and COSTS three pairs: bold against a bare external link 65 -> 64, against a heading 63 -> 61, against a horizontal rule 63 -> 61. A heading and a rule already read bold in those themes, so the marks joining the run erases the seam
+parts markup.italic <- punctuation.definition   # OWED A RULING, not a cure. The `//` marks stand outside `markup.italic`. Stacking gains the slant in 59 of 65 and COSTS three pairs: italic against a quote block 59 -> 57, against a CamelCase link 62 -> 61, against a suppressed link 58 -> 57
+parts markup.underline <- punctuation.definition   # OWED A RULING, not a cure. Two rules wear this — the `__` underline run and the `~~` strikethrough run, whose content names both `markup.underline.strikethrough` and `markup.strikethrough`. Stacking COSTS four pairs and the worst fall this gate has read: a system link against underline 46 -> 28, a bare external link against underline 65 -> 62, a system link against strikethrough 50 -> 41, a bare external link against strikethrough 65 -> 62. A system link wears `markup.underline.link.syslink`, so widening the underline family over a whole run collides with it head-on
+parts entity.name <- markup.heading+punctuation.definition   # a heading's `!` marks against the section name they introduce. The marks carry `punctuation.definition.heading.tiddlywiki5 markup.heading.tiddlywiki5` — a theme's heading rule reaches them in 55 of 65 and a punctuation rule in 42, the same reach the nested spelling carried, and zero pairs moved. The content names the SECTION rather than the heading markup, and no mark is a kind of section name, so the marks take the heading family and the parting from `entity.name` stands
 
 # ── a bound that names no mark ──────────────────────────────────────────────────────────────────
 # A begin or end matching a line start, a file start or a blank line consumes no mark, so no

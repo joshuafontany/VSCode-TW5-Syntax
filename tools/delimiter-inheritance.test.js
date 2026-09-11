@@ -77,3 +77,71 @@ test('the ledger rules the shapes rather than the rules, so it cannot grow per p
   assert.ok(lines.length > 0, 'the ledger rules nothing');
   assert.ok(lines.length < 60, `${lines.length} rulings, which reads as a list per pattern rather than per shape`);
 });
+
+// THE DEBT CARRIES A FLOOR. A reason opening OWED records a parting this repository ruled WRONG
+// and left standing, so the gate stays green over it and the count stands here instead. A floor
+// fails when the debt GROWS, and fails again when it shrinks without somebody lowering the floor,
+// so a cure lands with its gain pinned and nothing quietly regrows.
+//
+// Four stand. A `contentName` on a match rule owes a REMOVAL rather than a cure, and no delimiter
+// moves when it lands. The other three owe a RULING: stacking an emphasis run's family onto its own
+// marks drops a `construct-legibility` count, and `corpus/legibility-floor.txt` rules that a count
+// may rise and may never fall, so the ledger carries the measurement and the operator carries the
+// trade.
+const OWED_FLOOR = 4;
+
+test('the debt the ledger records stands at its floor', () => {
+  const owed = fs.readFileSync(LEDGER, 'utf8').split('\n')
+    .filter((l) => l.trim() && !l.startsWith('#'))
+    .filter((l) => /#\s*OWED/i.test(l));
+  const report = owed.map((l) => `\n  ${l.split('#')[0].trim()}`).join('');
+  assert.ok(owed.length <= OWED_FLOOR, `${owed.length} ruling(s) owing a cure, floor ${OWED_FLOOR}:${report}`);
+  assert.ok(owed.length >= OWED_FLOOR, `${owed.length} owed, under the floor of ${OWED_FLOOR} — lower the floor to pin the gain`);
+});
+
+// THE CONTROL. The reading must PART over a debt that is not there, or it agrees with any ledger.
+test('a ruling accepting its parting reads as no debt', () => {
+  const owing = 'parts markup.x <- punctuation.definition   # OWED the additive cure. A mark outside its run';
+  const accepting = 'parts markup.x <- punctuation.definition   # a boundary a reader must see, so the parting serves';
+  const debt = (l) => /#\s*OWED/i.test(l);
+  assert.ok(debt(owing), 'a reason opening OWED read as no debt');
+  assert.ok(!debt(accepting), 'a reason accepting its parting read as debt');
+});
+
+// THE CONTROL, AND IT RUNS ON A DELIMITER THAT MUST NOT MOVE. A fence handing its body to a guest
+// grammar exists to SHOW the seam, so painting the fence as the guest hides the one thing the fence
+// says. The cure that stacks an emphasis run's family onto its marks must therefore read as a
+// FINDING when somebody stacks a guest's family onto a fence — a gate that welcomes every stacking
+// blesses the wrong ones too.
+//
+// The provocation derives the fence from the grammar rather than naming a line: it takes the first
+// region whose content family the ledger rules as a serving parting and stacks that family onto
+// every delimiter capture the region names.
+test('stacking a guest family onto a fence that must stay parted reads as a finding', () => {
+  const SERVING = 'meta.embedded';
+  const { code, out } = runInSandbox((sandbox) => {
+    const file = path.join(sandbox, 'syntaxes', 'tiddlywiki5.json');
+    const grammar = JSON.parse(fs.readFileSync(file, 'utf8'));
+    let moved = 0;
+    const walk = (node) => {
+      if (Array.isArray(node)) return node.forEach(walk);
+      if (!node || typeof node !== 'object') return;
+      const content = typeof node.contentName === 'string' ? node.contentName.split(/\s+/)[0] : null;
+      if (content && content.split('.').slice(0, 2).join('.') === SERVING && node.begin !== undefined) {
+        for (const bound of ['beginCaptures', 'endCaptures']) {
+          for (const capture of Object.values(node[bound] || {})) {
+            if (typeof capture.name !== 'string') continue;
+            capture.name = `${capture.name} ${content}`;
+            moved += 1;
+          }
+        }
+      }
+      for (const value of Object.values(node)) walk(value);
+    };
+    walk(grammar);
+    assert.ok(moved > 0, `no ${SERVING} region offers a delimiter to move, so the provocation plants no fault`);
+    fs.writeFileSync(file, JSON.stringify(grammar, null, 4));
+  }, ['tools/delimiter-inheritance.js', 'corpus/delimiter-ledger.txt']);
+  assert.match(out, new RegExp(`ruling\\(s\\) naming a shape the tree no longer declares[\\s\\S]*parts ${SERVING}`), out.slice(-1200));
+  assert.notStrictEqual(code, 0, 'a fence wearing its guest\'s family held the gate anyway');
+});
