@@ -1,0 +1,41 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A triple-quoted value whose content touches a quote"
+
+# TiddlyWiki takes the FIRST triple and the SHORTEST content: parseutils.js spells every one of its
+# three string sites `"""([\s\S]*?)"""`, with no lookaround. A value opening on a quote therefore
+# carries that quote, and six quotes in a row name one empty string.
+
+<<p a1:"""value""">>
+#      ^^^ string.quoted.triple.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#         ^^^^^ string.quoted.triple.html.tiddlywiki5
+#              ^^^ string.quoted.triple.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
+#                 ^^ punctuation.definition.macrocallblock.end.tiddlywiki5
+
+! Control heading
+#<- markup.heading.1.tiddlywiki5 punctuation.definition.heading.tiddlywiki5
+
+<<p a1:"""">>
+#      ^ string.quoted.double.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#       ^ string.quoted.double.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
+#        ^ string.quoted.double.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#         ^ string.quoted.double.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
+#          ^^ punctuation.definition.macrocallblock.end.tiddlywiki5
+
+! Fallback control heading
+#<- markup.heading.1.tiddlywiki5 punctuation.definition.heading.tiddlywiki5
+
+<<p a1:""""value""">>
+#      ^^^ string.quoted.triple.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#         ^^^^^^ string.quoted.triple.html.tiddlywiki5
+#               ^^^ string.quoted.triple.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
+#                  ^^ punctuation.definition.macrocallblock.end.tiddlywiki5
+
+! Heading after an opening quote
+#<- markup.heading.1.tiddlywiki5 punctuation.definition.heading.tiddlywiki5
+
+<<p a1:"""""">>
+#      ^^^ string.quoted.triple.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#         ^^^ string.quoted.triple.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
+#            ^^ punctuation.definition.macrocallblock.end.tiddlywiki5
+
+! Heading after an empty triple
+#<- markup.heading.1.tiddlywiki5 punctuation.definition.heading.tiddlywiki5

@@ -178,7 +178,7 @@ gates-held: 37 of 37
         {
             "gate": "still-reach",
             "held": true,
-            "said": "reach  4491 of 4512 carrier(s) stand fully named, 99.5% (floor 99.5%); 38 carrier(s) no cut reads, 11964 divergence(s), 5 class(es) blocking"
+            "said": "reach  4491 of 4512 carrier(s) stand fully named, 99.5% (floor 99.5%); 38 carrier(s) no cut reads, 11953 divergence(s), 5 class(es) blocking"
         },
         {
             "gate": "swallow-witness",

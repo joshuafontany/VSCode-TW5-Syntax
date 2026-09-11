@@ -6319,8 +6319,9 @@
         "string": {
             "patterns": [
                 {
-                    "begin": "(?<!\")\"\"\"(?!\")",
-                    "end": "(?<!\")\"\"\"(?!\")",
+                    "comment": "TiddlyWiki spells all three of its string sites `\"\"\"([\\s\\S]*?)\"\"\"` — lazy, and carrying no lookaround (parseutils.js parseStringLiteral, parseParameterDefinition, parseMacroParameter). A value therefore OPENS on the first triple and CLOSES on the next one, so content may begin or end with a quote: `\"\"\"\"value\"\"\"` names `\"value`, and six quotes name one empty string. The second begin alternative reads those, and it demands a closing triple on the line because a run of four with none — `<<m a:\"\"\"\">>` — falls back in the host to two empty double-quoted strings, and opening a triple there swallows the rest of the tiddler. The first alternative carries no such demand: a triple-quoted value spanning lines closes on a line this one cannot see.",
+                    "begin": "(?<!\")\"\"\"(?!\")|\"\"\"(?=[\\s\\S]*?\"\"\")",
+                    "end": "\"\"\"",
                     "beginCaptures": {
                         "0": {
                             "name": "punctuation.definition.string.begin.html.tiddlywiki5"
