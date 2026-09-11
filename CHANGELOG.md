@@ -7,7 +7,20 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Added
-- `corpus/wikitext/reading.in-prose.tw` and `corpus/memetic/reading.in-prose.mem` stand every
+- `tools/recovery-witness.js` asks a question neither reader answers alone. TiddlyWiki's parser
+  recovers from an unterminated construct and RECORDS the recovery — `WikiParser.addDiagnostic`
+  normalises `{from, to, severity, source, code, message}`, and seventeen wiki rules raise one — and
+  the grammar carries no notion of any of them. Measured: an unterminated `''bold` paints exactly
+  like a bold that closed, and across 673 host carriers the host raised 34 diagnostics under 7 codes
+  and the grammar marked ZERO. The population derives from the HOST, so a code nothing here raises
+  yet reaches the reading the day a carrier raises it. `corpus/recovery-ledger.txt` rules each silent
+  code and MUST name the ceiling that answers it — every one hands the language server a line item
+  in the host's own vocabulary, which the eight hand-derived entries in `textmate-ceiling.js` cannot.
+- A BLOCK CONSTRUCT THAT NEVER CLOSES SWALLOWS EVERY RECOVERY AFTER IT, so one carrier measures the
+  first unterminated block shape it holds and hides the rest. `degenerate.unterminated.tw` now holds
+  the inline runs and each block shape takes a carrier of its own, which took the exercised
+  vocabulary from 4 codes to 12.
+ `corpus/wikitext/reading.in-prose.tw` and `corpus/memetic/reading.in-prose.mem` stand every
   construct INSIDE a sentence, which asks a question that reading one alone cannot. Measured across
   the 65 bundled themes: a bracketed construct's opening glyph paints at a perceptual distance of
   0.0 from the prose beside it in 40 of them, because a theme rules on `punctuation` in order to
@@ -106,7 +119,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   cross one. No pattern moved.
 
 ### Fixed
-- A COLLISION'S PROVOCATION MUST REACH EVERY SPECIMEN. `sigil-vocabulary`'s red struck `<<~ oracle`
+- A conditional wraps BLOCKS, so TiddlyWiki carries it across a blank line the way it carries a quote
+  block — `conditional.js` parses its body with `parseBlocks` and closes only on `<%endif%>`. The
+  grammar bounds the region at a blank line, cutting a conditional that holds more than one
+  paragraph. Ruled in `swallow-ledger.txt` rather than cured: the last bound removed without a
+  collision cut 116 real multi-line calls, and this one wants the same collision first.
+ A COLLISION'S PROVOCATION MUST REACH EVERY SPECIMEN. `sigil-vocabulary`'s red struck `<<~ oracle`
   from one named corpus file, so the moment a second carrier wrote that sigil the provocation planted
   no fault and the gate read green while losing the power to fail. It happened on the commit that
   added `reading.in-prose.mem`. The strike now walks `corpus/memetic` and `tests/samples` and derives

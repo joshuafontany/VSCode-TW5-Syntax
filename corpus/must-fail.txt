@@ -22,3 +22,6 @@
 
 degenerate.unterminated.tw  bleeds   # constructs left open, each one reaching past its own block
 degenerate.illegal.tw       bleeds   # malformed markup the parser refuses, carried by the grammar
+degenerate.unterminated-blocks.tw   bleeds   # A quote block opened on `<<<` and never closed carries `markup.quote.quoteblock` past the file. The host records `unterminated-quoteblock` and recovers; the grammar carries the region and marks nothing, which `tools/recovery-witness.js` reads as a silent recovery.
+degenerate.unterminated-fence.tw    bleeds   # A fence opened on ``` and never closed carries `markup.fenced_code.block` past the file. Both readers run to the end of the source, and the host alone says so.
+

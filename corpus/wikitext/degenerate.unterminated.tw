@@ -1,13 +1,21 @@
 An unterminated ''bold run that reaches the end of its block.
 
+An unterminated //italic run reaching the end of its block.
+
+An unterminated ~~strikethrough run reaching the end of its block.
+
+An unterminated __underscore run reaching the end of its block.
+
+An unterminated ^^superscript run reaching the end of its block.
+
+An unterminated ,,subscript run reaching the end of its block.
+
 An unterminated `code span in prose.
 
 An unterminated [[link
 
 An unterminated {{transclusion
 
-<<<
-An unterminated quote block.
+An unterminated @@color:green;style inline run in prose.
 
-@@color:red;
-An unterminated style block.
+<div class="never-closed">

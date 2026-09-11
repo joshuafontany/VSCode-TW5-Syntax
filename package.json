@@ -382,6 +382,7 @@
         "attribute-guard": "node ./tools/attribute-guard.js",
         "theme-parity": "node ./tools/theme-parity.js",
         "swallow-witness": "node ./tools/swallow-witness.js",
+        "recovery-witness": "node ./tools/recovery-witness.js",
         "filter-witness": "node ./tools/filter-witness.js",
         "attribute-witness": "node ./tools/attribute-witness.js",
         "light-cone": "node ./tools/light-cone.js",

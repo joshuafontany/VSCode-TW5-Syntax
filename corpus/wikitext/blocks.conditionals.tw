@@ -1,0 +1,17 @@
+<%if [[Present]] %>
+A conditional that closes.
+<%endif%>
+
+<%if [[Present]] %>
+A conditional carrying an else arm.
+<%else%>
+The other arm.
+<%endif%>
+
+THE GRAMMAR CLOSES WHAT THE HOST LEAVES OPEN. The conditional below never reaches an `<%endif%>`,
+and the host records `unterminated-conditional` and recovers to the end of the source. The grammar
+bleeds nothing past this file, so nothing here stands degenerate — the divergence lives in what a
+reader gets TOLD, which `tools/recovery-witness.js` measures and no colour reveals.
+
+<%if [[Missing]] %>
+An unterminated conditional.

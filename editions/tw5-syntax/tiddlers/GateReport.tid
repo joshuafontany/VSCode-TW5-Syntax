@@ -3,11 +3,11 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 37 of 37
+gates-held: 38 of 38
 
 {
-    "gates": 37,
-    "held": 37,
+    "gates": 38,
+    "held": 38,
     "failing": 0,
     "results": [
         {
@@ -68,12 +68,12 @@ gates-held: 37 of 37
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  46 files, 497 scopes declared, 450 reached (floor 447), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  49 files, 496 scopes declared, 449 reached (floor 447), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
             "held": true,
-            "said": "dark-construct  357 construct(s) over 65 themes, 10 plain, 0 unaccounted"
+            "said": "dark-construct  356 construct(s) over 65 themes, 10 plain, 0 unaccounted"
         },
         {
             "gate": "engine-witness",
@@ -93,12 +93,12 @@ gates-held: 37 of 37
         {
             "gate": "light-cone",
             "held": true,
-            "said": "light-cone  131 divergence(s) across 11 class(es), 10 quote(s) closed to ask; forward arm moved 19, backward arm moved 97; 7 proven or unruled, 4 ruled without proof, 0 owed but reaching out"
+            "said": "light-cone  136 divergence(s) across 12 class(es), 10 quote(s) closed to ask; forward arm moved 19, backward arm moved 97; 7 proven or unruled, 5 ruled without proof, 0 owed but reaching out"
         },
         {
             "gate": "must-fail",
             "held": true,
-            "said": "must-fail  2 specimen(s), 2 declaration(s), 0 that assert nothing"
+            "said": "must-fail  4 specimen(s), 4 declaration(s), 0 that assert nothing"
         },
         {
             "gate": "nesting-coverage",
@@ -124,6 +124,11 @@ gates-held: 37 of 37
             "gate": "overreach-host",
             "held": true,
             "said": "0  span(s) the grammar CONDEMNS and TiddlyWiki builds"
+        },
+        {
+            "gate": "recovery-witness",
+            "held": true,
+            "said": "recovery-witness  26 diagnostic(s) across 47 carrier(s), 12 code(s), 12 standing silent, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "rule-coverage",
@@ -173,7 +178,7 @@ gates-held: 37 of 37
         {
             "gate": "still",
             "held": true,
-            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 51 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 58.3% of corpus tokens ruled"
+            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 51 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 57.7% of corpus tokens ruled"
         },
         {
             "gate": "still-reach",
@@ -183,7 +188,7 @@ gates-held: 37 of 37
         {
             "gate": "swallow-witness",
             "held": true,
-            "said": "swallow-witness  1012 cut(s) across 41 corpus file(s), 10 quote(s) closed to ask, 9 divergence(s), 0 recorded, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "swallow-witness  1030 cut(s) across 42 corpus file(s), 10 quote(s) closed to ask, 10 divergence(s), 0 recorded, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "theme-parity",

@@ -1,0 +1,37 @@
+# Where TiddlyWiki recovers out loud and the grammar shows a reader nothing.
+#
+# `WikiParser.addDiagnostic` normalises {from, to, severity, source, code, message}, and seventeen
+# wiki rules raise one when a construct never closes. `tools/recovery-witness.js` parses every
+# carrier, takes the host's diagnostics, and asks what the grammar puts across the same span.
+#
+#   silent <code>   # <reason> · ceiling: <ceiling key>
+#
+# A SILENT CODE NAMES A FINDING, never a defect on its own. A line-local pattern cannot know that a
+# closer never arrives anywhere ahead, so these sit behind a ceiling this repository already
+# measured. Every ruling MUST name the ceiling that answers it — a ruling naming none hands the
+# language server nothing, and `tools/recovery-witness.test.js` fails on one.
+#
+# THE POPULATION COMES FROM THE HOST, so a code nothing here raises yet reaches this file the day a
+# carrier raises it, and a ruling outliving what it explains fails the same gate.
+#
+# A BLOCK CONSTRUCT THAT NEVER CLOSES SWALLOWS EVERY RECOVERY AFTER IT. One carrier measures the
+# first unterminated block shape it holds and hides the rest, which is why the degenerate carriers
+# stand apart — `degenerate.unterminated.tw` holds the inline runs, and each block shape takes a
+# carrier of its own. Four codes stand unexercised for that reason and carry no ruling here:
+# `unterminated-typedblock`, `unterminated-styleblock`, `unterminated-hardlinebreaks` and
+# `unterminated-definition`. Each wants a carrier of its own before it earns a line.
+#
+# Measured over 673 host carriers: 34 diagnostics, 7 codes, and the grammar marks ZERO of them.
+
+silent unterminated-bold             # A line-local pattern cannot see that no closing `''` arrives anywhere ahead; the host scans the whole source and recovers to the end of the tiddler. · ceiling: whole-document lookahead
+silent unterminated-italic           # The same reach, one delimiter narrower. · ceiling: whole-document lookahead
+silent unterminated-strikethrough    # The same reach. · ceiling: whole-document lookahead
+silent unterminated-underscore       # The same reach. · ceiling: whole-document lookahead
+silent unterminated-superscript      # The same reach. · ceiling: whole-document lookahead
+silent unterminated-subscript        # The same reach. · ceiling: whole-document lookahead
+silent unterminated-styleinline      # The same reach, across a run the host opens on a style list. · ceiling: whole-document lookahead
+silent unterminated-codeinline       # `codeinline.js` runs its end regexp over the WHOLE source, so the two readers pair different backticks; measured at 10 attributes, and two relaxations refused. · ceiling: whole-document lookahead
+silent unterminated-codeblock        # A fence with no closer carries to the end of the source in both readers, and neither marks it. · ceiling: whole-document lookahead
+silent unterminated-quoteblock       # The closer answers to its own marker WIDTH, and a pattern reads one line. · ceiling: whole-document lookahead
+silent unterminated-conditional      # The same reach, across a construct the host opens on a filter. · ceiling: whole-document lookahead
+silent unterminated-html             # A start tag with no end tag; the host recovers at the end of the source and grades it a HINT rather than a warning. · ceiling: whole-document lookahead
