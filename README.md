@@ -75,6 +75,8 @@ Based primarily on the grammars found below, with heavy tweaking and editing.
 * `npm run compose-memes` — composition over whatever memetic writing stands beside this checkout; set `MEMES` to one or more directories
 * `npm run legibility` — whether a reader can tell one construct from another: every pair over every bundled theme, each carrying its own floor
 * `npm run ceiling` — what a TextMate grammar CANNOT reach about TiddlyWiki, measured against the host and naming the kind of reader that closes each one. A ceiling somebody closes RETIRES, and the gate fails until it goes
+* `npm run delimiters` — what a delimiter inherits from the content it bounds: every `contentName` in the tree,
+  keyed by shape, each ruled in `corpus/delimiter-ledger.txt` as a parting that serves a reader or costs one
 * `npm run package-contents` — every path the manifest names, checked inside the built package
 * `npm run bench` — a disposable editor in a container, so you can look at the grammar with your own eyes
 
@@ -83,7 +85,7 @@ Based primarily on the grammars found below, with heavy tweaking and editing.
 A TextMate grammar decides how loudly a construct reads and never which parser rules a wiki
 stands — nothing in the VS Code API hands a grammar to an extension at runtime. That claim
 answers to Microsoft's tree; its consequence answers here, and
-`tools/ships-no-runtime.test.js` holds it: no entry point, no activation events, only
+`tools/invariants/ships-no-runtime.test.js` holds it: no entry point, no activation events, only
 declarative contributions, no runtime dependency, and nothing executable in the package. A theme
 paints a scope when one of its own rules names that scope or a dotted prefix of it, which makes
 the scope name the default. `npm run theme-paint -- <scope>` measures any scope against the
@@ -128,22 +130,58 @@ rule, TiddlyWiki ships it enabled, and it consumes the `~` whether or not CamelC
 
 ### Verdicts — on by default
 
-The grammar marks markup TiddlyWiki refuses to parse with `invalid.*` scopes, which most
-themes paint as errors — the two VS Code ships among them. Where TiddlyWiki genuinely
-refuses, a verdict earns its place; some still stand where it does not. To read them quietly
-while that settles:
+The grammar marks markup TiddlyWiki refuses to parse with `invalid.illegal.*` scopes, which
+most themes paint as errors — the two VS Code ships among them. A verdict answers to what
+TiddlyWiki refuses and never to what another language retired, so the family carries four
+names rather than the twelve it once did; `MIGRATION.md` records which went.
+
+**Name the family, never a member.** A theme selector reaches a scope by dot-bounded prefix,
+so one rule on `invalid.illegal` reaches every verdict this grammar draws and keeps reaching
+them when a name gains a segment. To read them quietly:
 
 ```json
 "editor.tokenColorCustomizations": {
   "textMateRules": [
-    { "scope": ["invalid.illegal.html.tiddlywiki5", "invalid.deprecated.html.tiddlywiki5"],
-      "settings": { "foreground": "#808080" } }
+    { "scope": "invalid.illegal", "settings": { "foreground": "#808080" } }
   ]
 }
 ```
 
+That selector also reaches an embedded block's own verdicts — a CSS or JavaScript region
+inside a tiddler — which is usually what a reader quieting errors wants. `npm run
+rule-inventory` prints the exact names, so you never need this page to list them.
+
 Both blocks work per workspace folder in `.vscode/settings.json`, so one wiki can answer
 differently from another.
+
+### Why this extension ships no colour of its own
+
+An extension **may** contribute `editor.tokenColorCustomizations` through
+`contributes.configurationDefaults`. VS Code registers it, warns nothing, and it takes
+effect; some 450 published manifests do exactly that. This one declines, for three reasons
+that hold whatever the colour.
+
+**No hardcoded colour survives an arbitrary theme.** A `foreground` that reads well on
+Default Dark+ reads as noise on a light, high-contrast or pastel theme, and the extension
+never learns which one you run. Theming belongs to the theme and to you.
+
+**A contributed default cannot be scoped to a language.** Only settings marked
+language-overridable reach the per-language schema, and `editor.tokenColorCustomizations`
+carries no such mark — VS Code's theme maintainers have closed that request directly. So a
+colour contributed here would apply in every file you open, not only in wikitext. The one
+containment mechanism left is the language suffix already on every scope name this grammar
+emits, which is why they all carry `.tiddlywiki5` or `.memetic-wikitext`.
+
+**A contributed default merges INTO your settings rather than sitting under them.** VS Code
+deep-merges object defaults, so writing your own `editor.tokenColorCustomizations` would
+not clear the extension's rules — removing them would take an explicit empty
+`"textMateRules": []`, which would destroy your own alongside. An opinion you cannot turn
+off without losing your own work is not a default.
+
+So the two blocks above stay a snippet you paste, theme-scoped, under your hand. What this
+extension **does** contribute by default is behavioural and carries no colour:
+`files.associations`, mapping each extension to its language. VS Code's own 24 built-in
+extensions that use `configurationDefaults` set no colour either.
 
 Per-rule switching — one toggle for each of TiddlyWiki's parser rules, resolved down a bag
 stack — waits on the tree-sitter and language-server work, where a live parser can answer
