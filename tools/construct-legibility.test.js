@@ -59,12 +59,19 @@ test('the reading paints whole constructs, never their containers alone', live, 
 // The fault: a construct keeps its structure and loses the names a theme rules on. The parser reads
 // it identically, every snapshot updates cleanly, and a reader stops seeing it.
 test('a construct stripped of the names themes rule on reads as a loss', live, () => {
-  const provoked = fs.readFileSync(GRAMMAR, 'utf8')
-    .replaceAll('punctuation.definition.call.inline.begin.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5', 'meta.variable.call.inline.tiddlywiki5')
-    .replaceAll('punctuation.definition.call.inline.end.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5', 'meta.variable.call.inline.tiddlywiki5')
-    .replaceAll('punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5', 'meta.variable.call.block.tiddlywiki5')
-    .replaceAll('punctuation.definition.call.block.end.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5', 'meta.variable.call.block.tiddlywiki5')
-    .replaceAll('variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5', 'meta.variable.call.block.tiddlywiki5');
+  // DERIVE THE STRIP, NEVER LIST IT. A provocation naming five exact scope strings stops provoking
+  // the moment a construct gains a sixth — measured here, where a call kept its argument's attribute
+  // name and read legible with every listed name gone. The strip takes every name on a call rule
+  // that sits in a family a theme rules on, and leaves `meta.`, which no theme paints.
+  const PAINTED = /^(punctuation|variable|entity|keyword|string|markup|constant|support)\./;
+  const provoked = fs.readFileSync(GRAMMAR, 'utf8').replace(
+    /"(name|contentName)": "([^"]+)"/g,
+    (whole, key, names) => {
+      const kept = names.split(/\s+/)
+        .map((n) => (PAINTED.test(n) && /(^|\.)(call|macrocall|macro)(\.|$)/.test(n)
+          ? 'meta.variable.call.stripped.tiddlywiki5' : n));
+      return `"${key}": "${kept.join(' ')}"`;
+    });
   assert.notStrictEqual(provoked, fs.readFileSync(GRAMMAR, 'utf8'), 'the provocation changed nothing, so it plants no fault');
   assert.strictEqual(fallen(runTool('construct-legibility.js').out), 0, 'the tree already reports a fallen pair, so the collision proves nothing');
   const { code, out } = runProvoked(provoked, ['tools/construct-legibility.js']);

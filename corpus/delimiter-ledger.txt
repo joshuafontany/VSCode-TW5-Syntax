@@ -67,7 +67,7 @@ parts meta.conditional <- keyword.control   # a conditional shortcut's body agai
 parts meta.styleblock <- meta.styleblock+punctuation.definition   # a style block's body against its closing `@@`. Both sides carry `meta.*`, so nothing a theme paints stands on either
 parts meta.variable <- entity.name+keyword.control+punctuation.definition   # a definition body — function, procedure, widget, macro — against its `\define` keyword, its name and its `\end`. The body is a body and the pragma is a pragma; a reader wants them apart
 parts meta.variable <- punctuation.definition+variable.name   # a call's parameter run against its `<<` and `>>` and the name between them. The angles and the name carry their own families; the run carries structure
-parts entity.filter <- punctuation.definition   # a filter run's operand against the `[` and `]` that bound it. The brackets read as punctuation and the operand as a name, which is the reading a filter wants
+parts entity.filter <- keyword.operator+punctuation.definition   # a filter run's operand against the `[` and `]` that bound it. The brackets read as punctuation and the operand as a name, which is the reading a filter wants A filter run's bounds now carry the operator family beside their own name, so the run reads as filter STRUCTURE against its operands' VALUES, and the mark that meant nothing to a reader stopped meaning nothing.
 parts string.other <- punctuation.definition   # inline data inside a tag against the tag's own angles. The angles belong to the tag, never to the data between them
 
 # ── a mark that wears its content ───────────────────────────────────────────────────────────────

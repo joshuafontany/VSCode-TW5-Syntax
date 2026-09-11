@@ -123,7 +123,11 @@ const READS_CONTENT_NAME = {
     + `boundary rather than naming a vocabulary, and a rule's delimiters fall outside it by `
     + `construction, which is the whole question`,
   'delimiter-inheritance.test.js':
-    `builds rules carrying the field, to collide the reading above against a shape it must refuse`
+    `builds rules carrying the field, to collide the reading above against a shape it must refuse`,
+  'construct-legibility.test.js':
+    `REWRITES the field across a copy of the grammar, to strip a construct of every painted name and `
+    + `prove a reader loses it — a provocation naming exact strings stopped provoking the day a `
+    + `construct gained a name the list never held`
 };
 test('only grammar-scopes.js collects the scopes a grammar declares', () => {
   const others = all.filter((s) => s.name !== 'grammar-scopes.js')

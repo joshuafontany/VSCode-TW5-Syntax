@@ -510,7 +510,7 @@
 65 an entity  vs  a rules directive
 65 an entity  vs  a styled block
 65 an entity  vs  a styled span
-65 an entity  vs  a transclusion
+64 an entity  vs  a transclusion
 65 an entity  vs  a typed block
 65 an entity  vs  a whitespace directive
 65 an entity  vs  a widget
@@ -662,7 +662,7 @@
 62 a code block  vs  a horizontal rule
 62 a code block  vs  an entity
 62 a code block  vs  an image
-62 a conditional  vs  a parameters directive
+61 a conditional  vs  a parameters directive
 62 a dash  vs  a transclusion
 62 a parsermode directive  vs  a styled block
 62 a parsermode directive  vs  a styled span
@@ -819,7 +819,7 @@
 53 a quote block  vs  underline
 53 an image  vs  a parsermode directive
 53 an image  vs  a whitespace directive
-52 a conditional  vs  an import directive
+50 a conditional  vs  an import directive
 52 a horizontal rule  vs  a table row
 52 a list item  vs  a system link
 52 a multi-value display  vs  underline
@@ -925,3 +925,20 @@
 0 a procedure definition  vs  a macro definition
 0 a styled block  vs  a styled span
 0 subscript  vs  superscript
+
+# 2026-09-11: THREE RE-SEATED, and the trade counted on both sides rather than the falling one.
+#
+# A DELIMITER STANDS PART OF WHAT IT DELIMITS, so it carries that construct's family beside its own
+# published name — the device MagicPython ships on a quote character and TypeScript on a backtick,
+# stated there for the same reason: a `contentName` covers only an interior, so a delimiter would
+# otherwise LOSE the colour of the thing it bounds.
+#
+# Measured across all 65 themes: `{{…}}` fell from a median 2 colours to 1 and now reads as ONE
+# object in 38 themes where it read so in NONE; `{{{…}}}` fell from 3 to 2, and the two that remain
+# carry meaning — filter STRUCTURE against operand VALUES, where the third band meant nothing.
+#
+# Against that, three pairs of 820 lost four theme-readings between them. Two name a conditional
+# against an import or a parameters directive, and that convergence reads HONEST: all three pragmas
+# carry a filter run, which now paints alike, and their distinction lives in the keyword opening
+# them rather than in the filter they share.
+

@@ -688,16 +688,16 @@
 #    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5
 #                                                  ^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
 >{{{}}}
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
-#   ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
+#   ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >{{{ }}}
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#    ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+#    ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >{{{ [[test]prefix[test]] }}}
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#    ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#    ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #     ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.begin.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
 #      ^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
 #          ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.end.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
@@ -705,56 +705,56 @@
 #                 ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.begin.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
 #                  ^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
 #                      ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.end.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
-#                       ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                       ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #                        ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#                         ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+#                         ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >{{{||}}}
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.template.tiddlywiki5
-#     ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+#     ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >{{{|| }}}
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.template.tiddlywiki5
 #     ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5
-#      ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+#      ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >{{{ || }}}
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
 #    ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.template.tiddlywiki5
 #      ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5
-#       ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+#       ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >{{{||templateTitle}}}
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.template.tiddlywiki5
 #     ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
-#                  ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+#                  ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >{{{ || templateTitle }}}
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
 #    ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.template.tiddlywiki5
 #      ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5
 #       ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
 #                    ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5
-#                     ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+#                     ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >{{{filter }}}
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.unquoted.html.tiddlywiki5
 #         ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#          ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+#          ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >{{{ filter }}}
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
 #    ^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.unquoted.html.tiddlywiki5
 #          ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#           ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+#           ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >{{{filter ||}}}
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.unquoted.html.tiddlywiki5
 #         ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
 #          ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.template.tiddlywiki5
-#            ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+#            ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >{{{ filter || templateTitle }}}
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
 #    ^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.unquoted.html.tiddlywiki5
 #          ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
@@ -762,21 +762,21 @@
 #             ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5
 #              ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
 #                           ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5
-#                            ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+#                            ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >{{{
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >
 >}}}
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >
 >Context:
 #^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >  {{{
 #^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
-#  ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeinline.begin.tiddlywiki5
+#  ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeinline.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >    [
 #^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5
-#    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >        [filter]
 #^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #        ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.begin.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
@@ -796,29 +796,29 @@
 #                            ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.entity.indirect.operand.tiddlywiki5 punctuation.definition.operand.indirect.end.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5
 >    ]
 #^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5
-#    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >  }}}
 #^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeinline.end.tiddlywiki5
+#  ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeinline.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >
 >{{{
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >  ||
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
 #  ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.template.tiddlywiki5
 >}}}
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >{{{
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >  || templateTitle
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
 #  ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.template.tiddlywiki5
 #    ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5
 #     ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
 >}}}
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >{{{
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >  filter
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
 #  ^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.unquoted.html.tiddlywiki5
@@ -829,9 +829,9 @@
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5
 #  ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 entity.name.other.tiddler.title.template.tiddlywiki5
 >}}}
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >{{{
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >
 >  multiline filter strings
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
@@ -860,9 +860,9 @@
 #  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 entity.name.tiddler.title.template.tiddlywiki5
 >
 >}}}
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >{{{
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >  tiddler_title
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
 #  ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.unquoted.html.tiddlywiki5
@@ -879,31 +879,31 @@
 >
 >  [[tiddler title]]
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.begin.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
 #    ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
 #                 ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.end.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
-#                  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >  [<variable name>]
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.variable.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.variable.begin.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5
 #    ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.variable.entity.filter.operand.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5
 #                 ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.variable.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.variable.end.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5
-#                  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >  [{text!!reference}]
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.entity.indirect.operand.tiddlywiki5 punctuation.definition.operand.indirect.begin.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5
 #    ^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #        ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
 #          ^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
 #                   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.entity.indirect.operand.tiddlywiki5 punctuation.definition.operand.indirect.end.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5
-#                    ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                    ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >
 >  [[tiddler title]<variable name>{text!!reference}]
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.begin.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
 #    ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
 #                 ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.end.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
@@ -915,10 +915,10 @@
 #                                      ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
 #                                        ^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
 #                                                 ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.entity.indirect.operand.tiddlywiki5 punctuation.definition.operand.indirect.end.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5
-#                                                  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                                                  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >  [operator1[tiddler title]operator2<variable name>operator3{text!!reference}]
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #            ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.begin.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
 #             ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
@@ -933,10 +933,10 @@
 #                                                                 ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
 #                                                                   ^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
 #                                                                            ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.entity.indirect.operand.tiddlywiki5 punctuation.definition.operand.indirect.end.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5
-#                                                                             ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                                                                             ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >  [operator1:suffix1[tiddler title]operator2:suffix2<variable name>operator3:suffix3{text!!reference}]
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #            ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.control.operator.suffix.tiddlywiki5
 #             ^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.operator.suffix.tiddlywiki5
@@ -957,11 +957,11 @@
 #                                                                                         ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
 #                                                                                           ^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
 #                                                                                                    ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.entity.indirect.operand.tiddlywiki5 punctuation.definition.operand.indirect.end.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5
-#                                                                                                     ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                                                                                                     ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >
 >  [![tiddler title]!<variable name>!{text!!reference}]
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.control.operator.prefix.negation.tiddlywiki5
 #    ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.begin.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
 #     ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
@@ -976,10 +976,10 @@
 #                                         ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
 #                                           ^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
 #                                                    ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.entity.indirect.operand.tiddlywiki5 punctuation.definition.operand.indirect.end.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5
-#                                                     ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                                                     ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >  [!operator1:suffix1[tiddler title]!operator2:suffix2<variable name>!operator3:suffix3{text!!reference}]
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.control.operator.prefix.negation.tiddlywiki5
 #    ^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #             ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.control.operator.suffix.tiddlywiki5
@@ -1003,7 +1003,7 @@
 #                                                                                            ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
 #                                                                                              ^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
 #                                                                                                       ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.entity.indirect.operand.tiddlywiki5 punctuation.definition.operand.indirect.end.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5
-#                                                                                                        ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                                                                                                        ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >
 >  +
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
@@ -1013,48 +1013,48 @@
 #  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.unquoted.html.tiddlywiki5
 >  +-
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.unquoted.html.tiddlywiki5
 >  -+
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.minus.except.difference.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.minus.except.difference.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.unquoted.html.tiddlywiki5
 >  +!
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.unquoted.html.tiddlywiki5
 >  -!
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.minus.except.difference.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.minus.except.difference.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.unquoted.html.tiddlywiki5
 >  +!-
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
 #   ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.unquoted.html.tiddlywiki5
 >  -!+
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.minus.except.difference.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.minus.except.difference.tiddlywiki5
 #   ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.unquoted.html.tiddlywiki5
 >  +tiddler_title
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
 #   ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.unquoted.html.tiddlywiki5
 >  +'tiddler title'
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.quoted.single.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
 #    ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.quoted.single.html.tiddlywiki5
 #                 ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.quoted.single.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
 >  +"tiddler title"
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
 #    ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.quoted.double.html.tiddlywiki5
 #                 ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
 >  +[!operator1:suffix1[tiddler title]!operator2:suffix2<variable name>!operator3:suffix3{text!!reference}]
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
-#   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
+#   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #    ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.control.operator.prefix.negation.tiddlywiki5
 #     ^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #              ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.control.operator.suffix.tiddlywiki5
@@ -1078,11 +1078,11 @@
 #                                                                                             ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
 #                                                                                               ^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
 #                                                                                                        ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.entity.indirect.operand.tiddlywiki5 punctuation.definition.operand.indirect.end.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5
-#                                                                                                         ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                                                                                                         ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >  +[!operator1:suffix1[tiddler title]!operator2:suffix2<variable name>!operator3:suffix3{text!!reference}]
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
-#   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
+#   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #    ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.control.operator.prefix.negation.tiddlywiki5
 #     ^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #              ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.control.operator.suffix.tiddlywiki5
@@ -1106,12 +1106,12 @@
 #                                                                                             ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
 #                                                                                               ^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
 #                                                                                                        ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.entity.indirect.operand.tiddlywiki5 punctuation.definition.operand.indirect.end.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5
-#                                                                                                         ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                                                                                                         ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >
 >  -[!:suffix1[tiddler title]!operator2:<variable name>!:{text!!reference}]
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.minus.except.difference.tiddlywiki5
-#   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.minus.except.difference.tiddlywiki5
+#   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #    ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.control.operator.prefix.negation.tiddlywiki5
 #     ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.control.operator.suffix.tiddlywiki5
 #      ^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 keyword.operator.suffix.tiddlywiki5
@@ -1131,7 +1131,7 @@
 #                                                             ^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
 #                                                               ^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
 #                                                                        ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.entity.indirect.operand.tiddlywiki5 punctuation.definition.operand.indirect.end.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5
-#                                                                         ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                                                                         ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >
 >  "tiddler title" tiddler_title 'tiddler title' [[tiddler title]]
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
@@ -1145,18 +1145,18 @@
 #                                 ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.quoted.single.html.tiddlywiki5
 #                                              ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.quoted.single.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
 #                                               ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#                                                ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#                                                ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #                                                 ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.begin.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
 #                                                  ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
 #                                                               ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.end.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
-#                                                                ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                                                                ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >  +"tiddler title"+tiddler_title+'tiddler title'+[[tiddler title]]
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
 #    ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.quoted.double.html.tiddlywiki5
 #                 ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
-#                  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
+#                  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
 #                   ^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.unquoted.html.tiddlywiki5
 #                                         ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
 #                                          ^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.unquoted.html.tiddlywiki5
@@ -1164,24 +1164,24 @@
 #                                                           ^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.unquoted.html.tiddlywiki5
 >  +"tiddler title"+'tiddler title'+[[tiddler title]]+tiddler_title
 #^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
 #   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
 #    ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.quoted.double.html.tiddlywiki5
 #                 ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
-#                  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
+#                  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
 #                   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.quoted.single.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
 #                    ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.quoted.single.html.tiddlywiki5
 #                                 ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.quoted.single.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
-#                                  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
-#                                   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#                                  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
+#                                   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #                                    ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.begin.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
 #                                     ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
 #                                                  ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.end.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
-#                                                   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
-#                                                    ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
+#                                                   ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
+#                                                    ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 meta.filter.run.prefix.tiddlywiki5 keyword.operator.prefix.plus.and.accumulate.tiddlywiki5
 #                                                     ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 string.unquoted.html.tiddlywiki5
 >}}}
-#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+#^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >
 ><!--#endregion -->
 #^^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
@@ -1194,52 +1194,52 @@
 #                                        ^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
 >
 >{{}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
-#  ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{ }}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #  ^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
-#   ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#   ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{title}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #  ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
-#       ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#       ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{title!!field}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #  ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #       ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
 #         ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
-#              ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#              ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{title##index}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #  ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #       ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.index.tiddlywiki5
 #         ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.index.tiddlywiki5
-#              ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#              ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{|| }}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #  ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.template.tiddlywiki5
 #    ^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5
-#     ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#     ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{ || }}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #  ^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
 #   ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.template.tiddlywiki5
 #     ^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5
-#      ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#      ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{||templateTitle}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #  ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.template.tiddlywiki5
 #    ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 entity.name.tiddler.title.template.tiddlywiki5
-#                 ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#                 ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{title||templateTitle}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #  ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #       ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.template.tiddlywiki5
 #         ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 entity.name.tiddler.title.template.tiddlywiki5
-#                      ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#                      ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{title!!field || templateTitle}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #  ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #       ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
 #         ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
@@ -1247,9 +1247,9 @@
 #               ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.template.tiddlywiki5
 #                 ^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5
 #                  ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 entity.name.tiddler.title.template.tiddlywiki5
-#                               ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#                               ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{title##index || templateTitle}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #  ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #       ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.index.tiddlywiki5
 #         ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.index.tiddlywiki5
@@ -1257,9 +1257,9 @@
 #               ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.template.tiddlywiki5
 #                 ^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5
 #                  ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 entity.name.tiddler.title.template.tiddlywiki5
-#                               ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#                               ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{ long title !! long !! field || long template title}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #  ^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
 #   ^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #              ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
@@ -1268,68 +1268,68 @@
 #                               ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.template.tiddlywiki5
 #                                 ^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5
 #                                  ^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 entity.name.tiddler.title.template.tiddlywiki5
-#                                                     ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#                                                     ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >  title
 #^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
 #  ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >  title!!field
 #^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
 #  ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #       ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
 #         ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
 >}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >  title##index
 #^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
 #  ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #       ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.index.tiddlywiki5
 #         ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.index.tiddlywiki5
 >}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >  ||
 #^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
 #  ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.template.tiddlywiki5
 >}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >  ||templateTitle
 #^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
 #  ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.template.tiddlywiki5
 #    ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 entity.name.tiddler.title.template.tiddlywiki5
 >}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{||templateTitle
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #  ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.template.tiddlywiki5
 #    ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 entity.name.tiddler.title.template.tiddlywiki5
 >}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >  title||templateTitle
 #^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
 #  ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #       ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.template.tiddlywiki5
 #         ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 entity.name.tiddler.title.template.tiddlywiki5
 >}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{title!!field || templateTitle}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #  ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #       ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
 #         ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
@@ -1337,9 +1337,9 @@
 #               ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.template.tiddlywiki5
 #                 ^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5
 #                  ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 entity.name.tiddler.title.template.tiddlywiki5
-#                               ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#                               ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{title##index || templateTitle}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #  ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #       ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.index.tiddlywiki5
 #         ^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.index.tiddlywiki5
@@ -1347,9 +1347,9 @@
 #               ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.template.tiddlywiki5
 #                 ^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5
 #                  ^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 entity.name.tiddler.title.template.tiddlywiki5
-#                               ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#                               ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{ long title !! long !! field || long template title}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #  ^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
 #   ^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 #              ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
@@ -1358,9 +1358,9 @@
 #                               ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.template.tiddlywiki5
 #                                 ^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5
 #                                  ^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 entity.name.tiddler.title.template.tiddlywiki5
-#                                                     ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#                                                     ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >  long title !! long !! field
 #^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
 #  ^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
@@ -1373,9 +1373,9 @@
 #^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5
 #  ^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 entity.name.tiddler.title.template.tiddlywiki5
 >}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >{{
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >
 >  multiline text reference
 #^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5
@@ -1398,7 +1398,7 @@
 #  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 entity.name.tiddler.title.template.tiddlywiki5
 >
 >}}
-#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5
 >
 ><!--#endregion -->
 #^^^^ text.html.tiddlywiki5 comment.block.html.tiddlywiki5 punctuation.definition.comment.html.tiddlywiki5
@@ -2228,7 +2228,7 @@
 #  ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5
 #   ^^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 keyword.control.shortcut.conditional.if.tiddlywiki5
 #     ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5
-#      ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#      ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #       ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.variable.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.variable.begin.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5
 #        ^^^^^^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.variable.entity.filter.operand.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5
 #              ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.variable.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.variable.end.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5
@@ -2236,7 +2236,7 @@
 #                    ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.begin.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
 #                     ^^^^^^^^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
 #                             ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.end.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
-#                              ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                              ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #                               ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5
 #                                ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.shortcut.html.tiddlywiki5
 #                                 ^ text.html.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
@@ -2248,7 +2248,7 @@
 #  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5
 #   ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 keyword.control.shortcut.conditional.elseif.tiddlywiki5
 #         ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5
-#          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5
+#          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #           ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.variable.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.variable.begin.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5
 #            ^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.variable.entity.filter.operand.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5
 #                  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.variable.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.variable.end.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5
@@ -2256,7 +2256,7 @@
 #                        ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.begin.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
 #                         ^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
 #                                ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 entity.filter.operator.title.tiddlywiki5 meta.filter.operator.step.tiddlywiki5 meta.string.entity.filter.operand.tiddlywiki5 punctuation.definition.operand.string.end.tiddlywiki5 string.entity.filter.operand.tiddlywiki5
-#                                 ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5
+#                                 ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 meta.conditional.content.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #                                  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5
 #                                   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.shortcut.html.tiddlywiki5
 #                                    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.shortcut.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
