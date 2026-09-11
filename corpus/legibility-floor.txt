@@ -81,6 +81,17 @@
 # again on `string.quoted.other` at 58. A reader still parts them by their TEXT: `,,x,,` from
 # `^^x^^`, `\define` from `\procedure`. The floor records the colour reading and nothing wider.
 #
+# FIVE COUNTS FELL ONCE, BY A RULING AND NOT BY A DEFECT. A call's argument took the family its
+# SURFACE answers to — `entity.other.attribute-name`, the name html, Vue, JSX, Liquid, Handlebars
+# and MediaWiki's `{{T|name=v}}` all write for a named argument on a template surface — so a call's
+# name parts from its own argument in 57 of 65 where it parted in 25, and a call's argument reads
+# as a widget's attribute in 59 of 65. Gestalt similarity gives the converse rigorously: two things
+# painted one colour assert a relation, and this pair now asserts the one it means. The price
+# arrives in the same coin — a call reads more like a widget (65 to 61), like a typed block (65 to
+# 61), like an import directive (63 to 60), and one theme each against the parsermode and
+# whitespace directives. Thirty-two themes gained against thirteen lost, counted the same way.
+# These five stand re-seated at the new reading and ratchet from there.
+#
 #   <themes that tell them apart>  <pair>
 
 65  a bare external link  vs  a CamelCase link
@@ -114,7 +125,7 @@
 65  a call  vs  a CamelCase link
 65  a call  vs  a macro definition
 65  a call  vs  a multi-value display
-65  a call  vs  a parsermode directive
+64  a call  vs  a parsermode directive
 65  a call  vs  a quote block
 65  a call  vs  a rules directive
 65  a call  vs  a styled block
@@ -123,8 +134,8 @@
 65  a call  vs  a system link
 65  a call  vs  a table row
 65  a call  vs  a transclusion
-65  a call  vs  a typed block
-65  a call  vs  a whitespace directive
+61  a call  vs  a typed block
+64  a call  vs  a whitespace directive
 65  a call  vs  a wikilink
 65  a call  vs  prose
 65  a call  vs  strikethrough
@@ -453,7 +464,7 @@
 65  a whitespace directive  vs  a suppressed link
 65  a whitespace directive  vs  prose
 65  a widget  vs  a CamelCase link
-65  a widget  vs  a call
+61  a widget  vs  a call
 65  a widget  vs  a captioned external link
 65  a widget  vs  a list item
 65  a widget  vs  a macro definition
@@ -643,7 +654,7 @@
 63  an image  vs  a parameters directive
 63  an image  vs  a rules directive
 63  an image  vs  italic
-63  an import directive  vs  a call
+60  an import directive  vs  a call
 63  bold  vs  a heading
 63  italic  vs  a parsermode directive
 63  italic  vs  a whitespace directive

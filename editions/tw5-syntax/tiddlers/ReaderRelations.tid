@@ -56,6 +56,24 @@ description: What a reader must meet as one thing and what a reader must tell ap
             ],
             "least": 55,
             "why": "wiki.js#isSystemTiddler names a system title by its $:/ opening, and TiddlyWiki keeps those out of ordinary lists. The precise name says who owns it; a second name carries it to themes, since the precise one alone reaches under half of them."
+        },
+        {
+            "what": "a called thing, and the argument it carries",
+            "scopes": [
+                "variable.name.macro.tiddlywiki5",
+                "entity.other.attribute-name.argument.tiddlywiki5"
+            ],
+            "least": 50,
+            "why": "A reader asks what you called and what you passed it. Both names sat in the `variable` family and read as one colour in 40 of 65 themes — in gruvbox-dark-medium both at #83a598 — so a call spent three to five colours inside and none of them on the two words that answer. Canon splits by language SURFACE rather than by call against definition: html, Vue, JSX, Liquid, Handlebars and MediaWiki's own `{{T|name=v}}` all take entity.other.attribute-name for a named argument on a tag or template surface. Under the argument's own family the pair read 25 of 65; under the surface's, 57."
+        },
+        {
+            "what": "a widget, and the attribute it carries",
+            "scopes": [
+                "entity.name.function.widget.tiddlywiki5",
+                "entity.other.attribute-name.html.tiddlywiki5"
+            ],
+            "least": 47,
+            "why": "The same question a reader asks of a call, asked of a widget. This pair stands where it already stood; it holds the control the call's own pair moves against, so a name that lifts one and drops the other says so."
         }
     ]
 }

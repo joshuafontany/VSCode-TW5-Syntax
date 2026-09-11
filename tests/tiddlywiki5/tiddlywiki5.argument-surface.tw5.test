@@ -1,0 +1,48 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "An argument name answers to its surface"
+
+# A call writes a named argument on a TEMPLATE surface, the way html, Vue, JSX, Liquid,
+# Handlebars and MediaWiki's own `{{T|name=v}}` do, so it takes `entity.other.attribute-name`
+# and reads as a widget attribute reads. Measured: under the argument's own family a call's
+# name and its argument told apart in 25 of 65 bundled themes — in gruvbox-dark-medium both
+# sat at #83a598 — and under the surface's family, 57.
+#
+# `variable.parameter` stands FIRST and names the declaration side a reader may still rule on.
+# The name a reader SEES stands LAST: a space-separated name pushes its scopes in order and the
+# innermost one wins.
+#
+# EACH SURFACE KEEPS ITS OWN TAIL, so a rule reaches a call's argument alone or a widget's
+# attribute alone, and a rule on `entity.other.attribute-name` reaches both.
+#
+# THE SEPARATORS PART CORRECTLY, and the host says why. `parseutils.js#parseMacroParameterAsAttribute`
+# records which of `=` and `:` an author wrote in `node.assignmentOperator`, then opens the
+# filtered, indirect, macro, MVV and substituted value grammars only when it reads `=`. A widget
+# attribute's `=` selects no such thing — `parseAttribute` offers every value form either way —
+# so a call's `=` keeps `keyword.operator.assignment` and a widget's keeps
+# `punctuation.separator.key-value`.
+#
+# THE DECLARATION SIDE STANDS CONTROLLED BY THE PINNED SNAPSHOTS. A pragma opens only in the
+# pragma zone, which no specimen here can reach; `tests/samples/tiddlywiki5.pragma.tw.snap` pins
+# `\define myMacro1(param:test, ...)` and holds every declared `param` at `variable.parameter`
+# alone. TextMate 1.x seats that name "when the variable is declared as the parameter", which is
+# that line and not a call.
+
+! A call's argument reads as an attribute name
+
+<<myproc param:"v" other="w">>
+#        ^^^^^ entity.other.attribute-name.argument.tiddlywiki5
+#        ^^^^^ variable.parameter.tiddlywiki5
+#        ^^^^^ - entity.other.attribute-name.html.tiddlywiki5
+#                  ^^^^^ entity.other.attribute-name.argument.tiddlywiki5
+#             ^ keyword.operator.assignment.tiddlywiki5
+#                       ^ keyword.operator.assignment.tiddlywiki5
+# ^^^^^^ variable.name.macro.tiddlywiki5
+# ^^^^^^ - entity.other.attribute-name.argument.tiddlywiki5
+
+! A widget's attribute keeps its own tail and its own separator
+
+<$link to="x">go</$link>
+#      ^^ entity.other.attribute-name.html.tiddlywiki5
+#      ^^ - entity.other.attribute-name.argument.tiddlywiki5
+#        ^ punctuation.separator.key-value.html.tiddlywiki5
+#        ^ - keyword.operator.assignment.tiddlywiki5
+
