@@ -132,6 +132,39 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   holding an unterminated code run, and a blank-line bound mis-pairs the 8 whose runs legitimately
   cross one. No pattern moved.
 
+- A NINTH CEILING, and a sixth shape under it. This grammar embeds wikitext INSIDE quoted attribute
+  values, and a TextMate rule only ADDS scopes — so every construct opened in there wears the
+  enclosing `string.*` for as long as the region stands, and a theme rule written against `string`
+  reaches all of them. Measured over corpus and samples: 1080 of 24376 tokens stand under a string
+  they cannot leave, across 47 of 79 carriers, 8 enclosing string scopes and 67 trapped construct
+  names. Sublime prescribes `clear_scopes:` for exactly this span; vscode-textmate's `IRawRule`
+  enumerates fourteen keys and names no removal among them, so the gate MEASURES rather than asserts
+  it — three throwaway grammars, one line, the cleared arm reading byte-identical to the plain one
+  against a moved arm that stands as the control. The STACK shape collides both ways: a specimen
+  trapping nothing and a reader honouring a removal each turn the gate red.
+- `npm run delimiters` reads what a delimiter INHERITS from the content it bounds. `contentName`
+  names a region's interior alone, so the marks that open and close it fall outside the content
+  family by construction and nothing downstream notices. Derived over `syntaxes/`: 107 contentName
+  rules across 8 grammars, 39 shapes, each ruled in `corpus/delimiter-ledger.txt` as a parting that
+  serves a reader or costs one. One declaration sits on a `match` rule where vscode-textmate reads
+  the field nowhere — measured on every run, with and without it, against a control on a begin/end
+  rule where the field DOES move the reading. Twenty-six cover their own marks, sixty-eight part, and
+  NOT ONE stacks its content family onto its delimiters. Most partings serve: a fence a reader must
+  see, or a `meta.*` content no theme paints. Seven cost one — the emphasis family, whose marks
+  belong to their run and stand outside its weight — and an eighth already carries the additive
+  device spelled the wrong way round. Every remedy stands OWED; `syntaxes/**` untouched.
+- `SCOPE-NAMES.md` states the rule this repository names its scopes by, which three precedents
+  already decided and no page recorded: a scope name reads as A PROMISE ABOUT MEANING, so it says
+  what a span IS and never what colour the name would inherit. `keyword.control.list` reaches 100% of
+  themes and calls a bullet a keyword — declined. Borrowing markdown's list-marker name measured +19
+  points — declined. 2.3.0 moved 94 of 460 names, 39 of them for a qualifier standing in front of its
+  family root. `tools/invariants/scope-name-policy.test.js` holds the three parts a machine can check
+  and, run at a floor of zero, found EIGHT standing violations nothing had reported: seven names
+  nesting `punctuation` under a content root — a shape returning zero across thirteen flagship
+  grammars, which Sublime's own guidance rules against — and one where a dropped dot fused `html`
+  onto `tiddlywiki5` and left a name no selector reaches from either side. Both stand pinned at their
+  floor rather than cured. The fourth rule stays prose, because the only name a mechanical check
+  flags names an XML processing instruction, where `xml` says what the span holds.
 ### Fixed
 - A conditional wraps BLOCKS, so TiddlyWiki carries it across a blank line the way it carries a quote
   block — `conditional.js` parses its body with `parseBlocks` and closes only on `<%endif%>`. The
@@ -176,6 +209,28 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   anchor off every block opener; the gate had decayed to resting on a single artifact cut. The
   quoteblock's own end bound moves it across 24 cuts, because a quote that never closes swallows
   every sentinel after it.
+
+- THE README'S HAND-WRITTEN SCOPE LIST HAD ALREADY GONE STALE. It told a reader to name
+  `invalid.illegal.html.tiddlywiki5` and `invalid.deprecated.html.tiddlywiki5`; the `invalid.*`
+  family went from twelve names to four at 2.3.0 and neither survived, so a reader pasting that block
+  quieted nothing and VS Code reported nothing — the rule simply stopped matching. The block now
+  names the FAMILY, `invalid.illegal`, which a dot-bounded selector carries to every verdict this
+  grammar draws and keeps carrying when a name gains a segment.
+  `tools/invariants/readme-scopes.test.js` derives the accepted set from the grammars through the one
+  collector, adds the manifest's own grammar roots, and reads every scope name the page hands a
+  reader — with a control proving it finds a made-up name absent, a declared one present, and a prose
+  fragment closing on a dot no scope at all.
+- The README pointed at `tools/ships-no-runtime.test.js` for the claim that this extension ships
+  nothing executable. That invariant sits under `tools/invariants/`, so a reader following the
+  reference found no file and no evidence.
+- The README said which scope to name and never why this extension names none itself. It now says:
+  a contributed `editor.tokenColorCustomizations` registers and takes effect — some 450 published
+  manifests do it — and carries three costs. No hardcoded colour survives an arbitrary theme; a
+  contributed default cannot be scoped to a language, so it would reach every file rather than
+  wikitext alone; and VS Code deep-merges object defaults, so the rules would sit INSIDE a reader's
+  settings rather than under them, removable only by an empty `textMateRules` that destroys their
+  own. What the manifest contributes stays behavioural — `files.associations` — the way VS Code's own
+  24 built-in extensions using `configurationDefaults` set no colour either.
 
 ### Added
 - `sigil-vocabulary` reads whether the specimens exercise the vocabulary the HOUSE writes, deriving
