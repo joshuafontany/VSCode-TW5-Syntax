@@ -11,7 +11,7 @@
 // it, exactly the way a ruling explaining nothing fails its own gate. So the list cannot quietly
 // grow into a catalogue of things nobody tried.
 //
-// A CEILING WEARS ONE OF FIVE SHAPES, and each carries its own falsification.
+// A CEILING WEARS ONE OF SIX SHAPES, and each carries its own falsification.
 //
 //   BLIND    Two inputs the host tells apart, read alike by the grammar. The gate holds only while
 //            the host STILL parts them and the grammar STILL cannot: a host that stops parting them
@@ -29,6 +29,11 @@
 //            answers and a tree-sitter grammar does not.
 //   VALUE    A construct the grammar NAMES correctly and whose meaning the host computes. A scope
 //            names a span, never a value, so the entity stands named and unresolved.
+//   STACK    A scope the grammar ADDS to a span and can never REMOVE. A region opened inside a
+//            quoted value keeps that value's scope under every construct it goes on to paint, so a
+//            theme rule written against the enclosing family reaches all of them. The gate holds
+//            while the grammar still paints constructs in there and the reader still honours no
+//            removal: a reader that honours one names a ceiling somebody closed.
 //
 // NEITHER SHAPE PROVES IMPOSSIBILITY, and this file never claims one. It measures that the host
 // draws a distinction, and that this grammar as it stands does not. Where somebody tried
@@ -65,6 +70,59 @@ const built = (source) => flatten(oracle.parse(source).tree, { sameSpace: true }
 const painted = async (source, line, scope = 'text.html.tiddlywiki5') => {
   const lines = await tokenize(scope, source);
   return [...new Set((lines[line] || []).flatMap((token) => token.scopes))].sort().join(' ');
+};
+
+// ── the removal a reader offers, or does not ──────────────────────────────────────
+//
+// Sublime prescribes `clear_scopes:` for exactly this span and states the prescription verbatim:
+// when a string holds interpolated code, "the `string.*` scope should be removed using
+// `clear_scopes:`". vscode-textmate's `IRawRule` enumerates fourteen keys — include, name,
+// contentName, match, captures, begin, beginCaptures, end, endCaptures, while, whileCaptures,
+// patterns, repository, applyEndPatternLast — and names no removal among them. A grammar declaring
+// one therefore declares an ignored key, which reports nothing and changes nothing.
+//
+// ASSERTING THAT COSTS NOTHING, so the gate MEASURES it: three grammars, one line, read under the
+// registry this repository's own gates build. The cleared arm declares `clear_scopes` and must read
+// BYTE-IDENTICAL to the plain arm. The moved arm shows what an honoured removal would read as, so
+// the comparison stands on a difference the reader CAN express.
+const CLEAR_SCOPES_PROBE = {
+  line: 'a "x WIKI y" b',
+  plain: {
+    scopeName: 'source.ceiling.plain',
+    patterns: [{
+      begin: '"', end: '"', name: 'string.quoted.double.ceiling',
+      patterns: [{ match: 'WIKI', name: 'markup.bold.ceiling' }]
+    }]
+  },
+  // The same grammar, asking the reader to drop the enclosing string over the inner construct.
+  cleared: {
+    scopeName: 'source.ceiling.cleared',
+    patterns: [{
+      begin: '"', end: '"', name: 'string.quoted.double.ceiling',
+      patterns: [{ match: 'WIKI', name: 'markup.bold.ceiling', clear_scopes: true }]
+    }]
+  },
+  // What an honoured removal reads as: the construct standing free of the string. A reader reaching
+  // this from the cleared arm closes this ceiling.
+  moved: {
+    scopeName: 'source.ceiling.moved',
+    patterns: [{ match: 'WIKI', name: 'markup.bold.ceiling' },
+      { begin: '"', end: '"', name: 'string.quoted.double.ceiling' }]
+  }
+};
+
+/** The scope stack this reader puts on every token of one line, under one throwaway grammar. */
+const probeStack = async (raw) => {
+  const { createRegistryFromGrammars } = require('vscode-tmgrammar-test/dist/common/index.js');
+  const reg = createRegistryFromGrammars([{
+    grammar: { path: `${raw.scopeName}.json`, scopeName: raw.scopeName },
+    content: JSON.stringify(raw)
+  }]);
+  const grammar = await reg.loadGrammar(raw.scopeName);
+  // The root scope differs by arm on purpose — three grammars cannot share one scope name — so it
+  // drops out of the reading and the comparison stands on what the rules put ON TOP of it.
+  return grammar.tokenizeLine(CLEAR_SCOPES_PROBE.line, null).tokens
+    .map((t) => t.scopes.filter((x) => x !== raw.scopeName).join(' ')).join(' | ');
 };
 
 // ── the ceilings ────────────────────────────────────────────────────────────────────────────────
@@ -163,6 +221,15 @@ const CEILINGS = [
     }
   },
   {
+    key: 'enclosing scope removal',
+    answeredBy: 'a reader that REPLACES a span\'s scope rather than only adding to it \u2014 Sublime\'s `clear_scopes:`, and tree-sitter, whose injections restart the highlight stack at the injected node',
+    shape: 'stack',
+    what: 'a construct opened inside a quoted value, which wears that value\'s scope for as long as the region stands',
+    why: 'This grammar embeds wikitext INSIDE quoted attribute values \u2014 a substituted attribute value, a filter run in an attribute, the `lar:` injection reaching inside `string.quoted.double.html`. A TextMate rule only ADDS scopes, so every construct opened in there carries the enclosing `string.*` on its stack for as long as the region stands, and a theme rule written against `string` reaches all of them: a reader meets wikitext wearing a string\'s colour. Sublime prescribes the cure verbatim \u2014 where a string holds interpolated code, "the `string.*` scope should be removed using `clear_scopes:`" \u2014 and vscode-textmate\'s `IRawRule` enumerates fourteen keys naming no removal among them. Measured over corpus and samples: 1080 of 24376 tokens stand under a string they cannot leave, across 47 of 79 carriers, 8 enclosing string scopes and 67 trapped construct names \u2014 `string.text-reference` over 492 of them, `string.quoted.double.html` over 330, `string.unquoted.uri.lar` over 167.',
+    tried: 'declaring `clear_scopes: true` on the inner rule and reading the result, which this gate re-runs on every pass: the cleared arm reads BYTE-IDENTICAL to the plain arm, so the key parses and moves nothing. The additive cure stands available and answers a different question \u2014 a space-separated multi-scope name ADDS a content scope to a delimiter, the device MagicPython and VS Code TypeScript both ship \u2014 but nothing a grammar writes takes a scope back OFF a span, so it widens a reading rather than narrowing one',
+    source: '<$link tooltip="""a [[Page]] and {{Ref!!field}} here""">x</$link>'
+  },
+  {
     key: 'entity value',
     answeredBy: 'a reader that reports a VALUE beside a span — hover in a language server, or the render layer',
     shape: 'value',
@@ -220,6 +287,28 @@ const CEILINGS = [
       const grammar = (await Promise.all(lines.map((_, i) => painted(`${c.source}\n`, i)))).join(' ');
       if (!c.paints.test(grammar)) broken.push(`${c.key} — the grammar paints nothing the entry names, so the probe reads the wrong span`);
       readings.push([c.key, `one source, ${looks.size} renderings: ${Object.entries(rendered).map(([k, v]) => `${k} ${JSON.stringify(v)}`).join(' vs ')}`]);
+    } else if (c.shape === 'stack') {
+      // A SCOPE THE GRAMMAR ADDS AND NEVER TAKES BACK. The specimen must actually open a construct
+      // inside a string, or the entry names nothing enclosed; and the reader must honour no removal,
+      // or somebody closed this and the entry wants retiring.
+      const line = (await tokenize('text.html.tiddlywiki5', `${c.source}\n`))[0] || [];
+      const trapped = line.filter((t) => {
+        const at = t.scopes.findIndex((x) => /^string\./.test(x));
+        return at >= 0 && t.scopes.slice(at + 1)
+          .some((x) => !/^string\./.test(x) && !/^punctuation\.definition\.string\./.test(x));
+      });
+      const names = new Set(trapped.flatMap((t) => t.scopes.filter((x) => !/^string\./.test(x) && !/^text\.|^source\./.test(x))));
+      const enclosing = new Set(trapped.flatMap((t) => t.scopes.filter((x) => /^string\./.test(x))));
+      if (!trapped.length) broken.push(`${c.key} — the grammar paints no construct inside a string on this specimen, so nothing stands enclosed`);
+      const plain = await probeStack(CLEAR_SCOPES_PROBE.plain);
+      const cleared = await probeStack(CLEAR_SCOPES_PROBE.cleared);
+      if (plain !== cleared) broken.push(`${c.key} — the reader honours a scope removal after all, so the ceiling stands closed and wants retiring`);
+      // THE CONTROL. Two readings agreeing prove nothing unless the comparison can part two that
+      // differ. The moved arm paints the same construct OUTSIDE the string — what an honoured
+      // removal reads as — so a comparison blind to it would agree with everything.
+      const moved = await probeStack(CLEAR_SCOPES_PROBE.moved);
+      if (plain === moved) broken.push(`${c.key} — the control reads the same as the plain arm, so the comparison parts nothing and the agreement above says nothing`);
+      readings.push([c.key, `${names.size} construct scope(s) stand under a string on ${trapped.length} token(s), inside ${[...enclosing].join(' + ') || 'no string'}; a rule declaring clear_scopes reads identically`]);
     } else if (c.shape === 'value') {
       // The grammar NAMES the construct and carries no scope for what it stands for: a scope names
       // a span, never a value.

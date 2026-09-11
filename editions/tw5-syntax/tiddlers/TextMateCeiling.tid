@@ -3,11 +3,11 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: TextMate ceiling
 description: What a TextMate grammar cannot reach about TiddlyWiki, and which kind of reader closes each one — harvested, never hand-written
-ceilings-standing: 8 of 8
+ceilings-standing: 9 of 9
 
 {
-    "ceilings": 8,
-    "standing": 8,
+    "ceilings": 9,
+    "standing": 9,
     "entries": [
         {
             "key": "whole-document lookahead",
@@ -71,6 +71,15 @@ ceilings-standing: 8 of 8
             "why": "TiddlyWiki types an attribute `indirect` and resolves the reference at widget time. Measured: `<$text text={{CeilingField!!myfield}}/>` renders the field where it stands and nothing where it does not, on identical bytes.",
             "tried": "nothing at the grammar, which names the reference correctly and can never resolve it. `attribute-witness` reads the KIND TiddlyWiki assigns and stops there, on purpose.",
             "measured": "one source, 2 renderings: present \"the value\" vs absent \"\""
+        },
+        {
+            "key": "enclosing scope removal",
+            "shape": "stack",
+            "answeredBy": "a reader that REPLACES a span's scope rather than only adding to it — Sublime's `clear_scopes:`, and tree-sitter, whose injections restart the highlight stack at the injected node",
+            "what": "a construct opened inside a quoted value, which wears that value's scope for as long as the region stands",
+            "why": "This grammar embeds wikitext INSIDE quoted attribute values — a substituted attribute value, a filter run in an attribute, the `lar:` injection reaching inside `string.quoted.double.html`. A TextMate rule only ADDS scopes, so every construct opened in there carries the enclosing `string.*` on its stack for as long as the region stands, and a theme rule written against `string` reaches all of them: a reader meets wikitext wearing a string's colour. Sublime prescribes the cure verbatim — where a string holds interpolated code, \"the `string.*` scope should be removed using `clear_scopes:`\" — and vscode-textmate's `IRawRule` enumerates fourteen keys naming no removal among them. Measured over corpus and samples: 1080 of 24376 tokens stand under a string they cannot leave, across 47 of 79 carriers, 8 enclosing string scopes and 67 trapped construct names — `string.text-reference` over 492 of them, `string.quoted.double.html` over 330, `string.unquoted.uri.lar` over 167.",
+            "tried": "declaring `clear_scopes: true` on the inner rule and reading the result, which this gate re-runs on every pass: the cleared arm reads BYTE-IDENTICAL to the plain arm, so the key parses and moves nothing. The additive cure stands available and answers a different question — a space-separated multi-scope name ADDS a content scope to a delimiter, the device MagicPython and VS Code TypeScript both ship — but nothing a grammar writes takes a scope back OFF a span, so it widens a reading rather than narrowing one",
+            "measured": "16 construct scope(s) stand under a string on 8 token(s), inside string.quoted.triple.html.tiddlywiki5 + string.other.link.title.tiddlywiki5 + string.text-reference.tiddlywiki5; a rule declaring clear_scopes reads identically"
         },
         {
             "key": "entity value",

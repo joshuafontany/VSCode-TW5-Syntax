@@ -73,7 +73,7 @@ test('the reading names every ceiling and the evidence under it', live, () => {
   const { out } = runTool('textmate-ceiling.js');
   for (const key of ['whole-document lookahead', 'rule-set mutation', 'verbatim storage',
     'nested coordinate space', 'cross-tiddler resolution', 'import by filter',
-    'indirect attribute value', 'entity value']) {
+    'indirect attribute value', 'entity value', 'enclosing scope removal']) {
     assert.ok(out.includes(key), `the reading names no ${key}`);
   }
   // Each ceiling prints what it MEASURED, never only what it claims.
@@ -81,6 +81,7 @@ test('the reading names every ceiling and the evidence under it', live, () => {
   assert.match(out, /typedblock at \d+\.\.\d+ and quoteblock at \d+\.\.\d+/, 'the space ceiling printed no offsets');
   assert.match(out, /one source, \d+ renderings/, 'no wiki ceiling printed its renderings');
   assert.match(out, /renders "… and —"; no scope carries it/, 'the value ceiling printed no computed value');
+  assert.match(out, /\d+ construct scope\(s\) stand under a string/, 'the stack ceiling printed no trapped reading');
   assert.match(out, /tree-sitter/, 'no ceiling named tree-sitter as the reader that closes it');
   assert.match(out, /language server/, 'no ceiling named a language server as the reader that closes it');
 });
@@ -154,4 +155,29 @@ test('a value ceiling the host renders unchanged fails the gate', live, () => {
     ['tools/textmate-ceiling.js']);
   assert.match(out, /renders the source unchanged/, out.slice(-600));
   assert.notStrictEqual(code, 0, 'a value ceiling computing nothing held the gate anyway');
+});
+
+
+// A STACK ceiling stands on a scope the grammar ADDS and can never REMOVE. Hand it a specimen
+// carrying no construct inside a string and it names nothing enclosed.
+test('a stack ceiling whose specimen traps nothing fails the gate', live, () => {
+  const { code, out } = runInSandbox(
+    provoke(`    source: '<$link tooltip="""a [[Page]] and {{Ref!!field}} here""">x</$link>'`,
+      `    source: 'plain words carrying no string at all'`),
+    ['tools/textmate-ceiling.js']);
+  assert.match(out, /the grammar paints no construct inside a string/, out.slice(-600));
+  assert.notStrictEqual(code, 0, 'a stack ceiling enclosing nothing held the gate anyway');
+});
+
+// The direction that matters: a reader honouring `clear_scopes` closes this ceiling, and it must
+// retire rather than sit in the list claiming a limit the reader no longer has.
+test('a stack ceiling whose reader honours clear_scopes fails the gate', live, () => {
+  // Reading the CLEARED grammar under a scope whose rule declares no `clear_scopes` at all stands
+  // in for a reader that honoured it: the two readings part, exactly as the gate compares them.
+  const { code, out } = runInSandbox(
+    provoke("  const cleared = await probeStack(CLEAR_SCOPES_PROBE.cleared);",
+      "  const cleared = await probeStack(CLEAR_SCOPES_PROBE.moved);"),
+    ['tools/textmate-ceiling.js']);
+  assert.match(out, /the reader honours a scope removal after all/, out.slice(-600));
+  assert.notStrictEqual(code, 0, 'a closed stack ceiling held the gate anyway');
 });
