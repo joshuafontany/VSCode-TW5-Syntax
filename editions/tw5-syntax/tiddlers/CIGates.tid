@@ -15,8 +15,7 @@ description: Which gates continuous integration runs, and the reason for each on
         "signals:check",
         "overreach-host",
         "overreach-cut",
-        "upstream-coverage",
-        "page-palette"
+        "upstream-coverage"
     ],
     "skipped": [],
     "notGates": [
@@ -47,6 +46,10 @@ description: Which gates continuous integration runs, and the reason for each on
         {
             "gate": "bench:down",
             "why": "the same server taken down, which restores the machine and reports nothing a gate could read"
+        },
+        {
+            "gate": "page-palette",
+            "why": "a reading rather than a verdict: it counts the distinct colours a whole PAGE spends, against Ware's six-to-twelve band, where every other gauge here reads one construct. A theme decides that count as much as the grammar does, so ratcheting it would re-seat on every honest change \u2014 the shape this house retired once already"
         }
     ]
 }
