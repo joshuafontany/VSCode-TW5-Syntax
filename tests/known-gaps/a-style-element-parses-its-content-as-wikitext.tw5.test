@@ -1,0 +1,39 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A style element parses its content as wikitext"
+
+# TiddlyWiki carries NO notion of a scoped stylesheet: `scoped` names an ordinary attribute and
+# the word appears nowhere in its source. A `<style>` element takes the html rule like any
+# other, so its CHILDREN parse as wikitext, and a call or a transclusion standing in a
+# stylesheet builds a node. Measured against the host tree: `<style>{{!!text}}[test="<<n>>"]`
+# in `core/wiki/debugstylesheets.tid` builds a transcludeinline and a macrocallinline, and
+# `StaticRiver.tid` and `github-fork-ribbon/template.tid` each carry a transclusion as the
+# whole body of a stylesheet.
+#
+# This grammar hands the content to `source.css`, which paints a call as one property value.
+#
+# GROUND, MEASURED over every carrier TiddlyWiki ships: 25 `<style>` elements across 25
+# carriers, ONE of them carrying `scoped`. Inside them, the host builds calls at four sites,
+# and NO sigil run stands where the host builds nothing — the false-positive cost a macrocall
+# rule reaching into ordinary CSS would carry measures zero on this ground.
+#
+# `$:/SplashScreen` reaches this gap by another road and must not count toward it: it opens
+# `\rules only filteredtranscludeinline transcludeinline macrocallinline`, which deletes the
+# html rule, so the host builds no style ELEMENT there at all and reads the whole block as
+# text carrying three inline rules. The rule-set mutation ceiling governs that one.
+#
+# WHAT AN ENACTMENT OWES BEFORE IT LANDS: `macrocallinline` and `transcludeinline` carry no
+# line bound, and a child region standing open refuses its parent's end — so a `<<` inside a
+# stylesheet with no `>>` ahead runs past `</style>` and takes the rest of the tiddler. Take
+# `npm run swallow-witness` to the injection before adopting it; the gain measures four sites
+# and the SWALLOW family costs whole carriers.
+
+<style>
+.tc-splash-text { color: <<colour foreground>>; }
+#                        ^^ punctuation.definition.macrocallinline.begin.tiddlywiki5
+#                          ^^^^^^ variable.name.macro.tiddlywiki5
+#                                           ^^ punctuation.definition.macrocallinline.end.tiddlywiki5
+</style>
+
+<style>
+{{$:/plugins/tiddlywiki/github-fork-ribbon/styles}}
+#<- punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
+</style>
