@@ -7,6 +7,25 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Added
+- FOUR RECOVERY CODES THE HOST DECLARES GAIN A CARRIER APIECE. `unterminated-typedblock`,
+  `unterminated-styleblock`, `unterminated-hardlinebreaks` and `unterminated-definition` stood
+  unexercised, and a rule nobody wrote a specimen for reads exactly like a rule with nothing to say.
+  A block construct that never closes swallows every recovery after it, so each takes a carrier of
+  its own. `recovery-witness` moves from 26 diagnostics over 47 carriers and 12 codes to 30 over 51
+  and 16, all sixteen standing silent under the whole-document-lookahead ceiling. The code
+  population now derives from the HOST's own wiki-rule sources rather than from what the corpus
+  happens to raise. Each carrier declares its degradation in `corpus/must-fail.txt` and MEASURES it:
+  the typed block bleeds `meta.typedblock` past the file, the style block
+  `markup.other.style.styleblock`, the hard-linebreak run
+  `markup.other.preformatted.hardlinebreaks`, the definition `meta.directive.variable.macro`. The
+  definition parts the two readers on more than a mark — the host reads its body as BLANK while the
+  grammar reads it as a body.
+- `corpus/delimiter-ledger.txt` carries a FLOOR on the debt it records. A reason opening OWED names
+  a parting this repository ruled wrong and left standing; the gate stays green over it and the
+  count stands in the test instead, so a cure lands with its gain pinned and nothing quietly
+  regrows. Beside it, a control derived from the grammar stacks a guest language's family onto a
+  typed-block fence and the gate must call that a finding — a gate welcoming every stacking blesses
+  the wrong ones too.
 - `light-cone` gains a THIRD ARM: a reader's own typing. The forward arm hands back removed text and
   the backward arm strikes pragma lines — both alter something nobody types. A person inserts a space
   or a stray character in the middle of what they already wrote, and where a one-character insertion
@@ -33,7 +52,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - A BLOCK CONSTRUCT THAT NEVER CLOSES SWALLOWS EVERY RECOVERY AFTER IT, so one carrier measures the
   first unterminated block shape it holds and hides the rest. `degenerate.unterminated.tw` now holds
   the inline runs and each block shape takes a carrier of its own, which took the exercised
-  vocabulary from 4 codes to 12.
+  vocabulary from 4 codes to 16.
  `corpus/wikitext/reading.in-prose.tw` and `corpus/memetic/reading.in-prose.mem` stand every
   construct INSIDE a sentence, which asks a question that reading one alone cannot. Measured across
   the 65 bundled themes: a bracketed construct's opening glyph paints at a perceptual distance of
@@ -43,9 +62,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   bench seeds its workspace from the corpus, so a reader flipping themes looks at the same files
   that gate the grammar.
 - `MIGRATION.md` names every scope a reader's theme rule lost. 460 scope names stand at `v2.2.1` and
-  497 here; 94 went, 131 arrived. A theme rule and an `editor.tokenColorCustomizations` entry both
+  497 here; 105 went, 142 arrived. A theme rule and an `editor.tokenColorCustomizations` entry both
   name a scope, and when one moves VS Code reports nothing — the rule stops matching and the
-  construct goes the colour of prose. 39 of the 94 moved for one reason: they carried a qualifier in
+  construct goes the colour of prose. 39 of the 105 moved for one reason: they carried a qualifier in
   FRONT of their family root, where a dot-bounded selector never reached them, so they painted prose
   in all 65 bundled themes from the day they were written. The record derives from both grammars and
   `tools/invariants/scope-migration.test.js` holds it to them — a name called gone that still stands,
@@ -181,6 +200,44 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   never ratchets — a colour count belongs to the theme at least as much as to the grammar, and this
   house declines gauges that re-seat on every honest change.
 ### Fixed
+- A DROPPED DOT LEFT A NAME NO SELECTOR REACHES FROM EITHER SIDE. A multids title line declared
+  `meta.multids.tiddler.title.text.htmltiddlywiki5.multids-file`, running `html` into `tiddlywiki5`,
+  so the fused word stood outside every rule written against `text.html` and outside every rule
+  written against the suffix after it. Every gate read green, because the name still read as a name.
+  It stands as `meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file`. The policy gate's
+  provocation copied the fused name by hand, which stops provoking the moment that name moves; it
+  now drops a dot out of a name the grammars declare TODAY.
+- PUNCTUATION STACKS, NEVER NESTS, AND SEVEN NAMES DID THE OPPOSITE. A filter operand's brackets
+  spelled themselves `string.`, `variable.` and `entity.name.punctuation.definition.operand.*`, and
+  a heading's `!` mark carried `markup.heading.punctuation.definition` beside its own name. No span
+  is a kind of string-punctuation; measured across thirteen flagship grammars that literal shape
+  returns zero, and Sublime's own guidance rules against it. Each stands as two scopes on one span,
+  the punctuation name first and the content family LAST. Measured: a theme reached the operand
+  brackets through the content root alone — `string` in 62 of 65 bundled themes, `variable` in 58,
+  `entity` in 40 — and through `punctuation` in NONE, because the name buried it where no
+  dot-bounded prefix reaches. The content scope stands innermost, so the marks paint the colour they
+  painted before and 40 themes' punctuation rules now reach them. 820 legibility pairs and 424
+  colour-witness scopes moved by zero.
+- THREE EMPHASIS MARKS WEAR THEIR RUN, AND FOUR DECLINE. `contentName` covers a region's interior,
+  so an emphasis run's marks stand outside the family their run carries and a theme's weight stops
+  at the text. Measured one family at a time against a control arm stacking nothing: a subscript's
+  marks, a superscript's marks and a hard-linebreak run's fences take `markup.subscript`,
+  `markup.superscript` and `markup.other.preformatted.hardlinebreaks` at a cost of ZERO across all
+  820 pairs. Bold costs three pairs, italic three, and the underline and strikethrough families four
+  between them — worst a fall from 46 themes to 28 on a system link against an underline run.
+  `corpus/legibility-floor.txt` rules that a count may rise and may never fall, so those four stand
+  DECLINED with the numbers that declined them. The two deepest falls share a cause standing outside
+  these rules: this grammar names a link `markup.underline.link.*`, so widening the underline family
+  over a whole run collides with it head-on.
+- AN ISOLATION HARNESS READ ONE CHANNEL AND CALLED EVERY ARM CLEAN. Reading only stdout, it reported
+  0 fallen pairs for each of the seven cures while the same seven measured 10 through a shell —
+  `construct-legibility` prints its findings to stderr. The reading that settled the four declines
+  carries a control arm stacking nothing and reading zero, so an arm reading zero proves the harness
+  can still part what differs.
+- A FLAT READ OF THE HOST'S WIKI RULES FOUND TEN RECOVERY CODES WHERE SIXTEEN STAND. Six of them
+  live under `rules/emphasis/`, and a `readdirSync` that never descends goes green while looking at
+  none of them. The reader walks, and the population assertion asks for a NUMBER rather than for a
+  non-empty set, which is what caught it.
 - THE RULER WAS WRONG, AND FOUR GATES REPEATED IT IN ONE VOICE. `theme-model.js` ranked a selector's
   DEPTH above its POSITION in the scope stack. `vscode-textmate` does the opposite: a grammar pushes a
   token's scopes outermost first and the theme answers at every push, so the INNERMOST scope any rule
