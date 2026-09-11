@@ -72,8 +72,8 @@ description: What a reader must meet as one thing and what a reader must tell ap
                 "entity.name.function.widget.tiddlywiki5",
                 "entity.other.attribute-name.html.tiddlywiki5"
             ],
-            "least": 47,
-            "why": "The same question a reader asks of a call, asked of a widget. This pair stands where it already stood; it holds the control the call's own pair moves against, so a name that lifts one and drops the other says so."
+            "least": 45,
+            "why": "The same question a reader asks of a call, asked of a widget. This pair stands where it already stood; it holds the control the call's own pair moves against, so a name that lifts one and drops the other says so. RE-SEATED 47 to 45 on 2026-09-11, because the RULER got more truthful rather than because the grammar lost anything: theme-model ranked a selector's depth above its position in the scope stack, where vscode-textmate lets the innermost scope any rule reaches decide the colour outright, and it read a descendant selector as reaching a lone scope that carries no ancestor to match. Collided against the engine over the corpus, the old model parted from it in 6.6% of token-readings; the settled model parts in 0 of 199615. Two readings here moved under it and both fell: this pair 47 to 45, and a TiddlyWiki widget against an HTML element 62 to 57, which sits well clear of its floor of 45."
         }
     ]
 }

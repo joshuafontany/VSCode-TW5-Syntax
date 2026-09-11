@@ -86,10 +86,12 @@ test('a theme reader takes a theme spelled every way', () => {
     for (const [how, text] of Object.entries(variants(theme))) {
       const file = path.join(scratch, `${how.replace(/\W+/g, '-')}.json`);
       fs.writeFileSync(file, text);
-      let rules;
-      assert.doesNotThrow(() => { rules = loadTheme(file); }, `${how}: the reader threw`);
-      assert.ok(rules.some((r) => r.parts.join('.') === 'markup.bold' && r.settings.foreground === '#ff0000'),
-        `${how}: the rule read as ${JSON.stringify(rules)}`);
+      let model;
+      assert.doesNotThrow(() => { model = loadTheme(file); }, `${how}: the reader threw`);
+      // The reader normalises a colour the way the engine holds it, so the rule answers in the
+      // engine's spelling rather than the theme's.
+      assert.ok(model.rules.some((r) => r.parts.join('.') === 'markup.bold' && r.settings.foreground === '#FF0000'),
+        `${how}: the rule read as ${JSON.stringify(model.rules)}`);
     }
   } finally {
     fs.rmSync(scratch, { recursive: true, force: true });

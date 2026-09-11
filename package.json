@@ -380,6 +380,8 @@
         "overreach-host": "node ./tools/overreach-check.js --corpus 400 --exclude=editions/test/tiddlers/tests/data --exclude=editions/text-slicer --expected=corpus/expected-divergence.txt",
         "overreach-cut": "node ./tools/overreach-check.js --corpus 400 --exclude=editions/test/tiddlers/tests/data --exclude=editions/text-slicer --expected=corpus/expected-divergence.txt --truncate=1",
         "attribute-guard": "node ./tools/attribute-guard.js",
+        "page-palette": "node ./tools/page-palette.js",
+        "theme-collision": "node ./tools/theme-collision.js",
         "theme-parity": "node ./tools/theme-parity.js",
         "swallow-witness": "node ./tools/swallow-witness.js",
         "recovery-witness": "node ./tools/recovery-witness.js",

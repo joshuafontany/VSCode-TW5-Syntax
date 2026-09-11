@@ -131,5 +131,5 @@ async function tokenizeFrom(scope, lines, stack = null) {
   return { tokens, stacks };
 }
 
-module.exports = { ROOT, grammarArgs, snapshot, tokenize, tokenizeFrom };
+module.exports = { ROOT, grammarArgs, grammarRegistry, snapshot, tokenize, tokenizeFrom };
 

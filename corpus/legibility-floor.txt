@@ -92,825 +92,835 @@
 # whitespace directives. Thirty-two themes gained against thirteen lost, counted the same way.
 # These five stand re-seated at the new reading and ratchet from there.
 #
+# RE-SEATED 2026-09-11, BECAUSE THE RULER GOT MORE TRUTHFUL — never because a floor loosened.
+# `theme-model.js` ranked a selector's DEPTH above its POSITION in the scope stack, where
+# `vscode-textmate` lets the INNERMOST scope any rule reaches decide the colour outright. Collided
+# against the engine over the corpus — `tools/theme-collision.js` — the old model parted from it in
+# 6.6% of token-readings and handed `markup.underline.link` on a link's container where the engine
+# hands `string` on the caption inside it. The settled model parts in 0 of 199 615 readings across
+# 65 themes and 36 specimens.
+# Of the 820 pairs: 82 ROSE, 150 FELL, 588 stood, for a net of -270 theme-readings. Every count
+# here now names what a reader meets on screen. A floor re-seated for any other reason wants
+# refusing.
+#
 #   <themes that tell them apart>  <pair>
-
-65  a bare external link  vs  a CamelCase link
-65  a bare external link  vs  a call
-65  a bare external link  vs  a captioned external link
-65  a bare external link  vs  a filter run
-65  a bare external link  vs  a hard-linebreak run
-65  a bare external link  vs  a heading
-65  a bare external link  vs  a macro definition
-65  a bare external link  vs  a multi-value display
-65  a bare external link  vs  a parameters directive
-65  a bare external link  vs  a parsermode directive
-65  a bare external link  vs  a procedure definition
-65  a bare external link  vs  a quote block
-65  a bare external link  vs  a rules directive
-65  a bare external link  vs  a styled block
-65  a bare external link  vs  a styled span
-65  a bare external link  vs  a suppressed link
-65  a bare external link  vs  a transclusion
-65  a bare external link  vs  a typed block
-65  a bare external link  vs  a whitespace directive
-65  a bare external link  vs  a widget
-65  a bare external link  vs  an image
-65  a bare external link  vs  an import directive
-65  a bare external link  vs  italic
-65  a bare external link  vs  prose
-65  a bare external link  vs  strikethrough
-65  a bare external link  vs  subscript
-65  a bare external link  vs  superscript
-65  a bare external link  vs  underline
-65  a call  vs  a CamelCase link
-65  a call  vs  a macro definition
-65  a call  vs  a multi-value display
-64  a call  vs  a parsermode directive
-65  a call  vs  a quote block
-65  a call  vs  a rules directive
-65  a call  vs  a styled block
-65  a call  vs  a styled span
-65  a call  vs  a suppressed link
-65  a call  vs  a system link
-65  a call  vs  a table row
-65  a call  vs  a transclusion
-61  a call  vs  a typed block
-64  a call  vs  a whitespace directive
-65  a call  vs  a wikilink
-65  a call  vs  prose
-65  a call  vs  strikethrough
-65  a call  vs  subscript
-65  a call  vs  superscript
-65  a call  vs  underline
-65  a captioned external link  vs  a CamelCase link
-65  a captioned external link  vs  a quote block
-65  a captioned external link  vs  a rules directive
-65  a captioned external link  vs  a styled block
-65  a captioned external link  vs  a styled span
-65  a captioned external link  vs  a suppressed link
-65  a captioned external link  vs  a system link
-65  a captioned external link  vs  a table row
-65  a captioned external link  vs  a transclusion
-65  a captioned external link  vs  a typed block
-65  a captioned external link  vs  a whitespace directive
-65  a captioned external link  vs  prose
-65  a captioned external link  vs  strikethrough
-65  a captioned external link  vs  subscript
-65  a captioned external link  vs  superscript
-65  a captioned external link  vs  underline
-65  a code block  vs  a CamelCase link
-65  a code block  vs  a bare external link
-65  a code block  vs  a call
-65  a code block  vs  a captioned external link
-65  a code block  vs  a comment
-65  a code block  vs  a conditional
-65  a code block  vs  a macro definition
-65  a code block  vs  a parameters directive
-65  a code block  vs  a procedure definition
-65  a code block  vs  a rules directive
-65  a code block  vs  a transclusion
-65  a code block  vs  a typed block
-65  a code block  vs  a widget
-65  a code block  vs  a wikilink
-65  a code block  vs  prose
-65  a code span  vs  a call
-65  a code span  vs  a captioned external link
-65  a code span  vs  a conditional
-65  a code span  vs  a filter run
-65  a code span  vs  a macro definition
-65  a code span  vs  a parameters directive
-65  a code span  vs  a parsermode directive
-65  a code span  vs  a procedure definition
-65  a code span  vs  a rules directive
-65  a code span  vs  a styled block
-65  a code span  vs  a styled span
-65  a code span  vs  a transclusion
-65  a code span  vs  a typed block
-65  a code span  vs  a whitespace directive
-65  a code span  vs  a widget
-65  a code span  vs  a wikilink
-65  a code span  vs  an image
-65  a code span  vs  an import directive
-65  a comment  vs  a bare external link
-65  a comment  vs  a call
-65  a comment  vs  a captioned external link
-65  a comment  vs  a conditional
-65  a comment  vs  a filter run
-65  a comment  vs  a heading
-65  a comment  vs  a macro definition
-65  a comment  vs  a parameters directive
-65  a comment  vs  a parsermode directive
-65  a comment  vs  a procedure definition
-65  a comment  vs  a quote block
-65  a comment  vs  a rules directive
-65  a comment  vs  a styled block
-65  a comment  vs  a styled span
-65  a comment  vs  a system link
-65  a comment  vs  a transclusion
-65  a comment  vs  a typed block
-65  a comment  vs  a whitespace directive
-65  a comment  vs  a widget
-65  a comment  vs  a wikilink
-65  a comment  vs  an image
-65  a comment  vs  an import directive
-65  a conditional  vs  a CamelCase link
-65  a conditional  vs  a bare external link
-65  a conditional  vs  a call
-65  a conditional  vs  a dash
-65  a conditional  vs  a hard-linebreak run
-65  a conditional  vs  a heading
-65  a conditional  vs  a horizontal rule
-65  a conditional  vs  a list item
-65  a conditional  vs  a multi-value display
-65  a conditional  vs  a parameters directive
-65  a conditional  vs  a parsermode directive
-65  a conditional  vs  a quote block
-65  a conditional  vs  a styled block
-65  a conditional  vs  a styled span
-65  a conditional  vs  a suppressed link
-65  a conditional  vs  a system link
-65  a conditional  vs  a table row
-65  a conditional  vs  a transclusion
-65  a conditional  vs  a whitespace directive
-65  a conditional  vs  a widget
-65  a conditional  vs  a wikilink
-65  a conditional  vs  an entity
-65  a conditional  vs  an image
-65  a conditional  vs  italic
-65  a conditional  vs  prose
-65  a conditional  vs  strikethrough
-65  a conditional  vs  subscript
-65  a conditional  vs  superscript
-65  a conditional  vs  underline
-65  a dash  vs  a bare external link
-65  a dash  vs  a call
-65  a dash  vs  a captioned external link
-65  a dash  vs  a macro definition
-65  a dash  vs  a parameters directive
-65  a dash  vs  a procedure definition
-65  a dash  vs  a rules directive
-65  a dash  vs  a system link
-65  a dash  vs  a typed block
-65  a dash  vs  a widget
-65  a dash  vs  an image
-65  a dash  vs  an import directive
-65  a filter run  vs  a CamelCase link
-65  a filter run  vs  a hard-linebreak run
-65  a filter run  vs  a heading
-65  a filter run  vs  a horizontal rule
-65  a filter run  vs  a list item
-65  a filter run  vs  a macro definition
-65  a filter run  vs  a procedure definition
-65  a filter run  vs  a quote block
-65  a filter run  vs  a rules directive
-65  a filter run  vs  a suppressed link
-65  a filter run  vs  a system link
-65  a filter run  vs  a typed block
-65  a filter run  vs  a widget
-65  a filter run  vs  a wikilink
-65  a filter run  vs  an image
-65  a filter run  vs  italic
-65  a filter run  vs  prose
-65  a filter run  vs  strikethrough
-65  a filter run  vs  subscript
-65  a filter run  vs  superscript
-65  a filter run  vs  underline
-65  a hard-linebreak run  vs  a call
-65  a hard-linebreak run  vs  a captioned external link
-65  a hard-linebreak run  vs  a macro definition
-65  a hard-linebreak run  vs  a parameters directive
-65  a hard-linebreak run  vs  a parsermode directive
-65  a hard-linebreak run  vs  a rules directive
-65  a hard-linebreak run  vs  a styled block
-65  a hard-linebreak run  vs  a styled span
-65  a hard-linebreak run  vs  a transclusion
-65  a hard-linebreak run  vs  a typed block
-65  a hard-linebreak run  vs  a whitespace directive
-65  a hard-linebreak run  vs  a widget
-65  a hard-linebreak run  vs  a wikilink
-65  a hard-linebreak run  vs  an image
-65  a hard-linebreak run  vs  an import directive
-65  a heading  vs  a call
-65  a heading  vs  a captioned external link
-65  a heading  vs  a macro definition
-65  a heading  vs  a parameters directive
-65  a heading  vs  a parsermode directive
-65  a heading  vs  a rules directive
-65  a heading  vs  a styled block
-65  a heading  vs  a styled span
-65  a heading  vs  a typed block
-65  a heading  vs  a whitespace directive
-65  a heading  vs  a widget
-65  a heading  vs  a wikilink
-65  a heading  vs  an image
-65  a heading  vs  an import directive
-65  a horizontal rule  vs  a call
-65  a horizontal rule  vs  a captioned external link
-65  a horizontal rule  vs  a macro definition
-65  a horizontal rule  vs  a parameters directive
-65  a horizontal rule  vs  a parsermode directive
-65  a horizontal rule  vs  a rules directive
-65  a horizontal rule  vs  a styled block
-65  a horizontal rule  vs  a styled span
-65  a horizontal rule  vs  a transclusion
-65  a horizontal rule  vs  a typed block
-65  a horizontal rule  vs  a whitespace directive
-65  a horizontal rule  vs  a widget
-65  a horizontal rule  vs  a wikilink
-65  a horizontal rule  vs  an image
-65  a horizontal rule  vs  an import directive
-65  a list item  vs  a call
-65  a list item  vs  a captioned external link
-65  a list item  vs  a macro definition
-65  a list item  vs  a parameters directive
-65  a list item  vs  a parsermode directive
-65  a list item  vs  a rules directive
-65  a list item  vs  a styled block
-65  a list item  vs  a styled span
-65  a list item  vs  a transclusion
-65  a list item  vs  a typed block
-65  a list item  vs  a whitespace directive
-65  a macro definition  vs  a CamelCase link
-65  a macro definition  vs  a captioned external link
-65  a macro definition  vs  a multi-value display
-65  a macro definition  vs  a parameters directive
-65  a macro definition  vs  a quote block
-65  a macro definition  vs  a suppressed link
-65  a macro definition  vs  a system link
-65  a macro definition  vs  a table row
-65  a macro definition  vs  a transclusion
-65  a macro definition  vs  a typed block
-65  a macro definition  vs  a wikilink
-65  a macro definition  vs  prose
-65  a macro definition  vs  strikethrough
-65  a macro definition  vs  subscript
-65  a macro definition  vs  superscript
-65  a macro definition  vs  underline
-65  a multi-value display  vs  a captioned external link
-65  a multi-value display  vs  a parameters directive
-65  a multi-value display  vs  a parsermode directive
-65  a multi-value display  vs  a rules directive
-65  a multi-value display  vs  a styled block
-65  a multi-value display  vs  a styled span
-65  a multi-value display  vs  a typed block
-65  a multi-value display  vs  a whitespace directive
-65  a parameters directive  vs  a CamelCase link
-65  a parameters directive  vs  a parsermode directive
-65  a parameters directive  vs  a quote block
-65  a parameters directive  vs  a styled block
-65  a parameters directive  vs  a styled span
-65  a parameters directive  vs  a suppressed link
-65  a parameters directive  vs  a system link
-65  a parameters directive  vs  a table row
-65  a parameters directive  vs  a transclusion
-65  a parameters directive  vs  a typed block
-65  a parameters directive  vs  a whitespace directive
-65  a parameters directive  vs  a wikilink
-65  a parameters directive  vs  prose
-65  a parameters directive  vs  strikethrough
-65  a parameters directive  vs  subscript
-65  a parameters directive  vs  superscript
-65  a parameters directive  vs  underline
-65  a parsermode directive  vs  a CamelCase link
-65  a parsermode directive  vs  a captioned external link
-65  a parsermode directive  vs  a quote block
-65  a parsermode directive  vs  a suppressed link
-65  a parsermode directive  vs  a system link
-65  a parsermode directive  vs  a table row
-65  a parsermode directive  vs  a transclusion
-65  a parsermode directive  vs  a typed block
-65  a parsermode directive  vs  prose
-65  a parsermode directive  vs  strikethrough
-65  a parsermode directive  vs  subscript
-65  a parsermode directive  vs  superscript
-65  a parsermode directive  vs  underline
-65  a procedure definition  vs  a CamelCase link
-65  a procedure definition  vs  a call
-65  a procedure definition  vs  a captioned external link
-65  a procedure definition  vs  a hard-linebreak run
-65  a procedure definition  vs  a heading
-65  a procedure definition  vs  a horizontal rule
-65  a procedure definition  vs  a list item
-65  a procedure definition  vs  a multi-value display
-65  a procedure definition  vs  a parameters directive
-65  a procedure definition  vs  a quote block
-65  a procedure definition  vs  a suppressed link
-65  a procedure definition  vs  a system link
-65  a procedure definition  vs  a table row
-65  a procedure definition  vs  a transclusion
-65  a procedure definition  vs  a typed block
-65  a procedure definition  vs  a widget
-65  a procedure definition  vs  a wikilink
-65  a procedure definition  vs  an import directive
-65  a procedure definition  vs  italic
-65  a procedure definition  vs  prose
-65  a procedure definition  vs  strikethrough
-65  a procedure definition  vs  subscript
-65  a procedure definition  vs  superscript
-65  a procedure definition  vs  underline
-65  a quote block  vs  a rules directive
-65  a quote block  vs  a styled block
-65  a quote block  vs  a styled span
-65  a quote block  vs  a transclusion
-65  a quote block  vs  a typed block
-65  a quote block  vs  a whitespace directive
-65  a rules directive  vs  a CamelCase link
-65  a rules directive  vs  a suppressed link
-65  a rules directive  vs  a system link
-65  a rules directive  vs  a table row
-65  a rules directive  vs  a transclusion
-65  a rules directive  vs  a typed block
-65  a rules directive  vs  prose
-65  a rules directive  vs  strikethrough
-65  a rules directive  vs  subscript
-65  a rules directive  vs  superscript
-65  a rules directive  vs  underline
-65  a styled block  vs  a CamelCase link
-65  a styled block  vs  a suppressed link
-65  a styled block  vs  a system link
-65  a styled block  vs  a table row
-65  a styled block  vs  a transclusion
-65  a styled block  vs  prose
-65  a styled block  vs  subscript
-65  a styled block  vs  superscript
-65  a styled block  vs  underline
-65  a styled span  vs  a CamelCase link
-65  a styled span  vs  a suppressed link
-65  a styled span  vs  a system link
-65  a styled span  vs  a table row
-65  a styled span  vs  a transclusion
-65  a styled span  vs  prose
-65  a styled span  vs  subscript
-65  a styled span  vs  superscript
-65  a styled span  vs  underline
-65  a system link  vs  a transclusion
-65  a system link  vs  a typed block
-65  a system link  vs  a whitespace directive
-65  a table row  vs  a transclusion
-65  a table row  vs  a typed block
-65  a table row  vs  a whitespace directive
-65  a transclusion  vs  a CamelCase link
-65  a transclusion  vs  a suppressed link
-65  a transclusion  vs  a typed block
-65  a transclusion  vs  a whitespace directive
-65  a transclusion  vs  prose
-65  a transclusion  vs  underline
-65  a typed block  vs  a CamelCase link
-65  a typed block  vs  a suppressed link
-65  a typed block  vs  a whitespace directive
-65  a typed block  vs  prose
-65  a typed block  vs  underline
-65  a whitespace directive  vs  a CamelCase link
-65  a whitespace directive  vs  a suppressed link
-65  a whitespace directive  vs  prose
-65  a widget  vs  a CamelCase link
-61  a widget  vs  a call
-65  a widget  vs  a captioned external link
-65  a widget  vs  a list item
-65  a widget  vs  a macro definition
-65  a widget  vs  a multi-value display
-65  a widget  vs  a parameters directive
-65  a widget  vs  a parsermode directive
-65  a widget  vs  a quote block
-65  a widget  vs  a rules directive
-65  a widget  vs  a styled block
-65  a widget  vs  a styled span
-65  a widget  vs  a suppressed link
-65  a widget  vs  a system link
-65  a widget  vs  a table row
-65  a widget  vs  a transclusion
-65  a widget  vs  a whitespace directive
-65  a widget  vs  a wikilink
-65  a widget  vs  an image
-65  a widget  vs  an import directive
-65  a widget  vs  italic
-65  a widget  vs  prose
-65  a widget  vs  strikethrough
-65  a widget  vs  subscript
-65  a widget  vs  superscript
-65  a widget  vs  underline
-65  a wikilink  vs  a CamelCase link
-65  a wikilink  vs  a quote block
-65  a wikilink  vs  a rules directive
-65  a wikilink  vs  a styled block
-65  a wikilink  vs  a styled span
-65  a wikilink  vs  a suppressed link
-65  a wikilink  vs  a table row
-65  a wikilink  vs  a typed block
-65  a wikilink  vs  prose
-65  a wikilink  vs  subscript
-65  a wikilink  vs  superscript
-65  an entity  vs  a call
-65  an entity  vs  a captioned external link
-65  an entity  vs  a filter run
-65  an entity  vs  a macro definition
-65  an entity  vs  a parameters directive
-65  an entity  vs  a parsermode directive
-65  an entity  vs  a procedure definition
-65  an entity  vs  a rules directive
-65  an entity  vs  a styled block
-65  an entity  vs  a styled span
-65  an entity  vs  a transclusion
-65  an entity  vs  a typed block
-65  an entity  vs  a whitespace directive
-65  an entity  vs  a widget
-65  an entity  vs  an image
-65  an entity  vs  an import directive
-65  an image  vs  a CamelCase link
-65  an image  vs  a list item
-65  an image  vs  a multi-value display
-65  an image  vs  a quote block
-65  an image  vs  a suppressed link
-65  an image  vs  a system link
-65  an image  vs  a table row
-65  an image  vs  a transclusion
-65  an image  vs  a typed block
-65  an image  vs  an import directive
-65  an image  vs  prose
-65  an image  vs  strikethrough
-65  an image  vs  subscript
-65  an image  vs  superscript
-65  an image  vs  underline
-65  an import directive  vs  a CamelCase link
-65  an import directive  vs  a list item
-65  an import directive  vs  a macro definition
-65  an import directive  vs  a multi-value display
-65  an import directive  vs  a quote block
-65  an import directive  vs  a styled block
-65  an import directive  vs  a styled span
-65  an import directive  vs  a suppressed link
-65  an import directive  vs  a system link
-65  an import directive  vs  a table row
-65  an import directive  vs  a transclusion
-65  an import directive  vs  a typed block
-65  an import directive  vs  a wikilink
-65  an import directive  vs  italic
-65  an import directive  vs  prose
-65  an import directive  vs  strikethrough
-65  an import directive  vs  subscript
-65  an import directive  vs  superscript
-65  an import directive  vs  underline
-65  bold  vs  a bare external link
-65  bold  vs  a call
-65  bold  vs  a captioned external link
-65  bold  vs  a conditional
-65  bold  vs  a filter run
-65  bold  vs  a macro definition
-65  bold  vs  a parameters directive
-65  bold  vs  a parsermode directive
-65  bold  vs  a procedure definition
-65  bold  vs  a rules directive
-65  bold  vs  a styled block
-65  bold  vs  a styled span
-65  bold  vs  a typed block
-65  bold  vs  a whitespace directive
-65  bold  vs  a widget
-65  bold  vs  an image
-65  bold  vs  an import directive
-65  italic  vs  a call
-65  italic  vs  a captioned external link
-65  italic  vs  a macro definition
-65  italic  vs  a parameters directive
-65  italic  vs  a rules directive
-65  italic  vs  a styled block
-65  italic  vs  a styled span
-65  italic  vs  a transclusion
-65  italic  vs  a typed block
-65  italic  vs  a wikilink
-65  strikethrough  vs  a styled block
-65  strikethrough  vs  a styled span
-65  strikethrough  vs  a transclusion
-65  strikethrough  vs  a typed block
-65  strikethrough  vs  a whitespace directive
-65  subscript  vs  a transclusion
-65  subscript  vs  a typed block
-65  subscript  vs  a whitespace directive
-65  superscript  vs  a transclusion
-65  superscript  vs  a typed block
-65  superscript  vs  a whitespace directive
-65  underline  vs  a whitespace directive
-64  a bare external link  vs  a list item
-64  a bare external link  vs  a table row
-64  a code block  vs  a dash
-64  a code block  vs  a filter run
-64  a code block  vs  a styled block
-64  a code block  vs  a styled span
-64  a code block  vs  an import directive
-64  a code span  vs  a comment
-64  a code span  vs  a dash
-64  a comment  vs  a CamelCase link
-64  a comment  vs  a dash
-64  a comment  vs  a hard-linebreak run
-64  a comment  vs  a horizontal rule
-64  a comment  vs  a list item
-64  a comment  vs  a multi-value display
-64  a comment  vs  a suppressed link
-64  a comment  vs  a table row
-64  a comment  vs  an entity
-64  a comment  vs  italic
-64  a comment  vs  prose
-64  a comment  vs  strikethrough
-64  a comment  vs  subscript
-64  a comment  vs  superscript
-64  a comment  vs  underline
-64  a conditional  vs  a typed block
-64  a dash  vs  a filter run
-64  a dash  vs  a table row
-64  a filter run  vs  a multi-value display
-64  a filter run  vs  a parsermode directive
-64  a filter run  vs  a styled block
-64  a filter run  vs  a styled span
-64  a filter run  vs  a whitespace directive
-64  a multi-value display  vs  a wikilink
-64  a parameters directive  vs  a rules directive
-64  a styled block  vs  a typed block
-64  a styled span  vs  a typed block
-64  an entity  vs  a bare external link
-64  bold  vs  a comment
-64  bold  vs  a transclusion
-64  bold  vs  a wikilink
-63  a call  vs  a captioned external link
-63  a code block  vs  a horizontal rule
-63  a dash  vs  a quote block
-63  a dash  vs  a styled block
-63  a dash  vs  a styled span
-63  a filter run  vs  a parameters directive
-63  a filter run  vs  a table row
-63  a filter run  vs  a transclusion
-63  a heading  vs  a CamelCase link
-63  a heading  vs  a horizontal rule
-63  a heading  vs  a system link
-63  a heading  vs  italic
-63  a heading  vs  prose
-63  a list item  vs  a wikilink
-63  a parameters directive  vs  a captioned external link
-63  a parsermode directive  vs  a wikilink
-63  a rules directive  vs  a styled block
-63  a rules directive  vs  a styled span
-63  a widget  vs  a typed block
-63  a wikilink  vs  a whitespace directive
-63  an image  vs  a call
-63  an image  vs  a captioned external link
-63  an image  vs  a parameters directive
-63  an image  vs  a rules directive
-63  an image  vs  italic
-60  an import directive  vs  a call
-63  bold  vs  a heading
-63  italic  vs  a parsermode directive
-63  italic  vs  a whitespace directive
-62  a captioned external link  vs  a wikilink
-62  a code block  vs  a parsermode directive
-62  a code block  vs  a whitespace directive
-62  a code block  vs  an image
-62  a dash  vs  a hard-linebreak run
-62  a dash  vs  a heading
-62  a dash  vs  a suppressed link
-62  a dash  vs  a transclusion
-62  a dash  vs  a wikilink
-62  a dash  vs  an entity
-62  a dash  vs  italic
-62  a dash  vs  strikethrough
-62  a dash  vs  subscript
-62  a dash  vs  superscript
-62  a dash  vs  underline
-62  a filter run  vs  a call
-62  a horizontal rule  vs  italic
-62  a macro definition  vs  a styled block
-62  a macro definition  vs  a styled span
-62  a procedure definition  vs  a styled block
-62  a procedure definition  vs  a styled span
-62  a procedure definition  vs  an image
-62  an entity  vs  a system link
-62  an entity  vs  italic
-62  an entity  vs  prose
-62  an image  vs  a macro definition
-62  an image  vs  a styled block
-62  an image  vs  a styled span
-62  an image  vs  a wikilink
-62  an import directive  vs  a rules directive
-62  bold  vs  a CamelCase link
-62  bold  vs  a code block
-62  bold  vs  a horizontal rule
-62  bold  vs  a multi-value display
-62  bold  vs  a system link
-62  bold  vs  an entity
-62  bold  vs  prose
-62  italic  vs  a CamelCase link
-62  italic  vs  prose
-61  a bare external link  vs  a wikilink
-61  a dash  vs  a multi-value display
-61  a heading  vs  a quote block
-61  a heading  vs  strikethrough
-61  a horizontal rule  vs  strikethrough
-61  a multi-value display  vs  a quote block
-61  a multi-value display  vs  a system link
-61  a parsermode directive  vs  a styled block
-61  a parsermode directive  vs  a styled span
-61  a styled block  vs  a whitespace directive
-61  a styled span  vs  a whitespace directive
-61  a wikilink  vs  a system link
-61  an entity  vs  a multi-value display
-61  an entity  vs  a table row
-61  an import directive  vs  a parameters directive
-61  bold  vs  a code span
-61  bold  vs  a table row
-61  italic  vs  a multi-value display
-61  italic  vs  a system link
-60  a code block  vs  an entity
-60  a code span  vs  a bare external link
-60  a code span  vs  italic
-60  a dash  vs  a list item
-60  a dash  vs  a parsermode directive
-60  a dash  vs  a whitespace directive
-60  a macro definition  vs  a parsermode directive
-60  a macro definition  vs  a whitespace directive
-60  a multi-value display  vs  strikethrough
-60  a procedure definition  vs  a parsermode directive
-60  a procedure definition  vs  a whitespace directive
-60  a system link  vs  a CamelCase link
-60  an entity  vs  a CamelCase link
-60  bold  vs  a dash
-60  bold  vs  a quote block
-60  italic  vs  a table row
-59  a code block  vs  a heading
-59  a code block  vs  italic
-59  a code span  vs  a heading
-59  a conditional  vs  a captioned external link
-59  a heading  vs  a multi-value display
-59  a heading  vs  a table row
-59  a heading  vs  a transclusion
-59  a multi-value display  vs  a transclusion
-59  an entity  vs  a hard-linebreak run
-59  an entity  vs  a heading
-59  an entity  vs  a list item
-59  an entity  vs  a quote block
-59  an entity  vs  a wikilink
-59  an entity  vs  strikethrough
-59  an entity  vs  subscript
-59  an entity  vs  superscript
-59  an entity  vs  underline
-59  bold  vs  a hard-linebreak run
-59  bold  vs  a list item
-59  bold  vs  a suppressed link
-59  bold  vs  strikethrough
-59  bold  vs  subscript
-59  bold  vs  superscript
-59  bold  vs  underline
-59  italic  vs  a quote block
-58  a bare external link  vs  a horizontal rule
-58  a code block  vs  a multi-value display
-58  a conditional  vs  a filter run
-58  a conditional  vs  a macro definition
-58  a conditional  vs  a procedure definition
-58  a conditional  vs  a rules directive
-58  a hard-linebreak run  vs  italic
-58  a horizontal rule  vs  a quote block
-58  a horizontal rule  vs  underline
-58  a wikilink  vs  a transclusion
-58  an import directive  vs  a parsermode directive
-58  an import directive  vs  a whitespace directive
-58  italic  vs  a list item
-58  italic  vs  a suppressed link
-58  italic  vs  strikethrough
-58  italic  vs  subscript
-58  italic  vs  superscript
-58  italic  vs  underline
-58  strikethrough  vs  a CamelCase link
-57  a code block  vs  a quote block
-57  a code span  vs  a CamelCase link
-57  a code span  vs  an entity
-57  a conditional  vs  an import directive
-57  a hard-linebreak run  vs  a heading
-57  a heading  vs  a list item
-57  a heading  vs  a suppressed link
-57  a heading  vs  subscript
-57  a heading  vs  superscript
-57  a heading  vs  underline
-57  a system link  vs  prose
-57  a wikilink  vs  strikethrough
-57  an entity  vs  a suppressed link
-56  a code span  vs  a multi-value display
-56  a code span  vs  a system link
-56  a code span  vs  prose
-56  a horizontal rule  vs  a multi-value display
-56  a horizontal rule  vs  a system link
-56  a multi-value display  vs  a CamelCase link
-56  a multi-value display  vs  prose
-56  a parsermode directive  vs  a rules directive
-56  a quote block  vs  prose
-56  a rules directive  vs  a whitespace directive
-56  bold  vs  italic
-55  a code span  vs  a quote block
-55  a code span  vs  strikethrough
-55  a quote block  vs  a CamelCase link
-55  a quote block  vs  a system link
-55  a wikilink  vs  underline
-55  an image  vs  a parsermode directive
-55  an image  vs  a whitespace directive
-55  strikethrough  vs  prose
-54  a code block  vs  a system link
-54  a code block  vs  strikethrough
-54  a horizontal rule  vs  a list item
-54  a multi-value display  vs  underline
-54  underline  vs  a CamelCase link
-53  a filter run  vs  a captioned external link
-53  a horizontal rule  vs  a table row
-53  a multi-value display  vs  a table row
-53  a quote block  vs  strikethrough
-53  a quote block  vs  underline
-53  an entity  vs  a horizontal rule
-53  an import directive  vs  a captioned external link
-52  a call  vs  a parameters directive
-52  a list item  vs  a system link
-51  a code span  vs  underline
-51  a list item  vs  a multi-value display
-51  underline  vs  prose
-50  a code block  vs  a table row
-50  a code block  vs  underline
-50  a code span  vs  a horizontal rule
-50  a dash  vs  a CamelCase link
-50  a dash  vs  a horizontal rule
-50  a dash  vs  prose
-50  strikethrough  vs  a system link
-49  a hard-linebreak run  vs  a multi-value display
-49  a list item  vs  strikethrough
-49  a multi-value display  vs  a suppressed link
-49  a multi-value display  vs  subscript
-49  a multi-value display  vs  superscript
-49  a system link  vs  a suppressed link
-48  a code block  vs  a hard-linebreak run
-48  a code block  vs  a list item
-48  a code block  vs  a suppressed link
-48  a code block  vs  subscript
-48  a code block  vs  superscript
-48  strikethrough  vs  a table row
-47  strikethrough  vs  a suppressed link
-46  a hard-linebreak run  vs  a horizontal rule
-46  a hard-linebreak run  vs  a system link
-46  a horizontal rule  vs  subscript
-46  a horizontal rule  vs  superscript
-46  a system link  vs  a table row
-46  a system link  vs  underline
-46  subscript  vs  a system link
-46  superscript  vs  a system link
-45  a code span  vs  a table row
-45  a horizontal rule  vs  a suppressed link
-45  a list item  vs  underline
-45  a macro definition  vs  a rules directive
-45  a procedure definition  vs  a rules directive
-45  a quote block  vs  a table row
-44  a hard-linebreak run  vs  strikethrough
-44  strikethrough  vs  subscript
-44  strikethrough  vs  superscript
-43  a list item  vs  a CamelCase link
-43  a list item  vs  a quote block
-42  a code block  vs  a code span
-42  a code span  vs  a list item
-42  a hard-linebreak run  vs  a quote block
-42  a list item  vs  prose
-42  a quote block  vs  subscript
-42  a quote block  vs  superscript
-41  a quote block  vs  a suppressed link
-41  a table row  vs  a CamelCase link
-40  a table row  vs  underline
-39  a code span  vs  a suppressed link
-39  underline  vs  a suppressed link
-38  a code span  vs  a hard-linebreak run
-38  a code span  vs  subscript
-38  a code span  vs  superscript
-38  a table row  vs  prose
-36  a bare external link  vs  a system link
-36  a hard-linebreak run  vs  underline
-36  subscript  vs  underline
-36  superscript  vs  underline
-34  a filter run  vs  an import directive
-32  a hard-linebreak run  vs  a CamelCase link
-32  a suppressed link  vs  prose
-32  subscript  vs  a CamelCase link
-32  superscript  vs  a CamelCase link
-31  a horizontal rule  vs  prose
-30  a horizontal rule  vs  a CamelCase link
-29  a hard-linebreak run  vs  prose
-29  subscript  vs  prose
-29  superscript  vs  prose
-28  a CamelCase link  vs  a suppressed link
-19  a list item  vs  a table row
-17  strikethrough  vs  underline
-15  a list item  vs  a suppressed link
-15  a table row  vs  a suppressed link
-13  a hard-linebreak run  vs  a list item
-13  a list item  vs  subscript
-13  a list item  vs  superscript
-11  a hard-linebreak run  vs  a table row
-11  subscript  vs  a table row
-11  superscript  vs  a table row
-4  a CamelCase link  vs  prose
-4  a hard-linebreak run  vs  a suppressed link
-4  subscript  vs  a suppressed link
-4  superscript  vs  a suppressed link
-0  a hard-linebreak run  vs  subscript
-0  a hard-linebreak run  vs  superscript
-0  a parsermode directive  vs  a whitespace directive
-0  a procedure definition  vs  a macro definition
-0  a styled block  vs  a styled span
-0  subscript  vs  superscript
+65 a bare external link  vs  a CamelCase link
+65 a bare external link  vs  a call
+65 a bare external link  vs  a captioned external link
+65 a bare external link  vs  a filter run
+65 a bare external link  vs  a hard-linebreak run
+65 a bare external link  vs  a heading
+65 a bare external link  vs  a macro definition
+65 a bare external link  vs  a multi-value display
+65 a bare external link  vs  a parameters directive
+65 a bare external link  vs  a parsermode directive
+65 a bare external link  vs  a procedure definition
+65 a bare external link  vs  a quote block
+65 a bare external link  vs  a rules directive
+65 a bare external link  vs  a styled block
+65 a bare external link  vs  a styled span
+65 a bare external link  vs  a suppressed link
+65 a bare external link  vs  a table row
+65 a bare external link  vs  a transclusion
+65 a bare external link  vs  a typed block
+65 a bare external link  vs  a whitespace directive
+65 a bare external link  vs  a widget
+65 a bare external link  vs  an image
+65 a bare external link  vs  an import directive
+65 a bare external link  vs  italic
+65 a bare external link  vs  prose
+65 a bare external link  vs  strikethrough
+65 a bare external link  vs  subscript
+65 a bare external link  vs  superscript
+65 a bare external link  vs  underline
+65 a call  vs  a CamelCase link
+65 a call  vs  a captioned external link
+65 a call  vs  a macro definition
+65 a call  vs  a multi-value display
+65 a call  vs  a parsermode directive
+65 a call  vs  a quote block
+65 a call  vs  a rules directive
+65 a call  vs  a suppressed link
+65 a call  vs  a system link
+65 a call  vs  a table row
+65 a call  vs  a transclusion
+65 a call  vs  a whitespace directive
+65 a call  vs  a wikilink
+65 a call  vs  prose
+65 a call  vs  strikethrough
+65 a call  vs  subscript
+65 a call  vs  superscript
+65 a call  vs  underline
+65 a captioned external link  vs  a CamelCase link
+65 a captioned external link  vs  a quote block
+65 a captioned external link  vs  a rules directive
+65 a captioned external link  vs  a styled block
+65 a captioned external link  vs  a styled span
+65 a captioned external link  vs  a suppressed link
+65 a captioned external link  vs  a system link
+65 a captioned external link  vs  a table row
+65 a captioned external link  vs  a transclusion
+65 a captioned external link  vs  a typed block
+65 a captioned external link  vs  a whitespace directive
+65 a captioned external link  vs  a wikilink
+65 a captioned external link  vs  prose
+65 a captioned external link  vs  strikethrough
+65 a captioned external link  vs  subscript
+65 a captioned external link  vs  superscript
+65 a captioned external link  vs  underline
+65 a code block  vs  a bare external link
+65 a code block  vs  a call
+65 a code block  vs  a captioned external link
+65 a code block  vs  a comment
+65 a code block  vs  a conditional
+65 a code block  vs  a parameters directive
+65 a code block  vs  a styled block
+65 a code block  vs  a styled span
+65 a code block  vs  a transclusion
+65 a code block  vs  a typed block
+65 a code block  vs  a widget
+65 a code block  vs  a wikilink
+65 a code span  vs  a call
+65 a code span  vs  a captioned external link
+65 a code span  vs  a comment
+65 a code span  vs  a conditional
+65 a code span  vs  a filter run
+65 a code span  vs  a macro definition
+65 a code span  vs  a parameters directive
+65 a code span  vs  a parsermode directive
+65 a code span  vs  a procedure definition
+65 a code span  vs  a rules directive
+65 a code span  vs  a styled block
+65 a code span  vs  a styled span
+65 a code span  vs  a typed block
+65 a code span  vs  a whitespace directive
+65 a code span  vs  a widget
+65 a code span  vs  an image
+65 a code span  vs  an import directive
+65 a comment  vs  a CamelCase link
+65 a comment  vs  a bare external link
+65 a comment  vs  a call
+65 a comment  vs  a captioned external link
+65 a comment  vs  a conditional
+65 a comment  vs  a dash
+65 a comment  vs  a filter run
+65 a comment  vs  a hard-linebreak run
+65 a comment  vs  a heading
+65 a comment  vs  a horizontal rule
+65 a comment  vs  a list item
+65 a comment  vs  a macro definition
+65 a comment  vs  a multi-value display
+65 a comment  vs  a parameters directive
+65 a comment  vs  a parsermode directive
+65 a comment  vs  a procedure definition
+65 a comment  vs  a quote block
+65 a comment  vs  a rules directive
+65 a comment  vs  a styled block
+65 a comment  vs  a styled span
+65 a comment  vs  a suppressed link
+65 a comment  vs  a system link
+65 a comment  vs  a table row
+65 a comment  vs  a transclusion
+65 a comment  vs  a typed block
+65 a comment  vs  a whitespace directive
+65 a comment  vs  a widget
+65 a comment  vs  a wikilink
+65 a comment  vs  an entity
+65 a comment  vs  an image
+65 a comment  vs  an import directive
+65 a comment  vs  italic
+65 a comment  vs  prose
+65 a comment  vs  strikethrough
+65 a comment  vs  subscript
+65 a comment  vs  superscript
+65 a comment  vs  underline
+65 a conditional  vs  a CamelCase link
+65 a conditional  vs  a bare external link
+65 a conditional  vs  a dash
+65 a conditional  vs  a hard-linebreak run
+65 a conditional  vs  a heading
+65 a conditional  vs  a horizontal rule
+65 a conditional  vs  a list item
+65 a conditional  vs  a multi-value display
+65 a conditional  vs  a parsermode directive
+65 a conditional  vs  a quote block
+65 a conditional  vs  a suppressed link
+65 a conditional  vs  a system link
+65 a conditional  vs  a table row
+65 a conditional  vs  a transclusion
+65 a conditional  vs  a whitespace directive
+65 a conditional  vs  a widget
+65 a conditional  vs  a wikilink
+65 a conditional  vs  an entity
+65 a conditional  vs  an image
+65 a conditional  vs  italic
+65 a conditional  vs  prose
+65 a conditional  vs  strikethrough
+65 a conditional  vs  subscript
+65 a conditional  vs  superscript
+65 a conditional  vs  underline
+65 a dash  vs  a bare external link
+65 a dash  vs  a call
+65 a dash  vs  a captioned external link
+65 a dash  vs  a macro definition
+65 a dash  vs  a parameters directive
+65 a dash  vs  a procedure definition
+65 a dash  vs  a rules directive
+65 a dash  vs  a typed block
+65 a dash  vs  a widget
+65 a dash  vs  an image
+65 a dash  vs  an import directive
+65 a filter run  vs  a heading
+65 a filter run  vs  a horizontal rule
+65 a filter run  vs  a list item
+65 a filter run  vs  a macro definition
+65 a filter run  vs  a multi-value display
+65 a filter run  vs  a procedure definition
+65 a filter run  vs  a quote block
+65 a filter run  vs  a rules directive
+65 a filter run  vs  a system link
+65 a filter run  vs  a typed block
+65 a filter run  vs  a widget
+65 a filter run  vs  an image
+65 a filter run  vs  italic
+65 a hard-linebreak run  vs  a call
+65 a hard-linebreak run  vs  a captioned external link
+65 a hard-linebreak run  vs  a macro definition
+65 a hard-linebreak run  vs  a parameters directive
+65 a hard-linebreak run  vs  a parsermode directive
+65 a hard-linebreak run  vs  a rules directive
+65 a hard-linebreak run  vs  a styled block
+65 a hard-linebreak run  vs  a styled span
+65 a hard-linebreak run  vs  a transclusion
+65 a hard-linebreak run  vs  a typed block
+65 a hard-linebreak run  vs  a whitespace directive
+65 a hard-linebreak run  vs  a widget
+65 a hard-linebreak run  vs  a wikilink
+65 a hard-linebreak run  vs  an image
+65 a hard-linebreak run  vs  an import directive
+65 a heading  vs  a call
+65 a heading  vs  a captioned external link
+65 a heading  vs  a macro definition
+65 a heading  vs  a parameters directive
+65 a heading  vs  a parsermode directive
+65 a heading  vs  a rules directive
+65 a heading  vs  a styled block
+65 a heading  vs  a styled span
+65 a heading  vs  a typed block
+65 a heading  vs  a whitespace directive
+65 a heading  vs  a widget
+65 a heading  vs  a wikilink
+65 a heading  vs  an image
+65 a heading  vs  an import directive
+65 a horizontal rule  vs  a call
+65 a horizontal rule  vs  a captioned external link
+65 a horizontal rule  vs  a macro definition
+65 a horizontal rule  vs  a parameters directive
+65 a horizontal rule  vs  a parsermode directive
+65 a horizontal rule  vs  a rules directive
+65 a horizontal rule  vs  a styled block
+65 a horizontal rule  vs  a styled span
+65 a horizontal rule  vs  a transclusion
+65 a horizontal rule  vs  a typed block
+65 a horizontal rule  vs  a whitespace directive
+65 a horizontal rule  vs  a widget
+65 a horizontal rule  vs  a wikilink
+65 a horizontal rule  vs  an image
+65 a horizontal rule  vs  an import directive
+65 a list item  vs  a call
+65 a list item  vs  a captioned external link
+65 a list item  vs  a macro definition
+65 a list item  vs  a parameters directive
+65 a list item  vs  a parsermode directive
+65 a list item  vs  a rules directive
+65 a list item  vs  a styled block
+65 a list item  vs  a styled span
+65 a list item  vs  a transclusion
+65 a list item  vs  a typed block
+65 a list item  vs  a whitespace directive
+65 a macro definition  vs  a CamelCase link
+65 a macro definition  vs  a captioned external link
+65 a macro definition  vs  a multi-value display
+65 a macro definition  vs  a parameters directive
+65 a macro definition  vs  a quote block
+65 a macro definition  vs  a suppressed link
+65 a macro definition  vs  a system link
+65 a macro definition  vs  a table row
+65 a macro definition  vs  a transclusion
+65 a macro definition  vs  a wikilink
+65 a macro definition  vs  prose
+65 a macro definition  vs  strikethrough
+65 a macro definition  vs  subscript
+65 a macro definition  vs  superscript
+65 a macro definition  vs  underline
+65 a multi-value display  vs  a captioned external link
+65 a multi-value display  vs  a parameters directive
+65 a multi-value display  vs  a parsermode directive
+65 a multi-value display  vs  a rules directive
+65 a multi-value display  vs  a styled block
+65 a multi-value display  vs  a styled span
+65 a multi-value display  vs  a typed block
+65 a multi-value display  vs  a whitespace directive
+65 a parameters directive  vs  a CamelCase link
+65 a parameters directive  vs  a parsermode directive
+65 a parameters directive  vs  a quote block
+65 a parameters directive  vs  a rules directive
+65 a parameters directive  vs  a styled block
+65 a parameters directive  vs  a styled span
+65 a parameters directive  vs  a suppressed link
+65 a parameters directive  vs  a system link
+65 a parameters directive  vs  a table row
+65 a parameters directive  vs  a transclusion
+65 a parameters directive  vs  a typed block
+65 a parameters directive  vs  a whitespace directive
+65 a parameters directive  vs  a wikilink
+65 a parameters directive  vs  prose
+65 a parameters directive  vs  strikethrough
+65 a parameters directive  vs  subscript
+65 a parameters directive  vs  superscript
+65 a parameters directive  vs  underline
+65 a parsermode directive  vs  a CamelCase link
+65 a parsermode directive  vs  a captioned external link
+65 a parsermode directive  vs  a quote block
+65 a parsermode directive  vs  a suppressed link
+65 a parsermode directive  vs  a system link
+65 a parsermode directive  vs  a table row
+65 a parsermode directive  vs  a wikilink
+65 a parsermode directive  vs  prose
+65 a parsermode directive  vs  strikethrough
+65 a parsermode directive  vs  subscript
+65 a parsermode directive  vs  superscript
+65 a parsermode directive  vs  underline
+65 a procedure definition  vs  a CamelCase link
+65 a procedure definition  vs  a call
+65 a procedure definition  vs  a captioned external link
+65 a procedure definition  vs  a hard-linebreak run
+65 a procedure definition  vs  a heading
+65 a procedure definition  vs  a horizontal rule
+65 a procedure definition  vs  a list item
+65 a procedure definition  vs  a multi-value display
+65 a procedure definition  vs  a parameters directive
+65 a procedure definition  vs  a quote block
+65 a procedure definition  vs  a suppressed link
+65 a procedure definition  vs  a system link
+65 a procedure definition  vs  a table row
+65 a procedure definition  vs  a transclusion
+65 a procedure definition  vs  a widget
+65 a procedure definition  vs  a wikilink
+65 a procedure definition  vs  an import directive
+65 a procedure definition  vs  prose
+65 a procedure definition  vs  strikethrough
+65 a procedure definition  vs  subscript
+65 a procedure definition  vs  superscript
+65 a procedure definition  vs  underline
+65 a quote block  vs  a rules directive
+65 a quote block  vs  a styled block
+65 a quote block  vs  a styled span
+65 a quote block  vs  a transclusion
+65 a quote block  vs  a typed block
+65 a quote block  vs  a whitespace directive
+65 a rules directive  vs  a CamelCase link
+65 a rules directive  vs  a suppressed link
+65 a rules directive  vs  a system link
+65 a rules directive  vs  a table row
+65 a rules directive  vs  a transclusion
+65 a rules directive  vs  prose
+65 a rules directive  vs  strikethrough
+65 a rules directive  vs  subscript
+65 a rules directive  vs  superscript
+65 a rules directive  vs  underline
+65 a styled block  vs  a CamelCase link
+65 a styled block  vs  a suppressed link
+65 a styled block  vs  a system link
+65 a styled block  vs  a table row
+65 a styled block  vs  prose
+65 a styled block  vs  subscript
+65 a styled block  vs  superscript
+65 a styled block  vs  underline
+65 a styled span  vs  a CamelCase link
+65 a styled span  vs  a suppressed link
+65 a styled span  vs  a system link
+65 a styled span  vs  a table row
+65 a styled span  vs  prose
+65 a styled span  vs  subscript
+65 a styled span  vs  superscript
+65 a styled span  vs  underline
+65 a system link  vs  a transclusion
+65 a system link  vs  a typed block
+65 a system link  vs  a whitespace directive
+65 a table row  vs  a transclusion
+65 a table row  vs  a typed block
+65 a table row  vs  a whitespace directive
+65 a transclusion  vs  a CamelCase link
+65 a transclusion  vs  a typed block
+65 a transclusion  vs  prose
+65 a transclusion  vs  underline
+65 a typed block  vs  a CamelCase link
+65 a typed block  vs  a suppressed link
+65 a typed block  vs  prose
+65 a typed block  vs  underline
+65 a whitespace directive  vs  a CamelCase link
+65 a whitespace directive  vs  a suppressed link
+65 a whitespace directive  vs  prose
+65 a widget  vs  a CamelCase link
+65 a widget  vs  a captioned external link
+65 a widget  vs  a list item
+65 a widget  vs  a macro definition
+65 a widget  vs  a multi-value display
+65 a widget  vs  a parameters directive
+65 a widget  vs  a parsermode directive
+65 a widget  vs  a quote block
+65 a widget  vs  a rules directive
+65 a widget  vs  a styled block
+65 a widget  vs  a styled span
+65 a widget  vs  a suppressed link
+65 a widget  vs  a system link
+65 a widget  vs  a table row
+65 a widget  vs  a transclusion
+65 a widget  vs  a whitespace directive
+65 a widget  vs  a wikilink
+65 a widget  vs  an image
+65 a widget  vs  an import directive
+65 a widget  vs  italic
+65 a widget  vs  prose
+65 a widget  vs  strikethrough
+65 a widget  vs  subscript
+65 a widget  vs  superscript
+65 a widget  vs  underline
+65 a wikilink  vs  a CamelCase link
+65 a wikilink  vs  a quote block
+65 a wikilink  vs  a rules directive
+65 a wikilink  vs  a suppressed link
+65 a wikilink  vs  a system link
+65 a wikilink  vs  a table row
+65 a wikilink  vs  a typed block
+65 a wikilink  vs  a whitespace directive
+65 a wikilink  vs  prose
+65 a wikilink  vs  subscript
+65 a wikilink  vs  superscript
+65 an entity  vs  a bare external link
+65 an entity  vs  a call
+65 an entity  vs  a captioned external link
+65 an entity  vs  a filter run
+65 an entity  vs  a macro definition
+65 an entity  vs  a parameters directive
+65 an entity  vs  a parsermode directive
+65 an entity  vs  a procedure definition
+65 an entity  vs  a rules directive
+65 an entity  vs  a styled block
+65 an entity  vs  a styled span
+65 an entity  vs  a transclusion
+65 an entity  vs  a typed block
+65 an entity  vs  a whitespace directive
+65 an entity  vs  a widget
+65 an entity  vs  a wikilink
+65 an entity  vs  an image
+65 an entity  vs  an import directive
+65 an image  vs  a CamelCase link
+65 an image  vs  a call
+65 an image  vs  a list item
+65 an image  vs  a multi-value display
+65 an image  vs  a quote block
+65 an image  vs  a suppressed link
+65 an image  vs  a system link
+65 an image  vs  a table row
+65 an image  vs  a transclusion
+65 an image  vs  a typed block
+65 an image  vs  a wikilink
+65 an image  vs  an import directive
+65 an image  vs  prose
+65 an image  vs  strikethrough
+65 an image  vs  subscript
+65 an image  vs  superscript
+65 an image  vs  underline
+65 an import directive  vs  a CamelCase link
+65 an import directive  vs  a list item
+65 an import directive  vs  a macro definition
+65 an import directive  vs  a multi-value display
+65 an import directive  vs  a quote block
+65 an import directive  vs  a rules directive
+65 an import directive  vs  a styled block
+65 an import directive  vs  a styled span
+65 an import directive  vs  a suppressed link
+65 an import directive  vs  a system link
+65 an import directive  vs  a table row
+65 an import directive  vs  a transclusion
+65 an import directive  vs  a typed block
+65 an import directive  vs  a wikilink
+65 an import directive  vs  italic
+65 an import directive  vs  prose
+65 an import directive  vs  strikethrough
+65 an import directive  vs  subscript
+65 an import directive  vs  superscript
+65 an import directive  vs  underline
+65 bold  vs  a bare external link
+65 bold  vs  a call
+65 bold  vs  a captioned external link
+65 bold  vs  a comment
+65 bold  vs  a conditional
+65 bold  vs  a macro definition
+65 bold  vs  a parameters directive
+65 bold  vs  a parsermode directive
+65 bold  vs  a procedure definition
+65 bold  vs  a rules directive
+65 bold  vs  a typed block
+65 bold  vs  a whitespace directive
+65 bold  vs  a widget
+65 bold  vs  an image
+65 bold  vs  an import directive
+65 italic  vs  a call
+65 italic  vs  a captioned external link
+65 italic  vs  a parameters directive
+65 italic  vs  a rules directive
+65 italic  vs  a styled block
+65 italic  vs  a styled span
+65 italic  vs  a transclusion
+65 italic  vs  a typed block
+65 italic  vs  a wikilink
+65 strikethrough  vs  a styled block
+65 strikethrough  vs  a styled span
+65 strikethrough  vs  a transclusion
+65 strikethrough  vs  a typed block
+65 strikethrough  vs  a whitespace directive
+65 subscript  vs  a transclusion
+65 subscript  vs  a typed block
+65 subscript  vs  a whitespace directive
+65 superscript  vs  a transclusion
+65 superscript  vs  a typed block
+65 superscript  vs  a whitespace directive
+65 underline  vs  a whitespace directive
+64 a bare external link  vs  a horizontal rule
+64 a bare external link  vs  a list item
+64 a call  vs  a styled block
+64 a call  vs  a styled span
+64 a code block  vs  a filter run
+64 a code block  vs  a macro definition
+64 a code block  vs  a procedure definition
+64 a code block  vs  an import directive
+64 a code span  vs  a transclusion
+64 a code span  vs  a wikilink
+64 a conditional  vs  a call
+64 a conditional  vs  a styled block
+64 a conditional  vs  a styled span
+64 a conditional  vs  a typed block
+64 a dash  vs  a filter run
+64 a filter run  vs  a parsermode directive
+64 a filter run  vs  a styled block
+64 a filter run  vs  a styled span
+64 a filter run  vs  a whitespace directive
+64 a filter run  vs  a wikilink
+64 a macro definition  vs  a typed block
+64 a multi-value display  vs  a wikilink
+64 a parsermode directive  vs  a transclusion
+64 a procedure definition  vs  a typed block
+64 a procedure definition  vs  italic
+64 a transclusion  vs  a suppressed link
+64 a transclusion  vs  a whitespace directive
+64 a wikilink  vs  a styled block
+64 a wikilink  vs  a styled span
+64 an image  vs  a captioned external link
+64 bold  vs  a filter run
+64 bold  vs  a transclusion
+64 bold  vs  a wikilink
+64 italic  vs  a macro definition
+63 a code block  vs  a dash
+63 a code block  vs  a rules directive
+63 a code span  vs  a dash
+63 a dash  vs  a system link
+63 a dash  vs  italic
+63 a filter run  vs  a CamelCase link
+63 a filter run  vs  a call
+63 a filter run  vs  a hard-linebreak run
+63 a filter run  vs  a suppressed link
+63 a filter run  vs  a table row
+63 a filter run  vs  prose
+63 a filter run  vs  strikethrough
+63 a filter run  vs  subscript
+63 a filter run  vs  superscript
+63 a filter run  vs  underline
+63 a heading  vs  a system link
+63 a heading  vs  italic
+63 a horizontal rule  vs  italic
+63 a list item  vs  a wikilink
+63 a parameters directive  vs  a captioned external link
+63 a rules directive  vs  a styled block
+63 a rules directive  vs  a styled span
+63 a styled block  vs  a typed block
+63 a styled span  vs  a typed block
+63 an entity  vs  italic
+63 an image  vs  a parameters directive
+63 an image  vs  italic
+63 bold  vs  a heading
+63 bold  vs  a horizontal rule
+63 bold  vs  a multi-value display
+63 bold  vs  a styled block
+63 bold  vs  a styled span
+63 bold  vs  an entity
+63 italic  vs  a parsermode directive
+63 italic  vs  a whitespace directive
+62 a code block  vs  a horizontal rule
+62 a code block  vs  an entity
+62 a code block  vs  an image
+62 a conditional  vs  a parameters directive
+62 a dash  vs  a transclusion
+62 a parsermode directive  vs  a styled block
+62 a parsermode directive  vs  a styled span
+62 a parsermode directive  vs  a typed block
+62 a rules directive  vs  a typed block
+62 a styled block  vs  a transclusion
+62 a styled block  vs  a whitespace directive
+62 a styled span  vs  a transclusion
+62 a styled span  vs  a whitespace directive
+62 a typed block  vs  a whitespace directive
+62 a wikilink  vs  strikethrough
+62 a wikilink  vs  underline
+62 an entity  vs  a system link
+62 an image  vs  a styled block
+62 an image  vs  a styled span
+62 an import directive  vs  a parsermode directive
+62 an import directive  vs  a whitespace directive
+62 bold  vs  a CamelCase link
+62 bold  vs  a code block
+62 bold  vs  a system link
+62 bold  vs  prose
+62 italic  vs  a CamelCase link
+62 italic  vs  prose
+61 a bare external link  vs  a system link
+61 a bare external link  vs  a wikilink
+61 a call  vs  a parameters directive
+61 a call  vs  a typed block
+61 a code block  vs  a CamelCase link
+61 a code block  vs  prose
+61 a code span  vs  a bare external link
+61 a dash  vs  a hard-linebreak run
+61 a dash  vs  a heading
+61 a dash  vs  a quote block
+61 a dash  vs  a suppressed link
+61 a dash  vs  a table row
+61 a dash  vs  a wikilink
+61 a dash  vs  strikethrough
+61 a dash  vs  subscript
+61 a dash  vs  superscript
+61 a dash  vs  underline
+61 a filter run  vs  a parameters directive
+61 a heading  vs  a CamelCase link
+61 a heading  vs  a quote block
+61 a heading  vs  prose
+61 a heading  vs  strikethrough
+61 a macro definition  vs  a styled block
+61 a macro definition  vs  a styled span
+61 a procedure definition  vs  a styled block
+61 a procedure definition  vs  a styled span
+61 an image  vs  a rules directive
+61 an import directive  vs  a call
+61 bold  vs  a code span
+61 bold  vs  a dash
+61 italic  vs  a multi-value display
+61 italic  vs  a system link
+60 a code span  vs  italic
+60 a dash  vs  a multi-value display
+60 a dash  vs  a parsermode directive
+60 a dash  vs  a styled block
+60 a dash  vs  a styled span
+60 a dash  vs  a whitespace directive
+60 a filter run  vs  a transclusion
+60 a heading  vs  a horizontal rule
+60 a horizontal rule  vs  a system link
+60 a horizontal rule  vs  strikethrough
+60 a procedure definition  vs  an image
+60 a widget  vs  a typed block
+60 an entity  vs  a hard-linebreak run
+60 an entity  vs  a list item
+60 an entity  vs  a multi-value display
+60 an entity  vs  a table row
+60 an entity  vs  strikethrough
+60 an entity  vs  subscript
+60 an entity  vs  superscript
+60 an entity  vs  underline
+60 an image  vs  a macro definition
+60 bold  vs  a quote block
+59 a code block  vs  a heading
+59 a code block  vs  a parsermode directive
+59 a code block  vs  a whitespace directive
+59 a code block  vs  italic
+59 a code span  vs  a heading
+59 a conditional  vs  a rules directive
+59 a dash  vs  a list item
+59 a heading  vs  a transclusion
+59 a multi-value display  vs  strikethrough
+59 an entity  vs  a heading
+59 an entity  vs  a quote block
+59 an entity  vs  a suppressed link
+59 bold  vs  a hard-linebreak run
+59 bold  vs  a list item
+59 bold  vs  a suppressed link
+59 bold  vs  a table row
+59 bold  vs  strikethrough
+59 bold  vs  subscript
+59 bold  vs  superscript
+59 bold  vs  underline
+59 italic  vs  a quote block
+58 a code span  vs  an entity
+58 a conditional  vs  a captioned external link
+58 a hard-linebreak run  vs  italic
+58 a macro definition  vs  a parsermode directive
+58 a macro definition  vs  a whitespace directive
+58 a multi-value display  vs  a quote block
+58 a multi-value display  vs  a system link
+58 a procedure definition  vs  a parsermode directive
+58 a procedure definition  vs  a whitespace directive
+58 italic  vs  a list item
+58 italic  vs  a suppressed link
+58 italic  vs  a table row
+58 italic  vs  strikethrough
+58 italic  vs  subscript
+58 italic  vs  superscript
+58 italic  vs  underline
+57 a code block  vs  a quote block
+57 a conditional  vs  a filter run
+57 a filter run  vs  a captioned external link
+57 a hard-linebreak run  vs  a heading
+57 a heading  vs  a list item
+57 a heading  vs  a suppressed link
+57 a heading  vs  a table row
+57 a heading  vs  subscript
+57 a heading  vs  superscript
+57 a heading  vs  underline
+57 a horizontal rule  vs  underline
+57 a system link  vs  a CamelCase link
+57 bold  vs  italic
+56 a code span  vs  a system link
+56 a heading  vs  a multi-value display
+56 a horizontal rule  vs  a list item
+56 a horizontal rule  vs  a quote block
+56 an entity  vs  prose
+56 an import directive  vs  a captioned external link
+55 a code span  vs  a CamelCase link
+55 a code span  vs  a quote block
+55 a code span  vs  strikethrough
+55 a conditional  vs  a macro definition
+55 a conditional  vs  a procedure definition
+55 a dash  vs  an entity
+55 a multi-value display  vs  a transclusion
+55 a quote block  vs  a system link
+55 a widget  vs  a call
+55 an import directive  vs  a parameters directive
+55 strikethrough  vs  a CamelCase link
+54 a code block  vs  a system link
+54 a code block  vs  strikethrough
+54 a code span  vs  prose
+54 a system link  vs  prose
+54 an entity  vs  a CamelCase link
+53 a code block  vs  a multi-value display
+53 a horizontal rule  vs  a multi-value display
+53 a quote block  vs  prose
+53 a quote block  vs  strikethrough
+53 a quote block  vs  underline
+53 an image  vs  a parsermode directive
+53 an image  vs  a whitespace directive
+52 a conditional  vs  an import directive
+52 a horizontal rule  vs  a table row
+52 a list item  vs  a system link
+52 a multi-value display  vs  underline
+52 a quote block  vs  a CamelCase link
+52 strikethrough  vs  prose
+51 a code span  vs  underline
+51 a dash  vs  a CamelCase link
+51 a dash  vs  a horizontal rule
+51 a dash  vs  prose
+51 a multi-value display  vs  a CamelCase link
+51 a multi-value display  vs  prose
+51 a wikilink  vs  a transclusion
+51 underline  vs  a CamelCase link
+50 a code block  vs  underline
+50 a parsermode directive  vs  a rules directive
+50 a rules directive  vs  a whitespace directive
+50 strikethrough  vs  a system link
+49 a code span  vs  a horizontal rule
+49 a list item  vs  strikethrough
+49 a system link  vs  a suppressed link
+48 a hard-linebreak run  vs  a horizontal rule
+48 a horizontal rule  vs  subscript
+48 a horizontal rule  vs  superscript
+48 underline  vs  prose
+47 a code block  vs  a table row
+47 a code span  vs  a multi-value display
+47 a horizontal rule  vs  a suppressed link
+47 strikethrough  vs  a suppressed link
+46 a hard-linebreak run  vs  a system link
+46 a system link  vs  a table row
+46 a system link  vs  underline
+46 an entity  vs  a horizontal rule
+46 subscript  vs  a system link
+46 superscript  vs  a system link
+45 a code block  vs  a code span
+45 a list item  vs  underline
+44 a code block  vs  a hard-linebreak run
+44 a code block  vs  a list item
+44 a code block  vs  a suppressed link
+44 a code block  vs  subscript
+44 a code block  vs  superscript
+44 a code span  vs  a table row
+44 a hard-linebreak run  vs  strikethrough
+44 strikethrough  vs  a table row
+44 strikethrough  vs  subscript
+44 strikethrough  vs  superscript
+43 a list item  vs  a CamelCase link
+43 a list item  vs  a quote block
+43 a macro definition  vs  a rules directive
+43 a procedure definition  vs  a rules directive
+42 a code span  vs  a list item
+42 a hard-linebreak run  vs  a quote block
+42 a list item  vs  a multi-value display
+42 a list item  vs  prose
+42 a quote block  vs  a table row
+42 a quote block  vs  subscript
+42 a quote block  vs  superscript
+41 a quote block  vs  a suppressed link
+39 a code span  vs  a suppressed link
+39 a multi-value display  vs  a table row
+39 underline  vs  a suppressed link
+38 a code span  vs  a hard-linebreak run
+38 a code span  vs  subscript
+38 a code span  vs  superscript
+37 a multi-value display  vs  a suppressed link
+36 a hard-linebreak run  vs  a multi-value display
+36 a hard-linebreak run  vs  underline
+36 a multi-value display  vs  subscript
+36 a multi-value display  vs  superscript
+36 a table row  vs  a CamelCase link
+36 a table row  vs  underline
+36 subscript  vs  underline
+36 superscript  vs  underline
+34 a filter run  vs  an import directive
+33 a table row  vs  prose
+32 a hard-linebreak run  vs  a CamelCase link
+32 a horizontal rule  vs  prose
+32 a suppressed link  vs  prose
+32 subscript  vs  a CamelCase link
+32 superscript  vs  a CamelCase link
+31 a horizontal rule  vs  a CamelCase link
+29 a CamelCase link  vs  a suppressed link
+29 a hard-linebreak run  vs  prose
+29 subscript  vs  prose
+29 superscript  vs  prose
+17 strikethrough  vs  underline
+16 a list item  vs  a table row
+15 a list item  vs  a suppressed link
+13 a hard-linebreak run  vs  a list item
+13 a list item  vs  subscript
+13 a list item  vs  superscript
+10 a table row  vs  a suppressed link
+6 a hard-linebreak run  vs  a table row
+6 subscript  vs  a table row
+6 superscript  vs  a table row
+4 a CamelCase link  vs  prose
+4 a hard-linebreak run  vs  a suppressed link
+4 subscript  vs  a suppressed link
+4 superscript  vs  a suppressed link
+0 a hard-linebreak run  vs  subscript
+0 a hard-linebreak run  vs  superscript
+0 a parsermode directive  vs  a whitespace directive
+0 a procedure definition  vs  a macro definition
+0 a styled block  vs  a styled span
+0 subscript  vs  superscript

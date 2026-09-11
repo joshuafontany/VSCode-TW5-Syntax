@@ -13,10 +13,20 @@ const { themeRules, paints, loadThemes, paintRate, grammarScopes, THEME_DIR } = 
 
 // ── the pure half ────────────────────────────────────────────────────────────
 
+// A rule carrying no `settings` names nothing to paint, and VS Code drops it before the engine sees
+// it — so a fixture omitting them measures the four `token.*` rules VS Code appends and nothing else.
+// Those four ride on every theme naming no `token.info-token`; the selectors under test stand beside
+// them, and the reading names them rather than assuming a bare list.
+const declared = (theme) => themeRules(theme).filter((s) => !s.startsWith('token.'));
+
 test('a theme declares its selectors as a string, a comma list, or an array', () => {
-  assert.deepStrictEqual(themeRules({ tokenColors: [{ scope: 'markup.bold' }] }), ['markup.bold']);
-  assert.deepStrictEqual(themeRules({ tokenColors: [{ scope: 'a, b ,c' }] }), ['a', 'b', 'c']);
-  assert.deepStrictEqual(themeRules({ tokenColors: [{ scope: ['a', 'b'] }] }), ['a', 'b']);
+  const paint = { foreground: '#FFFFFF' };
+  assert.deepStrictEqual(declared({ tokenColors: [{ scope: 'markup.bold', settings: paint }] }), ['markup.bold']);
+  assert.deepStrictEqual(declared({ tokenColors: [{ scope: 'a, b ,c', settings: paint }] }), ['a', 'b', 'c']);
+  assert.deepStrictEqual(declared({ tokenColors: [{ scope: ['a', 'b'], settings: paint }] }), ['a', 'b']);
+  assert.deepStrictEqual(themeRules({ tokenColors: [{ scope: 'markup.bold' }] }),
+    ['token.info-token', 'token.warn-token', 'token.error-token', 'token.debug-token'],
+    'a rule naming no settings reached the reading, where VS Code drops it');
   // A shape carrying no tokenColors names no theme. It arrives when a caller hands back what the
   // loader already flattened, and reading it as a theme with no rules turns a measurement over
   // sixty-five themes into one over nothing, reported green.

@@ -35,7 +35,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
-const { loadThemesByName, winner, colourOf } = require('./theme-model.js');
+const { loadThemesByName, styleOf, colourOf } = require('./theme-model.js');
 const { readData } = require('./wiki-data.js');
 
 /** Whether a theme rules on a bare family root, which reaches every scope beginning there. */
@@ -116,9 +116,8 @@ const isBase = (scope) => /^(text\.html\.tiddlywiki5$|meta\.paragraph\.)/.test(s
  */
 const look = (tokens, theme) => {
   const looks = new Set(tokens.map((token) => {
-    const rule = winner(token.scopes, theme);
-    const settings = (rule && rule.settings) || {};
-    return `${settings.foreground || '-'}/${settings.fontStyle || '-'}`;
+    const style = styleOf(token.scopes, theme);
+    return `${style.foreground || '-'}/${style.fontStyle || '-'}`;
   }));
   return [...looks].sort().join('|');
 };

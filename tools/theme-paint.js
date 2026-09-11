@@ -33,12 +33,12 @@ const THEME_DIR = path.resolve(__dirname, '..', 'node_modules', 'tm-themes', 'th
  */
 // One matching rule, shared. Four tools here weigh what a selector reaches, and a rule written
 // four times parts four ways the day one of them learns something.
-const { covers, flatten } = require('./theme-model.js');
+const { covers, rulesOf } = require('./theme-model.js');
 
 function themeRules(theme) {
   // The model already flattens a theme, and it keeps what each rule paints; this wants only the
   // selectors. Reading tokenColors a second way here parted from the model the day either changed.
-  return flatten(theme).map((rule) => rule.parts.join(' '));
+  return rulesOf(theme).map((rule) => rule.parts.join(' '));
 }
 
 /**

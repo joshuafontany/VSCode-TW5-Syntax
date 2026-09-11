@@ -136,6 +136,12 @@ jobs:
       - name: Theme parity
         run: npm run theme-parity
 
+      # The ruler itself, against the engine that paints. Every colour number this repository
+      # carries rests on theme-model.js, and this is the only thing that asks vscode-textmate
+      # whether it says the same.
+      - name: The colour model against the engine
+        run: npm run theme-collision
+
       # The dialect's own composition, and its corpus against the parser.
       - name: Memetic composition
         run: npm run compose-memetic

@@ -74,7 +74,7 @@ const OURS = "! Heading one\n\nA \'\'bold run\'\' here.\n\nA `code span` here.\n
 const CONSTRUCTS = ['Heading one', 'bold run', 'code span', 'a list item', 'WikiLink',
   'struck run', 'table cell'];
 
-const { loadThemes, winner } = require('./theme-model.js');
+const { loadThemes, reaches } = require('./theme-model.js');
 
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'theme-parity-'));
 const grammars = grammarArgs();
@@ -96,7 +96,9 @@ function tokenize(source, extension, scope) {
 
 const themes = loadThemes();
 
-const reach = (span) => Math.round(themes.filter((t) => winner(span.scopes, t)).length * 100 / themes.length);
+// A theme REACHES a construct when one of its own rules decides the colour. A stack that falls
+// through takes the editor's own foreground and reads as prose, however many scopes it carries.
+const reach = (span) => Math.round(themes.filter((t) => reaches(span.scopes, t)).length * 100 / themes.length);
 
 // A grammar chooses where a span begins, so the leading space of a heading or a list item lands
 // on one side and not the other. The comparison names the construct, not the whitespace.
