@@ -7,6 +7,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Added
+- `corpus/wikitext/reading.in-prose.tw` and `corpus/memetic/reading.in-prose.mem` stand every
+  construct INSIDE a sentence, which asks a question that reading one alone cannot. Measured across
+  the 65 bundled themes: a bracketed construct's opening glyph paints at a perceptual distance of
+  0.0 from the prose beside it in 40 of them, because a theme rules on `punctuation` in order to
+  leave it alone. A construct lands through its CONTENT or it does not land — the code span reaches
+  53 of 65 and stands as the only construct whose first character reaches a real theme rule. The
+  bench seeds its workspace from the corpus, so a reader flipping themes looks at the same files
+  that gate the grammar.
 - `MIGRATION.md` names every scope a reader's theme rule lost. 460 scope names stand at `v2.2.1` and
   497 here; 94 went, 131 arrived. A theme rule and an `editor.tokenColorCustomizations` entry both
   name a scope, and when one moves VS Code reports nothing — the rule stops matching and the
@@ -98,6 +106,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   cross one. No pattern moved.
 
 ### Fixed
+- A COLLISION'S PROVOCATION MUST REACH EVERY SPECIMEN. `sigil-vocabulary`'s red struck `<<~ oracle`
+  from one named corpus file, so the moment a second carrier wrote that sigil the provocation planted
+  no fault and the gate read green while losing the power to fail. It happened on the commit that
+  added `reading.in-prose.mem`. The strike now walks `corpus/memetic` and `tests/samples` and derives
+  its population from the tree, the way the instrument it collides already does.
 - A TRIPLE-QUOTED VALUE CARRIES THE QUOTE IT TOUCHES. TiddlyWiki spells all three of its string sites
   `"""([\s\S]*?)"""` — lazy, and carrying no lookaround — so a value opens on the FIRST triple and
   closes on the NEXT one, and its content may begin or end with a quote. The lookarounds on `#string`
