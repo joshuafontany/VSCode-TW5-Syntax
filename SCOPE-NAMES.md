@@ -97,9 +97,12 @@ owed, beside the six emphasis families whose marks carry no content family at al
 ### One segment, one word
 
 A dropped dot fuses two segments into a word no selector reaches — neither the family before it
-nor the suffix after. **Checked, at a floor of 1.** One stands:
-`meta.multids.tiddler.title.text.htmltiddlywiki5.multids-file`, where `html` and `tiddlywiki5` ran
-together. Every gate reads green over it, because the name still reads as a name.
+nor the suffix after. **Checked, at a floor of 0.** A multids title line spelled its wikitext
+family `text.htmltiddlywiki5`, running `html` and `tiddlywiki5` together; it stands as
+`meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file`, and `MIGRATION.md` carries the
+row. Every gate read green over the fused spelling, because the name still read as a name — the
+check derives its provocation by dropping a dot out of a name the grammars declare TODAY, so a
+hand-copied example cannot go stale into a green reading.
 
 ### No borrowed language name — stated, not checked
 

@@ -5,7 +5,7 @@ moves takes the reader's colour with it, and VS Code reports nothing: the rule s
 matching, and the construct goes the colour of prose.
 
 This repository declares **460** scope names at `v2.2.1` and **497** at `2.3.0`. Between them,
-**94** names stand gone and **131** stand new. Every gone name appears below, with what it
+**98** names stand gone and **135** stand new. Every gone name appears below, with what it
 stands as now or why it retired.
 
 The table derives from the two grammars rather than from a hand-written list, and
@@ -24,7 +24,7 @@ they painted the colour of prose in every bundled theme, and they did so from th
 were written.
 
 Their replacements put the root first and keep the qualifier as a suffix, so a rule on the
-family root reaches the construct and a deeper rule can still single it out. **39 of the 94**
+family root reaches the construct and a deeper rule can still single it out. **39 of the 98**
 gone names moved for exactly that reason.
 
 If your customization named one of these, it was already painting nothing. Adopting the new
@@ -63,6 +63,7 @@ name is the first time it will take effect.
 | `markup.other.variable.variable-parameter.tiddlywiki5` | `markup.other.variable.substitute-parameter.tiddlywiki5` | substitution vocabulary |
 | `markup.other.variable.variable-reference.tiddlywiki5` | `markup.other.variable.substitute-variable.tiddlywiki5` | substitution vocabulary |
 | `markup.underline.link.wikilink.tiddlywiki5` | `meta.link.wikilink.tiddlywiki5` | family a theme rules on |
+| `meta.multids.tiddler.title.text.htmltiddlywiki5.multids-file` | `meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file` | one segment, one word |
 | `meta.tiddler.fields.tiddlywiki5` | `meta.text.tiddler.fields.tiddlywiki5` | root first |
 | `mvv.attribute.html.tiddlywiki5` | `meta.attribute.mvv.html.tiddlywiki5` | root first |
 | `mvv.default.parameter.tiddlywiki5` | `variable.parameter.mvv.default.tiddlywiki5` | root first |

@@ -70,8 +70,20 @@ test('a violating name reads as a violation and a standing one does not', () => 
   assert.ok(!rootLast('punctuation.definition.markup.begin.bold.tiddlywiki5'), 'the cured spelling read as a violation');
   assert.ok(nestedPunctuation('string.punctuation.definition.operand.begin.tiddlywiki5'), 'a nested punctuation read as sound');
   assert.ok(!nestedPunctuation('punctuation.definition.markup.begin.bold.tiddlywiki5'), 'a leading punctuation read as nested');
-  assert.ok(fusedSegment('meta.title.text.htmltiddlywiki5.multids-file'), 'a fused segment read as sound');
-  assert.ok(!fusedSegment('meta.title.text.html.tiddlywiki5.multids-file'), 'a whole segment read as fused');
+  // THE FUSION PROVOCATION DERIVES FROM THE POPULATION. A hand-written fused string stops
+  // provoking the day the name it copies moves, and reads green while planting no fault. This
+  // drops the dot out of a STANDING name instead, so the reading answers to whatever the grammars
+  // declare today.
+  const whole = ours().find((s) => {
+    const seg = s.split('.');
+    return seg.length > 2 && SUFFIXES.includes(seg.at(-1)) && !SUFFIXES.includes(seg.at(-2));
+  });
+  assert.ok(whole, 'no standing name offers a dot to drop, so this provocation plants nothing');
+  const seg = whole.split('.');
+  const fused = [...seg.slice(0, -2), `${seg.at(-2)}${seg.at(-1)}`].join('.');
+  assert.notStrictEqual(fused, whole, 'the provocation dropped no dot, so it plants no fault');
+  assert.ok(fusedSegment(fused), `a fused segment read as sound: ${fused}`);
+  assert.ok(!fusedSegment(whole), `a whole segment read as fused: ${whole}`);
 });
 
 // ROOT FIRST. A theme selector reaches a scope by dot-bounded prefix, so only the segments at the
@@ -98,7 +110,7 @@ test('no scope nests punctuation under a content root, above the floor', () => {
 });
 
 // ONE SEGMENT, ONE WORD. A dropped dot leaves a name no selector reaches from either side.
-const FUSED_FLOOR = 1;
+const FUSED_FLOOR = 0;
 
 test('no segment fuses a suffix onto the word before it, above the floor', () => {
   const bad = ours().filter(fusedSegment);

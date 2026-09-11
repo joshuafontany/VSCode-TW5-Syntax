@@ -42,7 +42,7 @@
     },
     "titleline": {
       "match": "^([^:\\r\\n]*)(: ?)(.*)$",
-      "name": "meta.multids.tiddler.title.text.htmltiddlywiki5.multids-file",
+      "name": "meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file",
       "captures": {
         "1": {
           "name": "string.value.title.field.tiddlywiki5.multids-file"
