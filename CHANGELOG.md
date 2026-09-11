@@ -621,6 +621,45 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   outranks the symptom it produced. The control cuts one class from the ladder and the gate reds.
 ### Changed
 
+- A pretty link's `[[` and `]]` each arrive as ONE token. No grammar among twenty splits a
+  multi-character delimiter into two separately named sequential tokens — VS Code html emits `</`
+  as one token, Liquid's `{%-` as one token of three characters, Handlebars' `{{~{>` as one of
+  arbitrary length, and the TextMate 1.x manual's own `captures` example fuses `@selector(`.
+  Measured across the 65 bundled themes, the two halves painted identically in every one, so the
+  split reached machines and no reader. The outer and inner names stand where the brackets enclose
+  different things — `[img[` opens an attribute list and then a source, `[ext[` a caption and then
+  an address — and both keep them. Three names retire into
+  `punctuation.definition.link.begin`/`.end`, each with a `MIGRATION.md` row;
+  `punctuation.definition.link.outer.begin` still stands, on `[ext[`.
+- A call's argument name answers to its SURFACE. A call writes a named argument on a template
+  surface, the way html, Vue, JSX, Liquid, Handlebars and MediaWiki's own `{{T|name=v}}` do, so the
+  twelve sites in `macro-parameters` carry `entity.other.attribute-name.argument` beside the
+  `variable.parameter` they publish, the new name standing LAST where a reader sees it. A
+  DECLARATION keeps `variable.parameter` alone — TextMate 1.x seats that name "when the variable is
+  declared as the parameter" — and the pragma rules stand untouched. Measured over 65 themes: a
+  call's name told apart from its own argument in 25, and in 57 under the surface's family; a
+  call's argument and a widget's attribute now read as one colour in 59. Two APART relations stand
+  seated in `ReaderRelations` and `colour-witness` holds them, the widget pair at 47 as the control.
+  Five legibility floors fell once and stand re-seated with the trade recorded beside them — a call
+  reads more like a widget, a typed block and an import directive — thirty-two themes gained against
+  thirteen lost.
+- The `=` families stand APART, and the host says why. `parseutils.js#parseMacroParameterAsAttribute`
+  records which of `=` and `:` an author wrote in `node.assignmentOperator`, then opens the filtered,
+  indirect, macro, MVV and substituted value grammars ONLY when it reads `=`; `parseAttribute` offers
+  a widget every value form either way. So a call's `=` keeps `keyword.operator.assignment` and a
+  widget's keeps `punctuation.separator.key-value`, and the two answer different questions rather
+  than spelling one thing twice.
+- THE WEAK CONTAINERS STAND, MEASURED AND DECLINED. `markup.other.image` paints 2 of 65 themes and
+  `markup.link` 8, and renaming them to `markup.underline.link.*` neither lifted the pair it was
+  meant to lift — an image against a parsermode directive held at 55 of 65 — nor came free: seven
+  seated pairs FELL, an image against a system link from 65 to 30, an image against a wikilink from
+  62 to 40, a wikilink against a system link from 61 to 36. A container paints only what its own
+  interior scopes fail to reach, and it hands every token inside its `fontStyle`, so
+  `markup.underline` underlines a link's brackets, its separator AND the title behind it: measured
+  through vscode-textmate itself, a link's visible text parted from the title it reaches in 40 of 65
+  themes and in 15 after the rename. `colour-witness` read green through all of it, because APART
+  weighs two scope NAMES and no stack carries them.
+
 - `tools/` holds its instruments and its invariants apart. Forty-two test files stand beside the
   instrument they collide; twenty-five tested the grammar, the manifest, the workflow and the record
   instead, and lived under `tools/` only because a glob pointed there. Those move to
