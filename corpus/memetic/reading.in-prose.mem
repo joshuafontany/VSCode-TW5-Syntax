@@ -1,0 +1,43 @@
+The dialect's constructs stand INSIDE sentences here, the way a reader meets one. The base
+grammar's own reading answers a different question than the dialect's does, and this file asks
+both at once: whether the eye lands, and whether the dialect names what the house writes.
+
+! A lar URI in prose, and inside a value
+
+The address at lar://claude:scryer@lararium/the-map.reads.its-ground names one place, and the
+grammar parts it into six entities — persona, role, place, heading, angle, carried dynamic.
+
+The same address inside a quoted value keeps every one of them, because an injection reaches
+where a top-level rule cannot:
+
+<<~ lares aim from="lar://claude:scryer@lararium/the-map.reads.its-ground" -> to="?">>
+
+! The bearing arrow, which reads two ways
+
+A bearing arrow -> stands named wherever the base grammar names nothing.
+
+The same arrow inside a sigil splits: the base grammar's unquoted-value rule takes the dash
+before an R-priority injection ever looks, and the closing angle falls to the parameters region.
+Every aim and yield line the house writes carries this form.
+
+<<~ lares yield from="lar://claude@lararium/the-arrow.splits.in-two" -> to="?">>
+
+! The sigil's own verb
+
+A sigil's name binds to an EMPTY parameter. TiddlyWiki reads the variable as `~` and the verb as
+a positional argument, so `set`, `oracle`, `stage` and `persona` all paint as any unquoted value
+would. The dialect declares no scope of its own for the thing it exists to say.
+
+<<~ set hud="aim" mode="scan" mood="🜁" mu="?" stance="🏛️" focus="26/reading">>
+
+<<~ oracle "↯14 ✲ ⚄(4) ⁂:🜁⌗◈">>
+
+! A fragment and a query, in prose
+
+The anchor at lar:///ha.ka.ba/lares/docs/reading#/the-eye.lands names a place within a place,
+and lar:///ha.ka.ba/lares/api/pono?form="quoted" carries a named value the TW5 way.
+
+! Prose carrying no sigil, for the colour a reader's own words take
+
+The note explains the rest of it plainly, carries no construct at all, and every word here takes
+the editor's own foreground and nothing besides.

@@ -42,11 +42,29 @@ test('a sigil the seed writes and no specimen carries fails the gate', live, () 
     (sandbox) => {
       // The seed stands OUTSIDE the sandbox, so the provocation moves the specimens instead: a
       // carrier that drops a form reads exactly as a seed that gained one.
-      const file = path.join(sandbox, 'corpus', 'memetic', 'sigils.mem');
-      const before = fs.readFileSync(file, 'utf8');
-      const after = before.replace(/^<<~ oracle .*$/m, '');
-      assert.notStrictEqual(after, before, 'the provocation changed nothing, so it plants no fault');
-      fs.writeFileSync(file, after);
+      //
+      // IT MUST REACH EVERY SPECIMEN. Striking the form from one named file leaves the sigil
+      // exercised the moment a second carrier writes it, and the collision then plants no fault
+      // while reading green — measured, one corpus file gained an `<<~ oracle` line and this gate
+      // stopped being able to fail. The population derives from the tree for the same reason the
+      // instrument's own does.
+      let struck = 0;
+      const walk = (dir) => {
+        if (!fs.existsSync(dir)) return;
+        for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+          const file = path.join(dir, e.name);
+          if (e.isDirectory()) { walk(file); continue; }
+          if (!file.endsWith('.mem')) continue;
+          const before = fs.readFileSync(file, 'utf8');
+          const after = before.replace(/<<~[ \t]*\/?oracle\b[^>\n]*>*/g, '');
+          if (after === before) continue;
+          fs.writeFileSync(file, after);
+          struck += 1;
+        }
+      };
+      walk(path.join(sandbox, 'corpus', 'memetic'));
+      walk(path.join(sandbox, 'tests', 'samples'));
+      assert.ok(struck > 0, 'the provocation changed nothing, so it plants no fault');
     },
     ['tools/sigil-vocabulary.js']);
   assert.match(out, /the seed writes `<<~ oracle` and no specimen carries it/, out.slice(-600));
