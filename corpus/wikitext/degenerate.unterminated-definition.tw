@@ -1,0 +1,3 @@
+\define unfinished()
+A macro definition whose body reaches the end of the source with no \end, which the host reads as
+a blank body. It stands alone for the reason the quote-block carrier beside it names.

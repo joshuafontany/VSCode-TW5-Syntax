@@ -71,3 +71,38 @@ test('every ruling names a ceiling that stands', live, () => {
       `the ruling names a ceiling that stands nowhere: ${m[1].trim()}`);
   }
 });
+
+// EVERY RECOVERY THE HOST DECLARES WANTS A CARRIER. The population above comes from what the
+// corpus RAISES, which answers a narrower question than what the host can raise: a rule nobody
+// wrote a specimen for stays silent in both readers and reads exactly like a rule with nothing to
+// say. So the codes come from the host's own rule sources, and each one must reach a ruling.
+//
+// A BLOCK CONSTRUCT THAT NEVER CLOSES SWALLOWS EVERY RECOVERY AFTER IT, which is why each block
+// shape takes a carrier of its own rather than a line in a shared one.
+test('every unterminated recovery the host declares reaches a ruling', live, () => {
+  const { resolveTiddlyWiki } = require('./tw5-oracle.js');
+  const rules = path.join(resolveTiddlyWiki(), 'core', 'modules', 'parsers', 'wikiparser', 'rules');
+  assert.ok(fs.existsSync(rules), `the host's wiki rules stand nowhere at ${rules}`);
+  // THE RULES NEST. Six of the sixteen live under `rules/emphasis/`, so a flat read of the
+  // directory finds ten, reports a smaller population than the host declares, and goes quiet about
+  // every code it never looked at.
+  const declared = new Set();
+  const walk = (dir) => {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const file = path.join(dir, e.name);
+      if (e.isDirectory()) { walk(file); continue; }
+      if (!file.endsWith('.js')) continue;
+      for (const m of fs.readFileSync(file, 'utf8').matchAll(/code:\s*"(unterminated-[a-z-]+)"/g)) declared.add(m[1]);
+    }
+  };
+  walk(rules);
+  assert.ok(declared.size >= 16, `${declared.size} recovery code(s) read from the host, which reads as a reader that found little`);
+  const ruled = new Set();
+  for (const raw of fs.readFileSync(path.join(ROOT, 'corpus', 'recovery-ledger.txt'), 'utf8').split('\n')) {
+    const m = /^silent\s+(\S+)/.exec(raw.trim());
+    if (m) ruled.add(m[1]);
+  }
+  const unexercised = [...declared].filter((c) => !ruled.has(c)).sort();
+  assert.deepStrictEqual(unexercised, [],
+    `recovery code(s) the host declares that no carrier raises, so nothing measures whether the grammar marks them`);
+});

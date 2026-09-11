@@ -17,9 +17,10 @@
 # A BLOCK CONSTRUCT THAT NEVER CLOSES SWALLOWS EVERY RECOVERY AFTER IT. One carrier measures the
 # first unterminated block shape it holds and hides the rest, which is why the degenerate carriers
 # stand apart — `degenerate.unterminated.tw` holds the inline runs, and each block shape takes a
-# carrier of its own. Four codes stand unexercised for that reason and carry no ruling here:
-# `unterminated-typedblock`, `unterminated-styleblock`, `unterminated-hardlinebreaks` and
-# `unterminated-definition`. Each wants a carrier of its own before it earns a line.
+# carrier of its own. Six block shapes each hold one, and every `unterminated-*` code the host's
+# wiki rules declare now reaches a ruling below; `tools/recovery-witness.test.js` reads that
+# population out of the host's own rule sources, WALKING THEM, because six of the sixteen live
+# under `rules/emphasis/` and a flat read finds ten and goes quiet about the rest.
 #
 # Measured over 673 host carriers: 34 diagnostics, 7 codes, and the grammar marks ZERO of them.
 
@@ -35,3 +36,7 @@ silent unterminated-codeblock        # A fence with no closer carries to the end
 silent unterminated-quoteblock       # The closer answers to its own marker WIDTH, and a pattern reads one line. · ceiling: whole-document lookahead
 silent unterminated-conditional      # The same reach, across a construct the host opens on a filter. · ceiling: whole-document lookahead
 silent unterminated-html             # A start tag with no end tag; the host recovers at the end of the source and grades it a HINT rather than a warning. · ceiling: whole-document lookahead
+silent unterminated-typedblock       # `$$$type` with no closing `$$$`. The host scans ahead for the closer and recovers to the end of the source; the grammar's region ends on the same mark and simply never meets it, so the guest grammar carries past the file with nothing marking where it should have stopped. · ceiling: whole-document lookahead
+silent unterminated-styleblock       # `@@` with a style declaration and no closing `@@`. The host asks `hasCloser` over the WHOLE remaining source before it parses a single block, which is the one question a line-local pattern cannot put. · ceiling: whole-document lookahead
+silent unterminated-hardlinebreaks   # A `"""` run whose closer never arrives. The host's end regexp runs over the whole source and reports the opening delimiter when it finds none. · ceiling: whole-document lookahead
+silent unterminated-definition       # `\define`, `\function`, `\procedure` or `\widget` opened multiline with no `\end`. The two readers PART on more than a mark here: the host reads the body as BLANK and the grammar reads it as a body, so a reader sees a definition that renders nothing. · ceiling: whole-document lookahead

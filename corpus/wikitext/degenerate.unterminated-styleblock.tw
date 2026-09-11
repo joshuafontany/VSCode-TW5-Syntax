@@ -1,0 +1,5 @@
+A style block opened on a declaration line and never closed. It stands alone for the reason the
+quote-block carrier beside it names.
+
+@@color:green;
+An unterminated style block, and the last construct this carrier holds.
