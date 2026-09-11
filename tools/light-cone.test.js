@@ -58,3 +58,44 @@ test('an owed entry that reaches out fails the gate', live, () => {
   assert.match(out, /comment\.[\s\S]*reaching out|reaches past the grammar/, out.slice(-700));
   assert.notStrictEqual(code, 0, 'an owed entry reached past the grammar and the gate held anyway');
 });
+
+// THE THIRD ARM — a reader's own typing.
+//
+// The forward arm hands back removed text and the backward arm strikes pragma lines. Both alter
+// something a reader never types. A person inserts a space, or a stray character, in the middle of
+// what they already wrote — and where a one-character perturbation moves the parser's verdict at
+// the sentinel, the DECIDING evidence sits at that character.
+//
+// THE ARM DIAGNOSES AND NEVER PROVES. A forward move shows the parser deciding on text past the
+// sentinel and a backward move on a rule set no stack carries — both beyond any pattern. A typo
+// sits INSIDE the head, which the grammar's stack reads, so its movement shows SENSITIVITY rather
+// than reach, and it may not move a class out of `unproven`.
+//
+// THE DISTANCE INFORMS THE RULING WITHOUT SETTLING IT. Evidence one line back may sit inside a
+// region a begin/end pair already carries; evidence fifty lines back wants a region spanning fifty
+// lines. Neither existing arm reports a distance at all, and reading one as a verdict would state
+// more than the arm measured.
+test('the typo arm reports how far the deciding evidence sits from the cut', live, () => {
+  const { out } = runTool('light-cone.js');
+  assert.match(out, /typo arm moved \d+/, out.slice(-600));
+});
+
+// A PERTURBATION MUST DERIVE, AND MUST NOT WANDER. A reading that samples differently each run
+// reports a different verdict to whoever looked last, and this house already retired one gauge for
+// that. The positions come from the carrier's own bytes, so two runs read alike.
+test('two runs of the typo arm read the same verdict', live, () => {
+  const first = runTool('light-cone.js');
+  const second = runTool('light-cone.js');
+  const moved = (o) => /typo arm moved (\d+)/.exec(o)[1];
+  assert.strictEqual(moved(first.out), moved(second.out), 'the arm wandered between runs');
+});
+
+// The guard on the arm's own ambition: a class no reaching arm moved stays unproven however loudly
+// a reader's typing moves it. Counting sensitivity as reach states the verdict this probe retired.
+test('the typo arm moves no class out of unproven', live, () => {
+  const { out } = runTool('light-cone.js');
+  const moved = Number(/typo arm moved (\d+)/.exec(out)[1]);
+  assert.ok(moved > 0, 'the arm proved nothing at all, so this guard guards nothing');
+  assert.match(out, /ruled without proof: overbound codeblock/,
+    'a class only the typo arm moved left `unproven`, so sensitivity read as reach');
+});

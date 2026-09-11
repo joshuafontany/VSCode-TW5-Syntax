@@ -98,6 +98,34 @@ function specimens() {
   return out;
 }
 
+
+/**
+ * Where a reader's own typing would land, derived from the carrier's bytes.
+ *
+ * A PERTURBATION MUST NOT WANDER. A probe sampling differently each run hands a different verdict
+ * to whoever looked last, and this house already retired one gauge for exactly that. So the
+ * positions come from a hash of the head itself: broad sampling, and two runs read alike.
+ *
+ * @param {string} head  the text a cut left standing
+ * @param {number} count how many places to try
+ */
+function typoSites(head, count) {
+  let h = 2166136261;
+  for (let i = 0; i < head.length; i += 1) { h ^= head.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+  const sites = [];
+  for (let i = 0; i < count; i += 1) {
+    h = Math.imul(h ^ (h >>> 15), 2246822507) >>> 0;
+    sites.push(h % Math.max(1, head.length));
+  }
+  return sites;
+}
+
+// What a person types by accident: a doubled space, and a stray character that opens nothing.
+const TYPOS = [' ', 'x'];
+
+/** Places tried per cut. The arm stops early the moment it finds evidence on the sentinel's line. */
+const TYPO_SITES = 12;
+
 (async () => {
   const rulings = ledger();
   const measured = new Map();
@@ -105,6 +133,7 @@ function specimens() {
 let closed = 0;
   let forwardMoves = 0;
   let backwardMoves = 0;
+  let typoMoves = 0;
 
   for (const { file, scope, body, type: typeOf } of specimens()) {
     const text = fs.readFileSync(file, 'utf8');
@@ -148,8 +177,35 @@ let closed = 0;
         const behindRead = body ? body(behind) : behind;
         backward = parserReads(behindRead, behindRead.lastIndexOf(SENTINEL), type) !== parser;
       }
+      // TYPO ARM — a reader's own typing. Both arms above alter something nobody types; a person
+      // inserts a space or a stray character in the middle of what they already wrote. Where a
+      // one-character insertion moves the parser's verdict at the sentinel, the DECIDING evidence
+      // sits at that character, and the arm records HOW FAR BACK it sits. The distance informs a
+      // ceiling ruling without settling it: evidence one line back may sit inside a region a
+      // begin/end pair already carries, where evidence fifty lines back wants a region spanning
+      // fifty lines. Reading the distance as a verdict would state more than the arm measured.
+      let typo = false;
+      let nearest = Infinity;
+      for (const site of typoSites(head, TYPO_SITES)) {
+        for (const ch of TYPOS) {
+          const typed = standAlone(`${head.slice(0, site)}${ch}${head.slice(site)}`);
+          if (!typed.trim()) continue;
+          const spec = `${typed}\n\n${SENTINEL}`;
+          const typedRead = body ? body(spec) : spec;
+          const where = typedRead.lastIndexOf(SENTINEL);
+          if (where < 0) continue;
+          if (parserReads(typedRead, where, type) === parser) continue;
+          typo = true;
+          // Lines between the insertion and the cut. Zero puts the evidence on the sentinel's line.
+          const back = head.slice(site).split('\n').length - 1;
+          if (back < nearest) nearest = back;
+        }
+        if (typo && nearest === 0) break;
+      }
+
       if (forward) forwardMoves += 1;
       if (backward) backwardMoves += 1;
+      if (typo) typoMoves += 1;
 
       const scopes = (tokens[line] ?? []).flatMap((t) => t.scopes)
         .filter((s) => !/^(text\.html\.tiddlywiki5|source\.tiddlywiki5)[a-z.-]*$/.test(s) && !/quoteblock/.test(s));
@@ -161,12 +217,18 @@ let closed = 0;
           return covering.length ? covering[covering.length - 1].rule : '(nothing)';
         })();
       const id = `${parser ? 'runaway' : 'overbound'} ${key}`;
+      // THE TYPO ARM DIAGNOSES AND NEVER PROVES. A forward move shows the parser deciding on
+      // text past the sentinel, and a backward move on a rule set no stack carries — both sit
+      // beyond any pattern. A typo sits INSIDE the head, which the grammar's own stack reads,
+      // so its movement shows SENSITIVITY rather than reach. Counting it as proof would state
+      // the verdict this probe exists to retire, from the other direction.
       const klass = forward || backward ? 'reaches-out' : 'unproven';
       if (!measured.has(id)) measured.set(id, { arms: new Set(), klass, hits: 0, file: path.basename(file), cut });
       const seen = measured.get(id);
       seen.hits += 1;
       if (forward) seen.arms.add('forward');
       if (backward) seen.arms.add('backward');
+      if (typo) { seen.arms.add(`typo@${nearest}`); seen.nearest = Math.min(seen.nearest ?? Infinity, nearest); }
       // One reach standing anywhere in a family makes the family structural: a single instance
       // deciding on evidence outside the grammar carries the whole class out of repair's range.
       if (klass === 'reaches-out') seen.klass = 'reaches-out';
@@ -201,7 +263,7 @@ let closed = 0;
     console.error('     a difference deciding on evidence no pattern sees names a repair nobody can perform');
   }
   console.log(`light-cone  ${divergences} divergence(s) across ${measured.size} class(es), ${closed} quote(s) closed to ask; `
-    + `forward arm moved ${forwardMoves}, backward arm moved ${backwardMoves}; `
+    + `forward arm moved ${forwardMoves}, backward arm moved ${backwardMoves}, typo arm moved ${typoMoves}; `
     + `${measured.size - unproven.length - wrong.length} proven or unruled, ${unproven.length} ruled without proof, `
     + `${wrong.length} owed but reaching out`);
   process.exit(wrong.length === 0 ? 0 : 1);

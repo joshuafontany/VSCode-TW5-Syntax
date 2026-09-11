@@ -7,7 +7,21 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Added
-- `tools/recovery-witness.js` asks a question neither reader answers alone. TiddlyWiki's parser
+- `light-cone` gains a THIRD ARM: a reader's own typing. The forward arm hands back removed text and
+  the backward arm strikes pragma lines — both alter something nobody types. A person inserts a space
+  or a stray character in the middle of what they already wrote, and where a one-character insertion
+  moves the parser's verdict at the sentinel, the arm records HOW FAR BACK the deciding character
+  sits. Measured: 47 cuts move, at distances from the sentinel's own preceding line out to 58 lines.
+  The positions derive from a hash of the head itself, so two runs read alike — a probe sampling
+  differently each run hands a different verdict to whoever looked last, and this house retired one
+  gauge for exactly that.
+- THE TYPO ARM DIAGNOSES AND NEVER PROVES, and a gate holds it to that. A forward move shows the
+  parser deciding on text past the sentinel and a backward move on a rule set no stack carries —
+  both sit beyond any pattern. A typo sits INSIDE the head, which the grammar's own stack reads, so
+  its movement shows SENSITIVITY rather than reach. Counting it as proof would state the verdict
+  this probe exists to retire, from the other direction; measured, it would have carried
+  `overbound conditional` out of `unproven` on evidence proving nothing.
+ `tools/recovery-witness.js` asks a question neither reader answers alone. TiddlyWiki's parser
   recovers from an unterminated construct and RECORDS the recovery — `WikiParser.addDiagnostic`
   normalises `{from, to, severity, source, code, message}`, and seventeen wiki rules raise one — and
   the grammar carries no notion of any of them. Measured: an unterminated `''bold` paints exactly
