@@ -1,0 +1,97 @@
+# What a delimiter inherits from the content it bounds, and what this repository ruled about each.
+#
+# `contentName` names a region's INTERIOR, so the marks that open and close it stand outside the
+# content family by construction. `tools/delimiter-inheritance.js` reads every `contentName` in
+# `syntaxes/` and keys each by the two-segment family of its content against the families its
+# delimiters carry. A shape named here stands looked at; anything else fails the gate.
+#
+#   <kind> <content family> <- <delimiter families>   # reason
+#
+# `inert`              the field sits on a `match` rule, where vscode-textmate reads it nowhere.
+#                      MEASURED on every run: both arms read identically, against a control that
+#                      parts.
+# `covering`           both bounds stand zero-width, so the content spans the marks and nothing
+#                      parts.
+# `inherits`           every family the content carries also stands on a delimiter or on the
+#                      region's own name — the additive cure, already written.
+# `parts`              the delimiter stands outside what the content carries.
+# `unnamed-delimiter`  a begin/end carrying no captures; the mark takes whatever encloses it.
+#
+# A REASON SAYS WHETHER THE PARTING SERVES A READER OR COSTS ONE, and a reason opening OWED records
+# debt rather than accepting it — the gate stays green and prints it. THE TEST IS NOT SYMMETRY. A
+# boundary a reader must SEE wants the delimiter held apart; a mark that belongs TO its content
+# wants it stacked. `meta.*` carries no colour of its own in a theme, so a `meta.*` content parting
+# from its marks costs a reader nothing whichever way it reads.
+
+# ── the declaration that does nothing ───────────────────────────────────────────────────────────
+
+inert string.quoted <- entity.other+keyword.operator+punctuation.definition+string.quoted+variable.parameter   # OWED a removal. A dynamic bracket parameter `name=[[value]]` spells itself as a `match` and declares a `contentName` beside it. vscode-textmate reads that field on a begin/end region and nowhere else, so the declaration parses, reports nothing and moves no token — measured on every run of this gate, with and without the field, against a control on a begin/end rule where the field DOES move the reading. Capture 4 already names the interior, so removing the field changes no token; it stands as a declaration a later reader would take for a promise
+
+# ── the content covers its own marks ────────────────────────────────────────────────────────────
+# A zero-width bound consumes nothing, so `contentName` spans the delimiters too and the parting
+# this gate looks for cannot arise. These carry a different hazard, and the TextMate ceiling names
+# it: a `string.*` content covering its own brackets puts that string under every construct opened
+# inside, with no way to take it off again.
+
+covering entity.other <- keyword.operator+variable.parameter   # a pragma parameter default, `name:"value"` in its four quotings. The bound stands behind the quote, so the default's own name covers the quotes and the parameter name and the colon keep theirs. Nothing parts and nothing wants moving
+covering meta.attribute <- (none)   # a filtered, indirect or macro-valued attribute value. The region opens and closes on lookarounds and the inner patterns name every mark, so the outer declaration adds a structural family over the whole run and takes nothing from the marks
+covering meta.embedded <- (none)   # a tiddler body whose header declared a type, opened behind the blank line that ends the field block. No mark stands at either bound, so no delimiter exists to inherit anything
+covering string.quoted <- (none)   # a bracketed attribute value, `attr=[[value]]`. The content spans the brackets and an inner match re-names the interior, so the interior carries the string scope twice. Harmless to a theme, which matches a scope rather than counting it; it reads as a redundancy rather than a parting
+covering text.substituted <- (none)   # a substituted attribute value in backticks, its bounds behind the fences. The inner patterns name the fences and the substitution injection reaches the interior
+covering text.substituted <- entity.other+keyword.operator+variable.parameter   # the same value written as a named parameter, so the parameter name and the `=` carry their own names and the backticks fall inside the content. Nothing parts
+covering variable.call <- (none)   # a macro-valued attribute, `attr=<<call>>`. The content spans the whole call including its angles, and the call's own rules name the parts inside
+covering variable.call <- entity.other+keyword.operator+variable.parameter   # the same call written as a named parameter. The name and the `=` carry their own names; the angles fall inside the content
+covering variable.parameter <- keyword.operator+variable.parameter   # a pragma parameter whose default stands in double parens. Same shape as the four quoted defaults, and the same verdict
+
+# ── a parting that serves a reader ──────────────────────────────────────────────────────────────
+# A boundary the reader must SEE. Painting the fence as the guest language hides where the guest
+# starts and stops, which is the one thing the fence exists to say.
+
+parts meta.embedded <- entity.other   # a fenced code block naming its language. The fence's language word reads as an attribute name and the body reads as that language. A reader needs the seam, so holding the two apart serves them
+parts meta.embedded <- entity.other+punctuation.definition   # a typed block, `$$$type`, handing its body to a guest grammar. The `$$$` marks and the type word stay in this grammar's vocabulary while the body leaves it; the parting IS the boundary
+parts meta.embedded <- punctuation.definition+source.css   # a `style` attribute handing its value to the CSS grammar. The closing quote carries both its own punctuation name and `source.css` on overlapping captures, so the guest grammar's region closes cleanly on a mark this grammar still names. Serves: the quote reads as a quote and the value reads as CSS
+parts meta.embedded <- punctuation.definition+source.js   # the same device over an event-handler attribute value handed to the JavaScript grammar
+parts markup.inline <- entity.other   # a fenced block whose declared language this extension bundles no grammar for. The body falls back to `markup.inline.raw` and the fence keeps its language word, which is exactly the seam a reader wants
+parts markup.inline <- entity.other+punctuation.definition   # a typed block whose declared type reaches no bundled grammar. Same fallback, same seam
+parts markup.inline <- keyword.control+punctuation.definition   # a triple-backtick block with no language named. The fence reads as a fence and the body as raw, which serves: a reader tells a fence from its contents
+parts text.git-commit <- entity.other   # a fenced block declaring a language whose grammar names a `text.*` root of its own. Same seam as every other fence
+parts text.html <- entity.other   # a fenced block declaring wikitext, whose body re-enters this grammar. The fence stays visible above the body
+parts text.html <- entity.other+punctuation.definition   # a typed block declaring wikitext. The `$$$` and the type word hold the seam while the body reads as wikitext again
+parts comment.block <- punctuation.definition   # a `#` comment line in a syntax-test file. The `#` reads as the mark that opened the comment; the text reads as comment. A theme paints `comment` and most paint `punctuation.definition.comment` with it, and the two standing apart lets a reader see where the comment began
+
+# ── a parting a reader never sees ───────────────────────────────────────────────────────────────
+# `meta.*` names structure for a machine. No bundled theme paints a bare `meta` rule, so a `meta.*`
+# content standing apart from its marks moves no colour either way.
+
+parts meta.conditional <- keyword.control   # a conditional shortcut's body against its `<%if%>` keyword. The keyword reads as a keyword and the body as structure, which is what both are
+parts meta.styleblock <- meta.styleblock+punctuation.definition   # a style block's body against its closing `@@`. Both sides carry `meta.*`, so nothing a theme paints stands on either
+parts meta.variable <- entity.name+keyword.control+punctuation.definition   # a definition body — function, procedure, widget, macro — against its `\define` keyword, its name and its `\end`. The body is a body and the pragma is a pragma; a reader wants them apart
+parts meta.variable <- punctuation.definition+variable.name   # a call's parameter run against its `<<` and `>>` and the name between them. The angles and the name carry their own families; the run carries structure
+parts entity.filter <- punctuation.definition   # a filter run's operand against the `[` and `]` that bound it. The brackets read as punctuation and the operand as a name, which is the reading a filter wants
+parts string.other <- punctuation.definition   # inline data inside a tag against the tag's own angles. The angles belong to the tag, never to the data between them
+
+# ── a parting that costs a reader ───────────────────────────────────────────────────────────────
+# A mark that belongs TO its content. An emphasis run's marks say nothing a reader needs to see
+# apart from the run: they open it, and they wear the run's own weight in the rendered text. A
+# theme rule on `markup.bold` sets a weight and reaches the run alone, so the marks beside a bold
+# run read as ordinary punctuation. THE CURE IS ADDITIVE AND STACKS, NEVER NESTS — a space-separated
+# multi-scope name on the mark's own capture, the published name kept and the content family LAST,
+# the device VS Code's TypeScript grammar ships on its backticks for exactly this reason.
+
+parts markup.bold <- punctuation.definition   # OWED the additive cure. The `''` marks carry `punctuation.definition.markup.begin.bold` and nothing of `markup.bold`, so a theme's bold weight stops at the text and the marks stand beside it unweighted
+parts markup.italic <- punctuation.definition   # OWED the additive cure. The `//` marks stand outside `markup.italic`, so a theme's italic slant stops at the text and the marks stand upright beside it
+parts markup.underline <- punctuation.definition   # OWED the additive cure. Two rules wear this — the underline run and the strikethrough run, whose content names both `markup.underline.strikethrough` and `markup.strikethrough`
+parts markup.subscript <- punctuation.definition   # OWED the additive cure. The `,,` marks stand outside `markup.subscript`, so a theme lowering the run leaves the marks on the baseline beside it
+parts markup.superscript <- punctuation.definition   # OWED the additive cure. The `^^` marks stand outside `markup.superscript`, so a theme raising the run leaves the marks on the baseline beside it
+parts markup.other <- punctuation.definition   # OWED the additive cure. A hard-linebreak run, `"""`, whose marks stand outside `markup.other.preformatted.hardlinebreaks`
+parts entity.name <- markup.heading+punctuation.definition   # OWED A RE-SPELLING, not a cure — this one already carries the additive device and writes it the wrong way round. A heading's `!` marks carry `punctuation.definition.heading.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5`, which NESTS `punctuation.definition` under a content root. A scope name says what a span IS, and no span is a kind of heading-punctuation; the stacked form says the same thing truthfully and reaches the same rules — `punctuation.definition.heading.tiddlywiki5 markup.heading.tiddlywiki5`
+
+# ── a bound that names no mark ──────────────────────────────────────────────────────────────────
+# A begin or end matching a line start, a file start or a blank line consumes no mark, so no
+# delimiter stands to inherit anything. These read as bounds rather than as brackets.
+
+unnamed-delimiter markup.other <- (none)   # a style block opening on a lookahead at `@@` and closing on the line carrying the closing `@@`. The marks belong to the sibling rules that name them; this region only holds the span
+unnamed-delimiter meta.multids <- (none)   # a `.multids` file's field block and its body, bounded by the blank line between them. A blank line is not a mark
+unnamed-delimiter meta.quote <- (none)   # a quote block's body and its top cite, bounded by the enclosing `<<<` run's own lookaheads. The `<<<` marks carry `punctuation.definition.markup.quote.quoteblock.begin` from the rule that opened the block, so the mark reads as a mark and this region adds structure over the span
+unnamed-delimiter meta.text <- (none)   # a `.tid` file's field block and its body, bounded by the blank line between them, and by the `type:` line that hands the body to a guest grammar. No mark stands at either bound
+unnamed-delimiter text.html <- (none)   # a syntax-test file's wikitext body, opening at the start of the file and never closing. A file has no opening bracket

@@ -31,6 +31,13 @@ value left open colours what follows it. Two files carry the record: `swallow-le
 every divergence with the reason it stands and fails on a ruling that explains nothing;
 `unasked-regions-ceiling.txt` counts the regions with no line bound that no cut here ever opens.
 
+**What a delimiter inherits.** `contentName` names a region's interior, so the marks that open and
+close it fall outside the content family by construction and nothing downstream notices. `npm run
+delimiters` reads every `contentName` in `syntaxes/` and keys each by the family of its content
+against the families its delimiters carry; `delimiter-ledger.txt` rules every shape and says
+whether the parting serves a reader or costs one. A shape nobody ruled fails the gate, and so does
+a ruling naming a shape the tree stopped declaring.
+
 The bench seeds its workspace from here, so you look at the same files that gate the
 grammar.
 
