@@ -117,7 +117,13 @@ const READS_CONTENT_NAME = {
   'engine-witness.js':
     'names the rule a refused pattern belongs to, so a reader can find it — one label per refusal, never a set',
   'theme-parity.test.js':
-    `strips one ${FIELD} from a copy of the grammar, to provoke the gate it collides`
+    `strips one ${FIELD} from a copy of the grammar, to provoke the gate it collides`,
+  'delimiter-inheritance.js':
+    `reads WHERE a region's content boundary sits against its own delimiters — the field marks the `
+    + `boundary rather than naming a vocabulary, and a rule's delimiters fall outside it by `
+    + `construction, which is the whole question`,
+  'delimiter-inheritance.test.js':
+    `builds rules carrying the field, to collide the reading above against a shape it must refuse`
 };
 test('only grammar-scopes.js collects the scopes a grammar declares', () => {
   const others = all.filter((s) => s.name !== 'grammar-scopes.js')

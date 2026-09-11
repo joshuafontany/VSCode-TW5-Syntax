@@ -115,6 +115,10 @@ jobs:
       # a ruling naming the ceiling that answers it.
       - name: Where TiddlyWiki recovers, the grammar says so or a ruling stands
         run: npm run recovery-witness
+      # A delimiter falls OUT of its content's family by construction wherever contentName covers
+      # only an interior. Every parting stands ruled, and a ruling explaining none fails.
+      - name: Every contentName delimiter parting carries a ruling
+        run: npm run delimiters
       - name: No owed divergence reaches past the grammar
         run: npm run light-cone
       - name: Every construct a reader meets stands apart from the rest

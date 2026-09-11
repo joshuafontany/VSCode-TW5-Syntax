@@ -25,7 +25,9 @@ const themes = fs.existsSync(THEMES)
   : [];
 
 test('the resolver reads a theme the way a theme reads a scope', live, () => {
-  // A rule reaching further wins, and a descendant selector answers on its last element.
+  // A rule reaching further wins, and A DESCENDANT SELECTOR ANSWERS ONLY WHERE ITS ANCESTOR STANDS.
+  // `meta.thing keyword.other` names a keyword INSIDE a `meta.thing`; matching it on its last
+  // element alone paints every `keyword.other` in the tree from a rule written for one place.
   const theme = { tokenColors: [
     { scope: 'keyword', settings: { foreground: '#111111' } },
     { scope: 'keyword.control', settings: { foreground: '#222222' } },
@@ -33,7 +35,13 @@ test('the resolver reads a theme the way a theme reads a scope', live, () => {
   ] };
   assert.strictEqual(colourOf(theme, 'keyword.operator.x'), '#111111');
   assert.strictEqual(colourOf(theme, 'keyword.control.directive.x'), '#222222');
-  assert.strictEqual(colourOf(theme, 'keyword.other.x'), '#333333');
+  // ASKED ALONE, with no `meta.thing` anywhere above it, the descendant rule reaches nothing and
+  // the answer falls to `keyword`.
+  assert.strictEqual(colourOf(theme, 'keyword.other.x'), '#111111',
+    'a descendant selector answered without its ancestor');
+  // THE CONTROL: hand over the ancestor and the same rule wins.
+  assert.strictEqual(colourOf(theme, ['meta.thing', 'keyword.other.x']), '#333333',
+    'a descendant selector refused its own stack');
   assert.strictEqual(colourOf(theme, 'string.quoted'), null, 'a scope no rule reaches paints as the editor foreground');
 });
 

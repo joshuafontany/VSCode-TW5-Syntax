@@ -278,7 +278,10 @@ const paints = (stack, theme) => Boolean(reaches(stack, theme));
  * @param {object} theme
  */
 function colourOf(scope, theme) {
-  const rule = reaches([scope], theme);
+  // A CALLER HANDING A STACK GETS ITS STACK READ. The doc above tells a caller to hand one, and
+  // wrapping every argument in a single-element array made that impossible — a descendant selector
+  // then answered nowhere, and no caller could prove it answers where its ancestor stands.
+  const rule = reaches(Array.isArray(scope) ? scope : [scope], theme);
   return rule ? rule.settings.foreground : null;
 }
 

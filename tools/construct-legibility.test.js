@@ -42,11 +42,17 @@ test('the reading paints whole constructs, never their containers alone', live, 
   assert.ok(prose.length >= 4, `the witness compared ${prose.length} construct(s) against prose`);
   // A container reading puts call, filter run and transclusion at one colour with prose. Each of
   // those parts from it in every theme when the whole construct gets painted.
+  // A CONTAINER READING PUTS THESE AT PROSE'S OWN COLOUR — near zero, never near the top. So the
+  // guard reads as a floor rather than as perfection: demanding every theme encoded a ruler that
+  // over-reported reach, and the settled one reads a call 65, a transclusion 65, a filter run 63.
+  // A regression to container-only painting lands far below this; a truer ruler moves it by two.
+  const FLOOR = 55;
   for (const name of ['a call', 'a filter run', 'a transclusion']) {
     const line = prose.find((l) => l.includes(`${name}  vs  prose`));
     assert.ok(line, `no reading for ${name} against prose`);
     const [, apart, total] = /(\d+)\/(\d+)/.exec(line);
-    assert.strictEqual(apart, total, `${name} parts from prose in ${apart} of ${total} themes, which reads as a container`);
+    assert.ok(Number(apart) >= FLOOR,
+      `${name} parts from prose in ${apart} of ${total} themes, below ${FLOOR}, which reads as a container`);
   }
 });
 
@@ -123,7 +129,13 @@ test('a reading that drops fontStyle loses the emphasis constructs', live, () =>
     (sandbox) => {
       const file = path.join(sandbox, 'tools', 'construct-legibility.js');
       const before = fs.readFileSync(file, 'utf8');
-      const after = before.replace('return `${settings.foreground || \'-\'}/${settings.fontStyle || \'-\'}`;', "return settings.foreground || '-';");
+      // STRIKE THE CONCEPT, NEVER A LINE. A provocation naming an exact source line stops
+      // provoking the moment somebody rewrites that line, and reads green while planting no fault —
+      // measured here the day the reading moved. Every mention of the property outside a comment
+      // goes, so the reading falls back to foreground however it happens to compose them.
+      const after = before.split('\n')
+        .map((l) => (/^\s*(\/\/|\*)/.test(l) ? l : l.replace(/\$\{style\.fontStyle \|\| '-'\}|style\.fontStyle/g, "''")))
+        .join('\n');
       assert.notStrictEqual(after, before, 'the provocation changed nothing, so it plants no fault');
       fs.writeFileSync(file, after);
     },
