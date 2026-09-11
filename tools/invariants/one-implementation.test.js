@@ -14,11 +14,22 @@ const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.resolve(__dirname, '..', '..');
 const TOOLS = path.join(ROOT, 'tools');
 
-const read = (f) => ({ name: f, text: fs.readFileSync(path.join(TOOLS, f), 'utf8') });
-const all = fs.readdirSync(TOOLS).filter((f) => f.endsWith('.js')).map(read);
+// Every source under `tools/`, from a WALK. A listing stops at the first directory it meets, so a
+// file one level down escapes every rule here and carries a second implementation unnoticed.
+// The reading keys on the BARE NAME, so an allowance names a file rather than a path to it.
+function walk(dir) {
+  const found = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) found.push(...walk(full));
+    else if (entry.name.endsWith('.js')) found.push(full);
+  }
+  return found;
+}
+const all = walk(TOOLS).map((f) => ({ name: path.basename(f), text: fs.readFileSync(f, 'utf8') }));
 
 // The instruments alone. A test sits beside the instrument it collides, and naming the work marks how
 // it collides — `theme-paint.test.js` reads a theme on purpose, to prove the tool reads it the same

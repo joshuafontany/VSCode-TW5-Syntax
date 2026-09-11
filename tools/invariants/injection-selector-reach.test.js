@@ -16,9 +16,9 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { readSnapshot } = require('./snapshot-format.js');
+const { readSnapshot } = require('../snapshot-format.js');
 
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.resolve(__dirname, '..', '..');
 const SAMPLES = path.join(ROOT, 'tests', 'samples');
 const read = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, 'syntaxes', f), 'utf8'));
 

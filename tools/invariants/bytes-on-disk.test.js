@@ -15,7 +15,7 @@
 // keeps a carriage return out of a checkout, and this holds the tree to that line rather than
 // trusting it — a line somebody edits is a line somebody can drop.
 //
-//   node --test tools/bytes-on-disk.test.js
+//   node --test tools/invariants/bytes-on-disk.test.js
 
 'use strict';
 
@@ -23,10 +23,10 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { runNode } = require('./run-tool.js');
+const { runNode } = require('../run-tool.js');
 const { execFileSync } = require('node:child_process');
 
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.resolve(__dirname, '..', '..');
 
 /** Every file git tracks, with the eol attributes git resolved for it. */
 function tracked() {
@@ -64,7 +64,7 @@ test('no file this repository tracks opens with a byte-order mark', () => {
 
 test('the snapshot reader answers the same either way', () => {
   // The tolerance stands here too, because a reader handed a hand-written file meets what it meets.
-  const { readSnapshot } = require('./snapshot-format.js');
+  const { readSnapshot } = require('../snapshot-format.js');
   const snap = fs.readFileSync(path.join(ROOT, 'tests', 'samples', 'canary-control.tw.snap'), 'utf8');
   const count = (text) => readSnapshot(text).reduce((n, line) => n + line.annotations.length, 0);
   const lf = count(snap);

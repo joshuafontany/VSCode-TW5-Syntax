@@ -16,17 +16,17 @@
 // Two controls carry an unterminated value, where the region MUST run on — a sweep that reported
 // every surface clean while measuring nothing would read identically without them.
 //
-//   node --test tools/call-parity.test.js
+//   node --test tools/invariants/call-parity.test.js
 
 'use strict';
 
 const test = require('node:test');
 const assert = require('node:assert');
-const { tokenize } = require('./tokenizer.js');
-const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
-const { declaredNames } = require('./grammar-scopes.js');
+const { tokenize } = require('../tokenizer.js');
+const { resolveTiddlyWiki, boot } = require('../tw5-oracle.js');
+const { declaredNames } = require('../grammar-scopes.js');
 
-const GRAMMAR = require('node:path').join(__dirname, '..', 'syntaxes', 'tiddlywiki5.json');
+const GRAMMAR = require('node:path').join(__dirname, '..', '..', 'syntaxes', 'tiddlywiki5.json');
 /** The call vocabulary, in one place, so the two structural readings cannot drift apart. */
 const CALL = /(^|\.)call(\.|$)/;
 

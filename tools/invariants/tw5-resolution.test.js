@@ -18,9 +18,9 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { resolveTiddlyWiki } = require('./tw5-oracle.js');
+const { resolveTiddlyWiki } = require('../tw5-oracle.js');
 
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.resolve(__dirname, '..', '..');
 const pkg = require(path.join(ROOT, 'package.json'));
 
 test('TiddlyWiki stands pinned, exactly, and only for development', () => {

@@ -13,7 +13,7 @@
 // directory holding it, so every spec sits alone in a subdirectory of its own; one dropped beside
 // the edition's tiddlers stopped it loading them.
 //
-//   node --test tools/wiki-reads-the-repo.test.js
+//   node --test tools/invariants/wiki-reads-the-repo.test.js
 
 'use strict';
 
@@ -22,12 +22,12 @@ const assert = require('node:assert');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { runNode } = require('./run-tool.js');
+const { runNode } = require('../run-tool.js');
 
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.resolve(__dirname, '..', '..');
 const EDITION = path.join(ROOT, 'editions', 'tw5-syntax');
 const TIDDLERS = path.join(EDITION, 'tiddlers');
-const { resolveTiddlyWiki } = require('./tw5-oracle.js');
+const { resolveTiddlyWiki } = require('../tw5-oracle.js');
 
 // Every `tiddlywiki.files` under the edition, each read as the directory it names and the titles
 // it promises.

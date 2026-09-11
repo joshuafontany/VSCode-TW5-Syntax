@@ -14,7 +14,7 @@
 //   a ruling naming a gate CI runs anyway        — a reason that stopped answering to anything
 //   a ruling with no reason                      — a line that names no ruling
 //
-//   node --test tools/ci-runs-the-gates.test.js
+//   node --test tools/invariants/ci-runs-the-gates.test.js
 
 'use strict';
 
@@ -23,9 +23,9 @@ const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const ROOT = path.resolve(__dirname, '..');
-const { gateNames } = require('./gate-report.js');
-const { readData } = require('./wiki-data.js');
+const ROOT = path.resolve(__dirname, '..', '..');
+const { gateNames } = require('../gate-report.js');
+const { readData } = require('../wiki-data.js');
 
 const scripts = require(path.join(ROOT, 'package.json')).scripts;
 const workflow = fs.readFileSync(path.join(ROOT, '.github', 'workflows', 'test.yml'), 'utf8');

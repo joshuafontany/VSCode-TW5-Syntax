@@ -8,7 +8,7 @@
 // The two failures run opposite ways and this holds both: a file here that no runner loads, and a
 // path the shell names that nothing holds.
 //
-//   node --test tools/vendored-grammars.test.js
+//   node --test tools/invariants/vendored-grammars.test.js
 
 'use strict';
 
@@ -17,7 +17,7 @@ const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.resolve(__dirname, '..', '..');
 const VENDORED = path.join(ROOT, 'tests', 'grammars');
 const SHELL = fs.readFileSync(path.join(ROOT, 'grammars.sh'), 'utf8');
 

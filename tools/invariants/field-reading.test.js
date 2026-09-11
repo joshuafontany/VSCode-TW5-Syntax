@@ -16,9 +16,9 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { readData } = require('./wiki-data.js');
+const { readData } = require('../wiki-data.js');
 
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.resolve(__dirname, '..', '..');
 const fields = JSON.parse(fs.readFileSync(path.join(ROOT, 'syntaxes', 'tw5-fields.json'), 'utf8'));
 const rules = fields.repository.field.patterns;
 

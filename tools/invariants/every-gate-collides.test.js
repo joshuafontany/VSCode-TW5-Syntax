@@ -11,7 +11,7 @@
 // it stands for and watch it fail? A test that only runs the tool and reads its summary answers
 // whether the tree happens to stand clean today.
 //
-//   node --test tools/every-gate-collides.test.js
+//   node --test tools/invariants/every-gate-collides.test.js
 
 'use strict';
 
@@ -20,8 +20,8 @@ const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const ROOT = path.resolve(__dirname, '..');
-const { gateNames } = require('./gate-report.js');
+const ROOT = path.resolve(__dirname, '..', '..');
+const { gateNames } = require('../gate-report.js');
 const scripts = require(path.join(ROOT, 'package.json')).scripts;
 
 /** The instrument a gate runs, by file name. */
@@ -58,9 +58,20 @@ test('every gate names an instrument this repository holds', () => {
   assert.deepStrictEqual(missing, [], 'gate(s) whose instrument nothing holds');
 });
 
-// Every test file, read once.
-const suites = fs.readdirSync(path.join(ROOT, 'tools')).filter((f) => f.endsWith('.test.js'))
-  .map((f) => ({ file: f, text: fs.readFileSync(path.join(ROOT, 'tools', f), 'utf8') }));
+// Every test file, read once — from a WALK, never from one directory's listing. A listing stops at
+// the first directory it meets, so a collider moved one level down reads as absent and the gate it
+// plants a fault for reports uncollided.
+function walk(dir) {
+  const found = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) found.push(...walk(full));
+    else if (entry.name.endsWith('.test.js')) found.push(full);
+  }
+  return found;
+}
+const suites = walk(path.join(ROOT, 'tools'))
+  .map((f) => ({ file: path.relative(ROOT, f), text: fs.readFileSync(f, 'utf8') }));
 
 /**
  * Every test file that collides one instrument.

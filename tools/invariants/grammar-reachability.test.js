@@ -21,7 +21,7 @@
 //
 // So the walk carries a stack, and every include remembers the stack it stood in.
 //
-//   node --test tools/grammar-reachability.test.js
+//   node --test tools/invariants/grammar-reachability.test.js
 
 'use strict';
 
@@ -30,7 +30,7 @@ const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.resolve(__dirname, '..', '..');
 const SYNTAXES = path.join(ROOT, 'syntaxes');
 
 const grammars = fs.readdirSync(SYNTAXES).filter((f) => f.endsWith('.json'))

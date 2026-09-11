@@ -16,7 +16,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { readSnapshot } = require('./snapshot-format.js');
+const { readSnapshot } = require('../snapshot-format.js');
 
 // A scope name: dot-separated segments, none of them empty. A segment may hold whatever an
 // interpolated capture legitimately holds — VS Code's own HTML grammar emits
@@ -82,7 +82,7 @@ test('a well-formed scope passes and a mangled one fails', () => {
   assert.strictEqual(damage('meta.tiddle.field.text.tiddlywiki5.multids-file'), null, 'so does a sibling grammar');
 });
 
-const SAMPLES = path.resolve(__dirname, '..', 'tests', 'samples');
+const SAMPLES = path.resolve(__dirname, '..', '..', 'tests', 'samples');
 const snapshots = fs.existsSync(SAMPLES) ? scopesInSnapshots(SAMPLES) : [];
 const live = { skip: snapshots.length > 0 ? false : 'no pinned snapshots' };
 

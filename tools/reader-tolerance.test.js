@@ -28,7 +28,7 @@ const path = require('node:path');
 const ROOT = path.resolve(__dirname, '..');
 const { parseTid } = require('./wiki-data.js');
 const { readSnapshot } = require('./snapshot-format.js');
-const { parseJsonc } = require('./contributions.test.js');
+const { parseJsonc } = require('./invariants/contributions.test.js');
 const { loadTheme } = require('./theme-model.js');
 
 /**

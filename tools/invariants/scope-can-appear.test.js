@@ -17,7 +17,7 @@
 // The first reads structurally, and this holds it. The second reads only by measurement, and the
 // corpus ceiling holds that: nothing this grammar emits stands unreached.
 //
-//   node --test tools/scope-can-appear.test.js
+//   node --test tools/invariants/scope-can-appear.test.js
 
 'use strict';
 
@@ -26,7 +26,7 @@ const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.resolve(__dirname, '..', '..');
 const SYNTAXES = path.join(ROOT, 'syntaxes');
 
 /**

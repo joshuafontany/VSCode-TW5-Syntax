@@ -26,7 +26,7 @@ const assert = require('node:assert');
 const { execFileSync } = require('node:child_process');
 const path = require('node:path');
 
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.resolve(__dirname, '..', '..');
 const TW5 = path.resolve(ROOT, '..', 'TiddlyWiki5');
 const have = require('node:fs').existsSync(TW5);
 const live = { skip: have ? false : 'no TiddlyWiki checkout beside the extension' };

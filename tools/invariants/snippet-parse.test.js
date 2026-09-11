@@ -18,7 +18,7 @@
 // as prose hands a learner a snippet that works and looks broken — the same fault as a rule that
 // never fired, arriving through the one surface that writes into a reader's file.
 //
-//   node --test tools/snippet-parse.test.js
+//   node --test tools/invariants/snippet-parse.test.js
 
 'use strict';
 
@@ -27,10 +27,10 @@ const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
 const os = require('node:os');
-const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
-const { snapshot } = require('./tokenizer.js');
+const { resolveTiddlyWiki, boot } = require('../tw5-oracle.js');
+const { snapshot } = require('../tokenizer.js');
 
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.resolve(__dirname, '..', '..');
 const SETS = ['snippets/snippets.json', 'snippets/tiddler-fields.json'];
 const host = resolveTiddlyWiki();
 const live = { skip: host ? false : 'no TiddlyWiki checkout resolved', timeout: 300000 };

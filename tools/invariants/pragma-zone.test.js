@@ -15,14 +15,14 @@
 // which stands as line one and matches none of the zone's opening shapes, so the zone never opens
 // and every line inside reads as a paragraph. The reading happens here, against the tokenizer.
 //
-//   node --test tools/pragma-zone.test.js
+//   node --test tools/invariants/pragma-zone.test.js
 
 'use strict';
 
 const test = require('node:test');
 const assert = require('node:assert');
-const { tokenize } = require('./tokenizer.js');
-const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
+const { tokenize } = require('../tokenizer.js');
+const { resolveTiddlyWiki, boot, flatten } = require('../tw5-oracle.js');
 
 const TW = resolveTiddlyWiki();
 const live = { skip: TW ? false : 'no TiddlyWiki checkout resolved', timeout: 600000 };

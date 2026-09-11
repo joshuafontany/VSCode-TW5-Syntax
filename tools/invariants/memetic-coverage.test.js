@@ -15,9 +15,9 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { declaredScopes } = require('./grammar-scopes.js');
+const { declaredScopes } = require('../grammar-scopes.js');
 
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.resolve(__dirname, '..', '..');
 const SAMPLES = path.join(ROOT, 'tests', 'samples');
 
 /** Every scope the pinned snapshots of a given suffix reach. */
