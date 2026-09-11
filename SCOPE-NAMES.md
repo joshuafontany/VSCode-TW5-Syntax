@@ -90,9 +90,17 @@ MagicPython ships twelve of them, both for exactly this reason — `contentName`
 region's interior, so a delimiter loses whatever its content carries unless somebody puts it back
 by hand.
 
-**Checked, at a floor of 7.** Seven names stand nested today: a filter operand's brackets, spelled
-three ways, and a heading's `!` mark. `corpus/delimiter-ledger.txt` records the heading one as
-owed, beside the six emphasis families whose marks carry no content family at all.
+**Checked, at a floor of 1.** A filter operand's brackets wore the nested shape three ways —
+`string.`, `variable.` and `entity.name.punctuation.definition.operand.*` — and each stands as
+two scopes on one span, the punctuation name first and the content family last. A theme reached
+those marks through the content root alone, `string` in 62 of the 65 bundled themes, `variable`
+in 58 and `entity` in 40, and through `punctuation` in none; the stacked spelling keeps every one
+of those and adds the 40 `punctuation` rules that never reached them. Measured after: 424 scopes,
+zero readings moved in `colour-witness`, zero in `construct-legibility`, zero snapshots drifted.
+
+One stands: a heading's `!` mark, which already carries the additive device and spells it
+backwards. `corpus/delimiter-ledger.txt` records that one as owed, beside the six emphasis
+families whose marks carry no content family at all.
 
 ### One segment, one word
 

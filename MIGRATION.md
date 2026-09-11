@@ -5,7 +5,7 @@ moves takes the reader's colour with it, and VS Code reports nothing: the rule s
 matching, and the construct goes the colour of prose.
 
 This repository declares **460** scope names at `v2.2.1` and **497** at `2.3.0`. Between them,
-**98** names stand gone and **135** stand new. Every gone name appears below, with what it
+**104** names stand gone and **141** stand new. Every gone name appears below, with what it
 stands as now or why it retired.
 
 The table derives from the two grammars rather than from a hand-written list, and
@@ -24,11 +24,25 @@ they painted the colour of prose in every bundled theme, and they did so from th
 were written.
 
 Their replacements put the root first and keep the qualifier as a suffix, so a rule on the
-family root reaches the construct and a deeper rule can still single it out. **39 of the 98**
+family root reaches the construct and a deeper rule can still single it out. **39 of the 104**
 gone names moved for exactly that reason.
 
 If your customization named one of these, it was already painting nothing. Adopting the new
 name is the first time it will take effect.
+
+## Six that keep their colour
+
+A filter operand's brackets spelled themselves `string.punctuation.definition.operand.begin`,
+`variable.…` and `entity.name.…`, nesting `punctuation` under the content root. A theme reached
+those marks through the content root alone — `string` in 62 of 65 bundled themes, `variable` in
+58, `entity` in 40 — and never through `punctuation`, which the name buried where no selector
+reaches.
+
+Each stands as two scopes on one span: `punctuation.definition.operand.<kind>.<bound>` first,
+and the content family the mark bounds LAST. The content scope stands innermost, so every theme
+paints these marks exactly the colour it painted before, and a rule written against
+`punctuation` now reaches them as well. A customization naming one of the gone names wants the
+new punctuation name; a customization naming `string`, `variable` or `entity` needs no change.
 
 ## Names that moved
 
@@ -44,6 +58,8 @@ name is the first time it will take effect.
 | `colspan.left.punctuation.definition.cell.tiddlywiki5` | `punctuation.definition.cell.colspan.left.tiddlywiki5` | root first |
 | `colspan.right.meta.cell.td.tiddlywiki5` | `meta.cell.td.colspan.right.tiddlywiki5` | root first |
 | `colspan.right.punctuation.definition.cell.tiddlywiki5` | `punctuation.definition.cell.colspan.right.tiddlywiki5` | root first |
+| `entity.name.punctuation.definition.operand.begin.tiddlywiki5` | `punctuation.definition.operand.indirect.begin.tiddlywiki5` | punctuation stacks, never nests |
+| `entity.name.punctuation.definition.operand.end.tiddlywiki5` | `punctuation.definition.operand.indirect.end.tiddlywiki5` | punctuation stacks, never nests |
 | `entity.name.variable-parameter.tiddlywiki5` | `variable.name.substitute-variable.tiddlywiki5` | substitution vocabulary |
 | `filtered.attribute.html.tiddlywiki5` | `meta.attribute.filtered.html.tiddlywiki5` | root first |
 | `heading.th.meta.cell.tiddlywiki5` | `meta.cell.heading.th.tiddlywiki5` | root first |
@@ -81,6 +97,8 @@ name is the first time it will take effect.
 | `row.thead.header.meta.table.tiddlywiki5` | `meta.table.row.thead.header.tiddlywiki5` | root first |
 | `rowspan.down.meta.cell.td.tiddlywiki5` | `meta.cell.td.rowspan.down.tiddlywiki5` | root first |
 | `rowspan.down.punctuation.definition.cell.tiddlywiki5` | `punctuation.definition.cell.rowspan.down.tiddlywiki5` | root first |
+| `string.punctuation.definition.operand.begin.tiddlywiki5` | `punctuation.definition.operand.string.begin.tiddlywiki5` | punctuation stacks, never nests |
+| `string.punctuation.definition.operand.end.tiddlywiki5` | `punctuation.definition.operand.string.end.tiddlywiki5` | punctuation stacks, never nests |
 | `strikethrough.punctuation.definition.markup.begin.tiddlywiki5` | `punctuation.definition.markup.begin.strikethrough.tiddlywiki5` | root first |
 | `strikethrough.punctuation.definition.markup.end.tiddlywiki5` | `punctuation.definition.markup.end.strikethrough.tiddlywiki5` | root first |
 | `subscript.punctuation.definition.markup.begin.tiddlywiki5` | `punctuation.definition.markup.begin.subscript.tiddlywiki5` | root first |
@@ -92,6 +110,8 @@ name is the first time it will take effect.
 | `unnumbered.description.dl.dd.markup.list.tiddlywiki5` | `markup.list.unnumbered.description.dl.dd.tiddlywiki5` | root first |
 | `unnumbered.term.dl.dt.markup.list.tiddlywiki5` | `markup.list.unnumbered.term.dl.dt.tiddlywiki5` | root first |
 | `unnumbered.unordered.ul.li.markup.list.tiddlywiki5` | `markup.list.unnumbered.unordered.ul.li.tiddlywiki5` | root first |
+| `variable.punctuation.definition.operand.begin.tiddlywiki5` | `punctuation.definition.operand.variable.begin.tiddlywiki5` | punctuation stacks, never nests |
+| `variable.punctuation.definition.operand.end.tiddlywiki5` | `punctuation.definition.operand.variable.end.tiddlywiki5` | punctuation stacks, never nests |
 | `variable.name.variable-reference.tiddlywiki5` | `variable.name.substitute-variable.tiddlywiki5` | substitution vocabulary |
 
 ## Names that retired
