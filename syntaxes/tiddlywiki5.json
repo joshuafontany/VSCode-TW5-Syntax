@@ -5677,23 +5677,18 @@
             "comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole."
         },
         "prettylink": {
-            "begin": "(\\[)(\\[)(?=[^\\n]*\\]\\])",
-            "end": "(\\])(\\])",
+            "comment": "`[[` and `]]` each stand as ONE mark, so each arrives as one token. An outer and an inner name part where the brackets enclose different things \u2014 `[img[` an attribute list then a source, `[ext[` a caption then an address \u2014 and a pretty link encloses one thing.",
+            "begin": "(\\[\\[)(?=[^\\n]*\\]\\])",
+            "end": "(\\]\\])",
             "name": "markup.link.tiddlywiki5",
             "beginCaptures": {
                 "1": {
-                    "name": "punctuation.definition.link.outer.begin.tiddlywiki5"
-                },
-                "2": {
-                    "name": "punctuation.definition.link.inner.begin.tiddlywiki5"
+                    "name": "punctuation.definition.link.begin.tiddlywiki5"
                 }
             },
             "endCaptures": {
                 "1": {
-                    "name": "punctuation.definition.link.inner.end.tiddlywiki5"
-                },
-                "2": {
-                    "name": "punctuation.definition.link.outer.end.tiddlywiki5"
+                    "name": "punctuation.definition.link.end.tiddlywiki5"
                 }
             },
             "patterns": [

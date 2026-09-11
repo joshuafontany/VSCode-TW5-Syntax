@@ -13,13 +13,11 @@
 #                ^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.italic.tiddlywiki5
 #                 ^^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 punctuation.definition.markup.end.italic.tiddlywiki5
 #                   ^^^^^^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5
-#                         ^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.begin.tiddlywiki5
-#                          ^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.begin.tiddlywiki5
+#                         ^^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.begin.tiddlywiki5
 #                           ^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.link.tiddlywiki5
 #                            ^^^^^^^^^^^^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5 string.other.link.title.tiddlywiki5
 #                                        ^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.link.tiddlywiki5
-#                                         ^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.end.tiddlywiki5
-#                                          ^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.end.tiddlywiki5
+#                                         ^^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.end.tiddlywiki5
 #                                           ^^^^^^^^^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5
 >  !! ''Heading'' //2// Test
 #^^ text.html.tiddlywiki5 markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5
@@ -64,13 +62,11 @@
 #                              ^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.italic.tiddlywiki5
 #                               ^^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 punctuation.definition.markup.end.italic.tiddlywiki5
 #                                 ^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5
-#                                  ^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.begin.tiddlywiki5
-#                                   ^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.begin.tiddlywiki5
+#                                  ^^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.begin.tiddlywiki5
 #                                    ^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.link.tiddlywiki5
 #                                     ^^^^^^^^^^^^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.link.tiddlywiki5 markup.underline.link.tiddlywiki5 string.other.link.title.tiddlywiki5
 #                                                 ^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.link.tiddlywiki5
-#                                                  ^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.inner.end.tiddlywiki5
-#                                                   ^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.end.tiddlywiki5
+#                                                  ^^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.end.tiddlywiki5
 #                                                    ^^^^^^^^^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5
 >!!.class1.class2 ''Heading'' //2// Test
 #^^ text.html.tiddlywiki5 markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 punctuation.definition.heading.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5

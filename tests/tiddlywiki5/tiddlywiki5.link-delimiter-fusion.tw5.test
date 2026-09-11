@@ -1,0 +1,46 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A pretty link's brackets arrive as one token each"
+
+# `[[` and `]]` each form ONE glyph. No outer bracket encloses a different thing from an inner
+# one here, so the two halves name one mark between them: measured across 65 bundled themes,
+# both halves paint identically in every one, which puts the distinction in reach of machines
+# and of no theme.
+#
+# CANON FUSES. No grammar among twenty splits a multi-character delimiter into two separately
+# named sequential tokens — VS Code html emits `</` as one token, Liquid's `{%-` as one token of
+# three characters, Handlebars' `{{~{>` as one of arbitrary length — and the TextMate 1.x
+# manual's own `captures` example deliberately fuses `@selector(`.
+#
+# THE SPLIT STANDS WHERE THE BRACKETS ENCLOSE DIFFERENT THINGS. `[img[` opens an attribute list
+# and then a source; `[ext[` opens a caption and then an address. Each keeps an outer name and
+# an inner name, and the cases below hold that line.
+
+! A pretty link opens and closes on one token each
+
+A [[Some Title]] here.
+# ^^ punctuation.definition.link.begin.tiddlywiki5
+# ^^ - punctuation.definition.link.inner.begin.tiddlywiki5
+#             ^^ punctuation.definition.link.end.tiddlywiki5
+#             ^^ - punctuation.definition.link.inner.end.tiddlywiki5
+
+! A captioned pretty link carries the same two marks
+
+A [[Caption|Target]] here.
+# ^^ punctuation.definition.link.begin.tiddlywiki5
+#                 ^^ punctuation.definition.link.end.tiddlywiki5
+
+! An image keeps its outer and inner brackets apart
+
+An [img width=50 [Tooltip|source.png]] here.
+#  ^ punctuation.definition.image.outer.begin.tiddlywiki5
+#                ^ punctuation.definition.image.inner.begin.tiddlywiki5
+#                                   ^ punctuation.definition.image.inner.end.tiddlywiki5
+#                                    ^ punctuation.definition.image.outer.end.tiddlywiki5
+
+! An external pretty link keeps its outer and inner brackets apart
+
+An [ext[Caption|https://example.com]] here.
+#  ^ punctuation.definition.link.outer.begin.tiddlywiki5
+#      ^ punctuation.definition.link.external.inner.begin.tiddlywiki5
+#                                  ^ punctuation.definition.link.external.inner.end.tiddlywiki5
+#                                   ^ punctuation.definition.link.external.outer.end.tiddlywiki5
+

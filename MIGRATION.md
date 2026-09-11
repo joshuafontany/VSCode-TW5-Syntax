@@ -67,6 +67,9 @@ name is the first time it will take effect.
 | `mvv.attribute.html.tiddlywiki5` | `meta.attribute.mvv.html.tiddlywiki5` | root first |
 | `mvv.default.parameter.tiddlywiki5` | `variable.parameter.mvv.default.tiddlywiki5` | root first |
 | `numbered.ordered.ol.li.markup.list.tiddlywiki5` | `markup.list.numbered.ordered.ol.li.tiddlywiki5` | root first |
+| `punctuation.definition.link.inner.begin.tiddlywiki5` | `punctuation.definition.link.begin.tiddlywiki5` | one mark, one token |
+| `punctuation.definition.link.inner.end.tiddlywiki5` | `punctuation.definition.link.end.tiddlywiki5` | one mark, one token |
+| `punctuation.definition.link.outer.end.tiddlywiki5` | `punctuation.definition.link.end.tiddlywiki5` | one mark, one token |
 | `punctuation.definition.substituted.triple..attribute.begin.tiddlywiki5` | `punctuation.definition.substituted.triple.attribute.begin.tiddlywiki5` | empty segment |
 | `punctuation.definition.text-reference.index..tiddlywiki5` | `punctuation.definition.text-reference.index.tiddlywiki5` | empty segment |
 | `punctuation.separator.function.macro.parameter.tiddlywiki5` | `punctuation.separator.parameters.tiddlywiki5` | call vocabulary |
@@ -161,6 +164,22 @@ vocabulary now reaches both.
 | retired | why |
 | --- | --- |
 | `row.tbody.body.markup.other.table.tiddlywiki5` | the markup twin of a table body row — its `meta.table.row.tbody.body` counterpart stands, and the `thead` and `tfoot` rows keep both names |
+
+## One mark, one token
+
+A pretty link's `[[` and `]]` each stand as ONE mark, and each now arrives as one token carrying
+one name. No grammar among twenty splits a multi-character delimiter into two separately named
+sequential tokens: VS Code html emits `</` as one token, Liquid's `{%-` as one token of three
+characters, Handlebars' `{{~{>` as one of arbitrary length, and the TextMate 1.x manual's own
+`captures` example fuses `@selector(`. Measured across the 65 bundled themes, the two halves
+painted identically in every one, so the split reached machines and no reader.
+
+The outer and inner names stand where the brackets enclose different things — `[img[` opens an
+attribute list and then a source, `[ext[` a caption and then an address — and both keep them.
+
+`punctuation.definition.link.outer.begin.tiddlywiki5` still stands, on `[ext[`'s outer bracket.
+A customization naming it for a pretty link's `[[` reaches the fused mark under
+`punctuation.definition.link.begin.tiddlywiki5`.
 
 ## Reading the new names yourself
 

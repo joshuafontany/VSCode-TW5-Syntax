@@ -19,4 +19,4 @@ caption: a ''bold'' value
 color: <<colour foreground>>
 #      ^^ source.tiddlywiki5.tid-file meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5
 tags: [[Two Words]]
-#     ^ source.tiddlywiki5.tid-file punctuation.definition.link.outer.begin.tiddlywiki5
+#     ^ source.tiddlywiki5.tid-file punctuation.definition.link.begin.tiddlywiki5

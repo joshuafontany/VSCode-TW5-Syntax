@@ -17,7 +17,7 @@ title: A [[Linked Title]]
 #<- entity.other.attribute-name.field.wikitext.tiddlywiki5
 #          ^^^^^^^^^^^^ string.other.link.title.tiddlywiki5
 tags: One [[Two Words]] Three
-#         ^ punctuation.definition.link.outer.begin.tiddlywiki5
+#         ^ punctuation.definition.link.begin.tiddlywiki5
 #           ^^^^^^^^^ string.other.link.title.tiddlywiki5
 list: [[$:/core/ui/Foo]]
 #       ^^^^^^^^^^^^^^ constant.language.system.title.tiddlywiki5

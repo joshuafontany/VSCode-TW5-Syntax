@@ -20,5 +20,5 @@
 #<- - punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
 
 And an inline construct still reads: [[A Link]] here
-#                                    ^ text.html.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.begin.tiddlywiki5
+#                                    ^ text.html.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.begin.tiddlywiki5
 
