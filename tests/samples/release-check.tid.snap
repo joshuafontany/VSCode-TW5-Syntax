@@ -46,7 +46,7 @@
 #^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5
 #  ^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 #         ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 punctuation.separator.key-value.html.tiddlywiki5
-#          ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 string.quoted.triple.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#          ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 string.quoted.triple.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5
 >    [ { field: 'tags', fmt: (r) => r.tags.join(', ') },
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 string.quoted.triple.html.tiddlywiki5
 >      ...$tw.wiki.getTiddlerText('$:/config/x', '') ]
@@ -56,7 +56,7 @@
 #                                             ^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 string.quoted.triple.html.tiddlywiki5
 >  """
 #^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 string.quoted.triple.html.tiddlywiki5
-#  ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 string.quoted.triple.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
+#  ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 string.quoted.triple.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5
 >/>
 #^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.basic-table.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 >
@@ -146,9 +146,9 @@
 #                     ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.text.html.tiddlywiki5
 #                      ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.text.html.tiddlywiki5 meta.attribute.unrecognized.other.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 #                           ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.text.html.tiddlywiki5 meta.attribute.unrecognized.other.html.tiddlywiki5 punctuation.separator.key-value.html.tiddlywiki5
-#                            ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.text.html.tiddlywiki5 meta.attribute.unrecognized.other.html.tiddlywiki5 string.quoted.bracket.attribute.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#                            ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.text.html.tiddlywiki5 meta.attribute.unrecognized.other.html.tiddlywiki5 string.quoted.bracket.attribute.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5
 #                              ^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.text.html.tiddlywiki5 meta.attribute.unrecognized.other.html.tiddlywiki5 string.quoted.bracket.attribute.html.tiddlywiki5 string.quoted.bracket.attribute.html.tiddlywiki5
-#                                              ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.text.html.tiddlywiki5 meta.attribute.unrecognized.other.html.tiddlywiki5 string.quoted.bracket.attribute.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
+#                                              ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.text.html.tiddlywiki5 meta.attribute.unrecognized.other.html.tiddlywiki5 string.quoted.bracket.attribute.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5
 #                                                ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.tag.widget.text.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 >
 ><<myProc first=<<inner>> second={{{ [tag[x]] }}} third=`sub` >>

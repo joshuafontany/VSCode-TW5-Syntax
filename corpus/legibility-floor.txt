@@ -269,7 +269,7 @@
 65 a dash  vs  a rules directive
 65 a dash  vs  a typed block
 65 a dash  vs  a widget
-65 a dash  vs  an image
+62 a dash  vs  an image
 65 a dash  vs  an import directive
 65 a filter run  vs  a heading
 65 a filter run  vs  a horizontal rule
@@ -941,4 +941,17 @@
 # against an import or a parameters directive, and that convergence reads HONEST: all three pragmas
 # carry a filter run, which now paints alike, and their distinction lives in the keyword opening
 # them rather than in the filter they share.
+
+# 2026-09-11: ONE RE-SEATED, and three forks declined with the numbers that declined them.
+#
+# An image's bounds carry `keyword.other.img` beside their own name, so `[img[` reads as one marker
+# rather than as a grey bracket, a red word and a grey bracket. That costs a dash three themes
+# against an image, the dash reaching `keyword` in those three.
+#
+# DECLINED, measured one group at a time against the same base:
+#   a pretty link's BOUNDS carrying the link title family — 6 pairs fall, and a wikilink loses 17
+#     themes of distinction from a bare external link. A reader needs that one.
+#   a pretty link's SEPARATOR alone — 6 theme-readings on one pair, and NO colour gain at all, since
+#     the bounds stay punctuation either way and the construct still reads two colours.
+#   Both want the link families parted first, the same repair `markup.underline.link.*` already owes.
 

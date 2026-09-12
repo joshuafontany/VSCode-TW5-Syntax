@@ -3,12 +3,12 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 39 of 40
+gates-held: 38 of 40
 
 {
     "gates": 40,
-    "held": 39,
-    "failing": 1,
+    "held": 38,
+    "failing": 2,
     "results": [
         {
             "gate": "attribute-guard",
@@ -73,12 +73,12 @@ gates-held: 39 of 40
         {
             "gate": "dark-construct",
             "held": false,
-            "said": "dark-construct  336 construct(s) over 65 themes, 25 plain, 17 unaccounted"
+            "said": "dark-construct  325 construct(s) over 65 themes, 25 plain, 17 unaccounted"
         },
         {
             "gate": "delimiters",
-            "held": true,
-            "said": "delimiter-inheritance  107 contentName rule(s) over 39 shape(s), 0 unruled"
+            "held": false,
+            "said": "delimiter-inheritance  107 contentName rule(s) over 39 shape(s), 2 unruled"
         },
         {
             "gate": "engine-witness",
