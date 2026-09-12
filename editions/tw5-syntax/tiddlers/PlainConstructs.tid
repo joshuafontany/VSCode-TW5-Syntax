@@ -6,11 +6,26 @@ description: Why a reader should meet each of these as prose — a judgement no 
 
 {
     "meta.paragraph": "prose, which markdown leaves plain at the same reach",
-    "markup.other.preformatted.hardlinebreaks": "a hard-linebreak block, which TiddlyWiki renders as text with breaks rather than as code",
     "meta.element.inline.math": "the content of embedded MathML, plain in every grammar that embeds it",
     "meta.element.structure.svg": "the content of embedded SVG, plain for the same reason",
     "meta.link.wikilink": "a CamelCase word the standing rule set does not autolink, so the parser builds no link to colour",
     "meta.multids.text.html": "a multids body line handed to the wikitext grammar, plain where no construct stands",
     "meta.text.tiddler.fields": "a field region, plain where no field stands",
-    "meta.variable.macro.parameters": "the run between a call's parameters, which TiddlyWiki carries across blank lines to the closer"
+    "meta.variable.macro.parameters": "the run between a call's parameters, which TiddlyWiki carries across blank lines to the closer",
+    "markup.list.unnumbered.unordered.ul.li": "the words INSIDE a bullet, never the bullet. `theme-parity` measures a list item at 23% of themes against a six-grammar panel median of 6% \u2014 markdown, asciidoc, rst, org, mediawiki and mdx all leave a list's content plain, and this grammar already paints it four times as often",
+    "markup.list.numbered.ordered.ol.li": "the words INSIDE a bullet, never the bullet. `theme-parity` measures a list item at 23% of themes against a six-grammar panel median of 6% \u2014 markdown, asciidoc, rst, org, mediawiki and mdx all leave a list's content plain, and this grammar already paints it four times as often",
+    "markup.list.unnumbered.term.dl.dt": "the words INSIDE a bullet, never the bullet. `theme-parity` measures a list item at 23% of themes against a six-grammar panel median of 6% \u2014 markdown, asciidoc, rst, org, mediawiki and mdx all leave a list's content plain, and this grammar already paints it four times as often",
+    "markup.list.unnumbered.description.dl.dd": "the words INSIDE a bullet, never the bullet. `theme-parity` measures a list item at 23% of themes against a six-grammar panel median of 6% \u2014 markdown, asciidoc, rst, org, mediawiki and mdx all leave a list's content plain, and this grammar already paints it four times as often",
+    "markup.list.listquote.quote": "the words INSIDE a bullet, never the bullet. `theme-parity` measures a list item at 23% of themes against a six-grammar panel median of 6% \u2014 markdown, asciidoc, rst, org, mediawiki and mdx all leave a list's content plain, and this grammar already paints it four times as often",
+    "markup.other.table": "a table's content, which reads as prose in a grid. `theme-parity` measures a table cell at 23% of themes against a panel median of 22% across five grammars that carry one \u2014 this grammar sits AT the panel rather than below it",
+    "markup.other.table.caption": "a table's content, which reads as prose in a grid. `theme-parity` measures a table cell at 23% of themes against a panel median of 22% across five grammars that carry one \u2014 this grammar sits AT the panel rather than below it",
+    "markup.other.table.classes": "a table's content, which reads as prose in a grid. `theme-parity` measures a table cell at 23% of themes against a panel median of 22% across five grammars that carry one \u2014 this grammar sits AT the panel rather than below it",
+    "markup.other.table.row.thead.header": "a table's content, which reads as prose in a grid. `theme-parity` measures a table cell at 23% of themes against a panel median of 22% across five grammars that carry one \u2014 this grammar sits AT the panel rather than below it",
+    "markup.other.table.row.tfoot.footer": "a table's content, which reads as prose in a grid. `theme-parity` measures a table cell at 23% of themes against a panel median of 22% across five grammars that carry one \u2014 this grammar sits AT the panel rather than below it",
+    "meta.transclusion.text-reference": "a `meta.` region, which the TextMate manual states plainly gets no visual style and Sublime tells a theme author to resist styling \u2014 a reader meets the title INSIDE it, which paints",
+    "text.html.tiddlywiki5": "the root text scope every span in this grammar stands under. A reader meets the construct, never the ground it stands on",
+    "text.substituted.single.attribute.html": "a substituted attribute's body, handed to the wikitext rules that fill it \u2014 a reader meets what those rules paint, and the body itself carries no construct of its own",
+    "markup.other.image": "an image's REGION, whose parts each paint: the `[img[` marker carries its own keyword family, the tooltip its string, and the path its link. A container painted beside its parts would only compete with them",
+    "markup.other.style": "a styled block's REGION, whose declarations reach the CSS rules that paint them. The region holds what those rules colour rather than colouring it twice",
+    "markup.underline": "an underline run, which most themes carry in fontStyle rather than in foreground \u2014 measured, 36 of 65 give it a fontStyle. No conventional scope stands deeper for a reader to rule on, and reach bought by borrowing one buys nothing a reader can trust"
 }

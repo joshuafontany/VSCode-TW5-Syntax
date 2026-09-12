@@ -4002,7 +4002,7 @@
             "contentName": "meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5",
             "beginCaptures": {
                 "1": {
-                    "name": "punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5"
+                    "name": "punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5 variable.name.macro.tiddlywiki5"
                 },
                 "2": {
                     "name": "variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5",
@@ -4015,7 +4015,7 @@
             },
             "endCaptures": {
                 "1": {
-                    "name": "punctuation.definition.call.block.end.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5"
+                    "name": "punctuation.definition.call.block.end.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5 variable.name.macro.tiddlywiki5"
                 }
             },
             "patterns": [
@@ -5347,7 +5347,7 @@
             "contentName": "meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5",
             "beginCaptures": {
                 "1": {
-                    "name": "punctuation.definition.call.inline.begin.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5"
+                    "name": "punctuation.definition.call.inline.begin.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5 variable.name.macro.tiddlywiki5"
                 },
                 "2": {
                     "name": "variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5",
@@ -5360,7 +5360,7 @@
             },
             "endCaptures": {
                 "1": {
-                    "name": "punctuation.definition.call.inline.end.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5"
+                    "name": "punctuation.definition.call.inline.end.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5 variable.name.macro.tiddlywiki5"
                 }
             },
             "patterns": [

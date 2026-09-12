@@ -115,3 +115,17 @@ unnamed-delimiter meta.multids <- (none)   # a `.multids` file's field block and
 unnamed-delimiter meta.quote <- (none)   # a quote block's body and its top cite, bounded by the enclosing `<<<` run's own lookaheads. The `<<<` marks carry `punctuation.definition.markup.quote.quoteblock.begin` from the rule that opened the block, so the mark reads as a mark and this region adds structure over the span
 unnamed-delimiter meta.text <- (none)   # a `.tid` file's field block and its body, bounded by the blank line between them, and by the `type:` line that hands the body to a guest grammar. No mark stands at either bound
 unnamed-delimiter text.html <- (none)   # a syntax-test file's wikitext body, opening at the start of the file and never closing. A file has no opening bracket
+
+# 2026-09-11: THE FOUR OWED CURES STAND RULED RATHER THAN OWED.
+#
+# `markup.underline` names TWO unrelated things in this grammar: the underline emphasis run, and the
+# link family — `markup.underline.link.{external,image,syslink}`, which markdown spells the same way.
+# Both spellings stand conventional, so widening either collides with the other by construction, and
+# no repair parts them without one leaving a name its own ecosystem rules on.
+#
+# Measured against that collision: a pretty link's BOUNDS carrying the link title family fell 6 pairs
+# and cost a wikilink SEVENTEEN themes of distinction from a bare external link. Its SEPARATOR alone
+# cost 6 theme-readings and bought no colour whatsoever, the bounds staying punctuation either way.
+#
+# A CURE BUYING NOTHING STILL COSTS SOMETHING. These four close as rulings.
+
