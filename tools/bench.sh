@@ -64,4 +64,11 @@ docker compose -f "$BENCH/docker-compose.yml" up -d --force-recreate "$MODE"
 # argument on the server only sets the default for a desktop client.
 echo "bench ($MODE) -> http://localhost:$PORT/?folder=/workspace"
 echo "  workspace: $BENCH/workspace  (seeded from corpus/, with tests/samples under samples/)"
+# THE CORPUS KEEPS ITS SHAPE, so a specimen sits a directory down while the ledgers sit at the root.
+# A reader opening the workspace to look at COLOUR meets fourteen `.txt` gauges before any wikitext,
+# and naming the way in beats leaving them to guess it.
+echo "  start here:"
+for probe in wikitext/reading.in-prose.tw memetic/reading.in-prose.mem; do
+  [ -f "$BENCH/workspace/$probe" ] && echo "    $probe  — every construct inside a sentence, with what to look for written in"
+done
 echo "  stop with: tools/bench.sh down"
