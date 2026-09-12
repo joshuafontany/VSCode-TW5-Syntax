@@ -62,6 +62,17 @@ jobs:
       # it states rather than infers.
       - name: Tool tests
         run: npm run test-tools
+      # A TEST WRITING OUTSIDE A SANDBOX MAKES EVERY CONCURRENT READER FLAKY. One provocation wrote a
+      # tracked harvest in place and restored it in a `finally`, leaving a window the whole suite ran
+      # inside — a gate reading it at the wrong moment failed for a fault nobody had. The suite must
+      # leave the tree exactly as it found it, and a heuristic over source cannot prove that where
+      # running it can.
+      - name: The suite leaves the working tree as it found it
+        run: |
+          dirty="$(git status --porcelain)"
+          if [ -n "$dirty" ]; then
+            echo "a test wrote outside a sandbox and left the tree dirty:"; echo "$dirty"; exit 1
+          fi
 
   gates:
     # Every witness the manifest names, run where it can answer. A gate nobody runs measures

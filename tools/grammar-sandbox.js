@@ -54,6 +54,42 @@ function overlay(dir, sandbox) {
  * @param {string[]} [extra]                  arguments passed through as written
  * @returns {{code:number, out:string}}
  */
+
+/**
+ * Watch what a provocation writes, so the harness can prove it altered something.
+ *
+ * A PROVOCATION THAT CHANGES NOTHING PROVES NOTHING, AND READS EXACTLY LIKE ONE THAT WORKS. Measured
+ * four times in one session: a strike naming one corpus file while a second carried the same form, a
+ * strike naming an exact source line somebody rewrote, a strike truncating at the angle INSIDE the
+ * arrow it meant to remove, and an anchored global replace striking once per anchor rather than once
+ * per occurrence. Each read green and planted no fault.
+ *
+ * Intercepting the writes beats hashing the tree: a mutator writing IDENTICAL bytes is the exact
+ * failure, so counting writes answers nothing and only content does.
+ */
+function watchWrites() {
+  const before = new Map();
+  const real = { write: fs.writeFileSync, append: fs.appendFileSync, rm: fs.rmSync, unlink: fs.unlinkSync };
+  const remember = (file) => {
+    const key = String(file);
+    if (before.has(key)) return;
+    try { before.set(key, fs.readFileSync(key, 'utf8')); } catch { before.set(key, null); }
+  };
+  fs.writeFileSync = (file, ...rest) => { remember(file); return real.write(file, ...rest); };
+  fs.appendFileSync = (file, ...rest) => { remember(file); return real.append(file, ...rest); };
+  fs.rmSync = (file, ...rest) => { remember(file); return real.rm(file, ...rest); };
+  fs.unlinkSync = (file, ...rest) => { remember(file); return real.unlink(file, ...rest); };
+  return () => {
+    Object.assign(fs, { writeFileSync: real.write, appendFileSync: real.append, rmSync: real.rm, unlinkSync: real.unlink });
+    for (const [file, was] of before) {
+      let now = null;
+      try { now = fs.readFileSync(file, 'utf8'); } catch { now = null; }
+      if (now !== was) return true;
+    }
+    return false;
+  };
+}
+
 function inSandbox(dirs, mutate, argv, extra = []) {
   const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), 'grammar-sandbox-'));
   try {
@@ -61,7 +97,12 @@ function inSandbox(dirs, mutate, argv, extra = []) {
     fs.rmSync(path.join(sandbox, 'node_modules'), { recursive: true, force: true });
     fs.symlinkSync(path.join(ROOT, 'node_modules'), path.join(sandbox, 'node_modules'));
     for (const dir of dirs) overlay(dir, sandbox);
+    const settled = watchWrites();
     mutate(sandbox);
+    if (!settled() && !mutate.unprovoked) {
+      throw new Error('the provocation altered nothing in the sandbox, so it plants no fault — '
+        + 'a collision reading green over an unaltered tree proves its gate cannot fail');
+    }
     // THE SANDBOX MEETS THE HOST THIS TREE MEETS. `resolveTiddlyWiki` prefers a checkout standing
     // beside the repository and falls back to the pinned package; a sandbox stands in the system
     // temp directory, where no checkout stands beside it, so every run here resolved the package —
@@ -97,6 +138,14 @@ const AT_HEAD = ['tools', 'syntaxes', 'editions', 'corpus'];
  * @returns {{code:number, out:string}}
  */
 const runInSandbox = (mutate, argv, extra) => inSandbox(WORKING, mutate, argv, extra);
+
+// THE ONE DOOR FOR PROVOKING NOTHING, named so a reader sees the intent. A caller running a tool in
+// isolation alters no tree on purpose, and a silent exemption would reopen the hole above.
+runInSandbox.unprovoked = (argv, extra) => {
+  const none = () => {};
+  none.unprovoked = true;
+  return inSandbox(WORKING, none, argv, extra);
+};
 
 /**
  * Run a command inside a sandbox whose grammar carries `provoked`.

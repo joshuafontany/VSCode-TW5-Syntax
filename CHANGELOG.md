@@ -843,7 +843,19 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   region the grammar never closed — and the ladder reads structure before kind word, so a cause
   outranks the symptom it produced. The control cuts one class from the ladder and the gate reds.
 ### Changed
-
+- THE HARNESS PROVES A PROVOCATION LANDED, so fourteen hand-written guards collapse into one nobody
+  can forget. Fifty call sites plant a fault in a sandbox and fourteen asserted their own mutation
+  altered something — the other thirty-six could stop provoking the day the thing they strike moves,
+  measured FOUR times in one session: a strike naming one corpus file while a second carried the same
+  form, a strike naming an exact source line somebody rewrote, a strike truncating at the angle INSIDE
+  the arrow it meant to remove, and an anchored global replace striking once per anchor rather than
+  once per occurrence. `runInSandbox` intercepts the writes and compares CONTENT — a mutator writing
+  identical bytes is the exact failure, so counting writes answers nothing — and refuses a run that
+  altered nothing. `runInSandbox.unprovoked` is the one named door for a caller provoking nothing on
+  purpose. Measured after it landed: all fifty genuinely mutate, and none was hiding.
+- CI asserts the suite leaves the working tree as it found it. A test writing outside a sandbox makes
+  every concurrent reader flaky, and a heuristic over source cannot prove absence where running the
+  suite can.
 - A pretty link's `[[` and `]]` each arrive as ONE token. No grammar among twenty splits a
   multi-character delimiter into two separately named sequential tokens — VS Code html emits `</`
   as one token, Liquid's `{%-` as one token of three characters, Handlebars' `{{~{>` as one of
