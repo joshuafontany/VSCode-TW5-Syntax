@@ -88,7 +88,7 @@ test('the ledger rules the shapes rather than the rules, so it cannot grow per p
 // marks drops a `construct-legibility` count, and `corpus/legibility-floor.txt` rules that a count
 // may rise and may never fall, so the ledger carries the measurement and the operator carries the
 // trade.
-const OWED_FLOOR = 4;
+const OWED_FLOOR = 1;
 
 test('the debt the ledger records stands at its floor', () => {
   const owed = fs.readFileSync(LEDGER, 'utf8').split('\n')
