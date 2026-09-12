@@ -95,3 +95,24 @@ test('arguments reach the tool in the order a caller names them', () => {
     fs.rmSync(path.dirname(probe), { recursive: true, force: true });
   }
 });
+
+// A KILLED CHILD IS NOT A MEASUREMENT.
+//
+// `execFileSync` reports a signal death as `status: null` with whatever the child had already written,
+// and returning `{code: 1, out: partial}` hands that back as though the tool had RUN and REFUSED.
+// Measured under a full parallel sweep: a reading crossed the 1 MB `maxBuffer` default, Node killed
+// its writer with SIGTERM at 1 070 461 bytes, and the death read as a legibility gate reporting a pair
+// standing at 65 of 65 as missing — so a reader chased a grammar defect that was a dead process.
+test('a tool killed by a signal refuses to read as a refusal', () => {
+  assert.throws(
+    () => runNode(['-e', 'process.kill(process.pid, "SIGKILL")']),
+    /died by SIGKILL/,
+    'a signal death came back as a reading');
+});
+
+// A READING LONGER THAN THE BUFFER GETS ITS WRITER KILLED, so a gate's own verbose output must fit.
+test('a reading far past the old default arrives whole', () => {
+  const { code, out } = runNode(['-e', 'process.stdout.write("x".repeat(3 * 1024 * 1024))']);
+  assert.strictEqual(code, 0);
+  assert.strictEqual(out.length, 3 * 1024 * 1024, 'the reading came back short, so a buffer clipped it');
+});

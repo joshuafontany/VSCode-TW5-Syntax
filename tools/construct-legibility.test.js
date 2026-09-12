@@ -37,9 +37,17 @@ test('every construct a reader meets stands apart from the rest', live, () => {
 // A construct parts from prose through the scopes INSIDE it, so the witness must paint the whole
 // specimen. A reading of the outermost scope alone reports every construct alike.
 test('the reading paints whole constructs, never their containers alone', live, () => {
-  const { out } = runTool('construct-legibility.js', ['--verbose']);
+  const { code, out } = runTool('construct-legibility.js', ['--verbose']);
+  // A PARTIAL READING MUST NAME ITSELF RATHER THAN WEAR A MISSING PAIR'S CLOTHES. A run that ended
+  // early reports every pair as absent, and the first assertion below then blames the grammar for a
+  // construct standing at 65 of 65 — measured twice, once on a child Node killed at the 1 MB buffer
+  // and once on a run that simply came back short. The reading answers for itself first.
+  assert.strictEqual(code, 0, `the witness refused before it could be read: ${out.slice(-400)}`);
+  const summary = /(\d+) pair\(s\) over (\d+) theme\(s\)/.exec(out);
+  assert.ok(summary, `the witness printed no summary, so it never finished: ${out.slice(-400)}`);
   const prose = out.split('\n').filter((l) => /vs\s+prose/.test(l));
-  assert.ok(prose.length >= 4, `the witness compared ${prose.length} construct(s) against prose`);
+  assert.ok(prose.length >= 4,
+    `the witness compared ${prose.length} construct(s) against prose, of ${summary[1]} pair(s) it counted`);
   // A container reading puts call, filter run and transclusion at one colour with prose. Each of
   // those parts from it in every theme when the whole construct gets painted.
   // A CONTAINER READING PUTS THESE AT PROSE'S OWN COLOUR — near zero, never near the top. So the
