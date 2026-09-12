@@ -1,0 +1,34 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A sigil names its own verb, and a bearing arrow survives inside one"
+
+# THE DIALECT NAMES NOTHING FOR THE THING IT EXISTS TO SAY. TiddlyWiki reads `<<~ set …>>` as a call
+# on a variable spelled `~`, so the verb binds as a POSITIONAL argument and paints exactly like any
+# unquoted value a carrier writes. `set`, `oracle`, `lares` and `stage` all read `string.unquoted`.
+#
+# The base grammar must keep its reading — the host builds a transclusion here and nothing else —
+# so the dialect names the verb BESIDE what the base says rather than instead of it.
+
+<<~ set hud="aim" mode="scan">>
+#   ^^^ entity.name.function.sigil.memetic-wikitext
+#       ^^^ entity.other.attribute-name.argument.tiddlywiki5
+
+<<~ oracle "a reading">>
+#   ^^^^^^ entity.name.function.sigil.memetic-wikitext
+
+# A CLOSER NAMES THE SIGIL IT CLOSES. TiddlyWiki reads `~/ahu` as one variable name, so the base
+# offers a reader nothing to tell a closing sigil from an opening one.
+
+<<~/ahu>>
+#   ^^^ entity.name.function.sigil.memetic-wikitext
+
+# A BEARING ARROW SPLITS IN TWO INSIDE A SIGIL. The base grammar's unquoted-value rule takes the
+# dash before any lower-priority injection looks, and the closing angle falls to the parameters
+# region — so `->` arrives as two tokens and neither carries the arrow's name. Every aim and yield
+# line this house writes carries this form, and the only pinned specimen writes the PROSE one.
+
+<<~ lares aim from="lar://a@b/c.d.e" -> to="?">>
+#                                    ^^ keyword.operator.bearing.arrow.memetic-wikitext
+
+# The control: the same arrow in prose, which already reads.
+
+A bearing arrow -> stands named in prose.
+#               ^^ keyword.operator.bearing.arrow.memetic-wikitext

@@ -153,12 +153,20 @@ cover what wikitext has no construct for: a `lar://` URI and its parts.
 A theme rule naming any of these painted `.mem` files alone. A rule on the wikitext call
 vocabulary now reaches both.
 
+**Two returned, on the rule's own criterion.** `entity.name.function.sigil` and
+`punctuation.definition.sigil.close` stand again, because a sigil's VERB names what wikitext has no
+construct for: TiddlyWiki reads `<<~ set …>>` as a call on a variable spelled `~`, binds the verb as
+a POSITIONAL argument, and the base paints it `string.unquoted.html` — the same reading any value
+gets. And the reason the others went does not reach these: measured, `entity.name.function.sigil`
+paints in 65 of 65 themes through `entity.name.function`, where the retired `meta.sigil.*` family
+painted in none. A name reaching a conventional root reaches every theme; a name inventing a family
+reaches only the files that carry it.
+
 | retired | reads through |
 | --- | --- |
 | `constant.language.bearing.unresolved.memetic-wikitext` | the base grammar's own vocabulary |
 | `constant.other.blockcheck.memetic-wikitext` | the base grammar's own vocabulary |
 | `entity.name.function.sigil.definition.memetic-wikitext` | the base grammar's own vocabulary |
-| `entity.name.function.sigil.memetic-wikitext` | the base grammar's own vocabulary |
 | `keyword.control.carrier.eot.memetic-wikitext` | the base grammar's own vocabulary |
 | `keyword.control.carrier.etx.memetic-wikitext` | the base grammar's own vocabulary |
 | `keyword.control.carrier.memetic-wikitext` | the base grammar's own vocabulary |
@@ -179,7 +187,6 @@ vocabulary now reaches both.
 | `meta.sigil.pragma.memetic-wikitext` | the base grammar's own vocabulary |
 | `meta.sigil.unresolved.memetic-wikitext` | the base grammar's own vocabulary |
 | `punctuation.definition.sigil.begin.memetic-wikitext` | the base grammar's own vocabulary |
-| `punctuation.definition.sigil.close.memetic-wikitext` | the base grammar's own vocabulary |
 | `punctuation.definition.sigil.end.memetic-wikitext` | the base grammar's own vocabulary |
 | `punctuation.separator.key-value.memetic-wikitext` | the base grammar's own vocabulary |
 | `string.quoted.bracket.memetic-wikitext` | the base grammar's own vocabulary |

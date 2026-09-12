@@ -11,7 +11,6 @@ description: Why a reader should meet each of these as prose — a judgement no 
     "meta.link.wikilink": "a CamelCase word the standing rule set does not autolink, so the parser builds no link to colour",
     "meta.multids.text.html": "a multids body line handed to the wikitext grammar, plain where no construct stands",
     "meta.text.tiddler.fields": "a field region, plain where no field stands",
-    "meta.variable.macro.parameters": "the run between a call's parameters, which TiddlyWiki carries across blank lines to the closer",
     "markup.list.unnumbered.unordered.ul.li": "the words INSIDE a bullet, never the bullet. `theme-parity` measures a list item at 23% of themes against a six-grammar panel median of 6% \u2014 markdown, asciidoc, rst, org, mediawiki and mdx all leave a list's content plain, and this grammar already paints it four times as often",
     "markup.list.numbered.ordered.ol.li": "the words INSIDE a bullet, never the bullet. `theme-parity` measures a list item at 23% of themes against a six-grammar panel median of 6% \u2014 markdown, asciidoc, rst, org, mediawiki and mdx all leave a list's content plain, and this grammar already paints it four times as often",
     "markup.list.unnumbered.term.dl.dt": "the words INSIDE a bullet, never the bullet. `theme-parity` measures a list item at 23% of themes against a six-grammar panel median of 6% \u2014 markdown, asciidoc, rst, org, mediawiki and mdx all leave a list's content plain, and this grammar already paints it four times as often",

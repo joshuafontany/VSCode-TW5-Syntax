@@ -24,3 +24,20 @@ without an authority: lar:///ha.ka.ba/lares/docs/handoff#shift-grammar-watch.
 <<^ code="&#x0003;">>
 
 <<^ code="&#x0004;" -> to="?">>
+
+A SIGIL NAMES ITS OWN VERB. TiddlyWiki reads `<<~ set …>>` as a call on a variable spelled `~`, so
+the verb binds as a positional argument and the base paints it like any unquoted value. The dialect
+names it beside that reading rather than instead of it.
+
+<<~ set hud="aim" mode="scan" stance="🏛️">>
+
+<<~ oracle "a reading the house takes">>
+
+A closer names the sigil it closes, which TiddlyWiki reads as part of the variable name.
+
+<<~/ahu>>
+
+A BEARING ARROW STANDS BETWEEN TWO NAMED ENDS, and inside a sigil the base grammar's unquoted-value
+rule would take its dash and leave the angle to the parameters region — two tokens, neither named.
+
+<<~ lares aim from="lar://claude@lararium/the-verb.names.itself" -> to="?">>

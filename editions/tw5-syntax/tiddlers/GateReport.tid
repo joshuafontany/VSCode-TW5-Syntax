@@ -68,12 +68,12 @@ gates-held: 40 of 40
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  53 files, 497 scopes declared, 450 reached (floor 450), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  53 files, 499 scopes declared, 452 reached (floor 450), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
             "held": true,
-            "said": "dark-construct  321 construct(s) over 65 themes, 25 plain, 0 unaccounted"
+            "said": "dark-construct  322 construct(s) over 65 themes, 24 plain, 0 unaccounted"
         },
         {
             "gate": "delimiters",
@@ -83,7 +83,7 @@ gates-held: 40 of 40
         {
             "gate": "engine-witness",
             "held": true,
-            "said": "engine-witness  750 pattern(s) across 8 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "engine-witness  751 pattern(s) across 8 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "filter-witness",

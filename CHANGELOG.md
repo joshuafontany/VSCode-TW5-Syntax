@@ -7,7 +7,26 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Added
-- FOUR RECOVERY CODES THE HOST DECLARES GAIN A CARRIER APIECE. `unterminated-typedblock`,
+- THE DIALECT NAMES ITS OWN VERB. TiddlyWiki reads `<<~ set …>>` as a call on a variable spelled `~`,
+  so the verb binds as a POSITIONAL argument and the base paints it `string.unquoted.html` — the same
+  reading any value gets. `set`, `oracle`, `lares` and `stage` all read alike, and the dialect declared
+  nothing for the thing it exists to say. It names the verb BESIDE the base's reading rather than
+  instead of it, and a closer names the sigil it closes, which TiddlyWiki reads as part of the
+  variable name.
+- A BEARING ARROW SURVIVES INSIDE A SIGIL. An R-priority injection looks after the base's
+  unquoted-value rule has already taken the dash, so `->` arrived as two tokens — `-` under
+  `string.unquoted` and `>` in the parameters region — and neither carried the arrow's name. Every
+  aim and yield line this house writes carries that form, and the only pinned specimen wrote the
+  PROSE one, so `memetic-coverage` read green over it. An L-priority injection looks first and keeps
+  the arrow whole. It reaches only where this dialect stands, because a grammar's injections ride
+  with the grammar.
+- Two retired names return, ON THE RULE'S OWN CRITERION. `MIGRATION.md` records the dialect keeping
+  names only for what wikitext has no construct for, and retiring the rest because a dialect-only
+  name painted `.mem` files alone. A sigil's VERB is what wikitext has no construct for; and
+  measured, `entity.name.function.sigil` paints in 65 of 65 themes through `entity.name.function`,
+  where the retired `meta.sigil.*` family painted in none. A name reaching a conventional root
+  reaches every theme; a name inventing a family reaches only the files that carry it.
+ FOUR RECOVERY CODES THE HOST DECLARES GAIN A CARRIER APIECE. `unterminated-typedblock`,
   `unterminated-styleblock`, `unterminated-hardlinebreaks` and `unterminated-definition` stood
   unexercised, and a rule nobody wrote a specimen for reads exactly like a rule with nothing to say.
   A block construct that never closes swallows every recovery after it, so each takes a carrier of

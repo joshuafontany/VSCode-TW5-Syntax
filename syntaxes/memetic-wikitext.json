@@ -13,6 +13,9 @@
         "memetic": {
             "patterns": [
                 {
+                    "include": "#sigil"
+                },
+                {
                     "include": "#lar-uri"
                 },
                 {
@@ -153,6 +156,23 @@
                     "name": "keyword.operator.assignment.memetic-wikitext"
                 }
             }
+        },
+        "sigil": {
+            "comment": "The verb a sigil says. TiddlyWiki reads `<<~ set …>>` as a call on a variable spelled `~`, so the verb binds as a POSITIONAL argument and the base paints it like any unquoted value — `set`, `oracle` and `lares` all read `string.unquoted`. The dialect names it BESIDE that reading rather than instead of it: the host builds a transclusion here and the base must keep saying so.",
+            "patterns": [
+                {
+                    "comment": "An opening sigil, and a closing one, which TiddlyWiki reads as part of the variable name.",
+                    "match": "(?<=<<~)[ \\t]*(/?)([a-zA-Z][\\w-]*)",
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.sigil.close.memetic-wikitext"
+                        },
+                        "2": {
+                            "name": "entity.name.function.sigil.memetic-wikitext"
+                        }
+                    }
+                }
+            ]
         }
     },
     "injections": {
@@ -161,6 +181,14 @@
             "patterns": [
                 {
                     "include": "text.html.tiddlywiki5.memetic-wikitext#memetic"
+                }
+            ]
+        },
+        "L:text.html.tiddlywiki5": {
+            "comment": "A bearing arrow stands BETWEEN two named ends, inside a sigil where the base grammar's unquoted-value rule would take its dash and leave the angle to the parameters region — two tokens, neither named. An L-priority injection looks before that rule and keeps the arrow whole. It reaches only where this dialect stands, because a grammar's injections ride with the grammar.",
+            "patterns": [
+                {
+                    "include": "text.html.tiddlywiki5.memetic-wikitext#bearing"
                 }
             ]
         }

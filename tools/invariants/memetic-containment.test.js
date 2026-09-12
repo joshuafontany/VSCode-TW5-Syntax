@@ -23,7 +23,8 @@ const SENTENCE = 'An ordinary sentence stands here.';
 const SPECIMENS = {
   'lar-uri': 'A lar:///a/b?k=v#/frag stands inline.',
   fragment: 'An anchor #/two-clocks stands inline.',
-  bearing: 'A heading -> what it faces.'
+  bearing: 'A heading -> what it faces.',
+  sigil: '<<~ set hud="aim">> and <<~/ahu>> stand inline.'
 };
 
 const grammar = JSON.parse(fs.readFileSync(path.join(ROOT, 'syntaxes', 'memetic-wikitext.json'), 'utf8'));
