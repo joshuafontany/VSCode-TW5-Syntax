@@ -18,40 +18,7 @@ const path = require('node:path');
 const ROOT = path.resolve(__dirname, '..', '..');
 const pkg = require(path.join(ROOT, 'package.json'));
 
-/**
- * JSONC as VS Code reads it: comments outside strings, and trailing commas.
- *
- * @param {string} text
- * @returns {unknown}
- */
-function parseJsonc(text) {
-  let out = '';
-  let inString = false;
-  let escaped = false;
-  for (let i = 0; i < text.length; i += 1) {
-    const c = text[i];
-    if (inString) {
-      out += c;
-      if (escaped) escaped = false;
-      else if (c === '\\') escaped = true;
-      else if (c === '"') inString = false;
-      continue;
-    }
-    if (c === '"') { inString = true; out += c; continue; }
-    if (c === '/' && text[i + 1] === '/') { while (i < text.length && text[i] !== '\n') i += 1; out += '\n'; continue; }
-    if (c === '/' && text[i + 1] === '*') { i = text.indexOf('*/', i + 2) + 1; continue; }
-    out += c;
-  }
-  return JSON.parse(out.replace(/,(\s*[}\]])/g, '$1'));
-}
-
-exports.parseJsonc = parseJsonc;
-
-test('the JSONC reader tolerates what VS Code tolerates', () => {
-  assert.deepStrictEqual(parseJsonc('{ "a": 1, /* b */ "c": [2,], // d\n }'), { a: 1, c: [2] });
-  // A comment marker inside a string stays inside the string.
-  assert.deepStrictEqual(parseJsonc('{ "u": "http://x/y" }'), { u: 'http://x/y' });
-});
+const { parseJsonc } = require('../jsonc.js');
 
 test('every declared language configuration reads', () => {
   const languages = pkg.contributes.languages || [];

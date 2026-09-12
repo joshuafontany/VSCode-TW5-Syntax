@@ -246,7 +246,19 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   never ratchets — a colour count belongs to the theme at least as much as to the grammar, and this
   house declines gauges that re-seat on every honest change.
 ### Fixed
-- A DROPPED DOT LEFT A NAME NO SELECTOR REACHES FROM EITHER SIDE. A multids title line declared
+- A TEST FILE REQUIRED BY ANOTHER RUNS ITS ASSERTIONS AGAIN. `node:test` registers a test when its
+  file gets REQUIRED, and a JSONC reader lived inside one — so two consumers re-registered that
+  file's whole suite. Measured: twelve assertions ran THREE times each and the reported pass count
+  carried **twenty-four phantoms**, while one defect there would have reported three times. The
+  reader stands as `tools/jsonc.js` with its own test and a control proving it still refuses what no
+  editor accepts; a gate names the inversion rather than the reader, so the next one caught is caught
+  for the same reason. The suite reads 479 where it read 501.
+- A PROVOCATION MUTATING A TRACKED FILE MAKES EVERY CONCURRENT READER FLAKY. `grammar-signals` wrote
+  the harvest in place and restored it in a `finally`, leaving a window the whole suite ran inside —
+  measured, a gate reading `rule-coverage` at the wrong moment saw a planted `quantumfold` rule and
+  failed for a fault nobody had. The provocation runs in a sandbox now, and two consecutive sweeps
+  read 479 of 479.
+ A DROPPED DOT LEFT A NAME NO SELECTOR REACHES FROM EITHER SIDE. A multids title line declared
   `meta.multids.tiddler.title.text.htmltiddlywiki5.multids-file`, running `html` into `tiddlywiki5`,
   so the fused word stood outside every rule written against `text.html` and outside every rule
   written against the suffix after it. Every gate read green, because the name still read as a name.

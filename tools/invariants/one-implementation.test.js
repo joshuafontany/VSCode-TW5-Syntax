@@ -156,3 +156,24 @@ test('a test resolves its host through the oracle as well', () => {
     .map((s) => s.name);
   assert.deepStrictEqual(rolled, [], `test(s) reaching for ${ENV} without the oracle`);
 });
+
+// A TEST FILE REQUIRED BY ANOTHER RUNS ITS ASSERTIONS AGAIN.
+//
+// `node:test` registers a test when its file is REQUIRED, so a reader living inside a test file makes
+// every consumer re-register that file's whole suite. Measured: one such reader left twelve
+// assertions running three times each and inflated the reported pass count by twenty-four, and a
+// failure there reported three times for one defect.
+//
+// A reader two files need is a MODULE. This gate names the inversion rather than the reader, so the
+// next one caught is caught for the same reason.
+test('no test file stands required by another', () => {
+  const offenders = [];
+  for (const s of all) {
+    if (!/\.test\.js$/.test(s.name)) continue;
+    for (const m of code(s.text).matchAll(/require\(\s*['"]([^'"]*\.test\.js)['"]\s*\)/g)) {
+      offenders.push(`${s.name} requires ${m[1]}`);
+    }
+  }
+  assert.deepStrictEqual(offenders, [],
+    'a required test file registers its assertions again, so the suite counts them twice and a failure reports twice');
+});

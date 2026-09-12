@@ -16,7 +16,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { parseJsonc } = require('./contributions.test.js');
+const { parseJsonc } = require('../jsonc.js');
 
 const ROOT = path.resolve(__dirname, '..', '..');
 const read = (f) => parseJsonc(fs.readFileSync(path.join(ROOT, f), 'utf8'));

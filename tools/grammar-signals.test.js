@@ -12,6 +12,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
+const { runInSandbox } = require('./grammar-sandbox.js');
 const { runTool, runNode } = require('./run-tool.js');
 const { readData } = require('./wiki-data.js');
 
@@ -49,16 +50,23 @@ test('every wikitext rule the host stands, the grammar reads', () => {
 });
 
 // The gate exists for the rule nobody has written yet.
+//
+// A PROVOCATION MUTATING A TRACKED FILE MAKES EVERY CONCURRENT READER FLAKY. Writing the harvest in
+// place and restoring it in a `finally` leaves a window the whole suite runs inside: measured, a gate
+// reading `rule-coverage` at the wrong moment saw the planted rule and failed for a fault nobody had.
+// The sandbox copies the tree, so the provocation reaches this collision and nothing else.
 test('a rule the host adds and the grammar never learns fails the gate', () => {
-  const original = fs.readFileSync(HARVEST, 'utf8');
-  try {
-    fs.writeFileSync(HARVEST, original.replace('"wikiRules": [', '"wikiRules": [\n        "quantumfold",'));
-    const { code, out } = runTool('rule-coverage.js');
-    assert.match(out, /stands a "quantumfold" rule this grammar never names/, out.slice(-400));
-    assert.notStrictEqual(code, 0, 'the gate must fail, not only print');
-  } finally {
-    fs.writeFileSync(HARVEST, original);
-  }
+  const { code, out } = runInSandbox(
+    (sandbox) => {
+      const harvest = path.join(sandbox, path.relative(ROOT, HARVEST));
+      const original = fs.readFileSync(harvest, 'utf8');
+      const after = original.replace('"wikiRules": [', '"wikiRules": [\n        "quantumfold",');
+      assert.notStrictEqual(after, original, 'the provocation changed nothing, so it plants no fault');
+      fs.writeFileSync(harvest, after);
+    },
+    ['tools/rule-coverage.js']);
+  assert.match(out, /stands a "quantumfold" rule this grammar never names/, out.slice(-400));
+  assert.notStrictEqual(code, 0, 'the gate must fail, not only print');
 });
 
 // A module the host cannot read never runs, and a boot reports nothing about it.
