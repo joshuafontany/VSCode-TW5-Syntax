@@ -7,7 +7,16 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Added
-- `tools/sigil-shape.js` counts the FORMS the house writes, where `sigil-vocabulary` counts the names.
+- A BLOCK CHECK IS A URI, AND THE BASE READ A LINK INSIDE IT. `ni:///sha-256;<hash>` names
+  information by its digest — RFC 6920 — and this house seals every carrier with one. The base
+  grammar autolinks a CamelCase run, and measured, **21 of 22 hashes the house has written carry
+  one**, so every meme showed a spurious wikilink inside its own integrity stamp. The dialect names
+  the whole URI — scheme, algorithm, digest — and takes the run before any inner rule reaches it.
+- A CARRIER NAMES ITSELF. The frame marker `^` opens a block-check carrier rather than a sigil call,
+  and TiddlyWiki reads it as the variable a call names, so the base offered a reader nothing to tell
+  a carrier from any other call. The house writes 89 of them. The base CAPTURES that marker, so an
+  R-priority injection reaches it nowhere — it rides at L priority beside the arrow and the digest.
+ `tools/sigil-shape.js` counts the FORMS the house writes, where `sigil-vocabulary` counts the names.
   A name is not a form: coverage read green for a whole session while the bearing arrow arrived in
   two tokens in every carrier this house writes, because one PROSE specimen reached the arrow's scope
   and the in-sigil form reached nothing. Seven shapes derive from the boot seed — bare, closer,

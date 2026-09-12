@@ -1,0 +1,25 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A carrier names itself, and a block check reads as one"
+
+# A BLOCK CHECK IS A URI, AND THE BASE GRAMMAR READS A LINK INSIDE IT. `ni:///sha-256;<hash>` names
+# information by its digest — RFC 6920 — and the house writes one in every carrier it seals. The
+# base grammar autolinks a CamelCase run, and measured, 21 of 22 hashes the house has written carry
+# one, so every meme shows a spurious wikilink inside its own integrity stamp.
+
+<<^ code="&#x0003;">>ni:///sha-256;RLbu7oqpmxUvCAdVD6WWpVjlL6L8xEvHEp8PF32siCg
+#                    ^^ keyword.other.scheme.ni.memetic-wikitext
+#                      ^ punctuation.separator.scheme.ni.memetic-wikitext
+#                          ^^^^^^^ support.type.algorithm.ni.memetic-wikitext
+#                                 ^ punctuation.separator.checksum.ni.memetic-wikitext
+#                                  ^^^^ constant.other.checksum.ni.memetic-wikitext
+
+# The digest must NOT read as a link, whatever letters it happens to carry.
+
+<<^ code="&#x0003;">>ni:///sha-256;RLbu7oqpmxUvCAdVD6WWpVjlL6L8xEvHEp8PF32siCg
+#                                  ^^^^ - meta.link.wikilink.tiddlywiki5
+
+# A CARRIER NAMES ITSELF. The frame marker `^` opens a block-check carrier rather than a sigil call,
+# and TiddlyWiki reads it as the variable a call names — so the base offers a reader nothing to tell
+# a carrier from any other call. The house writes 89 of them.
+
+<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/docs/x">>
+# ^ entity.name.function.carrier.memetic-wikitext

@@ -13,6 +13,12 @@
         "memetic": {
             "patterns": [
                 {
+                    "include": "#carrier"
+                },
+                {
+                    "include": "#ni-uri"
+                },
+                {
                     "include": "#sigil"
                 },
                 {
@@ -173,6 +179,38 @@
                     }
                 }
             ]
+        },
+        "ni-uri": {
+            "comment": "A block check names information by its DIGEST — `ni:///sha-256;<hash>`, RFC 6920 — and the house seals every carrier with one. The base grammar autolinks a CamelCase run, and measured, 21 of 22 hashes the house has written carry one, so every meme showed a spurious wikilink inside its own integrity stamp. Naming the whole URI takes the run before any inner rule reaches it.",
+            "match": "\\b(ni)(:)(//[^;\\s]*)(;)([A-Za-z0-9_-]+)",
+            "captures": {
+                "1": {
+                    "name": "keyword.other.scheme.ni.memetic-wikitext"
+                },
+                "2": {
+                    "name": "punctuation.separator.scheme.ni.memetic-wikitext"
+                },
+                "3": {
+                    "name": "support.type.algorithm.ni.memetic-wikitext",
+                    "patterns": [
+                        {
+                            "match": "/",
+                            "name": "punctuation.separator.path.ni.memetic-wikitext"
+                        }
+                    ]
+                },
+                "4": {
+                    "name": "punctuation.separator.checksum.ni.memetic-wikitext"
+                },
+                "5": {
+                    "name": "constant.other.checksum.ni.memetic-wikitext"
+                }
+            }
+        },
+        "carrier": {
+            "comment": "A frame marker opens a block-check carrier rather than a sigil call, and TiddlyWiki reads it as the variable a call names — so the base offers a reader nothing to tell a carrier from any other call. What wikitext has no construct for, the dialect names. The base CAPTURES the marker as the variable a call names, so an R-priority injection reaches it nowhere — it rides with the arrow and the digest instead.",
+            "match": "(?<=<<)\\^",
+            "name": "entity.name.function.carrier.memetic-wikitext"
         }
     },
     "injections": {
@@ -188,7 +226,13 @@
             "comment": "A bearing arrow stands BETWEEN two named ends, inside a sigil where the base grammar's unquoted-value rule would take its dash and leave the angle to the parameters region — two tokens, neither named. An L-priority injection looks before that rule and keeps the arrow whole. It reaches only where this dialect stands, because a grammar's injections ride with the grammar.",
             "patterns": [
                 {
+                    "include": "text.html.tiddlywiki5.memetic-wikitext#ni-uri"
+                },
+                {
                     "include": "text.html.tiddlywiki5.memetic-wikitext#bearing"
+                },
+                {
+                    "include": "text.html.tiddlywiki5.memetic-wikitext#carrier"
                 }
             ]
         }
