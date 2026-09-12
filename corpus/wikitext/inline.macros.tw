@@ -1,21 +1,98 @@
-<<aMacro>>
+A CALL'S FORMS COME FROM THE HOST, not from a list anybody typed here. TiddlyWiki decides them in
+`parseMacroInvocationAsTransclusion` and `parseMacroParameterAsAttribute`, and every line below stands
+verified against that parser: the call it builds, and the TYPE it binds each value.
+
+! The call itself
+
+A name alone: <<aMacro>> here.
+
+The name admits anything but whitespace, `>`, a quote, `=` or `:` — so <<.def A definition macro>>
+calls `.def` with three positional values.
+
+A NAME STOPS AT ITS FIRST `:`, so <<$:/a/system/name>> calls a macro named `$` and binds
+`:/a/system/name` as a positional value — never the system title a reader sees.
+
+A NAME STOPS AT `=`, and what follows binds as a value rather than as part of the name:
+<<a=b>> builds a call on `a`.
+
+A closer may stand lines below its opener, which no single-line pattern can see:
+
+<<aMacro
+  one="a value"
+>>
+
+! Positional values, which every separator admits
 
 <<aMacro one two>>
 
+<<aMacro "a double quoted value">>
+
+<<aMacro 'a single quoted value'>>
+
+<<aMacro """a triple quoted value""">>
+
+<<aMacro [[a bracketed value]]>>
+
+An unquoted value carries a lone `>`, because the closer needs two: <<aMacro a>b>> here.
+
+Separators inside a value bind nothing: <<mymacro one, two; three>> stands as three values.
+
+! Named values — `=` ADMITS EVERY FORM
+
+<<aMacro one=unquoted>>
+
+<<aMacro one="a double quoted value">>
+
+<<aMacro one='a single quoted value'>>
+
+<<aMacro one="""a triple quoted value""">>
+
+<<aMacro one=[[a bracketed value]]>>
+
+A filtered value, which the host types `filtered`: <<aMacro one={{{ [tag[Done]sort[title]] }}}>>
+
+An indirect value, typed `indirect`: <<aMacro one={{SomeTiddler}}>>
+
+A call as a value, typed `macro`: <<aMacro one=<<inner>>>>
+
+A multi-valued reference, also typed `macro`: <<aMacro one=((aList))>>
+
+A substituted value, typed `substituted`: <<aMacro one=`a $(variable)$ value`>>
+
+And its fenced spelling: <<aMacro one=```a substituted value```>>
+
+! Named values — `:` ADMITS ONLY A STRING
+
+The old separator takes a quoted or bracketed value and nothing else:
+
 <<aMacro one:"a value">>
 
-<<aMacro param:"""a triple quoted value""">>
+<<aMacro one:"""a triple quoted value""">>
 
-<<aMacro a>b>>
+A NEW-STYLE VALUE AFTER `:` FRAGMENTS. The host refuses the filtered form here and reads three
+values instead of one — `one`, then the filter's halves as positionals:
 
-<<.def A definition macro>>
+<<aMacro one:{{{ [tag[x]] }}}>>
+
+A colon needs a strict identifier before it, so a system title stays one positional value rather
+than a name and a value: <<aMacro $:/foo>> here.
+
+! What the host refuses
+
+`<<` MUST BE FOLLOWED IMMEDIATELY BY THE NAME. The name regexp reads from the angle brackets' own
+end, so padding opens nothing and this line stands as prose:
+
+<<  aMacro  one=1  >>
+
+A call with no name builds nothing: << >> stands as prose.
+
+An opener with no closer anywhere ahead builds nothing either, and `degenerate.unterminated.tw`
+carries that shape, because a carrier holding it bleeds past its own end by design.
+
+! The substitution forms a definition's body carries
 
 $(aVariable)$
 
 $aParameter$
 
 ${ [tag[x]] }$
-
-A call whose parameters carry separators: <<mymacro one, two; three>> here.
-
-<<mymacro [[a bracketed value]]>>

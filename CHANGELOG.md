@@ -4,9 +4,37 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## 2.3.0 — unreleased
+## 3.0.0 — unreleased
+
+A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 94 of the 460
+names `v2.2.1` published and adds 131 — and a reader's `editor.tokenColorCustomizations` entry
+naming any retired one stops matching SILENTLY, with VS Code reporting nothing. `MIGRATION.md`
+names every one. The reading changed beside the vocabulary: a transclusion reads as ONE object in
+38 themes where it read so in none, an image's `[img[` arrives as one marker, and every quoted
+attribute value's quote characters changed family. A reader who liked 2.2.1's look does not get it
+back by upgrading, which is the definition this number answers to.
+
+### Fixed
+- AN EDITOR REPAINTED A MARKER THE GRAMMAR PAINTED. VS Code colours a bracket by its NESTING DEPTH
+  out of `editorBracketHighlight.foreground1..6`, and it takes the pairs to colour from a language
+  configuration's `brackets` whenever `colorizedBracketPairs` stands absent. Wikitext spells `{{`,
+  `{{{`, `[[` and `((` as ONE marker each, which the editor reads as two or three nested pairs:
+  measured in Gruvbox Dark and Monokai, `{{MyTiddler}}` painted its outer brace depth-1 and its
+  inner brace depth-2 while every scope on both braces stood correct and identical — so no theme
+  toggle moved it, and the grammar wore the fault. Both configurations now colour no pair, and
+  `brackets` goes on serving matching, the jump commands and the indent rules.
+- The changelog weld read a hardcoded version number, so bumping the version broke the one gate
+  standing guard over the bump. It derives the version from the manifest.
+- The typo arm's determinism test accused the arm whenever the corpus moved between its two runs —
+  three lines landing mid-corpus read exactly like a wandering perturbation. The corpus reports its
+  own digest around the pair, so an edit names itself.
 
 ### Added
+- EVERY MACRO-CALL FORM THE HOST ACCEPTS, in `corpus/wikitext/inline.macros.tw`, each verified
+  against TiddlyWiki's own parser rather than against a list somebody typed: the two separators,
+  the five value families `=` admits and `:` refuses, a name that stops at its first `:` or `=`,
+  and the three shapes the host builds nothing from — padding after `<<`, a nameless call, and an
+  opener with no closer ahead.
 - `rule-coverage` answers to the wiki THIS HOUSE BOOTS, not only to a stock TiddlyWiki. Its population
   came from `$tw.modules.types.wikirule` on the vendored host and read **0 unaccounted** — while the
   house's own plugin registers three rules that boot never sees. `lar-declaration` consumes a doctype

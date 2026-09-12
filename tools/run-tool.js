@@ -21,6 +21,11 @@ const ROOT = path.resolve(__dirname, '..');
  * A non-zero exit reads as a result rather than as a fault, because a gate that refuses IS the
  * measurement — so `out` carries stdout and stderr together, the way a reader sees them.
  *
+ * ON SUCCESS `out` CARRIES STDOUT ALONE, and that asymmetry has bitten twice: a caller asserting on a
+ * line a tool writes to STDERR passes only on runs where the tool FAILED, which reads as an
+ * intermittent fault in whatever the assertion names. A caller wanting both streams unconditionally
+ * wants a tool that refuses, or an assertion that lives where the reading does.
+ *
  * @param {string[]} argv        node's arguments, the script first
  * @param {{cwd?: string, env?: Record<string,string>}} [opts]  `env` adds to this process's own
  * @returns {{code: number, out: string}}

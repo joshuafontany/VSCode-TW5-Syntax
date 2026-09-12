@@ -43,11 +43,14 @@ test('the reading paints whole constructs, never their containers alone', live, 
   // construct standing at 65 of 65 — measured twice, once on a child Node killed at the 1 MB buffer
   // and once on a run that simply came back short. The reading answers for itself first.
   assert.strictEqual(code, 0, `the witness refused before it could be read: ${out.slice(-400)}`);
-  const summary = /(\d+) pair\(s\) over (\d+) theme\(s\)/.exec(out);
-  assert.ok(summary, `the witness printed no summary, so it never finished: ${out.slice(-400)}`);
+  // AND THE COMPLETENESS CHECK MUST LIVE WHERE THE READING DOES. This witness prints its LISTING to
+  // stdout and its summary to stderr, and `runNode` returns stdout ALONE on success — so a check
+  // against the summary can only pass on a run that FAILED. The listing's own length answers instead.
+  const pairs = out.split('\n').filter((l) => /^\s+\d+\/\d+\s+\S/.test(l));
+  assert.ok(pairs.length > 500,
+    `the witness listed ${pairs.length} pair(s) of the 820 it holds, so the reading ended early: ${out.slice(-200)}`);
   const prose = out.split('\n').filter((l) => /vs\s+prose/.test(l));
-  assert.ok(prose.length >= 4,
-    `the witness compared ${prose.length} construct(s) against prose, of ${summary[1]} pair(s) it counted`);
+  assert.ok(prose.length >= 4, `the witness compared ${prose.length} construct(s) against prose`);
   // A container reading puts call, filter run and transclusion at one colour with prose. Each of
   // those parts from it in every theme when the whole construct gets painted.
   // A CONTAINER READING PUTS THESE AT PROSE'S OWN COLOUR — near zero, never near the top. So the

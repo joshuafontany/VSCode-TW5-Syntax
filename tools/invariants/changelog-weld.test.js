@@ -25,7 +25,11 @@ const CHANGELOG = fs.readFileSync(path.join(ROOT, 'CHANGELOG.md'), 'utf8');
  * @returns {string}
  */
 function unreleased(text) {
-  const start = text.indexOf('## 2.3.0');
+  // THE SECTION DERIVES FROM THE MANIFEST, never from a version typed here. A gate naming a
+  // version by hand stops finding its own section on the next bump — measured on 2.3.0 -> 3.0.0,
+  // where every weld below went quiet at once and the gate reported no ruling count to weld.
+  const version = require(path.join(ROOT, 'package.json')).version;
+  const start = text.indexOf(`## ${version}`);
   if (start < 0) return '';
   const next = text.indexOf('\n## ', start + 1);
   return next < 0 ? text.slice(start) : text.slice(start, next);

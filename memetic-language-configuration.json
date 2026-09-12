@@ -12,6 +12,15 @@
         ["[", "]"],
         ["(", ")"]
     ],
+    // WHO DECIDES A BRACKET'S COLOUR. VS Code colours a bracket by its NESTING DEPTH out of
+    // `editorBracketHighlight.foreground1..6`, over the top of the colour a theme and this grammar
+    // agreed on, and it takes the pairs to colour from `brackets` above unless this list stands.
+    // Wikitext spells `{{`, `{{{`, `[[` and `((` as ONE marker each, which the editor reads as two or
+    // three nested pairs — measured in Gruvbox Dark and Monokai, `{{MyTiddler}}` painted its outer
+    // brace depth-1 and its inner brace depth-2 while every scope on both braces stood identical. An
+    // empty list hands the colour back to the grammar; `brackets` goes on serving matching, the jump
+    // commands and the indent rules.
+    "colorizedBracketPairs": [],
     "autoClosingPairs": [
         { "open": "<<", "close": " >>" },
         { "open": "[[", "close": "]]" },
