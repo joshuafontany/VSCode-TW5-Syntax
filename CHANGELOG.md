@@ -7,7 +7,19 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Added
-- THE DIALECT NAMES ITS OWN VERB. TiddlyWiki reads `<<~ set …>>` as a call on a variable spelled `~`,
+- `tools/sigil-shape.js` counts the FORMS the house writes, where `sigil-vocabulary` counts the names.
+  A name is not a form: coverage read green for a whole session while the bearing arrow arrived in
+  two tokens in every carrier this house writes, because one PROSE specimen reached the arrow's scope
+  and the in-sigil form reached nothing. Seven shapes derive from the boot seed — bare, closer,
+  fragment, named, positional, quoted and bearing — and a shape the seed writes with no specimen
+  behind it fails the gate.
+- THE INSTRUMENT CARRIED THE DEFECT IT WAS BUILT TO FIND. Reading a sigil's body as `[^>]*` truncates
+  at the first angle, which stands INSIDE a bearing arrow, so `bearing` never appeared as a shape at
+  all. The base grammar spells the guard `(?:[^>\n]|>(?!>))*`, and the reader, its collision and the
+  provocation each wanted it. A third reading in the same family: an anchored global replace strikes
+  once per ANCHOR rather than once per occurrence, so a second arrow inside one sigil survived a
+  strike that had already consumed its `<<~`.
+ THE DIALECT NAMES ITS OWN VERB. TiddlyWiki reads `<<~ set …>>` as a call on a variable spelled `~`,
   so the verb binds as a POSITIONAL argument and the base paints it `string.unquoted.html` — the same
   reading any value gets. `set`, `oracle`, `lares` and `stage` all read alike, and the dialect declared
   nothing for the thing it exists to say. It names the verb BESIDE the base's reading rather than

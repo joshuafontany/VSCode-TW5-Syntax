@@ -127,6 +127,10 @@ jobs:
         run: npm run ceiling
       - name: Every sigil the boot seed writes stands in a specimen
         run: npm run sigil-vocabulary
+      # A NAME IS NOT A FORM. Coverage counted the arrow's name while the arrow itself arrived in
+      # two tokens in every carrier this house writes.
+      - name: Every sigil SHAPE the seed writes stands in a specimen
+        run: npm run sigil-shape
       - name: Every must-fail specimen still fails as declared
         run: npm run must-fail
       - name: Every pattern crosses to the second regex engine

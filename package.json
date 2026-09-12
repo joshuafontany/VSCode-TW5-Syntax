@@ -391,6 +391,7 @@
         "legibility": "node ./tools/construct-legibility.js",
         "ceiling": "node ./tools/textmate-ceiling.js --write",
         "sigil-vocabulary": "node ./tools/sigil-vocabulary.js",
+        "sigil-shape": "node ./tools/sigil-shape.js",
         "must-fail": "node ./tools/must-fail.js",
         "engine-witness": "node ./tools/engine-witness.js",
         "still": "node ./tools/still.js --host --sample 25",

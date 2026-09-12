@@ -3,11 +3,11 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 40 of 40
+gates-held: 41 of 41
 
 {
-    "gates": 40,
-    "held": 40,
+    "gates": 41,
+    "held": 41,
     "failing": 0,
     "results": [
         {
@@ -139,6 +139,11 @@ gates-held: 40 of 40
             "gate": "rule-coverage",
             "held": true,
             "said": "rule-coverage  TiddlyWiki 5.5.0-prerelease: 44 rule(s), 39 read, 5 under another name, 0 unaccounted; 10 pragma keyword(s) guarded across 8 rule(s)"
+        },
+        {
+            "gate": "sigil-shape",
+            "held": true,
+            "said": "sigil-shape  7 shape(s) the seed writes across 11 specimen(s), 0 unexercised, 0 carried beyond the seed"
         },
         {
             "gate": "sigil-vocabulary",
