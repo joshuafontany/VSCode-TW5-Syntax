@@ -123,7 +123,43 @@ for (const rule of unread) {
 for (const rule of idle) {
   console.error(`  "${rule}" carries a reason nothing needs — the grammar names it, or the host no longer stands it`);
 }
+
+// THE WIKI THIS HOUSE BOOTS, not only a stock TiddlyWiki. `$tw.modules.types.wikirule` names the
+// rules the vendored host ships, and the house's own plugin registers more — measured,
+// `lar-declaration` consumes a doctype line and returns it as literal TEXT where the grammar reads a
+// macro call, and this gate read 0 unaccounted over a population that never held it.
+//
+// A HOUSE RULE COUNTS AS READ the way a host rule does: some repository entry or scope names it, or a
+// ruling here says which name it wears instead. The population derives from the plugin's own source,
+// so a rule the house adds reaches this reading the day it lands, and a shared helper exporting no
+// rule name registers nothing and stands out of the count.
+const HOUSE_DIR = path.resolve(ROOT, '..', 'packages', 'lararium-tw5', 'src', 'wikirules');
+const HOUSE_RULING = {
+  'lar-declaration': 'the doctype line, which the grammar reads through the base call vocabulary — '
+    + 'the house rule returns it as literal text, so a reader meets colour where the wiki meets none',
+  'lar-sigil': 'a sigil, which this rule builds as a `transclude` exactly as the host\'s own macrocall '
+    + 'rule does, so the grammar mirroring that rule mirrors this one',
+  'lar-sigil-pragma': 'a sigil standing in the pragma zone, which the grammar reads through the same '
+    + 'call vocabulary and the zone anchors already bound',
+};
+const houseRules = fs.existsSync(HOUSE_DIR)
+  ? fs.readdirSync(HOUSE_DIR).filter((f) => f.endsWith('.ts'))
+      .filter((f) => /^export const name\s*=/m.test(fs.readFileSync(path.join(HOUSE_DIR, f), 'utf8')))
+      .map((f) => f.replace(/\.ts$/, ''))
+  : [];
+const houseUnruled = houseRules.filter((r) => !HOUSE_RULING[r]);
+for (const rule of houseUnruled) {
+  console.error(`  the house plugin registers "${rule}" and nothing here says how the grammar reads it`);
+}
+const houseIdle = Object.keys(HOUSE_RULING).filter((r) => !houseRules.includes(r));
+for (const rule of houseIdle) {
+  console.error(`  "${rule}" carries a ruling and the plugin registers no such rule`);
+}
+
+if (verbose) for (const rule of houseRules) console.log(`  ${rule.padEnd(20)}${HOUSE_RULING[rule] ?? '(no ruling)'}`);
 console.log(`rule-coverage  TiddlyWiki ${version}: ${signals.wikiRules.length} rule(s), `
+  + `${houseRules.length} house rule(s) all ruled, `
   + `${read.length} read, ${aliased.length} under another name, ${unread.length + idle.length} unaccounted; `
   + `${tokens.length} pragma keyword(s) guarded across ${(signals.pragmaRules ?? []).length} rule(s)`);
-process.exit(unread.length + idle.length + unguarded.length + tokenless.length === 0 ? 0 : 1);
+process.exit(unread.length + idle.length + unguarded.length + tokenless.length
+  + houseUnruled.length + houseIdle.length === 0 ? 0 : 1);

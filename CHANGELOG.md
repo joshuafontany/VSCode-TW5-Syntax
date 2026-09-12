@@ -7,7 +7,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 2.3.0 — unreleased
 
 ### Added
-- A BLOCK CHECK IS A URI, AND THE BASE READ A LINK INSIDE IT. `ni:///sha-256;<hash>` names
+- `rule-coverage` answers to the wiki THIS HOUSE BOOTS, not only to a stock TiddlyWiki. Its population
+  came from `$tw.modules.types.wikirule` on the vendored host and read **0 unaccounted** — while the
+  house's own plugin registers three rules that boot never sees. `lar-declaration` consumes a doctype
+  line and returns it as literal TEXT where this grammar reads a macro call, and no gate said so. Each
+  house rule now carries a ruling naming how the grammar reads it, derived from the plugin's own
+  source, so a rule the house adds reaches the reading the day it lands.
+ A BLOCK CHECK IS A URI, AND THE BASE READ A LINK INSIDE IT. `ni:///sha-256;<hash>` names
   information by its digest — RFC 6920 — and this house seals every carrier with one. The base
   grammar autolinks a CamelCase run, and measured, **21 of 22 hashes the house has written carry
   one**, so every meme showed a spurious wikilink inside its own integrity stamp. The dialect names
