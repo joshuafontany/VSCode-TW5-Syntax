@@ -17,10 +17,13 @@
 
 const test = require('node:test');
 const assert = require('node:assert');
+const fs = require('node:fs');
+const path = require('node:path');
 const { runTool } = require('./run-tool.js');
 const { atlas, leaveAlone } = require('./family-atlas.js');
 const { probeTheme, loadThemes } = require('./theme-model.js');
 
+const ROOT = path.resolve(__dirname, '..');
 const live = { timeout: 900000 };
 
 test('the atlas reports the families the bundled themes rule on', live, () => {
@@ -80,4 +83,36 @@ test('the atlas holds no row for a family nothing rules on', live, () => {
   assert.strictEqual(invented, undefined,
     `the atlas listed ${invented?.selector} — a grammar's own scope, which no theme author rules on`);
   assert.ok(loadThemes().length > 50, 'the bundled theme set went missing');
+});
+
+// THE PRICE OF A NAME, ASKED BEFORE ANYBODY MOVES IT. The atlas names loud, truthful families; what a
+// candidate COSTS lives in the declared distinctions it would collapse, and reading that cost by
+// applying the fork and running the gate means every candidate costs a grammar edit and an 820-pair
+// sweep. Measured the slow way: one fork halved a construct's prose readings and dropped four
+// distinctions below their floors, and the cost only showed once the grammar carried it.
+//
+// So the cost arm prices a candidate against the SAME reading the legibility gate holds — one
+// implementation, two callers — with the grammar untouched.
+test('the cost arm prices a candidate without moving the grammar', live, () => {
+  const before = fs.readFileSync(path.join(ROOT, 'syntaxes', 'tiddlywiki5.json'), 'utf8');
+  const { code, out } = runTool('family-atlas.js',
+    ['--for', 'variable.name.mvv-display', '--candidates', 'entity.name.variable.mvv']);
+  assert.strictEqual(code, 0, out.slice(-900));
+  // It reports what the candidate buys and what it costs, per candidate.
+  assert.match(out, /entity\.name\.variable\.mvv/, out.slice(-900));
+  assert.match(out, /invisible/, out.slice(-900));
+  assert.match(out, /fall(?:s|en)?|cost/, out.slice(-900));
+  assert.strictEqual(fs.readFileSync(path.join(ROOT, 'syntaxes', 'tiddlywiki5.json'), 'utf8'), before,
+    'the cost arm edited the grammar to answer');
+});
+
+// THE WELD THAT MAKES THE PRICE TRUSTWORTHY: the arm must name the four distinctions this house already
+// measured falling for that candidate — a dash, a heading, a parsermode directive and a whitespace
+// directive. A cost model reporting none of them prices nothing.
+test('the cost arm names the falls the slow reading already measured', live, () => {
+  const { out } = runTool('family-atlas.js',
+    ['--for', 'variable.name.mvv-display', '--candidates', 'entity.name.variable.mvv']);
+  for (const pair of ['a dash', 'a heading', 'a parsermode directive', 'a whitespace directive']) {
+    assert.match(out, new RegExp(pair.replace(/ /g, '\\s')), `the arm missed ${pair}: ${out.slice(-900)}`);
+  }
 });

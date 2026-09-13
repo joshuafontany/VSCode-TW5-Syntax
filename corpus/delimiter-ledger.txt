@@ -147,6 +147,12 @@ unnamed-delimiter text.html <- (none)   # a syntax-test file's wikitext body, op
 # heading (63), every one of them a string-family construct. Mirroring the interior's `variable.
 # other.reference` instead costs nothing and buys nothing: unity moves 38 to 39.
 #
+# THE SPACE OF MOVES STANDS CLOSED BY DERIVATION, not by taste. To paint alike, the marker must match the
+# rule its interior's stack wins on, so the interior's own scopes are every move available — five of them
+# the marker lacks. Measured over all five: `meta.transclusion.tokenize`, `meta.transclusion.text-reference`
+# and `meta.support.text-reference` leave unity exactly where it stood at 38 of 65; `variable.other.reference`
+# moves it to 39; `string.text-reference` reaches 65 and takes the four distinctions with it.
+#
 # So the marker keeps the entity name alone. The unity a reader sees in Gruvbox comes from that name
 # reaching both marker and interior there, and the 27 themes where it parts pay for four distinctions
 # holding everywhere.

@@ -114,13 +114,81 @@ const isBase = (scope) => /^(text\.html\.tiddlywiki5$|meta\.paragraph\.)/.test(s
  * FOREGROUND AND fontStyle BOTH. A reader tells bold from italic without reading a word, and most
  * themes carry that difference in fontStyle alone; foreground by itself reports 23 of 65.
  */
-const look = (tokens, theme) => {
+/**
+ * How a specimen LOOKS under one theme: the set of foreground/fontStyle pairs its tokens resolve to.
+ *
+ * A SUBSTITUTION PRICES A NAME WITHOUT MOVING IT. `substitute` appends a candidate scope to any stack
+ * already carrying a published one, so a caller can ask what a naming fork would cost before anybody
+ * edits a grammar — the same question this gate answers after the fact, asked by the same reading.
+ * Measured, that order matters: one fork halved a construct's prose readings and dropped four declared
+ * distinctions below their floors, and the cost only showed once the grammar carried it.
+ *
+ * @param {{scopes: string[]}[]} tokens
+ * @param {object} theme
+ * @param {{find: string, append: string}} [substitute]
+ */
+const look = (tokens, theme, substitute) => {
   const looks = new Set(tokens.map((token) => {
-    const style = styleOf(token.scopes, theme);
+    const scopes = substitute && token.scopes.some((s) => s === substitute.find || s.startsWith(`${substitute.find}.`))
+      ? [...token.scopes, substitute.append]
+      : token.scopes;
+    const style = styleOf(scopes, theme);
     return `${style.foreground || '-'}/${style.fontStyle || '-'}`;
   }));
   return [...looks].sort().join('|');
 };
+
+/**
+ * Every construct pair, with how many themes tell the two apart — optionally under a substitution.
+ *
+ * The gate below reads this with no substitution and holds the answers to their floors; the family
+ * atlas reads it with one to price a candidate. Neither carries a second copy of the reading.
+ *
+ * @param {{find: string, append: string}} [substitute]
+ * @returns {Promise<{readings: [string, number][], themes: number, seated: Map<string, number>}>}
+ */
+async function pairsApart(substitute) {
+  const themes = [...loadThemesByName().entries()].sort((a, b) => (a[0] < b[0] ? -1 : 1));
+  const entries = { ...CONSTRUCTS, __prose: PROSE };
+  const painted = {};
+  const label = {};
+  for (const [rule, [reads, source]] of Object.entries(entries)) {
+    const tokens = (await tokenize('text.html.tiddlywiki5', source)).flat();
+    label[rule] = reads;
+    painted[rule] = themes.map(([, theme]) => look(tokens, theme, substitute));
+  }
+  const names = Object.keys(CONSTRUCTS);
+  const readings = [];
+  for (const rule of names) {
+    readings.push([`${label[rule]}  vs  prose`,
+      painted[rule].filter((c, i) => c !== painted.__prose[i]).length]);
+  }
+  for (let i = 0; i < names.length; i += 1) {
+    for (let j = i + 1; j < names.length; j += 1) {
+      readings.push([`${label[names[i]]}  vs  ${label[names[j]]}`,
+        painted[names[i]].filter((c, k) => c !== painted[names[j]][k]).length]);
+    }
+  }
+  return { readings, themes: themes.length, seated: seatedFloors() };
+}
+
+/** The floor each pair must hold, as the corpus seats them. */
+function seatedFloors() {
+  const seated = new Map();
+  if (!fs.existsSync(FLOOR)) return seated;
+  for (const raw of fs.readFileSync(FLOOR, 'utf8').split('\n')) {
+    const line = raw.trim();
+    if (!line || line.startsWith('#')) continue;
+    const at = line.indexOf(' ');
+    if (at > 0) seated.set(line.slice(at + 1).trim(), Number(line.slice(0, at)));
+  }
+  return seated;
+}
+
+module.exports = { look, pairsApart, seatedFloors, CONSTRUCTS, PROSE };
+
+// The deciding halves above answer to a caller; the gate below answers to a run.
+if (require.main !== module) return;
 
 (async () => {
   const themes = [...loadThemesByName().entries()].sort((a, b) => (a[0] < b[0] ? -1 : 1));
@@ -183,15 +251,7 @@ const look = (tokens, theme) => {
   // call of every name a theme rules on left the weakest pair exactly where it stood, and the gate
   // held. A pair carrying no floor line fails until somebody seats it, so a construct joining the
   // list arrives unratcheted and says so rather than passing blind.
-  const seated = new Map();
-  if (fs.existsSync(FLOOR)) {
-    for (const raw of fs.readFileSync(FLOOR, 'utf8').split('\n')) {
-      const line = raw.trim();
-      if (!line || line.startsWith('#')) continue;
-      const at = line.indexOf(' ');
-      if (at > 0) seated.set(line.slice(at + 1).trim(), Number(line.slice(0, at)));
-    }
-  }
+  const seated = seatedFloors();
 
   const fallen = [];
   const unseated = [];

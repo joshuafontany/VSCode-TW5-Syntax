@@ -54,6 +54,10 @@ description: Which gates continuous integration runs, and the reason for each on
         {
             "gate": "family-atlas",
             "why": "a reading rather than a verdict: it derives every selector the bundled themes rule on, with the share of that reach which leaves the colour where the editor had it, and names the families a grammar may truthfully reach for. It judges no scope this grammar writes — `contrast-witness` holds that verdict — and it refuses nothing, so a gate run would only ever agree with it"
+        },
+        {
+            "gate": "reading-recipe",
+            "why": "a reading rather than a verdict: it generates the reader-facing recipe for the constructs the prose-reading ledger rules, welding it into the README. Its own test holds the weld, and the tool refuses nothing — a gate run would only ever agree with it"
         }
     ]
 }

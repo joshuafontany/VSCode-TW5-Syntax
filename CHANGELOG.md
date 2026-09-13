@@ -157,6 +157,27 @@ back by upgrading, which is the definition this number answers to.
   own digest around the pair, so an edit names itself.
 
 ### Added
+- A NAMING CANDIDATE NOW CARRIES ITS PRICE BEFORE ANYBODY MOVES IT. `family-atlas --for <scope>
+  --candidates a,b` reports what a candidate buys over the corpus and what it costs in the declared
+  distinctions the legibility gate holds — through THAT GATE'S OWN reading, with the grammar untouched.
+  The deciding half of `construct-legibility` stands exported and substitution-aware, so one
+  implementation answers both callers rather than a second copy drifting beside it. Welded: the arm
+  reproduces the four falls the slow reading measured for the `((mvv))` display run, floor for floor.
+- THE `((mvv))` RULING NOW RESTS ON A SEARCH RATHER THAN AN ATTEMPT. Priced over eight candidates drawn
+  from the atlas: two cut the prose readings in half and drop four floors, one reaches zero invisible and
+  drops eight, and the rest drop seven to nine. Not one leaves the floors standing.
+- A CLAIM THIS RECORD MADE ABSOLUTE STANDS TESTED, AND HELD. A transclusion's marker reads as one object
+  with its interior only by joining the string family — and the space of moves closes by derivation
+  rather than by taste: to paint alike, the marker must match the rule its interior's stack wins on, so
+  the interior's own five unshared scopes are every move available. Measured over all five, three leave
+  unity exactly where it stood at 38 of 65, one moves it to 39, and `string.text-reference` reaches 65
+  and takes four distinctions with it.
+- THE READER GETS THE SWITCH THIS GRAMMAR CANNOT REACH. Three constructs read as body text in a quarter
+  or more of the bundled themes, each ruled because the family that would cure it lies or costs a
+  neighbour a distinction. `tools/reading-recipe.js` generates the recipe from the ledger and the
+  contrast reading and welds it into the README, recommending `fontStyle` alone — a colour outlives every
+  theme a reader switches to, where a font style leaves each theme its own palette. Its test holds the
+  weld, so a construct that stops reading quiet leaves the table the day it does.
 - A CANDIDATE SET WRITTEN BY HAND CANNOT NOTICE THE FAMILY IT MISSED. Four rounds of naming forks each
   arrived as four or five families somebody thought of, measured, the loudest kept — and the families
   that matter rest on no opinion: they are the selectors the bundled themes rule on, with the share of

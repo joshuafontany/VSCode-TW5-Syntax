@@ -41,4 +41,4 @@ markup.subscript                 # the same reading
 # directive (64 each against 65). The four other names in this family took the move with nothing
 # falling, so the cost belongs to this construct's own colour neighbourhood rather than to the family.
 # A floor ratchets up; lowering one to admit a fork would hide the next regression under this one.
-variable.name.mvv-display        # the loudest truthful family for it costs a dash, a heading and two directives their declared distinctions
+variable.name.mvv-display        # every truthful loud family costs this construct's neighbours their declared distinctions. Priced by `family-atlas --for` over eight candidates from the atlas of what themes rule on: `entity.name.variable.mvv` and `entity.name.mvv` cut invisible readings 22 to 10 and drop four floors; `entity.name.tag.mvv` reaches 0 invisible and drops eight; `storage.type.mvv` drops nine; `constant.language.mvv` drops seven. Not one candidate leaves the floors standing

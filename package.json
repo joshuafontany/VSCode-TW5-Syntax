@@ -400,6 +400,7 @@
         "dark-construct": "node ./tools/dark-construct.js",
         "contrast": "node ./tools/contrast-witness.js",
         "family-atlas": "node ./tools/family-atlas.js --loud",
+        "reading-recipe": "node ./tools/reading-recipe.js",
         "gates": "node ./tools/gate-report.js",
         "signals": "node ./tools/grammar-signals.js",
         "signals:check": "node ./tools/grammar-signals.js --check",
