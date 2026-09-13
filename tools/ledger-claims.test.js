@@ -61,3 +61,23 @@ test('a prose claim answers to the corpus', live, async () => {
   const broken = await judge({ kind: 'prose', scope: 'markup.superscript', bounds: [['themes', '<=', 2]] });
   assert.strictEqual(broken.holds, false, 'the checker agreed a construct reading prose in 63 themes reads prose in 2');
 });
+
+// THE STRONGEST RULINGS IN THIS CORPUS CITE A FLAGSHIP GRAMMAR — that markdown's own
+// `markup.superscript` measures the same paint rate ours does, that the real `html` grammar parts its own
+// `<style>` pair in the same four themes. Those citations settle whose reading a divergence belongs to,
+// and the checker could read neither. A `paint` claim answers for any scope a theme might rule on, ours
+// or another grammar's, so a citation about a flagship's own name stands checkable.
+test('a flagship claim answers for a scope this grammar does not own', live, async () => {
+  const held = await judge({ kind: 'paint', scope: 'markup.superscript.markdown', bounds: [['themes', '<=', 6]] });
+  assert.strictEqual(held.holds, true,
+    `the checker refused markdown's own reading, which this corpus cites as the control: ${held.reading}`);
+  const broken = await judge({ kind: 'paint', scope: 'markup.superscript.markdown', bounds: [['themes', '>=', 40]] });
+  assert.strictEqual(broken.holds, false,
+    'the checker agreed a scope 2 themes paint is painted by 40');
+  // AND THE ARM THAT PARTS PAINT FROM PROSE: `comment` is painted by every bundled theme, so a paint
+  // claim must read it loud where a scope nothing rules on reads at zero.
+  const loud = await judge({ kind: 'paint', scope: 'comment', bounds: [['themes', '>=', 60]] });
+  assert.strictEqual(loud.holds, true, `the checker read \`comment\` as unpainted: ${loud.reading}`);
+  const absent = await judge({ kind: 'paint', scope: 'nothing.rules.this.scope', bounds: [['themes', '>=', 1]] });
+  assert.strictEqual(absent.holds, false, 'a scope no theme paints read as holding a paint claim');
+});

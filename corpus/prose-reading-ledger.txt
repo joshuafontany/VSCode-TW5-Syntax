@@ -35,6 +35,8 @@
 # not to this grammar. A louder family would part these two runs from every other markup construct a
 # theme paints as a family.
 # checks: prose markup.superscript themes >= 40
+# checks: paint markup.superscript.markdown themes <= 6
+# checks: paint markup.superscript.tiddlywiki5 themes <= 6
 markup.superscript               # the conventional name, unthemed across the bundled set, matching markdown's own reading
 markup.subscript                 # the same reading
 

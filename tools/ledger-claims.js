@@ -12,6 +12,7 @@
 //
 //   # checks: family <selector> rules-on >= 50, quiet >= 15
 //   # checks: prose <scope> themes >= 40
+//   # checks: paint <scope> themes <= 6
 //
 // `family` answers from `family-atlas` — how many bundled themes rule on a selector, and how many of those
 // set the colour the editor already had. `prose` answers from `contrast-witness` over the corpus — how many
@@ -77,6 +78,20 @@ async function judge(claim) {
     // A FAMILY NOTHING RULES ON HAS NO ROW, and an absent row is not a satisfied claim.
     if (!row) return { holds: false, reading: `no bundled theme rules on ${claim.selector}` };
     const measured = { 'rules-on': row.themes, quiet: row.quiet };
+    return verdict(claim, measured);
+  }
+  if (claim.kind === 'paint') {
+    // A PAINT CLAIM ANSWERS FOR ANY SCOPE A THEME MIGHT RULE ON, ours or a flagship grammar's — which is
+    // what the strongest rulings here cite: that markdown's own `markup.superscript` measures the paint
+    // rate ours does, so the silence belongs to the vocabulary rather than to this grammar. It asks the
+    // scope ALONE, because a citation about another grammar's name carries no stack of ours to hand over.
+    const { loadThemes: themesOf, paintRate } = require('./theme-paint.js');
+    const themes = themesOf();
+    if (!themes.length) return { holds: false, reading: 'no bundled theme stands to measure against' };
+    const { painted, total } = paintRate(claim.scope, themes);
+    const measured = { themes: painted.length, of: total };
+    // A SCOPE NO THEME PAINTS reads zero, and a claim wanting one or more refuses on it rather than
+    // passing on an absent reading — the same law the family kind holds.
     return verdict(claim, measured);
   }
   if (claim.kind === 'prose') {

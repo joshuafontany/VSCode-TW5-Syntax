@@ -157,6 +157,25 @@ back by upgrading, which is the definition this number answers to.
   own digest around the pair, so an edit names itself.
 
 ### Added
+- THE CLAIM CHECKER READS A FLAGSHIP'S OWN NAME NOW. The strongest rulings here cite another grammar —
+  that markdown's `markup.superscript` measures the paint rate ours does, so the silence belongs to the
+  vocabulary rather than to this grammar — and the checker could read none of them. A `paint` claim
+  answers for any scope a theme might rule on, asked ALONE, because a citation about a name another
+  grammar owns carries no stack of ours to hand over. Eight claims stand armed across three ledgers, and
+  the superscript citation now holds from both sides at 2 of 65 each. What a claim still cannot express
+  stands named in the ledger that needs it: a FLAGSHIP PAIR wants a specimen and two words inside it,
+  which `ReaderRelations` models for this grammar and for no other, so that citation reads as unarmed
+  rather than as checked.
+- `\end` CARRYING A NAME THAT FAILS TO MATCH: MEASURED, BUILT, AND DECLINED ON WHAT THE BUILD COST. A
+  backreference in an end pattern DOES reach the name its own begin captured — probed against
+  vscode-textmate, a matching name closes, a bare closer closes, and a mismatched name closes nothing,
+  which is TiddlyWiki's reading exactly. Built across all four definition kinds, it moved
+  `definitions.closer-name.tw` into the malformed set on its own, because both readers then ran past the
+  file. The cost sits in the SECOND engine: Shiki translates every pattern to JavaScript and refuses `\3`
+  outright, since a standalone compile cannot see the begin's captures. A reader meeting this grammar on a
+  documentation site would lose every definition's block reading to fix a closer nobody writes on purpose,
+  and that reader has no other advocate here. The divergence stands ruled on that price rather than on any
+  guess at difficulty.
 - THE EXAMPLE SET REACHES EVERY FORM THE HOST ADMITS, and what remains thin stands SINGLE-FORM rather
   than unexercised. A filtered transclusion carries five optional parts and the corpus held two of them;
   it holds all five now, including the two the host binds under names no reader would guess — the run

@@ -8,6 +8,15 @@
 #   <opener scope>   # the reason the pair parts
 #
 # A pair named here that no longer parts retires with the reading it explained.
+#
+# WHAT A CLAIM CHECKER CANNOT YET READ, SAID PLAINLY. The control below settles whose reading the
+# `<style>` pair belongs to by tokenizing a specimen under the REAL `html` grammar and comparing two of
+# its own stacks. `tools/ledger-claims.js` answers a claim about a scope — ours or a flagship's — and a
+# claim about a FLAGSHIP PAIR needs a specimen and two words inside it, which is the shape
+# `ReaderRelations` already models for this grammar and models for no other. So this citation stands
+# unarmed on purpose, and says so here rather than reading as checked.
+# checks: paint punctuation.definition.tag themes >= 35
+
 
 meta.tag.metadata.style.start.html   # THE CLOSER OF AN EMBEDDED BLOCK CARRIES VS CODE'S OWN TERMINATOR. `</style>`'s `<` wears `source.css-ignored-vscode`, the marker VS Code reads to end embedded-language detection at the closing tag, so the closer's stack ends on a `source` scope and the four Catppuccin themes rule on `source` above `punctuation.definition.tag`. The CONTROL settles whose reading this is: the real `html` grammar builds the identical stack and parts its own pair in the same four themes. Dropping the terminator would part this grammar from the flagship and hand the closing tag to the CSS tokenizer
 meta.tag.metadata.script.start.html  # the same reading, for `</script>` and `source.js-ignored-vscode`
