@@ -49,7 +49,11 @@ description: Which gates continuous integration runs, and the reason for each on
         },
         {
             "gate": "page-palette",
-            "why": "a reading rather than a verdict: it counts the distinct colours a whole PAGE spends, against Ware's six-to-twelve band, where every other gauge here reads one construct. A theme decides that count as much as the grammar does, so ratcheting it would re-seat on every honest change \u2014 the shape this house retired once already"
+            "why": "a reading rather than a verdict: it counts the distinct colours a whole PAGE spends, against Ware's six-to-twelve band, where every other gauge here reads one construct. A theme decides that count as much as the grammar does, so ratcheting it would re-seat on every honest change — the shape this house retired once already"
+        },
+        {
+            "gate": "family-atlas",
+            "why": "a reading rather than a verdict: it derives every selector the bundled themes rule on, with the share of that reach which leaves the colour where the editor had it, and names the families a grammar may truthfully reach for. It judges no scope this grammar writes — `contrast-witness` holds that verdict — and it refuses nothing, so a gate run would only ever agree with it"
         }
     ]
 }

@@ -1,0 +1,83 @@
+// The vocabulary a grammar may choose from, measured rather than recalled.
+//
+// Every fork in this grammar's naming so far came from a hand-listed candidate set — four or five
+// families somebody thought of, measured, and the loudest kept. A hand-written list cannot notice the
+// family it missed, and the families that matter are not a matter of opinion: they are the selectors
+// the bundled themes actually rule on, and how often each one leaves the colour exactly where the
+// editor had it.
+//
+// So the atlas derives from the 65 theme files. It answers two questions per selector — how many
+// themes rule on it, and how many of those buy the construct nothing — which together name the
+// families worth reaching for and the families that read as prose whatever a grammar hopes.
+//
+// A DESIGN-TIME READING, shipping nothing. The package declares no runtime and this adds none;
+// `tools/invariants/ships-no-runtime.test.js` holds that, and this tool lives where the gates live.
+
+'use strict';
+
+const test = require('node:test');
+const assert = require('node:assert');
+const { runTool } = require('./run-tool.js');
+const { atlas, leaveAlone } = require('./family-atlas.js');
+const { probeTheme, loadThemes } = require('./theme-model.js');
+
+const live = { timeout: 900000 };
+
+test('the atlas reports the families the bundled themes rule on', live, () => {
+  const { code, out } = runTool('family-atlas.js');
+  assert.match(out, /family-atlas\s+\d+ selector\(s\) across \d+ theme\(s\)/, out.slice(-600));
+  assert.strictEqual(code, 0, out.slice(-600));
+});
+
+// A WELD TO A NUMBER ANOTHER INSTRUMENT MEASURED. The contrast reading found `variable` the single
+// most-shipped leave-it-alone selector: 54 themes rule on it and 18 of those set the colour the editor
+// already had. The atlas derives that from the theme files by a different path, so agreement across the
+// two readings holds, and disagreement names one of them wrong.
+test('the atlas agrees with the contrast reading about the variable family', live, () => {
+  const rows = atlas();
+  const variable = rows.find((r) => r.selector === 'variable');
+  assert.ok(variable, 'the atlas found no `variable` selector, which 54 bundled themes rule on');
+  assert.ok(variable.themes >= 50,
+    `the atlas reads ${variable.themes} theme(s) ruling on \`variable\`, where the contrast reading measured 54`);
+  assert.ok(variable.quiet >= 15,
+    `the atlas reads ${variable.quiet} theme(s) leaving \`variable\` at the editor's own foreground, where the contrast reading measured 18`);
+});
+
+// THE CONTROL ON THE DERIVATION: a theme carrying exactly one rule must contribute exactly that
+// selector, and a selector nothing rules on must not appear at all.
+test('the atlas counts a theme it is handed and invents nothing', () => {
+  const one = probeTheme('keyword.probe', { foreground: '#ff0000' }, { foreground: '#c0c0c0', background: '#101010' });
+  const rows = atlas([one]);
+  // A PROBE THEME CARRIES THE BASE RULES IT INHERITS BESIDE THE ONE IT DECLARES, so the arm reads
+  // INVENTION rather than an exact set: every selector the atlas names must stand in the theme's own
+  // rules, and the declared one must be there with its reach and its quiet count.
+  const declared = new Set(one.rules.flatMap((r) => r.parts || []));
+  const invented = rows.map((r) => r.selector).filter((sel) => !declared.has(sel));
+  assert.deepStrictEqual(invented, [], `the atlas named selector(s) the theme never rules on: ${invented.join(', ')}`);
+  const probe = rows.find((r) => r.selector === 'keyword.probe');
+  assert.ok(probe, 'the atlas lost the one selector the probe theme declares');
+  assert.strictEqual(probe.themes, 1);
+  assert.strictEqual(probe.quiet, 0, 'a rule painting red against grey read as leaving the colour alone');
+});
+
+// AND THE ARM THAT PARTS THE TWO COUNTS: a rule painting EXACTLY the editor's foreground must read
+// quiet, where the red rule above reads loud. A reading that fuses them cannot name a family worth
+// reaching for.
+test('a rule painting the default reads quiet', () => {
+  const editor = { foreground: '#c0c0c0', background: '#101010' };
+  const same = probeTheme('keyword.probe', { foreground: editor.foreground }, editor);
+  const row = atlas([same]).find((r) => r.selector === 'keyword.probe');
+  assert.ok(row, 'the atlas lost the probe selector');
+  assert.strictEqual(row.quiet, 1, 'a rule setting the editor foreground read as buying something');
+  assert.strictEqual(leaveAlone(row), 1, 'the quiet count and its accessor disagree');
+});
+
+// A SELECTOR NO THEME RULES ON HAS NO ROW. The atlas answers what themes DO, never what a grammar
+// hopes they do.
+test('the atlas holds no row for a family nothing rules on', live, () => {
+  const rows = atlas();
+  const invented = rows.find((r) => /tiddlywiki5$/.test(r.selector));
+  assert.strictEqual(invented, undefined,
+    `the atlas listed ${invented?.selector} — a grammar's own scope, which no theme author rules on`);
+  assert.ok(loadThemes().length > 50, 'the bundled theme set went missing');
+});

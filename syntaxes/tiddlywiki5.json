@@ -203,7 +203,7 @@
                                     "name": "punctuation.definition.mvv.default.begin.tiddlywiki5"
                                 },
                                 "2": {
-                                    "name": "variable.name.mvv.default.tiddlywiki5"
+                                    "name": "variable.name.mvv.default.tiddlywiki5 entity.name.variable.mvv.tiddlywiki5"
                                 },
                                 "3": {
                                     "name": "punctuation.definition.mvv.default.end.tiddlywiki5"
@@ -1159,7 +1159,7 @@
                                             "name": "punctuation.definition.mvv.attribute.begin.tiddlywiki5"
                                         },
                                         "2": {
-                                            "name": "variable.name.mvv.attribute.tiddlywiki5"
+                                            "name": "variable.name.mvv.attribute.tiddlywiki5 entity.name.variable.mvv.tiddlywiki5"
                                         },
                                         "3": {
                                             "name": "punctuation.definition.mvv.attribute.end.tiddlywiki5"
@@ -6059,16 +6059,16 @@
                                     "name": "keyword.operator.suffix.tiddlywiki5"
                                 },
                                 "5": {
-                                    "name": "meta.variable.entity.filter.operand.tiddlywiki5"
+                                    "name": "meta.variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
                                 },
                                 "6": {
-                                    "name": "punctuation.definition.operand.variable.begin.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5"
+                                    "name": "punctuation.definition.operand.variable.begin.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
                                 },
                                 "7": {
-                                    "name": "variable.entity.filter.operand.tiddlywiki5"
+                                    "name": "variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
                                 },
                                 "8": {
-                                    "name": "punctuation.definition.operand.variable.end.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5"
+                                    "name": "punctuation.definition.operand.variable.end.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
                                 }
                             }
                         },
@@ -6166,16 +6166,16 @@
                                     "name": "keyword.operator.suffix.tiddlywiki5"
                                 },
                                 "5": {
-                                    "name": "meta.variable.entity.filter.operand.tiddlywiki5"
+                                    "name": "meta.variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
                                 },
                                 "6": {
-                                    "name": "punctuation.definition.operand.variable.begin.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5"
+                                    "name": "punctuation.definition.operand.variable.begin.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
                                 },
                                 "7": {
-                                    "name": "variable.entity.filter.operand.tiddlywiki5"
+                                    "name": "variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
                                 },
                                 "8": {
-                                    "name": "punctuation.definition.operand.variable.end.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5"
+                                    "name": "punctuation.definition.operand.variable.end.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
                                 }
                             }
                         }
@@ -6483,7 +6483,7 @@
                     "name": "keyword.other.variable.substitute-variable.begin.tiddlywiki5"
                 },
                 "2": {
-                    "name": "variable.name.substitute-variable.tiddlywiki5"
+                    "name": "variable.name.substitute-variable.tiddlywiki5 entity.name.variable.substitute-variable.tiddlywiki5"
                 },
                 "3": {
                     "name": "keyword.other.variable.substitute-variable.end.tiddlywiki5"
@@ -6691,7 +6691,7 @@
                             "name": "meta.attribute.mvv.html.tiddlywiki5 punctuation.definition.mvv.attribute.begin.tiddlywiki5"
                         },
                         "4": {
-                            "name": "meta.attribute.mvv.html.tiddlywiki5 variable.name.mvv.attribute.tiddlywiki5"
+                            "name": "meta.attribute.mvv.html.tiddlywiki5 variable.name.mvv.attribute.tiddlywiki5 entity.name.variable.mvv.tiddlywiki5"
                         },
                         "5": {
                             "name": "meta.attribute.mvv.html.tiddlywiki5 punctuation.definition.mvv.attribute.end.tiddlywiki5"

@@ -157,6 +157,25 @@ back by upgrading, which is the definition this number answers to.
   own digest around the pair, so an edit names itself.
 
 ### Added
+- A CANDIDATE SET WRITTEN BY HAND CANNOT NOTICE THE FAMILY IT MISSED. Four rounds of naming forks each
+  arrived as four or five families somebody thought of, measured, the loudest kept — and the families
+  that matter rest on no opinion: they are the selectors the bundled themes rule on, with the share of
+  that reach which sets the colour the editor already had. `tools/family-atlas.js` derives all 2,520 of
+  them from the 65 theme files. It reads `variable` at 54 themes with 18 leaving the colour alone, and
+  `entity.name` at 37 with NONE — so a name the wiki resolves BY NAME reads honestly under
+  `entity.name.variable` and loses half its prose readings by moving there. Four rounds of hand-listed
+  candidates had offered only `support.class` and `support.type`, which buy their colour by naming a
+  filter's variable operand or a multi-valued reference something it is not. A filter's variable
+  operand, a multi-valued reference and a `$(name)$` substitution took the move: prose readings fall
+  from 22 of 65 themes to 10, and the readings above the ledger's bar fall from seven to two. The
+  published `variable.*` name stands first in every case; nothing retires. A weld holds the derivation
+  to the contrast reading, which measured `variable`'s ratio by a different path.
+- THE `((mvv))` DISPLAY RUN KEEPS ITS NAME, AND THE LEDGER CARRIES WHAT THE MOVE WOULD COST. The same
+  family halves its prose readings too, and drops four declared distinctions below their ratchet floors:
+  a dash at 59 of 65 against a floor of 60, a heading at 51 against 56, a parsermode directive and a
+  whitespace directive at 64 each against 65. The four other names took the move with nothing falling,
+  so the cost belongs to this construct's colour neighbourhood rather than to the family. A floor
+  ratchets up; lowering one to admit a fork would hide the next regression under this one.
 - THE EXAMPLE SET ANSWERS TO THE HOST'S OWN REGEXPS, not to a list of constructs anybody recalled.
   Ranking every parser rule by how many nodes the corpus makes it build named the thin end outright —
   and the ranking's first draft LIED, pruning a walk to one coordinate space and so reading

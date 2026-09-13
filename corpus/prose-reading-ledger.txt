@@ -16,21 +16,15 @@
 #
 #   <scope>   # the reason it stands
 #
-# THE FAMILY CEILING, measured. Every `variable.*` spelling resolves through `variable` in the themes
-# that rule on the root, so all six of the grammar's variable-family names read identically: 58 of 65
-# themes reach them and 22 of those 58 leave the colour where the editor had it. `variable` is the
-# single most-shipped leave-it-alone selector in the bundled set — 18 of the 54 themes ruling on it
-# change nothing. No truthful rename escapes it: every `support.other.*` spelling measures 20 of 65
-# invisible, and the three loud alternatives — `support.class`, `support.type`, `support.function` —
-# buy their colour by naming these things something they are not. A call's name took
-# `support.function.macro` because a macro IS a function the wiki provides; nothing here is a class or
-# a type, so nothing here follows it. The names below stand as the honest reading of a real ceiling.
-
-variable.entity.filter.operand   # a filter step's operand, which the `variable` family names honestly and no louder family names truthfully
-variable.name.mvv.attribute      # an attribute bound to a multi-valued variable — a variable, and the family ceiling above holds
-variable.name.mvv.default        # a parameter's multi-valued default, the same reading
-variable.name.mvv-display        # an `((mvv))` display run, the same reading
-variable.name.substitute-variable  # a `$(name)$` substitution inside a definition body, the same reading
+# WHAT A FAMILY COSTS IS MEASURABLE, AND A CANDIDATE SET WRITTEN BY HAND MISSES THE ANSWER.
+# `tools/family-atlas.js` derives every selector the bundled themes rule on with the share of that
+# reach which buys nothing: `variable` carries 54 themes and 18 of them leave the colour where the
+# editor had it, while `entity.name` carries 37 and NONE of them do. So a name the wiki resolves by
+# name — a filter's variable operand, a multi-valued reference, a `$(name)$` substitution — reads
+# honestly under `entity.name.variable` and loses half its prose readings by moving there, where four
+# rounds of hand-listed candidates had offered only `support.class` and `support.type`, which buy
+# their colour by naming these things something they are not. The published `variable.*` name stands
+# first in every case; nothing retires.
 
 # A VOCABULARY NO THEME AUTHOR RULES ON. `markup.superscript` and `markup.subscript` reach only 9 of
 # 65 themes at all, and markdown's own `markup.superscript` measures the same 2 of 65 paint rate this
@@ -39,3 +33,12 @@ variable.name.substitute-variable  # a `$(name)$` substitution inside a definiti
 # theme paints as a family.
 markup.superscript               # the conventional name, unthemed across the bundled set, matching markdown's own reading
 markup.subscript                 # the same reading
+
+# A FAMILY THAT CURES ONE CONSTRUCT CAN COST FOUR DISTINCTIONS. The `((mvv))` display run answers to
+# the same reading as every other name the wiki resolves, and `entity.name.variable.mvv` halves its
+# prose readings the same way — and drops four declared distinctions below their ratchet floors: a dash
+# (59 of 65 against a floor of 60), a heading (51 against 56), a parsermode directive and a whitespace
+# directive (64 each against 65). The four other names in this family took the move with nothing
+# falling, so the cost belongs to this construct's own colour neighbourhood rather than to the family.
+# A floor ratchets up; lowering one to admit a fork would hide the next regression under this one.
+variable.name.mvv-display        # the loudest truthful family for it costs a dash, a heading and two directives their declared distinctions
