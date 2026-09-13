@@ -399,6 +399,7 @@
         "backtrack-witness": "node ./tools/backtrack-witness.js",
         "dark-construct": "node ./tools/dark-construct.js",
         "contrast": "node ./tools/contrast-witness.js",
+        "ledger-claims": "node ./tools/ledger-claims.js",
         "family-atlas": "node ./tools/family-atlas.js --loud",
         "reading-recipe": "node ./tools/reading-recipe.js",
         "gates": "node ./tools/gate-report.js",

@@ -3,11 +3,11 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 42 of 42
+gates-held: 43 of 43
 
 {
-    "gates": 42,
-    "held": 42,
+    "gates": 43,
+    "held": 43,
     "failing": 0,
     "results": [
         {
@@ -68,12 +68,12 @@ gates-held: 42 of 42
         {
             "gate": "contrast",
             "held": true,
-            "said": "contrast-witness  273 stack(s) over 65 theme(s), 1395 prose reading(s), 3 above the bar of 16, 0 unruled, 0 explaining nothing"
+            "said": "contrast-witness  274 stack(s) over 65 theme(s), 1402 prose reading(s), 3 above the bar of 16, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  54 files, 511 scopes declared, 464 reached (floor 450), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  58 files, 511 scopes declared, 464 reached (floor 450), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
@@ -96,6 +96,11 @@ gates-held: 42 of 42
             "said": "filter-witness  781 filter(s) TiddlyWiki compiles, 84 operator(s), 13 prefix(es), 0 unread"
         },
         {
+            "gate": "ledger-claims",
+            "held": true,
+            "said": "ledger-claims  5 claim(s) across 2 ledger(s), 0 that no longer hold"
+        },
+        {
             "gate": "legibility",
             "held": true,
             "said": "construct-legibility  40 construct(s) from 44 host rule(s), 820 pair(s) over 65 theme(s), 0 fallen, 0 unseated, weakest 0/65"
@@ -103,7 +108,7 @@ gates-held: 42 of 42
         {
             "gate": "light-cone",
             "held": true,
-            "said": "light-cone  207 divergence(s) across 13 class(es), 10 quote(s) closed to ask; forward arm moved 23, backward arm moved 164, typo arm moved 62; 8 proven or unruled, 5 ruled without proof, 0 owed but reaching out"
+            "said": "light-cone  241 divergence(s) across 13 class(es), 10 quote(s) closed to ask; forward arm moved 23, backward arm moved 190, typo arm moved 80; 8 proven or unruled, 5 ruled without proof, 0 owed but reaching out"
         },
         {
             "gate": "must-fail",
@@ -138,7 +143,7 @@ gates-held: 42 of 42
         {
             "gate": "recovery-witness",
             "held": true,
-            "said": "recovery-witness  32 diagnostic(s) across 52 carrier(s), 16 code(s), 16 standing silent, 0 unruled, 0 explaining nothing"
+            "said": "recovery-witness  32 diagnostic(s) across 56 carrier(s), 16 code(s), 16 standing silent, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "rule-coverage",
@@ -193,7 +198,7 @@ gates-held: 42 of 42
         {
             "gate": "still",
             "held": true,
-            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 51 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 54.5% of corpus tokens ruled"
+            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 51 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 53.6% of corpus tokens ruled"
         },
         {
             "gate": "still-reach",
@@ -208,7 +213,7 @@ gates-held: 42 of 42
         {
             "gate": "theme-collision",
             "held": true,
-            "said": "theme-collision  249730 token-reading(s) over 65 themes and 41 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
+            "said": "theme-collision  256230 token-reading(s) over 65 themes and 45 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
         },
         {
             "gate": "theme-parity",

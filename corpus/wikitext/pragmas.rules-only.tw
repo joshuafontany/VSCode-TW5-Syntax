@@ -1,0 +1,11 @@
+\rules only bold italic
+
+A NARROWED RULE SET CHANGES WHAT EVERY LINE BELOW IT MEANS, and no TextMate grammar can follow it: a
+rule stack carries regions, never the parser's own rule table. The host stands only bold and italic
+here, so ''this bold run'' and //this italic run// build elements and everything else reads as text.
+
+! This heading builds nothing — the host reads the marker as two characters of a paragraph.
+
+* This list marker reads as text too, and so does the `code span` markup around these words.
+
+[[A pretty link]] reads as text. So does <<aMacro>> and {{ATransclusion}}.

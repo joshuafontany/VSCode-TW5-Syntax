@@ -111,6 +111,10 @@ jobs:
       - name: Contrast witness
         run: npm run contrast
 
+      # Whether the numbers a ruling cites still answer to the measurement they came from.
+      - name: Ledger claims
+        run: npm run ledger-claims
+
       # A construct nested in a container still reads as itself.
       - name: Nesting coverage
         run: npm run nesting-coverage

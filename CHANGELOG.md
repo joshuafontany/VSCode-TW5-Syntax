@@ -123,7 +123,7 @@ back by upgrading, which is the definition this number answers to.
   as prose in none of them either way. This answers the red the gate's own repair surfaced.
 - `theme-paint`'S PAINT RATE MEASURES REACH, NEVER LEGIBILITY. Of 11,756 foreground rules across 65
   bundled themes, 1,191 — one in ten — paint the editor's own foreground, and `variable` is the single
-  most-shipped such selector: 18 of the 54 themes ruling on it leave the colour exactly where the
+  most-shipped such selector: 20 of the 59 themes ruling on it leave the colour exactly where the
   editor had it. A construct can therefore stand reached by every theme and read as prose to every
   reader, which is the class that left `{{`, `[[`, `<<`, a widget's brackets and a widget's `=`
   reading as body text while every coverage gauge held green. The ceiling stands named: a TextMate
@@ -157,6 +157,24 @@ back by upgrading, which is the definition this number answers to.
   own digest around the pair, so an edit names itself.
 
 ### Added
+- A RULING'S NUMBERS NOW ANSWER TO THE MEASUREMENT THEY CAME FROM. Every ledger here rules something and
+  cites what it measured, and the SCOPE each ruling names stood audited already — its own gate refuses a
+  ruling explaining nothing. The NUMBERS stood audited by nobody, so a citation that drifted turned a
+  ruling into a lie a reader had no way to catch: one ruling claimed no truthful family escaped the
+  `variable` root, a single derivation refuted it, and nothing went red because the claim had never been
+  checkable. A load-bearing number carries a machine-readable twin now — `# checks: family <selector>
+  rules-on >= 50, quiet >= 15` beside the prose — and `tools/ledger-claims.js` answers each from the
+  atlas or the contrast reading and refuses a claim whose measurement moved. It earned itself on its
+  first run: the atlas reads `variable` at 59 themes with 20 leaving the colour alone, where two ledgers
+  and this record cited 54 and 18 from a reading taken another way. The in-repo instrument's numbers
+  stand, because anybody here can re-run them.
+- `\rules` NARROWS THE PARSER'S OWN RULE TABLE, AND THREE CARRIERS HOLD WHAT THAT COSTS A READER.
+  `\rules only <names>` keeps the rules named, `\rules except <names>` drops them, and any other action
+  changes nothing — all verified against `amendRules` itself. A rule stack carries REGIONS, never a rule
+  table, so every construct below a narrowing keeps the colour its markup earns while the host reads flat
+  text: measured, 93 spans across the three carriers, each one now ruled in the divergence file with the
+  narrowing that retired it. The widest reading is `\rules only` with no names at all, where the host
+  keeps NO rule and the whole carrier holds one paragraph.
 - A NAMING CANDIDATE NOW CARRIES ITS PRICE BEFORE ANYBODY MOVES IT. `family-atlas --for <scope>
   --candidates a,b` reports what a candidate buys over the corpus and what it costs in the declared
   distinctions the legibility gate holds — through THAT GATE'S OWN reading, with the grammar untouched.
@@ -182,7 +200,7 @@ back by upgrading, which is the definition this number answers to.
   arrived as four or five families somebody thought of, measured, the loudest kept — and the families
   that matter rest on no opinion: they are the selectors the bundled themes rule on, with the share of
   that reach which sets the colour the editor already had. `tools/family-atlas.js` derives all 2,520 of
-  them from the 65 theme files. It reads `variable` at 54 themes with 18 leaving the colour alone, and
+  them from the 65 theme files. It reads `variable` at 59 themes with 20 leaving the colour alone, and
   `entity.name` at 37 with NONE — so a name the wiki resolves BY NAME reads honestly under
   `entity.name.variable` and loses half its prose readings by moving there. Four rounds of hand-listed
   candidates had offered only `support.class` and `support.type`, which buy their colour by naming a
@@ -803,7 +821,7 @@ back by upgrading, which is the definition this number answers to.
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 58 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 82 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
   emits no container node, so a scope over its content stands over text by construction.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses
