@@ -9,12 +9,11 @@
 #
 # A pair named here that no longer parts retires with the reading it explained.
 #
-# WHAT A CLAIM CHECKER CANNOT YET READ, SAID PLAINLY. The control below settles whose reading the
-# `<style>` pair belongs to by tokenizing a specimen under the REAL `html` grammar and comparing two of
-# its own stacks. `tools/ledger-claims.js` answers a claim about a scope — ours or a flagship's — and a
-# claim about a FLAGSHIP PAIR needs a specimen and two words inside it, which is the shape
-# `ReaderRelations` already models for this grammar and models for no other. So this citation stands
-# unarmed on purpose, and says so here rather than reading as checked.
+# THE CONTROL THAT SETTLES WHOSE READING THIS IS, CHECKED. The `<style>` pair parts under the REAL `html`
+# grammar in the same four themes it parts under this one, so the difference belongs to VS Code's own
+# embedded-language terminator rather than to anything written here. A `pair` claim carries what that reading
+# needs — the grammar, a specimen, and the two words whose stacks a reader meets as one mark.
+# checks: pair text.html.basic "<style>|p { color: red; }|</style>" < < parts <= 8
 # checks: paint punctuation.definition.tag themes >= 35
 
 

@@ -157,6 +157,15 @@ back by upgrading, which is the definition this number answers to.
   own digest around the pair, so an edit names itself.
 
 ### Added
+- THE LAST UNARMED CITATION CARRIES A CHECK. A ruling settles whose reading a divergence belongs to by
+  tokenizing a specimen under ANOTHER grammar and comparing two of its own stacks — `</style>` parting from
+  `<style>` in the four Catppuccin themes under the real `html` grammar, exactly as it parts here, which is
+  why the difference belongs to VS Code's own embedded-language terminator rather than to anything written
+  in this repository. A scope asked alone cannot answer that: the two halves differ by the stack each stands
+  in, never by their own names. A `pair` claim carries what the reading needs — the grammar, a specimen, and
+  the two words whose stacks a reader meets as one mark — and reads 4 against a bound of 8. Nine claims now
+  stand armed across three ledgers, and no load-bearing citation in the corpus reads as checked while
+  answering to nobody.
 - A COMPILE IS NOT AN AGREEMENT, and the engine gate had kept half its own promise. It asked whether the
   second engine can TRANSLATE each pattern; two engines can each accept a pattern and still find different
   matches in it, and a reader on a documentation site then meets one construct coloured two ways — the

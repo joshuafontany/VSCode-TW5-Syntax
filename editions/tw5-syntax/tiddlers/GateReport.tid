@@ -103,7 +103,7 @@ gates-held: 44 of 44
         {
             "gate": "ledger-claims",
             "held": true,
-            "said": "ledger-claims  8 claim(s) across 3 ledger(s), 0 that no longer hold"
+            "said": "ledger-claims  9 claim(s) across 3 ledger(s), 0 that no longer hold"
         },
         {
             "gate": "legibility",

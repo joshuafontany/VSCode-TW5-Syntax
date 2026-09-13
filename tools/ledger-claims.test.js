@@ -81,3 +81,38 @@ test('a flagship claim answers for a scope this grammar does not own', live, asy
   const absent = await judge({ kind: 'paint', scope: 'nothing.rules.this.scope', bounds: [['themes', '>=', 1]] });
   assert.strictEqual(absent.holds, false, 'a scope no theme paints read as holding a paint claim');
 });
+
+// THE LAST CITATION THAT STOOD UNARMED. A ruling here settles whose reading a divergence belongs to by
+// tokenizing a specimen under ANOTHER grammar and comparing two of its own stacks — `</style>` parting from
+// `<style>` in the four Catppuccin themes, in the real `html` grammar, exactly as it parts here. A `paint`
+// claim answers for one scope asked alone and cannot reach a pair, so that citation read as unchecked while
+// carrying the weight of a ruling.
+//
+// A `pair` claim carries what it needs: the grammar, a specimen, and the two words inside it whose stacks a
+// reader meets as one mark.
+test('a pair claim answers for a pair in another grammar', live, async () => {
+  const held = await judge({
+    kind: 'pair',
+    grammar: 'text.html.basic',
+    specimen: '<style>|p { color: red; }|</style>',
+    words: ['<', '<'],
+    bounds: [['parts', '<=', 8]]
+  });
+  assert.strictEqual(held.holds, true,
+    `the checker refused the control this corpus rules the style pair on: ${held.reading}`);
+  const broken = await judge({
+    kind: 'pair',
+    grammar: 'text.html.basic',
+    specimen: '<style>|p { color: red; }|</style>',
+    words: ['<', '<'],
+    bounds: [['parts', '>=', 60]]
+  });
+  assert.strictEqual(broken.holds, false,
+    'the checker agreed a pair parting in four themes parts in sixty');
+  // AND A SPECIMEN CARRYING NEITHER WORD must refuse rather than pass on an absent reading.
+  const absent = await judge({
+    kind: 'pair', grammar: 'text.html.basic', specimen: 'nothing here',
+    words: ['<', '<'], bounds: [['parts', '>=', 0]]
+  });
+  assert.strictEqual(absent.holds, false, 'a specimen building neither word read as holding its claim');
+});

@@ -13,6 +13,7 @@
 //   # checks: family <selector> rules-on >= 50, quiet >= 15
 //   # checks: prose <scope> themes >= 40
 //   # checks: paint <scope> themes <= 6
+//   # checks: pair <grammar> "<specimen with | for line breaks>" <opener> <closer> parts <= 8
 //
 // `family` answers from `family-atlas` — how many bundled themes rule on a selector, and how many of those
 // set the colour the editor already had. `prose` answers from `contrast-witness` over the corpus — how many
@@ -50,6 +51,19 @@ function claimsIn(dir = CORPUS) {
     if (!entry.isFile() || !entry.name.endsWith('.txt')) continue;
     const file = path.join(dir, entry.name);
     fs.readFileSync(file, 'utf8').split('\n').forEach((raw, i) => {
+      // A `pair` claim carries a grammar, a specimen and two words before its bounds; every other kind
+      // carries one subject. The specimen holds `|` where its lines break, a ledger line having none.
+      const pair = /^#\s*checks:\s*pair\s+(\S+)\s+"([^"]*)"\s+(\S+)\s+(\S+)\s+(.*)$/.exec(raw.trim());
+      if (pair) {
+        const bounds = [];
+        for (const part of pair[5].split(',')) {
+          const b = /^\s*([a-z-]+)\s*(>=|<=|==|>|<)\s*(\d+)\s*$/.exec(part);
+          if (b) bounds.push([b[1], b[2], Number(b[3])]);
+        }
+        out.push({ file: path.basename(file), line: i + 1, kind: 'pair', grammar: pair[1],
+          specimen: pair[2], words: [pair[3], pair[4]], bounds });
+        return;
+      }
       const m = /^#\s*checks:\s*(\S+)\s+(\S+)\s+(.*)$/.exec(raw.trim());
       if (!m) return;
       const [, kind, subject, rest] = m;
@@ -94,6 +108,32 @@ async function judge(claim) {
     // passing on an absent reading — the same law the family kind holds.
     return verdict(claim, measured);
   }
+  if (claim.kind === 'pair') {
+    // A PAIR CLAIM REACHES INTO ANOTHER GRAMMAR, which is what the strongest rulings here need: `</style>`
+    // parts from `<style>` in four themes under the REAL `html` grammar, exactly as it parts under this one,
+    // and that control settles whose reading the difference belongs to. A scope asked alone cannot answer it
+    // — the two halves differ by the stack each stands in, never by their own names.
+    //
+    // The specimen carries `|` where its lines break, because a claim stands on one line of a ledger.
+    const { tokenizeFrom } = require('./tokenizer.js');
+    const { loadThemes: themesOf, styleOf } = require('./theme-model.js');
+    const themes = themesOf().filter((t) => t.defaults && t.defaults.foreground);
+    const lines = String(claim.specimen || '').split('|');
+    const { tokens } = await tokenizeFrom(claim.grammar, lines);
+    // The FIRST and LAST occurrence of the named words, which is how an opener and its closer stand.
+    const found = [];
+    tokens.forEach((row, i) => {
+      for (const t of row) {
+        const text = lines[i].slice(t.startIndex, t.endIndex);
+        if (text === claim.words[found.length === 0 ? 0 : 1]) found.push(t.scopes);
+      }
+    });
+    if (found.length < 2) return { holds: false, reading: `the specimen carries ${found.length} of 2 word(s)` };
+    const opener = found[0];
+    const closer = found[found.length - 1];
+    const parts = themes.filter((t) => styleOf(opener, t).foreground !== styleOf(closer, t).foreground).length;
+    return verdict(claim, { parts, of: themes.length });
+  }
   if (claim.kind === 'prose') {
     const { loadThemes } = require('./theme-model.js');
     const { reads, stacks } = require('./contrast-witness.js');
@@ -129,10 +169,14 @@ if (require.main !== module) return;
   const claims = claimsIn();
   const ledgers = new Set(claims.map((c) => c.file));
   const broken = [];
+  /** What a claim is ABOUT, for a reader of the report: one subject, or a pair's grammar and words. */
+  const subjectOf = (c) => (c.kind === 'pair'
+    ? `${c.grammar} ${JSON.stringify(c.words.join(''))}`
+    : (c.selector || c.scope));
   for (const claim of claims) {
     const { holds, reading } = await judge(claim);
-    if (!holds) broken.push(`${claim.file}:${claim.line} — ${claim.kind} ${claim.selector || claim.scope}: ${reading}`);
-    else if (verbose) console.log(`  holds  ${claim.file}:${claim.line}  ${claim.kind} ${claim.selector || claim.scope}: ${reading}`);
+    if (!holds) broken.push(`${claim.file}:${claim.line} — ${claim.kind} ${subjectOf(claim)}: ${reading}`);
+    else if (verbose) console.log(`  holds  ${claim.file}:${claim.line}  ${claim.kind} ${subjectOf(claim)}: ${reading}`);
   }
   for (const b of broken) console.error(`  a ruling citing a reading that moved: ${b}`);
   console.log(`ledger-claims  ${claims.length} claim(s) across ${ledgers.size} ledger(s), ${broken.length} that no longer hold`);
