@@ -320,7 +320,8 @@ if (require.main === module) {
   const tw = resolveTiddlyWiki();
   if (!tw) {
     console.error('no TiddlyWiki checkout resolved — set TW5_PATH');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
   const args = process.argv.slice(2);
   const oracle = boot(tw, args.includes('--camelcase') ? { rules: { 'Inline/wikilink': 'enable' } } : {});
@@ -329,7 +330,8 @@ if (require.main === module) {
     for (const type of ['pragma', 'block', 'inline']) {
       console.log(`${type.padEnd(6)} ${String(active[type].length).padStart(2)}  ${active[type].join(' ')}`);
     }
-    process.exit(0);
+    process.exitCode = 0;
+    return;
   }
   const src = (args.find((a) => !a.startsWith('--')) || '').replace(/\\n/g, '\n');
   const parsed = oracle.parse(src);

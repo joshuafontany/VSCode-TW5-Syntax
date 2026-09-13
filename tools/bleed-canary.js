@@ -43,7 +43,8 @@ const strict = args.includes('--strict');
 const [scope, pattern] = args.filter((a) => a !== '--strict');
 if (!scope || !pattern) {
   console.error('Usage: node tools/bleed-canary.js <scope> <glob>');
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 
 const SENTINEL = 'SENTINEL the canary reads as ordinary paragraph text.';
@@ -76,13 +77,15 @@ const PLAIN = new Set([
 const sources = listFiles(pattern);
 if (sources.length === 0) {
   console.error(`no sources matched ${pattern}`);
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 
 const host = resolveTiddlyWiki();
 if (!host) {
   console.error('no TiddlyWiki checkout resolved — set TW5_PATH');
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 const oracle = boot(host);
 
@@ -138,4 +141,5 @@ for (const src of sources) {
 fs.rmSync(scratch, { recursive: true, force: true });
 const carried = inherited ? `, ${inherited} ending inside a construct TiddlyWiki also carries` : '';
 console.log(`bleed-canary  ${scope}  ${sources.length} samples, ${bleeding} bleeding${carried}`);
-process.exit(bleeding ? 1 : 0);
+process.exitCode = bleeding ? 1 : 0;
+return;

@@ -92,5 +92,6 @@ async function degradationOf(file) {
 
   for (const f of failures) console.error(f);
   console.log(`must-fail  ${specimens.length} specimen(s), ${declared.length} declaration(s), ${failures.length} that assert nothing`);
-  process.exit(failures.length === 0 ? 0 : 1);
+  process.exitCode = failures.length === 0 ? 0 : 1;
+  return;
 })();

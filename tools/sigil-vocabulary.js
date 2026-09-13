@@ -65,7 +65,8 @@ function specimens() {
 const seed = resolveSeed();
 if (!seed) {
   console.log('sigil-vocabulary  no boot seed stands beside this checkout, so no vocabulary answers');
-  process.exit(0);
+  process.exitCode = 0;
+  return;
 }
 
 const written = sigilNames(fs.readFileSync(seed, 'utf8'));
@@ -88,4 +89,5 @@ for (const n of unknown) console.log(`  a specimen carries \`<<~ ${n}\`, which t
 
 console.log(`sigil-vocabulary  ${written.size} sigil(s) the seed writes across ${files.length} specimen(s), `
   + `${unexercised.length} unexercised, ${unknown.length} carried beyond the seed`);
-process.exit(unexercised.length === 0 ? 0 : 1);
+process.exitCode = unexercised.length === 0 ? 0 : 1;
+return;

@@ -36,7 +36,8 @@ const { resolveTiddlyWiki } = require('./tw5-oracle.js');
 const host = resolveTiddlyWiki();
 if (!host || !fs.existsSync(path.join(host, 'tiddlywiki.js'))) {
   console.error('  no TiddlyWiki stands where this looked — set TW5_PATH');
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'grammar-signals-'));
@@ -46,7 +47,8 @@ try {
     '--output', scratch, '--rendertiddler', '$:/tw5-syntax/GrammarSignals', 'signals.json', 'text/plain']);
   if (code !== 0) {
     console.error(`  the boot refused, so nothing below stands:\n${out}`);
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
   harvested = fs.readFileSync(path.join(scratch, 'signals.json'), 'utf8');
 } finally {
@@ -55,7 +57,8 @@ try {
 
 if (!harvested.trim()) {
   console.error('  the boot produced no signals — the startup module ran too late, or not at all');
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 const signals = JSON.parse(harvested);
 const counts = `${signals.filterOperators.length} operator(s), ${signals.widgets.length} widget(s), `
@@ -72,7 +75,8 @@ const tid = `title: $:/tw5-syntax/GrammarSignals\n`
 const standing = fs.existsSync(HARVEST) ? fs.readFileSync(HARVEST, 'utf8') : null;
 if (standing === tid) {
   console.log(`grammar-signals  TiddlyWiki ${signals.version} — ${counts}, the harvest current`);
-  process.exit(0);
+  process.exitCode = 0;
+  return;
 }
 if (check) {
   const was = standing && /^tw5-version: (.*)$/m.exec(standing);
@@ -80,7 +84,8 @@ if (check) {
   console.error(`     standing: ${was ? was[1] : 'no harvest at all'}`);
   console.error(`     booted:   ${signals.version} — ${counts}`);
   console.log(`grammar-signals  TiddlyWiki ${signals.version} — ${counts}, the harvest DRIFTED`);
-  process.exit(1);
+  process.exitCode = 1;
+  return;
 }
 fs.writeFileSync(HARVEST, tid);
 console.log(`grammar-signals  TiddlyWiki ${signals.version} — ${counts}, the harvest written`);

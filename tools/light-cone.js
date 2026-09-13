@@ -266,5 +266,6 @@ let closed = 0;
     + `forward arm moved ${forwardMoves}, backward arm moved ${backwardMoves}, typo arm moved ${typoMoves}; `
     + `${measured.size - unproven.length - wrong.length} proven or unruled, ${unproven.length} ruled without proof, `
     + `${wrong.length} owed but reaching out`);
-  process.exit(wrong.length === 0 ? 0 : 1);
+  process.exitCode = wrong.length === 0 ? 0 : 1;
+  return;
 })();

@@ -124,7 +124,8 @@ if (require.main === module) {
   const themes = loadThemes();
   if (themes.length === 0) {
     console.error(`no themes found in ${THEME_DIR} — run npm install`);
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
   const args = process.argv.slice(2);
   if (args.includes('--families')) {
@@ -144,11 +145,13 @@ if (require.main === module) {
     for (const { family, members, rate } of rows) {
       console.log(`  ${String(rate).padStart(2)}/${themes.length}  ${family.padEnd(28)} ${members.length} scope(s)`);
     }
-    process.exit(0);
+    process.exitCode = 0;
+    return;
   }
   if (args.length === 0) {
     console.error('usage: node tools/theme-paint.js <scope>... | --families');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
   for (const scope of args) {
     const { painted, total, via } = paintRate(scope, themes);

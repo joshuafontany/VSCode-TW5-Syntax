@@ -152,5 +152,6 @@ function scopesAcross(text, tokens, from, to) {
 
   console.log(`recovery-witness  ${total} diagnostic(s) across ${read} carrier(s), ${byCode.size} code(s), `
     + `${silent.length} standing silent, ${unruled.length} unruled, ${stale.length} explaining nothing`);
-  process.exit(unruled.length === 0 && stale.length === 0 ? 0 : 1);
+  process.exitCode = unruled.length === 0 && stale.length === 0 ? 0 : 1;
+  return;
 })();

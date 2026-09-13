@@ -52,7 +52,8 @@ const gates = Object.entries(scripts)
 
 if (!gates.length) {
   console.error('  the manifest registers no gate this could run');
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 
 const results = [];
@@ -91,9 +92,11 @@ if (check) {
   for (const r of results.filter((x) => !x.held)) console.error(`  ${r.gate} does not hold: ${r.said}`);
   if (!same) console.error('  the report differs from what the gates say now');
   console.log(`gate-report  ${held} of ${results.length} gate(s) hold, the report ${same ? 'current' : 'DRIFTED'}`);
-  process.exit(same && held === results.length ? 0 : 1);
+  process.exitCode = same && held === results.length ? 0 : 1;
+  return;
 }
 fs.writeFileSync(OUT, tid);
 console.log(`gate-report  ${held} of ${results.length} gate(s) hold, written`);
 for (const r of results.filter((x) => !x.held)) console.error(`  ${r.gate} does not hold: ${r.said}`);
-process.exit(held === results.length ? 0 : 1);
+process.exitCode = held === results.length ? 0 : 1;
+return;

@@ -58,7 +58,8 @@ const OUT = path.join(__dirname, '..', 'editions', 'tw5-syntax', 'tiddlers', 'Te
 const TW = resolveTiddlyWiki();
 if (!TW) {
   console.log('textmate-ceiling  no TiddlyWiki checkout resolved, so no host stands to measure against');
-  process.exit(0);
+  process.exitCode = 0;
+  return;
 }
 const oracle = boot(TW);
 
@@ -358,5 +359,6 @@ const CEILINGS = [
     + `\n${JSON.stringify(body, null, 4)}\n`);
 
   console.log(`textmate-ceiling  ${CEILINGS.length} ceiling(s) measured against TiddlyWiki, ${broken.length} that no longer stand${write ? ', written' : ''}`);
-  process.exit(broken.length === 0 ? 0 : 1);
+  process.exitCode = broken.length === 0 ? 0 : 1;
+  return;
 })();

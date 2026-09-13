@@ -35,7 +35,8 @@ const ALIAS = {
 
 if (!fs.existsSync(HARVEST)) {
   console.error('  no harvest stands — run `npm run signals` against the TiddlyWiki this repo answers to');
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 const { fields, data: signals } = readData('GrammarSignals.tid');
 const version = fields['tw5-version'] ?? 'unknown';
@@ -161,5 +162,6 @@ console.log(`rule-coverage  TiddlyWiki ${version}: ${signals.wikiRules.length} r
   + `${houseRules.length} house rule(s) all ruled, `
   + `${read.length} read, ${aliased.length} under another name, ${unread.length + idle.length} unaccounted; `
   + `${tokens.length} pragma keyword(s) guarded across ${(signals.pragmaRules ?? []).length} rule(s)`);
-process.exit(unread.length + idle.length + unguarded.length + tokenless.length
-  + houseUnruled.length + houseIdle.length === 0 ? 0 : 1);
+process.exitCode = unread.length + idle.length + unguarded.length + tokenless.length
+  + houseUnruled.length + houseIdle.length === 0 ? 0 : 1;
+return;

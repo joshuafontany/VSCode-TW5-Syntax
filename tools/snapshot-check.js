@@ -37,14 +37,16 @@ function listFiles(pattern) {
 const [scope, pattern, ...rest] = process.argv.slice(2);
 if (!scope || !pattern) {
   console.error('Usage: node tools/snapshot-check.js <scope> <glob> [--update]');
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 const update = rest.includes('--update');
 
 const sources = listFiles(pattern);
 if (sources.length === 0) {
   console.error(`no sources matched ${pattern}`);
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-snap-'));
@@ -97,4 +99,5 @@ for (const src of sources) {
 
 fs.rmSync(scratch, { recursive: true, force: true });
 console.log(`snapshot-check  ${scope}  ${checked} pinned, ${drift} drifted`);
-process.exit(drift ? 1 : 0);
+process.exitCode = drift ? 1 : 0;
+return;

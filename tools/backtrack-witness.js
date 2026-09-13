@@ -131,6 +131,7 @@ if (require.main === module) {
       + ` and ${BUDGET_RATIO}x a control reading ${baseline.toFixed(3)}ms`);
     console.log(`  ${slow.length}  pattern(s) a reader would feel stall on unfinished input`);
     if (verbose) for (const s of [...new Set(slow)].slice(0, 10)) console.log(`     ${s}`);
-    process.exit(slow.length ? 1 : 0);
+    process.exitCode = slow.length ? 1 : 0;
+    return;
   })();
 }

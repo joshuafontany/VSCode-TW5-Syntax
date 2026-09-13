@@ -144,12 +144,14 @@ function main() {
   const [scope, pattern] = process.argv.slice(2);
   if (!scope || !pattern) {
     console.error('Usage: node tools/composition-check.js <scope> <glob>');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
   const sources = listFiles(pattern);
   if (sources.length < 2) {
     console.error(`need at least two sources; ${sources.length} matched ${pattern}`);
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
 
   const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-compose-'));
@@ -185,7 +187,8 @@ function main() {
   const oracle = host ? boot(host) : null;
   if (!oracle) {
     console.error('  no TiddlyWiki checkout resolved — a prologue would read as ordinary ground');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
   const prologue = solo.map((f) => prologueLines(fs.readFileSync(f, 'utf8'), oracle));
   let broken = 0;
@@ -210,7 +213,8 @@ function main() {
 
   fs.rmSync(scratch, { recursive: true, force: true });
   console.log(`composition-check  ${scope}  ${pairs.length} pairs, ${broken} that do not compose`);
-  process.exit(broken ? 1 : 0);
+  process.exitCode = broken ? 1 : 0;
+  return;
 }
 
 if (require.main === module) main();

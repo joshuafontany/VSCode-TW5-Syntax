@@ -45,7 +45,8 @@ const ANY_KIND = new RegExp(Object.values(KINDS).map((r) => `(?:${r.source})`).j
 const host = resolveTiddlyWiki();
 if (!host) {
   console.error('  no TiddlyWiki stands where this looked — set TW5_PATH');
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 const oracle = boot(host, {});
 
@@ -223,5 +224,6 @@ function tiddlers(dir, out = []) {
   console.log(`  ${disagreements.length} disagreement(s) across ${[...classed.values()].filter(Boolean).length} named class(es), ${unclassified.length} unclassified`);
   console.log(`attribute-witness  ${read} attribute(s) across ${counts.size} type(s), `
     + `${read - disagreements.length} reading the kind TiddlyWiki assigned (ceiling ${ceiling})`);
-  process.exit(untyped.length === 0 && unclassified.length === 0 && disagreements.length <= ceiling ? 0 : 1);
+  process.exitCode = untyped.length === 0 && unclassified.length === 0 && disagreements.length <= ceiling ? 0 : 1;
+  return;
 })();

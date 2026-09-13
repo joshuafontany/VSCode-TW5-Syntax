@@ -3,11 +3,11 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 41 of 41
+gates-held: 42 of 42
 
 {
-    "gates": 41,
-    "held": 41,
+    "gates": 42,
+    "held": 42,
     "failing": 0,
     "results": [
         {
@@ -66,14 +66,19 @@ gates-held: 41 of 41
             "said": "composition-check  text.html.tiddlywiki5  23 pairs, 0 that do not compose"
         },
         {
+            "gate": "contrast",
+            "held": true,
+            "said": "contrast-witness  275 stack(s) over 65 theme(s), 1462 prose reading(s), 7 above the bar of 16, 0 unruled, 0 explaining nothing"
+        },
+        {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  54 files, 506 scopes declared, 459 reached (floor 450), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  54 files, 507 scopes declared, 460 reached (floor 450), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
             "held": true,
-            "said": "dark-construct  328 construct(s) over 65 themes, 23 plain, 0 unaccounted"
+            "said": "dark-construct  327 construct(s) over 65 themes, 23 plain, 0 unaccounted"
         },
         {
             "gate": "delimiters",

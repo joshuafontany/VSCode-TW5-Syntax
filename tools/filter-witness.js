@@ -46,7 +46,8 @@ const IN_TRANSCLUSION = /\{\{\{\s*([^\n}]{3,120}?)\s*\}\}\}/g;
 const host = resolveTiddlyWiki();
 if (!host) {
   console.error('  no TiddlyWiki stands where this looked — set TW5_PATH');
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 const oracle = boot(host, {});
 const { data: signals } = readData('GrammarSignals.tid');
@@ -108,5 +109,6 @@ async function scopesOf(filter) {
   console.log(`filter-witness  ${compiles.length} filter(s) TiddlyWiki compiles, `
     + `${(signals.filterOperators ?? []).length} operator(s), ${(signals.filterRunPrefixes ?? []).length} prefix(es), `
     + `${unread.length} unread`);
-  process.exit(unread.length === 0 ? 0 : 1);
+  process.exitCode = unread.length === 0 ? 0 : 1;
+  return;
 })();

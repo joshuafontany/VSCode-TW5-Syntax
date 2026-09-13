@@ -98,7 +98,8 @@ function main() {
   const MAX = Number(process.argv[3] || 120);
   if (!tw || !fs.existsSync(tw)) {
     console.error('Usage: node tools/nesting-coverage.js <path-to-TiddlyWiki5> [max-pairs]');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
 
   const ruleDir = path.join(tw, 'core/modules/parsers/wikiparser/rules');
@@ -154,7 +155,8 @@ function main() {
   }
   if (pairs.size === 0) {
     console.error('no pairs found — is that a TiddlyWiki5 checkout?');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
 
   // ── each construct alone, and inside its container ────────────────────────
@@ -212,7 +214,8 @@ function main() {
     for (const [c, n] of [...byContainer].sort()) console.log(`  ${c}: ${n} construct(s) lost`);
   }
   console.log(`\n  pairs where the container costs the construct its reading: ${missing.length}`);
-  process.exit(missing.length ? 1 : 0);
+  process.exitCode = missing.length ? 1 : 0;
+  return;
 }
 
 if (require.main === module) main();

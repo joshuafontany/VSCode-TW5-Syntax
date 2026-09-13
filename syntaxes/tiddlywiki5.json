@@ -4002,10 +4002,10 @@
             "contentName": "meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5",
             "beginCaptures": {
                 "1": {
-                    "name": "punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5 variable.name.macro.tiddlywiki5"
+                    "name": "punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5"
                 },
                 "2": {
-                    "name": "variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5",
+                    "name": "variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5",
                     "patterns": [
                         {
                             "include": "#builtin-variable"
@@ -4015,7 +4015,7 @@
             },
             "endCaptures": {
                 "1": {
-                    "name": "punctuation.definition.call.block.end.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5 variable.name.macro.tiddlywiki5"
+                    "name": "punctuation.definition.call.block.end.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5"
                 }
             },
             "patterns": [
@@ -5357,10 +5357,10 @@
             "contentName": "meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5",
             "beginCaptures": {
                 "1": {
-                    "name": "punctuation.definition.call.inline.begin.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5 variable.name.macro.tiddlywiki5"
+                    "name": "punctuation.definition.call.inline.begin.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5"
                 },
                 "2": {
-                    "name": "variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5",
+                    "name": "variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5",
                     "patterns": [
                         {
                             "include": "#builtin-variable"
@@ -5370,7 +5370,7 @@
             },
             "endCaptures": {
                 "1": {
-                    "name": "punctuation.definition.call.inline.end.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5 variable.name.macro.tiddlywiki5"
+                    "name": "punctuation.definition.call.inline.end.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5"
                 }
             },
             "patterns": [
@@ -5666,8 +5666,8 @@
                             "name": "punctuation.definition.link.title.tiddlywiki5"
                         },
                         "3": {
-                            "comment": "THE TARGET IS A REFERENCE THE HOST DEREFERENCES, and `variable.other.reference` writes that shape — the same name a transclusion's text reference carries, for the same reason. It stands LAST so a theme ruling on it decides the colour, which parts the target from the caption a reader clicks: measured over 65 bundled themes, 16 told the pair apart on the published name alone and 57 tell it apart with this one, against a floor of 40, and the target reads as prose in none of them either way. The published name stands first so a theme naming it keeps any tie.",
-                            "name": "string.entity.other.title.link.tiddlywiki5 variable.other.reference.tiddlywiki5",
+                            "comment": "THE TARGET NAMES A TIDDLER TITLE, which is what a transclusion's target and the `{{`/`}}` markers already carry — one name for one thing. It stands LAST so a theme ruling on it decides the colour, which parts the target from the caption a reader clicks: measured over 65 bundled themes, 16 tell the pair apart on the published name alone and 41 with this one, against a floor of 40, and the target reads as prose in NONE either way. `variable.other.reference` parts 57 and costs 34 — `variable` is the most-shipped leave-it-alone selector in the bundled set, and in Monokai it resolves the editor's own foreground exactly, so the target read as body text there. The published name stands first so a theme naming it keeps any tie.",
+                            "name": "string.entity.other.title.link.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5",
                             "patterns": [
                                 {
                                     "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists \u2014 a reader wants to see which titles answer to the host.",
@@ -5731,8 +5731,8 @@
                             "name": "punctuation.definition.link.title.tiddlywiki5"
                         },
                         "3": {
-                            "comment": "THE TARGET IS A REFERENCE THE HOST DEREFERENCES, and `variable.other.reference` writes that shape — the same name a transclusion's text reference carries, for the same reason. It stands LAST so a theme ruling on it decides the colour, which parts the target from the caption a reader clicks: measured over 65 bundled themes, 16 told the pair apart on the published name alone and 57 tell it apart with this one, against a floor of 40, and the target reads as prose in none of them either way. The published name stands first so a theme naming it keeps any tie.",
-                            "name": "string.entity.other.title.link.tiddlywiki5 variable.other.reference.tiddlywiki5",
+                            "comment": "THE TARGET NAMES A TIDDLER TITLE, which is what a transclusion's target and the `{{`/`}}` markers already carry — one name for one thing. It stands LAST so a theme ruling on it decides the colour, which parts the target from the caption a reader clicks: measured over 65 bundled themes, 16 tell the pair apart on the published name alone and 41 with this one, against a floor of 40, and the target reads as prose in NONE either way. `variable.other.reference` parts 57 and costs 34 — `variable` is the most-shipped leave-it-alone selector in the bundled set, and in Monokai it resolves the editor's own foreground exactly, so the target read as body text there. The published name stands first so a theme naming it keeps any tie.",
+                            "name": "string.entity.other.title.link.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5",
                             "patterns": [
                                 {
                                     "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists \u2014 a reader wants to see which titles answer to the host.",

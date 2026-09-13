@@ -156,16 +156,19 @@ if (require.main === module) {
   const tw = resolveTiddlyWiki();
   if (!tw) {
     console.error('no TiddlyWiki checkout resolved — set TW5_PATH');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
   const inventory = buildInventory(tw);
   if (process.argv.includes('--configuration')) {
     console.log(JSON.stringify(configurationProperties(inventory), null, 2));
-    process.exit(0);
+    process.exitCode = 0;
+    return;
   }
   if (process.argv.includes('--json')) {
     console.log(JSON.stringify(inventory, null, 2));
-    process.exit(0);
+    process.exitCode = 0;
+    return;
   }
   const keys = inventory.flatMap((r) => r.keys);
   console.log(`rule-inventory  ${inventory.length} rules, ${keys.length} config keys\n`);

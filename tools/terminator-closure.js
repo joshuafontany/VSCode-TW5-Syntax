@@ -128,4 +128,5 @@ for (const f of unique) {
   console.log('      end        ' + JSON.stringify(f.end));
   console.log('      emittable  ' + JSON.stringify(f.term) + '  by  ' + JSON.stringify(f.by).slice(0, 72));
 }
-process.exit(unique.length ? 1 : 0);
+process.exitCode = unique.length ? 1 : 0;
+return;

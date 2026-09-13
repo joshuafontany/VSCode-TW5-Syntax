@@ -107,6 +107,10 @@ jobs:
       - name: Dark constructs
         run: npm run dark-construct
 
+      # Whether the reach a theme grants a construct bought the construct any colour at all.
+      - name: Contrast witness
+        run: npm run contrast
+
       # A construct nested in a container still reads as itself.
       - name: Nesting coverage
         run: npm run nesting-coverage

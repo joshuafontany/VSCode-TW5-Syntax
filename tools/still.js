@@ -47,10 +47,12 @@ const seed = seedAt >= 0 ? Number(argv[seedAt + 1]) : 1;
 if (require.main === module && (!over || !fs.existsSync(over))) {
   if (host) {
     console.log('still  no TiddlyWiki checkout resolved, so no host ground stands to pass over');
-    process.exit(0);
+    process.exitCode = 0;
+    return;
   }
   console.error('still: name the ground to pass over — node tools/still.js --host | --over <dir> [--sample N]');
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 
 const { SENTINEL, closers, standAlone } = require('./sentinel.js');
@@ -367,7 +369,8 @@ if (require.main !== module) return;
     }
     console.log(`reach  ${clean} of ${swept} carrier(s) stand fully named, ${(100 * share).toFixed(1)}% (floor ${(100 * REACH_FLOOR).toFixed(1)}%); `
       + `${skipped} carrier(s) no cut reads, ${divergences} divergence(s), ${blocking.size} class(es) blocking`);
-    process.exit(!under && broadened.length === 0 ? 0 : 1);
+    process.exitCode = !under && broadened.length === 0 ? 0 : 1;
+    return;
   }
 
   // SHUFFLED, and deterministically so. Taking every Nth file walks directory order, which groups
@@ -424,5 +427,6 @@ if (require.main !== module) return;
   console.log(`still  ${chosen.length} of ${files.length} carrier(s) at seed ${seed}, ${closed} quote(s) closed to ask, ${divergences} divergence(s) across ${classes.size} class(es), `
     + `${unnamed.length} unnamed, ${broadened.length} ruling(s) broadened, widest ruling spans ${widest.kinds} cause(s) (ceiling ${BREADTH_CEILING}), `
     + `${(100 * ground).toFixed(1)}% of corpus tokens ruled`);
-  process.exit(unnamed.length === 0 && broadened.length === 0 && !overBreadth ? 0 : 1);
+  process.exitCode = unnamed.length === 0 && broadened.length === 0 && !overBreadth ? 0 : 1;
+  return;
 })();

@@ -15,6 +15,58 @@ attribute value's quote characters changed family. A reader who liked 2.2.1's lo
 back by upgrading, which is the definition this number answers to.
 
 ### Fixed
+- A GATE ABANDONED ITS OWN READING ON THE WAY OUT. `process.exit` drops whatever stdout has not
+  drained, and a gate printing a long listing then calling it loses the tail — silently, with a status
+  of 0. Measured on the legibility witness, which prints 820 lines: six runs under CPU contention came
+  back with 171, 742 and 820 pairs and an exit status of 0 every time, so nothing in the answer told a
+  short reading from a complete one, and the test reading it blamed the grammar for pairs a dead write
+  had eaten. This is the flake that read as a grammar defect three times. The same six runs under
+  heavier load, with the verdict SET rather than called, returned 820 pairs every time; three full
+  `test-tools` sweeps ran clean after the migration. Every one of the 42 gates the manifest names sets
+  `process.exitCode` now — 87 call sites — and `tools/invariants/a-verdict-flushes.test.js` refuses a
+  gate that calls the other thing, with a companion arm refusing a gate that reports no verdict at all,
+  so the cure cannot become a deletion. Welded behaviourally rather than by reading: all 42 verdicts
+  stand byte-identical across the change.
+- A GATE FOR THE FAULT NO OTHER GATE CAN SEE. `tools/contrast-witness.js` measures CIE76 ΔE between
+  the foreground a token resolves to and the theme's own default, so a rule that wins and leaves the
+  colour where ordinary prose has it reads as the fault it is. It derives from every token the corpus
+  builds — keyed by the STACK a reader meets, reported by the innermost SCOPE a fork would change,
+  because a ledger at stack grain ran to 733 entries differing by nothing anyone could act on. Four
+  control arms stand between it and the four colour lies this house has already measured: a
+  background-only rule must leave the distance at zero, a foreground-only rule must move it past the
+  just-noticeable difference, and a rule painting EXACTLY the default must read reached-and-invisible
+  where an unreached scope reads prose-without-reaching — the two faults part, because fusing them
+  names the wrong cure. A mispaired arm answers each theme against the NEXT theme's default and the
+  count collapses from 1,462 readings to 36. The bar sits at a quarter of the bundled set, where a
+  reading stops being a habit every grammar shares: our widget's `<` reads as prose in 18 of 65 themes
+  and the real `html` grammar's own `<` reads as prose in exactly 18 too.
+- A CALL'S NAME AND ITS ANGLES TAKE `support.function.macro` beside the published `variable.name.macro`,
+  because a macro IS a function the wiki provides. Measured: 58 of 65 themes reached the published name
+  and 22 of those left the colour exactly where the editor had it, so `<<greeting>>` read as body text
+  to a third of readers while every coverage gauge held green. With the name added, 64 reach and ONE
+  leaves it. Added, never swapped — nothing retires, no reader's `editor.tokenColorCustomizations` entry
+  stops matching, and the swap's measured cost (a call's name against a widget's, 61 themes to 33)
+  never arrives.
+- THE FAMILY CEILING, NAMED AND RULED. Every `variable.*` spelling resolves through `variable` in the
+  themes that rule on the root, so all six of this grammar's variable-family names read identically:
+  58 of 65 reach, 22 of those buy nothing. `variable` is the single most-shipped leave-it-alone
+  selector in the bundled set. No truthful rename escapes it — every `support.other.*` spelling
+  measures 20 of 65 invisible, and the three loud alternatives buy their colour by naming a filter
+  operand or a multi-valued variable something it is not. `corpus/prose-reading-ledger.txt` rules the
+  five that remain, held apart from `PlainConstructs` because that list rules the OTHER fault — a
+  construct no rule reaches — and the two cures differ.
+- A PROBE READ A FIELD THE LOADER DOES NOT CARRY, and reported a fork as costless. Asking a theme for
+  `colors['editor.foreground']` returns nothing on every bundled theme — the loader normalises it to
+  `defaults.foreground` — so a prose count computed against it read zero for every candidate. Under
+  that reading a wikilink's target took `variable.other.reference`; measured properly it painted
+  `#F8F8F2` in Monokai against an editor foreground of `#F8F8F2`, the target reading as body text in
+  34 of 65 themes. The target now takes `entity.name.tiddler.field.title`, the name a transclusion's
+  target and the `{{`/`}}` markers already carry: 41 of 65 themes part it from the caption against a
+  floor of 40, and NO theme reads it as prose. The deciding half of the witness stands exported so a
+  probe cannot derive the default a second way.
+- The legibility test's completeness check answered to a number typed into it. A floor of 500 passed a
+  run that came back 403 pairs short and would have failed the day the corpus grew a construct; it
+  answers to the witness's own claimed count now, and a truncated reading names itself.
 - A SHIPPED GATE ASKED ITS QUESTION OF A SCOPE STANDING ALONE. `theme-model.js` warns in its own
   docstring that a scope asked alone answers differently from the same scope inside a stack — an
   ancestor cannot paint what a caller never handed over — and `colour-witness` handed it bare scope

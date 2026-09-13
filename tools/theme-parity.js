@@ -163,4 +163,5 @@ for (const finding of findings) console.error(`  ${finding}`);
 console.log(`theme-parity  ${rows.length} construct(s) across ${themes.length} themes and ${COMPARATORS.length} comparator grammars`
   + ` (${Object.entries(carried).map(([id, n]) => `${id} ${n}`).join(', ')}), `
   + `${findings.length} that themes reach less than the panel does`);
-process.exit(findings.length === 0 ? 0 : 1);
+process.exitCode = findings.length === 0 ? 0 : 1;
+return;

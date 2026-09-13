@@ -28,13 +28,15 @@ try {
   list = readData('BuiltInVariables').data;
 } catch (e) {
   console.error(`  ${e.message}`);
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 const exact = [...new Set(list.exact || [])].sort();
 const prefixes = [...new Set(list.prefixes || [])].sort();
 if (!exact.length && !prefixes.length) {
   console.error('  the tiddler names no built-in variable at all');
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 
 // A prefix family matches its opening and whatever follows; an exact name matches whole. Longest
@@ -52,19 +54,22 @@ const rule = (parsed.repository || {})['builtin-variable'];
 
 if (!rule) {
   console.error('  the grammar carries no #builtin-variable rule for this list to fill');
-  process.exit(check ? 1 : 2);
+  process.exitCode = check ? 1 : 2;
+  return;
 }
 
 if (rule.match === WANT) {
   console.log(`builtins-sync  ${exact.length} name(s) and ${prefixes.length} prefix(es), the grammar current`);
-  process.exit(0);
+  process.exitCode = 0;
+  return;
 }
 if (check) {
   console.error('  the grammar\'s built-in list differs from the tiddler that holds it');
   console.error(`     tiddler wants: ${WANT.slice(0, 96)}…`);
   console.error(`     grammar holds: ${String(rule.match).slice(0, 96)}…`);
   console.log(`builtins-sync  ${exact.length} name(s) and ${prefixes.length} prefix(es), the grammar DRIFTED`);
-  process.exit(1);
+  process.exitCode = 1;
+  return;
 }
 rule.match = WANT;
 fs.writeFileSync(GRAMMAR, `${JSON.stringify(parsed, null, '\t')}\n`);

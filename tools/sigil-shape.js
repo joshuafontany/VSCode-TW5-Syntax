@@ -81,7 +81,8 @@ function specimens() {
 const seed = resolveSeed();
 if (!seed) {
   console.log('sigil-shape  no boot seed stands beside this checkout, so no shape answers');
-  process.exit(0);
+  process.exitCode = 0;
+  return;
 }
 
 const written = shapes(fs.readFileSync(seed, 'utf8'));
@@ -110,4 +111,5 @@ for (const shape of beyond) console.log(`  a specimen carries the \`${shape}\` s
 
 console.log(`sigil-shape  ${written.size} shape(s) the seed writes across ${files.length} specimen(s), `
   + `${unexercised.length} unexercised, ${beyond.length} carried beyond the seed`);
-process.exit(unexercised.length === 0 ? 0 : 1);
+process.exitCode = unexercised.length === 0 ? 0 : 1;
+return;

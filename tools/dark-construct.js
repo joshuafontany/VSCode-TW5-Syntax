@@ -45,7 +45,8 @@ try {
 } catch (e) {
   // A gate that cannot read its own declarations must stop, never report agreement with nothing.
   console.error(`  ${e.message}`);
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 
 
@@ -55,7 +56,8 @@ const themes = loadThemes();
 
 if (!themes.length) {
   console.error('no bundled themes — run npm install');
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 
 // Every innermost scope the corpus reaches, with how many themes paint the stack it stands in.
@@ -95,4 +97,5 @@ for (const p of idle) {
 }
 console.log(`dark-construct  ${seen.size} construct(s) over ${themes.length} themes, ${dark.length} plain, `
   + `${undeclared.length + idle.length} unaccounted`);
-process.exit(undeclared.length + idle.length === 0 ? 0 : 1);
+process.exitCode = undeclared.length + idle.length === 0 ? 0 : 1;
+return;

@@ -241,5 +241,6 @@ let closed = 0;
 
   console.log(`swallow-witness  ${probes} cut(s) across ${files} corpus file(s), ${closed} quote(s) closed to ask, `
     + `${findings.size} divergence(s), ${owed.size} recorded, ${unruled.length} unruled, ${stale.size} ruling(s) explaining nothing`);
-  process.exit(unruled.length === 0 && stale.size === 0 && unasked.length <= ceiling ? 0 : 1);
+  process.exitCode = unruled.length === 0 && stale.size === 0 && unasked.length <= ceiling ? 0 : 1;
+  return;
 })();

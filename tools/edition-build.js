@@ -34,7 +34,8 @@ const check = process.argv.includes('--check');
 const tsc = resolveCompiler();
 if (!tsc) {
   console.error('  no TypeScript compiler stands where this looked — set TSC_PATH, or install one');
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 
 // What the tree carried before this build, so `--check` can say whether the build changed it.
@@ -48,7 +49,8 @@ const before = Object.fromEntries(fs.readdirSync(SRC_DIR)
 try {
   execFileSync(tsc, ['-p', PROJECT], { cwd: ROOT, stdio: 'inherit' });
 } catch (e) {
-  process.exit(e.status || 1);
+  process.exitCode = e.status || 1;
+  return;
 }
 
 // A tiddler the host cannot read never runs as a module, and a boot reports nothing about it.
@@ -66,12 +68,14 @@ for (const source of sources) {
   const emitted = path.join(TIDDLERS, source.replace(/\.ts$/, '.js'));
   if (!fs.existsSync(emitted)) {
     console.error(`  ${source} compiled to nothing the wiki would load — no ${path.basename(emitted)} stands`);
-    process.exit(1);
+    process.exitCode = 1;
+    return;
   }
   const match = headerOf(fs.readFileSync(emitted, 'utf8'));
   if (!match) {
     console.error(`  ${path.basename(emitted)} carries no header TiddlyWiki can read, so the wiki would load nothing`);
-    process.exit(1);
+    process.exitCode = 1;
+    return;
   }
   const fields = Object.fromEntries(match[1].split('\n').filter(Boolean)
     .map((line) => line.split(/:\s*/)).map(([k, ...v]) => [k, v.join(': ')]));
@@ -110,7 +114,8 @@ if (check) {
   if (moved.length) {
     console.error(`  ${moved.length} module(s) the build wrote differently: ${moved.join(', ')}`);
     console.error('  the tree carries what an older build left — commit what this one wrote');
-    process.exit(1);
+    process.exitCode = 1;
+    return;
   }
 }
 

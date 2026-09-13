@@ -43,12 +43,16 @@ test('the reading paints whole constructs, never their containers alone', live, 
   // construct standing at 65 of 65 — measured twice, once on a child Node killed at the 1 MB buffer
   // and once on a run that simply came back short. The reading answers for itself first.
   assert.strictEqual(code, 0, `the witness refused before it could be read: ${out.slice(-400)}`);
-  // AND THE COMPLETENESS CHECK MUST LIVE WHERE THE READING DOES. This witness prints its LISTING to
-  // stdout and its summary to stderr, and `runNode` returns stdout ALONE on success — so a check
-  // against the summary can only pass on a run that FAILED. The listing's own length answers instead.
+  // AND THE COMPLETENESS CHECK ANSWERS TO THE WITNESS'S OWN COUNT, never to a number typed here. A
+  // hand-set floor passes a run that came back short by a hundred pairs and fails the day the corpus
+  // grows a construct — measured, a run under full concurrency listed 417 of 820 and exited clean, and
+  // a floor of 500 named that as the grammar's fault rather than as a reading that stopped early.
   const pairs = out.split('\n').filter((l) => /^\s+\d+\/\d+\s+\S/.test(l));
-  assert.ok(pairs.length > 500,
-    `the witness listed ${pairs.length} pair(s) of the 820 it holds, so the reading ended early: ${out.slice(-200)}`);
+  const claimed = Number(/(\d+) pair\(s\) over \d+ theme\(s\)/.exec(out)?.[1] ?? NaN);
+  assert.ok(Number.isFinite(claimed),
+    `the witness's own summary never arrived, so the listing answers to nothing: ${out.slice(-200)}`);
+  assert.strictEqual(pairs.length, claimed,
+    `the witness claims ${claimed} pair(s) and listed ${pairs.length}, so the reading ended early`);
   const prose = out.split('\n').filter((l) => /vs\s+prose/.test(l));
   assert.ok(prose.length >= 4, `the witness compared ${prose.length} construct(s) against prose`);
   // A container reading puts call, filter run and transclusion at one colour with prose. Each of

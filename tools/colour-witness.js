@@ -51,7 +51,8 @@ try {
 } catch (e) {
   // A gate that cannot read its own declarations must stop, never report agreement with nothing.
   console.error(`  ${e.message}`);
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 const TOGETHER = RELATIONS.together;
 const ALIKE = RELATIONS.alike;
@@ -138,7 +139,8 @@ if (require.main === module) {
   const verbose = process.argv.includes('--verbose');
   if (!fs.existsSync(THEMES)) {
     console.error('no bundled themes — run npm install');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
   const themes = loadThemes();
 
@@ -201,5 +203,6 @@ if (require.main === module) {
   console.log(`  ${String(fused.length).padStart(4)}  declared unity(ies) too few themes can show, of ${ALIKE.length}`);
   console.log(`  ${String(missing.length + shrunk.length).padStart(4)}  relation(s) that stopped checking anything`);
   for (const line of [...split, ...parted, ...flattened, ...fused, ...missing, ...shrunk].slice(0, verbose ? 12 : 3)) console.log(`     ${line}`);
-  process.exit(split.length || parted.length || flattened.length || fused.length || missing.length || shrunk.length ? 1 : 0);
+  process.exitCode = split.length || parted.length || flattened.length || fused.length || missing.length || shrunk.length ? 1 : 0;
+  return;
 }

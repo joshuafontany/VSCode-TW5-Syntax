@@ -77,7 +77,8 @@ function main() {
   const PER_RULE = Number(process.argv[3] || 6);
   if (!tw || !fs.existsSync(tw)) {
     console.error('Usage: node tools/upstream-coverage.js <path-to-TiddlyWiki5> [samples-per-rule]');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
 
   // ── the rules, read from their own modules ────────────────────────────────
@@ -156,7 +157,8 @@ function main() {
   for (const r of rules) for (const hit of found.get(r.name)) cases.push({ rule: r.name, hit, types: r.types });
   if (cases.length === 0) {
     console.error('no cases collected — is that a TiddlyWiki5 checkout?');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
 
   // ── one file per case ────────────────────────────────────────────────────
@@ -229,7 +231,8 @@ function main() {
     console.log(`     ${silent.join(' ')}`);
   }
   console.log(`\n  rules with an unscoped case: ${gaps} (of ${byRule.size} measured)`);
-  process.exit(gaps || unseen.length ? 1 : 0);
+  process.exitCode = gaps || unseen.length ? 1 : 0;
+  return;
 }
 
 if (require.main === module) main();

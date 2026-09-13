@@ -188,4 +188,5 @@ console.log(`  rules: ${Object.keys(NO_NODE).length} of the rules TiddlyWiki sta
 for (const rule of unfired) {
   console.error(`  no corpus specimen makes TiddlyWiki fire ${rule}, so nothing here reads what it builds`);
 }
-process.exit(bleeding.length || unfired.length || reachedCount < floor || unreachedOurs.length > ceiling ? 1 : 0);
+process.exitCode = bleeding.length || unfired.length || reachedCount < floor || unreachedOurs.length > ceiling ? 1 : 0;
+return;

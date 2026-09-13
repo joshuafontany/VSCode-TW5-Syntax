@@ -98,5 +98,6 @@ function ledger() {
   }
   console.log(`engine-witness  ${patterns} pattern(s) across ${files.length} grammar(s), `
     + `${refused.length} refused by the second engine, ${unruled.length} unruled, ${idle.length} ruling(s) explaining nothing`);
-  process.exit(unruled.length === 0 && idle.length === 0 ? 0 : 1);
+  process.exitCode = unruled.length === 0 && idle.length === 0 ? 0 : 1;
+  return;
 })();

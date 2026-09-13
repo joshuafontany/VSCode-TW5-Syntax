@@ -126,7 +126,8 @@ const look = (tokens, theme) => {
   const themes = [...loadThemesByName().entries()].sort((a, b) => (a[0] < b[0] ? -1 : 1));
   if (!themes.length) {
     console.error('  no bundled themes — run npm install');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
 
   // THE HOST DECLARES THE POPULATION. A rule it stands and this table never measures reads as a
@@ -233,5 +234,9 @@ const look = (tokens, theme) => {
   const held = !fallen.length && !unseated.length && !unmeasured.length && !orphaned.length && !dead.length && !inert.length;
   console.log(`construct-legibility  ${names.length} construct(s) from ${host.size} host rule(s), ${readings.length} pair(s) over ${themes.length} theme(s), ${fallen.length} fallen, ${unseated.length} unseated, weakest ${weakest[1]}/${themes.length}`);
   console.log(`  ${weakest[0]}`);
-  process.exit(held ? 0 : 1);
+  // A VERDICT SET, NEVER AN EXIT CALLED. `process.exit` abandons whatever stdout has not drained, and
+  // this witness prints 820 lines: measured under CPU contention, six runs returned 171, 742 and 820
+  // pairs with an exit status of 0 every time, so a reader could not tell a short reading from a
+  // complete one. Setting the code lets the loop drain and the process leave on its own.
+  process.exitCode = held ? 0 : 1;
 })();

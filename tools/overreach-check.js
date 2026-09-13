@@ -232,7 +232,8 @@ if (require.main === module) {
   const tw = resolveTiddlyWiki();
   if (!tw) {
     console.error('no TiddlyWiki checkout resolved — set TW5_PATH');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
   const oracle = boot(tw, camelcase ? { rules: { 'Inline/wikilink': 'enable' } } : {});
 
@@ -318,7 +319,8 @@ if (require.main === module) {
   }
   if (copies.length === 0) {
     console.error(`no files matched ${pattern}`);
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
   const grammars = grammarArgs();
   execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', ...copies], {

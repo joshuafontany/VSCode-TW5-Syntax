@@ -75,7 +75,8 @@ function pages() {
   const reading = pages();
   if (!themes.length || !reading.length) {
     console.error(`  ${themes.length} theme(s) and ${reading.length} page(s) — nothing to count`);
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
 
   const perPage = [];

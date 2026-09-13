@@ -210,5 +210,6 @@ function rulings() {
   }
   for (const b of broken) console.error(`  ${b}`);
   console.log(`delimiter-inheritance  ${rules.length} contentName rule(s) over ${shapes.size} shape(s), ${unruled.length} unruled`);
-  process.exit(broken.length === 0 ? 0 : 1);
+  process.exitCode = broken.length === 0 ? 0 : 1;
+  return;
 })();

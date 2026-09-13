@@ -140,7 +140,8 @@ async function control(grammar) {
   const grammar = await registry.loadGrammar(SCOPE);
   if (!grammar) {
     console.error('  no grammar stands under', SCOPE);
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
 
   const faults = await control(grammar);
@@ -155,7 +156,8 @@ async function control(grammar) {
     .sort((a, b) => (a[0] < b[0] ? -1 : 1));
   if (!themes.length || !specimens.length) {
     console.error(`  ${themes.length} theme(s) and ${specimens.length} specimen(s) — nothing to collide`);
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
 
   let readings = 0;
@@ -193,6 +195,7 @@ async function control(grammar) {
   console.log(`theme-collision  ${readings} token-reading(s) over ${themes.length} themes and ${specimens.length} specimens, `
     + `${diverged} where the model parts from the engine (${(diverged * 100 / readings).toFixed(2)}%)`
     + `, ${faults.length} control fault(s)${mustFail ? ' — under --must-fail, where divergence stands REQUIRED' : ''}`);
-  if (mustFail) process.exit(diverged > 0 ? 0 : 1);
-  process.exit(diverged === 0 && faults.length === 0 ? 0 : 1);
+  if (mustFail) { process.exitCode = diverged > 0 ? 0 : 1; return; }
+  process.exitCode = diverged === 0 && faults.length === 0 ? 0 : 1;
+  return;
 })();
