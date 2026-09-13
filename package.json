@@ -394,6 +394,7 @@
         "sigil-shape": "node ./tools/sigil-shape.js",
         "must-fail": "node ./tools/must-fail.js",
         "engine-witness": "node ./tools/engine-witness.js",
+        "engine-behaviour": "node ./tools/engine-witness.js --behaviour",
         "still": "node ./tools/still.js --host --sample 25",
         "still-reach": "node ./tools/still.js --host --reach",
         "backtrack-witness": "node ./tools/backtrack-witness.js",

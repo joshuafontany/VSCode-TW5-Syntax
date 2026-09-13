@@ -17,7 +17,15 @@
 // correct would encode its quirks as law, and treating the translation as correct would encode a
 // translator's coverage as the language.
 //
+// A COMPILE IS NOT AN AGREEMENT. Two engines can each accept a pattern and still find different matches
+// in it, and a reader on a documentation site then meets the same construct coloured two ways. The
+// behavioural arm asks a bounded question: given a line the corpus really carries, read from its start, do
+// the two engines find the same match at the same place. A tokenizer asks from a moving position with a
+// rule stack behind it, so agreement here reads as necessary rather than sufficient — and a disagreement
+// stands real either way.
+//
 //   node tools/engine-witness.js [--verbose]
+//   node tools/engine-witness.js --behaviour    what the two engines MATCH, over the corpus's own lines
 
 'use strict';
 
@@ -26,6 +34,8 @@ const path = require('node:path');
 const { ROOT } = require('./tokenizer.js');
 
 const verbose = process.argv.includes('--verbose');
+const behaviour = process.argv.includes('--behaviour');
+const mustFail = process.argv.includes('--must-fail');
 const LEDGER = path.join(ROOT, 'corpus', 'engine-ledger.txt');
 
 /** Every grammar the manifest ships, by the path it declares. */
@@ -51,10 +61,93 @@ function ledger() {
   return entries;
 }
 
+/** Every distinct non-blank line the corpus carries, which is the only string set neither engine chose. */
+function corpusLines() {
+  const seen = new Set();
+  const walk = (dir) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
+      const file = path.join(dir, entry.name);
+      if (entry.isDirectory()) { walk(file); continue; }
+      if (!/\.(tw|mem|tid|multids|meta)$/.test(entry.name)) continue;
+      for (const line of fs.readFileSync(file, 'utf8').split('\n')) {
+        const text = line.replace(/\s+$/, '');
+        if (text.trim()) seen.add(text);
+      }
+    }
+  };
+  walk(path.join(ROOT, 'corpus'));
+  return [...seen];
+}
+
+/** Every pattern the grammars carry, with where it stands. */
+function patternsOf(files) {
+  const out = [];
+  for (const file of files) {
+    const grammar = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const walk = (node) => {
+      if (Array.isArray(node)) { node.forEach(walk); return; }
+      if (!node || typeof node !== 'object') return;
+      for (const key of ['begin', 'end', 'match', 'while']) {
+        if (typeof node[key] === 'string') {
+          out.push({ file: path.basename(file), key, name: node.name || node.contentName || '(unnamed)', pattern: node[key] });
+        }
+      }
+      for (const value of Object.values(node)) walk(value);
+    };
+    walk(grammar);
+  }
+  return out;
+}
+
 (async () => {
   const { toRegExp } = await import('oniguruma-to-es');
   const rulings = ledger();
   const files = grammars();
+
+  if (behaviour) {
+    const oniguruma = require('vscode-oniguruma');
+    await oniguruma.loadWASM(fs.readFileSync(path.join(ROOT, 'node_modules', 'vscode-oniguruma', 'release', 'onig.wasm')));
+    const lines = corpusLines();
+    const all = patternsOf(files);
+    const parted = [];
+    let read = 0;
+    // A ZERO THAT CANNOT MOVE PROVES NOTHING, and no genuine divergence stands to prove this comparator
+    // sees one: thirteen candidates drawn from the known differences between Oniguruma and JavaScript —
+    // `\h`, POSIX brackets, possessive quantifiers, inline flags, `\X`, `\G`, character-class
+    // intersection — all read alike, because the translation is faithful. So the arm MISPAIRS instead,
+    // reading each pattern's translation against the NEXT pattern's Oniguruma answer. A count that
+    // survives that measures nothing at all.
+    all.forEach((entry, i) => { entry.against = all[(i + 1) % all.length].pattern; });
+    for (const entry of all) {
+      let translated;
+      let scanner;
+      try { translated = toRegExp(entry.pattern); } catch { continue; }
+      try { scanner = new oniguruma.OnigScanner([mustFail ? entry.against : entry.pattern]); } catch { continue; }
+      read += 1;
+      for (const line of lines) {
+        let onig = null;
+        try { onig = scanner.findNextMatchSync(line, 0); } catch { continue; }
+        let js = null;
+        try { translated.lastIndex = 0; js = translated.exec(line); } catch { continue; }
+        const a = onig ? `${onig.captureIndices[0].start}..${onig.captureIndices[0].end}` : '-';
+        const b = js ? `${js.index}..${js.index + js[0].length}` : '-';
+        if (a === b) continue;
+        parted.push({ ...entry, line, onig: a, js: b });
+        break;
+      }
+    }
+    const unruled = parted.filter((r) => !rulings.some((l) => r.pattern.includes(l.key)));
+    for (const r of unruled.slice(0, verbose ? 20 : 6)) {
+      console.error(`  the two engines read ${r.key} differently: ${r.name.slice(0, 46)}`);
+      console.error(`     ${JSON.stringify(r.pattern.slice(0, 64))}`);
+      console.error(`     oniguruma ${r.onig}, translated ${r.js}, on ${JSON.stringify(r.line.slice(0, 52))}`);
+    }
+    console.log(`engine-witness  ${read} pattern(s) read against ${lines.length} corpus line(s), `
+      + `${parted.length} that match differently, ${mustFail ? 'mispaired' : `${unruled.length} unruled`}`);
+    process.exitCode = mustFail || !unruled.length ? 0 : 1;
+    return;
+  }
+
   const refused = [];
   let patterns = 0;
 

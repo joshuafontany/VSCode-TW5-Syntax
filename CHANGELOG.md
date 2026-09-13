@@ -157,6 +157,16 @@ back by upgrading, which is the definition this number answers to.
   own digest around the pair, so an edit names itself.
 
 ### Added
+- A COMPILE IS NOT AN AGREEMENT, and the engine gate had kept half its own promise. It asked whether the
+  second engine can TRANSLATE each pattern; two engines can each accept a pattern and still find different
+  matches in it, and a reader on a documentation site then meets one construct coloured two ways — the
+  reader this gate exists to speak for. The behavioural arm reads all 754 patterns against the 840 distinct
+  lines the corpus carries, from each line's start, and finds ZERO differences. The zero carries a control,
+  because a zero that cannot move measures nothing: thirteen candidates drawn from the known differences
+  between Oniguruma and JavaScript — `\h`, POSIX brackets, possessive quantifiers, inline flags, `\X`,
+  `\G`, character-class intersection — all read alike, the translation being faithful, so no genuine
+  divergence stands to prove the comparator sees one. It mispairs instead, reading each pattern's
+  translation against the NEXT pattern's Oniguruma answer, and the count moves from 0 to 699 of 754.
 - THE CLAIM CHECKER READS A FLAGSHIP'S OWN NAME NOW. The strongest rulings here cite another grammar —
   that markdown's `markup.superscript` measures the paint rate ours does, so the silence belongs to the
   vocabulary rather than to this grammar — and the checker could read none of them. A `paint` claim

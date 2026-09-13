@@ -56,3 +56,32 @@ test('every ruling in the ledger still names a refusal', live, () => {
   assert.doesNotMatch(out, /explains nothing/, out.slice(-500));
   assert.strictEqual(code, 0, out.slice(-500));
 });
+
+// A COMPILE IS NOT AN AGREEMENT. The witness asks whether the second engine can translate a pattern, and a
+// pattern both engines accept can still MATCH DIFFERENTLY — which is the fault a reader on a
+// documentation site meets: the same construct, coloured two ways, by two engines that each said yes.
+// Nothing here measured that, so the gate's own promise to report THE DIFFERENCE stood half kept.
+//
+// The behavioural arm answers a bounded question honestly: given a line the corpus really carries, read
+// from its start, do the two engines find the same match at the same place. A tokenizer asks from a
+// moving position with a rule stack behind it, so agreement here is necessary rather than sufficient —
+// and disagreement is a real reading either way.
+test('the witness compares what the two engines MATCH, not only what they compile', live, () => {
+  const { code, out } = runTool('engine-witness.js', ['--behaviour']);
+  assert.match(out, /engine-witness\s+\d+ pattern\(s\) read against \d+ corpus line\(s\)/, out.slice(-900));
+  assert.match(out, /0 that match differently/, out.slice(-900));
+  assert.strictEqual(code, 0, out.slice(-900));
+});
+
+// AND THE ZERO MUST BE ABLE TO MOVE. No genuine divergence stands to prove this comparator sees one —
+// thirteen candidates from the known differences between the engines all read alike, because the
+// translation is faithful — so the arm mispairs instead, reading each pattern's translation against the
+// NEXT pattern's Oniguruma answer. A count that survives that measures nothing.
+test('the behavioural reading collapses when the two engines answer for different patterns', live, () => {
+  const honest = runTool('engine-witness.js', ['--behaviour']).out;
+  const broken = runTool('engine-witness.js', ['--behaviour', '--must-fail']).out;
+  const count = (o) => Number(/(\d+) that match differently/.exec(o)?.[1] ?? -1);
+  assert.strictEqual(count(honest), 0, honest.slice(-500));
+  assert.ok(count(broken) > 100,
+    `the mispaired arm read ${count(broken)} difference(s), so the pairing carries no weight`);
+});
