@@ -157,6 +157,15 @@ back by upgrading, which is the definition this number answers to.
   own digest around the pair, so an edit names itself.
 
 ### Added
+- THE EXAMPLE SET REACHES EVERY FORM THE HOST ADMITS, and what remains thin stands SINGLE-FORM rather
+  than unexercised. A filtered transclusion carries five optional parts and the corpus held two of them;
+  it holds all five now, including the two the host binds under names no reader would guess — the run
+  after the closing braces becomes `style`, the dotted run after that becomes `itemClass` — and the
+  reading where a PIPE INSIDE THE FILTER ends the filter, binding `[tag[a` as the filter and `b]] ` as a
+  tooltip. `\parsermode` carries both its modes and an unknown one, which consumes its line and changes
+  nothing. The three rules left at one node each — `wikilinkprefix`, `import`, and a comment's two
+  spellings — admit one shape apiece, so a second specimen would pad a count and cover nothing. Ranked by
+  nodes the host builds, the corpus now stands at 770.
 - A RULING'S NUMBERS NOW ANSWER TO THE MEASUREMENT THEY CAME FROM. Every ledger here rules something and
   cites what it measured, and the SCOPE each ruling names stood audited already — its own gate refuses a
   ruling explaining nothing. The NUMBERS stood audited by nobody, so a citation that drifted turned a

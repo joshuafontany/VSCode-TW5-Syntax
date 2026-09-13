@@ -1,0 +1,9 @@
+\parsermode block
+
+BLOCK MODE IS THE MODE A TIDDLER ALREADY STANDS IN, so this pragma states what holds rather than
+changing it — and the host fires the heading rule below where inline mode would leave the marker as
+two characters of flat text.
+
+! A heading builds an element here.
+
+A paragraph stands beside it.

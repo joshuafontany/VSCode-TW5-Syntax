@@ -1,0 +1,7 @@
+\parsermode sideways
+
+A MODE THE HOST DOES NOT KNOW CHANGES NOTHING, and the pragma still consumes its own line. The parser
+keeps the mode it stood in, so the heading below builds an element exactly as it would with no pragma
+above it at all.
+
+! A heading builds an element here.

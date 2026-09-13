@@ -24,3 +24,21 @@ Template}}
 
 {{{ [tag[Done]]
 }}}
+
+A FILTERED TRANSCLUSION CARRIES FIVE OPTIONAL PARTS, and the host binds two of them under names no
+reader would guess: the run after the closing braces becomes `style`, and the dotted run after that
+becomes `itemClass`.
+
+A tooltip: {{{ [tag[Done]] |a tooltip}}} here.
+
+A suffix, which binds as the style: {{{ [tag[Done]] }}suffix} here.
+
+A class, which binds as the item class: {{{ [tag[Done]] }}}.my-class here.
+
+Every part at once: {{{ [tag[Done]] |a tooltip||A/Template}}suffix}.my-class here.
+
+A PIPE INSIDE THE FILTER ENDS THE FILTER. The host splits on the first one, so the run below binds
+`[tag[a` as its filter and `b]] ` as its tooltip rather than reading one filter operand:
+{{{ [tag[a|b]] }}} here.
+
+An empty filter builds nothing, and the braces read as text: {{{}}} here.
