@@ -1,0 +1,11 @@
+\procedure named()
+A CLOSER CARRYING THE WRONG NAME CLOSES NOTHING. `\end` takes the definition's own name or none at
+all, and a name failing to match leaves the definition open — the host reads a BLANK body and raises
+`unterminated-definition`, exactly as a missing closer does, so the closer below reads as body text
+nobody asked for.
+
+This carrier stands alone, and carries its own explanation INSIDE the body, for two reasons a
+definition imposes: an open definition consumes the rest of its source, so a second specimen behind
+one never parses; and a pragma answers only at the top of a file, so a line of prose above one
+retires it to body text.
+\end other

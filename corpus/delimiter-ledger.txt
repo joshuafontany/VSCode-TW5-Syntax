@@ -136,3 +136,17 @@ unnamed-delimiter text.html <- (none)   # a syntax-test file's wikitext body, op
 #
 # A CURE BUYING NOTHING STILL COSTS SOMETHING. These four close as rulings.
 
+#
+# A TRANSCLUSION'S MARKER CANNOT READ AS ONE OBJECT WITH ITS OWN INTERIOR WITHOUT JOINING THE STRING
+# FAMILY, and that purchase costs four declared distinctions. `{{` and `}}` carry the interior's
+# published entity name already, and a reader still meets two colours in 27 of 65 bundled themes,
+# because the interior's stack reaches `string.text-reference` where the marker's does not. Measured
+# both ways: adding `string.text-reference` to the markers lifts one-colour-with-interior from 38 of
+# 65 to 65 of 65 with no theme reading either as prose — and drops the transclusion below the
+# legibility floor of 64 against a bare external link (54), a code span (57), an entity (62) and a
+# heading (63), every one of them a string-family construct. Mirroring the interior's `variable.
+# other.reference` instead costs nothing and buys nothing: unity moves 38 to 39.
+#
+# So the marker keeps the entity name alone. The unity a reader sees in Gruvbox comes from that name
+# reaching both marker and interior there, and the 27 themes where it parts pay for four distinctions
+# holding everywhere.

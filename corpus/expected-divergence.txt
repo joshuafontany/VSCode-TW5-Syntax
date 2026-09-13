@@ -135,3 +135,4 @@ tiddlywiki5.tw:punctuation.definition.markup.end.bold         # the same reading
 tiddlywiki5.inline.links.tw:punctuation.definition.image      # an image with a blank source: the marks carry the colour, and TiddlyWiki refuses the construct
 tiddlywiki5.inline.links.tw:keyword.other.img                 # the img keyword inside one
 tiddlywiki5.inline.links.tw:markup.underline.link.image       # and the space standing where a source would
+definitions.closer-name.tw:keyword.control.directive.end  # `\end` carrying a name that fails to match closes nothing in TiddlyWiki — the definition runs to the end of the source with a BLANK body and an `unterminated-definition` diagnostic. The grammar closes on the closer it can see. The deciding evidence sits on that line, so this stands OWED rather than structural: matching it needs a backreference to the name, which an end pattern can only take from its OWN begin, and the name stands captured one rule out.

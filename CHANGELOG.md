@@ -15,6 +15,42 @@ attribute value's quote characters changed family. A reader who liked 2.2.1's lo
 back by upgrading, which is the definition this number answers to.
 
 ### Fixed
+- A SHIPPED GATE ASKED ITS QUESTION OF A SCOPE STANDING ALONE. `theme-model.js` warns in its own
+  docstring that a scope asked alone answers differently from the same scope inside a stack — an
+  ancestor cannot paint what a caller never handed over — and `colour-witness` handed it bare scope
+  strings. Measured, that ran a declared distinction green for a release: the link relation, the text
+  a reader clicks against the title it reaches, reads 65 of 65 themes apart on scopes alone and 16 of
+  65 in the stack a reader meets, under a floor of 40. A caption's stack ends `markup.underline.link`
+  then `string.other.link.title`, so `string` wins and `markup.underline.link` decides nothing; in
+  Monokai and both Gruvboxes caption and target paint the SAME HEX. Every relation now carries the
+  specimen its scopes come from, the gate harvests the whole stack off it, and
+  `tools/invariants/relations-read-the-stack.test.js` refuses a relation naming bare scopes.
+- A WIKILINK'S TARGET NAMES A REFERENCE THE HOST DEREFERENCES, and `variable.other.reference` writes
+  that shape — the same name a transclusion's text reference already carries, for the same reason.
+  Standing last so a theme ruling on it decides, it parts the target from the caption in 57 of 65
+  themes where the published name alone parted them in 16, against a floor of 40, and the target reads
+  as prose in none of them either way. This answers the red the gate's own repair surfaced.
+- `theme-paint`'S PAINT RATE MEASURES REACH, NEVER LEGIBILITY. Of 11,756 foreground rules across 65
+  bundled themes, 1,191 — one in ten — paint the editor's own foreground, and `variable` is the single
+  most-shipped such selector: 18 of the 54 themes ruling on it leave the colour exactly where the
+  editor had it. A construct can therefore stand reached by every theme and read as prose to every
+  reader, which is the class that left `{{`, `[[`, `<<`, a widget's brackets and a widget's `=`
+  reading as body text while every coverage gauge held green. The ceiling stands named: a TextMate
+  grammar cannot see that a theme's rule is a leave-it-alone rule, so the only lever is choosing a
+  quieter-resistant family — a probability, never a guarantee.
+- A BARE FILTER RUN IN PROSE IS PROSE. `[tag[Done]sort[title]]` standing in a sentence tokenizes to
+  ONE token carrying `meta.paragraph`, and TiddlyWiki's own parser agrees: one `text` node, no rule
+  fired. Inside `{{{ }}}` the filter grammar opens in full. Painting the bare run would invent a
+  reading the host does not have.
+- A CONSTRUCT SPANNING LINES DECLARED ITS INNER READING ONCE. A grammar reads one line at a time, so
+  a transclusion whose opener and closer sit on different lines needs the reference's reading declared
+  twice — once where the opener matched, once in the pattern carrying every line after it. The second
+  declaration stood missing, and the gap wore a shape no gate looks for: the region name held, the
+  containment held, the scope appeared in the snapshot from the first line — and a theme, which rules
+  on the innermost scope, painted a title in 40 of 65 themes on the first line and in NONE on the
+  second. One object, two colours, and no theme toggle moved it. Both transclusion forms now hand
+  every line one reading out of one rule, and `tools/invariants/wrap-parity.test.js` sets the bar from
+  the construct's own first line rather than from a number.
 - AN EDITOR REPAINTED A MARKER THE GRAMMAR PAINTED. VS Code colours a bracket by its NESTING DEPTH
   out of `editorBracketHighlight.foreground1..6`, and it takes the pairs to colour from a language
   configuration's `brackets` whenever `colorizedBracketPairs` stands absent. Wikitext spells `{{`,
@@ -30,6 +66,23 @@ back by upgrading, which is the definition this number answers to.
   own digest around the pair, so an edit names itself.
 
 ### Added
+- THE EXAMPLE SET ANSWERS TO THE HOST'S OWN REGEXPS, not to a list of constructs anybody recalled.
+  Ranking every parser rule by how many nodes the corpus makes it build named the thin end outright —
+  and the ranking's first draft LIED, pruning a walk to one coordinate space and so reading
+  `definitions.forms.tw` as 1 node where it carries 46, with its 24 `fnprocdef` nodes reported as
+  none. A definition body, a typed block and a filtered transclusion each parse in a RESTARTED space.
+  Corrected, the corpus grew from 630 host nodes to 721 across the thin rules: the link family
+  (`extlink` 2 to 12 — every scheme the host autolinks and two a URL-ending character truncates;
+  `image` 4 to 11 — attributes bind with `=`, a `:` drops the whole image to prose), the emphasis
+  family nested every-marker-deep and opened mid-word, the conditional's padded and `elseif` chains,
+  a style run's multi-declaration list, and the reading that four hyphens build a DASH rather than a
+  rule. Each form stands verified against the parser before it reached a file.
+- `\end` CARRYING A NAME THAT FAILS TO MATCH CLOSES NOTHING. The host takes the definition's own name
+  after `\end` or none at all, and anything else leaves the definition open to the end of the source
+  with a BLANK body and an `unterminated-definition` diagnostic. The grammar closes on the closer it
+  can see, and the divergence stands ruled OWED rather than structural: the deciding evidence sits on
+  that very line, and matching it needs a backreference to a name an end pattern can only take from
+  its OWN begin, where the name stands captured one rule out.
 - EVERY MACRO-CALL FORM THE HOST ACCEPTS, in `corpus/wikitext/inline.macros.tw`, each verified
   against TiddlyWiki's own parser rather than against a list somebody typed: the two separators,
   the five value families `=` admits and `:` refuses, a name that stops at its first `:` or `=`,
@@ -619,7 +672,7 @@ back by upgrading, which is the definition this number answers to.
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 57 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 58 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
   emits no container node, so a scope over its content stands over text by construction.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses

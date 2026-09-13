@@ -14,3 +14,9 @@ across lines
 &foo; &xy; &abcdefgh;
 
 &a; &abcdefghij;
+
+AN UNCLOSED COMMENT BUILDS NO COMMENT, and its own opening hyphens then read as a dash:
+
+Prose carrying <!-- an opener with no closer on the line.
+
+A comment holds markup as text, because nothing inside one parses: <!-- ''bold'' and [[a link]] -->

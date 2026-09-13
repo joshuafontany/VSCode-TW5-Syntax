@@ -58,10 +58,21 @@ const ALIKE = RELATIONS.alike;
 const APART = RELATIONS.apart;
 
 
-const { loadThemes, colourOf: paintOf } = require('./theme-model.js');
+const { loadThemes, colourOf: paintOf, styleOf } = require('./theme-model.js');
 
-/** The colour a theme paints a scope, by its most specific matching rule. */
+/** The colour a theme paints a scope asked ALONE. Opener/closer pairs stand named, not harvested. */
 const colourOf = (theme, scope) => paintOf(scope, theme);
+
+/**
+ * The colour a theme paints a STACK — what a reader actually meets.
+ *
+ * A scope asked alone answers differently from the same scope inside a stack: a theme resolves the
+ * innermost scope its rules reach, so a mid-stack name decides nothing whenever something deeper
+ * carries a rule. Measured, the link relation read 65 of 65 themes apart on scopes alone and 16 of
+ * 65 in the real stack, under a floor of 40, because a caption's stack ends
+ * `markup.underline.link` then `string.other.link.title` — and `string` wins.
+ */
+const stackColour = (theme, stack) => styleOf(stack, theme).foreground;
 
 /** Every scope any grammar names. */
 function declaredScopes() {
@@ -87,14 +98,14 @@ function openerCloserPairs(scopes) {
  * @param {string[]} words
  * @returns {Record<string,string>}
  */
-function scopesOverWords(specimen, words) {
+function stacksOverWords(specimen, words, scope = 'text.html.tiddlywiki5') {
   const { execFileSync } = require('node:child_process');
   const os = require('node:os');
   const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-colour-'));
-  const file = path.join(scratch, 'probe.tw');
+  const file = path.join(scratch, scope.endsWith('memetic-wikitext') ? 'probe.mem' : 'probe.tw');
   fs.writeFileSync(file, specimen);
   const grammars = grammarArgs();
-  execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', 'text.html.tiddlywiki5', '-u', file],
+  execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', file],
     { cwd: ROOT, stdio: ['ignore', 'ignore', 'ignore'] });
   const out = {};
   let line = null;
@@ -103,13 +114,20 @@ function scopesOverWords(specimen, words) {
     const m = text.match(/^#(\s*)(\^+) (.*)/);
     if (!m || line === null) continue;
     const span = line.slice(m[1].length, m[1].length + m[2].length);
-    if (words.includes(span)) out[span] = m[3].split(/\s+/).pop();
+    if (words.includes(span) && !out[span]) out[span] = m[3].split(/\s+/);
   }
   fs.rmSync(scratch, { recursive: true, force: true });
   return out;
 }
 
+/** The innermost scope each word carries — the stack's last name. */
+function scopesOverWords(specimen, words, scope) {
+  const stacks = stacksOverWords(specimen, words, scope);
+  return Object.fromEntries(Object.entries(stacks).map(([w, stack]) => [w, stack[stack.length - 1]]));
+}
+
 exports.scopesOverWords = scopesOverWords;
+exports.stacksOverWords = stacksOverWords;
 exports.colourOf = colourOf;
 exports.declaredScopes = declaredScopes;
 exports.openerCloserPairs = openerCloserPairs;
@@ -152,7 +170,13 @@ if (require.main === module) {
 
   const fused = [];
   for (const relation of ALIKE) {
-    const alike = themes.filter((t) => new Set(relation.scopes.map((sc) => colourOf(t, sc))).size === 1).length;
+    const stacks = stacksOverWords(relation.specimen, relation.words, relation.scope);
+    const carried = relation.words.map((w) => stacks[w]).filter(Boolean);
+    if (carried.length < relation.scopes.length) {
+      shrunk.push(`${relation.what}: the specimen carries ${carried.length} of ${relation.scopes.length} word(s)`);
+      continue;
+    }
+    const alike = themes.filter((t) => new Set(carried.map((stack) => stackColour(t, stack))).size === 1).length;
     if (alike < relation.least) fused.push(`${alike}/${themes.length} themes read as one (wants ${relation.least}): ${relation.what}`);
   }
 
@@ -160,8 +184,14 @@ if (require.main === module) {
   for (const relation of APART) {
     // A scope no rule reaches paints as the editor's own foreground, which a reader sees as a
     // colour like any other — so an unpainted scope counts as one, and two unpainted scopes
-    // count as the same one.
-    const apart = themes.filter((t) => new Set(relation.scopes.map((s) => colourOf(t, s))).size >= relation.scopes.length).length;
+    // count as the same one. THE STACK ANSWERS, never the scope alone.
+    const stacks = stacksOverWords(relation.specimen, relation.words, relation.scope);
+    const carried = relation.words.map((w) => stacks[w]).filter(Boolean);
+    if (carried.length < relation.scopes.length) {
+      shrunk.push(`${relation.what}: the specimen carries ${carried.length} of ${relation.scopes.length} word(s)`);
+      continue;
+    }
+    const apart = themes.filter((t) => new Set(carried.map((stack) => stackColour(t, stack))).size >= carried.length).length;
     if (apart < relation.least) flattened.push(`${apart}/${themes.length} themes tell apart (wants ${relation.least}): ${relation.what}`);
   }
 

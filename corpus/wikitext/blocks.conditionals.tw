@@ -8,6 +8,16 @@ A conditional carrying an else arm.
 The other arm.
 <%endif%>
 
+A CONDITIONAL TAKES PADDING AROUND EVERY KEYWORD, and the host reads these as one construct:
+
+A <% if [[Present]] %>padded<% endif %> conditional inline in prose.
+
+An <%if [[Present]]%>first<%elseif [[Other]]%>second<%else%>third<%endif%> chain, where each arm
+after the first reuses the same parser on a new filter condition.
+
+AN OPEN CONSTRUCT STANDS LAST IN ITS CARRIER. Every line below one parses INSIDE its body, so a
+closing keyword written under this paragraph would shut the specimen the carrier exists to hold.
+
 THE GRAMMAR CLOSES WHAT THE HOST LEAVES OPEN. The conditional below never reaches an `<%endif%>`,
 and the host records `unterminated-conditional` and recovers to the end of the source. The grammar
 bleeds nothing past this file, so nothing here stands degenerate — the divergence lives in what a

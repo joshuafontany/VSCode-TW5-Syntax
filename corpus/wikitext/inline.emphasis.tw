@@ -17,3 +17,20 @@ A hard linebreak block:
 line one
 line two
 """
+
+EVERY MARKER NESTS INSIDE EVERY OTHER, and the host builds one element per pair however deep they
+stand: ''b //i ~~s __u ^^sup^^ ,,sub,, __ ~~// ''
+
+A marker opens mid-word: A wo''rd'' here.
+
+Two runs stand adjacent with no text between them: ''one''''two''
+
+A subscript meets a superscript: ,,sub,,^^sup^^
+
+An unclosed run reaches the end of its block and builds NO element — the host needs the pair:
+''bold with no closer at all
+
+A marker inside a code span stands as content, because a code span parses nothing: `''not bold''`
+
+//italic across
+two lines//

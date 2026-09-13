@@ -56,6 +56,62 @@ before ${ [tag[Task]] }$ after
 before $a$ and $(currentTiddler)$ after
 \end
 
+\procedure closer-carries-the-name()
+body
+\end closer-carries-the-name
+
+\procedure closer-stands-indented()
+body
+  \end
+
+\procedure default-spaced-off-its-colon(a : "one")
+body
+\end
+
+\procedure default-single-quoted(a:'one')
+body
+\end
+
+\procedure default-triple-quoted(a:"""one""")
+body
+\end
+
+\procedure default-bare(a:one)
+body
+\end
+
+\procedure default-carries-a-comma(a:"one,two")
+body
+\end
+
+\procedure params-separated-by-space(a b c)
+body
+\end
+
+\procedure param-name-takes-an-open-paren(paren()
+A PARAMETER NAME ADMITS AN OPEN PAREN. The host's name pattern excludes `:`, `)`, a comma and
+whitespace, and nothing else — so it binds `paren(` as ONE name. The grammar reads that inner paren
+as a separator instead, which costs a colour on a name no author writes and keeps the surrounding
+reading intact.
+\end
+
+\widget widget-without-a-dollar()
+body
+\end
+
+\function fn-body-is-a-filter()
+[tag[Task]] :sort[title]
+\end
+
+\parameters(a:one,b:"two")
+
+\parameters ($a:"one")
+
+A PRAGMA ANSWERS TO WHITESPACE AFTER ITS NAME. The host reads `\procedure` and then demands one, so
+the line below defines nothing and stands as body text:
+
+\procedurewith-no-space()
+
 Body text after every definition above.
 
 A substituted attribute value takes the same placeholders a define body takes, and takes them
