@@ -7,6 +7,9 @@
 const test = require('node:test');
 const assert = require('node:assert');
 const { readingsOf, movedLines } = require('./composition-check.js');
+const path = require('node:path');
+const { runTool } = require('./run-tool.js');
+const live = { timeout: 900000 };
 
 const B = 'text.html.tiddlywiki5 meta.paragraph.tiddlywiki5';
 
@@ -54,4 +57,15 @@ test('a blank line carries no comparison', () => {
   const alone = readingsOf(['>', '>x', '#^ A', '>'].join('\n'));
   const together = readingsOf(['>', '>x', '#^ A', '>'].join('\n'));
   assert.deepStrictEqual(movedLines(alone, together), []);
+});
+
+// AND THE TOOL'S OWN VERDICT, read once. The readings above pin the deciding halves where a whole run
+// cannot reach them; this holds the tool to what it reports, so the two cannot drift apart in silence.
+// Measured elsewhere in this house: a witness resolved its relations over the scope stack a reader
+// meets while its test resolved the same relations over bare scope names, and the duplicate read green
+// for as long as it disagreed.
+test('the tool reports a composition reading of its own', live, () => {
+  const { code, out } = runTool('composition-check.js', ['text.html.tiddlywiki5', './tests/samples/*.tw']);
+  assert.match(out, /composition-check\s+text\.html\.tiddlywiki5\s+\d+ pairs, \d+ that do not compose/, out.slice(-600));
+  assert.strictEqual(code, 0, out.slice(-600));
 });

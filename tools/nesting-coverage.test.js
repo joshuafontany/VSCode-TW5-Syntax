@@ -4,6 +4,9 @@
 const test = require('node:test');
 const assert = require('node:assert');
 const { containerOf, constructsIn, compose } = require('./nesting-coverage.js');
+const path = require('node:path');
+const { runTool } = require('./run-tool.js');
+const live = { timeout: 900000 };
 
 test('a heading line names its container and hands back its content', () => {
   assert.deepStrictEqual(containerOf('!! a heading here'), { name: 'heading', content: 'a heading here' });
@@ -72,4 +75,12 @@ test('every container the gate names carries the construct into itself', () => {
 // while no container stood around it.
 test('a container the composer does not know reads as no container at all', () => {
   assert.strictEqual(compose('no-such-container', 'HIT'), 'HIT');
+});
+
+// AND THE TOOL'S OWN VERDICT, read once. A test that only re-derives its tool's parts holds a second
+// copy of the reading, and two copies drift apart without either one going red.
+test('the tool reports a nesting reading of its own', live, () => {
+  const { code, out } = runTool('nesting-coverage.js');
+  assert.match(out, /nesting-coverage\s+\d+ container\/construct pairs/, out.slice(-600));
+  assert.strictEqual(code, 0, out.slice(-600));
 });

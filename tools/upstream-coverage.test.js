@@ -10,6 +10,9 @@
 const test = require('node:test');
 const assert = require('node:assert');
 const { judgeSnapshot } = require('./upstream-coverage.js');
+const path = require('node:path');
+const { runTool } = require('./run-tool.js');
+const live = { timeout: 900000 };
 
 // `#^ …` annotates source column 0. `# ^ …` annotates column 1.
 const BASE = 'text.html.tiddlywiki5 meta.paragraph.tiddlywiki5';
@@ -105,4 +108,12 @@ test('a snapshot whose constructs carry nothing counts every one of them as a ga
   const verdict = judgeSnapshot(bare);
   const gaps = [...verdict.values()].filter((scoped) => !scoped);
   assert.strictEqual(gaps.length, 3, `${gaps.length} of 3 constructs read as unscoped`);
+});
+
+// AND THE TOOL'S OWN VERDICT, read once. The pure halves above answer without a host in the way; this
+// holds the tool to the reading it publishes, so neither can move without the other.
+test('the tool reports an upstream reading of its own', live, () => {
+  const { code, out } = runTool('upstream-coverage.js');
+  assert.match(out, /rules? (?:this sweep never reached|with an unscoped case)|upstream-coverage/, out.slice(-800));
+  assert.strictEqual(code, 0, out.slice(-800));
 });

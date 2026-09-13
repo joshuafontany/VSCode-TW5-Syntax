@@ -10,6 +10,9 @@ const assert = require('node:assert');
 const { parseSnapshot, offsetAt, claims, verdicts, review } = require('./overreach-check.js');
 const { declines } = require('./snapshot-format.js');
 const { readExpected, isExpected, parsesAsWikitext } = require('./overreach-check.js');
+const path = require('node:path');
+const { runTool } = require('./run-tool.js');
+const live = { timeout: 900000 };
 
 test('a snapshot reads back as the spans it annotates', () => {
   const snap = ['>A x1HelloThere here', '#    ^^^^^^^^^^ text.html.tiddlywiki5 markup.underline.link.wikilink.tiddlywiki5', '>'].join('\n');
@@ -272,4 +275,13 @@ test('a tiddler carrying another language does not', () => {
 // A `type:` standing in the BODY names nothing; only the header block declares a tiddler's type.
 test('a type named below the header does not change what the tiddler is', () => {
   assert.strictEqual(parsesAsWikitext('title: X\n\ntype: text/plain\n'), true);
+});
+
+// AND THE TOOL'S OWN VERDICT, read once, on the cheapest reading the manifest asks for — the host
+// sweeps cost hundreds of carriers and answer the same question about whether the tool runs and agrees.
+test('the tool reports an overreach reading of its own', live, () => {
+  const { code, out } = runTool('overreach-check.js',
+    ['./tests/samples/*.tw', '--expected=corpus/expected-divergence.txt']);
+  assert.match(out, /agree everywhere they were asked|overreach/, out.slice(-800));
+  assert.strictEqual(code, 0, out.slice(-800));
 });

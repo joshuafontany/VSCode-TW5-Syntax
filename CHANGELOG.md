@@ -15,6 +15,15 @@ attribute value's quote characters changed family. A reader who liked 2.2.1's lo
 back by upgrading, which is the definition this number answers to.
 
 ### Fixed
+- A TEST THAT RE-DERIVES ITS TOOL'S READING HOLDS A SECOND IMPLEMENTATION, and the two drift apart in
+  silence. `tools/invariants/a-test-reads-its-tool.test.js` searches for the class rather than waiting
+  for an instance: every gate's test must read the gate's own verdict at least once, however many pure
+  halves it also pins. Four gate tests answered only from their tool's exports and now read its report
+  too. The detector's own first reading LIED — it matched a tool name only where one sits inline at the
+  call, and named two files blind that spawn their own tool through `const WITNESS = path.join(…)`, a
+  fault of exactly the kind this gate refuses, made by this gate. It answers in two halves now, the
+  file naming the tool and the file spawning something, with control arms for a name in a comment and
+  for a name held in a constant.
 - THE STACK REPAIR LANDED ON TWO FAMILIES OF THREE. The declared distinctions and unities read the
   stack a reader meets; the opener/closer pairs and the things-met-as-one went on asking each scope
   alone, and a half-migrated instrument reads exactly as green as an unmigrated one. All four families
