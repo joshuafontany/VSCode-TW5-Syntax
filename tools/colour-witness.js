@@ -60,6 +60,7 @@ const APART = RELATIONS.apart;
 
 
 const { loadThemes, colourOf: paintOf, styleOf } = require('./theme-model.js');
+const { stacks } = require('./contrast-witness.js');
 
 /** The colour a theme paints a scope asked ALONE. Opener/closer pairs stand named, not harvested. */
 const colourOf = (theme, scope) => paintOf(scope, theme);
@@ -135,7 +136,7 @@ exports.openerCloserPairs = openerCloserPairs;
 exports.APART = APART;
 exports.TOGETHER = TOGETHER;
 
-if (require.main === module) {
+if (require.main === module) (async () => {
   const verbose = process.argv.includes('--verbose');
   if (!fs.existsSync(THEMES)) {
     console.error('no bundled themes — run npm install');
@@ -154,20 +155,59 @@ if (require.main === module) {
   const PAIR_FLOOR = Number(fs.existsSync(path.join(ROOT, 'corpus', 'colour-pair-floor.txt'))
     ? fs.readFileSync(path.join(ROOT, 'corpus', 'colour-pair-floor.txt'), 'utf8').split('\n')[0].trim() : 0);
   const shrunk = pairs.length < PAIR_FLOOR ? [`${pairs.length} opener/closer pair(s), below the floor of ${PAIR_FLOOR}`] : [];
-  const split = [];
-  for (const [opener, closer] of pairs) {
-    const differ = themes.filter((t) => colourOf(t, opener) !== colourOf(t, closer)).length;
-    if (differ) split.push(`${differ}/${themes.length}  ${opener}  vs  ${closer}`);
+  // A PAIR RESOLVES OVER THE STACK THE CORPUS REALLY BUILDS. Asking each scope alone answers a
+  // different question — an ancestor cannot paint what a caller never handed over — and a pair whose
+  // two halves sit under different ancestors then reads alike on the names and apart to a reader. The
+  // stacks derive from the corpus, so no pair needs a specimen written for it by hand; a pair no
+  // carrier exercises reports itself rather than passing quietly.
+  // INDEXED BY EVERY SCOPE A STACK CARRIES, never by its innermost alone. A delimiter that publishes
+  // a name and stacks a second one for a reader ends its stack on the second, so an index keyed by the
+  // innermost scope reports the published name as a scope no carrier builds — measured, 23 of 52 pairs
+  // read that way, `{{` among them, while the corpus builds every one of them.
+  const corpus = await stacks();
+  const deepest = new Map();
+  for (const entry of corpus) {
+    for (const scope of entry.stack) if (!deepest.has(scope)) deepest.set(scope, entry.stack);
   }
+  // A PAIR MAY PART BY RULING. The ledger carries the reason and the control that settles whose
+  // reading it is, and a ruling whose pair stopped parting retires with it.
+  const LEDGER = path.join(ROOT, 'corpus', 'colour-pair-ledger.txt');
+  const ruled = new Map();
+  if (fs.existsSync(LEDGER)) {
+    for (const raw of fs.readFileSync(LEDGER, 'utf8').split('\n')) {
+      const line = raw.trim();
+      if (!line || line.startsWith('#')) continue;
+      const [scope, ...rest] = line.split('#');
+      if (scope.trim() && rest.length) ruled.set(scope.trim(), rest.join('#').trim());
+    }
+  }
+  const split = [];
+  const unexercised = [];
+  const partedByRuling = new Set();
+  for (const [opener, closer] of pairs) {
+    const a = deepest.get(opener);
+    const b = deepest.get(closer);
+    if (!a || !b) { unexercised.push(`${opener} / ${closer} — no carrier builds ${a ? closer : opener}`); continue; }
+    const differ = themes.filter((t) => stackColour(t, a) !== stackColour(t, b)).length;
+    if (!differ) continue;
+    const ruling = [...ruled.keys()].find((k) => opener === k || opener.startsWith(`${k}.`));
+    if (ruling) { partedByRuling.add(ruling); continue; }
+    split.push(`${differ}/${themes.length}  ${opener}  vs  ${closer}`);
+  }
+  const idleRulings = [...ruled.keys()].filter((k) => !partedByRuling.has(k))
+    .map((k) => `${k} — a ruling explaining nothing: the pair no longer parts`);
 
   const parted = [];
   for (const relation of TOGETHER) {
-    const found = scopesOverWords(relation.specimen, relation.words);
+    const found = stacksOverWords(relation.specimen, relation.words, relation.scope);
     const missing = relation.words.filter((w) => !found[w]);
     if (missing.length) { parted.push(`${relation.what}: the specimen colours nothing over ${missing.join(', ')}`); continue; }
     const carried = relation.words.map((w) => found[w]);
-    const differ = themes.filter((t) => new Set(carried.map((sc) => colourOf(t, sc))).size > 1).length;
-    if (differ) parted.push(`${differ}/${themes.length} themes read apart what a reader meets as one: ${relation.what} (${carried.join(' vs ')})`);
+    const differ = themes.filter((t) => new Set(carried.map((stack) => stackColour(t, stack))).size > 1).length;
+    if (differ) {
+      const named = carried.map((stack) => stack[stack.length - 1]).join(' vs ');
+      parted.push(`${differ}/${themes.length} themes read apart what a reader meets as one: ${relation.what} (${named})`);
+    }
   }
 
   const fused = [];
@@ -202,7 +242,10 @@ if (require.main === module) {
   console.log(`  ${String(flattened.length).padStart(4)}  declared distinction(s) too few themes can show, of ${APART.length}`);
   console.log(`  ${String(fused.length).padStart(4)}  declared unity(ies) too few themes can show, of ${ALIKE.length}`);
   console.log(`  ${String(missing.length + shrunk.length).padStart(4)}  relation(s) that stopped checking anything`);
-  for (const line of [...split, ...parted, ...flattened, ...fused, ...missing, ...shrunk].slice(0, verbose ? 12 : 3)) console.log(`     ${line}`);
-  process.exitCode = split.length || parted.length || flattened.length || fused.length || missing.length || shrunk.length ? 1 : 0;
+  console.log(`  ${String(unexercised.length).padStart(4)}  pair(s) no carrier exercises, of ${pairs.length}`);
+  console.log(`  ${String(partedByRuling.size).padStart(4)}  pair(s) parting by ruling, of ${ruled.size} ruling(s)`);
+  for (const line of [...split, ...parted, ...flattened, ...fused, ...missing, ...shrunk, ...unexercised, ...idleRulings].slice(0, verbose ? 16 : 3)) console.log(`     ${line}`);
+  process.exitCode = split.length || parted.length || flattened.length || fused.length
+    || missing.length || shrunk.length || unexercised.length || idleRulings.length ? 1 : 0;
   return;
-}
+})();

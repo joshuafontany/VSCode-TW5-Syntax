@@ -12,7 +12,8 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { colourOf, declaredScopes, openerCloserPairs, scopesOverWords, APART, TOGETHER } = require('./colour-witness.js');
+const { colourOf, declaredScopes, openerCloserPairs } = require('./colour-witness.js');
+const { runTool } = require('./run-tool.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const THEMES = path.join(ROOT, 'node_modules', 'tm-themes', 'themes');
@@ -45,39 +46,27 @@ test('the resolver reads a theme the way a theme reads a scope', live, () => {
   assert.strictEqual(colourOf(theme, 'string.quoted'), null, 'a scope no rule reaches paints as the editor foreground');
 });
 
-test('an opener and its closer read alike in every theme', live, () => {
-  const scopes = declaredScopes();
-  const pairs = openerCloserPairs(scopes);
+test('the witness answers for every relation it holds', live, () => {
+  // THE WITNESS ANSWERS, AND THIS READS ITS ANSWER. Each family's reading resolves a STACK harvested
+  // from a specimen or from the corpus, and which grammar a specimen opens under is part of that
+  // resolution — a copy of the logic here cannot know it, and one did not: a dialect relation read
+  // green in this file while the witness refused it, because the copy asked the base grammar for a
+  // construct only the dialect builds. So the tool reports and this holds the report to zero.
+  const { code, out } = runTool('colour-witness.js', ['--verbose']);
+  for (const line of [
+    /0\s+thing\(s\) a reader meets as one and a theme paints apart/,
+    /0\s+declared distinction\(s\) too few themes can show/,
+    /0\s+declared unity\(ies\) too few themes can show/,
+    /0\s+relation\(s\) that stopped checking anything/,
+    /0\s+pair\(s\) no carrier exercises/
+  ]) assert.match(out, line, out.slice(-900));
+  assert.strictEqual(code, 0, out.slice(-900));
+});
+
+// A PAIR LIST THAT SHRINKS STOPS CHECKING, and reads clean while it does.
+test('the pairs a reader meets stand above their floor', live, () => {
+  const pairs = openerCloserPairs(declaredScopes());
   const floorFile = path.join(ROOT, 'corpus', 'colour-pair-floor.txt');
   const floor = fs.existsSync(floorFile) ? Number(fs.readFileSync(floorFile, 'utf8').split('\n')[0].trim()) : 0;
   assert.ok(pairs.length >= floor, `${pairs.length} opener/closer pair(s), below the floor of ${floor}`);
-  const split = pairs
-    .map(([a, b]) => [a, b, themes.filter((t) => colourOf(t, a) !== colourOf(t, b)).length])
-    .filter(([, , n]) => n > 0)
-    .map(([a, b, n]) => `${n}/${themes.length}  ${a} vs ${b}`);
-  assert.deepStrictEqual(split.slice(0, 4), [], `${split.length} pair(s) a theme paints apart`);
-});
-
-// A relation over scope NAMES stays true when a rule swaps which capture carries which name, and
-// such a swap makes a link's visible text change colour with a caption beside it. So this reads
-// the scope each word actually receives, from a snapshot of a specimen.
-test('what a reader meets as one thing reads as one colour', { ...live, timeout: 300000 }, () => {
-  for (const relation of TOGETHER) {
-    const found = scopesOverWords(relation.specimen, relation.words);
-    const missing = relation.words.filter((w) => !found[w]);
-    assert.deepStrictEqual(missing, [], `${relation.what}: the specimen colours nothing over ${missing.join(', ')}`);
-    const carried = relation.words.map((w) => found[w]);
-    const differ = themes.filter((t) => new Set(carried.map((s) => colourOf(t, s))).size > 1).length;
-    assert.strictEqual(differ, 0, `${relation.what}: ${differ}/${themes.length} themes read it apart (${carried.join(' vs ')})`);
-  }
-});
-
-test('a declared distinction reaches enough themes to show', live, () => {
-  const scopes = declaredScopes();
-  for (const relation of APART) {
-    const absent = relation.scopes.filter((s) => !scopes.has(s));
-    assert.deepStrictEqual(absent, [], `${relation.what}: named scope(s) no grammar emits: ${absent.join(', ')}`);
-    const apart = themes.filter((t) => new Set(relation.scopes.map((s) => colourOf(t, s))).size >= relation.scopes.length).length;
-    assert.ok(apart >= relation.least, `${relation.what}: ${apart}/${themes.length} themes tell it apart, wanting ${relation.least}`);
-  }
 });

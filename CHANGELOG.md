@@ -15,6 +15,36 @@ attribute value's quote characters changed family. A reader who liked 2.2.1's lo
 back by upgrading, which is the definition this number answers to.
 
 ### Fixed
+- THE STACK REPAIR LANDED ON TWO FAMILIES OF THREE. The declared distinctions and unities read the
+  stack a reader meets; the opener/closer pairs and the things-met-as-one went on asking each scope
+  alone, and a half-migrated instrument reads exactly as green as an unmigrated one. All four families
+  resolve stacks now — the 52 pairs harvest theirs FROM THE CORPUS, so no pair needs a specimen written
+  by hand and a pair no carrier exercises reports itself instead of passing quietly. The first harvest
+  keyed by innermost scope alone and called 23 of 52 pairs unexercised, `{{` among them, because a
+  delimiter that publishes one name and stacks a second ends its stack on the second; the index reads
+  every scope a stack carries.
+- TWO PAIRS PART, AND THE CONTROL SETTLES WHOSE READING IT IS. `</style>` and `</script>` carry
+  `source.css-ignored-vscode` on their `<` — VS Code's own marker for ending embedded-language
+  detection — so the closer's stack ends on a `source` scope and the four Catppuccin themes rule on
+  `source` above `punctuation.definition.tag`. The real `html` grammar builds the identical stack and
+  parts its own pair in the same four themes. `corpus/colour-pair-ledger.txt` rules both, and a ruling
+  whose pair stops parting retires with it.
+- A CLOSING SIGIL'S MARK READ AS A STRAY SLASH. TiddlyWiki takes the whole run after `<<` as ONE
+  variable name, so `/ahu` names one closing sigil and a reader meets one object — and ALL 65 bundled
+  themes painted the mark apart from its verb, the mark itself reading as ordinary prose in 36 of them.
+  The mark now carries the sigil name beside its published punctuation name.
+- A BLOCK CHECK WORE NO FAMILY ITS MARKS COULD INHERIT. A `lar:` address carries an enclosing
+  `markup.underline.link.lar`, and every separator inside it inherits a themed ancestor; `ni:///sha-256;…`
+  carried none, so its `:`, its three `/` and its `;` fell to prose in 35 of 65 themes — in a stamp the
+  house writes on every carrier. It takes `markup.underline.link.ni` now, and its digest's prose reading
+  halves. `tools/invariants/a-uri-wears-its-family.test.js` derives the schemes from the grammar's own
+  scheme names, so one added tomorrow answers the same day. What remains sits in the flagship's band:
+  markdown's own autolink punctuation reads as prose in 32 of 65 and its body in 25, where this
+  grammar's external link reads 0.
+- A TEST RE-DERIVED ITS OWN TOOL'S READING and disagreed with it. Three relation checks carried a
+  second copy of the witness's logic, asking bare scopes and knowing nothing of which grammar a
+  specimen opens under — so a dialect relation read green in the test file while the witness refused
+  it. The test holds the witness's report to zero instead.
 - A GATE ABANDONED ITS OWN READING ON THE WAY OUT. `process.exit` drops whatever stdout has not
   drained, and a gate printing a long listing then calling it loses the tail — silently, with a status
   of 0. Measured on the legibility witness, which prints 820 lines: six runs under CPU contention came

@@ -171,7 +171,8 @@
                     "match": "(?<=<<~)[ \\t]*(/?)([a-zA-Z][\\w-]*)",
                     "captures": {
                         "1": {
-                            "name": "punctuation.definition.sigil.close.memetic-wikitext"
+                            "comment": "THE MARK IS PART OF THE NAME THE HOST READS. TiddlyWiki takes the whole run after `<<` as ONE variable name, so `/ahu` names one closing sigil and a reader meets one object — and measured over 65 bundled themes, ALL 65 painted the mark apart from the verb while the mark itself read as ordinary prose in 36 of them. The sigil name rides second so a theme ruling on it decides, and the published punctuation name stands first for a reader who rules on that.",
+                                        "name": "punctuation.definition.sigil.close.memetic-wikitext entity.name.function.sigil.memetic-wikitext"
                         },
                         "2": {
                             "name": "entity.name.function.sigil.memetic-wikitext"
@@ -183,6 +184,7 @@
         "ni-uri": {
             "comment": "A block check names information by its DIGEST — `ni:///sha-256;<hash>`, RFC 6920 — and the house seals every carrier with one. The base grammar autolinks a CamelCase run, and measured, 21 of 22 hashes the house has written carry one, so every meme showed a spurious wikilink inside its own integrity stamp. Naming the whole URI takes the run before any inner rule reaches it.",
             "match": "\\b(ni)(:)(//[^;\\s]*)(;)([A-Za-z0-9_-]+)",
+            "name": "markup.underline.link.ni.memetic-wikitext",
             "captures": {
                 "1": {
                     "name": "keyword.other.scheme.ni.memetic-wikitext"

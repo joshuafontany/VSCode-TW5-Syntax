@@ -1,0 +1,13 @@
+# Opener/closer pairs a theme paints apart, and the reason each stands.
+#
+# A pair derives from the names: a scope carrying `.begin.`, `.start.` or `.open.` beside the scope
+# that shuts it. A reader meets the two as one mark, so a theme painting them apart reads as a fault —
+# and each reading below answers to the STACK the corpus really builds, because a pair whose halves sit
+# under different ancestors reads alike on the names and apart to a reader.
+#
+#   <opener scope>   # the reason the pair parts
+#
+# A pair named here that no longer parts retires with the reading it explained.
+
+meta.tag.metadata.style.start.html   # THE CLOSER OF AN EMBEDDED BLOCK CARRIES VS CODE'S OWN TERMINATOR. `</style>`'s `<` wears `source.css-ignored-vscode`, the marker VS Code reads to end embedded-language detection at the closing tag, so the closer's stack ends on a `source` scope and the four Catppuccin themes rule on `source` above `punctuation.definition.tag`. The CONTROL settles whose reading this is: the real `html` grammar builds the identical stack and parts its own pair in the same four themes. Dropping the terminator would part this grammar from the flagship and hand the closing tag to the CSS tokenizer
+meta.tag.metadata.script.start.html  # the same reading, for `</script>` and `source.js-ignored-vscode`

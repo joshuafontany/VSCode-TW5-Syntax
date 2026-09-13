@@ -352,7 +352,7 @@
 ><<~/ahu>>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5
 #  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5
-#   ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 punctuation.definition.sigil.close.memetic-wikitext
+#   ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 punctuation.definition.sigil.close.memetic-wikitext entity.name.function.sigil.memetic-wikitext
 #    ^^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.sigil.memetic-wikitext
 #       ^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.call.block.end.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5
 >
@@ -405,12 +405,12 @@
 #                 ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 meta.variable.call.parameter.tw-code.tiddlywiki5 meta.variable.macro.parameter.tw-code.tiddlywiki5 string.quoted.double.html.tiddlywiki5 constant.character.entity.numeric.hexadecimal.html.tiddlywiki5 punctuation.definition.entity.html.tiddlywiki5
 #                  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 meta.variable.call.parameter.tw-code.tiddlywiki5 meta.variable.macro.parameter.tw-code.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5
 #                   ^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.call.block.end.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5
-#                     ^^ text.html.tiddlywiki5.memetic-wikitext keyword.other.scheme.ni.memetic-wikitext
-#                       ^ text.html.tiddlywiki5.memetic-wikitext punctuation.separator.scheme.ni.memetic-wikitext
-#                        ^ text.html.tiddlywiki5.memetic-wikitext support.type.algorithm.ni.memetic-wikitext punctuation.separator.path.ni.memetic-wikitext
-#                         ^ text.html.tiddlywiki5.memetic-wikitext support.type.algorithm.ni.memetic-wikitext punctuation.separator.path.ni.memetic-wikitext
-#                          ^ text.html.tiddlywiki5.memetic-wikitext support.type.algorithm.ni.memetic-wikitext punctuation.separator.path.ni.memetic-wikitext
-#                           ^^^^^^^ text.html.tiddlywiki5.memetic-wikitext support.type.algorithm.ni.memetic-wikitext
-#                                  ^ text.html.tiddlywiki5.memetic-wikitext punctuation.separator.checksum.ni.memetic-wikitext
-#                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext constant.other.checksum.ni.memetic-wikitext
+#                     ^^ text.html.tiddlywiki5.memetic-wikitext markup.underline.link.ni.memetic-wikitext keyword.other.scheme.ni.memetic-wikitext
+#                       ^ text.html.tiddlywiki5.memetic-wikitext markup.underline.link.ni.memetic-wikitext punctuation.separator.scheme.ni.memetic-wikitext
+#                        ^ text.html.tiddlywiki5.memetic-wikitext markup.underline.link.ni.memetic-wikitext support.type.algorithm.ni.memetic-wikitext punctuation.separator.path.ni.memetic-wikitext
+#                         ^ text.html.tiddlywiki5.memetic-wikitext markup.underline.link.ni.memetic-wikitext support.type.algorithm.ni.memetic-wikitext punctuation.separator.path.ni.memetic-wikitext
+#                          ^ text.html.tiddlywiki5.memetic-wikitext markup.underline.link.ni.memetic-wikitext support.type.algorithm.ni.memetic-wikitext punctuation.separator.path.ni.memetic-wikitext
+#                           ^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.underline.link.ni.memetic-wikitext support.type.algorithm.ni.memetic-wikitext
+#                                  ^ text.html.tiddlywiki5.memetic-wikitext markup.underline.link.ni.memetic-wikitext punctuation.separator.checksum.ni.memetic-wikitext
+#                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.underline.link.ni.memetic-wikitext constant.other.checksum.ni.memetic-wikitext
 >

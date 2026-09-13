@@ -45,3 +45,21 @@ for (const family of ['together', 'apart', 'alike']) {
     assert.deepStrictEqual(mismatched, [], mismatched.join('\n  '));
   });
 }
+
+// AND THE WITNESS MUST ASK THE SAME WAY FOR EVERY FAMILY. A specimen in the declaration buys nothing
+// while the tool still hands a bare scope to the resolver, and the repair landed on two families of
+// three: the declared distinctions and the declared unities read the stack, while the opener/closer
+// pairs and the things-met-as-one went on asking each scope alone. A half-migrated instrument reads
+// exactly as green as an unmigrated one.
+//
+// So no colour a relation turns on comes from the bare-scope resolver. The stack answers, always.
+test('the colour witness resolves every relation over a stack, never a bare scope', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'tools', 'colour-witness.js'), 'utf8');
+  // The bare-scope resolver may be exported for a caller that genuinely holds one name and no
+  // specimen; it may not decide a relation here.
+  const calls = source.split('\n')
+    .map((line, i) => ({ line: line.trim(), at: i + 1 }))
+    .filter(({ line }) => /\bcolourOf\s*\(\s*t\b/.test(line));
+  assert.deepStrictEqual(calls.map((c) => `${c.at}: ${c.line.slice(0, 90)}`), [],
+    'the witness resolves a relation from a bare scope, which answers differently from the stack a reader meets');
+});

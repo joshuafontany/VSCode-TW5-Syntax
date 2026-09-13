@@ -53,7 +53,7 @@ gates-held: 42 of 42
         {
             "gate": "colour-witness",
             "held": true,
-            "said": "0  relation(s) that stopped checking anything"
+            "said": "2  pair(s) parting by ruling, of 2 ruling(s)"
         },
         {
             "gate": "compose-memetic",
@@ -68,17 +68,17 @@ gates-held: 42 of 42
         {
             "gate": "contrast",
             "held": true,
-            "said": "contrast-witness  275 stack(s) over 65 theme(s), 1462 prose reading(s), 7 above the bar of 16, 0 unruled, 0 explaining nothing"
+            "said": "contrast-witness  274 stack(s) over 65 theme(s), 1450 prose reading(s), 7 above the bar of 16, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  54 files, 507 scopes declared, 460 reached (floor 450), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  54 files, 508 scopes declared, 461 reached (floor 450), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
             "held": true,
-            "said": "dark-construct  327 construct(s) over 65 themes, 23 plain, 0 unaccounted"
+            "said": "dark-construct  326 construct(s) over 65 themes, 23 plain, 0 unaccounted"
         },
         {
             "gate": "delimiters",
