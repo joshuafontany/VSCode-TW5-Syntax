@@ -354,7 +354,7 @@
                     ]
                 }
             },
-            "comment": "The zone's rules match unanchored upstream \u2014 `/\\\\parsermode[^\\\\S\\\\n]/mg` and its three siblings \u2014 so a pragma standing after a comment on the same line reads as a pragma: measured, `<!-- a -->\\\\parsermode block` builds `void/commentblock, void/parsermode`. THE ZONE BOUNDS THE REACH, never the anchor, and this pattern consumes to end of line \u2014 so a SECOND pragma on one line reads as the first one's tail, which is what TiddlyWiki reads there too."
+            "comment": "The zone's rules match unanchored upstream — `/\\\\parsermode[^\\\\S\\\\n]/mg` and its three siblings — so a pragma standing after a comment on the same line reads as a pragma: measured, `<!-- a -->\\\\parsermode block` builds `void/commentblock, void/parsermode`. THE ZONE BOUNDS THE REACH, never the anchor, and this pattern consumes to end of line — so a SECOND pragma on one line reads as the first one's tail, which is what TiddlyWiki reads there too."
         },
         "parameters": {
             "begin": "^\\s*(\\\\)(parameters)\\s*(\\()",
@@ -524,7 +524,7 @@
                     ]
                 }
             },
-            "comment": "The zone's rules match unanchored upstream \u2014 `/\\\\parsermode[^\\\\S\\\\n]/mg` and its three siblings \u2014 so a pragma standing after a comment on the same line reads as a pragma: measured, `<!-- a -->\\\\parsermode block` builds `void/commentblock, void/parsermode`. THE ZONE BOUNDS THE REACH, never the anchor, and this pattern consumes to end of line \u2014 so a SECOND pragma on one line reads as the first one's tail, which is what TiddlyWiki reads there too."
+            "comment": "The zone's rules match unanchored upstream — `/\\\\parsermode[^\\\\S\\\\n]/mg` and its three siblings — so a pragma standing after a comment on the same line reads as a pragma: measured, `<!-- a -->\\\\parsermode block` builds `void/commentblock, void/parsermode`. THE ZONE BOUNDS THE REACH, never the anchor, and this pattern consumes to end of line — so a SECOND pragma on one line reads as the first one's tail, which is what TiddlyWiki reads there too."
         },
         "whitespace": {
             "match": "(?:^|(?<=-->))[ \\t]*(\\\\)(whitespace)[^\\S\\n]+(trim|notrim)?(.*)$",
@@ -540,7 +540,7 @@
                     "name": "keyword.operator.$3.tiddlywiki5"
                 }
             },
-            "comment": "The zone's rules match unanchored upstream \u2014 `/\\\\parsermode[^\\\\S\\\\n]/mg` and its three siblings \u2014 so a pragma standing after a comment on the same line reads as a pragma: measured, `<!-- a -->\\\\parsermode block` builds `void/commentblock, void/parsermode`. THE ZONE BOUNDS THE REACH, never the anchor, and this pattern consumes to end of line \u2014 so a SECOND pragma on one line reads as the first one's tail, which is what TiddlyWiki reads there too."
+            "comment": "The zone's rules match unanchored upstream — `/\\\\parsermode[^\\\\S\\\\n]/mg` and its three siblings — so a pragma standing after a comment on the same line reads as a pragma: measured, `<!-- a -->\\\\parsermode block` builds `void/commentblock, void/parsermode`. THE ZONE BOUNDS THE REACH, never the anchor, and this pattern consumes to end of line — so a SECOND pragma on one line reads as the first one's tail, which is what TiddlyWiki reads there too."
         },
         "parsermode": {
             "match": "(?:^|(?<=-->))[ \\t]*(\\\\)(parsermode)[^\\S\\n]+(block|inline)?(.*)$",
@@ -556,7 +556,7 @@
                     "name": "keyword.operator.$3.tiddlywiki5"
                 }
             },
-            "comment": "The zone's rules match unanchored upstream \u2014 `/\\\\parsermode[^\\\\S\\\\n]/mg` and its three siblings \u2014 so a pragma standing after a comment on the same line reads as a pragma: measured, `<!-- a -->\\\\parsermode block` builds `void/commentblock, void/parsermode`. THE ZONE BOUNDS THE REACH, never the anchor, and this pattern consumes to end of line \u2014 so a SECOND pragma on one line reads as the first one's tail, which is what TiddlyWiki reads there too."
+            "comment": "The zone's rules match unanchored upstream — `/\\\\parsermode[^\\\\S\\\\n]/mg` and its three siblings — so a pragma standing after a comment on the same line reads as a pragma: measured, `<!-- a -->\\\\parsermode block` builds `void/commentblock, void/parsermode`. THE ZONE BOUNDS THE REACH, never the anchor, and this pattern consumes to end of line — so a SECOND pragma on one line reads as the first one's tail, which is what TiddlyWiki reads there too."
         },
         "widget": {
             "patterns": [
@@ -921,7 +921,7 @@
                                                     "match": "([^\\n\"/]|/(?![/*]))+"
                                                 },
                                                 {
-                                                    "begin": "//(?=[^\\n]*//)",
+                                                    "begin": "//",
                                                     "beginCaptures": {
                                                         "0": {
                                                             "name": "punctuation.definition.comment.js"
@@ -979,7 +979,7 @@
                                                     "match": "([^\\n'/]|/(?![/*]))+"
                                                 },
                                                 {
-                                                    "begin": "//(?=[^\\n]*//)",
+                                                    "begin": "//",
                                                     "beginCaptures": {
                                                         "0": {
                                                             "name": "punctuation.definition.comment.js"
@@ -1101,23 +1101,25 @@
                             "contentName": "meta.attribute.filtered.html.tiddlywiki5",
                             "patterns": [
                                 {
-                                    "match": "(\\{{3})(.*?)(\\}{3})",
-                                    "captures": {
+                                    "comment": "An attribute value spanning lines needs a REGION: a match reads one line and no more, so a value carried across a break painted nothing inside itself.",
+                                    "begin": "(\\{{3})",
+                                    "beginCaptures": {
                                         "1": {
                                             "name": "punctuation.definition.filtered.attribute.begin.tiddlywiki5"
-                                        },
-                                        "2": {
-                                            "name": "meta.filter.tiddlywiki5",
-                                            "patterns": [
-                                                {
-                                                    "include": "#filter"
-                                                }
-                                            ]
-                                        },
-                                        "3": {
+                                        }
+                                    },
+                                    "end": "(\\}{3})",
+                                    "endCaptures": {
+                                        "1": {
                                             "name": "punctuation.definition.filtered.attribute.end.tiddlywiki5"
                                         }
-                                    }
+                                    },
+                                    "contentName": "meta.filter.tiddlywiki5",
+                                    "patterns": [
+                                        {
+                                            "include": "#filter"
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -2754,7 +2756,7 @@
                                                             "end": "(?!\\G)",
                                                             "patterns": [
                                                                 {
-                                                                    "begin": "//(?=[^\\n]*//)",
+                                                                    "begin": "//",
                                                                     "beginCaptures": {
                                                                         "0": {
                                                                             "name": "punctuation.definition.comment.js"
@@ -4002,7 +4004,7 @@
             "contentName": "meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5",
             "beginCaptures": {
                 "1": {
-                    "name": "punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5"
+                    "name": "punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5"
                 },
                 "2": {
                     "name": "variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5",
@@ -4015,7 +4017,7 @@
             },
             "endCaptures": {
                 "1": {
-                    "name": "punctuation.definition.call.block.end.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5"
+                    "name": "punctuation.definition.call.block.end.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5"
                 }
             },
             "patterns": [
@@ -4058,7 +4060,7 @@
                                     "name": "entity.name.other.tiddler.title.template.tiddlywiki5",
                                     "patterns": [
                                         {
-                                            "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists \u2014 a reader wants to see which titles answer to the host.",
+                                            "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
                                             "match": "\\$:\\/[^\\s\\]\\}|]*",
                                             "name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
                                         }
@@ -4072,7 +4074,7 @@
                             "name": "entity.name.tiddler.title.template.tiddlywiki5",
                             "patterns": [
                                 {
-                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists \u2014 a reader wants to see which titles answer to the host.",
+                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
                                     "match": "\\$:\\/[^\\s\\]\\}|]*",
                                     "name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
                                 }
@@ -4100,12 +4102,12 @@
             "name": "meta.transclusion.transcludeblock.tiddlywiki5",
             "beginCaptures": {
                 "1": {
-                    "name": "punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5"
+                    "name": "punctuation.definition.transclusion.transcludeblock.begin.tiddlywiki5"
                 }
             },
             "endCaptures": {
                 "1": {
-                    "name": "punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5"
+                    "name": "punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5"
                 }
             },
             "patterns": [
@@ -4128,7 +4130,7 @@
                                     "name": "entity.name.tiddler.title.template.tiddlywiki5",
                                     "patterns": [
                                         {
-                                            "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists \u2014 a reader wants to see which titles answer to the host.",
+                                            "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
                                             "match": "\\$:\\/[^\\s\\]\\}|]*",
                                             "name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
                                         }
@@ -4142,7 +4144,7 @@
                             "name": "entity.name.tiddler.title.template.tiddlywiki5",
                             "patterns": [
                                 {
-                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists \u2014 a reader wants to see which titles answer to the host.",
+                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
                                     "match": "\\$:\\/[^\\s\\]\\}|]*",
                                     "name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
                                 }
@@ -4172,7 +4174,7 @@
                             }
                         },
                         {
-                            "comment": "A CONSTRUCT SPANNING LINES DECLARES ITS INNER READING TWICE. The pattern above reads the reference on the opener's own line; this one carries every line after it, and a region name alone leaves the same characters unthemed one line down \u2014 measured, a title painted in 40 of 65 bundled themes on the first line and in none on the second. The include hands both lines one reading out of one rule.",
+                            "comment": "A CONSTRUCT SPANNING LINES DECLARES ITS INNER READING TWICE. The pattern above reads the reference on the opener's own line; this one carries every line after it, and a region name alone leaves the same characters unthemed one line down — measured, a title painted in 40 of 65 bundled themes on the first line and in none on the second. The include hands both lines one reading out of one rule.",
                             "begin": "(?=\\S)",
                             "end": "(?=\\|\\||\\}\\})|(\\S.*?)\\s*(?=$|\\}\\}|\\|\\|)",
                             "name": "meta.transclusion.text-reference.tiddlywiki5",
@@ -4310,7 +4312,7 @@
                     }
                 },
                 {
-                    "comment": "A body row carries no marker character. Its three siblings name the markup family on the c, h or f that ends the line, and a body row ends on nothing \u2014 so the family rides the whole match here and the row type stands on capture 0 alone.",
+                    "comment": "A body row carries no marker character. Its three siblings name the markup family on the c, h or f that ends the line, and a body row ends on nothing — so the family rides the whole match here and the row type stands on capture 0 alone.",
                     "match": "^(\\|)(.*)(\\|)$",
                     "name": "markup.table.tiddlywiki5 markup.other.table.tiddlywiki5",
                     "captures": {
@@ -4700,7 +4702,7 @@
                     "comment": "A fence labelled for wikitext.\n\nThe label set follows the shape the ecosystem keeps: a canonical name plus short aliases, and an extension among them the way js carries cjs and mjs and yaml carries yml. Measured across the 242 grammars this repository loads, 164 carry no alias at all, the mean is 0.43 and the most any one carries is five; no alias anywhere holds a slash or a dot.\n\nThe MIME type stands here anyway, against that shape, because it is TiddlyWiki's own vocabulary: a tiddler's `type` field spells it and a `$$$` typed block dispatches on it.\n\nNEVER claim `wikitext` or `wiki`. The ecosystem already owns both, and they mean MediaWiki."
                 },
                 {
-                    "comment": "A fence labelled for the memetic dialect. The dialect is wikitext with sigils added, so the fence reads wikitext here and the dialect's own injection supplies the sigils wherever it stands \u2014 in a .mem file, that is everywhere.\n\nThe base cannot include the dialect: the dialect already includes the base, and the cycle drops the include wherever it is spelled. The label still earns its place, because it names the tongue for a reader and keeps a memetic example out of the catch-all that would read it raw.\n\nThe set mirrors the base's: a canonical name, short aliases, and the mimetype the manifest declares.",
+                    "comment": "A fence labelled for the memetic dialect. The dialect is wikitext with sigils added, so the fence reads wikitext here and the dialect's own injection supplies the sigils wherever it stands — in a .mem file, that is everywhere.\n\nThe base cannot include the dialect: the dialect already includes the base, and the cycle drops the include wherever it is spelled. The label still earns its place, because it names the tongue for a reader and keeps a memetic example out of the catch-all that would read it raw.\n\nThe set mirrors the base's: a canonical name, short aliases, and the mimetype the manifest declares.",
                     "begin": "(?i)\\G(mem(?:etic(?:-wikitext)?)?|text/memetic-wikitext\\+tiddlywiki)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.memetic text.html.tiddlywiki5",
                     "beginCaptures": {
@@ -5260,7 +5262,7 @@
         "codeinline": {
             "patterns": [
                 {
-                    "comment": "A raw span carries the family shape a theme rules on beside the names that describe it here. `markup.inline.raw.string` writes the shape markdown, asciidoc and mediawiki all share, and it stands FIRST so a theme naming this grammar's own scopes keeps any tie. Measured over 65 bundled themes: the span parted from prose in 53 on its own names and parts in 56 with this one, and no other pair of constructs reads closer. A BARE `string.` name reaches further and costs more than it buys \u2014 a wikilink already wears `string.other.link.title` and a transclusion `string.text-reference`, so a third construct in that family took the span from 65 to 57 against a transclusion and from 59 to 57 against a wikilink while gaining 4 against prose.",
+                    "comment": "A raw span carries the family shape a theme rules on beside the names that describe it here. `markup.inline.raw.string` writes the shape markdown, asciidoc and mediawiki all share, and it stands FIRST so a theme naming this grammar's own scopes keeps any tie. Measured over 65 bundled themes: the span parted from prose in 53 on its own names and parts in 56 with this one, and no other pair of constructs reads closer. A BARE `string.` name reaches further and costs more than it buys — a wikilink already wears `string.other.link.title` and a transclusion `string.text-reference`, so a third construct in that family took the span from 65 to 57 against a transclusion and from 59 to 57 against a wikilink while gaining 4 against prose.",
                     "match": "(?<!`)(``)(?!`)((?:[^`\\n]|`(?!`))+?)(``)",
                     "name": "markup.inline.raw.string.tiddlywiki5 markup.inline.raw.double.tiddlywiki5 markup.raw.inline.tiddlywiki5",
                     "captures": {
@@ -5281,7 +5283,7 @@
                     }
                 },
                 {
-                    "comment": "A raw span carries the family shape a theme rules on beside the names that describe it here. `markup.inline.raw.string` writes the shape markdown, asciidoc and mediawiki all share, and it stands FIRST so a theme naming this grammar's own scopes keeps any tie. Measured over 65 bundled themes: the span parted from prose in 53 on its own names and parts in 56 with this one, and no other pair of constructs reads closer. A BARE `string.` name reaches further and costs more than it buys \u2014 a wikilink already wears `string.other.link.title` and a transclusion `string.text-reference`, so a third construct in that family took the span from 65 to 57 against a transclusion and from 59 to 57 against a wikilink while gaining 4 against prose.",
+                    "comment": "A raw span carries the family shape a theme rules on beside the names that describe it here. `markup.inline.raw.string` writes the shape markdown, asciidoc and mediawiki all share, and it stands FIRST so a theme naming this grammar's own scopes keeps any tie. Measured over 65 bundled themes: the span parted from prose in 53 on its own names and parts in 56 with this one, and no other pair of constructs reads closer. A BARE `string.` name reaches further and costs more than it buys — a wikilink already wears `string.other.link.title` and a transclusion `string.text-reference`, so a third construct in that family took the span from 65 to 57 against a transclusion and from 59 to 57 against a wikilink while gaining 4 against prose.",
                     "match": "(?<!`)(`)(?!`)((?:[^`\\n]|`(?!`))+?)(`)",
                     "name": "markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5",
                     "captures": {
@@ -5357,7 +5359,7 @@
             "contentName": "meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5",
             "beginCaptures": {
                 "1": {
-                    "name": "punctuation.definition.call.inline.begin.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5"
+                    "name": "punctuation.definition.call.inline.begin.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5"
                 },
                 "2": {
                     "name": "variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5",
@@ -5370,7 +5372,7 @@
             },
             "endCaptures": {
                 "1": {
-                    "name": "punctuation.definition.call.inline.end.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5"
+                    "name": "punctuation.definition.call.inline.end.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5"
                 }
             },
             "patterns": [
@@ -5413,7 +5415,7 @@
                                     "name": "entity.name.other.tiddler.title.template.tiddlywiki5",
                                     "patterns": [
                                         {
-                                            "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists \u2014 a reader wants to see which titles answer to the host.",
+                                            "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
                                             "match": "\\$:\\/[^\\s\\]\\}|]*",
                                             "name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
                                         }
@@ -5427,7 +5429,7 @@
                             "name": "entity.name.tiddler.title.template.tiddlywiki5",
                             "patterns": [
                                 {
-                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists \u2014 a reader wants to see which titles answer to the host.",
+                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
                                     "match": "\\$:\\/[^\\s\\]\\}|]*",
                                     "name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
                                 }
@@ -5455,12 +5457,12 @@
             "name": "meta.transclusion.transcludeinline.tiddlywiki5",
             "beginCaptures": {
                 "1": {
-                    "name": "punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5"
+                    "name": "punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5"
                 }
             },
             "endCaptures": {
                 "1": {
-                    "name": "punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5"
+                    "name": "punctuation.definition.transclusion.transcludeinline.end.tiddlywiki5"
                 }
             },
             "patterns": [
@@ -5483,7 +5485,7 @@
                                     "name": "entity.name.other.tiddler.title.template.tiddlywiki5",
                                     "patterns": [
                                         {
-                                            "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists \u2014 a reader wants to see which titles answer to the host.",
+                                            "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
                                             "match": "\\$:\\/[^\\s\\]\\}|]*",
                                             "name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
                                         }
@@ -5497,7 +5499,7 @@
                             "name": "entity.name.tiddler.title.template.tiddlywiki5",
                             "patterns": [
                                 {
-                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists \u2014 a reader wants to see which titles answer to the host.",
+                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
                                     "match": "\\$:\\/[^\\s\\]\\}|]*",
                                     "name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
                                 }
@@ -5527,7 +5529,7 @@
                             }
                         },
                         {
-                            "comment": "A CONSTRUCT SPANNING LINES DECLARES ITS INNER READING TWICE. The pattern above reads the reference on the opener's own line; this one carries every line after it, and a region name alone leaves the same characters unthemed one line down \u2014 measured, a title painted in 40 of 65 bundled themes on the first line and in none on the second. The include hands both lines one reading out of one rule.",
+                            "comment": "A CONSTRUCT SPANNING LINES DECLARES ITS INNER READING TWICE. The pattern above reads the reference on the opener's own line; this one carries every line after it, and a region name alone leaves the same characters unthemed one line down — measured, a title painted in 40 of 65 bundled themes on the first line and in none on the second. The include hands both lines one reading out of one rule.",
                             "begin": "(?=\\S)",
                             "end": "(?=\\|\\||\\}\\})|(\\S.*?)\\s*(?=$|\\}\\}|\\|\\|)",
                             "name": "meta.transclusion.text-reference.tiddlywiki5",
@@ -5552,7 +5554,7 @@
             "name": "markup.other.image.tiddlywiki5",
             "beginCaptures": {
                 "1": {
-                    "name": "punctuation.definition.image.outer.begin.tiddlywiki5 keyword.other.img.tiddlywiki5"
+                    "name": "punctuation.definition.image.outer.begin.tiddlywiki5"
                 },
                 "2": {
                     "name": "keyword.other.img.tiddlywiki5"
@@ -5560,10 +5562,10 @@
             },
             "endCaptures": {
                 "1": {
-                    "name": "punctuation.definition.image.inner.end.tiddlywiki5 keyword.other.img.tiddlywiki5"
+                    "name": "punctuation.definition.image.inner.end.tiddlywiki5"
                 },
                 "2": {
-                    "name": "punctuation.definition.image.outer.end.tiddlywiki5 keyword.other.img.tiddlywiki5"
+                    "name": "punctuation.definition.image.outer.end.tiddlywiki5"
                 }
             },
             "patterns": [
@@ -5583,7 +5585,7 @@
                     },
                     "endCaptures": {
                         "0": {
-                            "name": "punctuation.definition.image.inner.begin.tiddlywiki5 keyword.other.img.tiddlywiki5"
+                            "name": "punctuation.definition.image.inner.begin.tiddlywiki5"
                         }
                     }
                 },
@@ -5630,21 +5632,21 @@
             "name": "markup.link.external.tiddlywiki5",
             "beginCaptures": {
                 "1": {
-                    "name": "punctuation.definition.link.outer.begin.tiddlywiki5 keyword.other.ext.tiddlywiki5"
+                    "name": "punctuation.definition.link.outer.begin.tiddlywiki5"
                 },
                 "2": {
                     "name": "keyword.other.ext.tiddlywiki5"
                 },
                 "3": {
-                    "name": "punctuation.definition.link.external.inner.begin.tiddlywiki5 keyword.other.ext.tiddlywiki5"
+                    "name": "punctuation.definition.link.external.inner.begin.tiddlywiki5"
                 }
             },
             "endCaptures": {
                 "1": {
-                    "name": "punctuation.definition.link.external.inner.end.tiddlywiki5 keyword.other.ext.tiddlywiki5"
+                    "name": "punctuation.definition.link.external.inner.end.tiddlywiki5"
                 },
                 "2": {
-                    "name": "punctuation.definition.link.external.outer.end.tiddlywiki5 keyword.other.ext.tiddlywiki5"
+                    "name": "punctuation.definition.link.external.outer.end.tiddlywiki5"
                 }
             },
             "patterns": [
@@ -5656,7 +5658,7 @@
                             "name": "markup.underline.link.external.tiddlywiki5 string.other.link.title.tiddlywiki5",
                             "patterns": [
                                 {
-                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists \u2014 a reader wants to see which titles answer to the host.",
+                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
                                     "match": "\\$:\\/[^\\s\\]\\}|]*",
                                     "name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
                                 }
@@ -5670,7 +5672,7 @@
                             "name": "string.entity.other.title.link.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5",
                             "patterns": [
                                 {
-                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists \u2014 a reader wants to see which titles answer to the host.",
+                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
                                     "match": "\\$:\\/[^\\s\\]\\}|]*",
                                     "name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
                                 }
@@ -5686,7 +5688,7 @@
                             "name": "markup.underline.link.external.tiddlywiki5 string.other.link.title.tiddlywiki5",
                             "patterns": [
                                 {
-                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists \u2014 a reader wants to see which titles answer to the host.",
+                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
                                     "match": "\\$:\\/[^\\s\\]\\}|]*",
                                     "name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
                                 }
@@ -5698,7 +5700,7 @@
             "comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole."
         },
         "prettylink": {
-            "comment": "`[[` and `]]` each stand as ONE mark, so each arrives as one token. An outer and an inner name part where the brackets enclose different things \u2014 `[img[` an attribute list then a source, `[ext[` a caption then an address \u2014 and a pretty link encloses one thing.",
+            "comment": "`[[` and `]]` each stand as ONE mark, so each arrives as one token. An outer and an inner name part where the brackets enclose different things — `[img[` an attribute list then a source, `[ext[` a caption then an address — and a pretty link encloses one thing.",
             "begin": "(\\[\\[)(?=[^\\n]*\\]\\])",
             "end": "(\\]\\])",
             "name": "markup.link.tiddlywiki5",
@@ -5721,7 +5723,7 @@
                             "name": "markup.underline.link.tiddlywiki5 string.other.link.title.tiddlywiki5",
                             "patterns": [
                                 {
-                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists \u2014 a reader wants to see which titles answer to the host.",
+                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
                                     "match": "\\$:\\/[^\\s\\]\\}|]*",
                                     "name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
                                 }
@@ -5735,7 +5737,7 @@
                             "name": "string.entity.other.title.link.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5",
                             "patterns": [
                                 {
-                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists \u2014 a reader wants to see which titles answer to the host.",
+                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
                                     "match": "\\$:\\/[^\\s\\]\\}|]*",
                                     "name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
                                 }
@@ -5751,7 +5753,7 @@
                             "name": "markup.underline.link.tiddlywiki5 string.other.link.title.tiddlywiki5",
                             "patterns": [
                                 {
-                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists \u2014 a reader wants to see which titles answer to the host.",
+                                    "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
                                     "match": "\\$:\\/[^\\s\\]\\}|]*",
                                     "name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
                                 }
@@ -5783,7 +5785,7 @@
                     },
                     "patterns": [
                         {
-                            "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists \u2014 a reader wants to see which titles answer to the host.",
+                            "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
                             "match": "\\$:\\/[^\\s\\]\\}|]*",
                             "name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
                         }
@@ -5818,7 +5820,7 @@
             "patterns": [
                 {
                     "comment": "A tilde suppresses this family: TiddlyWiki hands back the text of the link it declined to make, so the span carries a quiet name and the tilde keeps its own punctuation.",
-                    "match": "(~)(?<!(?:(?:[a-z\u00df-\u00f6\u00f8-\u00ff\u0151\u0171])|(?:[A-Z\u00c0-\u00d6\u00d8-\u00de\u0150\u0170]))|\\-|_)(?:(?:[A-Z\u00c0-\u00d6\u00d8-\u00de\u0150\u0170])+(?:[a-z\u00df-\u00f6\u00f8-\u00ff\u0151\u0171])+(?:[A-Z\u00c0-\u00d6\u00d8-\u00de\u0150\u0170])(?:(?:[a-z\u00df-\u00f6\u00f8-\u00ff\u0151\u0171])|(?:[A-Z\u00c0-\u00d6\u00d8-\u00de\u0150\u0170]))*)",
+                    "match": "(~)(?<!(?:(?:[a-zß-öø-ÿőű])|(?:[A-ZÀ-ÖØ-ÞŐŰ]))|\\-|_)(?:(?:[A-ZÀ-ÖØ-ÞŐŰ])+(?:[a-zß-öø-ÿőű])+(?:[A-ZÀ-ÖØ-ÞŐŰ])(?:(?:[a-zß-öø-ÿőű])|(?:[A-ZÀ-ÖØ-ÞŐŰ]))*)",
                     "name": "meta.link.suppressed.wikilink.tiddlywiki5",
                     "captures": {
                         "1": {
@@ -5827,7 +5829,7 @@
                     }
                 },
                 {
-                    "match": "(?<!(?:(?:[a-z\u00df-\u00f6\u00f8-\u00ff\u0151\u0171])|(?:[A-Z\u00c0-\u00d6\u00d8-\u00de\u0150\u0170]))|\\-|_)(?:(?:[A-Z\u00c0-\u00d6\u00d8-\u00de\u0150\u0170])+(?:[a-z\u00df-\u00f6\u00f8-\u00ff\u0151\u0171])+(?:[A-Z\u00c0-\u00d6\u00d8-\u00de\u0150\u0170])(?:(?:[a-z\u00df-\u00f6\u00f8-\u00ff\u0151\u0171])|(?:[A-Z\u00c0-\u00d6\u00d8-\u00de\u0150\u0170]))*)",
+                    "match": "(?<!(?:(?:[a-zß-öø-ÿőű])|(?:[A-ZÀ-ÖØ-ÞŐŰ]))|\\-|_)(?:(?:[A-ZÀ-ÖØ-ÞŐŰ])+(?:[a-zß-öø-ÿőű])+(?:[A-ZÀ-ÖØ-ÞŐŰ])(?:(?:[a-zß-öø-ÿőű])|(?:[A-ZÀ-ÖØ-ÞŐŰ]))*)",
                     "name": "meta.link.wikilink.tiddlywiki5"
                 }
             ]
@@ -6313,7 +6315,7 @@
             "name": "meta.support.text-reference.tiddlywiki5",
             "captures": {
                 "0": {
-                    "comment": "A text reference carries the family shape a theme rules on beside the name this grammar publishes. TiddlyWiki's parser assigns this value the INDIRECT kind \u2014 a name it dereferences against the store, never string content \u2014 and `variable.other.reference` writes the shape a theme already rules on for a name standing in for a stored value. It stands FIRST so a theme naming `string.text-reference` keeps any tie. Measured over 65 bundled themes: a transclusion parted from a wikilink in 54 and parts in 58, and no other pair moved. The bare `string.` root carried the collision \u2014 a wikilink wears `string.other.link.title`, so a theme ruling on the one-segment root painted both bodies one colour while both punctuations fell to the default.",
+                    "comment": "A text reference carries the family shape a theme rules on beside the name this grammar publishes. TiddlyWiki's parser assigns this value the INDIRECT kind — a name it dereferences against the store, never string content — and `variable.other.reference` writes the shape a theme already rules on for a name standing in for a stored value. It stands FIRST so a theme naming `string.text-reference` keeps any tie. Measured over 65 bundled themes: a transclusion parted from a wikilink in 54 and parts in 58, and no other pair moved. The bare `string.` root carried the collision — a wikilink wears `string.other.link.title`, so a theme ruling on the one-segment root painted both bodies one colour while both punctuations fell to the default.",
                     "name": "variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5"
                 },
                 "1": {
@@ -6464,13 +6466,13 @@
             "name": "markup.other.variable.substitute-parameter.tiddlywiki5",
             "captures": {
                 "1": {
-                    "name": "keyword.other.variable.substitute-parameter.begin.tiddlywiki5"
+                    "name": "keyword.other.variable.substitute-parameter.begin.tiddlywiki5 punctuation.definition.substitution.begin.tiddlywiki5"
                 },
                 "2": {
                     "name": "entity.name.substitute-parameter.tiddlywiki5"
                 },
                 "3": {
-                    "name": "keyword.other.variable.substitute-parameter.end.tiddlywiki5"
+                    "name": "keyword.other.variable.substitute-parameter.end.tiddlywiki5 punctuation.definition.substitution.end.tiddlywiki5"
                 }
             }
         },
@@ -6480,13 +6482,13 @@
             "name": "markup.other.variable.substitute-variable.tiddlywiki5",
             "captures": {
                 "1": {
-                    "name": "keyword.other.variable.substitute-variable.begin.tiddlywiki5"
+                    "name": "keyword.other.variable.substitute-variable.begin.tiddlywiki5 punctuation.definition.substitution.begin.tiddlywiki5"
                 },
                 "2": {
                     "name": "variable.name.substitute-variable.tiddlywiki5 entity.name.variable.substitute-variable.tiddlywiki5"
                 },
                 "3": {
-                    "name": "keyword.other.variable.substitute-variable.end.tiddlywiki5"
+                    "name": "keyword.other.variable.substitute-variable.end.tiddlywiki5 punctuation.definition.substitution.end.tiddlywiki5"
                 }
             }
         },
@@ -6496,7 +6498,7 @@
             "name": "markup.other.variable.substitute-filter.tiddlywiki5",
             "captures": {
                 "1": {
-                    "name": "keyword.other.variable.substitute-filter.begin.tiddlywiki5"
+                    "name": "keyword.other.variable.substitute-filter.begin.tiddlywiki5 punctuation.definition.substitution.begin.tiddlywiki5"
                 },
                 "2": {
                     "name": "variable.name.substitute-filter.tiddlywiki5",
@@ -6507,7 +6509,7 @@
                     ]
                 },
                 "3": {
-                    "name": "keyword.other.variable.substitute-filter.end.tiddlywiki5"
+                    "name": "keyword.other.variable.substitute-filter.end.tiddlywiki5 punctuation.definition.substitution.end.tiddlywiki5"
                 }
             }
         },
@@ -7180,12 +7182,12 @@
             ]
         },
         "builtin-variable": {
-            "comment": "A variable TiddlyWiki's core defines. The names come from $:/tw5-syntax/BuiltInVariables in the edition, projected here by tools/builtins-sync.js \u2014 edit the tiddler, run the tool, and a gate holds the two together.",
+            "comment": "A variable TiddlyWiki's core defines. The names come from $:/tw5-syntax/BuiltInVariables in the edition, projected here by tools/builtins-sync.js — edit the tiddler, run the tool, and a gate holds the two together.",
             "match": "(?<![A-Za-z0-9_$.-])(?:tv\\-[A-Za-z0-9_.-]*|currentTiddler|actionTiddler|storyTiddler|transclusion|thisTiddler|namespace|modifier)(?![A-Za-z0-9_$.-])",
             "name": "variable.language.builtin.tiddlywiki5"
         },
         "pragma-zone": {
-            "comment": "The zone TiddlyWiki reads pragmas in, and nothing outside it.\n\nwikiparser.js runs parsePragmas() once, before parseBlocks(), and never returns to it \u2014 so a backslash directive standing after any block content parses as ORDINARY TEXT. The pragma rules live inside this region and nowhere else, so they reach only what it covers.\n\nIt opens at the START OF THE SOURCE and cannot reopen: vscode-textmate compiles \\A to something unmatchable on every line but the first, so `allowA` reads `isFirstLine`. \\G stands beside it for a caller that opens the grammar at a line of its own \u2014 a .tid body begins where its header ends, not at the source. It closes, zero-width, at the first line that opens no pragma-mode rule.\n\nThe guard mirrors each rule module\u2019s own regex rather than its keyword. A bare `\\rules` opens no pragma \u2014 rules.js carries /\\\\rules[^\\S\\n]/ and wants whitespace after the word \u2014 and a guard reading the keyword alone kept the zone open past it, claiming fifteen directives the parser had already left behind.\n\nEIGHT RULES HOLD IT OPEN, not the backslash family alone. TiddlyWiki declares the mode on each rule module and names these: commentblock, fnprocdef, import, macrodef, parameters, parsermode, rules, whitespace. A guard reading the backslash keywords alone misses commentblock, and an HTML comment then closes the zone where TiddlyWiki keeps reading \u2014 measured, that took fifty-four pragmas out of one sample while the parser built every one of them. `npm run signals` harvests the set and a gate holds this comment to it.\n\nThe begin and the end read the same shapes and disagree on every one of them, so the two cannot fire at the same position \u2014 a region that pushed and popped without advancing would abandon the rest of the line. `applyEndPatternLast` keeps a comment block that runs across lines from closing the zone underneath itself.\n\nIT CLOSES MID-LINE TOO, right after a comment's `-->`. parsePragmas() consumes a comment and looks again from wherever it ended \u2014 which may be the MIDDLE of a line \u2014 and hands the rest to parseBlocks() where no pragma stands there. A close anchored to `^` alone cannot reach that position, and eight of TiddlyWiki's own core templates write `--><$view field=\"text\" .../>` on one line: every attribute after the `-->` went unpainted while the parser placed all of them, 22 of them across the corpus. The mid-line arm reads the SAME shapes as the line-start arm, so a pragma standing after that `-->` keeps the zone, and so does a second comment.",
+            "comment": "The zone TiddlyWiki reads pragmas in, and nothing outside it.\n\nwikiparser.js runs parsePragmas() once, before parseBlocks(), and never returns to it — so a backslash directive standing after any block content parses as ORDINARY TEXT. The pragma rules live inside this region and nowhere else, so they reach only what it covers.\n\nIt opens at the START OF THE SOURCE and cannot reopen: vscode-textmate compiles \\A to something unmatchable on every line but the first, so `allowA` reads `isFirstLine`. \\G stands beside it for a caller that opens the grammar at a line of its own — a .tid body begins where its header ends, not at the source. It closes, zero-width, at the first line that opens no pragma-mode rule.\n\nThe guard mirrors each rule module’s own regex rather than its keyword. A bare `\\rules` opens no pragma — rules.js carries /\\\\rules[^\\S\\n]/ and wants whitespace after the word — and a guard reading the keyword alone kept the zone open past it, claiming fifteen directives the parser had already left behind.\n\nEIGHT RULES HOLD IT OPEN, not the backslash family alone. TiddlyWiki declares the mode on each rule module and names these: commentblock, fnprocdef, import, macrodef, parameters, parsermode, rules, whitespace. A guard reading the backslash keywords alone misses commentblock, and an HTML comment then closes the zone where TiddlyWiki keeps reading — measured, that took fifty-four pragmas out of one sample while the parser built every one of them. `npm run signals` harvests the set and a gate holds this comment to it.\n\nThe begin and the end read the same shapes and disagree on every one of them, so the two cannot fire at the same position — a region that pushed and popped without advancing would abandon the rest of the line. `applyEndPatternLast` keeps a comment block that runs across lines from closing the zone underneath itself.\n\nIT CLOSES MID-LINE TOO, right after a comment's `-->`. parsePragmas() consumes a comment and looks again from wherever it ended — which may be the MIDDLE of a line — and hands the rest to parseBlocks() where no pragma stands there. A close anchored to `^` alone cannot reach that position, and eight of TiddlyWiki's own core templates write `--><$view field=\"text\" .../>` on one line: every attribute after the `-->` went unpainted while the parser placed all of them, 22 of them across the corpus. The mid-line arm reads the SAME shapes as the line-start arm, so a pragma standing after that `-->` keeps the zone, and so does a second comment.",
             "begin": "(?:\\A|\\G)(?=[ \\t]*$|[ \\t]*<!--|[ \\t]*\\\\define\\s+[^(\\s]+\\(|[ \\t]*\\\\(?:function|procedure|widget)\\s+[^(\\s]+\\(|[ \\t]*\\\\parameters\\s*\\(|[ \\t]*\\\\(?:import|rules|whitespace|parsermode)[^\\S\\n])",
             "end": "(?:^(?![ \\t]*$|[ \\t]*<!--|[ \\t]*\\\\define\\s+[^(\\s]+\\(|[ \\t]*\\\\(?:function|procedure|widget)\\s+[^(\\s]+\\(|[ \\t]*\\\\parameters\\s*\\(|[ \\t]*\\\\(?:import|rules|whitespace|parsermode)[^\\S\\n])|(?<=-->)(?![ \\t]*$|[ \\t]*<!--|[ \\t]*\\\\define\\s+[^(\\s]+\\(|[ \\t]*\\\\(?:function|procedure|widget)\\s+[^(\\s]+\\(|[ \\t]*\\\\parameters\\s*\\(|[ \\t]*\\\\(?:import|rules|whitespace|parsermode)[^\\S\\n]))",
             "patterns": [

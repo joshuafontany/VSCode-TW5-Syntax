@@ -15,6 +15,45 @@ attribute value's quote characters changed family. A reader who liked 2.2.1's lo
 back by upgrading, which is the definition this number answers to.
 
 ### Fixed
+- A NUMBER FOR A MACHINE GOES OUT AS TEXT. The breadth probe printed its one number through
+  `console.log`, which hands a number to `util.inspect` and colours it wherever colour stands forced —
+  `FORCE_COLOR` in an environment is enough — so the caller asking whether a ruling's breadth had moved
+  read `NaN` against 1 and named the corpus, where the fault sat in the shell. A tool whose whole contract
+  reads "one number and nothing else" writes it plainly now, and no environment can recolour it.
+- A GLYPH READS AS PUNCTUATION AND THE WORD READS AS ITS FAMILY. Stacking a construct's content family
+  onto its own marker made the two read as ONE colour: measured in the bundled set, a call's angles parted
+  from its name in 0 of 65 themes and a transclusion's braces in 7. Sixteen marker sites drop the stacked
+  family — `<<`/`>>`, `{{`/`}}`, `[img[`, `[ext[` and a closing sigil's `/` — and each reads as the
+  structure it is, beside a word carrying the family it names. The `[[`/`]]` link, which never carried the
+  stack, is what the rest now match.
+- RED MEANS KEYWORD-NESS, and three readings that all looked like "too much red" answer differently.
+  A conditional's `if`, `else` and `endif` read red CORRECTLY — measured, JavaScript's own `if` reads the
+  same hex through the same selector in that theme. A sigil's verb now reads red too, because the word
+  after `<<~` names an act the dialect stands on. And a marker wearing a keyword name reads red WRONGLY:
+  `[img[`, `[ext[`, a `$…$` substitution's marks and a `lar:`/`ni:` scheme all fell through to the bare
+  `keyword` selector, which 55 of 65 themes paint as a keyword. The marks take punctuation; the scheme
+  takes `support.type`, which reads as a keyword in 4 of 65 and stays visible in 62.
+- A LINE COMMENT AND AN ITALIC RUN CARRIED BYTE-IDENTICAL BEGINS FOR OPPOSITE REASONS. Both read
+  `//(?=[^\n]*//)`: the italic bound REFUSES to open without its closer ahead on the line, and the
+  JavaScript comment DEMANDED a second `//` it never needs — so `var x = 1; // note` painted `note` as a
+  variable, three sites deep in the embedded grammar. Repairing the comment by that shared text took the
+  italic bound with it, and an unclosed `//` then opened a region TiddlyWiki refuses. The canary named it
+  in two spans. The comment sites read `//` and the italic site keeps its lookahead.
+- AN ATTRIBUTE VALUE SPANNING LINES NEEDS A REGION, NOT A MATCH. A filtered attribute carried across a
+  break painted nothing inside itself, its region naming itself while the interior fell to the editor's
+  own foreground. The same repair applied to the indirect and multi-valued forms BROKE them — their
+  interiors answer to a rule whose match runs to the end of the line, so an unbounded region let it
+  swallow the closer — and those two stand restored, with the reading they owe recorded rather than
+  half-built.
+- A PRAGMA ANSWERS ONLY ABOVE PROSE. A carrier opened with two lines of explanation and every signature
+  below it read as body text — the host builds ZERO definitions there, so the grammar's blank reading
+  stood correct and the specimen taught otherwise. The explanation now stands below the pragmas it
+  explains.
+- A LEDGER SERVES TWO SWEEPS. The widget-tag ruling reads idle over the 45-file corpus and explains 110 of
+  the host's own carriers; retiring it on the narrower reading dropped the reach pass from 99.5% to 97.1%.
+  No corpus carrier can make it live, either — the case wants an attribute quote that never closes, which
+  bleeds, which belongs to a degenerate carrier, which that witness exempts by design. A reason opening
+  HOST says so, and the summary counts those rulings rather than calling them dead.
 - A TEST THAT RE-DERIVES ITS TOOL'S READING HOLDS A SECOND IMPLEMENTATION, and the two drift apart in
   silence. `tools/invariants/a-test-reads-its-tool.test.js` searches for the class rather than waiting
   for an instance: every gate's test must read the gate's own verdict at least once, however many pure
@@ -868,7 +907,7 @@ back by upgrading, which is the definition this number answers to.
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 82 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 99 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
   emits no container node, so a scope over its content stands over text by construction.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses

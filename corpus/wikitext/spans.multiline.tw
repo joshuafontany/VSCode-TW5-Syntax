@@ -1,6 +1,3 @@
-Constructs that open on one line and close on another. A reader standing at the first line end
-sits inside each one, which is the position a region has to survive.
-
 \parameters (
 	size:"22pt"
 	colour:"red"
@@ -75,3 +72,7 @@ standalone="yes"?>
 <script type="text/x-unknown">
 a payload under a type no grammar claims
 </script>
+
+A PRAGMA ANSWERS ONLY ABOVE PROSE, so the explanation this carrier owes its reader stands INSIDE
+the first definition's body rather than above it. Every construct here opens on one line and closes
+on another, which is the position a region has to survive.

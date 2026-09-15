@@ -157,3 +157,4 @@ unnamed-delimiter text.html <- (none)   # a syntax-test file's wikitext body, op
 # So the marker keeps the entity name alone. The unity a reader sees in Gruvbox comes from that name
 # reaching both marker and interior there, and the 27 themes where it parts pay for four distinctions
 # holding everywhere.
+parts meta.filter <- punctuation.definition   # a filtered attribute value: the `{{{` and `}}}` carry structure and the filter between them carries its own name, so the two part. A value spanning lines needs the region — a match reads one line and no more, and such a value painted nothing inside itself before

@@ -16,6 +16,7 @@
 const KINDS = [
   ['meta.variable.call.*', /^meta\.variable\.(call|macrocall)/],
   ['meta.directive.variable.*', /^meta\.(directive\.variable|variable\.(macro|procedure|function|widget|pragma))\./],
+  ['meta.directive.parameters.*', /^meta\.directive\.parameters\./],
   ['meta.codeblock.*', /^meta\.codeblock\./],
   ['meta.embedded.*', /^(meta\.embedded\.|source\.(?!tiddlywiki5))/],
   ['comment.*', /^comment\./],

@@ -39,7 +39,7 @@
             "end": "(?=[\\s>\"'\\]])|$",
             "beginCaptures": {
                 "1": {
-                    "name": "keyword.other.scheme.lar.memetic-wikitext"
+                    "name": "keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext"
                 },
                 "2": {
                     "name": "punctuation.separator.scheme.lar.memetic-wikitext"
@@ -172,10 +172,10 @@
                     "captures": {
                         "1": {
                             "comment": "THE MARK IS PART OF THE NAME THE HOST READS. TiddlyWiki takes the whole run after `<<` as ONE variable name, so `/ahu` names one closing sigil and a reader meets one object — and measured over 65 bundled themes, ALL 65 painted the mark apart from the verb while the mark itself read as ordinary prose in 36 of them. The sigil name rides second so a theme ruling on it decides, and the published punctuation name stands first for a reader who rules on that.",
-                                        "name": "punctuation.definition.sigil.close.memetic-wikitext entity.name.function.sigil.memetic-wikitext"
+                                        "name": "punctuation.definition.sigil.close.memetic-wikitext"
                         },
                         "2": {
-                            "name": "entity.name.function.sigil.memetic-wikitext"
+                            "name": "entity.name.function.sigil.memetic-wikitext keyword.control.sigil.memetic-wikitext"
                         }
                     }
                 }
@@ -187,7 +187,7 @@
             "name": "markup.underline.link.ni.memetic-wikitext",
             "captures": {
                 "1": {
-                    "name": "keyword.other.scheme.ni.memetic-wikitext"
+                    "name": "keyword.other.scheme.ni.memetic-wikitext support.type.scheme.ni.memetic-wikitext"
                 },
                 "2": {
                     "name": "punctuation.separator.scheme.ni.memetic-wikitext"

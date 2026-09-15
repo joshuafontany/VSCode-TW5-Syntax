@@ -1,0 +1,8 @@
+<$link to="a quoted attribute value with no closing quote anywhere ahead
+
+A WIDGET'S QUOTED ATTRIBUTE VALUE CARRIES ACROSS A BLANK LINE. TiddlyWiki refuses the whole tag where
+no closing quote stands anywhere in the source, and builds the element across the break where one
+does — of eleven accepted start tags carrying a blank line, eight carry it inside a quoted value. So
+the string region carries on, and a cut landing inside one leaves the widget's own region standing.
+
+This carrier stands alone because an open quote consumes the rest of its source.

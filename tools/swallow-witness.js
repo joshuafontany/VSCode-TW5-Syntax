@@ -103,7 +103,13 @@ function ledger() {
     const [direction, key] = body.trim().split(/\s+/);
     if (!direction || !key) continue;
     const reason = rest.join('#').trim();
-    entries.push({ direction, key, reason, owed: /^OWED\b/.test(reason),
+    // A LEDGER SERVES TWO SWEEPS. This witness cuts the corpus; `still --host --reach` cuts the host's
+    // own carriers, and a ruling can stand idle here while explaining a hundred there — the widget
+    // ruling reads idle over 45 corpus files and answers 110 of the host's. A corpus can never make it
+    // live, either: the case needs an attribute quote that never closes, which bleeds, which belongs to
+    // a degenerate carrier, which this witness exempts by design. A reason opening HOST says so, and the
+    // summary counts those rulings rather than hiding them.
+    entries.push({ direction, key, reason, owed: /^OWED\b/.test(reason), host: /^HOST\b/.test(reason),
       re: new RegExp(`^${key.split('*').map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('.*')}$`) });
   }
   return entries;
@@ -184,7 +190,7 @@ let closed = 0;
   // rules spell reaches the same ledger line. Reporting the reason once per RULING rather than
   // once per scope keeps the debt readable as the grammar grows names.
   const unruled = [];
-  const stale = new Set(rulings.map((r) => `${r.direction} ${r.key}`));
+  const stale = new Set(rulings.filter((r) => !r.host).map((r) => `${r.direction} ${r.key}`));
   const owed = new Map();
   for (const finding of findings.values()) {
     const ruling = rulings.find((r) => r.direction === finding.direction && r.re.test(finding.key));
@@ -240,7 +246,8 @@ let closed = 0;
     + `stand open under some cut, ${unasked.length} go unasked (ceiling ${ceiling})`);
 
   console.log(`swallow-witness  ${probes} cut(s) across ${files} corpus file(s), ${closed} quote(s) closed to ask, `
-    + `${findings.size} divergence(s), ${owed.size} recorded, ${unruled.length} unruled, ${stale.size} ruling(s) explaining nothing`);
+    + `${findings.size} divergence(s), ${owed.size} recorded, ${unruled.length} unruled, `
+    + `${rulings.filter((r) => r.host).length} answering the host sweep, ${stale.size} ruling(s) explaining nothing`);
   process.exitCode = unruled.length === 0 && stale.size === 0 && unasked.length <= ceiling ? 0 : 1;
   return;
 })();

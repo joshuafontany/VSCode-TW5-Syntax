@@ -15,16 +15,6 @@ description: What a reader must meet as one thing and what a reader must tell ap
                 "Ecaption"
             ],
             "why": "A reader clicks the text, whether an author captioned it or let the title stand. Painted apart, the same act reads as two."
-        },
-        {
-            "what": "a closing sigil's mark and the verb it closes",
-            "specimen": "<<~ /ahu>>\n",
-            "words": [
-                "/",
-                "ahu"
-            ],
-            "scope": "text.html.tiddlywiki5.memetic-wikitext",
-            "why": "TiddlyWiki reads the whole run after `<<` as ONE variable name, so the mark and the verb are one name to the host and one object to a reader. Painted apart, a closing sigil reads as a stray slash beside an unrelated word."
         }
     ],
     "alike": [
@@ -116,6 +106,21 @@ description: What a reader must meet as one thing and what a reader must tell ap
                 "list",
                 "anAttribute"
             ]
+        },
+        {
+            "what": "a closing sigil's mark, and the verb it closes",
+            "scopes": [
+                "punctuation.definition.sigil.close.memetic-wikitext",
+                "keyword.control.sigil.memetic-wikitext"
+            ],
+            "specimen": "<<~ /ahu>>\n",
+            "words": [
+                "/",
+                "ahu"
+            ],
+            "scope": "text.html.tiddlywiki5.memetic-wikitext",
+            "least": 40,
+            "why": "A glyph reads as punctuation and a word reads as its family, so a reader can tell the mark that closes a sigil from the verb it closes. The verb names an act and reads as a keyword of the dialect; the mark carries structure and reads quiet."
         }
     ]
 }

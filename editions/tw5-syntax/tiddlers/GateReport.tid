@@ -68,32 +68,32 @@ gates-held: 44 of 44
         {
             "gate": "contrast",
             "held": true,
-            "said": "contrast-witness  275 stack(s) over 65 theme(s), 1409 prose reading(s), 3 above the bar of 16, 0 unruled, 0 explaining nothing"
+            "said": "contrast-witness  287 stack(s) over 65 theme(s), 1494 prose reading(s), 3 above the bar of 16, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  60 files, 511 scopes declared, 464 reached (floor 450), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  61 files, 516 scopes declared, 470 reached (floor 450), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
             "held": true,
-            "said": "dark-construct  325 construct(s) over 65 themes, 23 plain, 0 unaccounted"
+            "said": "dark-construct  338 construct(s) over 65 themes, 23 plain, 0 unaccounted"
         },
         {
             "gate": "delimiters",
             "held": true,
-            "said": "delimiter-inheritance  107 contentName rule(s) over 39 shape(s), 0 unruled"
+            "said": "delimiter-inheritance  108 contentName rule(s) over 40 shape(s), 0 unruled"
         },
         {
             "gate": "engine-behaviour",
             "held": true,
-            "said": "engine-witness  754 pattern(s) read against 840 corpus line(s), 0 that match differently, 0 unruled"
+            "said": "engine-witness  755 pattern(s) read against 847 corpus line(s), 0 that match differently, 0 unruled"
         },
         {
             "gate": "engine-witness",
             "held": true,
-            "said": "engine-witness  754 pattern(s) across 8 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "engine-witness  755 pattern(s) across 8 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "filter-witness",
@@ -113,12 +113,12 @@ gates-held: 44 of 44
         {
             "gate": "light-cone",
             "held": true,
-            "said": "light-cone  259 divergence(s) across 13 class(es), 10 quote(s) closed to ask; forward arm moved 23, backward arm moved 204, typo arm moved 87; 8 proven or unruled, 5 ruled without proof, 0 owed but reaching out"
+            "said": "light-cone  299 divergence(s) across 12 class(es), 10 quote(s) closed to ask; forward arm moved 19, backward arm moved 216, typo arm moved 98; 7 proven or unruled, 5 ruled without proof, 0 owed but reaching out"
         },
         {
             "gate": "must-fail",
             "held": true,
-            "said": "must-fail  8 specimen(s), 8 declaration(s), 0 that assert nothing"
+            "said": "must-fail  9 specimen(s), 9 declaration(s), 0 that assert nothing"
         },
         {
             "gate": "nesting-coverage",
@@ -148,7 +148,7 @@ gates-held: 44 of 44
         {
             "gate": "recovery-witness",
             "held": true,
-            "said": "recovery-witness  32 diagnostic(s) across 58 carrier(s), 16 code(s), 16 standing silent, 0 unruled, 0 explaining nothing"
+            "said": "recovery-witness  32 diagnostic(s) across 59 carrier(s), 16 code(s), 16 standing silent, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "rule-coverage",
@@ -203,7 +203,7 @@ gates-held: 44 of 44
         {
             "gate": "still",
             "held": true,
-            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 51 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 54.3% of corpus tokens ruled"
+            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 51 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 55.3% of corpus tokens ruled"
         },
         {
             "gate": "still-reach",
@@ -213,12 +213,12 @@ gates-held: 44 of 44
         {
             "gate": "swallow-witness",
             "held": true,
-            "said": "swallow-witness  1318 cut(s) across 45 corpus file(s), 10 quote(s) closed to ask, 10 divergence(s), 0 recorded, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "swallow-witness  1319 cut(s) across 45 corpus file(s), 10 quote(s) closed to ask, 10 divergence(s), 0 recorded, 0 unruled, 1 answering the host sweep, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "theme-collision",
             "held": true,
-            "said": "theme-collision  264485 token-reading(s) over 65 themes and 47 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
+            "said": "theme-collision  266890 token-reading(s) over 65 themes and 48 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
         },
         {
             "gate": "theme-parity",
