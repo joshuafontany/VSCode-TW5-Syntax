@@ -166,18 +166,47 @@ function isExpected(rules, file, scope) {
  * @param {string} scope
  * @returns {number[]}
  */
-function matchingRulings(rules, file, scope) {
+function matchingRulings(rules, file, scope, siblingsOf = () => []) {
+  const names = [scope, ...siblingsOf(scope)];
   const out = [];
   rules.forEach((r, i) => {
-    const matches = (r.scope === ''
+    const named = (name) => (r.scope === ''
       ? true
       : r.scope.startsWith('*.')
-        ? scope.endsWith(r.scope.slice(1))
-        : scope === r.scope || scope.startsWith(`${r.scope}.`)) &&
+        ? name.endsWith(r.scope.slice(1))
+        : name === r.scope || name.startsWith(`${r.scope}.`));
+    const matches = names.some(named) &&
       (r.file === null || file === r.file || file.endsWith(`/${r.file}`));
     if (matches) out.push(i);
   });
   return out;
+}
+
+/**
+ * The names each scope stands co-declared with — the other names one rule's `name` stacks beside it.
+ *
+ * A finding reports ONE name off a stack like `support.function.macro … entity.name.function.macro`,
+ * so a ruling naming a sibling in that stack answers for the same construct. A container comes from a
+ * separate rule and never joins the group, so the widening excuses no span a ruling never named. A
+ * `$N` capture placeholder matches any one segment.
+ *
+ * @param {string[]} declared  each rule's `name` / `contentName` string, as `declaredNames` returns them
+ * @returns {(scope: string) => string[]}
+ */
+function siblingsFrom(declared) {
+  const groups = declared.map((n) => n.trim().split(/\s+/));
+  const matcher = (name) => (/\$\d/.test(name)
+    ? ((re) => (scope) => re.test(scope))(new RegExp(`^${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\\\$\d/g, '[^.]+')}$`))
+    : (scope) => scope === name);
+  const indexed = groups.map((g) => g.map((name) => ({ name, is: matcher(name) })));
+  return (scope) => {
+    const out = new Set();
+    for (const g of indexed) {
+      if (!g.some((m) => m.is(scope))) continue;
+      for (const m of g) if (m.name !== scope && !/\$\d/.test(m.name)) out.add(m.name);
+    }
+    return [...out];
+  };
 }
 
 /**
@@ -247,7 +276,7 @@ function review(source, snapText, oracle) {
   return findings;
 }
 
-module.exports = { BASE, parseSnapshot, offsetAt, claims, verdicts, declines, readExpected, isExpected, matchingRulings, parsesAsWikitext, review };
+module.exports = { BASE, parseSnapshot, offsetAt, claims, verdicts, declines, readExpected, isExpected, matchingRulings, siblingsFrom, parsesAsWikitext, review };
 
 if (require.main === module) {
   const args = process.argv.slice(2);
@@ -256,6 +285,11 @@ if (require.main === module) {
   const rulings = expectedFile ? readExpected(fs.readFileSync(expectedFile, 'utf8')) : [];
   const rulingsUsedFile = (args.find((a) => a.startsWith('--rulings-used=')) || '').slice('--rulings-used='.length);
   const rulingsUsed = new Set();
+  // A ruling answers for every name its construct's rule co-declares, across every grammar the
+  // manifest registers.
+  const manifest = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'), 'utf8'));
+  const siblingsOf = siblingsFrom(manifest.contributes.grammars
+    .flatMap((g) => require('./grammar-scopes.js').declaredNames(path.join(__dirname, '..', g.path))));
   const camelcase = args.includes('--camelcase');
   const truncateArg = args.find((a) => a === '--truncate' || a.startsWith('--truncate='));
   const truncating = Boolean(truncateArg);
@@ -375,7 +409,7 @@ if (require.main === module) {
     scanned += 1;
     const source = fs.readFileSync(copy, 'utf8');
     for (const f of review(source, fs.readFileSync(snap, 'utf8'), oracle)) {
-      const matched = matchingRulings(rulings, files[i], f.scope);
+      const matched = matchingRulings(rulings, files[i], f.scope, siblingsOf);
       if (matched.length > 0) {
         for (const m of matched) rulingsUsed.add(m);
         ruled += 1;

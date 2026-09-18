@@ -302,3 +302,20 @@ test('the tool reports an overreach reading of its own', live, () => {
   assert.match(out, /agree everywhere they were asked|overreach/, out.slice(-800));
   assert.strictEqual(code, 0, out.slice(-800));
 });
+
+// A RULING NAMES A CONSTRUCT BY ANY OF ITS CO-DECLARED NAMES. The grammar stacks several names in one
+// rule's `name` — `support.function.macro … entity.name.function.macro` — and a finding reports ONE of
+// them, so a ruling written against a sibling matched nothing and read as explaining nothing. Measured:
+// seven rulings stood dead that way. A container scope comes from a separate rule and stays out, so
+// the widening excuses no span a ruling never named.
+test('a ruling written against a co-declared sibling explains the finding, and a container does not', () => {
+  const { matchingRulings, siblingsFrom } = require('./overreach-check.js');
+  const siblingsOf = siblingsFrom([
+    'variable.name.macro.test support.function.macro.test entity.name.function.macro.test',
+    'meta.variable.call.test'
+  ]);
+  const rules = readExpected('a.tw:support.function.macro   # sibling\na.tw:meta.variable.call   # container\n');
+  assert.deepStrictEqual(matchingRulings(rules, 'dir/a.tw', 'entity.name.function.macro.test', siblingsOf), [0]);
+  // Control: with no sibling knowledge, the reported name alone answers, as it always has.
+  assert.deepStrictEqual(matchingRulings(rules, 'dir/a.tw', 'entity.name.function.macro.test'), []);
+});
