@@ -122,15 +122,11 @@ tiddlywiki5.tw:punctuation.definition.tag        # and again
 # next builds an image node upstream and colours as one here, tooltip form included. Measured, so a
 # reader wondering whether the mark stops at the line end can stop wondering. What TiddlyWiki refuses
 # stands narrower than that — a source that carries nothing at all.
-tiddlywiki5.basic.tw:punctuation.definition.style.markup      # three style openers in a row: the marks carry the colour, and TiddlyWiki reads the second and third as content of the first
-tiddlywiki5.basic.tw:punctuation.definition.entity.css        # the class marks inside such an opener
-tiddlywiki5.basic.tw:entity.other.attribute-name.class.css    # and the class names beside them
+tiddlywiki5.basic.tw:punctuation.definition.style.markup      # an inline style opener with no closer before its paragraph ends: TiddlyWiki keeps the marks as text (`unterminated-styleinline`), and the grammar opens the run on its marks before it can see whether a closer stands
 tiddlywiki5.basic.tw:markup.bold                              # a bold run on the line after the closing mark, which the parser reads as content of the run above it
 tiddlywiki5.basic.tw:punctuation.definition.markup.begin.bold # the marks opening that run
 tiddlywiki5.basic.tw:punctuation.definition.markup.end.bold   # and closing it
-tiddlywiki5.tw:punctuation.definition.style.markup            # the same three openers, in the fixture that carries every construct
-tiddlywiki5.tw:punctuation.definition.entity.css              # the same reading
-tiddlywiki5.tw:entity.other.attribute-name.class.css          # the same reading
+tiddlywiki5.tw:punctuation.definition.style.markup            # the same unclosed inline opener, in the fixture that carries every construct
 tiddlywiki5.tw:markup.bold                                    # the same reading
 tiddlywiki5.tw:punctuation.definition.markup.begin.bold       # the same reading
 tiddlywiki5.tw:punctuation.definition.markup.end.bold         # the same reading
@@ -193,7 +189,6 @@ pragmas.signatures.tw:punctuation.definition.substitution.end   # the carrier's 
 # against the TIGHTEST cover, since such a claim asserts the character IS markup; a table, a cell or
 # a paragraph around it cannot turn a kept character into a mark. Judged by the widest cover, every
 # line below read as agreement.
-tiddlywiki5.tw:punctuation.definition.image   # OWED — an image whose source holds only whitespace. TiddlyWiki builds no image from `[img[ ]]` or `[img [ ]]` and keeps the text; the grammar paints all four brackets, its source pattern admitting an empty title
 tiddlywiki5.pragma.tw:punctuation.definition.link   # OWED — a bare `\rules` ends the pragma zone (rules.js:26 needs whitespace after the word), so every definition below reads as prose and an unclosed `<parameter>` from a function body nests the rest of the file; the grammar still reads definitions there
 tiddlywiki5.pragma.tw:punctuation.definition.mvv-display   # OWED — the same pragma zone the bare `\rules` above it closes
 tiddlywiki5.math.tw:punctuation.definition.tag.begin.html   # an element body TiddlyWiki reads INLINE: html.js:52-71 parses a body as blocks only where the rule ran in block mode or a BLANK LINE follows the tag, and this `<p>` stands inside a paragraph with text on the line after it, so the markup in its body stays text. Whether that blank line follows stands on the next line, which no TextMate pattern reads
@@ -208,8 +203,6 @@ tw5.com/tiddlers/widgets/ListWidget.tid:punctuation.definition.list   # OWED —
 # SURFACED WHEN THE CORPUS JOINED THE GATES. overreach-check ran over corpus/ only by hand while
 # gate-report skipped it, so the divergences below stood unreported. Each stands traced; OWED ones
 # retire with the fix that pays them.
-inline.transclusions.tw:string.unquoted.html   # OWED — a filtered transclusion closing on a styled suffix: TiddlyWiki closes `{{{ … }}suffix}` (filteredtranscludeinline.js:26 — `}}`, a style, then `}`), and the grammar knows only a literal `}}}`, so the prose after it reads as the transclusion's interior
-inline.transclusions.tw:meta.filter   # OWED — the same styled suffix the grammar never closes on
 pragmas.signatures.tw:string.quoted.double.html   # OWED — the carrier gives a `\define` a `((…))` default, which only a `\procedure` reads: TiddlyWiki takes `((a` as a default and `))` as the body's opening, and every line below it answers to that reading
 pragmas.signatures.tw:meta.variable.macro.body   # OWED — the same `((…))` default the carrier gives a `\define`
 pragmas.signatures.tw:entity.name.substitute-parameter   # OWED — the same `((…))` default the carrier gives a `\define`
@@ -219,13 +212,9 @@ pragmas.signatures.tw:variable.parameter   # OWED — the same `((…))` default
 pragmas.signatures.tw:keyword.control.directive   # OWED — the same `((…))` default the carrier gives a `\define`
 pragmas.signatures.tw:meta.directive.parameters   # OWED — the same `((…))` default the carrier gives a `\define`
 pragmas.signatures.tw:punctuation.definition.variable.parameters   # OWED — the same `((…))` default the carrier gives a `\define`
-tables.spans.tw:punctuation.definition.cell.colspan.left   # OWED — `<` opening a row joins no previous cell, so TiddlyWiki builds a cell holding the text `<` (table.js:52) while the grammar paints a colspan mark
-inline.links.tw:keyword.other.img   # OWED — `[img[]]` and an `[img[` with no closer build no image, and the grammar paints the opener's keyword before any closer stands
+inline.links.tw:keyword.other.img   # OWED — an `[img[` with no closer builds no image, and the grammar paints the opener's keyword before any closer stands
 inline.links.tw:keyword.other.ext   # OWED — an `[ext[` with no closer builds no ext link, and the grammar paints the opener's keyword before any closer stands
 spans.multiline.tw:punctuation.definition.tag.begin.html   # OWED — `<![CDATA[` names no element TiddlyWiki's html rule reads (its tag name admits `[a-zA-Z0-9\-\$\.]`), so the host keeps it as text while the grammar paints a tag
 spans.multiline.tw:punctuation.definition.tag.end.html   # OWED — the same `<![CDATA[` the host keeps as text
-inline.entities.tw:invalid.illegal.ambiguous-ampersand   # OWED — a verdict TiddlyWiki never passes: an ampersand run outside entity.js's `&#?[a-zA-Z0-9]{2,8};` stays text, raising nothing, and kept text unseats a verdict as squarely as a built node
-html.deprecated.tw:invalid.illegal.character-not-allowed-here   # OWED — a verdict TiddlyWiki never passes over a tag it keeps as text
-html.deprecated.tw:invalid.illegal.unexpected-equals-sign   # OWED — a verdict TiddlyWiki never passes over a tag it keeps as text
 html.deprecated.tw:punctuation.definition.tag.begin.html   # OWED — `<div ="x">` and `<div style==>` build no element, and the grammar paints their tags
 html.deprecated.tw:punctuation.definition.tag.end.html   # OWED — the same malformed tags the host keeps as text

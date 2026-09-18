@@ -15,6 +15,66 @@ attribute value's quote characters changed family. A reader who liked 2.2.1's lo
 back by upgrading, which is the definition this number answers to.
 
 ### Fixed
+- A VERDICT STANDS ONLY WHERE TIDDLYWIKI REFUSES OUT LOUD. An ampersand outside `entity.js`'s
+  `&#?[a-zA-Z0-9]{2,8};` window stays text, and a tag whose attribute list `html.js` cannot read —
+  `<div ="x">`, `<div style==>` — stays text too, and in both the parser raises no diagnostic. The
+  grammar painted `invalid.illegal.ambiguous-ampersand`, `…character-not-allowed-here` and
+  `…unexpected-equals-sign` there, a refusal the host never makes. The seven rules emitting them came
+  out, `MIGRATION.md` records the three names retired, and three expected-divergence rulings retire
+  with them. The two malformed tags still paint their brackets, which stays owed: a tag's opener
+  cannot see whether an attribute list it has not read yet will parse.
+- A SIGIL'S VERB READS ONLY INSIDE A CALL. The verb rule rode the dialect's root injection, so text
+  shaped like `<<~ set …>>` painted `set` as a keyword inside an HTML comment, a raw fence and a `$$$`
+  typed block, none of which builds a call. It rides its own injection now, keyed on the base's call
+  scope: it reads wherever TiddlyWiki builds the sigil and nowhere it does not, and the comment and the
+  raw text keep their own reading.
+- A RUN OF FOUR DASHES ENDS IN AN EM DASH. TiddlyWiki's dash rule, `-{2,3}(?!-)`, matches the LAST
+  three marks of a longer run, so `----` in prose renders a hyphen and an em dash and `-----` two
+  hyphens and one. The grammar refused an em dash with a dash before it and read the whole run as text.
+  The last three marks read as the em dash they render; a run alone on its own line stays a horizontal
+  rule, and eight darkness entries retire.
+- AN IMAGE NEEDS A SOURCE THAT HOLDS SOMETHING. `image.js` skips whitespace after the inner `[` and
+  then needs at least one character before `]]`, so `[img[ ]]`, `[img [ ]]` and `[img[]]` build no
+  image and TiddlyWiki keeps the brackets as text. The grammar painted all four brackets and the
+  keyword. The opener now refuses a source it can see holds nothing on its own line; a source carrying
+  a title builds as before, whitespace around it and all. One expected-divergence ruling retires.
+- A FILTER VARIABLE READS A NAME, THEN PARAMETERS. `parseFilterVariable` splits a `<…>` or `(…)`
+  operand at its first whitespace — a name, then the rest read as a call's parameters — so
+  `<now [UTC]YYYY0MM0DD>` calls `now` with a date format. The grammar painted the whole text as ONE
+  variable name, which read the format in the name's colour and left its literal `]` inside a token
+  the editor matches brackets in, where it stole the filter run's own `[` and painted the run's closer
+  red. The name reads as a name and the rest as a call's parameters, a string like any other; a
+  variable holding no whitespace stays one name. One owed bracket-ledger entry retires.
+- A STYLE BLOCK CLOSES ONLY ON A CLOSER AT THE FIRST COLUMN. `styleblock.js` ends its body on
+  `^@@`, and `parseBlocksTerminated` skips indentation before it asks — so an indented `@@` closes
+  nothing: at a block's head it opens a nested, empty block, and inside a paragraph it stays text. The
+  grammar closed on `^\s*@@`, and from the first indented closer in `tiddlywiki5.tw` every `@@` below
+  flipped parity, reading openers as closers and a style as prose. A closer carrying text after its
+  marks also hands that text to a paragraph that runs to the next blank line, where the grammar opened
+  a fresh block on the line below. Traced block by block against the host, every style block in both
+  pinned samples now opens and closes where TiddlyWiki's does; four sample rulings that explained the
+  flipped parity retire idle, and the two left restate the one divergence they still carry.
+- A TABLE CELL'S MARKS READ IN THE HOST'S ORDER. `table.js` reads a vertical-alignment mark, then
+  spaces, then the heading bang, and the grammar diverged in five places: a `<` opening a row painted a
+  colspan where the host keeps the text (the span needs a cell before it); a tab before `!` painted a
+  heading where the host skips spaces alone; `|^ !x|` left the bang bare where the host builds a `th`;
+  `^^^` and `,,,` painted nothing where the host hands the first mark back to alignment; and a class
+  row opened after indentation where every row opens at the first column. Five pattern swaps, no name
+  moved, and one expected-divergence ruling retires with the specimen that now carries a real span.
+- A FILTERED TRANSCLUSION CLOSES WHERE TIDDLYWIKI CLOSES IT. The host ends `{{{ … }}suffix}` on `}}`,
+  an optional style, then `}` (`filteredtranscludeinline.js`, and the block rule alike), so `}}}` is
+  only the closer carrying an empty style. The grammar spelled the literal `}}}` alone, never closed on
+  a style, and carried the transclusion across the blank line below — painting 85 spans of prose as
+  filter text. Both forms close on the styled suffix now, the inner bounds stop at `}}`, and so does a
+  bare-title run, which otherwise ate the closer itself. The attribute form keeps its literal `}}}`,
+  because `parseutils.js` reads a filtered value only there. Two expected-divergence rulings and one
+  darkness entry retire with it.
+- A PRAGMA THE GRAMMAR REFUSES SHUTS THE ZONE FOR EVERY PRAGMA BELOW IT. The `\widget` rule demanded
+  a dollar that `fnprocdef.js` never asks for — `[^(\s]+` names all three kinds — so a widget named
+  without one opened no region, its body line met the zone's own close, and the zone, which opens only
+  at the start of the source, stayed shut: a `\function` and two `\parameters` below it read as prose
+  while TiddlyWiki built every one. A one-way latch wears a swallow's face. The widget name now reads
+  with or without its dollar, `$:/` still excluded, and eight darkness entries retire with it.
 - THE ORACLE'S WALK KEEPS WHAT A PRAGMA NESTS. `flatten(tree, {sameSpace: true})` read a child
   starting past its parent's END as a restarted coordinate space, and `parsePragmas` nests the whole
   document after a definition beneath it — so every construct after a leading pragma vanished from
@@ -953,7 +1013,7 @@ back by upgrading, which is the definition this number answers to.
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 136 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 125 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
   emits no container node, so a scope over its content stands over text by construction.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses
@@ -1205,6 +1265,30 @@ back by upgrading, which is the definition this number answers to.
   region the grammar never closed — and the ladder reads structure before kind word, so a cause
   outranks the symptom it produced. The control cuts one class from the ladder and the gate reds.
 ### Changed
+- A HEADING'S TEXT READS AS MARKUP, NOT AS A DECLARED NAME. It wore `entity.name.section` alone, the
+  shape markdown publishes, and themes rule on the `entity.name` root a transclusion's title and a
+  call's name share, so heading text read as one colour with a transclusion in 33 of 65 themes and
+  with a call's name in 18. It keeps the published name and carries `markup.heading.section` last:
+  measured, 17 and 9. Two legibility floors re-seat on the ruling, recorded beside it in
+  `corpus/legibility-floor.txt` — an entity against a heading 59 to 57, a bare external link against a
+  heading 65 to 64 — and no other pair moves down.
+- A SIGIL'S `~` READS AS THE DIALECT'S KEYWORD. TiddlyWiki reads `<<~ set …>>` as a call on a
+  variable spelled `~`, and the base names it the called name, which read in the verb's colour in no
+  bundled theme. The dialect names it beside that reading as the sigil's MARKER —
+  `punctuation.definition.sigil.marker` then `keyword.control.sigil.marker`, so the keyword decides
+  the colour — and it is a marker rather than an opener because closers carry it too (`<<~/ahu>>`).
+  It rides only an injection keyed on the base's call-name scope, so a `~` in prose, in a comment, in
+  a raw fence or in a typed block keeps its own reading, and the word "macro" in a sentence stays
+  prose. The sigil relation's reason restates that each glyph reads as what it does: the marker as the
+  dialect's keyword, the `/` close mark as quiet punctuation.
+- A CALL'S ARGUMENT KEY PARTS FROM THE NAME IT IS PASSED TO. The key carries
+  `support.type.property-name.argument` appended after `entity.other.attribute-name.argument`, which
+  stays first for every theme ruling on it. A theme painting `entity.name.function` and
+  `entity.other.attribute-name` alike — gruvbox paints both #fabd2f, and 20 of 65 themes read name and
+  key as one colour — now rules on the property-name family apart: the call-against-argument relation
+  measures 63 of 65 where it measured 45, and re-seats there. A widget's attribute keeps its own
+  family alone, because extending the name to it drops the re-seated `a widget vs a call` floor. No
+  legibility floor falls, and colour-witness flattens nothing.
 - EVERY OPENER SEATS IN ONE NAMESPACE, and a called thing reads as a widget does. A reader meets
   `{{`, `<<`, `((`, `<`, `<$` and `<%` as one gesture — something opens here — so each carries a
   `punctuation.definition.tag.*` name beside its own. A macro's name carries

@@ -42,7 +42,8 @@ test('a heading stripped of the names themes rule on stands named', live, () => 
       const file = path.join(samples, name);
       fs.writeFileSync(file, fs.readFileSync(file, 'utf8')
         .replaceAll('markup.heading.1.tiddlywiki5 ', '')
-        .replaceAll(' entity.name.section.tiddlywiki5', ''));
+        .replaceAll(' entity.name.section.tiddlywiki5', '')
+        .replaceAll(' markup.heading.section.tiddlywiki5', ''));
     }
   }, ['tools/dark-construct.js']);
   assert.match(out, /meta\.heading\.heading-1\.tiddlywiki5 stands dark/, out.slice(-600));

@@ -13,6 +13,13 @@
 # EACH SURFACE KEEPS ITS OWN TAIL, so a rule reaches a call's argument alone or a widget's
 # attribute alone, and a rule on `entity.other.attribute-name` reaches both.
 #
+# A CALL'S ARGUMENT KEY ALSO CARRIES `support.type.property-name.argument`, appended last, so it
+# parts from the called name where a theme paints `entity.name.function` and
+# `entity.other.attribute-name` alike — gruvbox paints both #fabd2f. The published attribute name
+# still stands for every theme ruling on it; the appended name decides only where a theme rules on
+# the property-name family. A widget's attribute does not take it: the widget-against-call floor
+# stands re-seated on the one-namespace ruling, and the attribute's family is what holds it there.
+#
 # THE SEPARATORS PART CORRECTLY, and the host says why. `parseutils.js#parseMacroParameterAsAttribute`
 # records which of `=` and `:` an author wrote in `node.assignmentOperator`, then opens the
 # filtered, indirect, macro, MVV and substituted value grammars only when it reads `=`. A widget
@@ -32,7 +39,9 @@
 #        ^^^^^ entity.other.attribute-name.argument.tiddlywiki5
 #        ^^^^^ variable.parameter.tiddlywiki5
 #        ^^^^^ - entity.other.attribute-name.html.tiddlywiki5
+#        ^^^^^ support.type.property-name.argument.tiddlywiki5
 #                  ^^^^^ entity.other.attribute-name.argument.tiddlywiki5
+#                  ^^^^^ support.type.property-name.argument.tiddlywiki5
 #             ^ keyword.operator.assignment.tiddlywiki5
 #                       ^ keyword.operator.assignment.tiddlywiki5
 # ^^^^^^ variable.name.macro.tiddlywiki5
@@ -43,6 +52,7 @@
 <$link to="x">go</$link>
 #      ^^ entity.other.attribute-name.html.tiddlywiki5
 #      ^^ - entity.other.attribute-name.argument.tiddlywiki5
+#      ^^ - support.type.property-name.argument.tiddlywiki5
 #        ^ punctuation.separator.key-value.html.tiddlywiki5
 #        ^ - keyword.operator.assignment.tiddlywiki5
 

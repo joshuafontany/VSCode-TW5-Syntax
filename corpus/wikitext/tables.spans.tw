@@ -1,7 +1,7 @@
 |A caption |c
 |!Header |!Second |h
 |left |right |
-|<|spanned left |
+|left |<|
 |>|spanned right |
 |~|spanned down |
 |Body |Cell |

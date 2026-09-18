@@ -30,6 +30,7 @@
 #     ^^^^^^^^^ text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
 >
 >    @@
-#^^^^^^ text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.end.bottom.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.end.tiddlywiki5
+#^^^^ text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5
+#    ^^ text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.begin.tiddlywiki5
 >
 >    

@@ -4,8 +4,8 @@ A theme rule and an `editor.tokenColorCustomizations` entry both name a scope. A
 moves takes the reader's colour with it, and VS Code reports nothing: the rule simply stops
 matching, and the construct goes the colour of prose.
 
-This repository declares **460** scope names at `v2.2.1` and **497** at `2.3.0`. Between them,
-**105** names stand gone and **142** stand new. Every gone name appears below, with what it
+This repository declares **460** scope names at `v2.2.1` and **521** at `2.3.0`. Between them,
+**108** names stand gone and **169** stand new. Every gone name appears below, with what it
 stands as now or why it retired.
 
 The table derives from the two grammars rather than from a hand-written list, and
@@ -24,7 +24,7 @@ they painted the colour of prose in every bundled theme, and they did so from th
 were written.
 
 Their replacements put the root first and keep the qualifier as a suffix, so a rule on the
-family root reaches the construct and a deeper rule can still single it out. **39 of the 105**
+family root reaches the construct and a deeper rule can still single it out. **39 of the 108**
 gone names moved for exactly that reason.
 
 If your customization named one of these, it was already painting nothing. Adopting the new
@@ -124,7 +124,7 @@ same 55 of 65 themes through the same `markup.heading` rules, so nothing a reade
 
 ## Names that retired
 
-### The `invalid.*` family, 12 names to 4
+### The `invalid.*` family, 12 names to 1
 
 A grammar marks invalid what TiddlyWiki refuses, never what a different language retired.
 TiddlyWiki parses any tag name and any attribute name into a node, so `<center>`, `<dir>` and
@@ -132,6 +132,11 @@ TiddlyWiki parses any tag name and any attribute name into a node, so `<center>`
 sites — and the tags and attributes carry their ordinary `entity.name.tag` and
 `entity.other.attribute-name` names. A construct that drew a verdict and no longer draws one
 now paints as what it is.
+
+A verdict answers to a refusal the host SAYS, too. TiddlyWiki keeps an ampersand outside
+`entity.js`'s window and a tag whose attribute list it cannot read as plain text, and raises no
+diagnostic over either, so the three verdicts that stood there invented a refusal. They came out,
+and the characters read as the text the host keeps.
 
 | retired | why |
 | --- | --- |
@@ -143,6 +148,9 @@ now paints as what it is.
 | `invalid.illegal.no-longer-supported.html.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
 | `invalid.illegal.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
 | `invalid.illegal.unrecognized-tag.html.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
+| `invalid.illegal.ambiguous-ampersand.html.tiddlywiki5` | TiddlyWiki keeps the ampersand as text and raises nothing |
+| `invalid.illegal.character-not-allowed-here.html.tiddlywiki5` | TiddlyWiki keeps the malformed tag as text and raises nothing |
+| `invalid.illegal.unexpected-equals-sign.html.tiddlywiki5` | TiddlyWiki keeps the malformed tag as text and raises nothing |
 
 ### The memetic dialect's own vocabulary, 30 names
 

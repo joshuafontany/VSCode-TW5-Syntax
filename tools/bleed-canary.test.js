@@ -32,24 +32,33 @@ test('no sample colours the sentence after it', live, () => {
   assert.strictEqual(code, 0, out.slice(-400));
 });
 
+// The samples may already end inside a construct the parser carries — an indented `@@` closes no
+// style block in TiddlyWiki, so `tiddlywiki.styleblock.tw` ends inside one — and the stray below
+// adds exactly one more. The count before the stray comes from the gate's own reading.
+const inside = (out) => Number((out.match(/(\d+) ending inside a construct TiddlyWiki also carries/) || [0, 0])[1]);
+
 test('a sample ending inside a construct the parser carries reads as agreement', live, () => {
   // A bare `@@` opens a style block with no style and closes nothing, so it runs to the end of the
   // tiddler — TiddlyWiki says as much in an `unterminated-styleblock` diagnostic. The grammar
   // colouring the sentence after it agrees with the parser, and the gate holds.
+  const before = inside(runTool('bleed-canary.js', ARGS).out);
   const stray = (sandbox) =>
     fs.appendFileSync(path.join(sandbox, 'tests', 'samples', 'canary-control.tw'), '\n@@\n');
   const { code, out } = runInSandbox(stray, ['tools/bleed-canary.js'], ARGS);
-  assert.match(out, /0 bleeding, 1 ending inside a construct TiddlyWiki also carries/, out.slice(-600));
+  assert.match(out, /0 bleeding, \d+ ending inside a construct TiddlyWiki also carries/, out.slice(-600));
+  assert.strictEqual(inside(out), before + 1, out.slice(-600));
   assert.strictEqual(code, 0, out.slice(-600));
 });
 
 test('dropping the parser question puts that sample on the report', live, () => {
   // The same sandbox, asked without the reading. What comes back names the state these two gates
   // stood in while a prefix list decided the matter, so the reading has something to decide.
+  const before = inside(runTool('bleed-canary.js', ARGS).out);
   const stray = (sandbox) =>
     fs.appendFileSync(path.join(sandbox, 'tests', 'samples', 'canary-control.tw'), '\n@@\n');
   const { code, out } = runInSandbox(stray, ['tools/bleed-canary.js'], [...ARGS, '--strict']);
-  assert.match(out, /1 bleeding/, out.slice(-600));
+  assert.match(out, new RegExp(`${before + 1} bleeding`), out.slice(-600));
+  assert.match(out, /canary-control\.tw bleeds/, out.slice(-600));
   assert.match(out, /meta\.styleblock\.definition\.body/, out.slice(-600));
   assert.notStrictEqual(code, 0, 'the canary must fail the gate, not only print');
 });

@@ -25,7 +25,7 @@
 
 # ── the declaration that does nothing ───────────────────────────────────────────────────────────
 
-inert string.quoted <- entity.other+keyword.operator+punctuation.definition+string.quoted+variable.parameter   # OWED a removal. A dynamic bracket parameter `name=[[value]]` spells itself as a `match` and declares a `contentName` beside it. vscode-textmate reads that field on a begin/end region and nowhere else, so the declaration parses, reports nothing and moves no token — measured on every run of this gate, with and without the field, against a control on a begin/end rule where the field DOES move the reading. Capture 4 already names the interior, so removing the field changes no token; it stands as a declaration a later reader would take for a promise
+inert string.quoted <- entity.other+keyword.operator+punctuation.definition+string.quoted+support.type+variable.parameter   # OWED a removal. A dynamic bracket parameter `name=[[value]]` spells itself as a `match` and declares a `contentName` beside it. vscode-textmate reads that field on a begin/end region and nowhere else, so the declaration parses, reports nothing and moves no token — measured on every run of this gate, with and without the field, against a control on a begin/end rule where the field DOES move the reading. Capture 4 already names the interior, so removing the field changes no token; it stands as a declaration a later reader would take for a promise
 
 # ── the content covers its own marks ────────────────────────────────────────────────────────────
 # A zero-width bound consumes nothing, so `contentName` spans the delimiters too and the parting
@@ -38,9 +38,9 @@ covering meta.attribute <- (none)   # a filtered, indirect or macro-valued attri
 covering meta.embedded <- (none)   # a tiddler body whose header declared a type, opened behind the blank line that ends the field block. No mark stands at either bound, so no delimiter exists to inherit anything
 covering string.quoted <- (none)   # a bracketed attribute value, `attr=[[value]]`. The content spans the brackets and an inner match re-names the interior, so the interior carries the string scope twice. Harmless to a theme, which matches a scope rather than counting it; it reads as a redundancy rather than a parting
 covering text.substituted <- (none)   # a substituted attribute value in backticks, its bounds behind the fences. The inner patterns name the fences and the substitution injection reaches the interior
-covering text.substituted <- entity.other+keyword.operator+variable.parameter   # the same value written as a named parameter, so the parameter name and the `=` carry their own names and the backticks fall inside the content. Nothing parts
+covering text.substituted <- entity.other+keyword.operator+support.type+variable.parameter   # the same value written as a named parameter, so the parameter name and the `=` carry their own names and the backticks fall inside the content. Nothing parts
 covering variable.call <- (none)   # a macro-valued attribute, `attr=<<call>>`. The content spans the whole call including its angles, and the call's own rules name the parts inside
-covering variable.call <- entity.other+keyword.operator+variable.parameter   # the same call written as a named parameter. The name and the `=` carry their own names; the angles fall inside the content
+covering variable.call <- entity.other+keyword.operator+support.type+variable.parameter   # the same call written as a named parameter. The name and the `=` carry their own names; the angles fall inside the content
 covering variable.parameter <- keyword.operator+variable.parameter   # a pragma parameter whose default stands in double parens. Same shape as the four quoted defaults, and the same verdict
 
 # ── a parting that serves a reader ──────────────────────────────────────────────────────────────

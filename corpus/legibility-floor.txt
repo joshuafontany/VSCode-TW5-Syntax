@@ -110,7 +110,7 @@
 65 a bare external link  vs  a captioned external link
 65 a bare external link  vs  a filter run
 65 a bare external link  vs  a hard-linebreak run
-65 a bare external link  vs  a heading
+64 a bare external link  vs  a heading
 65 a bare external link  vs  a macro definition
 65 a bare external link  vs  a multi-value display
 65 a bare external link  vs  a parameters directive
@@ -749,7 +749,7 @@
 59 a dash  vs  a list item
 59 a heading  vs  a transclusion
 59 a multi-value display  vs  strikethrough
-59 an entity  vs  a heading
+57 an entity  vs  a heading
 59 an entity  vs  a quote block
 59 an entity  vs  a suppressed link
 59 bold  vs  a hard-linebreak run
@@ -980,4 +980,20 @@
 #
 # A FLOOR LOWERED WITHOUT ITS RULING HIDES THE NEXT REGRESSION. These seven ratchet from here, and
 # a loss outside the ruling's own reach fails this gate as loudly as any other would.
+
+# 2026-09-18: TWO RE-SEATED, on a ruling that a heading is markup rather than a declared name.
+#
+# A heading's text wore `entity.name.section` alone — the shape markdown publishes — and themes rule
+# on the `entity.name` root a transclusion's title and a call's name also sit under, so the three
+# read alike: heading text against a transclusion one colour in 33 of 65, against a call's name in
+# 18. It keeps the published name and carries `markup.heading.section` last, which is what the text
+# IS, and which reads apart from the transclusion in all but 17 and from the call in all but 9. The
+# markdown shape shares a root with every name; the markup family shares it with none of them.
+# Two pairs of 820 carry the price, each re-seated to the reading the ruling delivers:
+#   an entity  vs  a heading                            59 -> 57
+#   a bare external link  vs  a heading                 65 -> 64
+#
+# The zero-cost names stood priced and declined: `entity.name.type` buys almost nothing (gruvbox
+# paints it yellow too), and `support.class` and `entity.other.inherited-class` name what a heading
+# is not.
 

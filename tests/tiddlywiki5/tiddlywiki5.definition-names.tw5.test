@@ -10,9 +10,10 @@
 # A name the grammar refuses reads as paragraph text, and an author writing tiddlers on disk sees
 # prose where a definition stands.
 #
-# The widget keeps its dollar REQUIRED, and that narrowing earns its place from the host rather
-# than from taste: widget.js resolves a custom widget by looking up "$" + the element's type, so a
-# widget declared without the dollar defines a variable no element can ever reach.
+# A widget's name reads with or without its dollar, because fnprocdef.js reads `[^(\s]+` for all
+# three kinds and builds the definition either way. widget.js resolves a custom widget by looking
+# up "$" + the element's type, so a name without the dollar defines a variable no element reaches —
+# and it still stands in pragma mode, so every pragma below it goes on reading as a pragma.
 
 ! A define takes a dollar in its name
 
@@ -30,7 +31,18 @@
 \function $f() [tag[Task]]
 #         ^^ entity.name.variable.function.tiddlywiki5
 
-! A widget requires one, because a widget without it resolves to nothing
+! A widget takes one
 
 \widget $my.thing() body
 #       ^^^^^^^^^ entity.name.variable.widget.tiddlywiki5
+
+! A widget without one still defines, and its body reads as a body
+
+\widget widget-without-a-dollar() body
+#       ^^^^^^^^^^^^^^^^^^^^^^^ entity.name.variable.widget.tiddlywiki5
+#                                  ^^^^ meta.variable.widget.body.tiddlywiki5
+
+! A system title is no widget name
+
+\widget $:/sys() body
+#       ^^^^^^ - entity.name.variable.widget.tiddlywiki5

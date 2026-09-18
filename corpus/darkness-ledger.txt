@@ -18,17 +18,6 @@
 #
 # `node tools/darkness-witness.js --list` prints every dark line in this form, keys derived.
 
-# A RUN OF FOUR OR MORE DASHES. TiddlyWiki's dash rule `-{2,3}(?!-)` matches the last marks of a
-# longer run, so `----` renders a hyphen and an em dash. The grammar reads the run as plain text.
-corpus/wikitext/blocks.rules.tw  dash  LOST  "A ---- run inside prose."  # OWED — a four-dash run the host renders as a hyphen and an em dash
-tests/samples/test.html.tw  dash  LOST  "----asdf <!-- Invalid content after hr -->"  # OWED — a four-dash run the host renders as a hyphen and an em dash
-tests/samples/tiddlywiki5.lists.tw  dash  LOST  "* ----"  # OWED — a four-dash run the host renders as a hyphen and an em dash
-tests/samples/tiddlywiki5.lists.tw  dash  LOST  "* -----"  # OWED — a five-dash run the host renders as two hyphens and an em dash
-tests/samples/tiddlywiki5.lists.tw  dash  LOST  "* -- --- ---- -----"  # OWED — the four- and five-dash runs after the en and em dash
-tests/samples/tiddlywiki5.tw  dash  LOST  "* ----"  # OWED — a four-dash run the host renders as a hyphen and an em dash
-tests/samples/tiddlywiki5.tw  dash  LOST  "* -----"  # OWED — a five-dash run the host renders as two hyphens and an em dash
-tests/samples/tiddlywiki5.tw  dash  LOST  "* -- --- ---- -----"  # OWED — the four- and five-dash runs after the en and em dash
-
 # A LIST ITEM AFTER A LINE CLOSING AN HTML BLOCK. TiddlyWiki keeps the list open past `</div> run`
 # and opens a fresh item on the next `*`. The grammar has fallen into a paragraph by then, so the
 # marker reads as prose — and reads so with the whole list standing alone.
@@ -38,8 +27,6 @@ tests/samples/tiddlywiki5.inline.widgets.tw  list  MISS  "* Inline <span>"  # OW
 tests/samples/tiddlywiki5.inline.widgets.tw  list  MISS  "* <$my-widget"  # OWED — the host opens a fresh item here; the grammar reads a paragraph
 tests/samples/tiddlywiki5.tw  list  MISS  "* Inline <span>"  # OWED — the host opens a fresh item here; the grammar reads a paragraph
 tests/samples/tiddlywiki5.tw  list  MISS  "* <$my-widget"  # OWED — the host opens a fresh item here; the grammar reads a paragraph
-tests/samples/tiddlywiki5.basic.tw  list  LOST  "@@* In TW5 wikitext it's legal to start any block definition here,"  # OWED — the host builds a list item behind the `@@`; the grammar reads the list alone and loses this line in place
-tests/samples/tiddlywiki5.tw  list  LOST  "@@* In TW5 wikitext it's legal to start any block definition here,"  # OWED — the host builds a list item behind the `@@`; the grammar reads the list alone and loses this line in place
 
 # A WIDGET'S ATTRIBUTES ACROSS LINES. The widget opens at line 81 and TiddlyWiki reads every line
 # below as its own — backtick-substituted values spanning lines among them. The grammar reads none
@@ -51,16 +38,6 @@ tests/samples/tiddlywiki5.inline.widgets.tw  html  MISS  "paragaph continues, th
 tests/samples/tiddlywiki5.inline.widgets.tw  html  MISS  "```"  # OWED — the triple backtick closing it
 tests/samples/tiddlywiki5.inline.widgets.tw  html  MISS  "fitler=\"[filter[test]]\" #broken"  # OWED — an attribute the host still reads as the widget's own
 corpus/wikitext/html.multiline-tags.tw  html  MISS  "name=\"targetTiddler\""  # OWED — an attribute on a later line of a multi-line tag
-
-# DEFINITIONS THE HOST BUILDS AND THE GRAMMAR PASSES OVER.
-corpus/wikitext/definitions.forms.tw  fnprocdef  MISS  "\\widget widget-without-a-dollar()"  # OWED — the host builds a `\widget` whose name carries no dollar; the grammar reads no line of it, even alone
-corpus/wikitext/definitions.forms.tw  fnprocdef  MISS  "body"  # OWED — that definition's body
-corpus/wikitext/definitions.forms.tw  fnprocdef  MISS  "\\end"  # OWED — that definition's close
-corpus/wikitext/definitions.forms.tw  fnprocdef  LOST  "\\function fn-body-is-a-filter()"  # OWED — the grammar reads this definition alone and loses it in place
-corpus/wikitext/definitions.forms.tw  fnprocdef  LOST  "[tag[Task]] :sort[title]"  # OWED — that definition's filter body
-corpus/wikitext/definitions.forms.tw  fnprocdef  LOST  "\\end"  # OWED — that definition's close
-corpus/wikitext/definitions.forms.tw  parameters  LOST  "\\parameters(a:one,b:\"two\")"  # OWED — the grammar reads this pragma alone and loses it in place
-corpus/wikitext/definitions.forms.tw  parameters  LOST  "\\parameters ($a:\"one\")"  # OWED — the grammar reads this pragma alone and loses it in place
 
 # ITALIC ACROSS LINES. TiddlyWiki carries italic across a line inside one block. The grammar's
 # italic opens only where its close stands on the same line — `//(?=[^\n]*//)` — the bound that
@@ -76,7 +53,6 @@ corpus/wikitext/spans.multiline.tw  mvvdisplayinline  MISS  ")))"  # OWED — th
 
 # CONSTRUCTS A REGION ABOVE HOLDS. Each reads as itself alone and as something else in place.
 corpus/wikitext/degenerate.unterminated.tw  html  LOST  "<div class=\"never-closed\">"  # OWED — the host builds this element; a region opened above it holds the grammar here
-corpus/wikitext/inline.transclusions.tw  codeinline  LOST  "`[tag[a` as its filter and `b]] ` as its tooltip rather than reading one filter operand:"  # OWED — two code runs the grammar reads alone and loses in place, a region above still holding this line
 corpus/wikitext/inline.links.tw  extlink  LOST  "which is the reading a reader sees: [ext[https://example.com/unclosed"  # OWED — the host builds this external link; the grammar reads it alone and loses it in place
 tests/samples/tiddlywiki5.lists.tw  codeinline  LOST  "* `raw``raw`not raw"  # OWED — the host builds two code runs side by side; the grammar reads each alone and loses them together
 tests/samples/tiddlywiki5.tw  codeinline  LOST  "* `raw``raw`not raw"  # OWED — the host builds two code runs side by side; the grammar reads each alone and loses them together
