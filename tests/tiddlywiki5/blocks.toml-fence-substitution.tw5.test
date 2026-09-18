@@ -1,0 +1,35 @@
+# SYNTAX TEST "text.html.tiddlywiki5.test" "A macro-body substitution reaches every embedded fence alike, `toml` included"
+
+# `text.html.tiddlywiki5.substitution` keys on `L:meta.variable.macro.body.tiddlywiki5`, an
+# ANCESTOR scope: a TextMate injection tests the whole scope path, so a `\define` body's own
+# ancestor scope still stands wherever a fence sits inside it — `toml`, `js`, `css`, every
+# embedded language alike — and the injection fires inside the fence too. An injection selector's
+# `-` exclusion answers only for scopes standing BEFORE its anchor; `meta.embedded.block.toml` and
+# `markup.fenced_code.block.tiddlywiki5` both stand AFTER the anchor, deeper in the stack, so
+# excluding either leaves the paint unchanged. `toml` reaches exactly as far as every other
+# embedded language a `\define` body carries, which is the shared, grammar-wide reach this pins —
+# not a scope unique to `toml`. A CONTROL below shows a `\procedure` body carries none of it: the
+# injection's own comment states a `\procedure` body never takes text substitution, so nothing
+# here answers to `toml` alone.
+
+\define fenced-toml-takes-substitution()
+```toml
+key = "before $param$ after"
+#      ^ text.html.tiddlywiki5 meta.embedded.block.toml source.toml.tw5-syntax string.quoted.double.toml
+#             ^^^^^^^ text.html.tiddlywiki5 string.quoted.double.toml markup.other.variable.substitute-parameter.tiddlywiki5
+```
+\end
+
+\procedure fenced-toml-in-a-procedure-body-takes-none()
+```toml
+key = "before $param$ after"
+#      ^ text.html.tiddlywiki5 meta.embedded.block.toml source.toml.tw5-syntax string.quoted.double.toml
+#             ^^^^^^^ string.quoted.double.toml - markup.other.variable.substitute-parameter.tiddlywiki5
+```
+\end
+
+```toml
+key = "before $param$ after, outside any definition"
+#      ^ text.html.tiddlywiki5 meta.embedded.block.toml source.toml.tw5-syntax string.quoted.double.toml
+#             ^^^^^^^ string.quoted.double.toml - markup.other.variable.substitute-parameter.tiddlywiki5
+```

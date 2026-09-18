@@ -274,6 +274,23 @@ back by upgrading, which is the definition this number answers to.
   own digest around the pair, so an edit names itself.
 
 ### Added
+- A `toml` FENCE READS FULL TOML 1.1, PRIVATELY. VS Code ships no TOML grammar, so a `toml` fence
+  coloured only for a reader who happened to install one. `syntaxes/toml.tw5-syntax.json` hand
+  ports sublimehq/Packages `TOML/TOML.sublime-syntax` @ `2697dd8` (the only grammar, Sublime or
+  TextMate, with full TOML 1.1 coverage at the time of the port; same permissive licence as
+  TextMate's own bundles — see `ThirdPartyNotices.txt`), rewriting its `set`/`push`/`pop`
+  contexts as TextMate begin/end regions: the `\e` and `\xHH` escapes, optional seconds in times
+  and datetimes, and a quoted, dotted table-header key (`[fruit."var.ies"]` keeps `"var.ies"` as
+  one segment) all read correctly, checked token-for-token against the 49-line TOML 1.0+1.1
+  fixture that shaped the port. Its `scopeName` is the private `source.toml.tw5-syntax`, and the
+  manifest registers it with no `language` field and no file-extension claim, so it can never
+  take over a reader's own `.toml` files or `source.toml` theme rules. The `(ini|toml)` fence arm
+  splits: `toml` includes this grammar, `ini` includes VS Code's own `source.ini` — before the
+  split, an `ini` fence
+  painted an INI comment as `invalid.illegal.not-allowed-here.toml`. Both arms keep the house
+  `while` guard every embedded fence in this grammar already uses, checked once per line ahead of
+  the embedded scan, so a `"""`, `[` or `{` an embedded grammar leaves open never swallows the
+  fence's own closer.
 - A GATE READS THE RED NO THEME DECIDES. VS Code paints a bracket its own matcher reads as unmatched
   in the theme's unexpected-bracket colour, over whatever a scope earns, and the token inspector shows
   the scope's colour and "No theme selector" beside it. `tools/bracket-witness.js` runs the editor's

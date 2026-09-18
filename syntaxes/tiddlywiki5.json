@@ -5025,8 +5025,8 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(ini|toml)(?:[ \\t][^`\\n]*)?$",
-                    "contentName": "meta.embedded.block.toml source.toml",
+                    "begin": "(?i)\\G(toml)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.toml source.toml.tw5-syntax",
                     "beginCaptures": {
                         "1": {
                             "name": "entity.other.attribute-name.language.tiddlywiki5"
@@ -5034,7 +5034,22 @@
                     },
                     "patterns": [
                         {
-                            "include": "source.toml"
+                            "include": "source.toml.tw5-syntax"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(ini)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.ini source.ini",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.ini"
                         }
                     ],
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"

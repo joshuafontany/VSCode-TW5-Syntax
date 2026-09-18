@@ -1,0 +1,23 @@
+THIRD-PARTY NOTICES
+
+This extension incorporates material from third-party projects. Their
+license terms are reproduced below.
+
+------------------------------------------------------------------------
+sublimehq/Packages
+------------------------------------------------------------------------
+
+syntaxes/toml.tw5-syntax.json is a hand port of sublimehq/Packages
+(https://github.com/sublimehq/Packages), file TOML/TOML.sublime-syntax,
+at commit 2697dd8f98f5fde8aa4a956676c770407bf15cc (2026-01-31, "[TOML]
+Add support for TOML 1.1 (#4428)"). The source format is Sublime's
+sublime-syntax, not TextMate; the port rewrites its `set`/`push`/`pop`
+contexts as TextMate begin/end regions under the private scope
+source.toml.tw5-syntax so it can never claim a user's own source.toml
+grammar or .toml file association.
+
+The upstream LICENSE carries this permission grant, quoted exactly:
+
+  "Permission to copy, use, modify, sell and distribute this software is
+  granted. This software is provided "as is" without express or implied
+  warranty, and with no claim as to its suitability for any purpose."

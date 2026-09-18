@@ -1,0 +1,36 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A toml/ini fence closes on its own closer, whatever the embedded grammar holds open"
+
+# The fence's `while` guard is checked once per line, before the embedded grammar's own scan
+# runs on that line — so a construct the embedded grammar leaves open (an unterminated triple
+# quote, an unclosed array, an unclosed inline table) never reaches past the closing fence. Each
+# case below opens one such construct and never closes it, then closes the FENCE, then carries an
+# ordinary sentence. The sentence must carry only paragraph ground: nothing from `toml` or `ini`.
+
+```toml
+key = """an unterminated triple-quoted string
+```
+
+An ordinary sentence after the unterminated triple-quote.
+#<- text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+
+```toml
+key = [1, 2,
+```
+
+An ordinary sentence after the unclosed array.
+#<- text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+
+```toml
+key = { a = 1,
+```
+
+An ordinary sentence after the unclosed inline table.
+#<- text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+
+```ini
+[section
+key = value
+```
+
+An ordinary sentence after an unterminated ini section header.
+#<- text.html.tiddlywiki5 meta.paragraph.tiddlywiki5

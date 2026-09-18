@@ -4,9 +4,11 @@ A theme rule and an `editor.tokenColorCustomizations` entry both name a scope. A
 moves takes the reader's colour with it, and VS Code reports nothing: the rule simply stops
 matching, and the construct goes the colour of prose.
 
-This repository declares **460** scope names at `v2.2.1` and **521** at `2.3.0`. Between them,
-**108** names stand gone and **169** stand new. Every gone name appears below, with what it
-stands as now or why it retired.
+This repository declares **460** scope names at `v2.2.1` and **574** now. Between them, **109**
+names stand gone and **223** stand new. Every gone name appears below, with what it stands as now
+or why it retired. `tools/invariants/scope-migration.test.js` derives these four numbers from the
+same `declaredScopesIn` reading the row-by-row check answers to, so a grammar edit that moves them
+fails the gate rather than leaving this paragraph to go stale beside it.
 
 The table derives from the two grammars rather than from a hand-written list, and
 `tools/invariants/scope-migration.test.js` holds it to them: a name this record calls gone that
@@ -24,7 +26,7 @@ they painted the colour of prose in every bundled theme, and they did so from th
 were written.
 
 Their replacements put the root first and keep the qualifier as a suffix, so a rule on the
-family root reaches the construct and a deeper rule can still single it out. **39 of the 108**
+family root reaches the construct and a deeper rule can still single it out. **39 of the 109**
 gone names moved for exactly that reason.
 
 If your customization named one of these, it was already painting nothing. Adopting the new
@@ -53,6 +55,7 @@ same 55 of 65 themes through the same `markup.heading` rules, so nothing a reade
 
 | gone at 2.2.1 | stands as at 2.3.0 | why |
 | --- | --- | --- |
+| `source.toml` | `source.toml.tw5-syntax` | the `toml` fence arm now includes a vendored TOML grammar at a private scope, so it can never claim a reader's own `source.toml` theme rule or `.toml` file association |
 | `bold.punctuation.definition.markup.begin.tiddlywiki5` | `punctuation.definition.markup.begin.bold.tiddlywiki5` | root first |
 | `bold.punctuation.definition.markup.end.tiddlywiki5` | `punctuation.definition.markup.end.bold.tiddlywiki5` | root first |
 | `caption.markup.other.table.tiddlywiki5` | `markup.other.table.caption.tiddlywiki5` | root first |

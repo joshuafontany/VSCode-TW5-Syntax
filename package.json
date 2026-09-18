@@ -139,6 +139,7 @@
                     "meta.embedded.block.css": "css",
                     "meta.embedded.block.html": "html",
                     "meta.embedded.block.html.tiddlywiki5": "html",
+                    "meta.embedded.block.ini": "ini",
                     "meta.embedded.block.java": "java",
                     "meta.embedded.block.javascript": "javascript",
                     "meta.embedded.block.json": "json",
@@ -169,6 +170,7 @@
                     "meta.embedded.block.css": "css",
                     "meta.embedded.block.html": "html",
                     "meta.embedded.block.html.tiddlywiki5": "html",
+                    "meta.embedded.block.ini": "ini",
                     "meta.embedded.block.java": "java",
                     "meta.embedded.block.javascript": "javascript",
                     "meta.embedded.block.json": "json",
@@ -199,6 +201,7 @@
                     "meta.embedded.block.css": "css",
                     "meta.embedded.block.html": "html",
                     "meta.embedded.block.html.tiddlywiki5": "html",
+                    "meta.embedded.block.ini": "ini",
                     "meta.embedded.block.java": "java",
                     "meta.embedded.block.javascript": "javascript",
                     "meta.embedded.block.json": "json",
@@ -233,6 +236,7 @@
                     "meta.embedded.block.css": "css",
                     "meta.embedded.block.html": "html",
                     "meta.embedded.block.html.tiddlywiki5": "html",
+                    "meta.embedded.block.ini": "ini",
                     "meta.embedded.block.java": "java",
                     "meta.embedded.block.javascript": "javascript",
                     "meta.embedded.block.json": "json",
@@ -263,6 +267,7 @@
                     "meta.embedded.block.css": "css",
                     "meta.embedded.block.html": "html",
                     "meta.embedded.block.html.tiddlywiki5": "html",
+                    "meta.embedded.block.ini": "ini",
                     "meta.embedded.block.java": "java",
                     "meta.embedded.block.javascript": "javascript",
                     "meta.embedded.block.json": "json",
@@ -282,6 +287,10 @@
                 }
             },
             {
+                "scopeName": "source.toml.tw5-syntax",
+                "path": "./syntaxes/toml.tw5-syntax.json"
+            },
+            {
                 "path": "./syntaxes/tw5-substitution-injection.json",
                 "scopeName": "text.html.tiddlywiki5.substitution",
                 "injectTo": [
@@ -290,7 +299,8 @@
                     "source.tiddlywiki5.tid-file",
                     "source.tiddlywiki5.fields",
                     "source.tiddlywiki5.multids-file",
-                    "text.html.tiddlywiki5.memetic-wikitext"
+                    "text.html.tiddlywiki5.memetic-wikitext",
+                    "source.toml.tw5-syntax"
                 ]
             },
             {
@@ -302,7 +312,8 @@
                     "source.tiddlywiki5.tid-file",
                     "source.tiddlywiki5.fields",
                     "source.tiddlywiki5.multids-file",
-                    "text.html.tiddlywiki5.memetic-wikitext"
+                    "text.html.tiddlywiki5.memetic-wikitext",
+                    "source.toml.tw5-syntax"
                 ]
             }
         ],

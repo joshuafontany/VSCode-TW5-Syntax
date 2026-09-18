@@ -28,7 +28,7 @@ gates-held: 47 of 47
         {
             "gate": "brackets",
             "held": true,
-            "said": "bracket-witness  93 carrier(s), 23 red bracket(s): 23 declared (2 owed), 0 undeclared, 0 stale; 8 in degenerate carrier(s)"
+            "said": "bracket-witness  94 carrier(s), 24 red bracket(s): 24 declared (2 owed), 0 undeclared, 0 stale; 8 in degenerate carrier(s)"
         },
         {
             "gate": "builtins",
@@ -78,7 +78,7 @@ gates-held: 47 of 47
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  61 files, 521 scopes declared, 475 reached (floor 450), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  62 files, 574 scopes declared, 514 reached (floor 450), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
@@ -88,22 +88,22 @@ gates-held: 47 of 47
         {
             "gate": "darkness",
             "held": true,
-            "said": "darkness-witness  22 construct line(s) over 71 carrier(s) read dark: 22 declared (22 owed), 0 undeclared, 0 stale"
+            "said": "darkness-witness  22 construct line(s) over 72 carrier(s) read dark: 22 declared (22 owed), 0 undeclared, 0 stale"
         },
         {
             "gate": "delimiters",
             "held": true,
-            "said": "delimiter-inheritance  110 contentName rule(s) over 42 shape(s), 0 unruled"
+            "said": "delimiter-inheritance  111 contentName rule(s) over 42 shape(s), 0 unruled"
         },
         {
             "gate": "engine-behaviour",
             "held": true,
-            "said": "engine-witness  754 pattern(s) read against 847 corpus line(s), 0 that match differently, 0 unruled"
+            "said": "engine-witness  818 pattern(s) read against 884 corpus line(s), 0 that match differently, 0 unruled"
         },
         {
             "gate": "engine-witness",
             "held": true,
-            "said": "engine-witness  754 pattern(s) across 8 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "engine-witness  818 pattern(s) across 9 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "filter-witness",
@@ -163,7 +163,7 @@ gates-held: 47 of 47
         {
             "gate": "recovery-witness",
             "held": true,
-            "said": "recovery-witness  32 diagnostic(s) across 59 carrier(s), 16 code(s), 16 standing silent, 0 unruled, 0 explaining nothing"
+            "said": "recovery-witness  32 diagnostic(s) across 60 carrier(s), 16 code(s), 16 standing silent, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "rule-coverage",
@@ -218,7 +218,7 @@ gates-held: 47 of 47
         {
             "gate": "still",
             "held": true,
-            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 20 divergence(s) across 1 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 55.0% of corpus tokens ruled"
+            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 20 divergence(s) across 1 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 56.4% of corpus tokens ruled"
         },
         {
             "gate": "still-reach",
@@ -228,12 +228,12 @@ gates-held: 47 of 47
         {
             "gate": "swallow-witness",
             "held": true,
-            "said": "swallow-witness  1319 cut(s) across 45 corpus file(s), 10 quote(s) closed to ask, 10 divergence(s), 0 recorded, 0 unruled, 1 answering the host sweep, 0 ruling(s) explaining nothing"
+            "said": "swallow-witness  1377 cut(s) across 46 corpus file(s), 10 quote(s) closed to ask, 10 divergence(s), 0 recorded, 0 unruled, 1 answering the host sweep, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "theme-collision",
             "held": true,
-            "said": "theme-collision  267410 token-reading(s) over 65 themes and 48 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
+            "said": "theme-collision  280020 token-reading(s) over 65 themes and 49 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
         },
         {
             "gate": "theme-parity",
