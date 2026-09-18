@@ -1257,6 +1257,14 @@ back by upgrading, which is the definition this number answers to.
   region the grammar never closed — and the ladder reads structure before kind word, so a cause
   outranks the symptom it produced. The control cuts one class from the ladder and the gate reds.
 ### Changed
+- A CALL'S ARGUMENT KEY PARTS FROM THE NAME IT IS PASSED TO. The key carries
+  `support.type.property-name.argument` appended after `entity.other.attribute-name.argument`, which
+  stays first for every theme ruling on it. A theme painting `entity.name.function` and
+  `entity.other.attribute-name` alike — gruvbox paints both #fabd2f, and 20 of 65 themes read name and
+  key as one colour — now rules on the property-name family apart: the call-against-argument relation
+  measures 63 of 65 where it measured 45, and re-seats there. A widget's attribute keeps its own
+  family alone, because extending the name to it drops the re-seated `a widget vs a call` floor. No
+  legibility floor falls, and colour-witness flattens nothing.
 - EVERY OPENER SEATS IN ONE NAMESPACE, and a called thing reads as a widget does. A reader meets
   `{{`, `<<`, `((`, `<`, `<$` and `<%` as one gesture — something opens here — so each carries a
   `punctuation.definition.tag.*` name beside its own. A macro's name carries

@@ -73,12 +73,12 @@ gates-held: 47 of 47
         {
             "gate": "contrast",
             "held": true,
-            "said": "contrast-witness  283 stack(s) over 65 theme(s), 1486 prose reading(s), 3 above the bar of 16, 0 unruled, 0 explaining nothing"
+            "said": "contrast-witness  283 stack(s) over 65 theme(s), 1489 prose reading(s), 3 above the bar of 16, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  61 files, 520 scopes declared, 474 reached (floor 450), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  61 files, 521 scopes declared, 475 reached (floor 450), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",

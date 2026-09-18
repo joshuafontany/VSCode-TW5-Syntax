@@ -6562,7 +6562,7 @@
                     "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
-                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5"
+                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
                         },
                         "2": {
                             "name": "keyword.operator.assignment.tiddlywiki5"
@@ -6584,7 +6584,7 @@
                     "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
-                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5"
+                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
                         },
                         "2": {
                             "name": "keyword.operator.assignment.tiddlywiki5"
@@ -6606,7 +6606,7 @@
                     "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
-                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5"
+                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
                         },
                         "2": {
                             "name": "keyword.operator.assignment.tiddlywiki5"
@@ -6628,7 +6628,7 @@
                     "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
-                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5"
+                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
                         },
                         "2": {
                             "name": "keyword.operator.assignment.tiddlywiki5"
@@ -6652,7 +6652,7 @@
                     "contentName": "variable.call.attribute.html.tiddlywiki5 variable.macro.attribute.html.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
-                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5"
+                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
                         },
                         "2": {
                             "name": "keyword.operator.assignment.tiddlywiki5"
@@ -6670,7 +6670,7 @@
                     "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
                     "captures": {
                         "1": {
-                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5"
+                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
                         },
                         "2": {
                             "name": "keyword.operator.assignment.tiddlywiki5"
@@ -6697,7 +6697,7 @@
                     "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
                     "captures": {
                         "1": {
-                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5"
+                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
                         },
                         "2": {
                             "name": "keyword.operator.assignment.tiddlywiki5"
@@ -6724,7 +6724,7 @@
                     "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
                     "captures": {
                         "1": {
-                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5"
+                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
                         },
                         "2": {
                             "name": "keyword.operator.assignment.tiddlywiki5"
@@ -6748,7 +6748,7 @@
                     "contentName": "text.substituted.triple.attribute.html.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
-                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5"
+                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
                         },
                         "2": {
                             "name": "keyword.operator.assignment.tiddlywiki5"
@@ -6787,7 +6787,7 @@
                     "contentName": "text.substituted.single.attribute.html.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
-                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5"
+                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
                         },
                         "2": {
                             "name": "keyword.operator.assignment.tiddlywiki5"
@@ -6825,7 +6825,7 @@
                     "contentName": "string.quoted.bracket.attribute.html.tiddlywiki5",
                     "captures": {
                         "1": {
-                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5"
+                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
                         },
                         "2": {
                             "name": "keyword.operator.assignment.tiddlywiki5"
@@ -6846,7 +6846,7 @@
                     "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
                     "captures": {
                         "1": {
-                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5"
+                            "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
                         },
                         "2": {
                             "name": "keyword.operator.assignment.tiddlywiki5"
