@@ -1036,12 +1036,15 @@ back by upgrading, which is the definition this number answers to.
 - A RULING STANDS STALE ONLY WHERE EVERY RUN EXPLAINS NOTHING WITH IT. The five `overreach-check`
   runs over `corpus/expected-divergence.txt` share one ruling file, and a ruling idle in one run
   can still be earning its place in another. `tools/divergence-staleness.js` takes the union of
-  what each run used and reports what none of them did. Nine rulings answered to neither: seven
-  named a scope stacked EARLIER in a TextMate `"name"` field whose LATER name a sibling ruling
-  already carries — `review()` reports a finding under the last-listed name alone, so the earlier
-  one can never win — and two closed where the host and the grammar now agree outright, confirmed
-  by reading the host's own tree at the exact offset. All nine are gone from
-  `corpus/expected-divergence.txt`; the ruling count above moves with them.
+  what each run used and reports what none of them did. It runs as a gate and in CI.
+- A RULING NAMES A CONSTRUCT BY ANY OF ITS CO-DECLARED NAMES. The grammar stacks several names in
+  one rule's `"name"` — `support.function.macro … entity.name.function.macro` — and a finding
+  reports ONE of them, so a ruling written against a sibling matched nothing and read as explaining
+  nothing. `matchingRulings` reads the reported name and every name co-declared beside it, derived
+  from `declaredNames` over every grammar the manifest registers; a container comes from a separate
+  rule and never joins the group, so the widening excuses no span a ruling never named. Seven
+  rulings duplicating a sibling stand retired, and so do the rulings whose divergence closed —
+  where the host and the grammar now agree, read from the host's own tree at the exact offset.
 - AN ABLATION WITNESS ASKS WHETHER A MARK CARRIES STRUCTURE. Every other instrument compares which
   characters the grammar colours against which spans TiddlyWiki builds; none asked whether a mark
   changes the host's tree SHAPE at all. `tools/ablation-witness.js` replaces each claimed delimiter
@@ -1052,6 +1055,9 @@ back by upgrading, which is the definition this number answers to.
   `darkness-ledger.txt`'s own shape — table valign and colspan-left mismatches (D1, D3, D4 of a
   spirit's tables research) traced and OWED to the same table.js lines the research cites, and every
   other class hand-traced before it joined the ledger.
+  It runs as a gate and in CI. THE NEUTRAL LETTER CAN BUILD MARKUP: `[img[ ]]` ablated to `[imgx ]]`
+  opens an image whose attribute list reads into the next line, so a MISS stands traced before it
+  counts, and the witness owes a test that discounts structure its own replacement creates.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses
   deliberately — a scope the host ships disabled, a `\rules` run narrowing a rule set no
   TextMate grammar can follow, a fixture carrying deliberate faults, and the memetic dialect's own
