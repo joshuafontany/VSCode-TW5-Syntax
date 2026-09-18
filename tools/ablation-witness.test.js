@@ -101,6 +101,44 @@ test('an unclaimed character whose ablation changes a built shape reads as MISS'
   assert.deepStrictEqual(await ablations('a:b', oracle, blind), [{ verdict: 'MISS', line: 1, char: ':', text: 'a:b' }]);
 });
 
+// RED: `neutral()` answers with a LETTER, and a letter can open an identifier where the ablated
+// character never could — TiddlyWiki's own lookahead then reads PAST the construct's original
+// boundary chasing it (traced: `* [img[ ]]` ablated to `[imgx ]]` carries an attribute list into
+// the NEXT line's `[`, building an image the original never held). This parser stands in for that:
+// with the marker present it holds two clean siblings; strip it and the first swallows the second,
+// growing a nested child that reaches past where the first sibling used to end. The replacement's
+// own doing must never read as a MISS.
+test('a replacement that builds a construct spilling past the original boundary reads no MISS', async () => {
+  const blind = async (text) => [{ s: 0, e: text.length, scopes: ['text.html.tiddlywiki5'] }];
+  const oracle = fakeOracle((text) => (text.indexOf('!') === -1
+    ? [{ type: 'element', tag: 'li', start: 0, end: text.length, children: [
+        { type: 'element', tag: 'phantom', start: 1, end: text.length, children: [] }
+      ] }]
+    : [
+        { type: 'element', tag: 'li', start: 0, end: 3, children: [] },
+        { type: 'element', tag: 'li', start: 3, end: text.length, children: [] }
+      ]));
+  assert.deepStrictEqual(await ablations('a!abbb', oracle, blind), []);
+});
+
+// CONTROL: the SAME two-sibling shape, where ablation genuinely DESTROYS the node the original
+// held — the first sibling reads as plain prose instead (same width, no growth, no new structure
+// underneath it) the way a table row loses its cell when its own `|` goes missing, or a `[[` link
+// reads as bare text once its bracket is gone. The MISS must survive.
+test('a replacement that destroys a node the original held still reads as MISS', async () => {
+  const blind = async (text) => [{ s: 0, e: text.length, scopes: ['text.html.tiddlywiki5'] }];
+  const oracle = fakeOracle((text) => (text.includes('!')
+    ? [
+        { type: 'element', tag: 'li', start: 0, end: 3, children: [] },
+        { type: 'element', tag: 'li', start: 3, end: text.length, children: [] }
+      ]
+    : [
+        { type: 'element', tag: 'p', start: 0, end: 3, children: [] },
+        { type: 'element', tag: 'li', start: 3, end: text.length, children: [] }
+      ]));
+  assert.deepStrictEqual(await ablations('a!abbb', oracle, blind), [{ verdict: 'MISS', line: 1, char: '!', text: 'a!abbb' }]);
+});
+
 // CONTROL: an unclaimed character the parser never reaches (plain prose) reports nothing, however
 // much removing it would matter to a HUMAN reader — the reverse arm asks the host first.
 test('an unclaimed character outside anything the host built reports nothing', async () => {
