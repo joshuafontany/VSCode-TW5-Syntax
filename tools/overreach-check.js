@@ -192,8 +192,15 @@ function review(source, snapText, oracle) {
     const at = { line: ann.line + 1, col: ann.start + 1, start, end, span: source.slice(start, end), rule: read.rule };
     // A span inside an unparsed definition body answers to neither question.
     if (read.innermost === 'opaque') continue;
+    // A claim naming one of THIS grammar's delimiters asserts the character is wikitext markup rather
+    // than content, so the tightest cover answers it: text there means the parser kept the character,
+    // and no table or cell around it turns a kept character into a mark. An embedded language's
+    // delimiter — a brace in a `<script>` body — claims JavaScript, which the host holds as text.
+    const mark = claimed.find((s) => /^punctuation\.definition\..*\.tiddlywiki5$/.test(s));
     if (claimed.length > 0 && read.kind === 'text') {
       findings.push({ kind: 'overreach', ...at, scope: claimed[claimed.length - 1] });
+    } else if (mark && read.innermost === 'text') {
+      findings.push({ kind: 'overreach', ...at, scope: mark });
     }
     // A verdict and a suppression assert different things, so different evidence unseats them.
     //

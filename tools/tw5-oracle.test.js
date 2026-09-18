@@ -432,6 +432,23 @@ test('a subtree whose offsets restart stands outside an offset reading', live, (
     flatten(plain).map((n) => n.rule), 'pruning changed a tree that restarts nothing');
 });
 
+// A TEXT NODE AS TIGHT AS ITS CONTAINER ANSWERS FOR THE CHARACTER. A table cell holding one mark
+// spans exactly that mark, and so does the text the host kept inside it; the deeper of two equal
+// covers states what TiddlyWiki made of the character. Measured on `|<|spanned |`: `<` opening a
+// row builds a cell holding the text `<`, and a tie kept for the container read it as built.
+test('the deeper of two equal covers answers for the span', live, () => {
+  const oracle = boot(TW);
+  const source = '|a |b |\n|<|spanned |\n';
+  const at = source.indexOf('<');
+  assert.strictEqual(oracle.readAt(source, at, at + 1).innermost, 'text',
+    'a character the host kept as text inside a cell read as a construct it built');
+  // Control: a cell mark the host consumes stays built.
+  const joined = '|a |b |\n|c |<|\n';
+  const mark = joined.lastIndexOf('<');
+  assert.notStrictEqual(oracle.readAt(joined, mark, mark + 1).innermost, 'text',
+    'a colspan mark the host consumed read as text');
+});
+
 // A PRAGMA NESTS THE DOCUMENT BENEATH IT, and that nesting restarts nothing.
 //
 // parsePragmas hands every block after a definition to the definition as its children, while the

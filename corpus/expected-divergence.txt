@@ -183,3 +183,19 @@ spans.multiline.tw:punctuation.separator.key-value.html   # an XML declaration i
 spans.multiline.tw:string.quoted.double.html   # an XML declaration inside a typed block: the host parses the block under its declared type and builds no HTML element, where the grammar reads the tag it can see
 pragmas.signatures.tw:punctuation.definition.substitution.begin   # the carrier's substitution stands in a body TiddlyWiki reads as text, and the `$` marks now carry the punctuation name that decides their colour beside the keyword name they publish
 pragmas.signatures.tw:punctuation.definition.substitution.end   # the carrier's substitution stands in a body TiddlyWiki reads as text, and the `$` marks now carry the punctuation name that decides their colour beside the keyword name they publish
+
+# A DELIMITER OVER KEPT TEXT. overreach-check judges a claim naming one of this grammar's delimiters
+# against the TIGHTEST cover, since such a claim asserts the character IS markup; a table, a cell or
+# a paragraph around it cannot turn a kept character into a mark. Judged by the widest cover, every
+# line below read as agreement.
+tiddlywiki5.tw:punctuation.definition.image   # OWED — an image whose source holds only whitespace. TiddlyWiki builds no image from `[img[ ]]` or `[img [ ]]` and keeps the text; the grammar paints all four brackets, its source pattern admitting an empty title
+tiddlywiki5.pragma.tw:punctuation.definition.link   # OWED — a bare `\rules` ends the pragma zone (rules.js:26 needs whitespace after the word), so every definition below reads as prose and an unclosed `<parameter>` from a function body nests the rest of the file; the grammar still reads definitions there
+tiddlywiki5.pragma.tw:punctuation.definition.mvv-display   # OWED — the same pragma zone the bare `\rules` above it closes
+tiddlywiki5.math.tw:punctuation.definition.tag.begin.html   # an element body TiddlyWiki reads INLINE: html.js:52-71 parses a body as blocks only where the rule ran in block mode or a BLANK LINE follows the tag, and this `<p>` stands inside a paragraph with text on the line after it, so the markup in its body stays text. Whether that blank line follows stands on the next line, which no TextMate pattern reads
+tiddlywiki5.math.tw:punctuation.definition.tag.end.html   # the same inline `<p>` body
+tiddlywiki5.math.tw:punctuation.definition.list   # the same inline `<p>` body: a definition-list mark inside it stays text
+core/templates/html-div-skinny-tiddler.tid:punctuation.definition.tag   # OWED — markup inside a code run TiddlyWiki carries across lines: codeinline closes at the next matching backtick run, newlines and all, while the grammar closes a code run on its own line — the bound that keeps an unclosed backtick from running past it — and reads the lines after as markup. It awaits the ruling italic across lines awaits
+es-ES/tiddlers/Formatting_text_in_TiddlyWiki.tid:punctuation.definition.tag   # OWED — the same code run across lines, holding a whole `\define`
+es-ES/tiddlers/Formatting_text_in_TiddlyWiki.tid:punctuation.definition.string   # OWED — the same code run across lines
+es-ES/tiddlers/Formatting_text_in_TiddlyWiki.tid:punctuation.definition.transclusion   # OWED — the same code run across lines
+tw5.com/tiddlers/widgets/ListWidget.tid:punctuation.definition.list   # OWED — the grammar claims a definition-list mark at a `:` standing mid-line after `<<counter>>`, inside a `<div>` whose body TiddlyWiki reads inline; the host keeps the colon as text

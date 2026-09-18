@@ -172,7 +172,16 @@ function verdictAt(spans, start, end) {
       n.rule !== 'parseblock'
   );
   if (covers.length === 0) return { kind: 'none', innermost: 'none', rule: null, start: null, end: null };
-  const tightest = covers.reduce((a, b) => (b.end - b.start < a.end - a.start ? b : a));
+  // A TIE splits two ways, by whether the outer node carries a rule. A construct the host built from
+  // exactly this text answers for it — an extlink spans the very URL it wraps. An element a rule
+  // built AROUND content yields to the content: a table cell holding one character spans it exactly,
+  // and the text inside states what TiddlyWiki made of it. flatten() lists parents first.
+  const tightest = covers.reduce((a, b) => {
+    const wa = a.end - a.start;
+    const wb = b.end - b.start;
+    if (wa !== wb) return wb < wa ? b : a;
+    return a.rule ? a : b;
+  });
   const built = covers.filter((n) => !isPlainText(n));
   const pool = built.length > 0 ? built : covers;
   const best = pool.reduce((a, b) => (b.end - b.start < a.end - a.start ? b : a));

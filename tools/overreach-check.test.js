@@ -125,6 +125,23 @@ test('a verdict over text the parser kept reports as an invention', () => {
   assert.strictEqual(found[0].kind, 'invention');
 });
 
+// A MARK CLAIMED OVER KEPT TEXT OVER-REACHES, whatever contains it. A claim naming a delimiter
+// asserts the character IS markup; a claim naming content asserts it belongs to a construct. The
+// widest cover answers the second — the words inside `''…''` carry markup.bold under the `<strong>`
+// spanning its marks — and cannot answer the first: every character in a table lies under the
+// table, so a colspan mark painted over a cell's own text read as agreement.
+test('a delimiter claimed over text the parser kept reports as overreach', () => {
+  const source = '|<|spanned |';
+  const inCell = { readAt: (_s, start, end) => ({ kind: 'built', innermost: 'text', rule: 'table', start, end }) };
+  const mark = `>${source}\n#^ text.html.tiddlywiki5 punctuation.definition.cell.colspan.left.tiddlywiki5\n`;
+  const found = review(source, mark, inCell);
+  assert.strictEqual(found.length, 1, 'a mark painted over kept text read as agreement');
+  assert.strictEqual(found[0].kind, 'overreach');
+  // Control: content claimed over the same reading stays agreement.
+  const content = `>${source}\n#^ text.html.tiddlywiki5 markup.table.tiddlywiki5\n`;
+  assert.deepStrictEqual(review(source, content, inCell), []);
+});
+
 // A suppression asserts the parser declined the construct and kept the text, so text there reads
 // as agreement. Only a construct built in its place unseats one.
 test('a suppression over text reports nothing, and over a built construct reports', () => {
