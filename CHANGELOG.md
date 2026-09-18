@@ -196,6 +196,20 @@ back by upgrading, which is the definition this number answers to.
   own digest around the pair, so an edit names itself.
 
 ### Added
+- A GATE ASKS WHAT A READER'S EYE ASKS: where TiddlyWiki builds a construct, does the grammar answer
+  with anything of its own? `tools/darkness-witness.js` takes its population from the host — every
+  node carrying a rule TiddlyWiki stands — and judges each LINE of each construct, because one lit
+  row carried a whole table under a per-construct verdict. A line reads dark as a MISS where the
+  grammar reads nothing of it even alone, and as LOST where it reads the construct alone and loses
+  the line in place. Every other instrument read past both: `dark-construct` asks whether themes
+  paint a name the grammar EMITS, and a construct the grammar never names emits nothing to ask
+  about. Measured on its first run: 41 lines over 71 carriers, each traced and declared OWED in
+  `corpus/darkness-ledger.txt`, and among them seven sightings an eye reported first — a pragma
+  zone that shuts on a `\widget` named without a dollar, a filtered transclusion that never closes
+  on a styled suffix, widget attributes past a blank line, italic across lines, a multi-valued
+  display read as a signature, a list item after a closing html line, and a four-dash run
+  TiddlyWiki renders as a hyphen and an em dash. A declaration whose line reads lit fails as stale,
+  so each repair retires its own debt.
 - THE LAST UNARMED CITATION CARRIES A CHECK. A ruling settles whose reading a divergence belongs to by
   tokenizing a specimen under ANOTHER grammar and comparing two of its own stacks — `</style>` parting from
   `<style>` in the four Catppuccin themes under the real `html` grammar, exactly as it parts here, which is
@@ -1159,13 +1173,14 @@ back by upgrading, which is the definition this number answers to.
   region the grammar never closed — and the ladder reads structure before kind word, so a cause
   outranks the symptom it produced. The control cuts one class from the ladder and the gate reds.
 ### Changed
-- EVERY OPENER SEATS IN ONE NAMESPACE, and a called thing wears the widget's family. A reader meets
-  `{{`, `[[`, `<`, `<$` and `<%` as one gesture — something opens here — so those openers carry
-  `punctuation.definition.tag.*` beside their own name, and a macro's name carries
-  `entity.name.function.widget.tiddlywiki5` so a call and a widget read as one kind of thing. A link
-  keeps its own punctuation name rather than the shared one: of four arrangements priced against all
-  820 legibility pairs with the grammar untouched, that one alone improves on changing nothing, at 7
-  pairs fallen and 0 newly broken. Those seven re-seat with the ruling recorded beside them in
+- EVERY OPENER SEATS IN ONE NAMESPACE, and a called thing reads as a widget does. A reader meets
+  `{{`, `<<`, `((`, `<`, `<$` and `<%` as one gesture — something opens here — so each carries a
+  `punctuation.definition.tag.*` name beside its own. A macro's name carries
+  `entity.name.function.macro` and a widget's `entity.name.function.widget`; themes rule on the
+  `entity.name.function` root the two share, so a call and a widget read as one kind of thing. A
+  link's `[[` keeps its own punctuation name rather than the shared one: of four arrangements priced
+  against all 820 legibility pairs with the grammar untouched, that one alone improves on changing
+  nothing, at 7 pairs fallen and 0 newly broken. Those seven re-seat with the ruling recorded beside them in
   `corpus/legibility-floor.txt`, and the call-against-argument relation re-seats 50 to 45 in
   `$:/tw5-syntax/ReaderRelations` with the control that settles whose loss it reads as. A mark-level
   split handing `a widget vs a call` its 55 back reaches NOTHING — both names resolve to one scope a

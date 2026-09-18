@@ -107,6 +107,10 @@ jobs:
       - name: Dark constructs
         run: npm run dark-construct
 
+      # Every line of every construct TiddlyWiki builds, against whether the grammar reads it at all.
+      - name: Darkness witness
+        run: npm run darkness
+
       # Whether the reach a theme grants a construct bought the construct any colour at all.
       - name: Contrast witness
         run: npm run contrast

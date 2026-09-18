@@ -957,9 +957,11 @@
 
 # 2026-09-17: SEVEN RE-SEATED, on a ruling that seats every opener in ONE namespace.
 #
-# A reader meets `{{`, `[[`, `<`, `<$` and `<%` as one gesture — something opens here — so all five
-# carry the tag namespace, and a called thing wears the widget's family. The ruling buys a reader
-# that family and spends the fork with it: two constructs sharing a name cannot also part on it.
+# A reader meets `{{`, `<<`, `((`, `<`, `<$` and `<%` as one gesture — something opens here — so
+# each carries a `punctuation.definition.tag.*` name, and a link's `[[` keeps its own. A macro's name
+# wears `entity.name.function.macro` and a widget's `entity.name.function.widget`, and themes rule on
+# the root the two share, so a call reads as a widget does. The ruling buys a reader that family and
+# spends the fork with it: two constructs sharing a root cannot also part on it.
 # Seven pairs of 820 carry the price, each re-seated to the reading the ruling delivers:
 #   a widget  vs  a call                                55 -> 52
 #   a conditional  vs  a filter run                     57 -> 55
