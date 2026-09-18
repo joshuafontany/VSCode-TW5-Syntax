@@ -197,6 +197,11 @@ jobs:
       - name: No ruling in expected-divergence.txt explains nothing everywhere
         run: npm run divergence-staleness
 
+      # Every mark the grammar claims, taken away: a mark whose removal changes nothing TiddlyWiki
+      # builds stands overreach, and an unclaimed character whose removal changes the tree stands a miss.
+      - name: Ablation witness
+        run: npm run ablation
+
       # A gap the grammar grew to meet wants moving out of tests/known-gaps.
       - name: Known gaps
         run: npm run tests-known-gaps

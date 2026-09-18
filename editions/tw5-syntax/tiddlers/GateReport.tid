@@ -3,13 +3,18 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 48 of 48
+gates-held: 49 of 49
 
 {
-    "gates": 48,
-    "held": 48,
+    "gates": 49,
+    "held": 49,
     "failing": 0,
     "results": [
+        {
+            "gate": "ablation",
+            "held": true,
+            "said": "ablation-witness  361 finding(s) over 71 carrier(s): 361 declared (361 owed), 0 undeclared, 0 stale"
+        },
         {
             "gate": "attribute-guard",
             "held": true,
