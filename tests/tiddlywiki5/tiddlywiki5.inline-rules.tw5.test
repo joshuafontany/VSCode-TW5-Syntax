@@ -4,9 +4,17 @@ Two --dashes and three ---dashes.
 #   ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.dash.ndash.tiddlywiki5
 #                      ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.dash.mdash.tiddlywiki5
 
-One -dash and four ----dashes read as text.
-#   ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
-#                  ^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+One -dash reads as text.
+#   ^ - constant.character.dash
+
+# TiddlyWiki's dash rule matches the LAST marks of a longer run, so the marks before them stay text.
+Four ----dashes read as a hyphen and an em dash: the dash rule, -{2,3}(?!-), takes the last three.
+#    ^ - constant.character.dash
+#     ^^^ constant.character.dash.mdash.tiddlywiki5
+
+Five -----dashes read as two hyphens and an em dash.
+#    ^^ - constant.character.dash
+#      ^^^ constant.character.dash.mdash.tiddlywiki5
 
 Entities &amp; and &#38; and &#x26; here.
 #         ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 constant.character.entity.named.amp.html.tiddlywiki5

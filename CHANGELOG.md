@@ -15,6 +15,11 @@ attribute value's quote characters changed family. A reader who liked 2.2.1's lo
 back by upgrading, which is the definition this number answers to.
 
 ### Fixed
+- A RUN OF FOUR DASHES ENDS IN AN EM DASH. TiddlyWiki's dash rule, `-{2,3}(?!-)`, matches the LAST
+  three marks of a longer run, so `----` in prose renders a hyphen and an em dash and `-----` two
+  hyphens and one. The grammar refused an em dash with a dash before it and read the whole run as text.
+  The last three marks read as the em dash they render; a run alone on its own line stays a horizontal
+  rule, and eight darkness entries retire.
 - AN IMAGE NEEDS A SOURCE THAT HOLDS SOMETHING. `image.js` skips whitespace after the inner `[` and
   then needs at least one character before `]]`, so `[img[ ]]`, `[img [ ]]` and `[img[]]` build no
   image and TiddlyWiki keeps the brackets as text. The grammar painted all four brackets and the

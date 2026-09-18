@@ -5875,10 +5875,10 @@
                     "comment": "Match an en-dash (--), which stands clear of a decrement operator, an arrow operator and a preceding dash (as in HTML comments)."
                 },
                 {
-                    "begin": "(?<!-|<!)---(?![-])",
+                    "begin": "(?<!<!)---(?![-])",
                     "end": "(?<=---)(?!-)",
                     "name": "constant.character.dash.mdash.tiddlywiki5",
-                    "comment": "Match an em-dash (---), which stands clear of a longer dash sequence and of an HTML comment starter."
+                    "comment": "Match an em-dash (---), which stands clear of an HTML comment starter. TiddlyWiki's dash rule, `-{2,3}(?!-)`, matches the LAST three marks of a longer run, so `----` reads as a hyphen and an em dash; the marks before the last three stay text."
                 }
             ]
         },
