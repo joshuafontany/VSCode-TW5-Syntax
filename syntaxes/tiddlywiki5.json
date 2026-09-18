@@ -3771,6 +3771,29 @@
                 }
             ]
         },
+        "filter-variable-text": {
+            "comment": "A variable operand's text, split the way parseFilterVariable (parseutils.js) splits it: a name up to the first whitespace, then the rest read as a call's parameters (parseMacroParameters). Text holding no whitespace is one name. The parameters take the call's own reading, so a literal bracket inside one stands in a string rather than in the filter's matching. A capture retokenized by patterns drops the scopes of the captures enclosing it, so each piece restates the operand's own region name, and the name restates the whole stack it wore as one capture.",
+            "patterns": [
+                {
+                    "match": "(?<=[<(])[^\\s\"']+",
+                    "name": "meta.variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
+                },
+                {
+                    "match": "\\s+(.+)",
+                    "name": "meta.variable.entity.filter.operand.tiddlywiki5",
+                    "captures": {
+                        "1": {
+                            "name": "meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5",
+                            "patterns": [
+                                {
+                                    "include": "#macro-parameters"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
         "styleblock": {
             "applyEndPatternLast": 1,
             "begin": "\\s*(?=@@((?:[^\\s:;]+:[^;]*;)+)?((?:\\.[^\\s\\.]+)+)?$)",
@@ -6076,7 +6099,11 @@
                                     "name": "punctuation.definition.operand.variable.begin.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
                                 },
                                 "7": {
-                                    "name": "variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
+                                    "patterns": [
+                                        {
+                                            "include": "#filter-variable-text"
+                                        }
+                                    ]
                                 },
                                 "8": {
                                     "name": "punctuation.definition.operand.variable.end.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
@@ -6183,7 +6210,11 @@
                                     "name": "punctuation.definition.operand.variable.begin.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
                                 },
                                 "7": {
-                                    "name": "variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
+                                    "patterns": [
+                                        {
+                                            "include": "#filter-variable-text"
+                                        }
+                                    ]
                                 },
                                 "8": {
                                     "name": "punctuation.definition.operand.variable.end.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"

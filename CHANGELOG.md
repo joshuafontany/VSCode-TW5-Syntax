@@ -15,6 +15,13 @@ attribute value's quote characters changed family. A reader who liked 2.2.1's lo
 back by upgrading, which is the definition this number answers to.
 
 ### Fixed
+- A FILTER VARIABLE READS A NAME, THEN PARAMETERS. `parseFilterVariable` splits a `<…>` or `(…)`
+  operand at its first whitespace — a name, then the rest read as a call's parameters — so
+  `<now [UTC]YYYY0MM0DD>` calls `now` with a date format. The grammar painted the whole text as ONE
+  variable name, which read the format in the name's colour and left its literal `]` inside a token
+  the editor matches brackets in, where it stole the filter run's own `[` and painted the run's closer
+  red. The name reads as a name and the rest as a call's parameters, a string like any other; a
+  variable holding no whitespace stays one name. One owed bracket-ledger entry retires.
 - A STYLE BLOCK CLOSES ONLY ON A CLOSER AT THE FIRST COLUMN. `styleblock.js` ends its body on
   `^@@`, and `parseBlocksTerminated` skips indentation before it asks — so an indented `@@` closes
   nothing: at a block's head it opens a nested, empty block, and inside a paragraph it stays text. The

@@ -1,0 +1,32 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A filter variable operand reads a name, then parameters"
+
+# filters.js ends a `<` or `(` operand at the first `>` or `)` and hands the text to
+# parseFilterVariable (parseutils.js), which splits it at the first whitespace: a name, then the
+# rest read as a call's parameters by parseMacroParameters. So `<now [UTC]YYYY0MM0DD>` calls `now`
+# with a date format, and a literal bracket inside that format belongs to the parameter string —
+# never to the filter run around it.
+
+{{{ [[$:/temp/]addsuffix<now [UTC]YYYY0MM0DD0hh0mm0ssXXX]>] }}}
+#                        ^^^ entity.name.variable.filter.operand.tiddlywiki5
+#                        ^^^ - string
+#                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.unquoted.html.tiddlywiki5
+#                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - entity.name.variable.filter.operand.tiddlywiki5
+
+# The multi-valued operand splits the same way.
+{{{ [tag(list sep)] }}}
+#        ^^^^ entity.name.variable.filter.operand.tiddlywiki5
+#             ^^^ string.unquoted.html.tiddlywiki5
+
+# A named parameter reads as a call's named argument.
+{{{ [<greet who:world>] }}}
+#     ^^^^^ entity.name.variable.filter.operand.tiddlywiki5
+#           ^^^ entity.other.attribute-name.argument.tiddlywiki5
+#               ^^^^^ string.unquoted.html.tiddlywiki5
+
+# CONTROL: a variable with no whitespace stays one name.
+{{{ [tag<currentTiddler>] }}}
+#        ^^^^^^^^^^^^^^ entity.name.variable.filter.operand.tiddlywiki5
+#        ^^^^^^^^^^^^^^ - string
+
+{{{ [tag(multiValued)] }}}
+#        ^^^^^^^^^^^ entity.name.variable.filter.operand.tiddlywiki5

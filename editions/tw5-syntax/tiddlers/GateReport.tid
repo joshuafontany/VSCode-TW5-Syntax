@@ -28,7 +28,7 @@ gates-held: 47 of 47
         {
             "gate": "brackets",
             "held": true,
-            "said": "bracket-witness  93 carrier(s), 24 red bracket(s): 24 declared (3 owed), 0 undeclared, 0 stale; 8 in degenerate carrier(s)"
+            "said": "bracket-witness  93 carrier(s), 23 red bracket(s): 23 declared (2 owed), 0 undeclared, 0 stale; 8 in degenerate carrier(s)"
         },
         {
             "gate": "builtins",
@@ -98,12 +98,12 @@ gates-held: 47 of 47
         {
             "gate": "engine-behaviour",
             "held": true,
-            "said": "engine-witness  758 pattern(s) read against 847 corpus line(s), 0 that match differently, 0 unruled"
+            "said": "engine-witness  760 pattern(s) read against 847 corpus line(s), 0 that match differently, 0 unruled"
         },
         {
             "gate": "engine-witness",
             "held": true,
-            "said": "engine-witness  758 pattern(s) across 8 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "engine-witness  760 pattern(s) across 8 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "filter-witness",
