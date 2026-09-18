@@ -811,7 +811,8 @@
 #    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 >  }}}
 #^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 meta.filter.tiddlywiki5
-#  ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeinline.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5 punctuation.definition.tag.transclusion.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeinline.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5 punctuation.definition.tag.transclusion.tiddlywiki5
+#    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.transclusion.filteredtranscludeinline.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeinline.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5 punctuation.definition.tag.transclusion.tiddlywiki5
 >
 >{{{
 #^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5 punctuation.definition.tag.transclusion.tiddlywiki5
