@@ -3366,9 +3366,11 @@
 #                                                ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.table.row.tbody.body.tiddlywiki5 punctuation.definition.table.pipe.outer.end.tiddlywiki5
 >|^^^valign=top|,,,valign=bottom|
 #^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.table.row.tbody.body.tiddlywiki5 punctuation.definition.table.pipe.outer.begin.tiddlywiki5
-# ^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5
+# ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.valign.tiddlywiki5 punctuation.definition.cell.valign.top.tiddlywiki5
+#  ^^^^^^^^^^^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5
 #              ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 punctuation.separator.cell.pipe.inner.tiddlywiki5
-#               ^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5
+#               ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.valign.tiddlywiki5 punctuation.definition.cell.valign.bottom.tiddlywiki5
+#                ^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5
 #                               ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.table.row.tbody.body.tiddlywiki5 punctuation.definition.table.pipe.outer.end.tiddlywiki5
 >|^ valign=top|, valign=bottom|
 #^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.table.row.tbody.body.tiddlywiki5 punctuation.definition.table.pipe.outer.begin.tiddlywiki5
@@ -3457,17 +3459,22 @@
 >|^ !''valign=top, align=left'' |^  !valign=top, align=center |^  !valign=top, align=right|h
 #^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.table.row.thead.header.tiddlywiki5 punctuation.definition.table.pipe.outer.begin.tiddlywiki5
 # ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.valign.tiddlywiki5 punctuation.definition.cell.valign.top.tiddlywiki5
-#  ^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5
+#  ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.heading.th.tiddlywiki5
+#   ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.heading.th.tiddlywiki5 punctuation.definition.cell.heading.th.tiddlywiki5
 #    ^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 punctuation.definition.markup.begin.bold.tiddlywiki5
 #      ^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 markup.bold.tiddlywiki5
 #                            ^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 punctuation.definition.markup.end.bold.tiddlywiki5
 #                              ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5
 #                               ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 punctuation.separator.cell.pipe.inner.tiddlywiki5
 #                                ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.valign.tiddlywiki5 punctuation.definition.cell.valign.top.tiddlywiki5
-#                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5
+#                                 ^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.heading.th.tiddlywiki5
+#                                   ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.heading.th.tiddlywiki5 punctuation.definition.cell.heading.th.tiddlywiki5
+#                                    ^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5
 #                                                             ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 punctuation.separator.cell.pipe.inner.tiddlywiki5
 #                                                              ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.valign.tiddlywiki5 punctuation.definition.cell.valign.top.tiddlywiki5
-#                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5
+#                                                               ^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.heading.th.tiddlywiki5
+#                                                                 ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.heading.th.tiddlywiki5 punctuation.definition.cell.heading.th.tiddlywiki5
+#                                                                  ^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5
 #                                                                                         ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.table.row.thead.header.tiddlywiki5 punctuation.definition.table.pipe.outer.end.tiddlywiki5
 #                                                                                          ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.table.row.thead.header.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.row.thead.header.tiddlywiki5
 >| 1 |<|>| 4 |h
@@ -3523,17 +3530,22 @@
 >|^ !''valign=top, align=left'' |^  !valign=top, align=center |^  !valign=top, align=right|f
 #^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.table.row.tfoot.footer.tiddlywiki5 punctuation.definition.table.pipe.outer.begin.tiddlywiki5
 # ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.valign.tiddlywiki5 punctuation.definition.cell.valign.top.tiddlywiki5
-#  ^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5
+#  ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.heading.th.tiddlywiki5
+#   ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.heading.th.tiddlywiki5 punctuation.definition.cell.heading.th.tiddlywiki5
 #    ^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 punctuation.definition.markup.begin.bold.tiddlywiki5
 #      ^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 markup.bold.tiddlywiki5
 #                            ^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 punctuation.definition.markup.end.bold.tiddlywiki5
 #                              ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5
 #                               ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 punctuation.separator.cell.pipe.inner.tiddlywiki5
 #                                ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.valign.tiddlywiki5 punctuation.definition.cell.valign.top.tiddlywiki5
-#                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5
+#                                 ^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.heading.th.tiddlywiki5
+#                                   ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.heading.th.tiddlywiki5 punctuation.definition.cell.heading.th.tiddlywiki5
+#                                    ^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5
 #                                                             ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 punctuation.separator.cell.pipe.inner.tiddlywiki5
 #                                                              ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.valign.tiddlywiki5 punctuation.definition.cell.valign.top.tiddlywiki5
-#                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5
+#                                                               ^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.heading.th.tiddlywiki5
+#                                                                 ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.heading.th.tiddlywiki5 punctuation.definition.cell.heading.th.tiddlywiki5
+#                                                                  ^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5
 #                                                                                         ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.table.row.tfoot.footer.tiddlywiki5 punctuation.definition.table.pipe.outer.end.tiddlywiki5
 #                                                                                          ^ text.html.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.tiddlywiki5 meta.table.row.tfoot.footer.tiddlywiki5 markup.table.tiddlywiki5 markup.other.table.row.tfoot.footer.tiddlywiki5
 >| 1 |<|>| 4 |f

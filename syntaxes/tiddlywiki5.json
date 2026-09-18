@@ -4209,7 +4209,7 @@
         "table": {
             "patterns": [
                 {
-                    "match": "^\\s*(\\|)(.*)(\\|)(k)$",
+                    "match": "^(\\|)(.*)(\\|)(k)$",
                     "name": "markup.table.tiddlywiki5 markup.other.table.tiddlywiki5",
                     "captures": {
                         "0": {
@@ -4352,8 +4352,8 @@
         "tableRow": {
             "patterns": [
                 {
-                    "comment": "A heading cell. TiddlyWiki builds a th rather than a td (core/rules/table.js).",
-                    "match": "(?:(?<=\\|)|^)[ \\t]*(!)",
+                    "comment": "A heading cell. TiddlyWiki builds a th rather than a td (core/rules/table.js), reading a vertical-alignment mark first, then spaces — U+0020 alone — then the bang.",
+                    "match": "(?:(?<=\\|)|(?<=\\|[\\^,])|^) *(!)",
                     "name": "meta.cell.heading.th.tiddlywiki5",
                     "captures": {
                         "1": {
@@ -4382,8 +4382,8 @@
                     }
                 },
                 {
-                    "comment": "A cell holding only < joins the cell to its left (colspan).",
-                    "match": "(?:(?<=\\|)|^)(<)(?=\\||$)",
+                    "comment": "A cell holding only < joins the cell to its left (colspan). The host builds the span only where a cell stands before it (`cellMatch[1] === \"<\" && prevCell`), so a < opening a row reads as text.",
+                    "match": "(?<=.\\|)(<)(?=\\||$)",
                     "name": "meta.cell.td.colspan.left.tiddlywiki5",
                     "captures": {
                         "1": {
@@ -4392,8 +4392,8 @@
                     }
                 },
                 {
-                    "comment": "A leading ^ aligns the cell to the top. Two carry superscript instead.",
-                    "match": "(?:(?<=\\|)|^)(\\^)(?!\\^)",
+                    "comment": "A leading ^ aligns the cell to the top. Two carry superscript instead, and a third hands the first back to alignment (`/^\\^([^\\^]|\\^\\^)/`).",
+                    "match": "(?:(?<=\\|)|^)(\\^)(?=\\^\\^|(?!\\^))",
                     "name": "meta.cell.valign.tiddlywiki5",
                     "captures": {
                         "1": {
@@ -4402,8 +4402,8 @@
                     }
                 },
                 {
-                    "comment": "A leading , aligns the cell to the bottom. Two carry subscript instead.",
-                    "match": "(?:(?<=\\|)|^)(,)(?!,)",
+                    "comment": "A leading , aligns the cell to the bottom. Two carry subscript instead, and a third hands the first back to alignment.",
+                    "match": "(?:(?<=\\|)|^)(,)(?=,,|(?!,))",
                     "name": "meta.cell.valign.tiddlywiki5",
                     "captures": {
                         "1": {

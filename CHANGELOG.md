@@ -15,6 +15,13 @@ attribute value's quote characters changed family. A reader who liked 2.2.1's lo
 back by upgrading, which is the definition this number answers to.
 
 ### Fixed
+- A TABLE CELL'S MARKS READ IN THE HOST'S ORDER. `table.js` reads a vertical-alignment mark, then
+  spaces, then the heading bang, and the grammar diverged in five places: a `<` opening a row painted a
+  colspan where the host keeps the text (the span needs a cell before it); a tab before `!` painted a
+  heading where the host skips spaces alone; `|^ !x|` left the bang bare where the host builds a `th`;
+  `^^^` and `,,,` painted nothing where the host hands the first mark back to alignment; and a class
+  row opened after indentation where every row opens at the first column. Five pattern swaps, no name
+  moved, and one expected-divergence ruling retires with the specimen that now carries a real span.
 - A FILTERED TRANSCLUSION CLOSES WHERE TIDDLYWIKI CLOSES IT. The host ends `{{{ … }}suffix}` on `}}`,
   an optional style, then `}` (`filteredtranscludeinline.js`, and the block rule alike), so `}}}` is
   only the closer carrying an empty style. The grammar spelled the literal `}}}` alone, never closed on
@@ -967,7 +974,7 @@ back by upgrading, which is the definition this number answers to.
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 134 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 133 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
   emits no container node, so a scope over its content stands over text by construction.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses

@@ -217,7 +217,6 @@ pragmas.signatures.tw:variable.parameter   # OWED — the same `((…))` default
 pragmas.signatures.tw:keyword.control.directive   # OWED — the same `((…))` default the carrier gives a `\define`
 pragmas.signatures.tw:meta.directive.parameters   # OWED — the same `((…))` default the carrier gives a `\define`
 pragmas.signatures.tw:punctuation.definition.variable.parameters   # OWED — the same `((…))` default the carrier gives a `\define`
-tables.spans.tw:punctuation.definition.cell.colspan.left   # OWED — `<` opening a row joins no previous cell, so TiddlyWiki builds a cell holding the text `<` (table.js:52) while the grammar paints a colspan mark
 inline.links.tw:keyword.other.img   # OWED — `[img[]]` and an `[img[` with no closer build no image, and the grammar paints the opener's keyword before any closer stands
 inline.links.tw:keyword.other.ext   # OWED — an `[ext[` with no closer builds no ext link, and the grammar paints the opener's keyword before any closer stands
 spans.multiline.tw:punctuation.definition.tag.begin.html   # OWED — `<![CDATA[` names no element TiddlyWiki's html rule reads (its tag name admits `[a-zA-Z0-9\-\$\.]`), so the host keeps it as text while the grammar paints a tag

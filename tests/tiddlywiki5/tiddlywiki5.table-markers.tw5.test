@@ -14,10 +14,14 @@
 |>|colspan right|
 #^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.td.colspan.right.tiddlywiki5 punctuation.definition.cell.colspan.right.tiddlywiki5
 
-# A left-colspan mark reads as table syntax, never as a stray angle bracket.
+# A left-colspan mark joins the cell before it, so the host builds one only where an ordinary cell
+# stands earlier in the row (`cellMatch[1] === "<" && prevCell`). It reads as table syntax there.
+|a|<|
+#  ^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.td.colspan.left.tiddlywiki5 punctuation.definition.cell.colspan.left.tiddlywiki5
+
+# Opening a row, the same mark finds no cell before it, and the host builds an ordinary cell holding it.
 |<|colspan left|
-#^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.td.colspan.left.tiddlywiki5 punctuation.definition.cell.colspan.left.tiddlywiki5
-#^ - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
+#^ - punctuation.definition.cell.colspan.left.tiddlywiki5
 
 |^top|,bottom|
 #^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.valign.tiddlywiki5 punctuation.definition.cell.valign.top.tiddlywiki5
@@ -30,3 +34,21 @@
 # An ordinary cell goes on carrying inline wikitext.
 |a link |[[Some Target]] |
 #          ^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 markup.link.tiddlywiki5
+
+# The host skips spaces before a heading mark and nothing else, so a tab leaves the bang as text.
+|	!tab|
+# ^ - punctuation.definition.cell.heading.th.tiddlywiki5
+
+# Vertical alignment reads first, then spaces, then the heading mark, and all of them stand.
+|^ !top heading|
+#^ punctuation.definition.cell.valign.top.tiddlywiki5
+#  ^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 meta.cell.heading.th.tiddlywiki5 punctuation.definition.cell.heading.th.tiddlywiki5
+
+# A third caret hands the first one back to vertical alignment, and a third comma does the same.
+|^^^top|,,,bottom|
+#^ punctuation.definition.cell.valign.top.tiddlywiki5
+#       ^ punctuation.definition.cell.valign.bottom.tiddlywiki5
+
+# A class row opens at the first column like every other row.
+  |cls |k
+#  ^^^ - entity.other.attribute-name.class.css
