@@ -562,7 +562,7 @@
             "patterns": [
                 {
                     "comment": "Single and Multi-line widget definition",
-                    "begin": "^\\s*(\\\\)(widget)\\s+((\\$)(?!:\\/)[^\\s\\(]+)(?=\\s*\\()",
+                    "begin": "^\\s*(\\\\)(widget)\\s+((\\$)?(?!\\$?:\\/)[^\\s\\(]+)(?=\\s*\\()",
                     "end": "^",
                     "name": "meta.directive.variable.widget.tiddlywiki5",
                     "beginCaptures": {

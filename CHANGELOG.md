@@ -15,6 +15,12 @@ attribute value's quote characters changed family. A reader who liked 2.2.1's lo
 back by upgrading, which is the definition this number answers to.
 
 ### Fixed
+- A PRAGMA THE GRAMMAR REFUSES SHUTS THE ZONE FOR EVERY PRAGMA BELOW IT. The `\widget` rule demanded
+  a dollar that `fnprocdef.js` never asks for — `[^(\s]+` names all three kinds — so a widget named
+  without one opened no region, its body line met the zone's own close, and the zone, which opens only
+  at the start of the source, stayed shut: a `\function` and two `\parameters` below it read as prose
+  while TiddlyWiki built every one. A one-way latch wears a swallow's face. The widget name now reads
+  with or without its dollar, `$:/` still excluded, and eight darkness entries retire with it.
 - THE ORACLE'S WALK KEEPS WHAT A PRAGMA NESTS. `flatten(tree, {sameSpace: true})` read a child
   starting past its parent's END as a restarted coordinate space, and `parsePragmas` nests the whole
   document after a definition beneath it — so every construct after a leading pragma vanished from

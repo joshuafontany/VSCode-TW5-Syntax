@@ -52,16 +52,6 @@ tests/samples/tiddlywiki5.inline.widgets.tw  html  MISS  "```"  # OWED — the t
 tests/samples/tiddlywiki5.inline.widgets.tw  html  MISS  "fitler=\"[filter[test]]\" #broken"  # OWED — an attribute the host still reads as the widget's own
 corpus/wikitext/html.multiline-tags.tw  html  MISS  "name=\"targetTiddler\""  # OWED — an attribute on a later line of a multi-line tag
 
-# DEFINITIONS THE HOST BUILDS AND THE GRAMMAR PASSES OVER.
-corpus/wikitext/definitions.forms.tw  fnprocdef  MISS  "\\widget widget-without-a-dollar()"  # OWED — the host builds a `\widget` whose name carries no dollar; the grammar reads no line of it, even alone
-corpus/wikitext/definitions.forms.tw  fnprocdef  MISS  "body"  # OWED — that definition's body
-corpus/wikitext/definitions.forms.tw  fnprocdef  MISS  "\\end"  # OWED — that definition's close
-corpus/wikitext/definitions.forms.tw  fnprocdef  LOST  "\\function fn-body-is-a-filter()"  # OWED — the grammar reads this definition alone and loses it in place
-corpus/wikitext/definitions.forms.tw  fnprocdef  LOST  "[tag[Task]] :sort[title]"  # OWED — that definition's filter body
-corpus/wikitext/definitions.forms.tw  fnprocdef  LOST  "\\end"  # OWED — that definition's close
-corpus/wikitext/definitions.forms.tw  parameters  LOST  "\\parameters(a:one,b:\"two\")"  # OWED — the grammar reads this pragma alone and loses it in place
-corpus/wikitext/definitions.forms.tw  parameters  LOST  "\\parameters ($a:\"one\")"  # OWED — the grammar reads this pragma alone and loses it in place
-
 # ITALIC ACROSS LINES. TiddlyWiki carries italic across a line inside one block. The grammar's
 # italic opens only where its close stands on the same line — `//(?=[^\n]*//)` — the bound that
 # keeps an unclosed `//` from running past its own line.
