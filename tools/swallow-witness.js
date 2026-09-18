@@ -45,7 +45,7 @@ const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
 const { READINGS, DEFAULT_TYPE } = require('./carrier-reading.js');
-const { unboundedRegions } = require('./grammar-scopes.js');
+const { unboundedRegions, regionsEndingOn } = require('./grammar-scopes.js');
 const { kindOf } = require('./region-kind.js');
 
 const verbose = process.argv.includes('--verbose');
@@ -244,6 +244,13 @@ let closed = 0;
   if (verbose) for (const r of unasked) console.log(`  unasked  ${r.name}`);
   console.log(`  regions: ${unbounded.length} carry no line bound, ${unbounded.length - unasked.length} `
     + `stand open under some cut, ${unasked.length} go unasked (ceiling ${ceiling})`);
+  // THE PROBE ANSWERS FOR NOTHING A REGION ESCAPES ON. A region ending where the sentinel opens stops
+  // at the probe whatever it swallowed before it, so a cut here asks only whether it carries past a
+  // block boundary. A closer the grammar misses on the construct's OWN line reads nowhere in this
+  // witness; overreach-check and darkness-witness ask that one.
+  const escaping = regionsEndingOn(path.join(ROOT, 'syntaxes', 'tiddlywiki5.json'), SENTINEL.split('\n')[0]);
+  if (verbose) for (const name of escaping) console.log(`  escapes at the probe  ${name}`);
+  console.log(`  ${escaping.length} region(s) end on the probe's own opener, so a cut reads them stopping at the probe`);
 
   console.log(`swallow-witness  ${probes} cut(s) across ${files} corpus file(s), ${closed} quote(s) closed to ask, `
     + `${findings.size} divergence(s), ${owed.size} recorded, ${unruled.length} unruled, `

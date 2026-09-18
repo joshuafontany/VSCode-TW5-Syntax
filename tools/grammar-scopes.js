@@ -152,4 +152,43 @@ function unboundedRegions(file) {
   return out;
 }
 
-module.exports = { declaredScopes, declaredNames, declaredScopesIn, unboundedRegions };
+/**
+ * The regions whose END matches where a line opens, while their BEGIN does not open there.
+ *
+ * A witness appending a probe asks whether an open region carries past a block boundary. A region
+ * whose own end escapes at the probe's opener answers with that escape rather than with a bound of
+ * its own — measured, every transclusion region ends on any line-start block marker, the quote
+ * marker among them — so the probe reads such a region stopping whatever it swallowed before. The
+ * probe's own construct stands apart: a region opening on the marker closes on it by definition.
+ *
+ * A pattern JavaScript cannot compile answers for nothing here, the conservative reading.
+ *
+ * @param {string} file  a grammar
+ * @param {string} line  the line a probe opens with
+ * @returns {string[]}  each such region's name
+ */
+function regionsEndingOn(file, line) {
+  const grammar = JSON.parse(fs.readFileSync(file, 'utf8'));
+  const atStart = (source) => {
+    try {
+      const m = new RegExp(source, 'm').exec(line);
+      return m !== null && m.index === 0;
+    } catch {
+      return false;
+    }
+  };
+  const out = [];
+  const walk = (node) => {
+    if (Array.isArray(node)) { node.forEach(walk); return; }
+    if (!node || typeof node !== 'object') return;
+    if (node.begin !== undefined && node.end !== undefined) {
+      const name = node.name || node.contentName;
+      if (name && atStart(node.end) && !atStart(node.begin)) out.push(name);
+    }
+    for (const value of Object.values(node)) walk(value);
+  };
+  walk(grammar);
+  return out;
+}
+
+module.exports = { declaredScopes, declaredNames, declaredScopesIn, unboundedRegions, regionsEndingOn };
