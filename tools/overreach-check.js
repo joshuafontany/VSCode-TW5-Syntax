@@ -154,6 +154,33 @@ function isExpected(rules, file, scope) {
 }
 
 /**
+ * Every ruling's own INDEX that explains this span, rather than whether any does.
+ *
+ * A ruling stands STALE only where it explains a span in NO run at all, and a run answers that
+ * question one ruling at a time — `isExpected` collapses the set to a boolean, which tells a caller
+ * whether the span is excused and nothing about which excuse did it. Same predicate, read the other
+ * way round.
+ *
+ * @param {{file:string|null, scope:string}[]} rules
+ * @param {string} file
+ * @param {string} scope
+ * @returns {number[]}
+ */
+function matchingRulings(rules, file, scope) {
+  const out = [];
+  rules.forEach((r, i) => {
+    const matches = (r.scope === ''
+      ? true
+      : r.scope.startsWith('*.')
+        ? scope.endsWith(r.scope.slice(1))
+        : scope === r.scope || scope.startsWith(`${r.scope}.`)) &&
+      (r.file === null || file === r.file || file.endsWith(`/${r.file}`));
+    if (matches) out.push(i);
+  });
+  return out;
+}
+
+/**
  * Every span where the grammar and TiddlyWiki disagree, in both directions.
  *
  * A span answers for itself: the grammar painted THIS stretch, so TiddlyWiki gets asked
@@ -220,13 +247,15 @@ function review(source, snapText, oracle) {
   return findings;
 }
 
-module.exports = { BASE, parseSnapshot, offsetAt, claims, verdicts, declines, readExpected, isExpected, parsesAsWikitext, review };
+module.exports = { BASE, parseSnapshot, offsetAt, claims, verdicts, declines, readExpected, isExpected, matchingRulings, parsesAsWikitext, review };
 
 if (require.main === module) {
   const args = process.argv.slice(2);
   const verbose = args.includes('--verbose');
   const expectedFile = (args.find((a) => a.startsWith('--expected=')) || '').slice('--expected='.length);
   const rulings = expectedFile ? readExpected(fs.readFileSync(expectedFile, 'utf8')) : [];
+  const rulingsUsedFile = (args.find((a) => a.startsWith('--rulings-used=')) || '').slice('--rulings-used='.length);
+  const rulingsUsed = new Set();
   const camelcase = args.includes('--camelcase');
   const truncateArg = args.find((a) => a === '--truncate' || a.startsWith('--truncate='));
   const truncating = Boolean(truncateArg);
@@ -346,7 +375,9 @@ if (require.main === module) {
     scanned += 1;
     const source = fs.readFileSync(copy, 'utf8');
     for (const f of review(source, fs.readFileSync(snap, 'utf8'), oracle)) {
-      if (isExpected(rulings, files[i], f.scope)) {
+      const matched = matchingRulings(rulings, files[i], f.scope);
+      if (matched.length > 0) {
+        for (const m of matched) rulingsUsed.add(m);
         ruled += 1;
         continue;
       }
@@ -408,5 +439,11 @@ if (require.main === module) {
   section('overreach', 'span(s) the grammar CLAIMS and TiddlyWiki refuses');
   section('invention', 'span(s) the grammar CONDEMNS and TiddlyWiki builds');
   if (total === 0) console.log('\n  the grammar and the parser agree everywhere they were asked');
+  if (rulingsUsedFile) {
+    fs.writeFileSync(rulingsUsedFile, JSON.stringify({
+      total: rulings.length,
+      used: [...rulingsUsed].sort((a, b) => a - b)
+    }));
+  }
   process.exitCode = total === 0 ? 0 : 1;
 }

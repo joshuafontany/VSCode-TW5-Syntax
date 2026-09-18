@@ -953,9 +953,17 @@ back by upgrading, which is the definition this number answers to.
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 136 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 127 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
   emits no container node, so a scope over its content stands over text by construction.
+- A RULING STANDS STALE ONLY WHERE EVERY RUN EXPLAINS NOTHING WITH IT. The five `overreach-check`
+  runs over `corpus/expected-divergence.txt` share one ruling file, and a ruling idle in one run
+  can still be earning its place in another. `tools/divergence-staleness.js` takes the union of
+  what each run used and reports what none of them did. Nine rulings answered to neither: three
+  a scope rename left behind, one always superseded by a sibling ruling naming the scope the finder
+  actually reports, and five closed by the host or grammar already agreeing where a fixture once
+  recorded a divergence. All nine are gone from `corpus/expected-divergence.txt`; the ruling count
+  above moves with them.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses
   deliberately — a scope the host ships disabled, a `\rules` run narrowing a rule set no
   TextMate grammar can follow, a fixture carrying deliberate faults, and the memetic dialect's own
