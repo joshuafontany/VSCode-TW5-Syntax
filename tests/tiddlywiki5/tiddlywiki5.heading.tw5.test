@@ -23,3 +23,18 @@
 !!!!!! Header
 #<-- text.html.tiddlywiki5 meta.heading.heading-6.tiddlywiki5 markup.heading.tiddlywiki5
 #     ^ text.html.tiddlywiki5 meta.heading.heading-6.tiddlywiki5
+
+# A HEADING'S TEXT IS MARKUP, NOT A DECLARED NAME. It keeps `entity.name.section`, the shape markdown
+# publishes, and carries `markup.heading.section` last: `entity.name` is the root a transclusion's
+# title and a call's name also sit under, so a theme ruling on that root painted all three alike.
+! A heading's words
+# ^^^^^^^^^^^^^^^ entity.name.section.tiddlywiki5
+# ^^^^^^^^^^^^^^^ markup.heading.section.tiddlywiki5
+
+!!! A third-level heading's words
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.heading.section.tiddlywiki5
+
+# CONTROL: the marks keep their punctuation name, and a transclusion inside keeps its own reading.
+!! Words and {{A/Transclusion}}
+#<-- punctuation.definition.heading.tiddlywiki5
+#<-- - markup.heading.section.tiddlywiki5

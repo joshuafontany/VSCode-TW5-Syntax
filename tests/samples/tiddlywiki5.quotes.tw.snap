@@ -203,14 +203,14 @@
 >        ! A Header
 #^^^^^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5
 #        ^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 punctuation.definition.heading.tiddlywiki5 markup.heading.tiddlywiki5
-#         ^^^^^^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5
+#         ^^^^^^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.heading.section.tiddlywiki5
 >        Another paragraph, which needs to end with a blank line.
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.other.paragraph.tiddlywiki5
 >
 >            !! Sub Header
 #^^^^^^^^^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5
 #            ^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 punctuation.definition.heading.tiddlywiki5 markup.heading.tiddlywiki5
-#              ^^^^^^^^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 entity.name.section.tiddlywiki5
+#              ^^^^^^^^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 entity.name.section.tiddlywiki5 markup.heading.section.tiddlywiki5
 >            A final paragraph, which __does not__ need to end with a blank line as the Block Quote ends.
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.other.paragraph.tiddlywiki5
 #                                     ^^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.other.paragraph.tiddlywiki5 punctuation.definition.markup.begin.underscore.tiddlywiki5
@@ -435,14 +435,14 @@
 >        ! A Header
 #^^^^^^^^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5
 #        ^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 punctuation.definition.heading.tiddlywiki5 markup.heading.tiddlywiki5
-#         ^^^^^^^^^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5
+#         ^^^^^^^^^ text.html.tiddlywiki5 markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 entity.name.section.tiddlywiki5 markup.heading.section.tiddlywiki5
 >        Another paragraph, which needs to end with a blank line.
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >
 >            !! Sub Header
 #^^^^^^^^^^^^ text.html.tiddlywiki5 markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5
 #            ^^ text.html.tiddlywiki5 markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 punctuation.definition.heading.tiddlywiki5 markup.heading.tiddlywiki5
-#              ^^^^^^^^^^^ text.html.tiddlywiki5 markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 entity.name.section.tiddlywiki5
+#              ^^^^^^^^^^^ text.html.tiddlywiki5 markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 entity.name.section.tiddlywiki5 markup.heading.section.tiddlywiki5
 >            A final paragraph, which __does not__ need to end with a blank line as the Block Quote ends.
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 #                                     ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 punctuation.definition.markup.begin.underscore.tiddlywiki5

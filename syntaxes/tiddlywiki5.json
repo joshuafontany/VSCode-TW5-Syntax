@@ -4581,7 +4581,7 @@
                             "include": "#inline"
                         }
                     ],
-                    "contentName": "entity.name.section.tiddlywiki5"
+                    "contentName": "entity.name.section.tiddlywiki5 markup.heading.section.tiddlywiki5"
                 },
                 {
                     "begin": "\\s*(!{5})((?:\\.[^\\s\\.]+)+)?",
@@ -4604,7 +4604,7 @@
                             "include": "#inline"
                         }
                     ],
-                    "contentName": "entity.name.section.tiddlywiki5"
+                    "contentName": "entity.name.section.tiddlywiki5 markup.heading.section.tiddlywiki5"
                 },
                 {
                     "begin": "\\s*(!{4})((?:\\.[^\\s\\.]+)+)?",
@@ -4627,7 +4627,7 @@
                             "include": "#inline"
                         }
                     ],
-                    "contentName": "entity.name.section.tiddlywiki5"
+                    "contentName": "entity.name.section.tiddlywiki5 markup.heading.section.tiddlywiki5"
                 },
                 {
                     "begin": "\\s*(!{3})((?:\\.[^\\s\\.]+)+)?",
@@ -4650,7 +4650,7 @@
                             "include": "#inline"
                         }
                     ],
-                    "contentName": "entity.name.section.tiddlywiki5"
+                    "contentName": "entity.name.section.tiddlywiki5 markup.heading.section.tiddlywiki5"
                 },
                 {
                     "begin": "\\s*(!{2})((?:\\.[^\\s\\.]+)+)?",
@@ -4673,7 +4673,7 @@
                             "include": "#inline"
                         }
                     ],
-                    "contentName": "entity.name.section.tiddlywiki5"
+                    "contentName": "entity.name.section.tiddlywiki5 markup.heading.section.tiddlywiki5"
                 },
                 {
                     "begin": "\\s*(!{1})((?:\\.[^\\s\\.]+)+)?",
@@ -4696,7 +4696,7 @@
                             "include": "#inline"
                         }
                     ],
-                    "contentName": "entity.name.section.tiddlywiki5"
+                    "contentName": "entity.name.section.tiddlywiki5 markup.heading.section.tiddlywiki5"
                 }
             ]
         },

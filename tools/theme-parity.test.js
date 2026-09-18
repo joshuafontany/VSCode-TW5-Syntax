@@ -42,7 +42,7 @@ test('the panel carries enough comparators to set a median', live, () => {
 test('a heading named where no theme rules on reads as a gap', live, () => {
   const provoked = fs.readFileSync(GRAMMAR, 'utf8')
     .replaceAll('markup.heading.1.tiddlywiki5 meta.heading.heading-1.tiddlywiki5', 'meta.heading.heading-1.tiddlywiki5')
-    .replaceAll('"contentName": "entity.name.section.tiddlywiki5",', '');
+    .replace(/"contentName": "entity\.name\.section[^"]*"/g, '"contentName": "meta.heading.text.tiddlywiki5"');
   const { code, out } = runProvoked(provoked, ['tools/theme-parity.js', '--verbose']);
   assert.match(out, /Heading one: \d+% of themes colour it/, out.slice(-500));
   assert.notStrictEqual(code, 0, 'the witness must fail the gate, not only print');

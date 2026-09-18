@@ -1257,6 +1257,13 @@ back by upgrading, which is the definition this number answers to.
   region the grammar never closed — and the ladder reads structure before kind word, so a cause
   outranks the symptom it produced. The control cuts one class from the ladder and the gate reds.
 ### Changed
+- A HEADING'S TEXT READS AS MARKUP, NOT AS A DECLARED NAME. It wore `entity.name.section` alone, the
+  shape markdown publishes, and themes rule on the `entity.name` root a transclusion's title and a
+  call's name share, so heading text read as one colour with a transclusion in 33 of 65 themes and
+  with a call's name in 18. It keeps the published name and carries `markup.heading.section` last:
+  measured, 17 and 9. Two legibility floors re-seat on the ruling, recorded beside it in
+  `corpus/legibility-floor.txt` — an entity against a heading 59 to 57, a bare external link against a
+  heading 65 to 64 — and no other pair moves down.
 - A SIGIL'S `~` READS AS THE DIALECT'S KEYWORD. TiddlyWiki reads `<<~ set …>>` as a call on a
   variable spelled `~`, and the base names it the called name, which read in the verb's colour in no
   bundled theme. The dialect names it beside that reading as the sigil's MARKER —

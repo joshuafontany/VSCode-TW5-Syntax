@@ -78,7 +78,7 @@ gates-held: 47 of 47
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  61 files, 523 scopes declared, 477 reached (floor 450), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  61 files, 524 scopes declared, 478 reached (floor 450), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
