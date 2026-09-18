@@ -137,6 +137,89 @@ function changesShape(text, p, oracle) {
 }
 
 /**
+ * Every structural (never plain-text) node that CONTAINS offset `p`, outermost first — the
+ * ancestor chain `nodeCovering` walks to find its own tightest answer.
+ *
+ * @param {object[]} tree
+ * @param {number} p
+ * @returns {object[]}
+ */
+function chainAt(tree, p) {
+  return flatten(tree, { sameSpace: true })
+    .filter((n) => n && typeof n.start === 'number' && typeof n.end === 'number' && n.start <= p && n.end > p && !isPlainText(n))
+    .sort((a, b) => (b.end - b.start) - (a.end - a.start))
+    .map((n) => ({ type: n.type, tag: n.tag || '', end: n.end }));
+}
+
+// A REPLACEMENT CAN BUILD MARKUP OF ITS OWN. `neutral()` answers with a LETTER, and a letter reads
+// as an identifier — an attribute name, a macro name — everywhere TiddlyWiki's own grammar admits
+// one. Traced: `* [img[ ]]`, ablating the SECOND `[` to `x` leaves `* [imgx ]]`; image.js finds no
+// `[` immediately after `[img`, so it calls parseutils.js's `parseAttribute`, whose name token
+// admits `x`, and carries an attribute list into the NEXT LINE's `[`, building an image the
+// ORIGINAL held never — a construct never appears when nothing at this position could start an
+// attribute name.
+//
+// NO REPLACEMENT CHARACTER IS UNIVERSALLY INERT. `>`, `=` and `"` each open, close or continue
+// some token elsewhere in this grammar — a macro CALL's own unquoted parameter value admits a lone
+// `>` (parseutils.js's `reMacroParameter`), which is exactly what let `>` stand in for the real
+// name-terminating `=` of `<<a=b>>` and read as no change at all. Whitespace fares no better: a
+// skipped space just exposes the NEXT character to the same risk (traced: `* [img  ]]` still opens
+// an image, this time swallowing a `]` as the attribute name). Multiplying replacements and
+// requiring agreement across them only relocates the artifact to whichever "inert" candidate turns
+// out to share a role with the character under test.
+//
+// THE INVARIANT THAT HOLDS: a MISS reports the ORIGINAL character's own structure going missing,
+// never the REPLACEMENT's own structure appearing. `isCreationArtifact` reads two ancestor chains,
+// outermost first, over the SAME offset: BEFORE ablation and AFTER it. Walking them in lockstep —
+//   - a node BEFORE held with no counterpart at the same rank AFTER means something was genuinely
+//     lost or altered; an artifact never does that, only ADDS.
+//   - a node persisting at the same rank that grew BEYOND its own PARENT's original end has
+//     annexed a neighbour's territory (a mismatched closing tag consuming the rest of the
+//     document, say) — real damage a finding must report, not creation to wave through.
+//   - once the chains run out of common rank, AFTER holding a node BEFORE never had is creation —
+//     unless THAT new node's own span reaches PAST the original covering node's end, which is the
+//     replacement's lookahead spilling into content the ablated character's own construct never
+//     engaged (the image's attribute list crossing into the next line's `[`).
+//
+// @param {string} text
+// @param {number} p
+// @param {{parse: Function}} oracle
+// @param {object} beforeNode  `nodeCovering` at `p` in the text BEFORE ablation
+// @returns {boolean}
+function isCreationArtifact(text, p, oracle, beforeNode) {
+  const before = oracle.parse(text).tree;
+  const beforeChain = chainAt(before, p);
+  const ablated = text.slice(0, p) + neutral(text[p]) + text.slice(p + 1);
+  const after = oracle.parse(ablated).tree;
+  const afterChain = chainAt(after, p);
+  let i = 0;
+  while (i < beforeChain.length && i < afterChain.length
+    && beforeChain[i].type === afterChain[i].type && beforeChain[i].tag === afterChain[i].tag) {
+    if (i > 0 && afterChain[i].end > beforeChain[i - 1].end) return false;
+    i += 1;
+  }
+  if (i < beforeChain.length) return false; // BEFORE held something AFTER has no counterpart for
+  if (i >= afterChain.length) return false; // no deeper node appeared; whatever differs is alteration
+  return afterChain[i].end > beforeNode.end; // grew past the original's own boundary => spillover
+}
+
+/**
+ * Whether ablating one character at `p` reports a genuine MISS: the shape changed, AND the change
+ * is the ORIGINAL structure going missing rather than the replacement's own creation.
+ *
+ * @param {string} text
+ * @param {number} p
+ * @param {{parse: Function}} oracle
+ * @returns {boolean}
+ */
+function isRealMiss(text, p, oracle) {
+  if (!changesShape(text, p, oracle)) return false;
+  const beforeNode = nodeCovering(oracle.parse(text).tree, p);
+  if (!beforeNode) return true;
+  return !isCreationArtifact(text, p, oracle, beforeNode);
+}
+
+/**
  * Every OVERREACH and MISS this text carries.
  *
  * @param {string} text
@@ -197,7 +280,7 @@ async function ablations(text, oracle, read = placed) {
     if (/[\w\s]/.test(ch)) continue;
     const built = oracle.readAt(text, p, p + 1).kind === 'built';
     if (!built) continue;
-    if (changesShape(text, p, oracle)) record('MISS', p);
+    if (isRealMiss(text, p, oracle)) record('MISS', p);
   }
   return found.sort((a, b) => a.line - b.line || a.char.localeCompare(b.char));
 }
@@ -227,7 +310,17 @@ function carriers() {
     : []));
 }
 
-module.exports = { ablations, shapeOf, nodeCovering, changesShape, neutral, keyOf };
+module.exports = {
+  ablations,
+  shapeOf,
+  nodeCovering,
+  chainAt,
+  changesShape,
+  isCreationArtifact,
+  isRealMiss,
+  neutral,
+  keyOf
+};
 
 if (require.main !== module) return;
 

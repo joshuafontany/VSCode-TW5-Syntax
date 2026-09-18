@@ -13,7 +13,7 @@ gates-held: 49 of 49
         {
             "gate": "ablation",
             "held": true,
-            "said": "ablation-witness  337 finding(s) over 72 carrier(s): 337 declared (337 owed), 0 undeclared, 0 stale"
+            "said": "ablation-witness  333 finding(s) over 72 carrier(s): 333 declared (333 owed), 0 undeclared, 0 stale"
         },
         {
             "gate": "attribute-guard",

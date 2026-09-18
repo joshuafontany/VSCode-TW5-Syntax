@@ -1072,8 +1072,23 @@ back by upgrading, which is the definition this number answers to.
   spirit's tables research) traced and OWED to the same table.js lines the research cites, and every
   other class hand-traced before it joined the ledger.
   It runs as a gate and in CI. THE NEUTRAL LETTER CAN BUILD MARKUP: `[img[ ]]` ablated to `[imgx ]]`
-  opens an image whose attribute list reads into the next line, so a MISS stands traced before it
-  counts, and the witness owes a test that discounts structure its own replacement creates.
+  opens an image whose attribute list reads into the next line, so a MISS stood traced before it
+  counted, and the witness owed a test that discounts structure its own replacement creates.
+  No replacement character is universally inert — `>`, `=` and `"` each open, close or continue
+  some token elsewhere in this grammar (a macro CALL's own unquoted parameter value admits a lone
+  `>`, which let it stand in for the real name-terminating `=` of `<<a=b>>` and read as no change
+  at all), so multiplying replacements and requiring agreement across them only relocates the
+  artifact. THE INVARIANT THAT HOLDS: a MISS reports the ORIGINAL character's own structure going
+  missing, never the REPLACEMENT's own structure appearing. `isCreationArtifact` reads the
+  ancestor chain at the offset, before ablation and after, outermost first — a node BEFORE held
+  with no counterpart AFTER at the same rank is real loss or alteration; a node persisting at the
+  same rank that grew PAST its own parent's original end has annexed a neighbour's territory,
+  which a finding must report; and once the chains run out of common rank, a node AFTER holds that
+  BEFORE never had counts as the replacement's own creation only when THAT node's span reaches
+  past the original covering node's end — the replacement's lookahead spilling into content the
+  ablated character's own construct never engaged. The four `[img[ ]]`/`[img [ ]]` MISSes this
+  artifact owed are retired; every other finding, including the D3/D4 table-valign controls and
+  `<<a=b>>`'s own name-stop, survives unmoved — `corpus/ablation-ledger.txt` now keeps 335.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses
   deliberately — a scope the host ships disabled, a `\rules` run narrowing a rule set no
   TextMate grammar can follow, a fixture carrying deliberate faults, and the memetic dialect's own
