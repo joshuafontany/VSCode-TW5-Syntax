@@ -4426,16 +4426,20 @@
 #         ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.classes.tiddlywiki5 entity.other.attribute-name.class.css punctuation.definition.entity.css
 #          ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.classes.tiddlywiki5 entity.other.attribute-name.class.css punctuation.definition.entity.css entity.other.attribute-name.class.css
 >    @@
-#^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.end.bottom.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.end.tiddlywiki5
+#^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5
+#    ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.begin.tiddlywiki5
 >
 >@@
-#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.begin.tiddlywiki5
+#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.end.bottom.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.end.tiddlywiki5
 >@@
-#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.begin.tiddlywiki5
+#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.end.bottom.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.end.tiddlywiki5
 >
 >@@color:blue;
-#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.end.bottom.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.end.tiddlywiki5
-#  ^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5
+#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.begin.tiddlywiki5
+#  ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css support.type.property-name.css
+#       ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css punctuation.separator.key-value.css
+#        ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css support.constant.color.w3c-standard-color-name.css
+#            ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css punctuation.terminator.rule.css
 >@@background-color:red;
 #^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.begin.tiddlywiki5
 #  ^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css support.type.property-name.css
@@ -4451,42 +4455,44 @@
 >One paragraph here
 #^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5
 >    @@
-#^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.end.bottom.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.end.tiddlywiki5
+#^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5
+#    ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.style.markup.begin.tiddlywiki5
 >
 >@@
-#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.begin.tiddlywiki5
+#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.end.bottom.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.end.tiddlywiki5
 >@@
 #^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.begin.tiddlywiki5
 >
 >@@color:blue;
 #^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.end.bottom.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.end.tiddlywiki5
-#  ^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5
+#  ^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >@@background-color:red;
-#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.begin.tiddlywiki5
-#  ^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css support.type.property-name.css
-#                  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css punctuation.separator.key-value.css
-#                   ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css support.constant.color.w3c-standard-color-name.css
-#                      ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css punctuation.terminator.rule.css
+#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.style.markup.begin.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css support.type.property-name.css
+#                  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css punctuation.separator.key-value.css
+#                   ^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css support.constant.color.w3c-standard-color-name.css
+#                      ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css punctuation.terminator.rule.css
 >@@.class1.class2
-#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.begin.tiddlywiki5
-#  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.classes.tiddlywiki5 entity.other.attribute-name.class.css punctuation.definition.entity.css
-#   ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.classes.tiddlywiki5 entity.other.attribute-name.class.css punctuation.definition.entity.css entity.other.attribute-name.class.css
-#         ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.classes.tiddlywiki5 entity.other.attribute-name.class.css punctuation.definition.entity.css
-#          ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.classes.tiddlywiki5 entity.other.attribute-name.class.css punctuation.definition.entity.css entity.other.attribute-name.class.css
+#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.style.tiddlywiki5 punctuation.definition.style.markup.end.tiddlywiki5
+#  ^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >
 >Each individual block run here gets styles and classes specified, so no wrapping HTML element is needed.
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >
 >* This list should have red background
-#^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
+#^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
 >* This text should be blue
-#^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
-# ^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
+#^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+# ^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
 >
 >  @@color:blue;
-#^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.end.bottom.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.end.tiddlywiki5
-#    ^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5
+#^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5
+#  ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.begin.tiddlywiki5
+#    ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css support.type.property-name.css
+#         ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css punctuation.separator.key-value.css
+#          ^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css support.constant.color.w3c-standard-color-name.css
+#              ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css punctuation.terminator.rule.css
 >@@background-color:red;
 #^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.begin.tiddlywiki5
 #  ^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.begin.top.tiddlywiki5 meta.support.styles.tiddlywiki5 meta.property-value.css support.type.property-name.css
@@ -4507,7 +4513,8 @@
 #                                                               ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.body.tiddlywiki5 markup.other.paragraph.tiddlywiki5
 >@@* In TW5 wikitext it's legal to start any block definition here,
 #^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.end.bottom.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.end.tiddlywiki5
-#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5
+#  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
 >* but currently this possibility is ignored and marked as illegal by this grammar.
 #^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5
@@ -4531,7 +4538,7 @@
 >
 >@@background-color:blue;
 #^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 markup.other.style.styleblock.tiddlywiki5 meta.styleblock.definition.end.bottom.tiddlywiki5 punctuation.definition.markup.other.style.styleblock.end.tiddlywiki5
-#  ^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >Here's a ''paragraph'' with inline styling.
 #^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 #         ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 punctuation.definition.markup.begin.bold.tiddlywiki5

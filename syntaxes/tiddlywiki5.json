@@ -3774,7 +3774,7 @@
         "styleblock": {
             "applyEndPatternLast": 1,
             "begin": "\\s*(?=@@((?:[^\\s:;]+:[^;]*;)+)?((?:\\.[^\\s\\.]+)+)?$)",
-            "end": "(?<=^\\s*@@)\\s*(.*)$",
+            "end": "(?<=^@@)\\s*",
             "contentName": "markup.other.style.styleblock.tiddlywiki5",
             "patterns": [
                 {
@@ -3802,9 +3802,9 @@
                     }
                 },
                 {
-                    "comment": "Tokenize body and end marker.",
+                    "comment": "Tokenize body and end marker. The host ends the body on `^@@` (styleblock.js) and asks it after skipping indentation, where `^` cannot match — so only a closer at the first column closes, and an indented `@@` opens a nested block or stays text.",
                     "begin": "^",
-                    "end": "^(\\s*@@)",
+                    "end": "^(@@)",
                     "contentName": "meta.styleblock.definition.body.tiddlywiki5",
                     "endCaptures": {
                         "0": {
@@ -3820,7 +3820,7 @@
                         },
                         {
                             "begin": "(?!\\s*$)",
-                            "end": "(?:^(?=\\s*@@))|^$",
+                            "end": "(?:^(?=@@))|^$",
                             "name": "markup.other.paragraph.tiddlywiki5",
                             "patterns": [
                                 {

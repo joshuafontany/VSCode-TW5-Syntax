@@ -122,15 +122,11 @@ tiddlywiki5.tw:punctuation.definition.tag        # and again
 # next builds an image node upstream and colours as one here, tooltip form included. Measured, so a
 # reader wondering whether the mark stops at the line end can stop wondering. What TiddlyWiki refuses
 # stands narrower than that — a source that carries nothing at all.
-tiddlywiki5.basic.tw:punctuation.definition.style.markup      # three style openers in a row: the marks carry the colour, and TiddlyWiki reads the second and third as content of the first
-tiddlywiki5.basic.tw:punctuation.definition.entity.css        # the class marks inside such an opener
-tiddlywiki5.basic.tw:entity.other.attribute-name.class.css    # and the class names beside them
+tiddlywiki5.basic.tw:punctuation.definition.style.markup      # an inline style opener with no closer before its paragraph ends: TiddlyWiki keeps the marks as text (`unterminated-styleinline`), and the grammar opens the run on its marks before it can see whether a closer stands
 tiddlywiki5.basic.tw:markup.bold                              # a bold run on the line after the closing mark, which the parser reads as content of the run above it
 tiddlywiki5.basic.tw:punctuation.definition.markup.begin.bold # the marks opening that run
 tiddlywiki5.basic.tw:punctuation.definition.markup.end.bold   # and closing it
-tiddlywiki5.tw:punctuation.definition.style.markup            # the same three openers, in the fixture that carries every construct
-tiddlywiki5.tw:punctuation.definition.entity.css              # the same reading
-tiddlywiki5.tw:entity.other.attribute-name.class.css          # the same reading
+tiddlywiki5.tw:punctuation.definition.style.markup            # the same unclosed inline opener, in the fixture that carries every construct
 tiddlywiki5.tw:markup.bold                                    # the same reading
 tiddlywiki5.tw:punctuation.definition.markup.begin.bold       # the same reading
 tiddlywiki5.tw:punctuation.definition.markup.end.bold         # the same reading

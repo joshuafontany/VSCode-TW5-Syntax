@@ -48,7 +48,7 @@ gates-held: 47 of 47
         {
             "gate": "canary-wikitext",
             "held": true,
-            "said": "bleed-canary  text.html.tiddlywiki5  23 samples, 0 bleeding"
+            "said": "bleed-canary  text.html.tiddlywiki5  23 samples, 0 bleeding, 1 ending inside a construct TiddlyWiki also carries"
         },
         {
             "gate": "ceiling",
@@ -83,12 +83,12 @@ gates-held: 47 of 47
         {
             "gate": "dark-construct",
             "held": true,
-            "said": "dark-construct  332 construct(s) over 65 themes, 22 plain, 0 unaccounted"
+            "said": "dark-construct  331 construct(s) over 65 themes, 21 plain, 0 unaccounted"
         },
         {
             "gate": "darkness",
             "held": true,
-            "said": "darkness-witness  32 construct line(s) over 71 carrier(s) read dark: 32 declared (32 owed), 0 undeclared, 0 stale"
+            "said": "darkness-witness  30 construct line(s) over 71 carrier(s) read dark: 30 declared (30 owed), 0 undeclared, 0 stale"
         },
         {
             "gate": "delimiters",

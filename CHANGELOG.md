@@ -15,6 +15,15 @@ attribute value's quote characters changed family. A reader who liked 2.2.1's lo
 back by upgrading, which is the definition this number answers to.
 
 ### Fixed
+- A STYLE BLOCK CLOSES ONLY ON A CLOSER AT THE FIRST COLUMN. `styleblock.js` ends its body on
+  `^@@`, and `parseBlocksTerminated` skips indentation before it asks — so an indented `@@` closes
+  nothing: at a block's head it opens a nested, empty block, and inside a paragraph it stays text. The
+  grammar closed on `^\s*@@`, and from the first indented closer in `tiddlywiki5.tw` every `@@` below
+  flipped parity, reading openers as closers and a style as prose. A closer carrying text after its
+  marks also hands that text to a paragraph that runs to the next blank line, where the grammar opened
+  a fresh block on the line below. Traced block by block against the host, every style block in both
+  pinned samples now opens and closes where TiddlyWiki's does; four sample rulings that explained the
+  flipped parity retire idle, and the two left restate the one divergence they still carry.
 - A TABLE CELL'S MARKS READ IN THE HOST'S ORDER. `table.js` reads a vertical-alignment mark, then
   spaces, then the heading bang, and the grammar diverged in five places: a `<` opening a row painted a
   colspan where the host keeps the text (the span needs a cell before it); a tab before `!` painted a
@@ -974,7 +983,7 @@ back by upgrading, which is the definition this number answers to.
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 133 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 129 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
   emits no container node, so a scope over its content stands over text by construction.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses
