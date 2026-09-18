@@ -193,6 +193,15 @@ jobs:
       - name: Divergence against the parser
         run: npm run overreach
 
+      # A ruling stands stale only where every overreach-check run explains zero spans with it.
+      - name: No ruling in expected-divergence.txt explains nothing everywhere
+        run: npm run divergence-staleness
+
+      # Every mark the grammar claims, taken away: a mark whose removal changes nothing TiddlyWiki
+      # builds stands overreach, and an unclaimed character whose removal changes the tree stands a miss.
+      - name: Ablation witness
+        run: npm run ablation
+
       # A gap the grammar grew to meet wants moving out of tests/known-gaps.
       - name: Known gaps
         run: npm run tests-known-gaps

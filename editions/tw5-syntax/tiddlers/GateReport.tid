@@ -3,13 +3,18 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 47 of 47
+gates-held: 49 of 49
 
 {
-    "gates": 47,
-    "held": 47,
+    "gates": 49,
+    "held": 49,
     "failing": 0,
     "results": [
+        {
+            "gate": "ablation",
+            "held": true,
+            "said": "ablation-witness  339 finding(s) over 72 carrier(s): 339 declared (339 owed), 0 undeclared, 0 stale"
+        },
         {
             "gate": "attribute-guard",
             "held": true,
@@ -94,6 +99,11 @@ gates-held: 47 of 47
             "gate": "delimiters",
             "held": true,
             "said": "delimiter-inheritance  111 contentName rule(s) over 42 shape(s), 0 unruled"
+        },
+        {
+            "gate": "divergence-staleness",
+            "held": true,
+            "said": "divergence-staleness  5 run(s) over 111 ruling(s): 0 stale"
         },
         {
             "gate": "engine-behaviour",

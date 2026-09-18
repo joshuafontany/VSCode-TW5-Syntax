@@ -6,9 +6,8 @@
 
 meta.link.wikilink                            # TiddlyWiki ships CamelCase linking disabled; the scope stands quiet so a wiki that enables it can colour it back
 meta.tag.metadata.doctype                     # a .tid may hold a whole TiddlyWiki HTML document, where a doctype reads; wikitext builds no node for one
-meta.tag.metadata.cdata                       # the same reading, for a CDATA section
 meta.tag.metadata.processing.xml              # the same reading, for an XML declaration
-html.basic.tw:punctuation.definition.tag       # the fixture holds a whole HTML document, whose DOCTYPE wikitext builds no node for — the three metadata families above name the same reading
+html.basic.tw:punctuation.definition.tag       # the fixture holds a whole HTML document, whose DOCTYPE wikitext builds no node for — the two metadata families above name the same reading
 html.basic.tw:entity.name.tag                 # the same fixture
 html.basic.tw:entity.other.attribute-name     # the same fixture
 test.html.tw:punctuation.definition.tag       # the same reading, in the second fixture holding an HTML document
@@ -18,12 +17,9 @@ metadata.tags.tw:punctuation.definition.tag   # the fixture exists to exercise t
 metadata.tags.tw:entity.name.tag              # the same fixture
 metadata.tags.tw:entity.other.attribute-name  # the same fixture
 metadata.tags.tw:punctuation.separator.key-value # the same fixture
-metadata.tags.tw:punctuation.definition.string   # the same fixture
 metadata.tags.tw:string.quoted                # the same fixture
-metadata.tags.tw:meta.tag.other               # the same fixture
 metadata.tags.tw:keyword.control.shortcut     # the same fixture
 metadata.tags.tw:meta.shortcut                # the same fixture
-metadata.tags.tw:constant.character.dash      # the same fixture
 metadata.tags.tw:string.other.inline-data     # the CDATA section's own content, in the same fixture
 pragmas.tw:punctuation.definition.directive   # a \rules run above narrows the active rule set, and no TextMate grammar can follow it
 pragmas.tw:keyword.control.directive          # the same \rules run
@@ -130,9 +126,6 @@ tiddlywiki5.tw:punctuation.definition.style.markup            # the same unclose
 tiddlywiki5.tw:markup.bold                                    # the same reading
 tiddlywiki5.tw:punctuation.definition.markup.begin.bold       # the same reading
 tiddlywiki5.tw:punctuation.definition.markup.end.bold         # the same reading
-tiddlywiki5.inline.links.tw:punctuation.definition.image      # an image with a blank source: the marks carry the colour, and TiddlyWiki refuses the construct
-tiddlywiki5.inline.links.tw:keyword.other.img                 # the img keyword inside one
-tiddlywiki5.inline.links.tw:markup.underline.link.image       # and the space standing where a source would
 definitions.closer-name.tw:  # EVERY SPAN in this carrier answers to its one closer. `\end` carrying a name that fails to match closes nothing in TiddlyWiki — the definition runs to the end of the source with a BLANK body and an `unterminated-definition` diagnostic. The grammar closes on the closer it can see. The deciding evidence sits on that line, so this stands OWED rather than structural: matching it needs a backreference to the name, which an end pattern can only take from its OWN begin, and the name stands captured one rule out.  # MEASURED AND DECLINED: a backreference in an end pattern DOES reach the name its own begin captured — probed against vscode-textmate, a matching name closes, a bare closer closes, and a name that fails to match closes nothing, which is the host's own reading exactly. The cost sits in the SECOND engine: Shiki translates every pattern to JavaScript and refuses `\3` outright — `Not enough capturing groups defined to the left` — because a standalone compile cannot see the begin's captures. A reader meeting this grammar on a documentation site would lose every definition's block reading to fix a closer nobody writes on purpose, and that reader has no other advocate here. The closer this grammar accepts and the host refuses costs one authoring error; the fix costs every definition in the other engine.
 
 # A NARROWED RULE SET CHANGES WHAT EVERY LINE BELOW IT MEANS, and a grammar cannot follow it.
@@ -163,18 +156,11 @@ pragmas.rules-only.tw:punctuation.definition.raw.markup.single.begin   # the car
 pragmas.rules-only.tw:punctuation.definition.raw.markup.single.end     # the carrier stands `\rules only bold italic`, so the host drops every other rule and reads this construct as text. A rule stack carries regions, never the parser's own rule table, so no TextMate grammar follows a narrowing
 pragmas.rules-only.tw:punctuation.definition.unnumbered.unordered.ul.li.list.markup # the carrier stands `\rules only bold italic`, so the host drops every other rule and reads this construct as text. A rule stack carries regions, never the parser's own rule table, so no TextMate grammar follows a narrowing
 pragmas.rules-only.tw:string.other.link.title                          # the carrier stands `\rules only bold italic`, so the host drops every other rule and reads this construct as text. A rule stack carries regions, never the parser's own rule table, so no TextMate grammar follows a narrowing
-pragmas.rules-only.tw:support.function.macro                           # the carrier stands `\rules only bold italic`, so the host drops every other rule and reads this construct as text. A rule stack carries regions, never the parser's own rule table, so no TextMate grammar follows a narrowing
 spans.multiline.tw:entity.name.tag.html   # an XML declaration inside a typed block: the host parses the block under its declared type and builds no HTML element, where the grammar reads the tag it can see
 inline.links.tw:punctuation.definition.image.inner.begin   # a marker whose punctuation name now stands alone: the image and external-link marks carried a `keyword.other` family beside their punctuation, which read as a keyword in 55 of 65 themes where a glyph wants punctuation. The span the host refuses stands exactly where it stood
-inline.links.tw:punctuation.definition.image.inner.end   # a marker whose punctuation name now stands alone: the image and external-link marks carried a `keyword.other` family beside their punctuation, which read as a keyword in 55 of 65 themes where a glyph wants punctuation. The span the host refuses stands exactly where it stood
 inline.links.tw:punctuation.definition.image.outer.begin   # a marker whose punctuation name now stands alone: the image and external-link marks carried a `keyword.other` family beside their punctuation, which read as a keyword in 55 of 65 themes where a glyph wants punctuation. The span the host refuses stands exactly where it stood
-inline.links.tw:punctuation.definition.image.outer.end   # a marker whose punctuation name now stands alone: the image and external-link marks carried a `keyword.other` family beside their punctuation, which read as a keyword in 55 of 65 themes where a glyph wants punctuation. The span the host refuses stands exactly where it stood
 inline.links.tw:punctuation.definition.link.external.inner.begin   # a marker whose punctuation name now stands alone: the image and external-link marks carried a `keyword.other` family beside their punctuation, which read as a keyword in 55 of 65 themes where a glyph wants punctuation. The span the host refuses stands exactly where it stood
 inline.links.tw:punctuation.definition.link.outer.begin   # a marker whose punctuation name now stands alone: the image and external-link marks carried a `keyword.other` family beside their punctuation, which read as a keyword in 55 of 65 themes where a glyph wants punctuation. The span the host refuses stands exactly where it stood
-pragmas.rules-only.tw:punctuation.definition.macrocallinline.begin   # the carrier stands `\rules only bold italic`, so the host drops every other rule and reads this construct as text. The marker's own name now stands alone, the content family having left it
-pragmas.rules-only.tw:punctuation.definition.macrocallinline.end   # the carrier stands `\rules only bold italic`, so the host drops every other rule and reads this construct as text. The marker's own name now stands alone, the content family having left it
-pragmas.rules-only.tw:punctuation.definition.transclusion.transcludeinline.begin   # the carrier stands `\rules only bold italic`, so the host drops every other rule and reads this construct as text. The marker's own name now stands alone, the content family having left it
-pragmas.rules-only.tw:punctuation.definition.transclusion.transcludeinline.end   # the carrier stands `\rules only bold italic`, so the host drops every other rule and reads this construct as text. The marker's own name now stands alone, the content family having left it
 pragmas.rules-only.tw:punctuation.definition.tag.macrocall            # the carrier stands `\rules only bold italic`, so the host drops every other rule and reads this call and transclusion as text
 pragmas.rules-only.tw:punctuation.definition.tag.transclusion         # the carrier stands `\rules only bold italic`, so the host drops every other rule and reads this call and transclusion as text
 pragmas.rules-only.tw:entity.name.function.macro                      # the carrier stands `\rules only bold italic`, so the host drops every other rule and reads this call and transclusion as text
