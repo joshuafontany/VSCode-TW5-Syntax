@@ -13,7 +13,7 @@ gates-held: 49 of 49
         {
             "gate": "ablation",
             "held": true,
-            "said": "ablation-witness  339 finding(s) over 72 carrier(s): 339 declared (339 owed), 0 undeclared, 0 stale"
+            "said": "ablation-witness  337 finding(s) over 72 carrier(s): 337 declared (337 owed), 0 undeclared, 0 stale"
         },
         {
             "gate": "attribute-guard",
@@ -78,12 +78,12 @@ gates-held: 49 of 49
         {
             "gate": "contrast",
             "held": true,
-            "said": "contrast-witness  283 stack(s) over 65 theme(s), 1495 prose reading(s), 3 above the bar of 16, 0 unruled, 0 explaining nothing"
+            "said": "contrast-witness  285 stack(s) over 65 theme(s), 1512 prose reading(s), 3 above the bar of 16, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  62 files, 574 scopes declared, 514 reached (floor 450), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  62 files, 575 scopes declared, 515 reached (floor 450), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
@@ -103,7 +103,7 @@ gates-held: 49 of 49
         {
             "gate": "divergence-staleness",
             "held": true,
-            "said": "divergence-staleness  5 run(s) over 111 ruling(s): 0 stale"
+            "said": "divergence-staleness  5 run(s) over 113 ruling(s): 0 stale"
         },
         {
             "gate": "engine-behaviour",
@@ -133,7 +133,7 @@ gates-held: 49 of 49
         {
             "gate": "light-cone",
             "held": true,
-            "said": "light-cone  83 divergence(s) across 16 class(es), 10 quote(s) closed to ask; forward arm moved 35, backward arm moved 29, typo arm moved 34; 11 proven or unruled, 5 ruled without proof, 0 owed but reaching out"
+            "said": "light-cone  82 divergence(s) across 16 class(es), 10 quote(s) closed to ask; forward arm moved 34, backward arm moved 28, typo arm moved 33; 11 proven or unruled, 5 ruled without proof, 0 owed but reaching out"
         },
         {
             "gate": "must-fail",
@@ -228,12 +228,12 @@ gates-held: 49 of 49
         {
             "gate": "still",
             "held": true,
-            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 20 divergence(s) across 1 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 56.4% of corpus tokens ruled"
+            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 20 divergence(s) across 1 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 56.5% of corpus tokens ruled"
         },
         {
             "gate": "still-reach",
             "held": true,
-            "said": "reach  4491 of 4512 carrier(s) stand fully named, 99.5% (floor 99.5%); 38 carrier(s) no cut reads, 6409 divergence(s), 5 class(es) blocking"
+            "said": "reach  4491 of 4512 carrier(s) stand fully named, 99.5% (floor 99.5%); 38 carrier(s) no cut reads, 6404 divergence(s), 5 class(es) blocking"
         },
         {
             "gate": "swallow-witness",
@@ -243,7 +243,7 @@ gates-held: 49 of 49
         {
             "gate": "theme-collision",
             "held": true,
-            "said": "theme-collision  280020 token-reading(s) over 65 themes and 49 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
+            "said": "theme-collision  280735 token-reading(s) over 65 themes and 49 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
         },
         {
             "gate": "theme-parity",

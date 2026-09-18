@@ -15,6 +15,22 @@ attribute value's quote characters changed family. A reader who liked 2.2.1's lo
 back by upgrading, which is the definition this number answers to.
 
 ### Fixed
+- A STYLED SUFFIX'S TEXT IS A VALUE, NOT A MARK. `filteredtranscludeinline.js` closes on `}}`, an
+  optional style, then `}`, and the grammar named the whole `}}style}` run one delimiter — so the
+  style text between the braces wore the closer's own punctuation, and ablating one of its letters
+  changed nothing in the tree. The closer now names `}}` and the final `}` punctuation and gives the
+  style text a value scope of its own, reading it the way an inline `@@…` style's declarations do.
+  Two ablation-ledger entries retire; an empty `{{{}}}`'s own pre-existing quirks — its filter group
+  needs at least one character, so the filtered rule never matches it at all: the host's plain
+  transclude rule reads one brace narrower on each side instead, and a NEIGHBOURING empty filter
+  makes the host's regex scan on and swallow every opener after it by one pair — now surface as two
+  expected-divergence rulings instead of hiding inside the wider mark.
+- AN MVV NAME NEVER CARRIES WHITESPACE. `parseutils.js#parseMVVReferenceAsTransclusion` reads `((`,
+  a name matching `[^\s>"'=:)]+` with no leading whitespace admitted, then `skipWhiteSpace` (newlines
+  included) up to `))` — so `((a b))` and `(( x))` never build an MVV, only trailing whitespace up to
+  the close does. The grammar's attribute-value and macro-dynamic-parameter MVV regions admitted a
+  space anywhere inside the parens; both now match the host's name exactly, a trailing whitespace run
+  carried across a line included.
 - A VERDICT STANDS ONLY WHERE TIDDLYWIKI REFUSES OUT LOUD. An ampersand outside `entity.js`'s
   `&#?[a-zA-Z0-9]{2,8};` window stays text, and a tag whose attribute list `html.js` cannot read —
   `<div ="x">`, `<div style==>` — stays text too, and in both the parser raises no diagnostic. The
@@ -1030,7 +1046,7 @@ back by upgrading, which is the definition this number answers to.
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 111 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 113 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
   emits no container node, so a scope over its content stands over text by construction.
 - A RULING STANDS STALE ONLY WHERE EVERY RUN EXPLAINS NOTHING WITH IT. The five `overreach-check`

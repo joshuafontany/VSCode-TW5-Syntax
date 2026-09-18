@@ -1148,8 +1148,8 @@
                             ]
                         },
                         {
-                            "comment": "MVV variable reference as attribute value: ((varname))",
-                            "begin": "(?=\\(\\()",
+                            "comment": "MVV variable reference as attribute value: ((varname)). parseutils.js#parseMVVReferenceAsTransclusion reads `((`, a name matching `[^\\s>\"'=:)]+` with no leading whitespace admitted, then skipWhiteSpace (newlines included), then `))` — so a space inside the name (`((a b))`) or before it (`(( x))`) never builds an MVV, only trailing whitespace up to the close does. The lookahead checks the same-line close outright, or defers to the region below for a name whose whitespace run carries past the line end.",
+                            "begin": "(?=\\(\\([^\\s>\"'=:)]+[ \\t]*\\)\\))|(?=\\(\\([^\\s>\"'=:)]+[ \\t]*$)",
                             "end": "(?<=\\)\\))",
                             "contentName": "meta.attribute.mvv.html.tiddlywiki5",
                             "patterns": [
@@ -5405,7 +5405,7 @@
         },
         "filteredtranscludeinline": {
             "begin": "(\\{\\{\\{)",
-            "end": "(\\}\\}[^}]*\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
+            "end": "(\\}\\})([^}]*)(\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
             "name": "meta.transclusion.filteredtranscludeinline.tiddlywiki5",
             "beginCaptures": {
                 "1": {
@@ -5414,6 +5414,18 @@
             },
             "endCaptures": {
                 "1": {
+                    "name": "punctuation.definition.transclusion.filteredtranscludeinline.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5 punctuation.definition.tag.transclusion.tiddlywiki5"
+                },
+                "2": {
+                    "comment": "filteredtranscludeinline.js#26 reads this run as the transclusion's `style` attribute value, the same as an inline style's declarations (#styleinline) — so it takes a value scope rather than wearing the closer's punctuation.",
+                    "name": "meta.transclusion.filteredtranscludeinline.style.tiddlywiki5",
+                    "patterns": [
+                        {
+                            "include": "#styles"
+                        }
+                    ]
+                },
+                "3": {
                     "name": "punctuation.definition.transclusion.filteredtranscludeinline.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5 punctuation.definition.tag.transclusion.tiddlywiki5"
                 }
             },
@@ -6705,8 +6717,8 @@
                     }
                 },
                 {
-                    "comment": "Dynamic param: name=((mvvvar))",
-                    "match": "([\\w\\-]+)\\s*(=)\\s*(\\(\\()([^()|]+?)(\\)\\))",
+                    "comment": "Dynamic param: name=((mvvvar)). parseutils.js#parseMVVReferenceAsTransclusion (also driving the attribute-value MVV above) reads the name as `[^\\s>\"'=:)]+` with no whitespace admitted, then trailing whitespace up to `))` — a name split by a space never builds an MVV here either.",
+                    "match": "([\\w\\-]+)\\s*(=)\\s*(\\(\\()([^\\s()|>\"'=:]+)[ \\t]*(\\)\\))",
                     "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
                     "captures": {
                         "1": {
