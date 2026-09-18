@@ -8,7 +8,7 @@
 
 {{{ [[$:/temp/]addsuffix<now [UTC]YYYY0MM0DD0hh0mm0ssXXX]>] }}}
 #                        ^^^ entity.name.variable.filter.operand.tiddlywiki5
-#                        ^^^ - string
+#                        ^^^ - string.unquoted.html.tiddlywiki5
 #                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.unquoted.html.tiddlywiki5
 #                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - entity.name.variable.filter.operand.tiddlywiki5
 
@@ -26,7 +26,7 @@
 # CONTROL: a variable with no whitespace stays one name.
 {{{ [tag<currentTiddler>] }}}
 #        ^^^^^^^^^^^^^^ entity.name.variable.filter.operand.tiddlywiki5
-#        ^^^^^^^^^^^^^^ - string
+#        ^^^^^^^^^^^^^^ - string.unquoted.html.tiddlywiki5
 
 {{{ [tag(multiValued)] }}}
 #        ^^^^^^^^^^^ entity.name.variable.filter.operand.tiddlywiki5

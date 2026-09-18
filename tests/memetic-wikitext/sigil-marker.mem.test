@@ -19,7 +19,7 @@
 About ~5 macro calls stand in this sentence, and a macro reads as a word.
 #     ^ - keyword.control.sigil.marker.memetic-wikitext
 #        ^^^^^ - keyword.control.sigil.marker.memetic-wikitext
-#        ^^^^^ - keyword
+#        ^^^^^ - keyword.control.sigil.memetic-wikitext
 
 <<greet "a~b">>
 #         ^ - keyword.control.sigil.marker.memetic-wikitext

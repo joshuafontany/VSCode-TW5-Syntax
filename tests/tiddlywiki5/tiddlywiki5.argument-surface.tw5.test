@@ -52,7 +52,7 @@
 <$link to="x">go</$link>
 #      ^^ entity.other.attribute-name.html.tiddlywiki5
 #      ^^ - entity.other.attribute-name.argument.tiddlywiki5
-#      ^^ - support.type.property-name
+#      ^^ - support.type.property-name.argument.tiddlywiki5
 #        ^ punctuation.separator.key-value.html.tiddlywiki5
 #        ^ - keyword.operator.assignment.tiddlywiki5
 
