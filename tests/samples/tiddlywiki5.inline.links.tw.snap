@@ -432,7 +432,7 @@
 #     ^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.image.tiddlywiki5 meta.attribute.list.image.tiddlywiki5 meta.attribute.width.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 #          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.image.tiddlywiki5 meta.attribute.list.image.tiddlywiki5 meta.attribute.width.html.tiddlywiki5 punctuation.separator.key-value.html.tiddlywiki5
 #           ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.image.tiddlywiki5 meta.attribute.list.image.tiddlywiki5 meta.attribute.width.html.tiddlywiki5 string.unquoted.attribute.html.tiddlywiki5
-#             ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.image.tiddlywiki5 meta.attribute.list.image.tiddlywiki5 meta.attribute.width.html.tiddlywiki5
+#             ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.image.tiddlywiki5
 #              ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.image.tiddlywiki5 punctuation.definition.image.inner.begin.tiddlywiki5
 #               ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.image.tiddlywiki5
 #                ^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.other.image.tiddlywiki5 string.entity.attribute.tooltip.tiddlywiki5
@@ -575,7 +575,7 @@
 #       ^^^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 markup.other.image.tiddlywiki5 meta.attribute.list.image.tiddlywiki5 meta.attribute.width.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 #            ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 markup.other.image.tiddlywiki5 meta.attribute.list.image.tiddlywiki5 meta.attribute.width.html.tiddlywiki5 punctuation.separator.key-value.html.tiddlywiki5
 #             ^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 markup.other.image.tiddlywiki5 meta.attribute.list.image.tiddlywiki5 meta.attribute.width.html.tiddlywiki5 string.unquoted.attribute.html.tiddlywiki5
-#               ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 markup.other.image.tiddlywiki5 meta.attribute.list.image.tiddlywiki5 meta.attribute.width.html.tiddlywiki5
+#               ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 markup.other.image.tiddlywiki5
 #                ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 markup.other.image.tiddlywiki5 punctuation.definition.image.inner.begin.tiddlywiki5
 #                 ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 markup.other.image.tiddlywiki5
 #                  ^^^^^^^^^^^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 markup.other.image.tiddlywiki5 string.entity.attribute.tooltip.tiddlywiki5

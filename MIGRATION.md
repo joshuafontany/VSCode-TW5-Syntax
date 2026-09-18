@@ -74,6 +74,8 @@ same 55 of 65 themes through the same `markup.heading` rules, so nothing a reade
 | `keyword.control.directive.function.html.tiddlywiki5` | `keyword.control.directive.function.tiddlywiki5` | names this grammar, not HTML |
 | `keyword.control.directive.procedure.html.tiddlywiki5` | `keyword.control.directive.procedure.tiddlywiki5` | names this grammar, not HTML |
 | `keyword.control.directive.widget.html.tiddlywiki5` | `keyword.control.directive.widget.tiddlywiki5` | names this grammar, not HTML |
+| `keyword.control.operator.prefix.negation.tiddlywiki5` | `keyword.operator.prefix.negation.tiddlywiki5` | a filter operator is an operator |
+| `keyword.control.operator.suffix.tiddlywiki5` | `keyword.operator.suffix.separator.tiddlywiki5` | a filter operator is an operator |
 | `keyword.control.raw.tick.tiddlywiki5` | `keyword.control.raw.fence.tiddlywiki5` | names what it marks |
 | `keyword.other.variable.variable-parameter.begin.tiddlywiki5` | `keyword.other.variable.substitute-parameter.begin.tiddlywiki5` | substitution vocabulary |
 | `keyword.other.variable.variable-parameter.end.tiddlywiki5` | `keyword.other.variable.substitute-parameter.end.tiddlywiki5` | substitution vocabulary |

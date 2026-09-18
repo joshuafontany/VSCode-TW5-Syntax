@@ -20,6 +20,7 @@ const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
 const { runTool } = require('./run-tool.js');
+const { runInSandbox } = require('./grammar-sandbox.js');
 const { atlas, leaveAlone } = require('./family-atlas.js');
 const { probeTheme, loadThemes } = require('./theme-model.js');
 
@@ -106,13 +107,57 @@ test('the cost arm prices a candidate without moving the grammar', live, () => {
     'the cost arm edited the grammar to answer');
 });
 
-// THE WELD THAT MAKES THE PRICE TRUSTWORTHY: the arm must name the four distinctions this house already
-// measured falling for that candidate — a dash, a heading, a parsermode directive and a whitespace
-// directive. A cost model reporting none of them prices nothing.
-test('the cost arm names the falls the slow reading already measured', live, () => {
+// THE WELD THAT MAKES THE PRICE TRUSTWORTHY: the arm must reproduce the SLOW READING.
+//
+// The arm prices a candidate by substituting inside its own reading, with the grammar untouched. The
+// slow reading writes the candidate INTO a grammar on disk and runs the legibility gate over it. Those
+// two paths share no arithmetic, so agreement holds the arm and disagreement names it wrong — which is
+// the only thing that makes a price worth consulting.
+//
+// DERIVED, NEVER LISTED. A weld naming the pairs by hand pins the readings of the day it was written:
+// every such name goes stale the moment any unrelated scope moves, and a reader then meets a red test
+// that measures the calendar rather than the instrument. The pairs come from the slow reading itself,
+// so this holds whatever the grammar currently says.
+//
+// THE DIRECTION THAT MATTERS: every pair the gate reports FALLEN, the arm must name. The arm also
+// reports drops that stay above their floor, which the gate does not print, so the arm's set stands as
+// a superset by construction and an equality would fail on that difference rather than on a fault.
+const PRICED = 'variable.name.mvv-display.tiddlywiki5';
+const CANDIDATE = 'entity.name.variable.mvv.tiddlywiki5';
+
+/** The pair names a legibility reading reports as fallen below their floor. */
+const fallenPairs = (out) => out.split('\n')
+  .map((l) => /^\s{2}(.+?)\s+—\s+\d+\/\d+ tell them apart, below the floor of \d+$/.exec(l.trimEnd()))
+  .filter(Boolean).map((m) => m[1].trim());
+
+test('the cost arm names the falls the slow reading measures', live, () => {
+  // The slow reading: the candidate stacked beside the published scope in a grammar on disk.
+  const grammar = fs.readFileSync(path.join(ROOT, 'syntaxes', 'tiddlywiki5.json'), 'utf8');
+  const provoked = grammar.split(PRICED).join(`${PRICED} ${CANDIDATE}`);
+  assert.notStrictEqual(provoked, grammar,
+    `no rule names ${PRICED}, so the slow reading carries the candidate nowhere`);
+
+  // BOTH ARMS RUN THROUGH THE SAME DOOR. A gate prints every pair standing below its floor, not the
+  // pairs the candidate MOVED, so the candidate's price is a DIFFERENCE and a difference wants one
+  // base. Read against a baseline taken any other way — the working tree, a previous run — the
+  // subtraction picks up whatever else parts the two bases and calls it the candidate's doing.
+  //
+  // The unprovoked door carries the baseline: writing the grammar back UNCHANGED is refused, and
+  // rightly — a sandbox that let a collision plant nothing would let a gate read green over an
+  // unaltered tree and call that a measurement.
+  const before = fallenPairs(runInSandbox.unprovoked(['tools/construct-legibility.js']).out);
+  const slow = runInSandbox(
+    (sandbox) => fs.writeFileSync(path.join(sandbox, 'syntaxes', 'tiddlywiki5.json'), provoked),
+    ['tools/construct-legibility.js']);
+  const measured = fallenPairs(slow.out).filter((pair) => !before.includes(pair));
+  // A CONTROL ON THE PROVOCATION. A candidate that costs nothing prices nothing, and a weld built on
+  // an empty set holds over any arm at all — including one that prints no falls whatsoever.
+  assert.ok(measured.length > 0,
+    `the slow reading moves no pair below its floor for ${CANDIDATE}, so this weld compares two empty sets: ${slow.out.slice(-600)}`);
+
   const { out } = runTool('family-atlas.js',
     ['--for', 'variable.name.mvv-display', '--candidates', 'entity.name.variable.mvv']);
-  for (const pair of ['a dash', 'a heading', 'a parsermode directive', 'a whitespace directive']) {
-    assert.match(out, new RegExp(pair.replace(/ /g, '\\s')), `the arm missed ${pair}: ${out.slice(-900)}`);
-  }
+  const missed = measured.filter((pair) => !out.includes(pair));
+  assert.deepStrictEqual(missed, [],
+    `the slow reading drops ${measured.length} pair(s) below their floor and the arm misses ${missed.length}: ${out.slice(-900)}`);
 });

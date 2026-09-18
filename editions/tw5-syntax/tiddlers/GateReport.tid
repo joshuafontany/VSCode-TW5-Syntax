@@ -68,32 +68,32 @@ gates-held: 44 of 44
         {
             "gate": "contrast",
             "held": true,
-            "said": "contrast-witness  287 stack(s) over 65 theme(s), 1494 prose reading(s), 3 above the bar of 16, 0 unruled, 0 explaining nothing"
+            "said": "contrast-witness  280 stack(s) over 65 theme(s), 1465 prose reading(s), 3 above the bar of 16, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  61 files, 516 scopes declared, 470 reached (floor 450), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  61 files, 520 scopes declared, 474 reached (floor 450), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
             "held": true,
-            "said": "dark-construct  338 construct(s) over 65 themes, 23 plain, 0 unaccounted"
+            "said": "dark-construct  332 construct(s) over 65 themes, 22 plain, 0 unaccounted"
         },
         {
             "gate": "delimiters",
             "held": true,
-            "said": "delimiter-inheritance  108 contentName rule(s) over 40 shape(s), 0 unruled"
+            "said": "delimiter-inheritance  110 contentName rule(s) over 42 shape(s), 0 unruled"
         },
         {
             "gate": "engine-behaviour",
             "held": true,
-            "said": "engine-witness  755 pattern(s) read against 847 corpus line(s), 0 that match differently, 0 unruled"
+            "said": "engine-witness  758 pattern(s) read against 847 corpus line(s), 0 that match differently, 0 unruled"
         },
         {
             "gate": "engine-witness",
             "held": true,
-            "said": "engine-witness  755 pattern(s) across 8 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "engine-witness  758 pattern(s) across 8 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "filter-witness",
@@ -103,7 +103,7 @@ gates-held: 44 of 44
         {
             "gate": "ledger-claims",
             "held": true,
-            "said": "ledger-claims  9 claim(s) across 3 ledger(s), 0 that no longer hold"
+            "said": "ledger-claims  10 claim(s) across 3 ledger(s), 0 that no longer hold"
         },
         {
             "gate": "legibility",
@@ -218,7 +218,7 @@ gates-held: 44 of 44
         {
             "gate": "theme-collision",
             "held": true,
-            "said": "theme-collision  266890 token-reading(s) over 65 themes and 48 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
+            "said": "theme-collision  267215 token-reading(s) over 65 themes and 48 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
         },
         {
             "gate": "theme-parity",

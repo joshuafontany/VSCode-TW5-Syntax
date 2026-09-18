@@ -1159,6 +1159,20 @@ back by upgrading, which is the definition this number answers to.
   region the grammar never closed — and the ladder reads structure before kind word, so a cause
   outranks the symptom it produced. The control cuts one class from the ladder and the gate reds.
 ### Changed
+- EVERY OPENER SEATS IN ONE NAMESPACE, and a called thing wears the widget's family. A reader meets
+  `{{`, `[[`, `<`, `<$` and `<%` as one gesture — something opens here — so those openers carry
+  `punctuation.definition.tag.*` beside their own name, and a macro's name carries
+  `entity.name.function.widget.tiddlywiki5` so a call and a widget read as one kind of thing. A link
+  keeps its own punctuation name rather than the shared one: of four arrangements priced against all
+  820 legibility pairs with the grammar untouched, that one alone improves on changing nothing, at 7
+  pairs fallen and 0 newly broken. Those seven re-seat with the ruling recorded beside them in
+  `corpus/legibility-floor.txt`, and the call-against-argument relation re-seats 50 to 45 in
+  `$:/tw5-syntax/ReaderRelations` with the control that settles whose loss it reads as. A mark-level
+  split handing `a widget vs a call` its 55 back reaches NOTHING — both names resolve to one scope a
+  theme rules on — so the fork stays shut by measurement rather than by preference.
+- A CALL'S MARKER NAMES THE CALL, never the bare word. `punctuation.definition.tag.macrocall.*`
+  carries it, so the invariant reading a published name's last dot-segment finds a call's NAME where
+  it looks for one and a delimiter nowhere in that answer.
 - THE HARNESS PROVES A PROVOCATION LANDED, so fourteen hand-written guards collapse into one nobody
   can forget. Fifty call sites plant a fault in a sandbox and fourteen asserted their own mutation
   altered something — the other thirty-six could stop provoking the day the thing they strike moves,

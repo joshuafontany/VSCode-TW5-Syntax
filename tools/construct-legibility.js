@@ -125,13 +125,18 @@ const isBase = (scope) => /^(text\.html\.tiddlywiki5$|meta\.paragraph\.)/.test(s
  *
  * @param {{scopes: string[]}[]} tokens
  * @param {object} theme
- * @param {{find: string, append: string}} [substitute]
+ * @param {{find: string, append: string}|{find: string, append: string}[]} [substitute]
  */
 const look = (tokens, theme, substitute) => {
+  // A SCHEMA IS SEVERAL SUBSTITUTIONS AT ONCE. Pricing one candidate answers for one family; pricing a
+  // naming scheme answers for all of them together, and the families interact — two of them moving the
+  // same way costs a pair nothing, where one moving alone parts it.
+  const moves = substitute ? (Array.isArray(substitute) ? substitute : [substitute]) : [];
   const looks = new Set(tokens.map((token) => {
-    const scopes = substitute && token.scopes.some((s) => s === substitute.find || s.startsWith(`${substitute.find}.`))
-      ? [...token.scopes, substitute.append]
-      : token.scopes;
+    const extra = moves
+      .filter((m) => token.scopes.some((s) => s === m.find || s.startsWith(`${m.find}.`)))
+      .map((m) => m.append);
+    const scopes = extra.length ? [...token.scopes, ...extra] : token.scopes;
     const style = styleOf(scopes, theme);
     return `${style.foreground || '-'}/${style.fontStyle || '-'}`;
   }));
