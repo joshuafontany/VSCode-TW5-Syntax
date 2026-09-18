@@ -120,7 +120,7 @@ description: What a reader must meet as one thing and what a reader must tell ap
             ],
             "scope": "text.html.tiddlywiki5.memetic-wikitext",
             "least": 40,
-            "why": "A glyph reads as punctuation and a word reads as its family, so a reader can tell the mark that closes a sigil from the verb it closes. The verb names an act and reads as a keyword of the dialect; the mark carries structure and reads quiet."
+            "why": "Each glyph in a sigil reads as what it does, so a reader can tell the mark that closes a sigil from the verb it closes. The `~` marker every sigil opens with announces that the dialect speaks here, and reads with the verb as the dialect's keyword; the `/` close mark carries structure and reads quiet, as punctuation. The verb names an act and reads as a keyword of the dialect."
         }
     ]
 }

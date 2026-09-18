@@ -1,0 +1,38 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A sigil's marker reads as the dialect's keyword"
+
+# TiddlyWiki reads `<<~ set …>>` as a call on a variable spelled `~`, and the base names that `~`
+# as the called name. The dialect names it BESIDE that reading as the sigil's MARKER — the glyph
+# every sigil opens with, closers included (`<<~/ahu>>`) — and it reads as the dialect's keyword.
+# The rule fires only where the base already reads a call name, so a `~` anywhere else keeps its
+# own reading, and the word "macro" in a sentence stays prose.
+
+<<~ set hud="aim">>
+# ^ punctuation.definition.sigil.marker.memetic-wikitext
+# ^ keyword.control.sigil.marker.memetic-wikitext
+# ^ entity.name.function.macro.tiddlywiki5
+
+<<~/ahu>>
+# ^ keyword.control.sigil.marker.memetic-wikitext
+#  ^ punctuation.definition.sigil.close.memetic-wikitext
+
+# CONTROLS: a tilde outside a call, a call on any other name, and prose.
+About ~5 macro calls stand in this sentence, and a macro reads as a word.
+#     ^ - keyword.control.sigil.marker.memetic-wikitext
+#        ^^^^^ - keyword.control.sigil.marker.memetic-wikitext
+#        ^^^^^ - keyword
+
+<<greet "a~b">>
+#         ^ - keyword.control.sigil.marker.memetic-wikitext
+
+<!-- <<~ set>> -->
+#      ^ - keyword.control.sigil.marker.memetic-wikitext
+
+```
+<<~ set>>
+# ^ - keyword.control.sigil.marker.memetic-wikitext
+```
+
+$$$text/plain
+<<~ set>>
+# ^ - keyword.control.sigil.marker.memetic-wikitext
+$$$

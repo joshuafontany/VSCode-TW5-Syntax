@@ -1257,6 +1257,15 @@ back by upgrading, which is the definition this number answers to.
   region the grammar never closed — and the ladder reads structure before kind word, so a cause
   outranks the symptom it produced. The control cuts one class from the ladder and the gate reds.
 ### Changed
+- A SIGIL'S `~` READS AS THE DIALECT'S KEYWORD. TiddlyWiki reads `<<~ set …>>` as a call on a
+  variable spelled `~`, and the base names it the called name, which read in the verb's colour in no
+  bundled theme. The dialect names it beside that reading as the sigil's MARKER —
+  `punctuation.definition.sigil.marker` then `keyword.control.sigil.marker`, so the keyword decides
+  the colour — and it is a marker rather than an opener because closers carry it too (`<<~/ahu>>`).
+  It rides only an injection keyed on the base's call-name scope, so a `~` in prose, in a comment, in
+  a raw fence or in a typed block keeps its own reading, and the word "macro" in a sentence stays
+  prose. The sigil relation's reason restates that each glyph reads as what it does: the marker as the
+  dialect's keyword, the `/` close mark as quiet punctuation.
 - A CALL'S ARGUMENT KEY PARTS FROM THE NAME IT IS PASSED TO. The key carries
   `support.type.property-name.argument` appended after `entity.other.attribute-name.argument`, which
   stays first for every theme ruling on it. A theme painting `entity.name.function` and

@@ -105,7 +105,7 @@
 >
 ><<~ ahu #carriers>>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5 punctuation.definition.tag.macrocall.tiddlywiki5
-#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5
+#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5 punctuation.definition.sigil.marker.memetic-wikitext keyword.control.sigil.marker.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
 #    ^^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 entity.name.function.sigil.memetic-wikitext keyword.control.sigil.memetic-wikitext
 #       ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
@@ -159,7 +159,7 @@
 >
 ><<~ loulou lar:///ha.ka.ba/lares/docs/handoff?key=value&other=second#/fragment>>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5 punctuation.definition.tag.macrocall.tiddlywiki5
-#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5
+#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5 punctuation.definition.sigil.marker.memetic-wikitext keyword.control.sigil.marker.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
 #    ^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 entity.name.function.sigil.memetic-wikitext keyword.control.sigil.memetic-wikitext
 #          ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
@@ -170,7 +170,7 @@
 >
 ><<~ loulou lar://mara:operator@crossroads/operator.reads.the-record?a=1&b=2>>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5 punctuation.definition.tag.macrocall.tiddlywiki5
-#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5
+#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5 punctuation.definition.sigil.marker.memetic-wikitext keyword.control.sigil.marker.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
 #    ^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 entity.name.function.sigil.memetic-wikitext keyword.control.sigil.memetic-wikitext
 #          ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
@@ -185,7 +185,7 @@
 >
 ><<~ ranks name='a single-quoted value' other="a double-quoted value">>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5 punctuation.definition.tag.macrocall.tiddlywiki5
-#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5
+#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5 punctuation.definition.sigil.marker.memetic-wikitext keyword.control.sigil.marker.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
 #    ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 entity.name.function.sigil.memetic-wikitext keyword.control.sigil.memetic-wikitext
 #         ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
@@ -204,7 +204,7 @@
 >
 ><<~ ranks title=[[a bracketed value]] other='second'>>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5 punctuation.definition.tag.macrocall.tiddlywiki5
-#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5
+#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5 punctuation.definition.sigil.marker.memetic-wikitext keyword.control.sigil.marker.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
 #    ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 entity.name.function.sigil.memetic-wikitext keyword.control.sigil.memetic-wikitext
 #         ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
@@ -223,7 +223,7 @@
 >
 ><<~ ranks bare=unquoted spaced = "value after spaces">>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5 punctuation.definition.tag.macrocall.tiddlywiki5
-#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5
+#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5 punctuation.definition.sigil.marker.memetic-wikitext keyword.control.sigil.marker.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
 #    ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 entity.name.function.sigil.memetic-wikitext keyword.control.sigil.memetic-wikitext
 #         ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
@@ -245,7 +245,7 @@
 >
 ><<~ kue voice:Mischief-Muse key:"a floor recites the bearings instead of inhabiting them">>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5 punctuation.definition.tag.macrocall.tiddlywiki5
-#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5
+#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5 punctuation.definition.sigil.marker.memetic-wikitext keyword.control.sigil.marker.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
 #    ^^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 entity.name.function.sigil.memetic-wikitext keyword.control.sigil.memetic-wikitext
 #       ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
@@ -262,7 +262,7 @@
 >
 ><<~ hoike held:[[a bracketed value carrying spaces]] voice:'a single-quoted value'>>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5 punctuation.definition.tag.macrocall.tiddlywiki5
-#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5
+#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5 punctuation.definition.sigil.marker.memetic-wikitext keyword.control.sigil.marker.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
 #    ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 entity.name.function.sigil.memetic-wikitext keyword.control.sigil.memetic-wikitext
 #         ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
@@ -284,7 +284,7 @@
 >
 ><<~ sigil bracket=[[a bracketed value]] single='a single quoted value' bare=unquoted>>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5 punctuation.definition.tag.macrocall.tiddlywiki5
-#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5
+#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5 punctuation.definition.sigil.marker.memetic-wikitext keyword.control.sigil.marker.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
 #    ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 entity.name.function.sigil.memetic-wikitext keyword.control.sigil.memetic-wikitext
 #         ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
@@ -351,7 +351,7 @@
 >
 ><<~/ahu>>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5 punctuation.definition.tag.macrocall.tiddlywiki5
-#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5
+#  ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5 punctuation.definition.sigil.marker.memetic-wikitext keyword.control.sigil.marker.memetic-wikitext
 #   ^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5 punctuation.definition.sigil.close.memetic-wikitext
 #    ^^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5 entity.name.function.sigil.memetic-wikitext keyword.control.sigil.memetic-wikitext
 #       ^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.call.block.end.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5 punctuation.definition.tag.macrocall.tiddlywiki5

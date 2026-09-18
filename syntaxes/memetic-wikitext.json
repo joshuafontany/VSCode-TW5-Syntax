@@ -160,6 +160,11 @@
                 }
             }
         },
+        "sigil-marker": {
+            "comment": "THE MARKER EVERY SIGIL OPENS WITH. TiddlyWiki reads `<<~ set …>>` as a call on a variable spelled `~`, so the base names the `~` as the called name, and the dialect names it BESIDE that reading as the sigil's marker — closers included, `<<~/ahu>>`, which is why it is a marker and never an opener. The published punctuation name stands first and the keyword name second, so a theme ruling on the keyword decides its colour. It rides only an injection keyed on the base's own call-name scope: keyed on the root, a `(?<=<<)~` painted inside comments, raw fences and typed blocks, none of which builds a call.",
+            "match": "(?<=<<)~",
+            "name": "punctuation.definition.sigil.marker.memetic-wikitext keyword.control.sigil.marker.memetic-wikitext"
+        },
         "sigil": {
             "comment": "The verb a sigil says. TiddlyWiki reads `<<~ set …>>` as a call on a variable spelled `~`, so the verb binds as a POSITIONAL argument and the base paints it like any unquoted value — `set`, `oracle` and `lares` all read `string.unquoted`. The dialect names it BESIDE that reading rather than instead of it: the host builds a transclusion here and the base must keep saying so.",
             "patterns": [
@@ -213,6 +218,14 @@
         }
     },
     "injections": {
+        "L:text.html.tiddlywiki5 variable.name.call.tiddlywiki5": {
+            "comment": "The sigil marker reads only inside a span the base already reads as a call's name, and nests beside that reading rather than replacing it.",
+            "patterns": [
+                {
+                    "include": "text.html.tiddlywiki5.memetic-wikitext#sigil-marker"
+                }
+            ]
+        },
         "R:text.html.tiddlywiki5 meta.variable.call": {
             "comment": "A sigil's verb reads only inside a call. TiddlyWiki builds a sigil as a call on a variable spelled `~`, so the verb stands wherever the base reads a call and nowhere else: text shaped like `<<~ set …>>` inside a comment, a raw fence or a typed block builds no call, and keyed on the root alone the verb painted there as a keyword. The selector demands the base's own call scope on the stack.",
             "patterns": [
