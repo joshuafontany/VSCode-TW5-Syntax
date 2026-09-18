@@ -25,7 +25,7 @@ ceilings-standing: 9 of 9
             "what": "a pragma that deletes a rule for the rest of the document",
             "why": "`\\rules except html` removes the html rule from the parser instance, so a tag below it builds nothing. A grammar carries a static rule set and paints the tag either way.",
             "tried": "nothing — a TextMate grammar names its patterns at load time, and no measured construction removes one at read time",
-            "measured": "host builds rules, grammar paints structure inside it"
+            "measured": "host builds rules,parseblock, grammar paints structure inside it"
         },
         {
             "key": "verbatim storage",

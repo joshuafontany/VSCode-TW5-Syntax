@@ -45,7 +45,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
-const { boot, resolveTiddlyWiki, isPlainText } = require('./tw5-oracle.js');
+const { boot, resolveTiddlyWiki, isPlainText, flatten } = require('./tw5-oracle.js');
 
 const SCOPE = 'text.html.tiddlywiki5';
 const LEDGER = path.join(ROOT, 'corpus', 'darkness-ledger.txt');
@@ -68,28 +68,6 @@ async function placed(text) {
     }
     offset += line.length + 1;
   });
-  return out;
-}
-
-/**
- * Every node, parents before children, inside ONE coordinate space.
- *
- * NOT `flatten(tree, {sameSpace: true})`. That walk reads a child starting past its parent's END as
- * a restarted space, and `parsePragmas` nests the whole document after a pragma beneath it while the
- * pragma's own extent spans the definition alone — so every construct after a leading `\procedure`
- * vanishes from it. A restarted space rebases to zero, which puts its child BEFORE its parent.
- */
-function walk(tree) {
-  const out = [];
-  const visit = (nodes, parent) => {
-    for (const n of nodes || []) {
-      if (!n || typeof n !== 'object') continue;
-      if (parent && typeof parent.start === 'number' && typeof n.start === 'number' && n.start < parent.start) continue;
-      out.push(n);
-      visit(n.children, n);
-    }
-  };
-  visit(tree, null);
   return out;
 }
 
@@ -116,7 +94,7 @@ function namesOver(tokens, text, at) {
  */
 async function darkLines(text, oracle, read = placed) {
   const active = new Set(Object.values(oracle.activeRules()).flat());
-  const all = walk(oracle.parse(text).tree)
+  const all = flatten(oracle.parse(text).tree, { sameSpace: true })
     .filter((n) => typeof n.start === 'number' && typeof n.end === 'number' && n.end > n.start);
   // A node whose children carry no position here had its interior parsed elsewhere — a typed
   // block's body arrives as a positionless `genesis` — so no line of it answers in this space.

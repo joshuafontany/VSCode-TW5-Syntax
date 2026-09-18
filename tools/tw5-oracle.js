@@ -34,8 +34,13 @@ const path = require('node:path');
  * `sameSpace` keeps the walk inside ONE coordinate space. A nested parse restarts offsets at zero —
  * measured, a `$$$text/vnd.tiddlywiki` block reports itself at 23..42 and the quoteblock inside it
  * at 0..14 — so a caller asking which rule covers an absolute offset reads an inner node as standing
- * at the top of the document. The detection derives: a child whose span falls outside its parent's
- * names a restarted space, and no list of node types goes stale behind it.
+ * at the top of the document. The detection derives: a child starting BEFORE its parent names a
+ * restarted space, and no list of node types goes stale behind it.
+ *
+ * ONLY BEFORE. A restarted child's offsets run no further than the nested body, and the body runs no
+ * further than its parent's own span, so a restart never lands a child past the parent's end. A child
+ * standing there belongs to `parsePragmas`, which nests the whole document after a definition beneath
+ * it while the definition's own extent spans the definition alone — the same space, read in full.
  *
  * @param {object[]} tree
  * @param {{sameSpace?: boolean}} [options]
@@ -43,9 +48,9 @@ const path = require('node:path');
  */
 function flatten(tree, options = {}) {
   const sameSpace = options.sameSpace === true;
-  const restarts = (parent, child) => typeof parent.start === 'number' && typeof parent.end === 'number'
+  const restarts = (parent, child) => typeof parent.start === 'number'
     && typeof child.start === 'number'
-    && (child.start < parent.start || child.start > parent.end);
+    && child.start < parent.start;
   const out = [];
   const visit = (nodes, parent) => {
     for (const n of nodes || []) {

@@ -412,8 +412,8 @@ test('TiddlyWiki reads a pragma only before the body begins', live, () => {
 // `still` reported a divergence class on exactly that, over TiddlyWiki's own tiddlers, where the
 // grammar's reading and the host's agree.
 //
-// The detection derives: a child whose span falls OUTSIDE its parent's names a restarted space, and
-// no list of node types goes stale behind it.
+// The detection derives: a child starting BEFORE its parent names a restarted space, and no list of
+// node types goes stale behind it.
 test('a subtree whose offsets restart stands outside an offset reading', live, () => {
   const oracle = boot(TW);
   const nested = oracle.parse('$$$text/vnd.tiddlywiki\n<<<\nQuoted\n<<<\n$$$\n').tree;
@@ -430,6 +430,20 @@ test('a subtree whose offsets restart stands outside an offset reading', live, (
   const plain = oracle.parse('<<<\nQuoted\n<<<\n').tree;
   assert.deepStrictEqual(flatten(plain, { sameSpace: true }).map((n) => n.rule),
     flatten(plain).map((n) => n.rule), 'pruning changed a tree that restarts nothing');
+});
+
+// A PRAGMA NESTS THE DOCUMENT BENEATH IT, and that nesting restarts nothing.
+//
+// parsePragmas hands every block after a definition to the definition as its children, while the
+// definition's own start..end spans the definition alone — so a child starts PAST its parent's end.
+// A restarted space rebases to zero, which sets its child BEFORE its parent. A child past the end
+// stands in the same space, and a walk reading it otherwise loses every construct after a leading
+// `\procedure`.
+test('a pragma keeps the document it nests in the same space', live, () => {
+  const tree = boot(TW).parse('\\procedure p()\nbody\n\\end\n\n<<<\nQuoted\n<<<\n').tree;
+  assert.ok(flatten(tree).some((n) => n.rule === 'quoteblock'), 'the probe builds no quoteblock after the pragma');
+  assert.ok(flatten(tree, { sameSpace: true }).some((n) => n.rule === 'quoteblock'),
+    'a block after a leading pragma dropped out of the space it stands in');
 });
 
 // A TIDDLER'S OWN TYPE PICKS ITS PARSER, and a reader forcing wikitext compares against a reading
