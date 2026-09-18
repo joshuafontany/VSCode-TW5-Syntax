@@ -19,9 +19,6 @@
                     "include": "#ni-uri"
                 },
                 {
-                    "include": "#sigil"
-                },
-                {
                     "include": "#lar-uri"
                 },
                 {
@@ -216,8 +213,16 @@
         }
     },
     "injections": {
+        "R:text.html.tiddlywiki5 meta.variable.call": {
+            "comment": "A sigil's verb reads only inside a call. TiddlyWiki builds a sigil as a call on a variable spelled `~`, so the verb stands wherever the base reads a call and nowhere else: text shaped like `<<~ set …>>` inside a comment, a raw fence or a typed block builds no call, and keyed on the root alone the verb painted there as a keyword. The selector demands the base's own call scope on the stack.",
+            "patterns": [
+                {
+                    "include": "text.html.tiddlywiki5.memetic-wikitext#sigil"
+                }
+            ]
+        },
         "R:text.html.tiddlywiki5": {
-            "comment": "Sigils keep their reading everywhere the base grammar reads wikitext.\n\nThe base wraps everything after the pragma zone in a region of its own — a mode, not a construct — and a rule standing at this dialect’s top level cannot reach inside one.\nAn injection can: the base’s root scope stands on the stack wherever it reads, region or no region, so one selector reaches the whole file.\nNaming the block contexts one at a time reached the three somebody listed.",
+            "comment": "Carriers, addresses and bearings keep their reading everywhere the base grammar reads wikitext.\n\nThe base wraps everything after the pragma zone in a region of its own — a mode, not a construct — and a rule standing at this dialect’s top level cannot reach inside one.\nAn injection can: the base’s root scope stands on the stack wherever it reads, region or no region, so one selector reaches the whole file.\nNaming the block contexts one at a time reached the three somebody listed.",
             "patterns": [
                 {
                     "include": "text.html.tiddlywiki5.memetic-wikitext#memetic"

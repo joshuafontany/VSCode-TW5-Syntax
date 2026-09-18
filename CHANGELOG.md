@@ -15,6 +15,11 @@ attribute value's quote characters changed family. A reader who liked 2.2.1's lo
 back by upgrading, which is the definition this number answers to.
 
 ### Fixed
+- A SIGIL'S VERB READS ONLY INSIDE A CALL. The verb rule rode the dialect's root injection, so text
+  shaped like `<<~ set …>>` painted `set` as a keyword inside an HTML comment, a raw fence and a `$$$`
+  typed block, none of which builds a call. It rides its own injection now, keyed on the base's call
+  scope: it reads wherever TiddlyWiki builds the sigil and nowhere it does not, and the comment and the
+  raw text keep their own reading.
 - A RUN OF FOUR DASHES ENDS IN AN EM DASH. TiddlyWiki's dash rule, `-{2,3}(?!-)`, matches the LAST
   three marks of a longer run, so `----` in prose renders a hyphen and an em dash and `-----` two
   hyphens and one. The grammar refused an em dash with a dash before it and read the whole run as text.

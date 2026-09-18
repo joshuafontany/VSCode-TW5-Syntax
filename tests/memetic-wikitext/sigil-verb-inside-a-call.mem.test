@@ -1,0 +1,30 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A sigil's verb reads only inside a call"
+
+# A sigil is a call TiddlyWiki builds, so its verb reads only where the base reads a call. Text that
+# merely LOOKS like `<<~ set …>>` inside a comment, a raw fence or a typed block builds no call, and
+# the verb there reads as the comment or the raw text it stands in.
+
+<!-- <<~ set hud="x">> -->
+#        ^^^ comment.block.html.tiddlywiki5
+#        ^^^ - keyword.control.sigil.memetic-wikitext
+
+```
+<<~ set hud="x">>
+#   ^^^ markup.inline.raw
+#   ^^^ - keyword.control.sigil.memetic-wikitext
+```
+
+$$$text/plain
+<<~ set hud="x">>
+#   ^^^ markup.inline.raw
+#   ^^^ - keyword.control.sigil.memetic-wikitext
+$$$
+
+# CONTROL: the sigil itself names its verb.
+<<~ set hud="x">>
+#   ^^^ keyword.control.sigil.memetic-wikitext
+#   ^^^ entity.name.function.sigil.memetic-wikitext
+
+<<~/ahu>>
+#  ^ punctuation.definition.sigil.close.memetic-wikitext
+#   ^^^ keyword.control.sigil.memetic-wikitext
