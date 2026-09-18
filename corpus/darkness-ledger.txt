@@ -66,7 +66,6 @@ corpus/wikitext/spans.multiline.tw  mvvdisplayinline  MISS  ")))"  # OWED — th
 
 # CONSTRUCTS A REGION ABOVE HOLDS. Each reads as itself alone and as something else in place.
 corpus/wikitext/degenerate.unterminated.tw  html  LOST  "<div class=\"never-closed\">"  # OWED — the host builds this element; a region opened above it holds the grammar here
-corpus/wikitext/inline.transclusions.tw  codeinline  LOST  "`[tag[a` as its filter and `b]] ` as its tooltip rather than reading one filter operand:"  # OWED — two code runs the grammar reads alone and loses in place, a region above still holding this line
 corpus/wikitext/inline.links.tw  extlink  LOST  "which is the reading a reader sees: [ext[https://example.com/unclosed"  # OWED — the host builds this external link; the grammar reads it alone and loses it in place
 tests/samples/tiddlywiki5.lists.tw  codeinline  LOST  "* `raw``raw`not raw"  # OWED — the host builds two code runs side by side; the grammar reads each alone and loses them together
 tests/samples/tiddlywiki5.tw  codeinline  LOST  "* `raw``raw`not raw"  # OWED — the host builds two code runs side by side; the grammar reads each alone and loses them together

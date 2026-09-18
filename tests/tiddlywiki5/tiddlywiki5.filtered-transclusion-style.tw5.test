@@ -1,0 +1,36 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A filtered transclusion closes on its styled suffix"
+
+# filteredtranscludeinline.js and filteredtranscludeblock.js close on `}}`, an optional style, then
+# `}` — `\}\}([^\}]*)\}` — so `}}}` is only the closer carrying an empty style. A reader who writes
+# the style sees the transclusion end where TiddlyWiki ends it, and the prose after it reads as prose.
+
+A suffix: {{{ [tag[Done]] }}suffix} here.
+#                         ^^^^^^^^^ punctuation.definition.transclusion.filteredtranscludeinline.end.tiddlywiki5
+#                                  ^^^^^^ - meta.transclusion.filteredtranscludeinline.tiddlywiki5
+
+# The paragraph after it stands outside the transclusion.
+A paragraph after a styled suffix.
+#<- - meta.filter.tiddlywiki5
+# ^^^^^^^^^ - string.unquoted.html.tiddlywiki5
+
+# A bare title reads as a filter run, and it stops before the closer too.
+A bare title: {{{Bare}}s} here.
+#                ^^^^ meta.filter.tiddlywiki5
+#                    ^^^^ punctuation.definition.transclusion.filteredtranscludeinline.end.tiddlywiki5
+#                        ^^^^^^ - meta.transclusion.filteredtranscludeinline.tiddlywiki5
+
+# Every part at once: a tooltip, a template, a style and a class.
+All: {{{ [tag[Done]] |tip||A/Template}}suffix}.my-class here.
+#                                    ^^^^^^^^^ punctuation.definition.transclusion.filteredtranscludeinline.end.tiddlywiki5
+
+# The block form closes the same way.
+{{{ [tag[Done]] }}suffix}
+#               ^^^^^^^^^ punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5
+
+A paragraph after the block form.
+#<- - meta.transclusion.filteredtranscludeblock.tiddlywiki5
+
+# CONTROL: the closer carrying no style reads as it always has.
+Plain: {{{ [tag[Done]] }}} here.
+#                      ^^^ punctuation.definition.transclusion.filteredtranscludeinline.end.tiddlywiki5
+#                         ^^^^^^ - meta.transclusion.filteredtranscludeinline.tiddlywiki5

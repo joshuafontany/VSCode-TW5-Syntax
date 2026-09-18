@@ -15,6 +15,14 @@ attribute value's quote characters changed family. A reader who liked 2.2.1's lo
 back by upgrading, which is the definition this number answers to.
 
 ### Fixed
+- A FILTERED TRANSCLUSION CLOSES WHERE TIDDLYWIKI CLOSES IT. The host ends `{{{ … }}suffix}` on `}}`,
+  an optional style, then `}` (`filteredtranscludeinline.js`, and the block rule alike), so `}}}` is
+  only the closer carrying an empty style. The grammar spelled the literal `}}}` alone, never closed on
+  a style, and carried the transclusion across the blank line below — painting 85 spans of prose as
+  filter text. Both forms close on the styled suffix now, the inner bounds stop at `}}`, and so does a
+  bare-title run, which otherwise ate the closer itself. The attribute form keeps its literal `}}}`,
+  because `parseutils.js` reads a filtered value only there. Two expected-divergence rulings and one
+  darkness entry retire with it.
 - A PRAGMA THE GRAMMAR REFUSES SHUTS THE ZONE FOR EVERY PRAGMA BELOW IT. The `\widget` rule demanded
   a dollar that `fnprocdef.js` never asks for — `[^(\s]+` names all three kinds — so a widget named
   without one opened no region, its body line met the zone's own close, and the zone, which opens only
@@ -959,7 +967,7 @@ back by upgrading, which is the definition this number answers to.
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 136 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 134 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
   emits no container node, so a scope over its content stands over text by construction.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses

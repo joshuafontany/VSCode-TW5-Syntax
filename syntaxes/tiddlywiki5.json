@@ -4041,7 +4041,7 @@
         },
         "filteredtranscludeblock": {
             "begin": "\\s*(\\{\\{\\{)",
-            "end": "(\\}\\}\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
+            "end": "(\\}\\}[^}]*\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
             "name": "meta.transclusion.filteredtranscludeblock.tiddlywiki5",
             "beginCaptures": {
                 "1": {
@@ -4057,7 +4057,7 @@
                 {
                     "comment": "Tokenize template tiddler title.",
                     "begin": "(\\|\\|)",
-                    "end": "(?=\\}\\}\\})",
+                    "end": "(?=\\}\\})",
                     "beginCaptures": {
                         "1": {
                             "name": "punctuation.definition.transclusion.filteredtranscludeblock.template.tiddlywiki5"
@@ -4067,7 +4067,7 @@
                         {
                             "comment": "Treat nearest non-whitespace line as template tiddler title.",
                             "begin": "(?<=\\|\\|)\\G",
-                            "end": "(?=\\S)((?:(?!\\}\\}\\}).)*?)\\s*(?=$|\\}\\}\\})",
+                            "end": "(?=\\S)((?:(?!\\}\\}).)*?)\\s*(?=$|\\}\\})",
                             "endCaptures": {
                                 "1": {
                                     "name": "entity.name.other.tiddler.title.template.tiddlywiki5",
@@ -4083,7 +4083,7 @@
                         },
                         {
                             "begin": "(?=\\S)",
-                            "end": "(?=\\}\\}\\})",
+                            "end": "(?=\\}\\})",
                             "name": "entity.name.tiddler.title.template.tiddlywiki5",
                             "patterns": [
                                 {
@@ -4097,7 +4097,7 @@
                 },
                 {
                     "begin": "\\G",
-                    "end": "(?=\\|\\||\\}\\}\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
+                    "end": "(?=\\|\\||\\}\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
                     "name": "meta.filter.tiddlywiki5",
                     "patterns": [
                         {
@@ -5396,7 +5396,7 @@
         },
         "filteredtranscludeinline": {
             "begin": "(\\{\\{\\{)",
-            "end": "(\\}\\}\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
+            "end": "(\\}\\}[^}]*\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
             "name": "meta.transclusion.filteredtranscludeinline.tiddlywiki5",
             "beginCaptures": {
                 "1": {
@@ -5412,7 +5412,7 @@
                 {
                     "comment": "Tokenize template tiddler title.",
                     "begin": "(\\|\\|)",
-                    "end": "(?=\\}\\}\\})",
+                    "end": "(?=\\}\\})",
                     "beginCaptures": {
                         "1": {
                             "name": "punctuation.definition.transclusion.filteredtranscludeinline.template.tiddlywiki5"
@@ -5422,7 +5422,7 @@
                         {
                             "comment": "Treat nearest non-whitespace line as template tiddler title.",
                             "begin": "(?<=\\|\\|)\\G",
-                            "end": "(?=\\S)((?:(?!\\}\\}\\}).)*?)\\s*(?=$|\\}\\}\\})",
+                            "end": "(?=\\S)((?:(?!\\}\\}).)*?)\\s*(?=$|\\}\\})",
                             "endCaptures": {
                                 "1": {
                                     "name": "entity.name.other.tiddler.title.template.tiddlywiki5",
@@ -5438,7 +5438,7 @@
                         },
                         {
                             "begin": "(?=\\S)",
-                            "end": "(?=\\}\\}\\})",
+                            "end": "(?=\\}\\})",
                             "name": "entity.name.tiddler.title.template.tiddlywiki5",
                             "patterns": [
                                 {
@@ -5452,7 +5452,7 @@
                 },
                 {
                     "begin": "\\G",
-                    "end": "(?=\\|\\||\\}\\}\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
+                    "end": "(?=\\|\\||\\}\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
                     "name": "meta.filter.tiddlywiki5",
                     "patterns": [
                         {
@@ -6252,7 +6252,7 @@
                 },
                 {
                     "comment": "Match unquoted filter run.",
-                    "match": "(\\+|\\-|~|=)?((?:(?!\\}\\}\\}|\\)\\)\\)|%>)\\S)+)",
+                    "match": "(\\+|\\-|~|=)?((?:(?!\\}\\}|\\)\\)\\)|%>)\\S)+)",
                     "name": "meta.filter.run.tiddlywiki5",
                     "captures": {
                         "1": {

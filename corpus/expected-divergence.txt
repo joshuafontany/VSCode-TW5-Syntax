@@ -208,8 +208,6 @@ tw5.com/tiddlers/widgets/ListWidget.tid:punctuation.definition.list   # OWED —
 # SURFACED WHEN THE CORPUS JOINED THE GATES. overreach-check ran over corpus/ only by hand while
 # gate-report skipped it, so the divergences below stood unreported. Each stands traced; OWED ones
 # retire with the fix that pays them.
-inline.transclusions.tw:string.unquoted.html   # OWED — a filtered transclusion closing on a styled suffix: TiddlyWiki closes `{{{ … }}suffix}` (filteredtranscludeinline.js:26 — `}}`, a style, then `}`), and the grammar knows only a literal `}}}`, so the prose after it reads as the transclusion's interior
-inline.transclusions.tw:meta.filter   # OWED — the same styled suffix the grammar never closes on
 pragmas.signatures.tw:string.quoted.double.html   # OWED — the carrier gives a `\define` a `((…))` default, which only a `\procedure` reads: TiddlyWiki takes `((a` as a default and `))` as the body's opening, and every line below it answers to that reading
 pragmas.signatures.tw:meta.variable.macro.body   # OWED — the same `((…))` default the carrier gives a `\define`
 pragmas.signatures.tw:entity.name.substitute-parameter   # OWED — the same `((…))` default the carrier gives a `\define`
