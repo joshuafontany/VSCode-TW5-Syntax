@@ -7,14 +7,14 @@
 ```toml
 [fruit."var.ies"]
 #<- text.html.tiddlywiki5 meta.embedded.block.toml source.toml.tw5-syntax
-#          ^ meta.group.toml entity.name.section.toml
+#          ^ meta.section.toml entity.name.section.toml
 lt2 = 14:15
 #<- text.html.tiddlywiki5 meta.embedded.block.toml source.toml.tw5-syntax
 #      ^^^^^ constant.other.time.toml
 esc = "e\e x\x61"
 #<- text.html.tiddlywiki5 meta.embedded.block.toml source.toml.tw5-syntax
 #       ^^ constant.character.escape.toml
-#           ^^^^ constant.character.escape.toml
+#           ^^^^ constant.character.escape.unicode.8bit.toml
 ```
 
 ```ini
