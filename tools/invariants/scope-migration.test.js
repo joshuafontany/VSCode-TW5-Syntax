@@ -95,6 +95,22 @@ test('every name gone since the published version, the record accounts for', () 
     'scope name(s) gone since the published version that the record never mentions — a reader loses that colour with no message anywhere');
 });
 
+// THE HEADLINE PARAGRAPH IS A READING TOO. It states the same four counts the row-by-row checks
+// above already derive — a reader trusts the number before counting rows, so a paragraph that
+// drifts from the grammars it summarizes misleads exactly like a stale row would, and nothing
+// else here would catch it.
+test('the headline paragraph states what the grammars now measure', () => {
+  const now = declared();
+  const pub = publishedScopes();
+  const gone = [...pub].filter((s) => !now.has(s));
+  const added = [...now].filter((s) => !pub.has(s));
+  const text = fs.readFileSync(RECORD, 'utf8');
+  const bold = [...text.matchAll(/\*\*(\d+)\*\*/g)].map((m) => Number(m[1]));
+  assert.deepStrictEqual(bold.slice(0, 4), [pub.size, now.size, gone.length, added.length],
+    `the headline paragraph's four bold numbers must read [published, now, gone, new] = ` +
+    `[${pub.size}, ${now.size}, ${gone.length}, ${added.length}], the same reading every row-by-row check above answers to`);
+});
+
 // The reader who follows a row must land somewhere BETTER. A replacement carrying its qualifier in
 // front of its family root repeats the fault the record exists to describe.
 test('a replacement puts a family root where a selector reaches it', () => {

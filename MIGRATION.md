@@ -4,9 +4,11 @@ A theme rule and an `editor.tokenColorCustomizations` entry both name a scope. A
 moves takes the reader's colour with it, and VS Code reports nothing: the rule simply stops
 matching, and the construct goes the colour of prose.
 
-This repository declares **460** scope names at `v2.2.1` and **497** at `2.3.0`. Between them,
-**105** names stand gone and **142** stand new. Every gone name appears below, with what it
-stands as now or why it retired.
+This repository declares **460** scope names at `v2.2.1` and **560** now. Between them, **106**
+names stand gone and **206** stand new. Every gone name appears below, with what it stands as now
+or why it retired. `tools/invariants/scope-migration.test.js` derives these four numbers from the
+same `declaredScopesIn` reading the row-by-row check answers to, so a grammar edit that moves them
+fails the gate rather than leaving this paragraph to go stale beside it.
 
 The table derives from the two grammars rather than from a hand-written list, and
 `tools/invariants/scope-migration.test.js` holds it to them: a name this record calls gone that
@@ -24,7 +26,7 @@ they painted the colour of prose in every bundled theme, and they did so from th
 were written.
 
 Their replacements put the root first and keep the qualifier as a suffix, so a rule on the
-family root reaches the construct and a deeper rule can still single it out. **39 of the 105**
+family root reaches the construct and a deeper rule can still single it out. **39 of the 106**
 gone names moved for exactly that reason.
 
 If your customization named one of these, it was already painting nothing. Adopting the new

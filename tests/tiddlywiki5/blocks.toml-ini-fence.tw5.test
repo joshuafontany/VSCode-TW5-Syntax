@@ -2,7 +2,7 @@
 
 # `toml` includes the vendored, private source.toml.tw5-syntax (TOML 1.1: the \e and \xHH
 # escapes, optional seconds, and a quoted-dotted table-header key held as one segment). `ini`
-# includes VS Code's own source.ini, a CONTROL proving the two arms no longer share one grammar.
+# includes VS Code's own source.ini, a CONTROL proving each arm reads through its own grammar.
 
 ```toml
 [fruit."var.ies"]
