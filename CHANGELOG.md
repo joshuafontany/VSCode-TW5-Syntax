@@ -25,6 +25,12 @@ back by upgrading, which is the definition this number answers to.
   transclude rule reads one brace narrower on each side instead, and a NEIGHBOURING empty filter
   makes the host's regex scan on and swallow every opener after it by one pair — now surface as two
   expected-divergence rulings instead of hiding inside the wider mark.
+- AN MVV NAME NEVER CARRIES WHITESPACE. `parseutils.js#parseMVVReferenceAsTransclusion` reads `((`,
+  a name matching `[^\s>"'=:)]+` with no leading whitespace admitted, then `skipWhiteSpace` (newlines
+  included) up to `))` — so `((a b))` and `(( x))` never build an MVV, only trailing whitespace up to
+  the close does. The grammar's attribute-value and macro-dynamic-parameter MVV regions admitted a
+  space anywhere inside the parens; both now match the host's name exactly, a trailing whitespace run
+  carried across a line included.
 - A VERDICT STANDS ONLY WHERE TIDDLYWIKI REFUSES OUT LOUD. An ampersand outside `entity.js`'s
   `&#?[a-zA-Z0-9]{2,8};` window stays text, and a tag whose attribute list `html.js` cannot read —
   `<div ="x">`, `<div style==>` — stays text too, and in both the parser raises no diagnostic. The
