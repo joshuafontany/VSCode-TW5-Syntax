@@ -1,0 +1,24 @@
+THIRD-PARTY NOTICES
+
+This extension incorporates material from third-party projects. Their
+license terms are reproduced below.
+
+------------------------------------------------------------------------
+textmate/toml.tmbundle
+------------------------------------------------------------------------
+
+syntaxes/toml.tw5-syntax.json is derived from textmate/toml.tmbundle
+(https://github.com/textmate/toml.tmbundle), file Syntaxes/TOML.tmLanguage,
+pinned to commit e82b64c1e86396220786846201e9aa3f0a2d9ca2 (2020-07-14,
+"Update syntax to TOML v1.0.0-rc.1"). It was converted from plist to JSON,
+patched to add TOML 1.1 coverage (the \e and \xHH escapes, optional
+seconds in times and datetimes, and quoted dotted table-header keys such
+as [fruit."var.ies"]), and renamed to the private scope
+source.toml.tw5-syntax so it can never claim a user's own source.toml
+grammar or .toml file association.
+
+The upstream README.mdown carries this permission grant, quoted exactly:
+
+  "Permission to copy, use, modify, sell and distribute this software is
+  granted. This software is provided "as is" without express or implied
+  warranty, and with no claim as to its suitability for any purpose."

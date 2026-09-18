@@ -53,6 +53,7 @@ same 55 of 65 themes through the same `markup.heading` rules, so nothing a reade
 
 | gone at 2.2.1 | stands as at 2.3.0 | why |
 | --- | --- | --- |
+| `source.toml` | `source.toml.tw5-syntax` | the `toml` fence arm now includes a vendored TOML grammar at a private scope, so it can never claim a reader's own `source.toml` theme rule or `.toml` file association |
 | `bold.punctuation.definition.markup.begin.tiddlywiki5` | `punctuation.definition.markup.begin.bold.tiddlywiki5` | root first |
 | `bold.punctuation.definition.markup.end.tiddlywiki5` | `punctuation.definition.markup.end.bold.tiddlywiki5` | root first |
 | `caption.markup.other.table.tiddlywiki5` | `markup.other.table.caption.tiddlywiki5` | root first |
