@@ -3,11 +3,11 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 46 of 46
+gates-held: 47 of 47
 
 {
-    "gates": 46,
-    "held": 46,
+    "gates": 47,
+    "held": 47,
     "failing": 0,
     "results": [
         {
@@ -24,6 +24,11 @@ gates-held: 46 of 46
             "gate": "backtrack-witness",
             "held": true,
             "said": "0  pattern(s) a reader would feel stall on unfinished input"
+        },
+        {
+            "gate": "brackets",
+            "held": true,
+            "said": "bracket-witness  93 carrier(s), 24 red bracket(s): 24 declared (3 owed), 0 undeclared, 0 stale; 8 in degenerate carrier(s)"
         },
         {
             "gate": "builtins",

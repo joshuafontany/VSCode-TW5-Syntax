@@ -18,8 +18,10 @@
     // Wikitext spells `{{`, `{{{`, `[[` and `((` as ONE marker each, which the editor reads as two or
     // three nested pairs — measured in Gruvbox Dark and Monokai, `{{MyTiddler}}` painted its outer
     // brace depth-1 and its inner brace depth-2 while every scope on both braces stood identical. An
-    // empty list hands the colour back to the grammar; `brackets` goes on serving matching, the jump
-    // commands and the indent rules.
+    // empty list hands the DEPTH colour back to the grammar; `brackets` goes on serving matching, the
+    // jump commands and the indent rules — and matching still paints a bracket it reads as unmatched in
+    // the theme's unexpected-bracket red, over any colour a scope earns. tools/bracket-witness.js reads
+    // every carrier for that red.
     "colorizedBracketPairs": [],
     "autoClosingPairs": [
         { "open": "<<", "close": " >>" },

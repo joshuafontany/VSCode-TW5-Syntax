@@ -111,6 +111,10 @@ jobs:
       - name: Darkness witness
         run: npm run darkness
 
+      # Every bracket VS Code's own matcher paints red, against a ledger of why.
+      - name: Bracket witness
+        run: npm run brackets
+
       # Whether the reach a theme grants a construct bought the construct any colour at all.
       - name: Contrast witness
         run: npm run contrast

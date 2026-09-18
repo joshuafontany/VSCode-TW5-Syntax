@@ -400,6 +400,7 @@
         "backtrack-witness": "node ./tools/backtrack-witness.js",
         "dark-construct": "node ./tools/dark-construct.js",
         "darkness": "node ./tools/darkness-witness.js",
+        "brackets": "node ./tools/bracket-witness.js",
         "contrast": "node ./tools/contrast-witness.js",
         "ledger-claims": "node ./tools/ledger-claims.js",
         "family-atlas": "node ./tools/family-atlas.js --loud",

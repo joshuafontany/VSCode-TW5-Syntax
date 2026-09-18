@@ -15,6 +15,24 @@ attribute value's quote characters changed family. A reader who liked 2.2.1's lo
 back by upgrading, which is the definition this number answers to.
 
 ### Fixed
+- THE ORACLE'S WALK KEEPS WHAT A PRAGMA NESTS. `flatten(tree, {sameSpace: true})` read a child
+  starting past its parent's END as a restarted coordinate space, and `parsePragmas` nests the whole
+  document after a definition beneath it — so every construct after a leading pragma vanished from
+  six instruments. A restart rebases to zero and sets its child BEFORE its parent, never past its
+  end. A ruling born of the blind walk, `overbound (nothing)`, held its class with a false reason and
+  now states the true one: a tiddler whose declared type hands its body to a parser placing no node
+  in its offsets, 105 of TiddlyWiki's own among them.
+- A MARK CLAIMED OVER KEPT TEXT OVER-REACHES, WHATEVER CONTAINS IT. overreach-check judged every
+  claim by the widest cover, so a colspan mark painted over a table cell's own text read as agreement
+  — every character in a table lies under the table. A claim naming one of this grammar's delimiters
+  now answers to the tightest cover, and `verdictAt` splits a tie by whether the outer node carries a
+  rule: a construct built from exactly its text answers for it, an element built around content
+  yields to the content. The sharper reading surfaced 31 divergences over the samples and 21 over the
+  host, each traced and declared.
+- THE CORPUS JOINED THE GATES. gate-report skipped `overreach-corpus-files`, the one overreach run
+  over corpus/, and it stood at 152 claims and 5 condemns, exit 1, beneath a green report. It runs
+  as a gate and in CI, every span traced — 85 of them one filtered transclusion the grammar never
+  closes on a styled suffix.
 - A NUMBER FOR A MACHINE GOES OUT AS TEXT. The breadth probe printed its one number through
   `console.log`, which hands a number to `util.inspect` and colours it wherever colour stands forced —
   `FORCE_COLOR` in an environment is enough — so the caller asking whether a ruling's breadth had moved
@@ -196,6 +214,20 @@ back by upgrading, which is the definition this number answers to.
   own digest around the pair, so an edit names itself.
 
 ### Added
+- A GATE READS THE RED NO THEME DECIDES. VS Code paints a bracket its own matcher reads as unmatched
+  in the theme's unexpected-bracket colour, over whatever a scope earns, and the token inspector shows
+  the scope's colour and "No theme selector" beside it. `tools/bracket-witness.js` runs the editor's
+  rule over every carrier: the pairs each language configuration names in `brackets`, matched inside
+  tokens vscode-textmate types Other — a string, comment or regex token takes its brackets out, and
+  that family stands as the one lever a grammar holds over the red. 24 reds over 93 carriers, each
+  declared in `corpus/bracket-ledger.txt`: most tell the truth about a bracket TiddlyWiki too reads as
+  unmatched, and three stand owed. `colorizedBracketPairs: []` hands back depth colour only, and both
+  language configurations now say so.
+- swallow-witness NAMES THE REGIONS ITS PROBE CANNOT ASK. Seventeen regions end on a lookahead for
+  every line-start block marker, the quote marker among them, so the sentinel reads each stopping at
+  the probe whatever it swallowed first. `regionsEndingOn` derives them beside `unboundedRegions`;
+  a closer missed on the construct's own line, which the probe never reaches, stands asked by
+  overreach-check and darkness-witness.
 - A GATE ASKS WHAT A READER'S EYE ASKS: where TiddlyWiki builds a construct, does the grammar answer
   with anything of its own? `tools/darkness-witness.js` takes its population from the host — every
   node carrying a rule TiddlyWiki stands — and judges each LINE of each construct, because one lit
