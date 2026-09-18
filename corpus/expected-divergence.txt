@@ -31,6 +31,8 @@ pragmas.tw:meta.directive                     # the same \rules run
 pragmas.tw:keyword.operator                   # the argument of a pragma the same \rules run removed
 degenerate.illegal.tw:                        # a fixture written to be malformed
 degenerate.unterminated.tw:                   # a fixture written to leave constructs open
+degenerate.unterminated-attribute.tw:         # a fixture written to leave an attribute value open
+degenerate.unterminated-definition.tw:        # a fixture written to leave a definition open
 
 # The dialect. memetic-wikitext+tiddlywiki includes the whole base grammar and adds a
 # vocabulary of its own — carriers, sigils, lar: addresses, block checks — which TiddlyWiki's
@@ -135,7 +137,7 @@ tiddlywiki5.tw:punctuation.definition.markup.end.bold         # the same reading
 tiddlywiki5.inline.links.tw:punctuation.definition.image      # an image with a blank source: the marks carry the colour, and TiddlyWiki refuses the construct
 tiddlywiki5.inline.links.tw:keyword.other.img                 # the img keyword inside one
 tiddlywiki5.inline.links.tw:markup.underline.link.image       # and the space standing where a source would
-definitions.closer-name.tw:keyword.control.directive.end  # `\end` carrying a name that fails to match closes nothing in TiddlyWiki — the definition runs to the end of the source with a BLANK body and an `unterminated-definition` diagnostic. The grammar closes on the closer it can see. The deciding evidence sits on that line, so this stands OWED rather than structural: matching it needs a backreference to the name, which an end pattern can only take from its OWN begin, and the name stands captured one rule out.  # MEASURED AND DECLINED: a backreference in an end pattern DOES reach the name its own begin captured — probed against vscode-textmate, a matching name closes, a bare closer closes, and a name that fails to match closes nothing, which is the host's own reading exactly. The cost sits in the SECOND engine: Shiki translates every pattern to JavaScript and refuses `\3` outright — `Not enough capturing groups defined to the left` — because a standalone compile cannot see the begin's captures. A reader meeting this grammar on a documentation site would lose every definition's block reading to fix a closer nobody writes on purpose, and that reader has no other advocate here. The closer this grammar accepts and the host refuses costs one authoring error; the fix costs every definition in the other engine.
+definitions.closer-name.tw:  # EVERY SPAN in this carrier answers to its one closer. `\end` carrying a name that fails to match closes nothing in TiddlyWiki — the definition runs to the end of the source with a BLANK body and an `unterminated-definition` diagnostic. The grammar closes on the closer it can see. The deciding evidence sits on that line, so this stands OWED rather than structural: matching it needs a backreference to the name, which an end pattern can only take from its OWN begin, and the name stands captured one rule out.  # MEASURED AND DECLINED: a backreference in an end pattern DOES reach the name its own begin captured — probed against vscode-textmate, a matching name closes, a bare closer closes, and a name that fails to match closes nothing, which is the host's own reading exactly. The cost sits in the SECOND engine: Shiki translates every pattern to JavaScript and refuses `\3` outright — `Not enough capturing groups defined to the left` — because a standalone compile cannot see the begin's captures. A reader meeting this grammar on a documentation site would lose every definition's block reading to fix a closer nobody writes on purpose, and that reader has no other advocate here. The closer this grammar accepts and the host refuses costs one authoring error; the fix costs every definition in the other engine.
 
 # A NARROWED RULE SET CHANGES WHAT EVERY LINE BELOW IT MEANS, and a grammar cannot follow it.
 # `\rules only <names>` keeps the rules named and `\rules except <names>` drops them, both by editing the
@@ -177,6 +179,9 @@ pragmas.rules-only.tw:punctuation.definition.macrocallinline.begin   # the carri
 pragmas.rules-only.tw:punctuation.definition.macrocallinline.end   # the carrier stands `\rules only bold italic`, so the host drops every other rule and reads this construct as text. The marker's own name now stands alone, the content family having left it
 pragmas.rules-only.tw:punctuation.definition.transclusion.transcludeinline.begin   # the carrier stands `\rules only bold italic`, so the host drops every other rule and reads this construct as text. The marker's own name now stands alone, the content family having left it
 pragmas.rules-only.tw:punctuation.definition.transclusion.transcludeinline.end   # the carrier stands `\rules only bold italic`, so the host drops every other rule and reads this construct as text. The marker's own name now stands alone, the content family having left it
+pragmas.rules-only.tw:punctuation.definition.tag.macrocall            # the carrier stands `\rules only bold italic`, so the host drops every other rule and reads this call and transclusion as text
+pragmas.rules-only.tw:punctuation.definition.tag.transclusion         # the carrier stands `\rules only bold italic`, so the host drops every other rule and reads this call and transclusion as text
+pragmas.rules-only.tw:entity.name.function.macro                      # the carrier stands `\rules only bold italic`, so the host drops every other rule and reads this call and transclusion as text
 spans.multiline.tw:entity.other.attribute-name.html   # an XML declaration inside a typed block: the host parses the block under its declared type and builds no HTML element, where the grammar reads the tag it can see
 spans.multiline.tw:punctuation.definition.tag.html   # an XML declaration inside a typed block: the host parses the block under its declared type and builds no HTML element, where the grammar reads the tag it can see
 spans.multiline.tw:punctuation.separator.key-value.html   # an XML declaration inside a typed block: the host parses the block under its declared type and builds no HTML element, where the grammar reads the tag it can see
@@ -199,3 +204,28 @@ es-ES/tiddlers/Formatting_text_in_TiddlyWiki.tid:punctuation.definition.tag   # 
 es-ES/tiddlers/Formatting_text_in_TiddlyWiki.tid:punctuation.definition.string   # OWED — the same code run across lines
 es-ES/tiddlers/Formatting_text_in_TiddlyWiki.tid:punctuation.definition.transclusion   # OWED — the same code run across lines
 tw5.com/tiddlers/widgets/ListWidget.tid:punctuation.definition.list   # OWED — the grammar claims a definition-list mark at a `:` standing mid-line after `<<counter>>`, inside a `<div>` whose body TiddlyWiki reads inline; the host keeps the colon as text
+
+# SURFACED WHEN THE CORPUS JOINED THE GATES. overreach-check ran over corpus/ only by hand while
+# gate-report skipped it, so the divergences below stood unreported. Each stands traced; OWED ones
+# retire with the fix that pays them.
+inline.transclusions.tw:string.unquoted.html   # OWED — a filtered transclusion closing on a styled suffix: TiddlyWiki closes `{{{ … }}suffix}` (filteredtranscludeinline.js:26 — `}}`, a style, then `}`), and the grammar knows only a literal `}}}`, so the prose after it reads as the transclusion's interior
+inline.transclusions.tw:meta.filter   # OWED — the same styled suffix the grammar never closes on
+pragmas.signatures.tw:string.quoted.double.html   # OWED — the carrier gives a `\define` a `((…))` default, which only a `\procedure` reads: TiddlyWiki takes `((a` as a default and `))` as the body's opening, and every line below it answers to that reading
+pragmas.signatures.tw:meta.variable.macro.body   # OWED — the same `((…))` default the carrier gives a `\define`
+pragmas.signatures.tw:entity.name.substitute-parameter   # OWED — the same `((…))` default the carrier gives a `\define`
+pragmas.signatures.tw:keyword.operator.assignment   # OWED — the same `((…))` default the carrier gives a `\define`
+pragmas.signatures.tw:punctuation.definition.directive   # OWED — the same `((…))` default the carrier gives a `\define`
+pragmas.signatures.tw:variable.parameter   # OWED — the same `((…))` default the carrier gives a `\define`
+pragmas.signatures.tw:keyword.control.directive   # OWED — the same `((…))` default the carrier gives a `\define`
+pragmas.signatures.tw:meta.directive.parameters   # OWED — the same `((…))` default the carrier gives a `\define`
+pragmas.signatures.tw:punctuation.definition.variable.parameters   # OWED — the same `((…))` default the carrier gives a `\define`
+tables.spans.tw:punctuation.definition.cell.colspan.left   # OWED — `<` opening a row joins no previous cell, so TiddlyWiki builds a cell holding the text `<` (table.js:52) while the grammar paints a colspan mark
+inline.links.tw:keyword.other.img   # OWED — `[img[]]` and an `[img[` with no closer build no image, and the grammar paints the opener's keyword before any closer stands
+inline.links.tw:keyword.other.ext   # OWED — an `[ext[` with no closer builds no ext link, and the grammar paints the opener's keyword before any closer stands
+spans.multiline.tw:punctuation.definition.tag.begin.html   # OWED — `<![CDATA[` names no element TiddlyWiki's html rule reads (its tag name admits `[a-zA-Z0-9\-\$\.]`), so the host keeps it as text while the grammar paints a tag
+spans.multiline.tw:punctuation.definition.tag.end.html   # OWED — the same `<![CDATA[` the host keeps as text
+inline.entities.tw:invalid.illegal.ambiguous-ampersand   # OWED — a verdict TiddlyWiki never passes: an ampersand run outside entity.js's `&#?[a-zA-Z0-9]{2,8};` stays text, raising nothing, and kept text unseats a verdict as squarely as a built node
+html.deprecated.tw:invalid.illegal.character-not-allowed-here   # OWED — a verdict TiddlyWiki never passes over a tag it keeps as text
+html.deprecated.tw:invalid.illegal.unexpected-equals-sign   # OWED — a verdict TiddlyWiki never passes over a tag it keeps as text
+html.deprecated.tw:punctuation.definition.tag.begin.html   # OWED — `<div ="x">` and `<div style==>` build no element, and the grammar paints their tags
+html.deprecated.tw:punctuation.definition.tag.end.html   # OWED — the same malformed tags the host keeps as text

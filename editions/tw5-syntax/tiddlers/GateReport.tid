@@ -3,11 +3,11 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 45 of 45
+gates-held: 46 of 46
 
 {
-    "gates": 45,
-    "held": 45,
+    "gates": 46,
+    "held": 46,
     "failing": 0,
     "results": [
         {
@@ -132,6 +132,11 @@ gates-held: 45 of 45
         },
         {
             "gate": "overreach",
+            "held": true,
+            "said": "0  span(s) the grammar CONDEMNS and TiddlyWiki builds"
+        },
+        {
+            "gate": "overreach-corpus-files",
             "held": true,
             "said": "0  span(s) the grammar CONDEMNS and TiddlyWiki builds"
         },
