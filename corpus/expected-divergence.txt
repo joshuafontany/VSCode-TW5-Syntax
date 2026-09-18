@@ -189,7 +189,6 @@ pragmas.signatures.tw:punctuation.definition.substitution.end   # the carrier's 
 # against the TIGHTEST cover, since such a claim asserts the character IS markup; a table, a cell or
 # a paragraph around it cannot turn a kept character into a mark. Judged by the widest cover, every
 # line below read as agreement.
-tiddlywiki5.tw:punctuation.definition.image   # OWED — an image whose source holds only whitespace. TiddlyWiki builds no image from `[img[ ]]` or `[img [ ]]` and keeps the text; the grammar paints all four brackets, its source pattern admitting an empty title
 tiddlywiki5.pragma.tw:punctuation.definition.link   # OWED — a bare `\rules` ends the pragma zone (rules.js:26 needs whitespace after the word), so every definition below reads as prose and an unclosed `<parameter>` from a function body nests the rest of the file; the grammar still reads definitions there
 tiddlywiki5.pragma.tw:punctuation.definition.mvv-display   # OWED — the same pragma zone the bare `\rules` above it closes
 tiddlywiki5.math.tw:punctuation.definition.tag.begin.html   # an element body TiddlyWiki reads INLINE: html.js:52-71 parses a body as blocks only where the rule ran in block mode or a BLANK LINE follows the tag, and this `<p>` stands inside a paragraph with text on the line after it, so the markup in its body stays text. Whether that blank line follows stands on the next line, which no TextMate pattern reads
@@ -213,7 +212,7 @@ pragmas.signatures.tw:variable.parameter   # OWED — the same `((…))` default
 pragmas.signatures.tw:keyword.control.directive   # OWED — the same `((…))` default the carrier gives a `\define`
 pragmas.signatures.tw:meta.directive.parameters   # OWED — the same `((…))` default the carrier gives a `\define`
 pragmas.signatures.tw:punctuation.definition.variable.parameters   # OWED — the same `((…))` default the carrier gives a `\define`
-inline.links.tw:keyword.other.img   # OWED — `[img[]]` and an `[img[` with no closer build no image, and the grammar paints the opener's keyword before any closer stands
+inline.links.tw:keyword.other.img   # OWED — an `[img[` with no closer builds no image, and the grammar paints the opener's keyword before any closer stands
 inline.links.tw:keyword.other.ext   # OWED — an `[ext[` with no closer builds no ext link, and the grammar paints the opener's keyword before any closer stands
 spans.multiline.tw:punctuation.definition.tag.begin.html   # OWED — `<![CDATA[` names no element TiddlyWiki's html rule reads (its tag name admits `[a-zA-Z0-9\-\$\.]`), so the host keeps it as text while the grammar paints a tag
 spans.multiline.tw:punctuation.definition.tag.end.html   # OWED — the same `<![CDATA[` the host keeps as text

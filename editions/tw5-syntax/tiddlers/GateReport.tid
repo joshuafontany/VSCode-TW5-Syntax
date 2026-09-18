@@ -233,7 +233,7 @@ gates-held: 47 of 47
         {
             "gate": "theme-collision",
             "held": true,
-            "said": "theme-collision  267670 token-reading(s) over 65 themes and 48 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
+            "said": "theme-collision  267410 token-reading(s) over 65 themes and 48 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
         },
         {
             "gate": "theme-parity",

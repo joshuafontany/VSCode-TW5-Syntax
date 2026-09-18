@@ -15,6 +15,11 @@ attribute value's quote characters changed family. A reader who liked 2.2.1's lo
 back by upgrading, which is the definition this number answers to.
 
 ### Fixed
+- AN IMAGE NEEDS A SOURCE THAT HOLDS SOMETHING. `image.js` skips whitespace after the inner `[` and
+  then needs at least one character before `]]`, so `[img[ ]]`, `[img [ ]]` and `[img[]]` build no
+  image and TiddlyWiki keeps the brackets as text. The grammar painted all four brackets and the
+  keyword. The opener now refuses a source it can see holds nothing on its own line; a source carrying
+  a title builds as before, whitespace around it and all. One expected-divergence ruling retires.
 - A FILTER VARIABLE READS A NAME, THEN PARAMETERS. `parseFilterVariable` splits a `<…>` or `(…)`
   operand at its first whitespace — a name, then the rest read as a call's parameters — so
   `<now [UTC]YYYY0MM0DD>` calls `now` with a date format. The grammar painted the whole text as ONE
@@ -990,7 +995,7 @@ back by upgrading, which is the definition this number answers to.
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 129 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 128 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
   emits no container node, so a scope over its content stands over text by construction.
 - Divergences that stand by ruling, written down. Some spans stand where TiddlyWiki refuses

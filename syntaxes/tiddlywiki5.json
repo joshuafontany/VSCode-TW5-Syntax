@@ -5585,7 +5585,7 @@
             "comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole."
         },
         "image": {
-            "begin": "(\\[)(img)\\s*",
+            "begin": "(\\[)(img)(?!\\s*\\[\\s*\\]\\])\\s*",
             "end": "(\\])(\\])|(?=^$)",
             "name": "markup.other.image.tiddlywiki5",
             "beginCaptures": {
@@ -5637,7 +5637,7 @@
                     }
                 }
             ],
-            "comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole."
+            "comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole. A source holding nothing, or only whitespace, builds no image — image.js skips whitespace after the inner `[` and then needs `[^\\]]+?` before `]]` — so the opener refuses one it can see on its own line."
         },
         "link": {
             "patterns": [
