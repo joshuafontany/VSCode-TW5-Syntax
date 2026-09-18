@@ -216,8 +216,5 @@ inline.links.tw:keyword.other.img   # OWED — an `[img[` with no closer builds 
 inline.links.tw:keyword.other.ext   # OWED — an `[ext[` with no closer builds no ext link, and the grammar paints the opener's keyword before any closer stands
 spans.multiline.tw:punctuation.definition.tag.begin.html   # OWED — `<![CDATA[` names no element TiddlyWiki's html rule reads (its tag name admits `[a-zA-Z0-9\-\$\.]`), so the host keeps it as text while the grammar paints a tag
 spans.multiline.tw:punctuation.definition.tag.end.html   # OWED — the same `<![CDATA[` the host keeps as text
-inline.entities.tw:invalid.illegal.ambiguous-ampersand   # OWED — a verdict TiddlyWiki never passes: an ampersand run outside entity.js's `&#?[a-zA-Z0-9]{2,8};` stays text, raising nothing, and kept text unseats a verdict as squarely as a built node
-html.deprecated.tw:invalid.illegal.character-not-allowed-here   # OWED — a verdict TiddlyWiki never passes over a tag it keeps as text
-html.deprecated.tw:invalid.illegal.unexpected-equals-sign   # OWED — a verdict TiddlyWiki never passes over a tag it keeps as text
 html.deprecated.tw:punctuation.definition.tag.begin.html   # OWED — `<div ="x">` and `<div style==>` build no element, and the grammar paints their tags
 html.deprecated.tw:punctuation.definition.tag.end.html   # OWED — the same malformed tags the host keeps as text

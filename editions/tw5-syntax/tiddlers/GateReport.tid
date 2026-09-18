@@ -73,12 +73,12 @@ gates-held: 47 of 47
         {
             "gate": "contrast",
             "held": true,
-            "said": "contrast-witness  284 stack(s) over 65 theme(s), 1490 prose reading(s), 3 above the bar of 16, 0 unruled, 0 explaining nothing"
+            "said": "contrast-witness  283 stack(s) over 65 theme(s), 1495 prose reading(s), 3 above the bar of 16, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  61 files, 524 scopes declared, 478 reached (floor 450), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  61 files, 521 scopes declared, 475 reached (floor 450), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
@@ -98,12 +98,12 @@ gates-held: 47 of 47
         {
             "gate": "engine-behaviour",
             "held": true,
-            "said": "engine-witness  761 pattern(s) read against 847 corpus line(s), 0 that match differently, 0 unruled"
+            "said": "engine-witness  754 pattern(s) read against 847 corpus line(s), 0 that match differently, 0 unruled"
         },
         {
             "gate": "engine-witness",
             "held": true,
-            "said": "engine-witness  761 pattern(s) across 8 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "engine-witness  754 pattern(s) across 8 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "filter-witness",
@@ -233,7 +233,7 @@ gates-held: 47 of 47
         {
             "gate": "theme-collision",
             "held": true,
-            "said": "theme-collision  267540 token-reading(s) over 65 themes and 48 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
+            "said": "theme-collision  267410 token-reading(s) over 65 themes and 48 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
         },
         {
             "gate": "theme-parity",

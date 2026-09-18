@@ -29,13 +29,19 @@ b}}x inline
 b}}}
 #^ - invalid.illegal.multiline-tiddler-title.tiddlywiki5
 
-! Where TiddlyWiki yields plain text, the verdict stands
+! Where TiddlyWiki keeps malformed markup as text, it raises nothing, and neither does the grammar
 
+# entity.js reads `&#?[a-zA-Z0-9]{2,8};` and leaves every other ampersand as the text it is. The
+# parser raises no diagnostic there, so a verdict would invent a refusal the host never makes.
 a &verylongname; b
-# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 invalid.illegal.ambiguous-ampersand.html.tiddlywiki5
+# ^ - invalid.illegal.ambiguous-ampersand.html.tiddlywiki5
+# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+# ^^^^^^^^^^^^^^ - constant.character.entity.named.html.tiddlywiki5
 
+# html.js refuses a tag whose attribute list it cannot read, keeps the source as text, and says
+# nothing. The characters that broke it carry no verdict.
 <$widget = >
-#        ^ text.html.tiddlywiki5 meta.tag.widget.widget.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#        ^ - invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 
 A stray < in prose.
 #       ^ - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
@@ -49,7 +55,7 @@ A stray < in prose.
 #^^^^^^^^^ - invalid.illegal.unrecognized-tag.html.tiddlywiki5
 
 <div =foo>y</div>
-#    ^ text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 invalid.illegal.character-not-allowed-here.html.tiddlywiki5
+#    ^ - invalid.illegal.character-not-allowed-here.html.tiddlywiki5
 
 # A style block's closing marker takes the rest of its line as ordinary content, and TiddlyWiki
 # builds a paragraph node from it. Measured: two nodes, zero diagnostics.
@@ -71,9 +77,9 @@ content
 <foo bar="baz" />
 #^^^ - invalid.illegal.unrecognized-tag.html.tiddlywiki5
 
-# An equals sign where a value belongs leaves the whole tag as plain text, so the verdict stands.
+# An equals sign where a value belongs leaves the whole tag as plain text, and nothing raises.
 <div style==>x</div>
-#          ^ text.html.tiddlywiki5 meta.tag.structure.div.start.html.tiddlywiki5 invalid.illegal.unexpected-equals-sign.html.tiddlywiki5
+#          ^ - invalid.illegal.unexpected-equals-sign.html.tiddlywiki5
 
 # SVG stands in TiddlyWiki's own shipped tiddlers, and its elements build nodes like any other.
 <svg width="10"><circle cx="1" cy="1" r="1" fill="blue"/></svg>

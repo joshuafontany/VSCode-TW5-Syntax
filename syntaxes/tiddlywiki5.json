@@ -836,10 +836,6 @@
                                         }
                                     ],
                                     "comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole."
-                                },
-                                {
-                                    "match": "=",
-                                    "name": "invalid.illegal.unexpected-equals-sign.html.tiddlywiki5"
                                 }
                             ]
                         }
@@ -1007,10 +1003,6 @@
                                         }
                                     ],
                                     "comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole."
-                                },
-                                {
-                                    "match": "=",
-                                    "name": "invalid.illegal.unexpected-equals-sign.html.tiddlywiki5"
                                 }
                             ]
                         }
@@ -1063,10 +1055,6 @@
                             "include": "#htmlwidget-attribute-interior"
                         }
                     ]
-                },
-                {
-                    "match": "(?:(?!/>)[^\\s>])+",
-                    "name": "invalid.illegal.character-not-allowed-here.html.tiddlywiki5"
                 }
             ]
         },
@@ -1265,10 +1253,6 @@
                         },
                         {
                             "include": "#string"
-                        },
-                        {
-                            "match": "=",
-                            "name": "invalid.illegal.unexpected-equals-sign.html.tiddlywiki5"
                         }
                     ]
                 }
@@ -1383,11 +1367,6 @@
                     },
                     "match": "(&)#?[a-zA-Z0-9]{2,8}(;)",
                     "name": "constant.character.entity.named.html.tiddlywiki5"
-                },
-                {
-                    "comment": "Outside entity.js's 2-8 window: the ampersand stays literal text.",
-                    "match": "&(?=[a-zA-Z0-9];|[a-zA-Z0-9]{9,};)",
-                    "name": "invalid.illegal.ambiguous-ampersand.html.tiddlywiki5"
                 }
             ]
         },
@@ -1490,10 +1469,6 @@
                                     "include": "#htmlwidget-attribute-interior"
                                 }
                             ]
-                        },
-                        {
-                            "match": "(?:(?!/>)[^\\s>])+",
-                            "name": "invalid.illegal.character-not-allowed-here.html.tiddlywiki5"
                         }
                     ]
                 },
@@ -1966,10 +1941,6 @@
                                     "include": "#htmlwidget-attribute-interior"
                                 }
                             ]
-                        },
-                        {
-                            "match": "(?:(?!/>)[^\\s>])+",
-                            "name": "invalid.illegal.character-not-allowed-here.html.tiddlywiki5"
                         }
                     ]
                 },
