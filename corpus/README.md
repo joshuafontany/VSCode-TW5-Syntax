@@ -25,11 +25,13 @@ reaches no scope, goes unmissed, and cannot leave coverage reading full. One rul
 builds no node at all and stands named with that reason.
 
 **The cut sweep.** `npm run swallow-witness` cuts every file here at every line, appends a blank
-line and a sentinel, and asks TiddlyWiki and the grammar about the same offset — 757 cuts across
-35 files. A `.tid` keeps its header and the sentinel lands in its body, which asks whether a field
-value left open colours what follows it. Two files carry the record: `swallow-ledger.txt` holds
-every divergence with the reason it stands and fails on a ruling that explains nothing;
-`unasked-regions-ceiling.txt` counts the regions with no line bound that no cut here ever opens.
+line and a sentinel, and asks TiddlyWiki and the grammar about the same offset. The run prints how
+many cuts it made and across how many files, so that count answers to the corpus on disk rather
+than to a figure typed here. A `.tid` keeps its header and the sentinel lands in its body, which
+asks whether a field value left open colours what follows it. Two files carry the record:
+`swallow-ledger.txt` holds every divergence with the reason it stands and fails on a ruling that
+explains nothing; `unasked-regions-ceiling.txt` counts the regions with no line bound that no cut
+here ever opens.
 
 **What a delimiter inherits.** `contentName` names a region's interior, so the marks that open and
 close it fall outside the content family by construction and nothing downstream notices. `npm run
