@@ -35,6 +35,11 @@
 // Every dark line stands declared in corpus/darkness-ledger.txt with its reason, and a declaration
 // whose line reads lit fails as stale, so a repair retires the debt it paid.
 //
+// A reason opening `READER <version>` (tools/reader-scope.js) answers for ONE reader alone — an
+// unterminated inline run recovers to a different point under the pinned devDependency than under
+// this repository's own fork, so the line reads dark under one and lit under the other. Scoped that
+// way it neither fails nor reads stale under the reader it does not name.
+//
 //   node tools/darkness-witness.js [--verbose] [--list]
 //
 // `--list` prints every dark line in the ledger's own form, the keys derived and the reasons left
@@ -46,6 +51,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
 const { boot, resolveTiddlyWiki, isPlainText, flatten } = require('./tw5-oracle.js');
+const { readerOf, appliesToReader } = require('./reader-scope.js');
 
 const SCOPE = 'text.html.tiddlywiki5';
 const LEDGER = path.join(ROOT, 'corpus', 'darkness-ledger.txt');
@@ -179,6 +185,7 @@ if (require.main !== module) return;
   const verbose = process.argv.includes('--verbose');
   const list = process.argv.includes('--list');
   const oracle = boot(resolveTiddlyWiki());
+  const current = oracle.$tw.version;
   const declared = readLedger();
   const unreadable = [...declared.keys()].filter((k) => k.startsWith('unreadable: '));
   const files = carriers();
@@ -194,10 +201,19 @@ if (require.main !== module) return;
     for (const d of dark) process.stdout.write(`${d.key}  # ${declared.get(d.key) || 'REASON OWED'}\n`);
     return;
   }
-  const undeclared = dark.filter((d) => !declared.has(d.key));
+  // A declaration NAMING A READER answers only for that one — a divergence this reader never
+  // meets stays undeclared here exactly as if nothing named it, and a divergence it DOES meet
+  // still needs the declaration to name this reader (or none at all).
+  const undeclared = dark.filter((d) => {
+    if (!declared.has(d.key)) return true;
+    return !appliesToReader(readerOf(declared.get(d.key)).version, current);
+  });
   const darkKeys = new Set(dark.map((d) => d.key));
-  const stale = [...declared.keys()].filter((k) => !k.startsWith('unreadable: ') && !darkKeys.has(k));
-  const owed = dark.filter((d) => declared.has(d.key) && /^OWED\b/.test(declared.get(d.key) || '')).length;
+  // A declaration scoped to a DIFFERENT reader is expected to stand idle here — that is the
+  // reader-specificity the declaration names, never staleness.
+  const stale = [...declared.keys()].filter((k) => !k.startsWith('unreadable: ') && !darkKeys.has(k)
+    && appliesToReader(readerOf(declared.get(k)).version, current));
+  const owed = dark.filter((d) => declared.has(d.key) && /^OWED\b/.test(readerOf(declared.get(d.key)).rest)).length;
   for (const d of undeclared.slice(0, verbose ? undeclared.length : 12)) {
     console.log(`  ${d.verdict} ${d.file}:${d.line} ${d.rule}  ${JSON.stringify(d.text.slice(0, 70))}`);
   }

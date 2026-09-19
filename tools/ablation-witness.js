@@ -43,6 +43,7 @@ const path = require('node:path');
 const { ROOT } = require('./run-tool.js');
 const { placed } = require('./darkness-witness.js');
 const { boot, resolveTiddlyWiki, flatten, isPlainText } = require('./tw5-oracle.js');
+const { readerOf, appliesToReader } = require('./reader-scope.js');
 
 const LEDGER = path.join(ROOT, 'corpus', 'ablation-ledger.txt');
 const CARRIER_DIRS = [path.join(ROOT, 'corpus', 'wikitext'), path.join(ROOT, 'tests', 'samples')];
@@ -328,6 +329,7 @@ if (require.main !== module) return;
   const verbose = process.argv.includes('--verbose');
   const list = process.argv.includes('--list');
   const oracle = boot(resolveTiddlyWiki());
+  const current = oracle.$tw.version;
   const declared = readLedger();
   const unreadable = [...declared.keys()].filter((k) => k.startsWith('unreadable: '));
   const files = carriers();
@@ -343,10 +345,17 @@ if (require.main !== module) return;
     for (const f of findings) process.stdout.write(`${f.key}  # ${declared.get(f.key) || 'REASON OWED'}\n`);
     return;
   }
-  const undeclared = findings.filter((f) => !declared.has(f.key));
+  // A declaration naming a READER (tools/reader-scope.js) answers only for that one, the same
+  // generalisation darkness-witness.js carries — a finding that reader never meets stays undeclared
+  // here as if nothing named it.
+  const undeclared = findings.filter((f) => {
+    if (!declared.has(f.key)) return true;
+    return !appliesToReader(readerOf(declared.get(f.key)).version, current);
+  });
   const foundKeys = new Set(findings.map((f) => f.key));
-  const stale = [...declared.keys()].filter((k) => !k.startsWith('unreadable: ') && !foundKeys.has(k));
-  const owed = findings.filter((f) => declared.has(f.key) && /^OWED\b/.test(declared.get(f.key) || '')).length;
+  const stale = [...declared.keys()].filter((k) => !k.startsWith('unreadable: ') && !foundKeys.has(k)
+    && appliesToReader(readerOf(declared.get(k)).version, current));
+  const owed = findings.filter((f) => declared.has(f.key) && /^OWED\b/.test(readerOf(declared.get(f.key)).rest)).length;
   for (const f of undeclared.slice(0, verbose ? undeclared.length : 12)) {
     console.log(`  ${f.verdict} ${f.file}:${f.line} ${JSON.stringify(f.char)}  ${JSON.stringify(f.text.slice(0, 70))}`);
   }
