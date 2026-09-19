@@ -11,6 +11,12 @@
 #
 #   <fragment of the refusal or of the pattern>   # why it stands
 #
-# THE FILE STANDS EMPTY, MEASURED. All 777 patterns across all 8 grammars cross to the second
-# engine. That reads as portability today and says nothing about tomorrow: the day a pattern
-# reaches for a construct only one engine carries, it lands here with a reason or it fails the gate.
+# A `BEHAVIOUR —` reason answers the `--behaviour` arm alone: it names a MATCH the two engines
+# find differently on a real corpus line, never a pattern either engine refuses to compile, so the
+# plain arm above neither reaches for it nor reports it idle.
+#
+# THE FIRST ENTRY, MEASURED. All 816 patterns across every grammar still cross to the second
+# engine; the day one more reaches for a construct only one engine carries, it joins below with a
+# reason or it fails the gate.
+
+[\x00-\x1f]   # BEHAVIOUR — `syntaxes/tw5-fields.json`'s `invalid.illegal.field.name` lookahead, `(?=[\x00-\x1f])(.*)`. corpus/wikitext/tables.malformed.tw carries a literal tab beside a table cell's heading mark (the tab TiddlyWiki itself reads as text, never skipped the way a space is — table.js:83-95), and the JS translation of this control-character class reads the tab and matches from column 1 to end of line, where Oniguruma refuses the same class on the same line. Both engines still agree on every OTHER corpus line; this is the one construct — a bare control character inside a `text.html.tiddlywiki5.fields` line — where the translation and the WASM build part ways.

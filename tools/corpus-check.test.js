@@ -47,8 +47,12 @@ test('a ceiling lowered past what stands unreached fails the gate', live, () => 
   // The ceiling reads zero, so lowering it cannot fail — a scope the corpus stops reaching must.
   // Emptying one corpus file drops the scopes only it reaches, which the FLOOR catches first; the
   // reading below names whichever ratchet answers, since both stand for the same loss.
+  //
+  // SVG carries its own scope family, exercised nowhere else — where a table's ground now spans
+  // four files (`tables.spans.tw`, `blocks.tables.tw`, `tables.nesting.tw`, `tables.malformed.tw`),
+  // so emptying any single one of them no longer drops the corpus below its floor.
   const empty = (sandbox) => {
-    fs.writeFileSync(path.join(sandbox, 'corpus', 'wikitext', 'blocks.tables.tw'), 'plain prose.\n');
+    fs.writeFileSync(path.join(sandbox, 'corpus', 'wikitext', 'html.svg.tw'), 'plain prose.\n');
   };
   const { code, out } = runInSandbox(empty, ['tools/corpus-check.js']);
   assert.notStrictEqual(code, 0, 'a corpus file lost its ground and the gate held anyway');

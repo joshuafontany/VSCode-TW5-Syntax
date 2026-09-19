@@ -49,12 +49,6 @@ corpus/wikitext/html.multiline-tags.tw  html  MISS  "name=\"targetTiddler\""  # 
 corpus/wikitext/inline.emphasis.tw  italic  MISS  "//italic across"  # OWED — italic the host carries across a line
 corpus/wikitext/inline.emphasis.tw  italic  MISS  "two lines//"  # OWED — italic the host carries across a line
 
-# A PRAGMA BELOW CONTENT. TiddlyWiki reads pragmas only above a tiddler's content, so this
-# `\procedure` stands as prose, and the host builds a multi-valued display from the `((…))` inside it.
-# The grammar reads a procedure signature there and nothing of the display.
-corpus/wikitext/spans.multiline.tw  mvvdisplayinline  MISS  "]] d:((a variable default"  # OWED — a display the host builds inside prose the grammar reads as a signature
-corpus/wikitext/spans.multiline.tw  mvvdisplayinline  MISS  ")))"  # OWED — that display's close
-
 # CONSTRUCTS A REGION ABOVE HOLDS. Each reads as itself alone and as something else in place.
 corpus/wikitext/degenerate.unterminated.tw  html  LOST  "<div class=\"never-closed\">"  # READER 5.5.0-prerelease OWED — the host builds this element; a region opened above it holds the grammar here
 corpus/wikitext/inline.links.tw  extlink  LOST  "which is the reading a reader sees: [ext[https://example.com/unclosed"  # OWED — the host builds this external link; the grammar reads it alone and loses it in place

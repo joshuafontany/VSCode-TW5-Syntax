@@ -56,7 +56,15 @@ function ledger() {
     const [body, ...rest] = line.split('#');
     const key = body.trim();
     if (!key) continue;
-    entries.push({ key, reason: rest.join('#').trim() });
+    const reason = rest.join('#').trim();
+    // A COMPILE REFUSAL AND A BEHAVIOURAL SPLIT ANSWER TO DIFFERENT RUNS. The plain arm asks
+    // whether a PATTERN survives translation at all; the `--behaviour` arm asks whether a line the
+    // corpus carries reads the same once it does. A ruling entry that only ever explains the second
+    // question would sit IDLE in the first run forever, so a reason opening `BEHAVIOUR —` marks it
+    // for the behavioural arm alone, the way a `READER <version>` prefix keys a divergence to one
+    // TW5_PATH elsewhere in this repository.
+    const behaviourOnly = /^BEHAVIOUR\s*[—-]/.test(reason);
+    entries.push({ key, reason, behaviourOnly });
   }
   return entries;
 }
@@ -176,8 +184,11 @@ function patternsOf(files) {
     walk(grammar);
   }
 
-  const unruled = refused.filter((r) => !rulings.some((l) => r.why.includes(l.key) || r.pattern.includes(l.key)));
-  const idle = rulings.filter((l) => !refused.some((r) => r.why.includes(l.key) || r.pattern.includes(l.key)));
+  // A `BEHAVIOUR —` ruling answers only the behavioural arm above, so this arm neither reaches for
+  // it to explain a refusal nor reports it idle when nothing here refuses.
+  const compileRulings = rulings.filter((l) => !l.behaviourOnly);
+  const unruled = refused.filter((r) => !compileRulings.some((l) => r.why.includes(l.key) || r.pattern.includes(l.key)));
+  const idle = compileRulings.filter((l) => !refused.some((r) => r.why.includes(l.key) || r.pattern.includes(l.key)));
 
   if (verbose) {
     for (const r of refused) console.log(`  ${r.file}  ${r.name.slice(0, 40)}\n     ${r.why}\n     ${JSON.stringify(r.pattern.slice(0, 70))}`);

@@ -2,11 +2,21 @@
 b:"""a triple-quoted default
 """ c:'a single-quoted default
 ' d:[[a bracketed default
-]] e:((a variable default
+]])
+A macro body carrying $a$, $b$, $c$ and $d$.
+\end
+\procedure spans-its-variable-default(e:((a variable default
 )))
-A macro body carrying $a$ and $e$.
+A procedure body carrying <<e>>.
 \end
 \parameters (size:"22pt"
 colour:"red")
-A pragma signature opens on one line and closes on another. Every default quoting stands here,
-because the grammar carries one region per quoting and a reader sits inside whichever it opened.
+A pragma signature opens on one line and closes on another. Every default quoting `\define` itself
+reads stands above, in its own signature, because the grammar carries one region per quoting and a
+reader sits inside whichever it opened.
+
+A VARIABLE DEFAULT READS ONLY IN A `\procedure`, `\function` OR `\widget`. `\define`'s own parameter
+list excludes a bare `)`, so a `((...))` default there would stop the signature at its FIRST closing
+paren — folding the rest of the line, the `\end` after it, even a pragma standing below, into one
+ordinary paragraph. The variable default above stands in a `\procedure` signature instead, where the
+host's own parameter grammar keeps a nested `))` together on purpose.

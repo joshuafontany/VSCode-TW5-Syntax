@@ -314,6 +314,54 @@ back by upgrading, which is the definition this number answers to.
 - The typo arm's determinism test accused the arm whenever the corpus moved between its two runs —
   three lines landing mid-corpus read exactly like a wandering perturbation. The corpus reports its
   own digest around the pair, so an edit names itself.
+- THE CARRIER TRUTH PASS. Five specimens said one thing and TiddlyWiki read another; each now
+  states what the host actually builds, traced with `tools/tw5-oracle.js`.
+  - `tables.spans.tw:15` wrote a row marker of `b`, which `[fhck]?` cannot take, so the host ended
+    the table there and read the line below as prose the grammar still coloured as a row. One
+    character removed.
+  - `blocks.tables.tw` labelled cells "a rowspan above", "a colspan right" and "a colspan left"
+    that never span anything — `table.js` compares a cell's WHOLE content against `~`, `>` and
+    `<`, so a mark carrying a trailing space builds an ordinary cell holding its mark as text —
+    and called one cell "left" that reads `align="right"` from its own leading space, and another
+    "right" that reads `align="left"` from its own trailing one. The marks now stand in cells that
+    actually join, the alignment labels name the align the host builds, and a fourth row states
+    the mark-with-a-space reading in its own words instead of implying a span.
+  - `pragmas.signatures.tw` gave a `\define` a `((…))` variable default. `macrodef.js`'s parameter
+    regex excludes `)` entirely — `([^)]*)` — where `fnprocdef.js`'s tolerates a nested `))`, so
+    the definition closed at the FIRST paren inside `((a variable default`, read `))` as a
+    single-line body, and every pragma below it — another definition, `\parameters`, the carrier's
+    own explanatory prose — fell through as one ordinary paragraph the grammar still painted as
+    pragma structure. The variable default now stands in a `\procedure` signature, where the host
+    reads it; `\define` keeps the three quotings it actually supports. Eleven expected-divergence
+    rulings, two ablation-ledger findings and two bracket-ledger findings retire with it — all of
+    them traced to the same swallowed pragma zone.
+  - `spans.multiline.tw` placed a `\define` and a `\procedure` after other content — buttons, a
+    `<div>`, a `<script>` — where `parsePragmas` (`wikiparser.js`) reads pragmas ONLY as a
+    consecutive run from the very start of the source, breaking for good at the first line that
+    fails to match one. Both blocks built no pragma at all; they read as the plain paragraph text
+    the fnprocdef/macrodef grammar rules kept painting as a live signature regardless. Both now
+    stand at the top of the file, beside the pragmas that already worked, so the carrier's own
+    claim — "a pragma signature opens on one line and closes on another" — holds for all four
+    signatures it carries. Two darkness-ledger findings retire with it.
+  - `tiddlywiki5.pragma.tw` (`tests/samples/`) carries a bare `\rules` with nothing after it —
+    `rules.js`'s own match regexp, `/\\rules[^\S\n]/mg`, needs a non-newline space immediately
+    after the word, so this line never matches the pragma at all and falls through as the plain
+    paragraph text its own `.snap` already pins. Traced and confirmed still true; the two
+    `OWED` expected-divergence rulings this carries stand, unmoved, since nothing here changed.
+  - Two carriers join `corpus/wikitext/` for the table forms nothing else exercised:
+    `tables.nesting.tw` (every inline construct inside a cell, a pipe inside one of them, every
+    row form at once, a full span grid, valign-then-heading ordering, and a caption a later row
+    replaces) and `tables.malformed.tw` (a row that fails whole, a ragged table, an empty row, a
+    span mark with nothing to join, and the tab-versus-space divergence `table.js` reads
+    differently from a heading bang). The tab line also parts the two regex engines — the JS
+    translation of `tw5-fields.json`'s control-character lookahead reads it where Oniguruma
+    refuses — so `tools/engine-witness.js` now accepts a `BEHAVIOUR —` reason prefix in
+    `corpus/engine-ledger.txt`, keying a ruling to the `--behaviour` arm alone the way a
+    `READER <version>` prefix keys one to a single `TW5_PATH`; the plain (compile) arm neither
+    reaches for it nor reports it idle. Six ablation-ledger findings join with the two carriers,
+    and `tools/corpus-check.test.js`'s ceiling control moves off `blocks.tables.tw`, which a
+    table's ground spread across four files no longer makes uniquely load-bearing, onto
+    `html.svg.tw`.
 
 ### Added
 - A `toml` FENCE READS FULL TOML 1.1, PRIVATELY. VS Code ships no TOML grammar, so a `toml` fence
@@ -1072,10 +1120,10 @@ back by upgrading, which is the definition this number answers to.
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 122 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 111 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
   emits no container node, so a scope over its content stands over text by construction. 22 of
-  the 122 carry a `READER <version>` reason (tools/reader-scope.js), naming the ONE reader — this
+  the 111 carry a `READER <version>` reason (tools/reader-scope.js), naming the ONE reader — this
   repository's own fork or the pinned devDependency — whose parser the ruling explains.
 - A RULING STANDS STALE ONLY WHERE EVERY RUN EXPLAINS NOTHING WITH IT. The five `overreach-check`
   runs over `corpus/expected-divergence.txt` share one ruling file, and a ruling idle in one run

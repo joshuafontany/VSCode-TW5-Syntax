@@ -11,6 +11,19 @@ carried to a second line"""
 A body.
 \end
 
+\define spans-its-pragma-signature(a:"one"
+b:"two")
+A macro body.
+\end
+
+\procedure carries-four-quotings(a:"""a triple-quoted default
+""" b:'a single-quoted default
+' c:[[a bracketed default
+]] d:((a variable default
+)))
+A body.
+\end
+
 <<spans-its-arguments a:"""an argument
 carried across a line""">>
 
@@ -31,19 +44,6 @@ a character-data payload across lines
 carried across lines */
 var afterTheComment = 1; // a line comment
 </script>
-
-\define spans-its-pragma-signature(a:"one"
-b:"two")
-A macro body.
-\end
-
-\procedure carries-four-quotings(a:"""a triple-quoted default
-""" b:'a single-quoted default
-' c:[[a bracketed default
-]] d:((a variable default
-)))
-A body.
-\end
 
 A paragraph carrying <<spans-its-arguments a:"one"
 b:"two">> mid-line.
