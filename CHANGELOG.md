@@ -2373,6 +2373,9 @@ back by upgrading, which is the definition this number answers to.
   and all, as plain text even inside an `<svg>` or `<math>` element, and the rule that painted it
   as a tag retired. `meta.tag.metadata.cdata.html.tiddlywiki5` and
   `string.other.inline-data.html.tiddlywiki5` retire with it; `MIGRATION.md` records both.
+- `isExpected` reads the same co-declared siblings `matchingRulings` already does, taking the same
+  `siblingsOf` a caller already builds from `siblingsFrom` rather than repeating the match rule a
+  second time under a different name.
 
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`

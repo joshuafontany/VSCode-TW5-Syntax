@@ -136,21 +136,19 @@ function readExpected(text) {
  * nothing else does: a ruling with neither a file nor a scope explains everything, and
  * readExpected refuses it.
  *
+ * Sibling-aware the same way `matchingRulings` is: a scope co-declared beside the one a ruling
+ * names answers for the same construct, so `siblingsOf` widens the names this checks exactly as
+ * it widens `matchingRulings`' own search. This delegates to `matchingRulings` rather than
+ * duplicating its matching rule, so the two can never drift apart.
+ *
  * @param {{file:string|null, scope:string}[]} rules
  * @param {string} file
  * @param {string} scope
+ * @param {(scope: string) => string[]} [siblingsOf]
  * @returns {boolean}
  */
-function isExpected(rules, file, scope) {
-  return rules.some(
-    (r) =>
-      (r.scope === ''
-        ? true
-        : r.scope.startsWith('*.')
-          ? scope.endsWith(r.scope.slice(1))
-          : scope === r.scope || scope.startsWith(`${r.scope}.`)) &&
-      (r.file === null || file === r.file || file.endsWith(`/${r.file}`))
-  );
+function isExpected(rules, file, scope, siblingsOf = () => []) {
+  return matchingRulings(rules, file, scope, siblingsOf).length > 0;
 }
 
 /**
