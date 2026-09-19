@@ -41,6 +41,31 @@ back by upgrading, which is the definition this number answers to.
   still fails under its own reader alone — the control every entry above was written against.
 
 ### Fixed
+- TWO ADJACENT CODE RUNS PAIR AS THE HOST PAIRS THEM. `codeinline.js` opens on `(``?)` and closes
+  by re-running that SAME literal against the whole source — it does not care whether the
+  character right before its own opener already belonged to a run somebody else closed. The
+  grammar's `(?<!`)`/`(?!`)` lookaround assumed the opposite: that a backtick immediately beside
+  another backtick always marks the SAME delimiter, so ``* `raw``raw`not raw`` (two runs standing
+  side by side) opened one code span and then refused to open the second, reading the rest of the
+  line as plain text. Dropping the lookaround pairs the two runs the way the host does; measured
+  against `corpus/attribute-kind-ceiling.txt`, dropping only the single-backtick rule's lookbehind
+  regresses that ceiling 52 to 54 (a spurious re-open cascades roughly 130 characters through a
+  real tiddler carrying a nested triple-backtick fence), so both rules' lookaround came out
+  together rather than one at a time — measured clean at 52 across both readers. Two darkness
+  entries and two ablation entries retire.
+- A LIST ITEM REOPENS AFTER A LINE THAT ONLY CLOSES AN HTML ELEMENT. `list.js` re-tries its own
+  marker regex after every item's body, however that body was built — including a body that
+  entered block mode for an unclosed element (`<div>` followed by a blank line) and only finishes
+  on a later line ending `</div> run`. This grammar has no equivalent memory: once that body falls
+  through to the ordinary paragraph fallback, the paragraph's own end bound (a blank line, `<<<` or
+  `\end`) has no reason to fire on the very next `* …` line, so the marker reads as prose inside an
+  open-ended paragraph — and does so with the WHOLE list standing alone, per
+  `tools/darkness-witness.js`. A physical line beginning with a closing html tag now bounds itself
+  to that one line (`#block`'s new first pattern, `(?=</)` … `$`) instead of handing its trailing
+  text to the paragraph fallback, so `#block` gets a fresh, un-swallowed try at the next line — and
+  a plain "prose line, then a `* item` line" (which TiddlyWiki keeps as ONE paragraph, the marker
+  reading as literal text) is untouched, since that pair never reaches this new rule at all: the
+  paragraph there opens on the PROSE line, not on a closing tag. Six darkness entries retire.
 - A STYLED SUFFIX'S TEXT IS A VALUE, NOT A MARK. `filteredtranscludeinline.js` closes on `}}`, an
   optional style, then `}`, and the grammar named the whole `}}style}` run one delimiter — so the
   style text between the braces wore the closer's own punctuation, and ablating one of its letters
@@ -2545,6 +2570,19 @@ back by upgrading, which is the definition this number answers to.
   rule; nothing painted moves. `MIGRATION.md` gains the eleven gone names and their replacements
   (**585** names now, **122** gone, **247** new, up from 579/111/230), six pinned snapshots and
   seven `.tw5.test` fixtures regenerate to the lengthened names with no other drift.
+- A LEGIBILITY FLOOR RE-SEATS, TRACED TO THE COMMIT THAT RAISED IT. `corpus/legibility-floor.txt`
+  seated `a wikilink vs a transclusion` at 51 while `tools/construct-legibility.js --verbose` read
+  55 live — a rise the ratchet permits without a re-seat, but this one traces to a named cause and
+  gets one. Bisected against `git log -- syntaxes/ corpus/legibility-floor.txt`: 32291b2
+  (`lar:///the-opener.joins.one-namespace`, 2026-09-17) gave a transclusion's `{{`/`}}`
+  `punctuation.definition.tag.transclusion` beside their own name, the same
+  `punctuation.definition.tag.*` every opener but a wikilink's `[[` took that day. Traced to four
+  themes — `night-owl-light`, `nord`, `solarized-dark`, `solarized-light` — that rule on the bare
+  `punctuation.definition.tag` root: they now paint a transclusion's braces the way they already
+  painted every other opener, while a wikilink's brackets, never in that family, keep the colour
+  they always had. That commit's own message counted only the seven pairs its ruling fell; this
+  pair rose instead and stood unrecorded until now. Re-seated in `corpus/legibility-floor.txt`
+  with the ruling that moved it, 51 -> 55; no other pair in the file moves under this entry.
 
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`

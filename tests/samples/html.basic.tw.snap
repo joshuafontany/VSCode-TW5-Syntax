@@ -122,9 +122,9 @@
 #   ^^^^^ text.html.tiddlywiki5 meta.embedded.block.html.tiddlywiki5 meta.tag.metadata.style.end.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
 #        ^ text.html.tiddlywiki5 meta.embedded.block.html.tiddlywiki5 meta.tag.metadata.style.end.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 ></head>
-#^^ text.html.tiddlywiki5 meta.tag.structure.head.end.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
-#  ^^^^ text.html.tiddlywiki5 meta.tag.structure.head.end.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
-#      ^ text.html.tiddlywiki5 meta.tag.structure.head.end.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.head.end.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#  ^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.head.end.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#      ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.structure.head.end.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 >
 ><body>
 #^ text.html.tiddlywiki5 meta.tag.structure.body.start.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
