@@ -2481,14 +2481,15 @@ back by upgrading, which is the definition this number answers to.
   `syntaxes/tiddlywiki5.json` widened accordingly, alternation reordered `https` before `http`
   (the 9-scheme list stays extlink.js's own, never `obsidian`). Inside a `[[go|https://…]]` or
   `[ext[https://…]]` target the same spelling costs 2 floors, so those targets reach for the
-  field's OTHER free option instead: `entity.name.scheme support.type.scheme`, a genuinely
-  different pairing, over the 10-scheme list `utils.js#isLinkExternal` names (`obsidian` included).
+  field's OTHER free option instead: `entity.name.scheme.$1.tiddlywiki5
+  support.type.scheme.$1.tiddlywiki5`, a genuinely different pairing that keeps the per-scheme
+  language suffix every scope here carries, so a user can target this grammar's scheme precisely,
+  over the 10-scheme list `utils.js#isLinkExternal` names (`obsidian` included).
   `tests/tiddlywiki5/tiddlywiki5.url-scheme-colour.tw5.test` red-firsts all four spellings. The
   widened autolink span also reaches inside HTML attribute values and `.tid`/`.mem` embeddings
-  wherever `extlink` already matched — `MIGRATION.md`'s headline moves from 573/224 to 575/226 (two
-  new declared names, `entity.name.scheme` and `support.type.scheme`; nothing already published
-  went gone), and nine pinned snapshots regenerate to the wider, correctly-split reading with no
-  other drift.
+  wherever `extlink` already matched. Both new names interpolate the scheme, as the autolink's
+  own name does, so `MIGRATION.md`'s headline counts neither and nothing already published goes
+  gone; nine pinned snapshots regenerate to the wider, correctly-split reading with no other drift.
 
 - `.multids` ROUTES EVERY TIDDLER'S TEXT THROUGH THE HEADER'S OWN `type`, MIRRORING
   `tw5-tid-file.json:166-186`. `boot.js`'s `application/x-tiddlers` deserializer (~1706-1728) parses
