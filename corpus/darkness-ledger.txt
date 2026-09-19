@@ -59,4 +59,3 @@ tests/samples/tiddlywiki5.tw  codeinline  LOST  "* `raw``raw`not raw"  # OWED â€
 
 # WHITESPACE BEFORE A BLOCK. TiddlyWiki skips leading whitespace, tabs included, before a block rule,
 # so `!!!` behind tabs still opens a heading. Read alone behind spaces, the grammar reads the heading.
-tests/samples/test.html.tw  heading  LOST  "!!!\t\t//content// {{transclude!!field}}"  # OWED â€” a heading behind tabs the host builds and the grammar loses

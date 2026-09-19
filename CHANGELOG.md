@@ -2356,6 +2356,18 @@ back by upgrading, which is the definition this number answers to.
   language claimed, so VS Code loaded it and no document ever reached it: a `.meta` sidecar
   carries fields and no body, and the `tid` language already lists `.meta` among its extensions
   and colours one correctly.
+- An indented widget tag alone on a line lost to the paragraph fallback, because the fallback's
+  zero-width `begin` matched the line's own start while the tag's own opener could only match
+  where the tag itself began — a race the leading whitespace let the fallback win. The tag rules
+  now admit the same leading `[ \t]*` a list or heading marker already does, so the tie the block
+  dispatch already resolves in the tag's favour applies here too. Traced against the oracle:
+  `<$link to="x"/>` alone on an unindented line already stood outside any paragraph; indented, it
+  now does too.
+- The paragraph fallback's own end, `^$`, never closed on a whitespace-only line. TiddlyWiki reads
+  a line of only spaces or tabs as a blank line — `wikiparser.js` splits blocks on
+  `/\r?\n\r?\n/`, which a whitespace-only line satisfies — so the fallback now ends on
+  `^(?=\s*$)`, a zero-width match that closes the region without folding the whitespace line's own
+  characters into it.
 
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`
