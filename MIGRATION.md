@@ -4,8 +4,8 @@ A theme rule and an `editor.tokenColorCustomizations` entry both name a scope. A
 moves takes the reader's colour with it, and VS Code reports nothing: the rule simply stops
 matching, and the construct goes the colour of prose.
 
-This repository declares **460** scope names at `v2.2.1` and **585** now. Between them, **122**
-names stand gone and **247** stand new. Every gone name appears below, with what it stands as now
+This repository declares **460** scope names at `v2.2.1` and **587** now. Between them, **126**
+names stand gone and **253** stand new. Every gone name appears below, with what it stands as now
 or why it retired. `tools/invariants/scope-migration.test.js` derives these four numbers from the
 same `declaredScopesIn` reading the row-by-row check answers to, so a grammar edit that moves them
 fails the gate rather than leaving this paragraph to go stale beside it.
@@ -51,6 +51,16 @@ A heading's `!` mark wore the same fault from the other side. It carried two sco
 which nested punctuation under a content root. It stands as `markup.heading`, which reaches the
 same 55 of 65 themes through the same `markup.heading` rules, so nothing a reader sees moves.
 
+RULED 2026-09-18, SUPERSEDING TWO OF THE SEVEN: `punctuation.definition.operand.variable.begin/end`
+and `punctuation.definition.operand.indirect.begin/end` drop the trailing content family this
+section describes — they now stand punctuation-only, parted from `variable.entity.filter.operand`
+and `entity.name.indirect.operand` rather than carrying them. This is the trade FILTERS READ AS
+PARTS makes: see `corpus/delimiter-ledger.txt`'s `parts entity.filter` row. The `string` operand
+brackets this section also describes keep their old stacked shape unchanged, and the new
+`punctuation.definition.operand.mvv.begin/end` brackets never carried a content family to begin
+with — they are wholly new, parted from the variable brackets by name so a multi-valued operand
+reads apart from a single-valued one.
+
 ## Names that moved
 
 | gone at 2.2.1 | stands as at 2.3.0 | why |
@@ -80,6 +90,10 @@ same 55 of 65 themes through the same `markup.heading` rules, so nothing a reade
 | `keyword.control.operator.prefix.negation.tiddlywiki5` | `keyword.operator.prefix.negation.tiddlywiki5` | a filter operator is an operator |
 | `keyword.control.operator.suffix.tiddlywiki5` | `keyword.operator.suffix.separator.tiddlywiki5` | a filter operator is an operator |
 | `keyword.control.raw.tick.tiddlywiki5` | `keyword.control.raw.fence.tiddlywiki5` | names what it marks |
+| `keyword.operator.prefix.equals.all.union.tiddlywiki5` | `storage.modifier.prefix.equals.all.union.tiddlywiki5` | RULED 2026-09-18, filters read as parts: a filter run's prefix is a modifier on the run, not the run's own operator |
+| `keyword.operator.prefix.minus.except.difference.tiddlywiki5` | `storage.modifier.prefix.minus.except.difference.tiddlywiki5` | RULED 2026-09-18, filters read as parts: a filter run's prefix is a modifier on the run, not the run's own operator |
+| `keyword.operator.prefix.plus.and.accumulate.tiddlywiki5` | `storage.modifier.prefix.plus.and.accumulate.tiddlywiki5` | RULED 2026-09-18, filters read as parts: a filter run's prefix is a modifier on the run, not the run's own operator |
+| `keyword.operator.prefix.tilde.else.else.tiddlywiki5` | `storage.modifier.prefix.tilde.else.else.tiddlywiki5` | RULED 2026-09-18, filters read as parts: a filter run's prefix is a modifier on the run, not the run's own operator |
 | `keyword.other.variable.variable-parameter.begin.tiddlywiki5` | `keyword.other.variable.substitute-parameter.begin.tiddlywiki5` | substitution vocabulary |
 | `keyword.other.variable.variable-parameter.end.tiddlywiki5` | `keyword.other.variable.substitute-parameter.end.tiddlywiki5` | substitution vocabulary |
 | `keyword.other.variable.variable-reference.begin.tiddlywiki5` | `keyword.other.variable.substitute-variable.begin.tiddlywiki5` | substitution vocabulary |

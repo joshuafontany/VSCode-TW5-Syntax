@@ -731,7 +731,7 @@
                 }
             ]
         },
-        "htmlwidget-attribute": {
+        "htmlwidget-attribute-known": {
             "patterns": [
                 {
                     "begin": "(s(hape|cope|t(ep|art)|ize(s)?|p(ellcheck|an)|elected|lot|andbox|rc(set|doc|lang)?)|h(ttp-equiv|i(dden|gh)|e(ight|aders)|ref(lang)?)|n(o(nce|validate|module)|ame)|c(h(ecked|arset)|ite|o(nt(ent(editable)?|rols)|ords|l(s(pan)?|or))|lass|rossorigin)|t(ype(mustmatch)?|itle|a(rget|bindex)|ranslate)|i(s(map)?|n(tegrity|putmode)|tem(scope|type|id|prop|ref)|d)|op(timum|en)|d(i(sabled|r(name)?)|ownload|e(coding|f(er|ault))|at(etime|a)|raggable)|usemap|p(ing|oster|la(ysinline|ceholder)|attern|reload)|enctype|value|kind|for(m(novalidate|target|enctype|action|method)?)?|w(idth|rap)|l(ist|o(op|w)|a(ng|bel))|a(s(ync)?|c(ce(sskey|pt(-charset)?)|tion)|uto(c(omplete|apitalize)|play|focus)|l(t|low(usermedia|paymentrequest|fullscreen))|bbr)|r(ows(pan)?|e(versed|quired|ferrerpolicy|l|adonly))|m(in(length)?|u(ted|ltiple)|e(thod|dia)|a(nifest|x(length)?)))(?![\\w:-])",
@@ -1047,6 +1047,13 @@
                             "include": "#htmlwidget-attribute-interior"
                         }
                     ]
+                }
+            ]
+        },
+        "htmlwidget-attribute": {
+            "patterns": [
+                {
+                    "include": "#htmlwidget-attribute-known"
                 },
                 {
                     "begin": "([^\\x{0020}\"'<>/=\\x{0000}-\\x{001F}\\x{007F}-\\x{009F}\\x{FDD0}-\\x{FDEF}\\x{FFFE}\\x{FFFF}\\x{1FFFE}\\x{1FFFF}\\x{2FFFE}\\x{2FFFF}\\x{3FFFE}\\x{3FFFF}\\x{4FFFE}\\x{4FFFF}\\x{5FFFE}\\x{5FFFF}\\x{6FFFE}\\x{6FFFF}\\x{7FFFE}\\x{7FFFF}\\x{8FFFE}\\x{8FFFF}\\x{9FFFE}\\x{9FFFF}\\x{AFFFE}\\x{AFFFF}\\x{BFFFE}\\x{BFFFF}\\x{CFFFE}\\x{CFFFF}\\x{DFFFE}\\x{DFFFF}\\x{EFFFE}\\x{EFFFF}\\x{FFFFE}\\x{FFFFF}\\x{10FFFE}\\x{10FFFF}]+)",
@@ -1058,6 +1065,29 @@
                     "comment": "Anything else the parser accepts A run left open ends at the blank line that ends its block, so the block after it parses whole.",
                     "end": "(?=\\s*+[^=\\s])|(?=^$)",
                     "name": "meta.attribute.unrecognized.$1.html.tiddlywiki5",
+                    "patterns": [
+                        {
+                            "include": "#htmlwidget-attribute-interior"
+                        }
+                    ]
+                }
+            ]
+        },
+        "htmlwidget-attribute-widget": {
+            "patterns": [
+                {
+                    "include": "#htmlwidget-attribute-known"
+                },
+                {
+                    "begin": "([^\\x{0020}\"'<>/=\\x{0000}-\\x{001F}\\x{007F}-\\x{009F}\\x{FDD0}-\\x{FDEF}\\x{FFFE}\\x{FFFF}\\x{1FFFE}\\x{1FFFF}\\x{2FFFE}\\x{2FFFF}\\x{3FFFE}\\x{3FFFF}\\x{4FFFE}\\x{4FFFF}\\x{5FFFE}\\x{5FFFF}\\x{6FFFE}\\x{6FFFF}\\x{7FFFE}\\x{7FFFF}\\x{8FFFE}\\x{8FFFF}\\x{9FFFE}\\x{9FFFF}\\x{AFFFE}\\x{AFFFF}\\x{BFFFE}\\x{BFFFF}\\x{CFFFE}\\x{CFFFF}\\x{DFFFE}\\x{DFFFF}\\x{EFFFE}\\x{EFFFF}\\x{FFFFE}\\x{FFFFF}\\x{10FFFE}\\x{10FFFF}]+)",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "entity.other.attribute-name.html.tiddlywiki5"
+                        }
+                    },
+                    "comment": "Anything else the parser accepts A run left open ends at the blank line that ends its block, so the block after it parses whole.",
+                    "end": "(?=\\s*+[^=\\s])|(?=^$)",
+                    "name": "meta.attribute.widget.$1.html.tiddlywiki5",
                     "patterns": [
                         {
                             "include": "#htmlwidget-attribute-interior"
@@ -2555,7 +2585,7 @@
                             },
                             "patterns": [
                                 {
-                                    "include": "#htmlwidget-attribute"
+                                    "include": "#htmlwidget-attribute-widget"
                                 }
                             ]
                         },
@@ -3456,7 +3486,7 @@
                     },
                     "patterns": [
                         {
-                            "include": "#htmlwidget-attribute"
+                            "include": "#htmlwidget-attribute-widget"
                         }
                     ],
                     "comment": "A run left open ends at the blank line that ends its block, so the block after it parses whole."
@@ -6026,7 +6056,7 @@
                     "contentName": "entity.filter.operator.title.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
-                            "name": "punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5",
+                            "name": "punctuation.definition.filter.run.begin.tiddlywiki5",
                             "patterns": [
                                 {
                                     "include": "#filterprefixshort"
@@ -6039,7 +6069,7 @@
                     },
                     "endCaptures": {
                         "1": {
-                            "name": "punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5"
+                            "name": "punctuation.definition.filter.run.end.tiddlywiki5"
                         }
                     },
                     "patterns": [
@@ -6052,7 +6082,7 @@
                                     "name": "keyword.operator.prefix.negation.tiddlywiki5"
                                 },
                                 "2": {
-                                    "name": "keyword.operator.filter.tiddlywiki5"
+                                    "name": "keyword.operator.operator.filter.tiddlywiki5"
                                 },
                                 "3": {
                                     "name": "keyword.operator.suffix.separator.tiddlywiki5"
@@ -6096,7 +6126,7 @@
                                     "name": "meta.variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
                                 },
                                 "6": {
-                                    "name": "punctuation.definition.operand.variable.begin.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
+                                    "name": "punctuation.definition.operand.variable.begin.tiddlywiki5"
                                 },
                                 "7": {
                                     "patterns": [
@@ -6106,7 +6136,7 @@
                                     ]
                                 },
                                 "8": {
-                                    "name": "punctuation.definition.operand.variable.end.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
+                                    "name": "punctuation.definition.operand.variable.end.tiddlywiki5"
                                 }
                             }
                         },
@@ -6119,7 +6149,7 @@
                                     "name": "keyword.operator.prefix.negation.tiddlywiki5"
                                 },
                                 "2": {
-                                    "name": "keyword.operator.filter.tiddlywiki5"
+                                    "name": "keyword.operator.operator.filter.tiddlywiki5"
                                 },
                                 "3": {
                                     "name": "keyword.operator.suffix.separator.tiddlywiki5"
@@ -6131,7 +6161,7 @@
                                     "name": "meta.entity.indirect.operand.tiddlywiki5"
                                 },
                                 "6": {
-                                    "name": "punctuation.definition.operand.indirect.begin.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5"
+                                    "name": "punctuation.definition.operand.indirect.begin.tiddlywiki5"
                                 },
                                 "7": {
                                     "name": "entity.name.indirect.operand.tiddlywiki5",
@@ -6142,7 +6172,7 @@
                                     ]
                                 },
                                 "8": {
-                                    "name": "punctuation.definition.operand.indirect.end.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5"
+                                    "name": "punctuation.definition.operand.indirect.end.tiddlywiki5"
                                 }
                             }
                         },
@@ -6207,7 +6237,7 @@
                                     "name": "meta.variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
                                 },
                                 "6": {
-                                    "name": "punctuation.definition.operand.variable.begin.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
+                                    "name": "punctuation.definition.operand.mvv.begin.tiddlywiki5"
                                 },
                                 "7": {
                                     "patterns": [
@@ -6217,7 +6247,7 @@
                                     ]
                                 },
                                 "8": {
-                                    "name": "punctuation.definition.operand.variable.end.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
+                                    "name": "punctuation.definition.operand.mvv.end.tiddlywiki5"
                                 }
                             }
                         }
@@ -6231,7 +6261,7 @@
                     "contentName": "entity.filter.operator.title.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
-                            "name": "punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5",
+                            "name": "punctuation.definition.filter.run.begin.tiddlywiki5",
                             "patterns": [
                                 {
                                     "include": "#filterprefixshort"
@@ -6260,7 +6290,7 @@
                     "contentName": "entity.filter.operator.title.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
-                            "name": "punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5",
+                            "name": "punctuation.definition.filter.run.begin.tiddlywiki5",
                             "patterns": [
                                 {
                                     "include": "#filterprefixshort"
@@ -6287,7 +6317,7 @@
                     "name": "meta.filter.run.tiddlywiki5",
                     "captures": {
                         "1": {
-                            "name": "punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5",
+                            "name": "punctuation.definition.filter.run.begin.tiddlywiki5",
                             "patterns": [
                                 {
                                     "include": "#filterprefixshort"
@@ -6326,16 +6356,16 @@
             "name": "meta.filter.run.prefix.tiddlywiki5",
             "beginCaptures": {
                 "1": {
-                    "name": "keyword.operator.prefix.plus.and.accumulate.tiddlywiki5"
+                    "name": "storage.modifier.prefix.plus.and.accumulate.tiddlywiki5"
                 },
                 "2": {
-                    "name": "keyword.operator.prefix.minus.except.difference.tiddlywiki5"
+                    "name": "storage.modifier.prefix.minus.except.difference.tiddlywiki5"
                 },
                 "3": {
-                    "name": "keyword.operator.prefix.tilde.else.else.tiddlywiki5"
+                    "name": "storage.modifier.prefix.tilde.else.else.tiddlywiki5"
                 },
                 "4": {
-                    "name": "keyword.operator.prefix.equals.all.union.tiddlywiki5"
+                    "name": "storage.modifier.prefix.equals.all.union.tiddlywiki5"
                 }
             }
         },
@@ -6346,7 +6376,7 @@
             "name": "meta.filter.run.prefix.tiddlywiki5",
             "beginCaptures": {
                 "1": {
-                    "name": "keyword.operator.prefix.colon.named.$2.tiddlywiki5"
+                    "name": "storage.modifier.prefix.colon.named.$2.tiddlywiki5"
                 }
             }
         },

@@ -115,7 +115,7 @@ test('the headline paragraph states what the grammars now measure', () => {
 // front of its family root repeats the fault the record exists to describe.
 test('a replacement puts a family root where a selector reaches it', () => {
   const ROOTS = ['punctuation', 'markup', 'meta', 'entity', 'keyword', 'variable', 'string',
-    'comment', 'constant', 'support', 'invalid', 'text', 'source'];
+    'comment', 'constant', 'support', 'invalid', 'text', 'source', 'storage'];
   const inverted = rows().filter((r) => r.to)
     .filter((r) => !ROOTS.includes(r.to.split('.')[0]))
     .map((r) => r.to);

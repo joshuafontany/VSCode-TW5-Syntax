@@ -71,17 +71,17 @@
         {
             "gate": "contrast",
             "held": true,
-            "said": "contrast-witness  287 stack(s) over 65 theme(s), 1533 prose reading(s), 2 above the bar of 16, 0 unruled, 0 explaining nothing"
+            "said": "contrast-witness  293 stack(s) over 65 theme(s), 1533 prose reading(s), 2 above the bar of 16, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  64 files, 585 scopes declared, 513 reached (floor 450), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  64 files, 587 scopes declared, 515 reached (floor 450), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
             "held": true,
-            "said": "dark-construct  351 construct(s) over 65 themes, 22 plain, 0 unaccounted"
+            "said": "dark-construct  355 construct(s) over 65 themes, 22 plain, 0 unaccounted"
         },
         {
             "gate": "darkness",
@@ -101,12 +101,12 @@
         {
             "gate": "engine-behaviour",
             "held": true,
-            "said": "engine-witness  862 pattern(s) read against 991 corpus line(s), 1 that match differently, 0 unruled"
+            "said": "engine-witness  864 pattern(s) read against 991 corpus line(s), 1 that match differently, 0 unruled"
         },
         {
             "gate": "engine-witness",
             "held": true,
-            "said": "engine-witness  862 pattern(s) across 9 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "engine-witness  864 pattern(s) across 9 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "filter-witness",
