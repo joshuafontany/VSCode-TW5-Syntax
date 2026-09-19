@@ -16,8 +16,8 @@
 # guard the host enforces, and a filter's title operand closes with the attribute again.
 
 <$list filter="[[a]contains<v>]">
-#             ^ text.html.tiddlywiki5 meta.tag.widget.list.html.tiddlywiki5 meta.attribute.unrecognized.filter.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
-#                              ^ text.html.tiddlywiki5 meta.tag.widget.list.html.tiddlywiki5 meta.attribute.unrecognized.filter.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
+#             ^ text.html.tiddlywiki5 meta.tag.widget.list.html.tiddlywiki5 meta.attribute.widget.filter.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.begin.html.tiddlywiki5
+#                              ^ text.html.tiddlywiki5 meta.tag.widget.list.html.tiddlywiki5 meta.attribute.widget.filter.html.tiddlywiki5 string.quoted.double.html.tiddlywiki5 punctuation.definition.string.end.html.tiddlywiki5
 #                               ^ text.html.tiddlywiki5 meta.tag.widget.list.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 x
 </$list>

@@ -11,7 +11,7 @@ Prose naming __localVar in passing, and the rest reads plain.
 # ^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5.tid-file meta.tag.widget.basic-table.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
 
   [ ...getText('$:/c', '') ]
-#                      ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5.tid-file meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.unrecognized.columns.html.tiddlywiki5 string.quoted.triple.html.tiddlywiki5
+#                      ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5.tid-file meta.tag.widget.basic-table.html.tiddlywiki5 meta.attribute.widget.columns.html.tiddlywiki5 string.quoted.triple.html.tiddlywiki5
 
   """/>
 
@@ -19,7 +19,7 @@ After the widget the text reads plain.
 #<- source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5.tid-file meta.paragraph.tiddlywiki5
 
 <$button actions=doThing(now) class=tc-btn>Go</$button>
-#                ^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5.tid-file meta.tag.widget.button.html.tiddlywiki5 meta.attribute.unrecognized.actions.html.tiddlywiki5 string.unquoted.attribute.html.tiddlywiki5
+#                ^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5.tid-file meta.tag.widget.button.html.tiddlywiki5 meta.attribute.widget.actions.html.tiddlywiki5 string.unquoted.attribute.html.tiddlywiki5
 #                                   ^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5.tid-file meta.tag.widget.button.html.tiddlywiki5 meta.attribute.class.html.tiddlywiki5 string.unquoted.attribute.html.tiddlywiki5
 
 # A pragma standing here reads as PROSE, and the grammar says so. wikiparser.js runs parsePragmas()

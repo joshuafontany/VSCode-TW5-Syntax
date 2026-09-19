@@ -101,12 +101,12 @@
         {
             "gate": "engine-behaviour",
             "held": true,
-            "said": "engine-witness  862 pattern(s) read against 991 corpus line(s), 1 that match differently, 0 unruled"
+            "said": "engine-witness  864 pattern(s) read against 991 corpus line(s), 1 that match differently, 0 unruled"
         },
         {
             "gate": "engine-witness",
             "held": true,
-            "said": "engine-witness  862 pattern(s) across 9 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "engine-witness  864 pattern(s) across 9 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "filter-witness",

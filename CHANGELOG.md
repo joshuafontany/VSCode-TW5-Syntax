@@ -2543,6 +2543,26 @@ back by upgrading, which is the definition this number answers to.
   the plain bracket it is compared against lost `keyword.operator.filter`.
   `tests/tiddlywiki5/tiddlywiki5.filter-parts-as-operator.tw5.test` red-firsts every new scope.
 
+- A WIDGET'S ATTRIBUTES CARRY A NEUTRAL NAME, PARTED FROM AN HTML ELEMENT'S. A widget attribute
+  fell into the HTML catch-all `meta.attribute.unrecognized.$1.html.tiddlywiki5` alongside a
+  genuinely unrecognized HTML attribute, even though TiddlyWiki never fails to read a widget
+  attribute — a widget reads whatever it is handed. `#htmlwidget-attribute` split into
+  `#htmlwidget-attribute-known` (the shared, recognized-name patterns) plus two thin catch-alls
+  that both include it: `#htmlwidget-attribute` keeps `meta.attribute.unrecognized.$1.html.
+  tiddlywiki5` for an HTML element, and the new `#htmlwidget-attribute-widget` names its own
+  catch-all `meta.attribute.widget.$1.html.tiddlywiki5`. Only the two `meta.tag.widget.*` include
+  sites (the single-line widget-tag branch and the general widget-tag branch) repoint to the new
+  rule; every other `#htmlwidget-attribute` include, on an HTML element, keeps `unrecognized`. A
+  first attempt cloned the whole rule verbatim, which doubled two embedded, already-uncovered
+  `comment.line.double-slash.js` nodes (an inline event-handler's JS payload) and pushed
+  `corpus/unasked-regions-ceiling.txt`'s count from 20 to 22, over its 21 ceiling that may fall and
+  never rise — the split above shares those nodes by `include` instead of by copy, and the count
+  reads 20 again. `$1` interpolates the attribute name, so `MIGRATION.md`'s headline counts
+  neither this scope's birth nor its `unrecognized` sibling gone. No theme paints a bare `meta.*`
+  rule, so this costs no colour: `tests/tiddlywiki5/tiddlywiki5.widget-attribute-name.tw5.test`
+  red-firsts `<$link to="x"/>`'s `to` reading `meta.attribute.widget.to.html.tiddlywiki5`, against
+  a control asserting `<div foo="x">`'s `foo` still reads `meta.attribute.unrecognized.foo…`.
+
 - `.multids` ROUTES EVERY TIDDLER'S TEXT THROUGH THE HEADER'S OWN `type`, MIRRORING
   `tw5-tid-file.json:166-186`. `boot.js`'s `application/x-tiddlers` deserializer (~1706-1728) parses
   the header once and extends the same fields — `type` included — onto every `title: text` line
