@@ -213,8 +213,13 @@ jobs:
 
   gates-host:
     # Gates whose answer moves with the TiddlyWiki they read. The harvest names a version, and the
-    # overreach runs take the grammar to the host's own tiddlers — so upstream moving reports here
-    # rather than blocking a merge, the way the coverage job already does.
+    # overreach runs take the grammar to the host's own tiddlers. TW5_PATH stands unset here, so
+    # this resolves the pinned `tiddlywiki` devDependency `npm ci` already installed — the last
+    # pinned release, never an unpinned clone of upstream master (the operator's ruling: local
+    # development answers to this repository's own fork on TW5_PATH, and CI answers to the pinned
+    # release). tools/reader-scope.js keys every ledger entry these gates read on the reader that
+    # actually booted, so a ruling scoped to one reader neither fails nor reads stale under the
+    # other.
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
@@ -224,20 +229,12 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Fetch TiddlyWiki5
-        run: git clone --depth 1 https://github.com/TiddlyWiki/TiddlyWiki5.git /tmp/tw5
       - name: The harvest matches the TiddlyWiki this reads
         run: npm run signals:check
-        env:
-          TW5_PATH: /tmp/tw5
       - name: The grammar against the host's own tiddlers
         run: npm run overreach-host
-        env:
-          TW5_PATH: /tmp/tw5
       - name: The same, cut mid-keystroke
         run: npm run overreach-cut
-        env:
-          TW5_PATH: /tmp/tw5
 
   package:
     # The package a user installs, so .vscodeignore and the manifest meet a build.
