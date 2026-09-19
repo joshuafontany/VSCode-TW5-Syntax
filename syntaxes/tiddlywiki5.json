@@ -5690,7 +5690,7 @@
                                 {
                                     "comment": "The target's scheme paints as one unit under a DIFFERENT paired name than the bare autolink's, ruled 2026-09-18 (lar:///url-scheme.paints.free): the same spelling in both places costs 2 floors, so this target reaches for the field's other free option instead of reusing `markup.underline.link.external.$1`. The 10-scheme list follows utils.js#isLinkExternal, including `obsidian`; `https` sorts before `http`.",
                                     "match": "(https|http|file|mailto|ftp|irc|news|obsidian|data|skype):(?:\\/\\/)?",
-                                    "name": "entity.name.scheme support.type.scheme"
+                                    "name": "entity.name.scheme.$1.tiddlywiki5 support.type.scheme.$1.tiddlywiki5"
                                 },
                                 {
                                     "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
@@ -5711,7 +5711,7 @@
                                 {
                                     "comment": "The target's scheme paints as one unit under a DIFFERENT paired name than the bare autolink's, ruled 2026-09-18 (lar:///url-scheme.paints.free): the same spelling in both places costs 2 floors, so this target reaches for the field's other free option instead of reusing `markup.underline.link.external.$1`. The 10-scheme list follows utils.js#isLinkExternal, including `obsidian`; `https` sorts before `http`.",
                                     "match": "(https|http|file|mailto|ftp|irc|news|obsidian|data|skype):(?:\\/\\/)?",
-                                    "name": "entity.name.scheme support.type.scheme"
+                                    "name": "entity.name.scheme.$1.tiddlywiki5 support.type.scheme.$1.tiddlywiki5"
                                 },
                                 {
                                     "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
@@ -5765,7 +5765,7 @@
                                 {
                                     "comment": "The target's scheme paints as one unit under a DIFFERENT paired name than the bare autolink's, ruled 2026-09-18 (lar:///url-scheme.paints.free): the same spelling in both places costs 2 floors, so this target reaches for the field's other free option instead of reusing `markup.underline.link.external.$1`. The 10-scheme list follows utils.js#isLinkExternal, including `obsidian`; `https` sorts before `http`.",
                                     "match": "(https|http|file|mailto|ftp|irc|news|obsidian|data|skype):(?:\\/\\/)?",
-                                    "name": "entity.name.scheme support.type.scheme"
+                                    "name": "entity.name.scheme.$1.tiddlywiki5 support.type.scheme.$1.tiddlywiki5"
                                 },
                                 {
                                     "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",

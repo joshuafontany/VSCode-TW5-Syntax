@@ -2506,14 +2506,15 @@ back by upgrading, which is the definition this number answers to.
   `syntaxes/tiddlywiki5.json` widened accordingly, alternation reordered `https` before `http`
   (the 9-scheme list stays extlink.js's own, never `obsidian`). Inside a `[[go|https://…]]` or
   `[ext[https://…]]` target the same spelling costs 2 floors, so those targets reach for the
-  field's OTHER free option instead: `entity.name.scheme support.type.scheme`, a genuinely
-  different pairing, over the 10-scheme list `utils.js#isLinkExternal` names (`obsidian` included).
+  field's OTHER free option instead: `entity.name.scheme.$1.tiddlywiki5
+  support.type.scheme.$1.tiddlywiki5`, a genuinely different pairing that keeps the per-scheme
+  language suffix every scope here carries, so a user can target this grammar's scheme precisely,
+  over the 10-scheme list `utils.js#isLinkExternal` names (`obsidian` included).
   `tests/tiddlywiki5/tiddlywiki5.url-scheme-colour.tw5.test` red-firsts all four spellings. The
   widened autolink span also reaches inside HTML attribute values and `.tid`/`.mem` embeddings
-  wherever `extlink` already matched — `MIGRATION.md`'s headline moves from 573/224 to 575/226 (two
-  new declared names, `entity.name.scheme` and `support.type.scheme`; nothing already published
-  went gone), and nine pinned snapshots regenerate to the wider, correctly-split reading with no
-  other drift.
+  wherever `extlink` already matched. Both new names interpolate the scheme, as the autolink's
+  own name does, so `MIGRATION.md`'s headline counts neither and nothing already published goes
+  gone; nine pinned snapshots regenerate to the wider, correctly-split reading with no other drift.
 
 - `.multids` ROUTES EVERY TIDDLER'S TEXT THROUGH THE HEADER'S OWN `type`, MIRRORING
   `tw5-tid-file.json:166-186`. `boot.js`'s `application/x-tiddlers` deserializer (~1706-1728) parses
@@ -2546,6 +2547,19 @@ back by upgrading, which is the definition this number answers to.
   (`/home/joshu/Synthetic-Dream-Machine/TiddlyWiki5`) and the pinned 5.4.1 reader alike, across
   repeated runs — the specimen the brief named did not reproduce here, which this entry records
   rather than papering over with an invented fix.
+- A LEGIBILITY FLOOR RE-SEATS, TRACED TO THE COMMIT THAT RAISED IT. `corpus/legibility-floor.txt`
+  seated `a wikilink vs a transclusion` at 51 while `tools/construct-legibility.js --verbose` read
+  55 live — a rise the ratchet permits without a re-seat, but this one traces to a named cause and
+  gets one. Bisected against `git log -- syntaxes/ corpus/legibility-floor.txt`: 32291b2
+  (`lar:///the-opener.joins.one-namespace`, 2026-09-17) gave a transclusion's `{{`/`}}`
+  `punctuation.definition.tag.transclusion` beside their own name, the same
+  `punctuation.definition.tag.*` every opener but a wikilink's `[[` took that day. Traced to four
+  themes — `night-owl-light`, `nord`, `solarized-dark`, `solarized-light` — that rule on the bare
+  `punctuation.definition.tag` root: they now paint a transclusion's braces the way they already
+  painted every other opener, while a wikilink's brackets, never in that family, keep the colour
+  they always had. That commit's own message counted only the seven pairs its ruling fell; this
+  pair rose instead and stood unrecorded until now. Re-seated in `corpus/legibility-floor.txt`
+  with the ruling that moved it, 51 -> 55; no other pair in the file moves under this entry.
 
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`

@@ -31,7 +31,7 @@ Mail me at mailto:test@example.com please.
 ! A captioned pretty link's target scopes its scheme under the paired, differently-spelled name
 
 A [[go|https://example.com]] here.
-#      ^ entity.name.scheme support.type.scheme
+#      ^ entity.name.scheme.https.tiddlywiki5 support.type.scheme.https.tiddlywiki5
 #              ^ string.entity.other.title.link.tiddlywiki5
 #              ^ - entity.name.scheme
 #              ^ - support.type.scheme
@@ -39,6 +39,6 @@ A [[go|https://example.com]] here.
 ! An `[ext[` target scopes its scheme the same way
 
 An [ext[https://example.com]] here.
-#       ^ entity.name.scheme support.type.scheme
+#       ^ entity.name.scheme.https.tiddlywiki5 support.type.scheme.https.tiddlywiki5
 #               ^ markup.underline.link.external.tiddlywiki5
 #               ^ - entity.name.scheme
