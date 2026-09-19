@@ -22,16 +22,6 @@
 # version `tw5-oracle.js` boots against, read off `$tw.version`. A line naming no reader answers to
 # whichever reader reads it; one naming a reader neither fails nor reads stale under the other.
 
-# A LIST ITEM AFTER A LINE CLOSING AN HTML BLOCK. TiddlyWiki keeps the list open past `</div> run`
-# and opens a fresh item on the next `*`. The grammar has fallen into a paragraph by then, so the
-# marker reads as prose — and reads so with the whole list standing alone.
-tests/samples/tiddlywiki5.basic.tw  list  MISS  "* Inline <span>"  # OWED — the host opens a fresh item here; the grammar reads a paragraph
-tests/samples/tiddlywiki5.basic.tw  list  MISS  "* <$my-widget"  # OWED — the host opens a fresh item here; the grammar reads a paragraph
-tests/samples/tiddlywiki5.inline.widgets.tw  list  MISS  "* Inline <span>"  # OWED — the host opens a fresh item here; the grammar reads a paragraph
-tests/samples/tiddlywiki5.inline.widgets.tw  list  MISS  "* <$my-widget"  # OWED — the host opens a fresh item here; the grammar reads a paragraph
-tests/samples/tiddlywiki5.tw  list  MISS  "* Inline <span>"  # OWED — the host opens a fresh item here; the grammar reads a paragraph
-tests/samples/tiddlywiki5.tw  list  MISS  "* <$my-widget"  # OWED — the host opens a fresh item here; the grammar reads a paragraph
-
 # A WIDGET'S ATTRIBUTES ACROSS LINES. The widget opens at line 81 and TiddlyWiki reads every line
 # below as its own — backtick-substituted values spanning lines among them. The grammar reads none
 # of these lines, even with the widget standing alone.
@@ -52,8 +42,6 @@ corpus/wikitext/inline.emphasis.tw  italic  MISS  "two lines//"  # OWED — ital
 # CONSTRUCTS A REGION ABOVE HOLDS. Each reads as itself alone and as something else in place.
 corpus/wikitext/degenerate.unterminated.tw  html  LOST  "<div class=\"never-closed\">"  # READER 5.5.0-prerelease OWED — the host builds this element; a region opened above it holds the grammar here
 corpus/wikitext/inline.links.tw  extlink  LOST  "which is the reading a reader sees: [ext[https://example.com/unclosed"  # OWED — the host builds this external link; the grammar reads it alone and loses it in place
-tests/samples/tiddlywiki5.lists.tw  codeinline  LOST  "* `raw``raw`not raw"  # OWED — the host builds two code runs side by side; the grammar reads each alone and loses them together
-tests/samples/tiddlywiki5.tw  codeinline  LOST  "* `raw``raw`not raw"  # OWED — the host builds two code runs side by side; the grammar reads each alone and loses them together
 
 # WHITESPACE BEFORE A BLOCK. TiddlyWiki skips leading whitespace, tabs included, before a block rule,
 # so `!!!` behind tabs still opens a heading. Read alone behind spaces, the grammar reads the heading.

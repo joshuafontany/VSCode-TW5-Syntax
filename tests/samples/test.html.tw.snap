@@ -444,9 +444,9 @@
 #                                                                            ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #                                                                             ^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 meta.filter.tiddlywiki5
 #                                                                              ^^^ text.html.tiddlywiki5 meta.transclusion.filteredtranscludeblock.tiddlywiki5 punctuation.definition.transclusion.filteredtranscludeblock.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5 punctuation.definition.tag.transclusion.tiddlywiki5
-#                                                                                 ^^ text.html.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
-#                                                                                   ^ text.html.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
-#                                                                                    ^ text.html.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+#                                                                                 ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#                                                                                   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#                                                                                    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 >
 ><a href=value><<test test>></a>
 #^ text.html.tiddlywiki5 meta.tag.inline.a.start.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
@@ -478,9 +478,9 @@
 #                    ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
 #                      ^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
 #                          ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 punctuation.definition.tag.transclusion.tiddlywiki5
-#                            ^^ text.html.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
-#                              ^ text.html.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
-#                               ^ text.html.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+#                            ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#                              ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#                               ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 >
 ><a href=value>Interesting</a>
 #^ text.html.tiddlywiki5 meta.tag.inline.a.start.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
@@ -579,9 +579,9 @@
 #                    ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 punctuation.definition.text-reference.field.tiddlywiki5
 #                      ^^^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 meta.transclusion.tokenize.tiddlywiki5 meta.transclusion.text-reference.tiddlywiki5 meta.support.text-reference.tiddlywiki5 variable.other.reference.tiddlywiki5 string.text-reference.tiddlywiki5 entity.name.tiddler.field.tiddlywiki5
 #                          ^^ text.html.tiddlywiki5 meta.transclusion.transcludeblock.tiddlywiki5 punctuation.definition.transclusion.transcludeblock.end.tiddlywiki5 punctuation.definition.tag.transclusion.tiddlywiki5
-#                            ^^ text.html.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
-#                              ^ text.html.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
-#                               ^ text.html.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
+#                            ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
+#                              ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 entity.name.tag.html.tiddlywiki5
+#                               ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.tag.inline.a.end.html.tiddlywiki5 punctuation.definition.tag.end.html.tiddlywiki5
 >
 ><a href='value'><<test>></a>
 #^ text.html.tiddlywiki5 meta.tag.inline.a.start.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
