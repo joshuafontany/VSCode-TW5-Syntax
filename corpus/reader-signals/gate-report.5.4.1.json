@@ -1,11 +1,3 @@
-title: $:/tw5-syntax/GateReport
-type: application/json
-tags: $:/tags/TW5Syntax/GrammarData
-caption: Gate report
-description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 49 of 49
-tw5-version: 5.5.0-prerelease
-
 {
     "gates": 49,
     "held": 49,
@@ -14,7 +6,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "ablation",
             "held": true,
-            "said": "ablation-witness  333 finding(s) over 72 carrier(s): 333 declared (333 owed), 0 undeclared, 0 stale"
+            "said": "ablation-witness  359 finding(s) over 72 carrier(s): 359 declared (326 owed), 0 undeclared, 0 stale"
         },
         {
             "gate": "attribute-guard",
@@ -24,7 +16,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "attribute-witness",
             "held": true,
-            "said": "attribute-witness  10772 attribute(s) across 5 type(s), 10720 reading the kind TiddlyWiki assigned (ceiling 52)"
+            "said": "attribute-witness  10719 attribute(s) across 5 type(s), 10667 reading the kind TiddlyWiki assigned (ceiling 52)"
         },
         {
             "gate": "backtrack-witness",
@@ -94,7 +86,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "darkness",
             "held": true,
-            "said": "darkness-witness  22 construct line(s) over 72 carrier(s) read dark: 22 declared (22 owed), 0 undeclared, 0 stale"
+            "said": "darkness-witness  41 construct line(s) over 72 carrier(s) read dark: 41 declared (21 owed), 0 undeclared, 0 stale"
         },
         {
             "gate": "delimiters",
@@ -119,7 +111,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "filter-witness",
             "held": true,
-            "said": "filter-witness  781 filter(s) TiddlyWiki compiles, 84 operator(s), 13 prefix(es), 0 unread"
+            "said": "filter-witness  768 filter(s) TiddlyWiki compiles, 84 operator(s), 13 prefix(es), 0 unread"
         },
         {
             "gate": "ledger-claims",
@@ -134,7 +126,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "light-cone",
             "held": true,
-            "said": "light-cone  82 divergence(s) across 16 class(es), 10 quote(s) closed to ask; forward arm moved 34, backward arm moved 28, typo arm moved 33; 11 proven or unruled, 5 ruled without proof, 0 owed but reaching out"
+            "said": "light-cone  208 divergence(s) across 18 class(es), 10 quote(s) closed to ask; forward arm moved 28, backward arm moved 22, typo arm moved 36; 10 proven or unruled, 8 ruled without proof, 0 owed but reaching out"
         },
         {
             "gate": "must-fail",
@@ -174,7 +166,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "recovery-witness",
             "held": true,
-            "said": "recovery-witness  32 diagnostic(s) across 60 carrier(s), 16 code(s), 16 standing silent, 0 unruled, 0 explaining nothing"
+            "said": "recovery-witness  SKIP — TiddlyWiki 5.4.1 carries no parser diagnostics API (WikiParser.addDiagnostic); this witness needs the `diagnostics` field tools/tw5-oracle.js reads back, which only this repository's own fork exposes"
         },
         {
             "gate": "rule-coverage",
@@ -194,7 +186,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "signals:check",
             "held": true,
-            "said": "grammar-signals  TiddlyWiki 5.5.0-prerelease — 84 operator(s), 69 widget(s), 44 rule(s), the harvest current"
+            "said": "grammar-signals  TiddlyWiki 5.4.1 — 83 operator(s), 69 widget(s), 44 rule(s), the peer harvest (corpus/reader-signals/5.4.1.json) current"
         },
         {
             "gate": "snap-memetic",
@@ -229,17 +221,17 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "still",
             "held": true,
-            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 20 divergence(s) across 1 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 52.8% of corpus tokens ruled"
+            "said": "still  25 of 4485 carrier(s) at seed 1, 0 quote(s) closed to ask, 30 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 52.8% of corpus tokens ruled"
         },
         {
             "gate": "still-reach",
             "held": true,
-            "said": "reach  4491 of 4512 carrier(s) stand fully named, 99.5% (floor 99.5%); 38 carrier(s) no cut reads, 6404 divergence(s), 5 class(es) blocking"
+            "said": "reach  4429 of 4447 carrier(s) stand fully named, 99.6% (floor 99.5%); 38 carrier(s) no cut reads, 5953 divergence(s), 4 class(es) blocking"
         },
         {
             "gate": "swallow-witness",
             "held": true,
-            "said": "swallow-witness  1377 cut(s) across 46 corpus file(s), 10 quote(s) closed to ask, 10 divergence(s), 0 recorded, 0 unruled, 1 answering the host sweep, 0 ruling(s) explaining nothing"
+            "said": "swallow-witness  1377 cut(s) across 46 corpus file(s), 10 quote(s) closed to ask, 13 divergence(s), 0 recorded, 0 unruled, 1 answering the host sweep, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "theme-collision",

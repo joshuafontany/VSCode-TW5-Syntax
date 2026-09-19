@@ -20,10 +20,30 @@
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
+const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const OUT = path.join(ROOT, 'editions', 'tw5-syntax', 'tiddlers', 'GateReport.tid');
 const check = process.argv.includes('--check');
+
+// KEYED ON THE READER (tools/reader-scope.js's own generalisation, applied here the way
+// grammar-signals.js already applies it to its own harvest). Several gates' own SUMMARY lines name
+// the TiddlyWiki they booted against — recovery-witness prints its version in a SKIP reason,
+// grammar-signals prints it outright — so the harvested report differs by reader even where every
+// gate holds. `GateReport.tid` stays the reader that last wrote it with no `--check`; every OTHER
+// reader gets a peer snapshot under corpus/reader-signals/, so `--check` compares each reader
+// against ITS OWN baseline rather than reading a true 49-of-49 as DRIFTED.
+const currentVersion = (() => {
+  const tw = resolveTiddlyWiki();
+  return tw ? boot(tw).$tw.version : null;
+})();
+const PEER_DIR = path.join(ROOT, 'corpus', 'reader-signals');
+const sanitizeVersion = (v) => v.replace(/[^A-Za-z0-9.+-]/g, '_');
+const primaryVersion = (() => {
+  if (!fs.existsSync(OUT)) return null;
+  const m = /^tw5-version:\s*(.+)$/m.exec(fs.readFileSync(OUT, 'utf8'));
+  return m ? m[1].trim() : null;
+})();
 
 // A script that runs a tool and renders a VERDICT. The manifest names them; these stand aside:
 // a builder, a server, a reporting tool that answers a question rather than judging one — the family
@@ -85,19 +105,26 @@ const tid = 'title: $:/tw5-syntax/GateReport\n'
   + 'caption: Gate report\n'
   + `description: What each gate said when it last ran — harvested, never hand-written\n`
   + `gates-held: ${held} of ${results.length}\n`
+  + `tw5-version: ${currentVersion}\n`
   + `\n${JSON.stringify(body, null, 4)}\n`;
 
-const standing = fs.existsSync(OUT) ? fs.readFileSync(OUT, 'utf8') : null;
+const isPrimary = primaryVersion === null || currentVersion === primaryVersion;
+const target = isPrimary ? OUT : path.join(PEER_DIR, `gate-report.${sanitizeVersion(currentVersion)}.json`);
+const rendered = isPrimary ? tid : `${JSON.stringify(body, null, 4)}\n`;
+const label = isPrimary ? 'the report' : `the peer report (${path.relative(ROOT, target)})`;
+
+const standing = fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : null;
 if (check) {
-  const same = standing === tid;
+  const same = standing === rendered;
   for (const r of results.filter((x) => !x.held)) console.error(`  ${r.gate} does not hold: ${r.said}`);
-  if (!same) console.error('  the report differs from what the gates say now');
-  console.log(`gate-report  ${held} of ${results.length} gate(s) hold, the report ${same ? 'current' : 'DRIFTED'}`);
+  if (!same) console.error(`  ${label} differs from what the gates say now`);
+  console.log(`gate-report  ${held} of ${results.length} gate(s) hold, ${label} ${same ? 'current' : 'DRIFTED'}`);
   process.exitCode = same && held === results.length ? 0 : 1;
   return;
 }
-fs.writeFileSync(OUT, tid);
-console.log(`gate-report  ${held} of ${results.length} gate(s) hold, written`);
+if (!isPrimary) fs.mkdirSync(PEER_DIR, { recursive: true });
+fs.writeFileSync(target, rendered);
+console.log(`gate-report  ${held} of ${results.length} gate(s) hold, ${label} written`);
 for (const r of results.filter((x) => !x.held)) console.error(`  ${r.gate} does not hold: ${r.said}`);
 process.exitCode = held === results.length ? 0 : 1;
 return;
