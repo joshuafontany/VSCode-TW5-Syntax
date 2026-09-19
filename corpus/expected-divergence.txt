@@ -20,7 +20,6 @@ metadata.tags.tw:punctuation.separator.key-value # the same fixture
 metadata.tags.tw:string.quoted                # the same fixture
 metadata.tags.tw:keyword.control.shortcut     # the same fixture
 metadata.tags.tw:meta.shortcut                # the same fixture
-metadata.tags.tw:string.other.inline-data     # the CDATA section's own content, in the same fixture
 pragmas.tw:punctuation.definition.directive   # a \rules run above narrows the active rule set, and no TextMate grammar can follow it
 pragmas.tw:keyword.control.directive          # the same \rules run
 pragmas.tw:meta.directive                     # the same \rules run
@@ -200,8 +199,6 @@ pragmas.signatures.tw:meta.directive.parameters   # OWED — the same `((…))` 
 pragmas.signatures.tw:punctuation.definition.variable.parameters   # OWED — the same `((…))` default the carrier gives a `\define`
 inline.links.tw:keyword.other.img   # OWED — an `[img[` with no closer builds no image, and the grammar paints the opener's keyword before any closer stands
 inline.links.tw:keyword.other.ext   # OWED — an `[ext[` with no closer builds no ext link, and the grammar paints the opener's keyword before any closer stands
-spans.multiline.tw:punctuation.definition.tag.begin.html   # OWED — `<![CDATA[` names no element TiddlyWiki's html rule reads (its tag name admits `[a-zA-Z0-9\-\$\.]`), so the host keeps it as text while the grammar paints a tag
-spans.multiline.tw:punctuation.definition.tag.end.html   # OWED — the same `<![CDATA[` the host keeps as text
 html.deprecated.tw:punctuation.definition.tag.begin.html   # OWED — `<div ="x">` and `<div style==>` build no element, and the grammar paints their tags
 html.deprecated.tw:punctuation.definition.tag.end.html   # OWED — the same malformed tags the host keeps as text
 tiddlywiki5.inline.filteredtransclusions.tw:punctuation.definition.transclusion.filteredtranscludeinline.end   # OWED — filteredtranscludeinline.js's filter group requires at least one character, so the empty `{{{}}}` two lines above never matches where it stands; the host's regex scans on past it and closes on the next `}}` it finds, swallowing every opener after it by one pair until the file re-syncs. The grammar reads each `{{{…}}}` in place, where an author's eye reads them too — the divergence is the host's own quirk on an empty filter, surfaced now that the closer's punctuation stands apart from its style value instead of hiding inside one wide mark

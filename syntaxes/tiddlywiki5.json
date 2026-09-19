@@ -713,9 +713,6 @@
                     "include": "#htmlwidget-doctype"
                 },
                 {
-                    "include": "#htmlwidget-cdata"
-                },
-                {
                     "include": "#htmlwidget-tags-valid"
                 },
                 {
@@ -1258,22 +1255,6 @@
                 }
             ]
         },
-        "htmlwidget-cdata": {
-            "begin": "<!\\[CDATA\\[",
-            "beginCaptures": {
-                "0": {
-                    "name": "punctuation.definition.tag.begin.html.tiddlywiki5"
-                }
-            },
-            "contentName": "string.other.inline-data.html.tiddlywiki5",
-            "end": "]]>",
-            "endCaptures": {
-                "0": {
-                    "name": "punctuation.definition.tag.end.html.tiddlywiki5"
-                }
-            },
-            "name": "meta.tag.metadata.cdata.html.tiddlywiki5"
-        },
         "htmlwidget-comment": {
             "begin": "<!--",
             "captures": {
@@ -1476,9 +1457,6 @@
                     "patterns": [
                         {
                             "include": "#htmlwidget-comment"
-                        },
-                        {
-                            "include": "#htmlwidget-cdata"
                         },
                         {
                             "captures": {
@@ -1948,9 +1926,6 @@
                     "patterns": [
                         {
                             "include": "#htmlwidget-comment"
-                        },
-                        {
-                            "include": "#htmlwidget-cdata"
                         },
                         {
                             "captures": {

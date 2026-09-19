@@ -1046,7 +1046,7 @@ back by upgrading, which is the definition this number answers to.
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 113 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 110 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
   emits no container node, so a scope over its content stands over text by construction.
 - A RULING STANDS STALE ONLY WHERE EVERY RUN EXPLAINS NOTHING WITH IT. The five `overreach-check`
@@ -2368,6 +2368,11 @@ back by upgrading, which is the definition this number answers to.
   `/\r?\n\r?\n/`, which a whitespace-only line satisfies — so the fallback now ends on
   `^(?=\s*$)`, a zero-width match that closes the region without folding the whitespace line's own
   characters into it.
+- `<![CDATA[` named no element TiddlyWiki's `html.js` rule reads — its tag name admits
+  `[a-zA-Z0-9\-\$\.]`, and `!` stands outside it — so the host keeps the whole construct, angles
+  and all, as plain text even inside an `<svg>` or `<math>` element, and the rule that painted it
+  as a tag retired. `meta.tag.metadata.cdata.html.tiddlywiki5` and
+  `string.other.inline-data.html.tiddlywiki5` retire with it; `MIGRATION.md` records both.
 
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`
