@@ -32,7 +32,7 @@
                 },
                 {
                     "begin": "(?!\\s*$)",
-                    "end": "^$|^(?=\\s*(?:<{3,}|\\\\end))",
+                    "end": "^(?=\\s*$)|^(?=\\s*(?:<{3,}|\\\\end))",
                     "name": "meta.paragraph.tiddlywiki5",
                     "patterns": [
                         {
@@ -713,9 +713,6 @@
                     "include": "#htmlwidget-doctype"
                 },
                 {
-                    "include": "#htmlwidget-cdata"
-                },
-                {
                     "include": "#htmlwidget-tags-valid"
                 },
                 {
@@ -1258,22 +1255,6 @@
                 }
             ]
         },
-        "htmlwidget-cdata": {
-            "begin": "<!\\[CDATA\\[",
-            "beginCaptures": {
-                "0": {
-                    "name": "punctuation.definition.tag.begin.html.tiddlywiki5"
-                }
-            },
-            "contentName": "string.other.inline-data.html.tiddlywiki5",
-            "end": "]]>",
-            "endCaptures": {
-                "0": {
-                    "name": "punctuation.definition.tag.end.html.tiddlywiki5"
-                }
-            },
-            "name": "meta.tag.metadata.cdata.html.tiddlywiki5"
-        },
         "htmlwidget-comment": {
             "begin": "<!--",
             "captures": {
@@ -1476,9 +1457,6 @@
                     "patterns": [
                         {
                             "include": "#htmlwidget-comment"
-                        },
-                        {
-                            "include": "#htmlwidget-cdata"
                         },
                         {
                             "captures": {
@@ -1948,9 +1926,6 @@
                     "patterns": [
                         {
                             "include": "#htmlwidget-comment"
-                        },
-                        {
-                            "include": "#htmlwidget-cdata"
                         },
                         {
                             "captures": {
@@ -2530,7 +2505,7 @@
             "patterns": [
                 {
                     "comment": "A widget opening and closing on one line. TiddlyWiki parses a widget body with parseInlineRun unless a blank line follows the opening tag (core/rules/html.js), so the body reads as an inline run and the element scope spans it. The begin consumes its own tag, so nothing re-enters at the same position; the end names the same tag the begin matched, and falls back to end-of-line so the region can never outlive its own line.",
-                    "begin": "(<)(\\$)([a-zA-Z0-9\\-\\$\\.]+)(?=(?:\\s[^>\\n]*)?>[^\\n]*<\\/\\$\\3>)",
+                    "begin": "(?:^[ \\t]*)?(<)(\\$)([a-zA-Z0-9\\-\\$\\.]+)(?=(?:\\s[^>\\n]*)?>[^\\n]*<\\/\\$\\3>)",
                     "end": "(<\\/)(\\$)(\\3)(>)|$",
                     "name": "meta.tag.widget.$3.html.tiddlywiki5",
                     "beginCaptures": {
@@ -3449,7 +3424,7 @@
                     ]
                 },
                 {
-                    "begin": "(<\\/?)((\\$)(?!:\\/)([a-zA-Z0-9\\-\\$\\.]+))(?<!\\/)(?=\\s|\\/?>)",
+                    "begin": "(?:^[ \\t]*)?(<\\/?)((\\$)(?!:\\/)([a-zA-Z0-9\\-\\$\\.]+))(?<!\\/)(?=\\s|\\/?>)",
                     "end": "(?: ?/)?>|(?=^$)",
                     "name": "meta.tag.widget.$4.html.tiddlywiki5",
                     "beginCaptures": {

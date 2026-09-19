@@ -1046,7 +1046,7 @@ back by upgrading, which is the definition this number answers to.
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 113 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 110 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
   emits no container node, so a scope over its content stands over text by construction.
 - A RULING STANDS STALE ONLY WHERE EVERY RUN EXPLAINS NOTHING WITH IT. The five `overreach-check`
@@ -2356,6 +2356,26 @@ back by upgrading, which is the definition this number answers to.
   language claimed, so VS Code loaded it and no document ever reached it: a `.meta` sidecar
   carries fields and no body, and the `tid` language already lists `.meta` among its extensions
   and colours one correctly.
+- An indented widget tag alone on a line lost to the paragraph fallback, because the fallback's
+  zero-width `begin` matched the line's own start while the tag's own opener could only match
+  where the tag itself began — a race the leading whitespace let the fallback win. The tag rules
+  now admit the same leading `[ \t]*` a list or heading marker already does, so the tie the block
+  dispatch already resolves in the tag's favour applies here too. Traced against the oracle:
+  `<$link to="x"/>` alone on an unindented line already stood outside any paragraph; indented, it
+  now does too.
+- The paragraph fallback's own end, `^$`, never closed on a whitespace-only line. TiddlyWiki reads
+  a line of only spaces or tabs as a blank line — `wikiparser.js` splits blocks on
+  `/\r?\n\r?\n/`, which a whitespace-only line satisfies — so the fallback now ends on
+  `^(?=\s*$)`, a zero-width match that closes the region without folding the whitespace line's own
+  characters into it.
+- `<![CDATA[` named no element TiddlyWiki's `html.js` rule reads — its tag name admits
+  `[a-zA-Z0-9\-\$\.]`, and `!` stands outside it — so the host keeps the whole construct, angles
+  and all, as plain text even inside an `<svg>` or `<math>` element, and the rule that painted it
+  as a tag retired. `meta.tag.metadata.cdata.html.tiddlywiki5` and
+  `string.other.inline-data.html.tiddlywiki5` retire with it; `MIGRATION.md` records both.
+- `isExpected` reads the same co-declared siblings `matchingRulings` already does, taking the same
+  `siblingsOf` a caller already builds from `siblingsFrom` rather than repeating the match rule a
+  second time under a different name.
 
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`
