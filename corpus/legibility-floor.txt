@@ -831,7 +831,7 @@
 51 a dash  vs  prose
 51 a multi-value display  vs  a CamelCase link
 51 a multi-value display  vs  prose
-51 a wikilink  vs  a transclusion
+55 a wikilink  vs  a transclusion
 51 underline  vs  a CamelCase link
 50 a code block  vs  underline
 50 a parsermode directive  vs  a rules directive
@@ -996,4 +996,17 @@
 # The zero-cost names stood priced and declined: `entity.name.type` buys almost nothing (gruvbox
 # paints it yellow too), and `support.class` and `entity.other.inherited-class` name what a heading
 # is not.
+
+# 2026-09-18: ONE RE-SEATED, on the 2026-09-17 opener-namespace ruling this floor never carried to it.
+#
+# 32291b2 (lar:///the-opener.joins.one-namespace) gave a transclusion's `{{` and `}}`
+# `punctuation.definition.tag.transclusion` beside their own published name, the same
+# `punctuation.definition.tag.*` every other opening mark took that day — EXCEPT a wikilink's `[[`,
+# which the same ruling named the one exception and left in its own family. That commit counted only
+# the seven pairs its own re-seat fell; a wikilink against a transclusion rose instead, and stood
+# uncounted since. Traced: `night-owl-light`, `nord`, `solarized-dark` and `solarized-light` all rule
+# on the bare `punctuation.definition.tag` root and now paint a transclusion's braces the way they
+# already painted every other opener, while a wikilink's brackets — never in that family — keep the
+# colour they always had. Four themes that once matched now part, and no other pair moves.
+#   a wikilink  vs  a transclusion                       51 -> 55
 
