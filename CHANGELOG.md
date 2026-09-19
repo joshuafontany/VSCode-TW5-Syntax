@@ -2521,6 +2521,19 @@ back by upgrading, which is the definition this number answers to.
   (`/home/joshu/Synthetic-Dream-Machine/TiddlyWiki5`) and the pinned 5.4.1 reader alike, across
   repeated runs — the specimen the brief named did not reproduce here, which this entry records
   rather than papering over with an invented fix.
+- A LEGIBILITY FLOOR RE-SEATS, TRACED TO THE COMMIT THAT RAISED IT. `corpus/legibility-floor.txt`
+  seated `a wikilink vs a transclusion` at 51 while `tools/construct-legibility.js --verbose` read
+  55 live — a rise the ratchet permits without a re-seat, but this one traces to a named cause and
+  gets one. Bisected against `git log -- syntaxes/ corpus/legibility-floor.txt`: 32291b2
+  (`lar:///the-opener.joins.one-namespace`, 2026-09-17) gave a transclusion's `{{`/`}}`
+  `punctuation.definition.tag.transclusion` beside their own name, the same
+  `punctuation.definition.tag.*` every opener but a wikilink's `[[` took that day. Traced to four
+  themes — `night-owl-light`, `nord`, `solarized-dark`, `solarized-light` — that rule on the bare
+  `punctuation.definition.tag` root: they now paint a transclusion's braces the way they already
+  painted every other opener, while a wikilink's brackets, never in that family, keep the colour
+  they always had. That commit's own message counted only the seven pairs its ruling fell; this
+  pair rose instead and stood unrecorded until now. Re-seated in `corpus/legibility-floor.txt`
+  with the ruling that moved it, 51 -> 55; no other pair in the file moves under this entry.
 
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`
