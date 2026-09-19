@@ -14,6 +14,32 @@ names every one. The reading changed beside the vocabulary: a transclusion reads
 attribute value's quote characters changed family. A reader who liked 2.2.1's look does not get it
 back by upgrading, which is the definition this number answers to.
 
+### Added
+- TWO READERS, NAMED AND KEYED, THE THIRD ONE REMOVED. Local development answers to this
+  repository's own fork (`TW5_PATH`, the `dev/sdm-integration` branch, 5.5.0-prerelease, carrying
+  the parser-diagnostics feature); CI answers to the pinned `tiddlywiki` devDependency (5.4.1). A
+  ledger entry now carries a `READER <version>` reason prefix (`tools/reader-scope.js`),
+  generalizing the `HOST` reason prefix `swallow-witness.js` already carried for its own
+  corpus-vs-host axis onto the axis `TW5_PATH` moves: an entry naming no reader answers to
+  whichever reader reads it, and one naming a reader neither fails nor reads stale under the
+  other, while still failing if its OWN reader regresses. darkness-witness, ablation-witness,
+  swallow-witness, divergence-staleness and all five `overreach-*` runs carry entries so keyed,
+  each traced to a measured cause — chiefly that an unterminated inline run (bold, italic,
+  strikethrough, underscore, superscript, subscript, code) still BUILDS under 5.4.1, scanning to
+  the end of the tiddler to recover, where the fork's own rule refuses the same run once it has no
+  closer ahead. `recovery-witness.js` FEATURE-DETECTS the diagnostics API it needs
+  (`Array.isArray(oracle.parse('x').diagnostics)`) rather than reading `$tw.version`, and reports
+  SKIP with its reason — never a false PASS or FAIL — where a reader carries none.
+  `grammar-signals.js`'s own harvest is keyed the same way: `editions/tw5-syntax/tiddlers/
+  GrammarSignals.tid` stays the reader that last wrote it with no `--check` (unchanged for every
+  other gate that reads it), and every other reader gets a peer snapshot under
+  `corpus/reader-signals/<version>.json`. `.github/workflows/test.yml`'s `gates-host` job no
+  longer clones an unpinned TiddlyWiki master and points `TW5_PATH` at it in three steps — that
+  was a third, ungoverned reader; CI now resolves the pinned devDependency the same way a
+  contributor holding only this checkout does. `node tools/gate-report.js --check` holds under
+  both `TW5_PATH` unset and `TW5_PATH` naming the fork, and a mutated reader-scoped ledger entry
+  still fails under its own reader alone — the control every entry above was written against.
+
 ### Fixed
 - A STYLED SUFFIX'S TEXT IS A VALUE, NOT A MARK. `filteredtranscludeinline.js` closes on `}}`, an
   optional style, then `}`, and the grammar named the whole `}}style}` run one delimiter — so the
@@ -1046,9 +1072,11 @@ back by upgrading, which is the definition this number answers to.
   rules on nothing inside it and the check reports those spans as unanswered rather than clear.
   Across four seeds no claim stands over text the whole tiddler also refuses.
 - Every divergence on TiddlyWiki's own tiddlers, traced. Over 387 of them nothing diverges
-  unexplained: every span stands explained by 110 written rulings, and none by a number somebody
+  unexplained: every span stands explained by 122 written rulings, and none by a number somebody
   wanted smaller. One ruling names a fault rather than an intention — a hardlinebreaks block
-  emits no container node, so a scope over its content stands over text by construction.
+  emits no container node, so a scope over its content stands over text by construction. 22 of
+  the 122 carry a `READER <version>` reason (tools/reader-scope.js), naming the ONE reader — this
+  repository's own fork or the pinned devDependency — whose parser the ruling explains.
 - A RULING STANDS STALE ONLY WHERE EVERY RUN EXPLAINS NOTHING WITH IT. The five `overreach-check`
   runs over `corpus/expected-divergence.txt` share one ruling file, and a ruling idle in one run
   can still be earning its place in another. `tools/divergence-staleness.js` takes the union of

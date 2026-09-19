@@ -44,6 +44,7 @@ const { parseTid } = require('./wiki-data.js');
 const { grammarArgs } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
 const { BASE, readSnapshot, claims, verdicts, declines } = require('./snapshot-format.js');
+const { readerOf, appliesToReader } = require('./reader-scope.js');
 
 /**
  * The spans a snapshot annotates, flattened across its lines.
@@ -117,10 +118,14 @@ function readExpected(text) {
     const colon = target.lastIndexOf(':');
     const named = colon < 0 ? { file: null, scope: target } : { file: target.slice(0, colon), scope: target.slice(colon + 1) };
     if (!named.file && !named.scope) throw new Error(`ruling names neither a file nor a scope: ${line}`);
+    // A reason opening `READER <version>` (tools/reader-scope.js) names the ONE reader this
+    // ruling explains — the same reason-prefix flag swallow-witness.js already carries for HOST,
+    // generalized to the axis TW5_PATH moves rather than the axis corpus-vs-host moves.
+    const { version: reader } = readerOf(reason);
     out.push(
       colon < 0
-        ? { file: null, scope: target, reason }
-        : { file: target.slice(0, colon), scope: target.slice(colon + 1), reason }
+        ? { file: null, scope: target, reason, reader }
+        : { file: target.slice(0, colon), scope: target.slice(colon + 1), reason, reader }
     );
   }
   return out;
@@ -141,14 +146,16 @@ function readExpected(text) {
  * it widens `matchingRulings`' own search. This delegates to `matchingRulings` rather than
  * duplicating its matching rule, so the two can never drift apart.
  *
- * @param {{file:string|null, scope:string}[]} rules
+ * @param {{file:string|null, scope:string, reader?:string|null}[]} rules
  * @param {string} file
  * @param {string} scope
  * @param {(scope: string) => string[]} [siblingsOf]
+ * @param {string} [current]  the reader this run booted, from `oracle.$tw.version`; omitted, a
+ *   ruling naming no reader still answers and a ruling naming one answers for none
  * @returns {boolean}
  */
-function isExpected(rules, file, scope, siblingsOf = () => []) {
-  return matchingRulings(rules, file, scope, siblingsOf).length > 0;
+function isExpected(rules, file, scope, siblingsOf = () => [], current) {
+  return matchingRulings(rules, file, scope, siblingsOf, current).length > 0;
 }
 
 /**
@@ -159,12 +166,14 @@ function isExpected(rules, file, scope, siblingsOf = () => []) {
  * whether the span is excused and nothing about which excuse did it. Same predicate, read the other
  * way round.
  *
- * @param {{file:string|null, scope:string}[]} rules
+ * @param {{file:string|null, scope:string, reader?:string|null}[]} rules
  * @param {string} file
  * @param {string} scope
+ * @param {(scope:string) => string[]} [siblingsOf]
+ * @param {string} [current]  see `isExpected`
  * @returns {number[]}
  */
-function matchingRulings(rules, file, scope, siblingsOf = () => []) {
+function matchingRulings(rules, file, scope, siblingsOf = () => [], current) {
   const names = [scope, ...siblingsOf(scope)];
   const out = [];
   rules.forEach((r, i) => {
@@ -174,7 +183,8 @@ function matchingRulings(rules, file, scope, siblingsOf = () => []) {
         ? name.endsWith(r.scope.slice(1))
         : name === r.scope || name.startsWith(`${r.scope}.`));
     const matches = names.some(named) &&
-      (r.file === null || file === r.file || file.endsWith(`/${r.file}`));
+      (r.file === null || file === r.file || file.endsWith(`/${r.file}`)) &&
+      appliesToReader(r.reader, current);
     if (matches) out.push(i);
   });
   return out;
@@ -304,6 +314,7 @@ if (require.main === module) {
     return;
   }
   const oracle = boot(tw, camelcase ? { rules: { 'Inline/wikilink': 'enable' } } : {});
+  const current = oracle.$tw.version;
 
   // A snapshot per file, taken into scratch so a run never disturbs the pinned ones.
   const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-overreach-'));
@@ -407,7 +418,7 @@ if (require.main === module) {
     scanned += 1;
     const source = fs.readFileSync(copy, 'utf8');
     for (const f of review(source, fs.readFileSync(snap, 'utf8'), oracle)) {
-      const matched = matchingRulings(rulings, files[i], f.scope, siblingsOf);
+      const matched = matchingRulings(rulings, files[i], f.scope, siblingsOf, current);
       if (matched.length > 0) {
         for (const m of matched) rulingsUsed.add(m);
         ruled += 1;

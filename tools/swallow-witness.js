@@ -47,6 +47,7 @@ const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
 const { READINGS, DEFAULT_TYPE } = require('./carrier-reading.js');
 const { unboundedRegions, regionsEndingOn } = require('./grammar-scopes.js');
 const { kindOf } = require('./region-kind.js');
+const { readerOf, appliesToReader } = require('./reader-scope.js');
 
 const verbose = process.argv.includes('--verbose');
 const LEDGER = path.join(ROOT, 'corpus', 'swallow-ledger.txt');
@@ -109,13 +110,15 @@ function ledger() {
     // live, either: the case needs an attribute quote that never closes, which bleeds, which belongs to
     // a degenerate carrier, which this witness exempts by design. A reason opening HOST says so, and the
     // summary counts those rulings rather than hiding them.
-    entries.push({ direction, key, reason, owed: /^OWED\b/.test(reason), host: /^HOST\b/.test(reason),
+    const { version: reader, rest: unscoped } = readerOf(reason);
+    entries.push({ direction, key, reason, owed: /^OWED\b/.test(unscoped), host: /^HOST\b/.test(unscoped), reader,
       re: new RegExp(`^${key.split('*').map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('.*')}$`) });
   }
   return entries;
 }
 
 const oracle = boot(resolveTiddlyWiki(), {});
+const current = oracle.$tw.version;
 
 /** Did TiddlyWiki build the sentinel quoteblock, where the sentinel stands? */
 const parserReads = (text, at, type = DEFAULT_TYPE) =>
@@ -190,10 +193,14 @@ let closed = 0;
   // rules spell reaches the same ledger line. Reporting the reason once per RULING rather than
   // once per scope keeps the debt readable as the grammar grows names.
   const unruled = [];
-  const stale = new Set(rulings.filter((r) => !r.host).map((r) => `${r.direction} ${r.key}`));
+  // A ruling scoped to a READER other than this one stands out of the staleness count exactly as a
+  // HOST ruling already does — a reader-specific divergence is expected to sit idle on the other
+  // reader's run, never explaining anything there.
+  const stale = new Set(rulings.filter((r) => !r.host && appliesToReader(r.reader, current)).map((r) => `${r.direction} ${r.key}`));
   const owed = new Map();
   for (const finding of findings.values()) {
-    const ruling = rulings.find((r) => r.direction === finding.direction && r.re.test(finding.key));
+    const ruling = rulings.find((r) => r.direction === finding.direction && r.re.test(finding.key)
+      && appliesToReader(r.reader, current));
     if (!ruling) { unruled.push(finding); continue; }
     stale.delete(`${ruling.direction} ${ruling.key}`);
     if (!ruling.owed) continue;

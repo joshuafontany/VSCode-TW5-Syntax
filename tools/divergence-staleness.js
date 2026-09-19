@@ -27,6 +27,8 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { ROOT } = require('./run-tool.js');
+const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
+const { readerOf, appliesToReader } = require('./reader-scope.js');
 
 const EXPECTED_REL = 'corpus/expected-divergence.txt';
 const EXPECTED = path.join(ROOT, ...EXPECTED_REL.split('/'));
@@ -95,7 +97,23 @@ function execute(run, cwd, expectedArg = EXPECTED_REL) {
   return { name: run.name, used, code };
 }
 
-module.exports = { rulingLines, derivedRuns, staleness, execute, EXPECTED_REL, EXPECTED };
+/**
+ * The reader named on a ruling LINE, `readExpected`'s own reason parsing repeated on the raw
+ * text — every run in this process shares the ambient TW5_PATH, so a ruling naming a reader other
+ * than the one this whole invocation booted is expected to sit idle in EVERY run, which is
+ * reader-specificity rather than staleness (tools/reader-scope.js; the same generalisation the
+ * ledger-backed witnesses carry).
+ *
+ * @param {string} line
+ * @returns {string|null}
+ */
+function readerOfLine(line) {
+  const cut = line.indexOf('#');
+  if (cut < 0) return null;
+  return readerOf(line.slice(cut + 1).trim()).version;
+}
+
+module.exports = { rulingLines, derivedRuns, staleness, execute, readerOfLine, EXPECTED_REL, EXPECTED };
 
 if (require.main !== module) return;
 
@@ -109,12 +127,17 @@ if (require.main !== module) return;
     return;
   }
   const lines = rulingLines(fs.readFileSync(EXPECTED, 'utf8'));
+  const current = boot(resolveTiddlyWiki()).$tw.version;
   const results = [];
   for (const run of runs) {
     if (verbose) process.stderr.write(`  running ${run.name}...\n`);
     results.push(execute(run, ROOT));
   }
-  const { stale } = staleness(lines.length, results);
+  const { stale: rawStale } = staleness(lines.length, results);
+  // A ruling scoped to a READER this invocation never booted stands idle everywhere by
+  // construction — every run inherits the same ambient TW5_PATH — so it reads as reader-specific
+  // rather than stale.
+  const stale = rawStale.filter((i) => appliesToReader(readerOfLine(lines[i]), current));
   for (const i of stale) console.log(`  STALE  ${lines[i]}`);
   if (verbose) for (const r of results) console.log(`  ${r.name}  ${r.used.length} ruling(s) used, exit ${r.code}`);
   console.log(`divergence-staleness  ${runs.length} run(s) over ${lines.length} ruling(s): ${stale.length} stale`);

@@ -154,7 +154,11 @@ test('a declaration whose line reads lit fails as stale', slow, () => {
   // The ratchet: a repair that lights a declared line must retire the declaration with it.
   const { code, out } = runInSandbox((sandbox) => {
     const ledger = path.join(sandbox, 'corpus', 'darkness-ledger.txt');
-    fs.appendFileSync(ledger, 'tests/samples/canary-control.tw  bold  MISS  "Prose with \'\'an unclosed bold run."  # a declaration the gate must refuse\n');
+    // A fabricated line, so this stands stale under EVERY reader — a real construct's own text
+    // stays off-limits here, since a reader-scoped ledger entry may legitimately already declare
+    // it dark under one reader (tools/reader-scope.js) and this probe would then read as agreeing
+    // with a real ruling rather than as the fabrication the test means to plant.
+    fs.appendFileSync(ledger, 'tests/samples/canary-control.tw  bold  MISS  "Prose naming no construct this corpus ever writes."  # a declaration the gate must refuse\n');
   }, ['tools/darkness-witness.js']);
   assert.match(out, /stale/, out.slice(-600));
   assert.notStrictEqual(code, 0, 'a declaration explaining nothing read clean');

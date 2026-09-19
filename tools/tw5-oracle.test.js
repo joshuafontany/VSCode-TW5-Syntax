@@ -386,8 +386,13 @@ test('every text-typed node the parser builds carries a text string, or names it
       bare.push(`${path.basename(file)}:${src.slice(0, m.index).split('\n').length}`);
     }
   }
-  // A sweep that reached nothing would report nothing, and pass as quietly as a clean one.
-  assert.ok(sites >= 20, `the sweep reached ${sites} text-typed sites`);
+  // A sweep that reached nothing would report nothing, and pass as quietly as a clean one. The
+  // floor is READER-RELATIVE (tools/reader-scope.js's own generalisation, applied to a rule-source
+  // sweep rather than a ledger): this repository's own fork carries 22 `type: "text"` sites and
+  // the pinned devDependency carries 14, eight fewer rule modules the fork has grown since — never
+  // a floor calibrated to one reader and silently failing the other.
+  const floor = boot(TW).$tw.version === '5.4.1' ? 12 : 20;
+  assert.ok(sites >= floor, `the sweep reached ${sites} text-typed sites`);
   assert.deepStrictEqual(bare, [], `text-typed nodes carrying no text string: ${bare.join(' ')}`);
 });
 

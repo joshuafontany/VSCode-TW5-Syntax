@@ -19,6 +19,12 @@
 // eight in `textmate-ceiling.js` came from this repository's reading of the host, and these come
 // from the host's own account of itself.
 //
+// FORK-ONLY FEATURE. `WikiParser.addDiagnostic` is this repository's own fork's own addition; the
+// pinned devDependency's parser carries no such array. Feature-detected below rather than read off
+// `$tw.version`, so a reader without it gets SKIP — visible in gate-report.js's harvest — never a
+// false PASS (0 silent codes answers nothing this witness asked) or a false FAIL (every ruling
+// reading as stale because nothing this reader ever raises could match one).
+//
 //   node tools/recovery-witness.js [--verbose] [--host N]
 
 'use strict';
@@ -102,7 +108,25 @@ function scopesAcross(text, tokens, from, to) {
   return seen;
 }
 
+// FEATURE-DETECTED, NEVER VERSION-SNIFFED. `WikiParser.addDiagnostic` is this repository's own
+// fork's own addition — the pinned 5.4.1 devDependency's `parseText` carries no `diagnostics`
+// property at all, not even an empty array, on ANY input. Asking the API directly rather than
+// checking `$tw.version` means a future release that back-ports the feature is met correctly with
+// no edit here.
+const supportsDiagnostics = Array.isArray(oracle.parse('x').diagnostics);
+
 (async () => {
+  if (!supportsDiagnostics) {
+    // Neither PASS nor FAIL: a reader without the diagnostics API answers no question this
+    // witness asks, so reporting 0 silent codes here would read as agreement the reader never
+    // gave. gate-report.js's own summary line picks up SKIP, so a reader who only sees the
+    // harvest still learns why.
+    console.log(`recovery-witness  SKIP — TiddlyWiki ${oracle.$tw.version} carries no parser `
+      + 'diagnostics API (WikiParser.addDiagnostic); this witness needs the `diagnostics` field '
+      + 'tools/tw5-oracle.js reads back, which only this repository\'s own fork exposes');
+    process.exitCode = 0;
+    return;
+  }
   const rulings = ledger();
   const files = carriers();
   const byCode = new Map();

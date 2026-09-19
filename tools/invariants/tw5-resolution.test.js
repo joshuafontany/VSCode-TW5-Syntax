@@ -30,7 +30,12 @@ test('TiddlyWiki stands pinned, exactly, and only for development', () => {
   assert.strictEqual((pkg.dependencies || {}).tiddlywiki, undefined, 'a parser the gates read must not ship to users');
 });
 
-test('a checkout beside this repository outranks the pinned package', () => {
+test('a checkout beside this repository outranks the pinned package', (t) => {
+  // The ORDER under test answers only when nobody names a reader: `TW5_PATH` outranks both, so a
+  // run choosing the pinned reader on purpose would otherwise read as the order broken.
+  const named = process.env.TW5_PATH;
+  delete process.env.TW5_PATH;
+  t.after(() => { if (named !== undefined) process.env.TW5_PATH = named; });
   const sibling = path.resolve(ROOT, '..', 'TiddlyWiki5');
   if (!fs.existsSync(path.join(sibling, 'boot', 'boot.js'))) {
     // No checkout stands here, so the package answers and the order stays unreadable.
