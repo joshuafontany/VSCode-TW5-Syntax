@@ -14,7 +14,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "ablation",
             "held": true,
-            "said": "ablation-witness  337 finding(s) over 74 carrier(s): 337 declared (337 owed), 0 undeclared, 0 stale"
+            "said": "ablation-witness  329 finding(s) over 74 carrier(s): 329 declared (329 owed), 0 undeclared, 0 stale"
         },
         {
             "gate": "attribute-guard",
@@ -94,7 +94,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "darkness",
             "held": true,
-            "said": "darkness-witness  19 construct line(s) over 74 carrier(s) read dark: 19 declared (19 owed), 0 undeclared, 0 stale"
+            "said": "darkness-witness  11 construct line(s) over 74 carrier(s) read dark: 11 declared (11 owed), 0 undeclared, 0 stale"
         },
         {
             "gate": "delimiters",
@@ -109,12 +109,12 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "engine-behaviour",
             "held": true,
-            "said": "engine-witness  860 pattern(s) read against 991 corpus line(s), 1 that match differently, 0 unruled"
+            "said": "engine-witness  862 pattern(s) read against 991 corpus line(s), 1 that match differently, 0 unruled"
         },
         {
             "gate": "engine-witness",
             "held": true,
-            "said": "engine-witness  860 pattern(s) across 9 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "engine-witness  862 pattern(s) across 9 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "filter-witness",
