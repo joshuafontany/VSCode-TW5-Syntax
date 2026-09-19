@@ -857,15 +857,15 @@
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >\define macro-first-paren-wins(a:((var))) )) belongs to the body
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
-#                                 ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.begin.tiddlywiki5 punctuation.definition.tag.mvv.tiddlywiki5
-#                                   ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 variable.name.mvv-display.tiddlywiki5
-#                                      ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.end.tiddlywiki5 punctuation.definition.tag.mvv.tiddlywiki5
+#                                 ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.begin.tiddlywiki5
+#                                   ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 variable.name.mvv-display.tiddlywiki5 entity.name.function.mvv.tiddlywiki5
+#                                      ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.end.tiddlywiki5
 #                                        ^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >\procedure mvv-inline(a:((var))) body
 #^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
-#                        ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.begin.tiddlywiki5 punctuation.definition.tag.mvv.tiddlywiki5
-#                          ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 variable.name.mvv-display.tiddlywiki5
-#                             ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.end.tiddlywiki5 punctuation.definition.tag.mvv.tiddlywiki5
+#                        ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.begin.tiddlywiki5
+#                          ^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 variable.name.mvv-display.tiddlywiki5 entity.name.function.mvv.tiddlywiki5
+#                             ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.end.tiddlywiki5
 #                               ^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >\procedure dollars-stay-literal(a) $a$ and $(b)$ stay literal here
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5

@@ -109,17 +109,17 @@
 >
 >An MVV display: ((myVar)) and ((myVar||, )) and (((  [tag[x]]  ))).
 #^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
-#                ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.begin.tiddlywiki5 punctuation.definition.tag.mvv.tiddlywiki5
-#                  ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 variable.name.mvv-display.tiddlywiki5
-#                       ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.end.tiddlywiki5 punctuation.definition.tag.mvv.tiddlywiki5
+#                ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.begin.tiddlywiki5
+#                  ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 variable.name.mvv-display.tiddlywiki5 entity.name.function.mvv.tiddlywiki5
+#                       ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.end.tiddlywiki5
 #                         ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
-#                              ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.begin.tiddlywiki5 punctuation.definition.tag.mvv.tiddlywiki5
-#                                ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 variable.name.mvv-display.tiddlywiki5
+#                              ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.begin.tiddlywiki5
+#                                ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 variable.name.mvv-display.tiddlywiki5 entity.name.function.mvv.tiddlywiki5
 #                                     ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 keyword.operator.separator.mvv-display.tiddlywiki5
 #                                       ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 string.unquoted.separator.mvv-display.tiddlywiki5
-#                                         ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.end.tiddlywiki5 punctuation.definition.tag.mvv.tiddlywiki5
+#                                         ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.end.tiddlywiki5
 #                                           ^^^^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
-#                                                ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.filter.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.begin.tiddlywiki5 punctuation.definition.tag.mvv.tiddlywiki5
+#                                                ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.filter.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.begin.tiddlywiki5
 #                                                  ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.filter.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.filter.begin.tiddlywiki5
 #                                                   ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.filter.mvv-display.tiddlywiki5
 #                                                     ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.filter.mvv-display.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5
@@ -130,7 +130,7 @@
 #                                                            ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.filter.mvv-display.tiddlywiki5 meta.filter.run.tiddlywiki5 punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5
 #                                                             ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.filter.mvv-display.tiddlywiki5
 #                                                               ^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.filter.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.filter.end.tiddlywiki5
-#                                                                ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.filter.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.end.tiddlywiki5 punctuation.definition.tag.mvv.tiddlywiki5
+#                                                                ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.filter.mvv-display.tiddlywiki5 punctuation.definition.mvv-display.end.tiddlywiki5
 #                                                                  ^^ source.tiddlywiki5.tid-file meta.text.html.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 >
 ><$text text=((myVar)) other=[[a bracket string]] />

@@ -2376,6 +2376,20 @@ back by upgrading, which is the definition this number answers to.
 - `isExpected` reads the same co-declared siblings `matchingRulings` already does, taking the same
   `siblingsOf` a caller already builds from `siblingsFrom` rather than repeating the match rule a
   second time under a different name.
+- `((` AND `))` LEAVE THE OPENER FAMILY THE 2026-09-17 RULING SEATED THEM IN. `((x))` DISPLAYS a
+  variable's held values, the way `<<x>>` displays a macro's or transclusion's result — the two are
+  the same gesture, read and write, over what a name already holds. `{{x}}` instead INSERTS a
+  tiddler's content, an unrelated gesture, so pairing `((`/`))` with `{{`/`}}` under one shared
+  `punctuation.definition.tag.*` root bought the seven-pair opener-family reading at the cost of the
+  distinction that actually matters here: which gesture a reader is looking at. `((`/`))` drop
+  `punctuation.definition.tag.mvv.tiddlywiki5` and the display run's name takes
+  `entity.name.function.mvv.tiddlywiki5`, appended after the published `variable.name.mvv-display`
+  name exactly as a macro call's name carries `entity.name.function.macro` beside its own —
+  `((x))` now reads as `<<x>>` does, apart from `{{x}}`. Measured: 0 pairs of 820 fall, 25 rise (a
+  dash, a heading, prose, a code span, a list item and twenty others that a bare `(` and `)` used
+  to leave reading as one ink alongside `{`, `<` and `<%`); `colour-witness` and the opener/closer
+  floor hold unmoved, and no pair drops below its seated floor, so `corpus/legibility-floor.txt`
+  needs no re-seating — only a fall would ask for one.
 
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`
