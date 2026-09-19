@@ -14,10 +14,10 @@
 					"comment": "Tokenize test comment text.",
 					"begin": "^(#)\\s*",
 					"end": "$",
-					"contentName": "comment.block.test.tiddlywiki5",
+					"contentName": "comment.block.test.tiddlywiki5.test",
 					"captures": {
 						"1": {
-							"name": "punctuation.definition.comment.block.test.tiddlywiki5"
+							"name": "punctuation.definition.comment.block.test.tiddlywiki5.test"
 						}
 					}
 				},

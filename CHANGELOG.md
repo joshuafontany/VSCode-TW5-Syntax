@@ -2522,6 +2522,29 @@ back by upgrading, which is the definition this number answers to.
   (`/home/joshu/Synthetic-Dream-Machine/TiddlyWiki5`) and the pinned 5.4.1 reader alike, across
   repeated runs — the specimen the brief named did not reproduce here, which this entry records
   rather than papering over with an invented fix.
+- EVERY NAME A GRAMMAR DECLARES NOW CLOSES ON THAT GRAMMAR'S OWN SUFFIX, OR AN ALLOWANCE NAMES WHY
+  NOT. A merge shipped `entity.name.scheme support.type.scheme` with no language suffix at all
+  (cured separately above, `lar:///the-scheme.keeps.its-suffix`) and no gate noticed, because
+  nothing checked the closing half of a name against the grammar that declared it — the precise
+  half of `docs/scope-naming-prior-art.mem:469`'s golden principle. `tools/invariants/scope-suffix.test.js`
+  reads each grammar's own suffix from its own `scopeName` (`tools/grammar-scopes.js`'s
+  `declaredScopes`, the one collector `one-implementation.test.js` already holds every reader to)
+  and fails on any declared name that closes on neither that suffix nor an allowed one — RED-FIRST
+  against `f1d733b^`'s own unsuffixed pair, and against a planted regression run through
+  `grammar-sandbox.js`. Allowed: VS Code's own `meta.embedded.*` wrapper; a guest grammar's raw
+  vocabulary handed a region (`source.css`, `text.html.basic`, TextMate's own CSS/JS property and
+  comment names reused for a fenced case this grammar detects itself, and this repository's own
+  sibling grammars — `text.html.tiddlywiki5`, `source.toml.tw5-syntax` — embedded the identical
+  way); and the TOML hand-port's own private `.toml` convention entire. Sweeping every grammar in
+  `syntaxes/` against its own suffix found ELEVEN real misses, all in the field-bearing container
+  grammars: `tw5-fields.json` (suffix `.fields`), `tw5-multids-file.json` (`.multids-file`) and
+  `tw5-tid-file.json` (`.tid-file`) each declared their own field-key, field-value and field-region
+  scopes closing on the HOST grammar's `.tiddlywiki5` instead of their own, and
+  `tw5-test-file.json`'s comment rule did the same. Fixed by APPENDING each grammar's own suffix —
+  themes match by dot-bounded prefix, so a name that only grew longer keeps matching every existing
+  rule; nothing painted moves. `MIGRATION.md` gains the eleven gone names and their replacements
+  (**585** names now, **122** gone, **247** new, up from 579/111/230), six pinned snapshots and
+  seven `.tw5.test` fixtures regenerate to the lengthened names with no other drift.
 
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`

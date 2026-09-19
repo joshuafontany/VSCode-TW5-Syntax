@@ -1,7 +1,7 @@
 ># SYNTAX TEST "text.html.tiddlywiki5.test" "a test file colours the wikitext it tests"
-#^ text.html.tiddlywiki5.test text.html.tiddlywiki5 punctuation.definition.comment.block.test.tiddlywiki5
+#^ text.html.tiddlywiki5.test text.html.tiddlywiki5 punctuation.definition.comment.block.test.tiddlywiki5.test
 # ^ text.html.tiddlywiki5.test text.html.tiddlywiki5
-#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.test text.html.tiddlywiki5 comment.block.test.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.test text.html.tiddlywiki5 comment.block.test.tiddlywiki5.test
 >\define d.subs(a)
 #^ text.html.tiddlywiki5.test text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 punctuation.definition.directive.tiddlywiki5
 # ^^^^^^ text.html.tiddlywiki5.test text.html.tiddlywiki5 meta.directive.variable.macro.tiddlywiki5 keyword.control.directive.define.tiddlywiki5

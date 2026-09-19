@@ -4,8 +4,8 @@ A theme rule and an `editor.tokenColorCustomizations` entry both name a scope. A
 moves takes the reader's colour with it, and VS Code reports nothing: the rule simply stops
 matching, and the construct goes the colour of prose.
 
-This repository declares **460** scope names at `v2.2.1` and **579** now. Between them, **111**
-names stand gone and **230** stand new. Every gone name appears below, with what it stands as now
+This repository declares **460** scope names at `v2.2.1` and **585** now. Between them, **122**
+names stand gone and **247** stand new. Every gone name appears below, with what it stands as now
 or why it retired. `tools/invariants/scope-migration.test.js` derives these four numbers from the
 same `declaredScopesIn` reading the row-by-row check answers to, so a grammar edit that moves them
 fails the gate rather than leaving this paragraph to go stale beside it.
@@ -91,7 +91,7 @@ same 55 of 65 themes through the same `markup.heading` rules, so nothing a reade
 | `markup.other.variable.variable-reference.tiddlywiki5` | `markup.other.variable.substitute-variable.tiddlywiki5` | substitution vocabulary |
 | `markup.underline.link.wikilink.tiddlywiki5` | `meta.link.wikilink.tiddlywiki5` | family a theme rules on |
 | `meta.multids.tiddler.title.text.htmltiddlywiki5.multids-file` | `meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file` | one segment, one word |
-| `meta.tiddler.fields.tiddlywiki5` | `meta.text.tiddler.fields.tiddlywiki5` | root first |
+| `meta.tiddler.fields.tiddlywiki5` | `meta.text.tiddler.fields.tiddlywiki5.tid-file` | root first, then the tid-file grammar's own suffix |
 | `mvv.attribute.html.tiddlywiki5` | `meta.attribute.mvv.html.tiddlywiki5` | root first |
 | `mvv.default.parameter.tiddlywiki5` | `variable.parameter.mvv.default.tiddlywiki5` | root first |
 | `numbered.ordered.ol.li.markup.list.tiddlywiki5` | `markup.list.numbered.ordered.ol.li.tiddlywiki5` | root first |
@@ -124,6 +124,42 @@ same 55 of 65 themes through the same `markup.heading` rules, so nothing a reade
 | `variable.punctuation.definition.operand.begin.tiddlywiki5` | `punctuation.definition.operand.variable.begin.tiddlywiki5` | punctuation stacks, never nests |
 | `variable.punctuation.definition.operand.end.tiddlywiki5` | `punctuation.definition.operand.variable.end.tiddlywiki5` | punctuation stacks, never nests |
 | `variable.name.variable-reference.tiddlywiki5` | `variable.name.substitute-variable.tiddlywiki5` | substitution vocabulary |
+
+### The scope-suffix invariant, 11 names
+
+`docs/scope-naming-prior-art.mem:469` states the golden principle: a portable scope a theme
+reaches by prefix, beside a precise scope a user can target and no other. Every name a grammar
+declares here must CLOSE on that grammar's own suffix — the reading `tools/invariants/scope-suffix.test.js`
+now holds every grammar to. Eleven names in the three field-bearing container grammars
+(`tw5-fields.json`, `tw5-multids-file.json`, `tw5-tid-file.json`) and the test-file grammar
+closed on `.tiddlywiki5` instead — the host grammar's own suffix, borrowed rather than answered
+to — so a reader wanting to target only a `.tid` file's own field syntax, say, had no name that
+reached it and nothing else. `themes match by prefix`, so appending the owning grammar's suffix
+moves no colour: every existing rule on the `.tiddlywiki5`-closing name still matches its
+lengthened replacement.
+
+Three of the eleven carried their construct into all three container grammars identically, so
+each closes on the container that declares it rather than on one shared name.
+
+| gone at 2.2.1 | stands as at 2.3.0 | why |
+| --- | --- | --- |
+| `meta.tiddler.field.tiddlywiki5` | `meta.tiddler.field.tiddlywiki5.fields` | the fields grammar's own suffix |
+| `entity.other.attribute-name.field.tiddlywiki5` | `entity.other.attribute-name.field.tiddlywiki5.fields` | the fields grammar's own suffix |
+| `entity.other.attribute-name.field.tiddlywiki5` | `entity.other.attribute-name.field.tiddlywiki5.multids-file` | the multids-file grammar's own suffix |
+| `entity.other.attribute-name.field.tiddlywiki5` | `entity.other.attribute-name.field.tiddlywiki5.tid-file` | the tid-file grammar's own suffix |
+| `punctuation.separator.key-value.field.tiddlywiki5` | `punctuation.separator.key-value.field.tiddlywiki5.fields` | the fields grammar's own suffix |
+| `punctuation.separator.key-value.field.tiddlywiki5` | `punctuation.separator.key-value.field.tiddlywiki5.multids-file` | the multids-file grammar's own suffix |
+| `punctuation.separator.key-value.field.tiddlywiki5` | `punctuation.separator.key-value.field.tiddlywiki5.tid-file` | the tid-file grammar's own suffix |
+| `string.unquoted.field.value.tiddlywiki5` | `string.unquoted.field.value.tiddlywiki5.fields` | the fields grammar's own suffix |
+| `string.unquoted.field.value.tiddlywiki5` | `string.unquoted.field.value.tiddlywiki5.multids-file` | the multids-file grammar's own suffix |
+| `string.unquoted.field.value.tiddlywiki5` | `string.unquoted.field.value.tiddlywiki5.tid-file` | the tid-file grammar's own suffix |
+| `invalid.illegal.field.name.tiddlywiki5` | `invalid.illegal.field.name.tiddlywiki5.fields` | the fields grammar's own suffix |
+| `meta.multids.text.html.tiddlywiki5` | `meta.multids.text.html.tiddlywiki5.multids-file` | the multids-file grammar's own suffix |
+| `meta.multids.tiddler.fields.tiddlywiki5` | `meta.multids.tiddler.fields.tiddlywiki5.multids-file` | the multids-file grammar's own suffix |
+| `meta.text.html.tiddlywiki5` | `meta.text.html.tiddlywiki5.tid-file` | the tid-file grammar's own suffix |
+| `meta.text.tiddler.fields.tiddlywiki5` | `meta.text.tiddler.fields.tiddlywiki5.tid-file` | the tid-file grammar's own suffix |
+| `comment.block.test.tiddlywiki5` | `comment.block.test.tiddlywiki5.test` | the test-file grammar's own suffix |
+| `punctuation.definition.comment.block.test.tiddlywiki5` | `punctuation.definition.comment.block.test.tiddlywiki5.test` | the test-file grammar's own suffix |
 
 ## Names that retired
 

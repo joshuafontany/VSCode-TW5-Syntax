@@ -76,12 +76,12 @@
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  64 files, 579 scopes declared, 513 reached (floor 450), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  64 files, 585 scopes declared, 513 reached (floor 450), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
             "held": true,
-            "said": "dark-construct  350 construct(s) over 65 themes, 22 plain, 0 unaccounted"
+            "said": "dark-construct  351 construct(s) over 65 themes, 22 plain, 0 unaccounted"
         },
         {
             "gate": "darkness",

@@ -11,7 +11,7 @@
 		{
 			"comment": "Tokenize tiddler text field.",
 			"begin": "(?<=^$)",
-			"contentName": "meta.text.html.tiddlywiki5 text.html.tiddlywiki5",
+			"contentName": "meta.text.html.tiddlywiki5.tid-file text.html.tiddlywiki5",
 			"patterns": [
 				{
 					"include": "text.html.tiddlywiki5"
@@ -22,7 +22,7 @@
 			"comment": "Tokenize mandatory tiddler metadata.",
 			"begin": "^",
 			"end": "^$|(?=^[ \\t]*type[ \\t]*:[ \\t]*(?:application/json|application/javascript|text/javascript|text/css|text/html|image/svg\\+xml|text/xml|application/xml|text/x-markdown|text/markdown|application/x-tiddler-dictionary|text/plain)[ \\t]*$)",
-			"contentName": "meta.text.tiddler.fields.tiddlywiki5",
+			"contentName": "meta.text.tiddler.fields.tiddlywiki5.tid-file",
 			"patterns": [
 				{
 					"include": "source.tiddlywiki5.fields"
@@ -39,13 +39,13 @@
 					"begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:application/json)[ \\t]*)$",
 					"beginCaptures": {
 						"1": {
-							"name": "entity.other.attribute-name.field.tiddlywiki5"
+							"name": "entity.other.attribute-name.field.tiddlywiki5.tid-file"
 						},
 						"2": {
-							"name": "punctuation.separator.key-value.field.tiddlywiki5"
+							"name": "punctuation.separator.key-value.field.tiddlywiki5.tid-file"
 						},
 						"3": {
-							"name": "string.unquoted.field.value.tiddlywiki5"
+							"name": "string.unquoted.field.value.tiddlywiki5.tid-file"
 						}
 					},
 					"end": "(?!)",
@@ -71,13 +71,13 @@
 					"begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:application/javascript|text/javascript)[ \\t]*)$",
 					"beginCaptures": {
 						"1": {
-							"name": "entity.other.attribute-name.field.tiddlywiki5"
+							"name": "entity.other.attribute-name.field.tiddlywiki5.tid-file"
 						},
 						"2": {
-							"name": "punctuation.separator.key-value.field.tiddlywiki5"
+							"name": "punctuation.separator.key-value.field.tiddlywiki5.tid-file"
 						},
 						"3": {
-							"name": "string.unquoted.field.value.tiddlywiki5"
+							"name": "string.unquoted.field.value.tiddlywiki5.tid-file"
 						}
 					},
 					"end": "(?!)",
@@ -103,13 +103,13 @@
 					"begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:text/css)[ \\t]*)$",
 					"beginCaptures": {
 						"1": {
-							"name": "entity.other.attribute-name.field.tiddlywiki5"
+							"name": "entity.other.attribute-name.field.tiddlywiki5.tid-file"
 						},
 						"2": {
-							"name": "punctuation.separator.key-value.field.tiddlywiki5"
+							"name": "punctuation.separator.key-value.field.tiddlywiki5.tid-file"
 						},
 						"3": {
-							"name": "string.unquoted.field.value.tiddlywiki5"
+							"name": "string.unquoted.field.value.tiddlywiki5.tid-file"
 						}
 					},
 					"end": "(?!)",
@@ -135,13 +135,13 @@
 					"begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:text/html)[ \\t]*)$",
 					"beginCaptures": {
 						"1": {
-							"name": "entity.other.attribute-name.field.tiddlywiki5"
+							"name": "entity.other.attribute-name.field.tiddlywiki5.tid-file"
 						},
 						"2": {
-							"name": "punctuation.separator.key-value.field.tiddlywiki5"
+							"name": "punctuation.separator.key-value.field.tiddlywiki5.tid-file"
 						},
 						"3": {
-							"name": "string.unquoted.field.value.tiddlywiki5"
+							"name": "string.unquoted.field.value.tiddlywiki5.tid-file"
 						}
 					},
 					"end": "(?!)",
@@ -167,13 +167,13 @@
 					"begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:image/svg\\+xml|text/xml|application/xml)[ \\t]*)$",
 					"beginCaptures": {
 						"1": {
-							"name": "entity.other.attribute-name.field.tiddlywiki5"
+							"name": "entity.other.attribute-name.field.tiddlywiki5.tid-file"
 						},
 						"2": {
-							"name": "punctuation.separator.key-value.field.tiddlywiki5"
+							"name": "punctuation.separator.key-value.field.tiddlywiki5.tid-file"
 						},
 						"3": {
-							"name": "string.unquoted.field.value.tiddlywiki5"
+							"name": "string.unquoted.field.value.tiddlywiki5.tid-file"
 						}
 					},
 					"end": "(?!)",
@@ -199,13 +199,13 @@
 					"begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:text/x-markdown|text/markdown)[ \\t]*)$",
 					"beginCaptures": {
 						"1": {
-							"name": "entity.other.attribute-name.field.tiddlywiki5"
+							"name": "entity.other.attribute-name.field.tiddlywiki5.tid-file"
 						},
 						"2": {
-							"name": "punctuation.separator.key-value.field.tiddlywiki5"
+							"name": "punctuation.separator.key-value.field.tiddlywiki5.tid-file"
 						},
 						"3": {
-							"name": "string.unquoted.field.value.tiddlywiki5"
+							"name": "string.unquoted.field.value.tiddlywiki5.tid-file"
 						}
 					},
 					"end": "(?!)",
@@ -231,13 +231,13 @@
 					"begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:application/x-tiddler-dictionary)[ \\t]*)$",
 					"beginCaptures": {
 						"1": {
-							"name": "entity.other.attribute-name.field.tiddlywiki5"
+							"name": "entity.other.attribute-name.field.tiddlywiki5.tid-file"
 						},
 						"2": {
-							"name": "punctuation.separator.key-value.field.tiddlywiki5"
+							"name": "punctuation.separator.key-value.field.tiddlywiki5.tid-file"
 						},
 						"3": {
-							"name": "string.unquoted.field.value.tiddlywiki5"
+							"name": "string.unquoted.field.value.tiddlywiki5.tid-file"
 						}
 					},
 					"end": "(?!)",
@@ -265,13 +265,13 @@
 					"begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:text/plain)[ \\t]*)$",
 					"beginCaptures": {
 						"1": {
-							"name": "entity.other.attribute-name.field.tiddlywiki5"
+							"name": "entity.other.attribute-name.field.tiddlywiki5.tid-file"
 						},
 						"2": {
-							"name": "punctuation.separator.key-value.field.tiddlywiki5"
+							"name": "punctuation.separator.key-value.field.tiddlywiki5.tid-file"
 						},
 						"3": {
-							"name": "string.unquoted.field.value.tiddlywiki5"
+							"name": "string.unquoted.field.value.tiddlywiki5.tid-file"
 						}
 					},
 					"end": "(?!)",

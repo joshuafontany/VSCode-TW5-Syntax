@@ -24,71 +24,71 @@
         {
           "comment": "The reader declares a non-text scalar for these three. boot.js registers a tiddlerfield module for each: created and modified parse through parseDate, and color carries editType \"color\". A date reads as digits and a colour opens with #, which the block reader takes for a numbered list item — measured, colour alone accounts for 486 painted spans across 162 lines, every one of them wrong. The other two declared fields, tags and list, take the wikitext reading instead: see the rule below.",
           "match": "^(color|created|modified)(:)(.*?)$",
-          "name": "meta.tiddler.field.tiddlywiki5",
+          "name": "meta.tiddler.field.tiddlywiki5.fields",
           "captures": {
             "1": {
-              "name": "entity.other.attribute-name.field.tiddlywiki5"
+              "name": "entity.other.attribute-name.field.tiddlywiki5.fields"
             },
             "2": {
-              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+              "name": "punctuation.separator.key-value.field.tiddlywiki5.fields"
             },
             "3": {
-              "name": "string.unquoted.field.value.tiddlywiki5"
+              "name": "string.unquoted.field.value.tiddlywiki5.fields"
             }
           }
         },
         {
           "comment": "A value in the filter language, not in wikitext. TiddlyWiki declares no field type for these, so the set stands as a ruling rather than a harvest, and the reason is measurable: a filter variable reads <count> and <targetTiddler>, which the wikitext reader takes for an HTML tag. Measured across TiddlyWiki’s own tiddlers, condition alone paints 429 spans that name nothing.",
           "match": "^(filter|condition|condition-disabled|first-search-filter|second-search-filter|default-filter|subfilter|tag-filter)(:)(.*?)$",
-          "name": "meta.tiddler.field.tiddlywiki5",
+          "name": "meta.tiddler.field.tiddlywiki5.fields",
           "captures": {
             "1": {
-              "name": "entity.other.attribute-name.field.tiddlywiki5"
+              "name": "entity.other.attribute-name.field.tiddlywiki5.fields"
             },
             "2": {
-              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+              "name": "punctuation.separator.key-value.field.tiddlywiki5.fields"
             },
             "3": {
-              "name": "string.unquoted.field.value.tiddlywiki5"
+              "name": "string.unquoted.field.value.tiddlywiki5.fields"
             }
           }
         },
         {
           "comment": "Base-64 image bytes. A blob of base-64 carries [[ and // by accident of the alphabet, and the reader paints 1622 wikilink spans and 429 italics across ten fields. Bytes name no tiddler.",
           "match": "^(avatar)(:)(.*?)$",
-          "name": "meta.tiddler.field.tiddlywiki5",
+          "name": "meta.tiddler.field.tiddlywiki5.fields",
           "captures": {
             "1": {
-              "name": "entity.other.attribute-name.field.tiddlywiki5"
+              "name": "entity.other.attribute-name.field.tiddlywiki5.fields"
             },
             "2": {
-              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+              "name": "punctuation.separator.key-value.field.tiddlywiki5.fields"
             },
             "3": {
-              "name": "string.unquoted.field.value.tiddlywiki5"
+              "name": "string.unquoted.field.value.tiddlywiki5.fields"
             }
           }
         },
         {
           "comment": "Every other header field takes the wikitext reading.\n\nThe reading follows the readers rather than a taste for colour. A header value carries a tiddler name far more often than it carries anything else, and the two readers spell a tiddler name the same way: boot.js:406 parses a title list with parseStringArray, whose bracketed member survives the round trip through stringifyList, and filters.js:24 parses [[Some Title]] as a run whose empty operator defaults to title. The enlist operator joins them outright, taking a string-array operand inside a filter. So the brackets in tags and list mark a quoted title under BOTH readers, and the mark carries the colour.\n\nMeasured over TiddlyWiki’s 7012 .tid and .meta files: tags paints 15317 spans and not one falls outside the tiddler-name family; across 3122 bracketed members none carries a pipe, so the one shape that would part a quoted title from a pretty link stands empty. Opening every field but the ruled sets above reads 11443 lines rightly and 19 wrongly.\n\nA value opens mid-line inside a capture, so the block rules anchored on ^ stand aside and the inline ones reach the value as a reader meets it. A capture confines to its own span, so an unclosed construct cannot swallow the field line beneath it — ten broken values probed, ten boundaries held.",
           "match": "^([^:]*?)(:)(.*?)$",
-          "name": "meta.tiddler.field.tiddlywiki5",
+          "name": "meta.tiddler.field.tiddlywiki5.fields",
           "captures": {
             "1": {
-              "name": "entity.other.attribute-name.field.wikitext.tiddlywiki5",
+              "name": "entity.other.attribute-name.field.wikitext.tiddlywiki5.fields",
               "patterns": [
                 {
                   "comment": "A control character alone breaks a field name; TW5 v5.2.x admits every other character in one.",
                   "match": "(?=[\\x00-\\x1f])(.*)",
-                  "name": "invalid.illegal.field.name.tiddlywiki5"
+                  "name": "invalid.illegal.field.name.tiddlywiki5.fields"
                 }
               ]
             },
             "2": {
-              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+              "name": "punctuation.separator.key-value.field.tiddlywiki5.fields"
             },
             "3": {
-              "name": "meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5",
+              "name": "meta.tiddler.field.value.wikitext.tiddlywiki5.fields text.html.tiddlywiki5",
               "patterns": [
                 {
                   "include": "text.html.tiddlywiki5"
@@ -102,16 +102,16 @@
     "dictionary-entry": {
       "comment": "One entry of a tiddler dictionary: a key, a colon, and a value TiddlyWiki renders as wikitext.\n\nA dictionary key names no tiddler field, so the field rules above cannot reach it. Those rules hold three names plain — a colour, two dates — and a few more by ruling, each on the ground that the reader declares what the value holds. A dictionary declares nothing: an entry called color carries a key of that name and not the color field, and a palette is exactly where an entry called color holds a construct worth reading. Every value takes the wikitext reading, which the ground supports: of 2863 entries across TiddlyWiki’s own 28 dictionaries, 958 carry a wikitext construct, most of them a `<<colour ...>>` call in a palette.\n\nThe scopes come from the field reading above rather than from names of their own. An entry carries a key and a value, the reading matches, and a scope of its own would ask the corpus for ground that says nothing new.",
       "match": "^([^:\\r\\n]*)(:)(.*)$",
-      "name": "meta.tiddler.field.tiddlywiki5",
+      "name": "meta.tiddler.field.tiddlywiki5.fields",
       "captures": {
         "1": {
-          "name": "entity.other.attribute-name.field.wikitext.tiddlywiki5"
+          "name": "entity.other.attribute-name.field.wikitext.tiddlywiki5.fields"
         },
         "2": {
-          "name": "punctuation.separator.key-value.field.tiddlywiki5"
+          "name": "punctuation.separator.key-value.field.tiddlywiki5.fields"
         },
         "3": {
-          "name": "meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5",
+          "name": "meta.tiddler.field.value.wikitext.tiddlywiki5.fields text.html.tiddlywiki5",
           "patterns": [
             {
               "include": "text.html.tiddlywiki5"

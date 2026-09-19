@@ -14,7 +14,7 @@
 # filter-valued field, whose <variable> the wikitext reader takes for an HTML tag, and a field
 # carrying base-64 bytes, which name no tiddler.
 title: A [[Linked Title]]
-#<- entity.other.attribute-name.field.wikitext.tiddlywiki5
+#<- entity.other.attribute-name.field.wikitext.tiddlywiki5.fields
 #          ^^^^^^^^^^^^ string.other.link.title.tiddlywiki5
 tags: One [[Two Words]] Three
 #         ^ punctuation.definition.link.begin.tiddlywiki5
@@ -24,13 +24,13 @@ list: [[$:/core/ui/Foo]]
 url: https://example.com/a
 #    ^^^^^ markup.underline.link.external.https.tiddlywiki5
 color: #ffddee
-#<- entity.other.attribute-name.field.tiddlywiki5
-#      ^^^^^^^ string.unquoted.field.value.tiddlywiki5
+#<- entity.other.attribute-name.field.tiddlywiki5.fields
+#      ^^^^^^^ string.unquoted.field.value.tiddlywiki5.fields
 modified: 20260101000000000
-#         ^^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5
+#         ^^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5.fields
 condition: [<count>compare:lte[1]]
-#          ^^^^^^^^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5
+#          ^^^^^^^^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5.fields
 avatar: /9j/4AAQSkZ//abc
-#       ^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5
+#       ^^^^^^^^^^^^^^^^ string.unquoted.field.value.tiddlywiki5.fields
 
 The body.

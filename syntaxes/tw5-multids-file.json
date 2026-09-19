@@ -11,7 +11,7 @@
     {
       "comment": "The body holds tiddler lines. Wikitext reads inside a value, never at line level, so an unmatched line cannot open a run that swallows the lines after it. A file whose header names no `type` reads every line's text as wikitext, the way TiddlyWiki reads a tiddler with no type.",
       "begin": "(?<=^$)",
-      "contentName": "meta.multids.text.html.tiddlywiki5",
+      "contentName": "meta.multids.text.html.tiddlywiki5.multids-file",
       "patterns": [
         {
           "include": "#comment"
@@ -25,7 +25,7 @@
       "comment": "Tokenize mandatory tiddler metadata.",
       "begin": "^",
       "end": "^$|(?=^[ \\t]*type[ \\t]*:[ \\t]*(?:application/json|application/javascript|text/javascript|text/css|text/html|image/svg\\+xml|text/xml|application/xml|text/x-markdown|text/markdown|text/plain)[ \\t]*$)",
-      "contentName": "meta.multids.tiddler.fields.tiddlywiki5",
+      "contentName": "meta.multids.tiddler.fields.tiddlywiki5.multids-file",
       "patterns": [
         {
           "include": "source.tiddlywiki5.fields"
@@ -73,13 +73,13 @@
           "begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:application/json)[ \\t]*)$",
           "beginCaptures": {
             "1": {
-              "name": "entity.other.attribute-name.field.tiddlywiki5"
+              "name": "entity.other.attribute-name.field.tiddlywiki5.multids-file"
             },
             "2": {
-              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+              "name": "punctuation.separator.key-value.field.tiddlywiki5.multids-file"
             },
             "3": {
-              "name": "string.unquoted.field.value.tiddlywiki5"
+              "name": "string.unquoted.field.value.tiddlywiki5.multids-file"
             }
           },
           "end": "(?!)",
@@ -88,7 +88,7 @@
               "comment": "The body, one tiddler per line, each line's text in the language the header's type names.",
               "begin": "(?<=^$)",
               "end": "(?!)",
-              "contentName": "meta.multids.text.html.tiddlywiki5",
+              "contentName": "meta.multids.text.html.tiddlywiki5.multids-file",
               "patterns": [
                 {
                   "include": "#comment"
@@ -108,13 +108,13 @@
           "begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:application/javascript|text/javascript)[ \\t]*)$",
           "beginCaptures": {
             "1": {
-              "name": "entity.other.attribute-name.field.tiddlywiki5"
+              "name": "entity.other.attribute-name.field.tiddlywiki5.multids-file"
             },
             "2": {
-              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+              "name": "punctuation.separator.key-value.field.tiddlywiki5.multids-file"
             },
             "3": {
-              "name": "string.unquoted.field.value.tiddlywiki5"
+              "name": "string.unquoted.field.value.tiddlywiki5.multids-file"
             }
           },
           "end": "(?!)",
@@ -123,7 +123,7 @@
               "comment": "The body, one tiddler per line, each line's text in the language the header's type names.",
               "begin": "(?<=^$)",
               "end": "(?!)",
-              "contentName": "meta.multids.text.html.tiddlywiki5",
+              "contentName": "meta.multids.text.html.tiddlywiki5.multids-file",
               "patterns": [
                 {
                   "include": "#comment"
@@ -143,13 +143,13 @@
           "begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:text/css)[ \\t]*)$",
           "beginCaptures": {
             "1": {
-              "name": "entity.other.attribute-name.field.tiddlywiki5"
+              "name": "entity.other.attribute-name.field.tiddlywiki5.multids-file"
             },
             "2": {
-              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+              "name": "punctuation.separator.key-value.field.tiddlywiki5.multids-file"
             },
             "3": {
-              "name": "string.unquoted.field.value.tiddlywiki5"
+              "name": "string.unquoted.field.value.tiddlywiki5.multids-file"
             }
           },
           "end": "(?!)",
@@ -158,7 +158,7 @@
               "comment": "The body, one tiddler per line, each line's text in the language the header's type names.",
               "begin": "(?<=^$)",
               "end": "(?!)",
-              "contentName": "meta.multids.text.html.tiddlywiki5",
+              "contentName": "meta.multids.text.html.tiddlywiki5.multids-file",
               "patterns": [
                 {
                   "include": "#comment"
@@ -178,13 +178,13 @@
           "begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:text/html)[ \\t]*)$",
           "beginCaptures": {
             "1": {
-              "name": "entity.other.attribute-name.field.tiddlywiki5"
+              "name": "entity.other.attribute-name.field.tiddlywiki5.multids-file"
             },
             "2": {
-              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+              "name": "punctuation.separator.key-value.field.tiddlywiki5.multids-file"
             },
             "3": {
-              "name": "string.unquoted.field.value.tiddlywiki5"
+              "name": "string.unquoted.field.value.tiddlywiki5.multids-file"
             }
           },
           "end": "(?!)",
@@ -193,7 +193,7 @@
               "comment": "The body, one tiddler per line, each line's text in the language the header's type names.",
               "begin": "(?<=^$)",
               "end": "(?!)",
-              "contentName": "meta.multids.text.html.tiddlywiki5",
+              "contentName": "meta.multids.text.html.tiddlywiki5.multids-file",
               "patterns": [
                 {
                   "include": "#comment"
@@ -213,13 +213,13 @@
           "begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:image/svg\\+xml|text/xml|application/xml)[ \\t]*)$",
           "beginCaptures": {
             "1": {
-              "name": "entity.other.attribute-name.field.tiddlywiki5"
+              "name": "entity.other.attribute-name.field.tiddlywiki5.multids-file"
             },
             "2": {
-              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+              "name": "punctuation.separator.key-value.field.tiddlywiki5.multids-file"
             },
             "3": {
-              "name": "string.unquoted.field.value.tiddlywiki5"
+              "name": "string.unquoted.field.value.tiddlywiki5.multids-file"
             }
           },
           "end": "(?!)",
@@ -228,7 +228,7 @@
               "comment": "The body, one tiddler per line, each line's text in the language the header's type names.",
               "begin": "(?<=^$)",
               "end": "(?!)",
-              "contentName": "meta.multids.text.html.tiddlywiki5",
+              "contentName": "meta.multids.text.html.tiddlywiki5.multids-file",
               "patterns": [
                 {
                   "include": "#comment"
@@ -248,13 +248,13 @@
           "begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:text/x-markdown|text/markdown)[ \\t]*)$",
           "beginCaptures": {
             "1": {
-              "name": "entity.other.attribute-name.field.tiddlywiki5"
+              "name": "entity.other.attribute-name.field.tiddlywiki5.multids-file"
             },
             "2": {
-              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+              "name": "punctuation.separator.key-value.field.tiddlywiki5.multids-file"
             },
             "3": {
-              "name": "string.unquoted.field.value.tiddlywiki5"
+              "name": "string.unquoted.field.value.tiddlywiki5.multids-file"
             }
           },
           "end": "(?!)",
@@ -263,7 +263,7 @@
               "comment": "The body, one tiddler per line, each line's text in the language the header's type names.",
               "begin": "(?<=^$)",
               "end": "(?!)",
-              "contentName": "meta.multids.text.html.tiddlywiki5",
+              "contentName": "meta.multids.text.html.tiddlywiki5.multids-file",
               "patterns": [
                 {
                   "include": "#comment"
@@ -283,13 +283,13 @@
           "begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:text/plain)[ \\t]*)$",
           "beginCaptures": {
             "1": {
-              "name": "entity.other.attribute-name.field.tiddlywiki5"
+              "name": "entity.other.attribute-name.field.tiddlywiki5.multids-file"
             },
             "2": {
-              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+              "name": "punctuation.separator.key-value.field.tiddlywiki5.multids-file"
             },
             "3": {
-              "name": "string.unquoted.field.value.tiddlywiki5"
+              "name": "string.unquoted.field.value.tiddlywiki5.multids-file"
             }
           },
           "end": "(?!)",
@@ -298,7 +298,7 @@
               "comment": "The body, one tiddler per line, its text left plain.",
               "begin": "(?<=^$)",
               "end": "(?!)",
-              "contentName": "meta.multids.text.html.tiddlywiki5",
+              "contentName": "meta.multids.text.html.tiddlywiki5.multids-file",
               "patterns": [
                 {
                   "include": "#comment"

@@ -10,11 +10,11 @@
 # below it in the body.
 title: Probe
 type: application/json
-#<- source.tiddlywiki5.tid-file entity.other.attribute-name.field.tiddlywiki5
-#   ^ source.tiddlywiki5.tid-file punctuation.separator.key-value.field.tiddlywiki5
-#    ^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file string.unquoted.field.value.tiddlywiki5
+#<- source.tiddlywiki5.tid-file entity.other.attribute-name.field.tiddlywiki5.tid-file
+#   ^ source.tiddlywiki5.tid-file punctuation.separator.key-value.field.tiddlywiki5.tid-file
+#    ^^^^^^^^^^^^^^^^^ source.tiddlywiki5.tid-file string.unquoted.field.value.tiddlywiki5.tid-file
 tags: One Two
-#<- source.tiddlywiki5.tid-file entity.other.attribute-name.field.wikitext.tiddlywiki5
+#<- source.tiddlywiki5.tid-file entity.other.attribute-name.field.wikitext.tiddlywiki5.fields
 
 { "key": [1, true] }
 #<- source.tiddlywiki5.tid-file meta.embedded.block.json source.json

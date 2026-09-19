@@ -54,7 +54,7 @@ const PLAIN = new Set([
   scope,
   'text.html.tiddlywiki5',
   'meta.text.tiddler.text.tiddlywiki5',
-  'meta.text.html.tiddlywiki5',
+  'meta.text.html.tiddlywiki5.tid-file',
   'meta.paragraph.tiddlywiki5',
   'markup.other.paragraph.tiddlywiki5',
   'field.value.text.html.tiddlywiki5'
