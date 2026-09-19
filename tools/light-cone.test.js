@@ -115,10 +115,15 @@ test('two runs of the typo arm read the same verdict', live, () => {
 
 // The guard on the arm's own ambition: a class no reaching arm moved stays unproven however loudly
 // a reader's typing moves it. Counting sensitivity as reach states the verdict this probe retired.
+//
+// THE EXAMPLE CLASS IS READER-KEYED (tools/reader-scope.js). The nested-fence divergence
+// corpus/swallow-ledger.txt's `overbound codeblock` and `overbound codeinline` rulings both name
+// lands on `codeblock` under this repository's own fork and on `codeinline` under the pinned 5.4.1
+// devDependency — measured under both, so either name proves the guard.
 test('the typo arm moves no class out of unproven', live, () => {
   const { out } = runTool('light-cone.js');
   const moved = Number(/typo arm moved (\d+)/.exec(out)[1]);
   assert.ok(moved > 0, 'the arm proved nothing at all, so this guard guards nothing');
-  assert.match(out, /ruled without proof: overbound codeblock/,
+  assert.match(out, /ruled without proof: overbound code(?:block|inline)/,
     'a class only the typo arm moved left `unproven`, so sensitivity read as reach');
 });
