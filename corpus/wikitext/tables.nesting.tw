@@ -1,0 +1,73 @@
+A CELL READS AS AN INLINE RUN. The host parses each cell with `parseInlineRun` and ends it on the
+next pipe, so every inline construct the host knows stands inside one.
+
+|!Construct |!Inside a cell |h
+|wikilink |[[Target]] |
+|piped link |[[Label|Target]] |
+|external link |[ext[caption|https://example.com]] |
+|image |[img[alt text|pic.png]] |
+|transclusion |{{A/Tiddler}} |
+|field transclusion |{{A/Tiddler!!field}} |
+|index transclusion |{{A/Tiddler##index}} |
+|templated transclusion |{{A/Tiddler||A/Template}} |
+|filtered transclusion |{{{ [tag[Done]sort[title]] }}} |
+|macro call |<<greeting name="world">> |
+|procedure call |<<my.proc a:"1" b:[[two]]>> |
+|variable |<<currentTiddler>> |
+|multi-valued variable |((aVariable)) |
+|widget |<$link to="Target">go</$link> |
+|self-closing widget |<$list filter="[tag[x]]" variable="i"/> |
+|substituted attribute |<$text text=`a $(v)$ b`/> |
+|html element |<span class="c">text</span> |
+|conditional |<% if [[x]] %>yes<% else %>no<% endif %> |
+|style run |@@color:red;styled@@ |
+|class run |@@.a-class styled@@ |
+|emphasis |''bold'' //italic// __under__ ~~strike~~ |
+|raised and lowered |^^super^^ and ,,sub,, |
+|code span |`code` |
+|entities |&amp; and &#x263A; |
+|comment |<!-- a note --> |
+
+A PIPE INSIDE A CONSTRUCT BELONGS TO THE CONSTRUCT. Each pipe below stands where the host has
+already entered a rule, so it ends no cell.
+
+|attribute value |<$link to="a|b">a pipe in a value</$link> |
+|call parameter |<<m "a|b">> |
+|bold run |''a | b'' |
+|template only |{{||A/Template}} |
+
+EVERY ROW FORM AT ONCE. The caption stands last and the host moves it to the front, the class rows
+accumulate, and each change of row type opens a container of its own.
+
+|tbl-a tbl-b |k
+|!Name |!Value |h
+|one |1 |
+|two |2 |
+|Totals |3 |f
+|tbl-c |k
+|a caption carrying ''bold'' and [[a link|Target]] |c
+
+A GRID OF SPANS. A cell holding only `>` joins the next cell, only `<` joins the cell before it, and
+only `~` joins the cell above.
+
+|!A |!B |!C |h
+|a1 |>|bc1 |
+|a2 |b2 |<|
+|~|b3 |c3 |
+|a4 |~|c4 |
+
+VERTICAL ALIGNMENT, THEN SPACES, THEN THE HEADING MARK. The host reads a cell's leading marks in
+that order, so a heading can carry both alignments.
+
+|^ !top heading |, !bottom heading | !centred heading |h
+|^top | centred | right-aligned|
+
+A CAPTION ROW REPLACES THE ONE ABOVE IT, and a row type the table already opened opens a second
+container when it returns.
+
+|a caption the next row replaces |c
+|the caption that stands |c
+|!first head |h
+|body |
+|!second head |h
+|body |

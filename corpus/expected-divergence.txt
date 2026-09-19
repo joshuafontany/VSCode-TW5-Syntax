@@ -173,8 +173,6 @@ spans.multiline.tw:punctuation.separator.key-value.html   # READER 5.5.0-prerele
 spans.multiline.tw:string.quoted.double.html   # an XML declaration inside a typed block: the host parses the block under its declared type and builds no HTML element, where the grammar reads the tag it can see
 spans.multiline.tw:punctuation.definition.tag.begin.html   # READER 5.4.1 — the `// a line comment` inside the script opens an italic run with no closer ahead; 5.4.1 still BUILDS it, scanning to the end of the block, so the `</script>` that closes the element reads as italic text there, where the fork refuses the run and builds the closing tag the grammar paints
 spans.multiline.tw:punctuation.definition.tag.end.html   # READER 5.4.1 — the same unterminated italic run, reaching the `>` of `</script>`
-pragmas.signatures.tw:punctuation.definition.substitution.begin   # the carrier's substitution stands in a body TiddlyWiki reads as text, and the `$` marks now carry the punctuation name that decides their colour beside the keyword name they publish
-pragmas.signatures.tw:punctuation.definition.substitution.end   # the carrier's substitution stands in a body TiddlyWiki reads as text, and the `$` marks now carry the punctuation name that decides their colour beside the keyword name they publish
 
 # A DELIMITER OVER KEPT TEXT. overreach-check judges a claim naming one of this grammar's delimiters
 # against the TIGHTEST cover, since such a claim asserts the character IS markup; a table, a cell or
@@ -194,15 +192,6 @@ tw5.com/tiddlers/widgets/ListWidget.tid:punctuation.definition.list   # READER 5
 # SURFACED WHEN THE CORPUS JOINED THE GATES. overreach-check ran over corpus/ only by hand while
 # gate-report skipped it, so the divergences below stood unreported. Each stands traced; OWED ones
 # retire with the fix that pays them.
-pragmas.signatures.tw:string.quoted.double.html   # OWED — the carrier gives a `\define` a `((…))` default, which only a `\procedure` reads: TiddlyWiki takes `((a` as a default and `))` as the body's opening, and every line below it answers to that reading
-pragmas.signatures.tw:meta.variable.macro.body   # OWED — the same `((…))` default the carrier gives a `\define`
-pragmas.signatures.tw:entity.name.substitute-parameter   # OWED — the same `((…))` default the carrier gives a `\define`
-pragmas.signatures.tw:keyword.operator.assignment   # OWED — the same `((…))` default the carrier gives a `\define`
-pragmas.signatures.tw:punctuation.definition.directive   # OWED — the same `((…))` default the carrier gives a `\define`
-pragmas.signatures.tw:variable.parameter   # OWED — the same `((…))` default the carrier gives a `\define`
-pragmas.signatures.tw:keyword.control.directive   # OWED — the same `((…))` default the carrier gives a `\define`
-pragmas.signatures.tw:meta.directive.parameters   # OWED — the same `((…))` default the carrier gives a `\define`
-pragmas.signatures.tw:punctuation.definition.variable.parameters   # OWED — the same `((…))` default the carrier gives a `\define`
 inline.links.tw:keyword.other.img   # OWED — an `[img[` with no closer builds no image, and the grammar paints the opener's keyword before any closer stands
 inline.links.tw:keyword.other.ext   # OWED — an `[ext[` with no closer builds no ext link, and the grammar paints the opener's keyword before any closer stands
 html.deprecated.tw:punctuation.definition.tag.begin.html   # OWED — `<div ="x">` and `<div style==>` build no element, and the grammar paints their tags

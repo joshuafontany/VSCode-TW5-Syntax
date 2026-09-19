@@ -4,12 +4,18 @@
 |A caption |c
 |myclass |k
 
-|~ |a rowspan above |
-|> |a colspan right |
-|< |a colspan left |
+|above |cell |
+|~|a rowspan joining the cell above |
+|>|a colspan joining the cell to its right |
+|a cell |<|
 |^top aligned |,bottom aligned |
-| centred | left|
-|right |normal |
+| centred | right-aligned|
+|left-aligned |unaligned|
+
+A MARK WITH A SPACE BESIDE IT READS AS TEXT. The host compares a cell's whole content against `~`,
+`>` and `<`, so each cell below builds an ordinary cell holding its mark.
+
+|~ |> |< |
 
 |a link |[[Some Target]] |
 |transclusion |{{Some/Tiddler}} |

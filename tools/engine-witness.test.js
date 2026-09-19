@@ -69,19 +69,23 @@ test('every ruling in the ledger still names a refusal', live, () => {
 test('the witness compares what the two engines MATCH, not only what they compile', live, () => {
   const { code, out } = runTool('engine-witness.js', ['--behaviour']);
   assert.match(out, /engine-witness\s+\d+ pattern\(s\) read against \d+ corpus line\(s\)/, out.slice(-900));
-  assert.match(out, /0 that match differently/, out.slice(-900));
+  assert.match(out, /0 unruled/, out.slice(-900));
   assert.strictEqual(code, 0, out.slice(-900));
 });
 
-// AND THE ZERO MUST BE ABLE TO MOVE. No genuine divergence stands to prove this comparator sees one —
-// thirteen candidates from the known differences between the engines all read alike, because the
-// translation is faithful — so the arm mispairs instead, reading each pattern's translation against the
-// NEXT pattern's Oniguruma answer. A count that survives that measures nothing.
+// THE ZERO MOVED ONCE A GENUINE DIVERGENCE LANDED. `corpus/wikitext/tables.malformed.tw` carries a
+// literal tab beside a table cell's heading mark — the one construct where the JS translation of
+// `tw5-fields.json`'s control-character lookahead reads a corpus line the WASM build refuses —
+// ruled `BEHAVIOUR —` in `corpus/engine-ledger.txt` so this arm reads it as explained rather than
+// unruled. The count of thirteen mispairing candidates below still all read alike, because the
+// translation of THOSE patterns stays faithful; the arm mispairs them instead, reading each
+// pattern's translation against the NEXT pattern's Oniguruma answer, so a count that survives that
+// measures nothing.
 test('the behavioural reading collapses when the two engines answer for different patterns', live, () => {
   const honest = runTool('engine-witness.js', ['--behaviour']).out;
   const broken = runTool('engine-witness.js', ['--behaviour', '--must-fail']).out;
   const count = (o) => Number(/(\d+) that match differently/.exec(o)?.[1] ?? -1);
-  assert.strictEqual(count(honest), 0, honest.slice(-500));
+  assert.strictEqual(count(honest), 1, honest.slice(-500));
   assert.ok(count(broken) > 100,
     `the mispaired arm read ${count(broken)} difference(s), so the pairing carries no weight`);
 });
