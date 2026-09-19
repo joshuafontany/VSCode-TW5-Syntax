@@ -35,6 +35,16 @@ const SETS = ['snippets/snippets.json', 'snippets/tiddler-fields.json'];
 const host = resolveTiddlyWiki();
 const live = { skip: host ? false : 'no TiddlyWiki checkout resolved', timeout: 300000 };
 
+// FEATURE-DETECTED, the way recovery-witness.js and tools/reader-scope.js's other callers already
+// decide: `WikiParser.addDiagnostic` is this repository's own fork's own addition, and the pinned
+// devDependency's `diagnostics()` always answers `[]`, on any input — a reader without the API
+// answers neither of the two questions below.
+const supportsDiagnostics = host ? Array.isArray(boot(host).parse('x').diagnostics) : false;
+const diagnosticsLive = {
+  skip: !host ? 'no TiddlyWiki checkout resolved' : !supportsDiagnostics ? 'this reader carries no parser diagnostics API' : false,
+  timeout: 300000
+};
+
 /** A snippet body as a reader leaves it: every tabstop standing for something typed. */
 function filled(body) {
   return (Array.isArray(body) ? body.join('\n') : body)
@@ -55,7 +65,7 @@ const sets = SETS.map((file) => ({
   snippets: JSON.parse(fs.readFileSync(path.join(ROOT, file), 'utf8'))
 }));
 
-test('every snippet inserts a construct TiddlyWiki closes', live, () => {
+test('every snippet inserts a construct TiddlyWiki closes', diagnosticsLive, () => {
   const oracle = boot(host);
   const broken = [];
   for (const { file, snippets } of sets) {
@@ -69,7 +79,7 @@ test('every snippet inserts a construct TiddlyWiki closes', live, () => {
   assert.deepStrictEqual(broken, [], 'snippet(s) inserting a construct the parser reports');
 });
 
-test('a snippet that never closes its construct reads as broken', live, () => {
+test('a snippet that never closes its construct reads as broken', diagnosticsLive, () => {
   // The collision. Without it this gate proves only that nothing happened to fail today.
   const oracle = boot(host);
   const diagnostics = oracle.diagnostics(filled(['@@color:red;', 'styled ${1:text}'])) || [];

@@ -10,20 +10,39 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { runTool, ROOT } = require('./run-tool.js');
 const { runInSandbox } = require('./grammar-sandbox.js');
+const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
 
 const live = { skip: false, timeout: 600000 };
+
+// FEATURE-DETECTED, the same way recovery-witness.js itself decides: `WikiParser.addDiagnostic` is
+// this repository's own fork's own addition, and the pinned devDependency's `parseText` carries no
+// `diagnostics` array on any input. Every test below that needs an actual diagnostic to stand on
+// SKIPS where this reader carries none, rather than reading the tool's own honest SKIP as a
+// failure.
+const supportsDiagnostics = Array.isArray(boot(resolveTiddlyWiki()).parse('x').diagnostics);
+const diagnosticsLive = supportsDiagnostics
+  ? live
+  : { skip: 'this reader carries no parser diagnostics API', timeout: 600000 };
 
 // TiddlyWiki's parser recovers from an unterminated construct and RECORDS the recovery — 17 wiki
 // rules raise a code. The grammar carries no notion of any of them, so a reader meets an
 // unterminated bold painted exactly like a bold that closed.
-test('the witness reads the host diagnostics and reports what the grammar marks', live, () => {
-  const { out } = runTool('recovery-witness.js');
-  assert.match(out, /recovery-witness  \d+ diagnostic\(s\) across \d+ carrier\(s\), \d+ code\(s\)/, out.slice(-600));
+//
+// A reader without the diagnostics API answers neither PASS nor FAIL — recovery-witness.js reports
+// SKIP instead, and this is the control: the tool still exits clean, and still says why.
+test('the witness reads the host diagnostics and reports what the grammar marks, or SKIPs honestly where the reader carries none', live, () => {
+  const { out, code } = runTool('recovery-witness.js');
+  assert.strictEqual(code, 0, out.slice(-600));
+  if (supportsDiagnostics) {
+    assert.match(out, /recovery-witness  \d+ diagnostic\(s\) across \d+ carrier\(s\), \d+ code\(s\)/, out.slice(-600));
+  } else {
+    assert.match(out, /^recovery-witness {2}SKIP —.*diagnostics API/m, out.slice(-600));
+  }
 });
 
 // THE POPULATION COMES FROM THE HOST. A code this repository never met still reaches the reading
 // the day somebody writes a carrier that raises it.
-test('the codes derive from the host, never from a list here', live, () => {
+test('the codes derive from the host, never from a list here', diagnosticsLive, () => {
   const { out } = runTool('recovery-witness.js', ['--verbose']);
   for (const code of ['unterminated-bold', 'unterminated-quoteblock']) {
     assert.match(out, new RegExp(code), `the sweep never met \`${code}\`: ${out.slice(-400)}`);
@@ -31,7 +50,7 @@ test('the codes derive from the host, never from a list here', live, () => {
 });
 
 // The gate: a code standing silent with no ruling fails, the way an unruled swallow does.
-test('a silent code with no ruling fails the gate', live, () => {
+test('a silent code with no ruling fails the gate', diagnosticsLive, () => {
   const { code, out } = runInSandbox(
     (sandbox) => {
       const ledger = path.join(sandbox, 'corpus', 'recovery-ledger.txt');
@@ -46,7 +65,7 @@ test('a silent code with no ruling fails the gate', live, () => {
 });
 
 // And the other direction: a ruling that explains no code outlives what it explains.
-test('a ruling explaining no code fails the gate', live, () => {
+test('a ruling explaining no code fails the gate', diagnosticsLive, () => {
   const { code, out } = runInSandbox(
     (sandbox) => {
       const ledger = path.join(sandbox, 'corpus', 'recovery-ledger.txt');
@@ -79,8 +98,7 @@ test('every ruling names a ceiling that stands', live, () => {
 //
 // A BLOCK CONSTRUCT THAT NEVER CLOSES SWALLOWS EVERY RECOVERY AFTER IT, which is why each block
 // shape takes a carrier of its own rather than a line in a shared one.
-test('every unterminated recovery the host declares reaches a ruling', live, () => {
-  const { resolveTiddlyWiki } = require('./tw5-oracle.js');
+test('every unterminated recovery the host declares reaches a ruling', diagnosticsLive, () => {
   const rules = path.join(resolveTiddlyWiki(), 'core', 'modules', 'parsers', 'wikiparser', 'rules');
   assert.ok(fs.existsSync(rules), `the host's wiki rules stand nowhere at ${rules}`);
   // THE RULES NEST. Six of the sixteen live under `rules/emphasis/`, so a flat read of the
