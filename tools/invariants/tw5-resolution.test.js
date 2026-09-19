@@ -30,20 +30,17 @@ test('TiddlyWiki stands pinned, exactly, and only for development', () => {
   assert.strictEqual((pkg.dependencies || {}).tiddlywiki, undefined, 'a parser the gates read must not ship to users');
 });
 
-test('a checkout beside this repository outranks the pinned package', (t) => {
-  // The ORDER under test answers only when nobody names a reader: `TW5_PATH` outranks both, so a
-  // run choosing the pinned reader on purpose would otherwise read as the order broken.
-  const named = process.env.TW5_PATH;
-  delete process.env.TW5_PATH;
-  t.after(() => { if (named !== undefined) process.env.TW5_PATH = named; });
+test('a checkout beside this repository outranks the pinned package', () => {
+  // The ORDER under test answers only when nobody names a reader, so it asks with an environment
+  // naming none: a run choosing the pinned reader on purpose must not read as the order broken.
   const sibling = path.resolve(ROOT, '..', 'TiddlyWiki5');
   if (!fs.existsSync(path.join(sibling, 'boot', 'boot.js'))) {
     // No checkout stands here, so the package answers and the order stays unreadable.
-    assert.ok(resolveTiddlyWiki(), 'neither a checkout nor the package resolved');
+    assert.ok(resolveTiddlyWiki({}), 'neither a checkout nor the package resolved');
     return;
   }
   assert.strictEqual(
-    resolveTiddlyWiki(),
+    resolveTiddlyWiki({}),
     sibling,
     'the pinned package answered where a checkout stands — every gate would then read a released parser'
   );

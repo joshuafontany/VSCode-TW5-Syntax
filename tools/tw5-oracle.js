@@ -230,10 +230,11 @@ function resolveSeed() {
   return candidates.find((c) => c && fs.existsSync(c)) || null;
 }
 
-function resolveTiddlyWiki() {
+function resolveTiddlyWiki(env = process.env) {
   const candidates = [];
-  // TW5_PATH names a checkout outright and outranks everything.
-  if (process.env.TW5_PATH) candidates.push(process.env.TW5_PATH);
+  // TW5_PATH names a checkout outright and outranks everything. A caller asking the order beneath
+  // it passes an environment that names none.
+  if (env.TW5_PATH) candidates.push(env.TW5_PATH);
   // A checkout beside this one outranks the pinned package. Parser work happens in a checkout,
   // and the released package would answer for a parser that work has already moved past —
   // silently, since both resolve and both boot.

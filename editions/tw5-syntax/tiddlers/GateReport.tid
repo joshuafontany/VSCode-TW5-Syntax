@@ -14,7 +14,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "ablation",
             "held": true,
-            "said": "ablation-witness  332 finding(s) over 72 carrier(s): 332 declared (332 owed), 0 undeclared, 0 stale"
+            "said": "ablation-witness  337 finding(s) over 74 carrier(s): 337 declared (337 owed), 0 undeclared, 0 stale"
         },
         {
             "gate": "attribute-guard",
@@ -34,7 +34,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "brackets",
             "held": true,
-            "said": "bracket-witness  94 carrier(s), 24 red bracket(s): 24 declared (2 owed), 0 undeclared, 0 stale; 8 in degenerate carrier(s)"
+            "said": "bracket-witness  96 carrier(s), 22 red bracket(s): 22 declared (0 owed), 0 undeclared, 0 stale; 8 in degenerate carrier(s)"
         },
         {
             "gate": "builtins",
@@ -79,12 +79,12 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "contrast",
             "held": true,
-            "said": "contrast-witness  285 stack(s) over 65 theme(s), 1495 prose reading(s), 2 above the bar of 16, 0 unruled, 0 explaining nothing"
+            "said": "contrast-witness  286 stack(s) over 65 theme(s), 1532 prose reading(s), 2 above the bar of 16, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  62 files, 573 scopes declared, 513 reached (floor 450), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  64 files, 573 scopes declared, 513 reached (floor 450), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
@@ -94,7 +94,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "darkness",
             "held": true,
-            "said": "darkness-witness  21 construct line(s) over 72 carrier(s) read dark: 21 declared (21 owed), 0 undeclared, 0 stale"
+            "said": "darkness-witness  19 construct line(s) over 74 carrier(s) read dark: 19 declared (19 owed), 0 undeclared, 0 stale"
         },
         {
             "gate": "delimiters",
@@ -104,12 +104,12 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "divergence-staleness",
             "held": true,
-            "said": "divergence-staleness  5 run(s) over 122 ruling(s): 0 stale"
+            "said": "divergence-staleness  5 run(s) over 111 ruling(s): 0 stale"
         },
         {
             "gate": "engine-behaviour",
             "held": true,
-            "said": "engine-witness  816 pattern(s) read against 884 corpus line(s), 0 that match differently, 0 unruled"
+            "said": "engine-witness  816 pattern(s) read against 991 corpus line(s), 1 that match differently, 0 unruled"
         },
         {
             "gate": "engine-witness",
@@ -134,7 +134,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "light-cone",
             "held": true,
-            "said": "light-cone  84 divergence(s) across 16 class(es), 10 quote(s) closed to ask; forward arm moved 34, backward arm moved 28, typo arm moved 33; 11 proven or unruled, 5 ruled without proof, 0 owed but reaching out"
+            "said": "light-cone  88 divergence(s) across 16 class(es), 10 quote(s) closed to ask; forward arm moved 39, backward arm moved 33, typo arm moved 31; 11 proven or unruled, 5 ruled without proof, 0 owed but reaching out"
         },
         {
             "gate": "must-fail",
@@ -174,7 +174,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "recovery-witness",
             "held": true,
-            "said": "recovery-witness  32 diagnostic(s) across 60 carrier(s), 16 code(s), 16 standing silent, 0 unruled, 0 explaining nothing"
+            "said": "recovery-witness  32 diagnostic(s) across 62 carrier(s), 16 code(s), 16 standing silent, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "rule-coverage",
@@ -229,7 +229,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "still",
             "held": true,
-            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 20 divergence(s) across 1 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 52.9% of corpus tokens ruled"
+            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 20 divergence(s) across 1 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 49.6% of corpus tokens ruled"
         },
         {
             "gate": "still-reach",
@@ -239,12 +239,12 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "swallow-witness",
             "held": true,
-            "said": "swallow-witness  1377 cut(s) across 46 corpus file(s), 10 quote(s) closed to ask, 10 divergence(s), 0 recorded, 0 unruled, 1 answering the host sweep, 0 ruling(s) explaining nothing"
+            "said": "swallow-witness  1529 cut(s) across 48 corpus file(s), 10 quote(s) closed to ask, 10 divergence(s), 0 recorded, 0 unruled, 1 answering the host sweep, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "theme-collision",
             "held": true,
-            "said": "theme-collision  280605 token-reading(s) over 65 themes and 49 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
+            "said": "theme-collision  331305 token-reading(s) over 65 themes and 51 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
         },
         {
             "gate": "theme-parity",
