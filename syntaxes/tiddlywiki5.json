@@ -661,6 +661,17 @@
         "block": {
             "patterns": [
                 {
+                    "comment": "A physical line beginning with a closing html tag, reached after control already fell out of whatever opened it. TiddlyWiki keeps such a line inside the construct that opened the tag (a list item whose body entered block mode for an unclosed element, or similar); this grammar cannot rejoin that construct, but bounding THIS line to itself — rather than letting the generic paragraph fallback open on its trailing text and run on — hands the NEXT physical line back to #block fresh, so a marker starting it reads as a marker again instead of prose swallowed by an open-ended paragraph.",
+                    "begin": "(?=</)",
+                    "end": "$",
+                    "patterns": [
+                        {
+                            "include": "#inline"
+                        }
+                    ],
+                    "name": "meta.paragraph.tiddlywiki5"
+                },
+                {
                     "include": "#htmlwidget"
                 },
                 {
@@ -5260,7 +5271,7 @@
             "patterns": [
                 {
                     "comment": "A raw span carries the family shape a theme rules on beside the names that describe it here. `markup.inline.raw.string` writes the shape markdown, asciidoc and mediawiki all share, and it stands FIRST so a theme naming this grammar's own scopes keeps any tie. Measured over 65 bundled themes: the span parted from prose in 53 on its own names and parts in 56 with this one, and no other pair of constructs reads closer. A BARE `string.` name reaches further and costs more than it buys — a wikilink already wears `string.other.link.title` and a transclusion `string.text-reference`, so a third construct in that family took the span from 65 to 57 against a transclusion and from 59 to 57 against a wikilink while gaining 4 against prose.",
-                    "match": "(?<!`)(``)(?!`)((?:[^`\\n]|`(?!`))+?)(``)",
+                    "match": "(``)((?:[^`\\n]|`(?!`))+?)(``)",
                     "name": "markup.inline.raw.string.tiddlywiki5 markup.inline.raw.double.tiddlywiki5 markup.raw.inline.tiddlywiki5",
                     "captures": {
                         "1": {
@@ -5281,7 +5292,7 @@
                 },
                 {
                     "comment": "A raw span carries the family shape a theme rules on beside the names that describe it here. `markup.inline.raw.string` writes the shape markdown, asciidoc and mediawiki all share, and it stands FIRST so a theme naming this grammar's own scopes keeps any tie. Measured over 65 bundled themes: the span parted from prose in 53 on its own names and parts in 56 with this one, and no other pair of constructs reads closer. A BARE `string.` name reaches further and costs more than it buys — a wikilink already wears `string.other.link.title` and a transclusion `string.text-reference`, so a third construct in that family took the span from 65 to 57 against a transclusion and from 59 to 57 against a wikilink while gaining 4 against prose.",
-                    "match": "(?<!`)(`)(?!`)((?:[^`\\n]|`(?!`))+?)(`)",
+                    "match": "(`)((?:[^`\\n]|`(?!`))+?)(`)",
                     "name": "markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5",
                     "captures": {
                         "1": {
