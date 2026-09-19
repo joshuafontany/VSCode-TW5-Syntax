@@ -75,7 +75,7 @@ async function scopesOf(filter) {
     const { tokens } = await scopesOf(`[tag[x]] :${prefix}[all[]]`);
     const at = `{{{ [tag[x]] :`.length;
     const covering = tokens.find((t) => t.startIndex <= at && t.endIndex > at);
-    if (!covering || !covering.scopes.some((s) => s.startsWith('keyword.operator'))) {
+    if (!covering || !covering.scopes.some((s) => s.startsWith('storage.modifier.prefix'))) {
       unread.push([`prefix :${prefix}`, covering ? covering.scopes.slice(-1)[0] : '(nothing)']);
     }
   }

@@ -2515,6 +2515,33 @@ back by upgrading, which is the definition this number answers to.
   wherever `extlink` already matched. Both new names interpolate the scheme, as the autolink's
   own name does, so `MIGRATION.md`'s headline counts neither and nothing already published goes
   gone; nine pinned snapshots regenerate to the wider, correctly-split reading with no other drift.
+- A FILTER RUN'S BOUNDS CARRY THE OPERATOR FAMILY, RULED 2026-09-18, OVERRIDING THE PRIOR
+  ONE-COLOUR RULING at `corpus/delimiter-ledger.txt`'s `parts entity.filter` row: FILTERS NOW READ
+  AS PARTS. A run bracket (`[`/`]`, `"`/`"`, `'`/`'`) drops the appended
+  `keyword.operator.filter.tiddlywiki5` and stands as `punctuation.definition.filter.run.begin/
+  end.tiddlywiki5` alone. A run prefix (`+ - ~ = :name`) moves from `keyword.operator.prefix.*` to
+  `storage.modifier.prefix.*.tiddlywiki5` — a modifier ON the run, not the run's own operator (see
+  `MIGRATION.md`; `storage` joins the family-root allow-list `tools/invariants/scope-migration.
+  test.js` enforces). The filter-step operator name's two spellings —
+  `keyword.operator.filter.tiddlywiki5` on a string/indirect step and
+  `keyword.operator.operator.filter.tiddlywiki5` on a variable/regexp/multi-valued step — unify on
+  the second, the one three of the five step kinds already carried and the one
+  `tests/tiddlywiki5/tiddlywiki5.filter-operand-kinds.tw5.test` already asserted; the first
+  spelling remains in use, unrelated, on the `{{{ }}}` filtered-transclusion delimiter. A
+  variable (`<`/`>`) or indirect (`{`/`}`) operand bracket drops its trailing content family and
+  stands punctuation-only, `punctuation.definition.operand.<kind>.begin/end.tiddlywiki5`; a
+  multi-valued (`(`/`)`) operand bracket, which carried the exact same scopes as a variable
+  bracket, gets its own `punctuation.definition.operand.mvv.begin/end.tiddlywiki5` name in the
+  house `mvv` pattern (`tools/invariants/scope-suffix.test.js`'s language-suffix rule holds for
+  all of the above). Measured on this tree (per-scope colour price against the 65 bundled
+  themes): prefix vs bracket 0→65, prefix vs operator 0→41, bracket vs operator 0→58, variable
+  bracket vs value 20→48, indirect bracket vs value 10→45; `construct-legibility` reads 0 fallen.
+  The operand-kind brackets collapse to one punctuation colour under this ruling (the glyph still
+  differs) — the operator accepted that trade for the parts above. REPORTED, not tuned: the
+  `{{{ }}}` filtered-transclusion container bracket against a plain run bracket, unaffected by
+  this move on either side, moved from 34/65 to 48/65 apart under the same reading, purely because
+  the plain bracket it is compared against lost `keyword.operator.filter`.
+  `tests/tiddlywiki5/tiddlywiki5.filter-parts-as-operator.tw5.test` red-firsts every new scope.
 
 - `.multids` ROUTES EVERY TIDDLER'S TEXT THROUGH THE HEADER'S OWN `type`, MIRRORING
   `tw5-tid-file.json:166-186`. `boot.js`'s `application/x-tiddlers` deserializer (~1706-1728) parses

@@ -6026,7 +6026,7 @@
                     "contentName": "entity.filter.operator.title.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
-                            "name": "punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5",
+                            "name": "punctuation.definition.filter.run.begin.tiddlywiki5",
                             "patterns": [
                                 {
                                     "include": "#filterprefixshort"
@@ -6039,7 +6039,7 @@
                     },
                     "endCaptures": {
                         "1": {
-                            "name": "punctuation.definition.filter.run.end.tiddlywiki5 keyword.operator.filter.tiddlywiki5"
+                            "name": "punctuation.definition.filter.run.end.tiddlywiki5"
                         }
                     },
                     "patterns": [
@@ -6052,7 +6052,7 @@
                                     "name": "keyword.operator.prefix.negation.tiddlywiki5"
                                 },
                                 "2": {
-                                    "name": "keyword.operator.filter.tiddlywiki5"
+                                    "name": "keyword.operator.operator.filter.tiddlywiki5"
                                 },
                                 "3": {
                                     "name": "keyword.operator.suffix.separator.tiddlywiki5"
@@ -6096,7 +6096,7 @@
                                     "name": "meta.variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
                                 },
                                 "6": {
-                                    "name": "punctuation.definition.operand.variable.begin.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
+                                    "name": "punctuation.definition.operand.variable.begin.tiddlywiki5"
                                 },
                                 "7": {
                                     "patterns": [
@@ -6106,7 +6106,7 @@
                                     ]
                                 },
                                 "8": {
-                                    "name": "punctuation.definition.operand.variable.end.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
+                                    "name": "punctuation.definition.operand.variable.end.tiddlywiki5"
                                 }
                             }
                         },
@@ -6119,7 +6119,7 @@
                                     "name": "keyword.operator.prefix.negation.tiddlywiki5"
                                 },
                                 "2": {
-                                    "name": "keyword.operator.filter.tiddlywiki5"
+                                    "name": "keyword.operator.operator.filter.tiddlywiki5"
                                 },
                                 "3": {
                                     "name": "keyword.operator.suffix.separator.tiddlywiki5"
@@ -6131,7 +6131,7 @@
                                     "name": "meta.entity.indirect.operand.tiddlywiki5"
                                 },
                                 "6": {
-                                    "name": "punctuation.definition.operand.indirect.begin.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5"
+                                    "name": "punctuation.definition.operand.indirect.begin.tiddlywiki5"
                                 },
                                 "7": {
                                     "name": "entity.name.indirect.operand.tiddlywiki5",
@@ -6142,7 +6142,7 @@
                                     ]
                                 },
                                 "8": {
-                                    "name": "punctuation.definition.operand.indirect.end.tiddlywiki5 entity.name.indirect.operand.tiddlywiki5"
+                                    "name": "punctuation.definition.operand.indirect.end.tiddlywiki5"
                                 }
                             }
                         },
@@ -6207,7 +6207,7 @@
                                     "name": "meta.variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
                                 },
                                 "6": {
-                                    "name": "punctuation.definition.operand.variable.begin.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
+                                    "name": "punctuation.definition.operand.mvv.begin.tiddlywiki5"
                                 },
                                 "7": {
                                     "patterns": [
@@ -6217,7 +6217,7 @@
                                     ]
                                 },
                                 "8": {
-                                    "name": "punctuation.definition.operand.variable.end.tiddlywiki5 variable.entity.filter.operand.tiddlywiki5 entity.name.variable.filter.operand.tiddlywiki5"
+                                    "name": "punctuation.definition.operand.mvv.end.tiddlywiki5"
                                 }
                             }
                         }
@@ -6231,7 +6231,7 @@
                     "contentName": "entity.filter.operator.title.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
-                            "name": "punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5",
+                            "name": "punctuation.definition.filter.run.begin.tiddlywiki5",
                             "patterns": [
                                 {
                                     "include": "#filterprefixshort"
@@ -6260,7 +6260,7 @@
                     "contentName": "entity.filter.operator.title.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
-                            "name": "punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5",
+                            "name": "punctuation.definition.filter.run.begin.tiddlywiki5",
                             "patterns": [
                                 {
                                     "include": "#filterprefixshort"
@@ -6287,7 +6287,7 @@
                     "name": "meta.filter.run.tiddlywiki5",
                     "captures": {
                         "1": {
-                            "name": "punctuation.definition.filter.run.begin.tiddlywiki5 keyword.operator.filter.tiddlywiki5",
+                            "name": "punctuation.definition.filter.run.begin.tiddlywiki5",
                             "patterns": [
                                 {
                                     "include": "#filterprefixshort"
@@ -6326,16 +6326,16 @@
             "name": "meta.filter.run.prefix.tiddlywiki5",
             "beginCaptures": {
                 "1": {
-                    "name": "keyword.operator.prefix.plus.and.accumulate.tiddlywiki5"
+                    "name": "storage.modifier.prefix.plus.and.accumulate.tiddlywiki5"
                 },
                 "2": {
-                    "name": "keyword.operator.prefix.minus.except.difference.tiddlywiki5"
+                    "name": "storage.modifier.prefix.minus.except.difference.tiddlywiki5"
                 },
                 "3": {
-                    "name": "keyword.operator.prefix.tilde.else.else.tiddlywiki5"
+                    "name": "storage.modifier.prefix.tilde.else.else.tiddlywiki5"
                 },
                 "4": {
-                    "name": "keyword.operator.prefix.equals.all.union.tiddlywiki5"
+                    "name": "storage.modifier.prefix.equals.all.union.tiddlywiki5"
                 }
             }
         },
@@ -6346,7 +6346,7 @@
             "name": "meta.filter.run.prefix.tiddlywiki5",
             "beginCaptures": {
                 "1": {
-                    "name": "keyword.operator.prefix.colon.named.$2.tiddlywiki5"
+                    "name": "storage.modifier.prefix.colon.named.$2.tiddlywiki5"
                 }
             }
         },
