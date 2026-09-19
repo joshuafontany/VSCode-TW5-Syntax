@@ -1,0 +1,25 @@
+>title: $:/language/Example/
+#^^^^^ source.tiddlywiki5.multids-file meta.multids.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 entity.other.attribute-name.field.wikitext.tiddlywiki5
+#     ^ source.tiddlywiki5.multids-file meta.multids.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 punctuation.separator.key-value.field.tiddlywiki5
+#      ^ source.tiddlywiki5.multids-file meta.multids.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#       ^^^ source.tiddlywiki5.multids-file meta.multids.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.syslink.tiddlywiki5 punctuation.definition.link.syslink.tiddlywiki5
+#          ^^^^^^^^^^^^^^^^^ source.tiddlywiki5.multids-file meta.multids.tiddler.fields.tiddlywiki5 meta.tiddler.field.tiddlywiki5 meta.tiddler.field.value.wikitext.tiddlywiki5 text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.syslink.tiddlywiki5
+>type: text/css
+#^^^^ source.tiddlywiki5.multids-file entity.other.attribute-name.field.tiddlywiki5
+#    ^ source.tiddlywiki5.multids-file punctuation.separator.key-value.field.tiddlywiki5
+#     ^^^^^^^^^ source.tiddlywiki5.multids-file string.unquoted.field.value.tiddlywiki5
+>
+>Rule: .foo { color: red; }
+#^^^^ source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file string.value.title.field.tiddlywiki5.multids-file
+#    ^^ source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file punctuation.separator.key-value.title-text.tiddlywiki5.multids-file
+#      ^^^^^ source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file meta.tiddle.field.text.tiddlywiki5.multids-file meta.embedded.line.css
+#           ^ source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file meta.tiddle.field.text.tiddlywiki5.multids-file meta.embedded.line.css meta.property-list.css punctuation.section.property-list.begin.bracket.curly.css
+#            ^ source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file meta.tiddle.field.text.tiddlywiki5.multids-file meta.embedded.line.css meta.property-list.css
+#             ^^^^^ source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file meta.tiddle.field.text.tiddlywiki5.multids-file meta.embedded.line.css meta.property-list.css meta.property-name.css support.type.property-name.css
+#                  ^ source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file meta.tiddle.field.text.tiddlywiki5.multids-file meta.embedded.line.css meta.property-list.css punctuation.separator.key-value.css
+#                   ^ source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file meta.tiddle.field.text.tiddlywiki5.multids-file meta.embedded.line.css meta.property-list.css
+#                    ^^^ source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file meta.tiddle.field.text.tiddlywiki5.multids-file meta.embedded.line.css meta.property-list.css meta.property-value.css support.constant.color.w3c-standard-color-name.css
+#                       ^ source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file meta.tiddle.field.text.tiddlywiki5.multids-file meta.embedded.line.css meta.property-list.css punctuation.terminator.rule.css
+#                        ^ source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file meta.tiddle.field.text.tiddlywiki5.multids-file meta.embedded.line.css meta.property-list.css
+#                         ^ source.tiddlywiki5.multids-file meta.multids.text.html.tiddlywiki5 meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file meta.tiddle.field.text.tiddlywiki5.multids-file meta.embedded.line.css meta.property-list.css punctuation.section.property-list.end.bracket.curly.css
+>

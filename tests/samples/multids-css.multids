@@ -1,0 +1,4 @@
+title: $:/language/Example/
+type: text/css
+
+Rule: .foo { color: red; }

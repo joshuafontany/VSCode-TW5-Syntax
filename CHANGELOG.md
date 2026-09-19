@@ -2490,6 +2490,38 @@ back by upgrading, which is the definition this number answers to.
   went gone), and nine pinned snapshots regenerate to the wider, correctly-split reading with no
   other drift.
 
+- `.multids` ROUTES EVERY TIDDLER'S TEXT THROUGH THE HEADER'S OWN `type`, MIRRORING
+  `tw5-tid-file.json:166-186`. `boot.js`'s `application/x-tiddlers` deserializer (~1706-1728) parses
+  the header once and extends the same fields — `type` included — onto every `title: text` line
+  after the blank line, so one declared type governs the whole file, the way `tw5-tid-file.json`
+  already routes a `.tid` body. `tw5-multids-file.json` gained `#typed-body`: a `type:` line for
+  `application/json`, `application/javascript`/`text/javascript`, `text/css`, `text/html`,
+  `image/svg+xml`/`text/xml`/`application/xml`, `text/x-markdown`/`text/markdown`, and `text/plain`
+  opens a region that never closes, inside which each `title: text` line's text embeds the named
+  guest grammar (`source.json`, `source.js`, `source.css`, `text.html.basic`, `text.xml`,
+  `text.html.markdown`) under `meta.embedded.line.<lang>`, or stays deliberately unhighlighted for
+  `text/plain`, matching TiddlyWiki's own treatment. A header naming no type, or a type nothing
+  here names, still reads every line as wikitext — the control this ruling never touches.
+  MEASURED AND CORRECTED IN THE BUILDING: a `match` rule's captured group cannot carry a reliable
+  cross-grammar `include` on this engine — proven against `tw5-fields.json`'s own working
+  wikitext-in-a-value embed, which resolves only under its own file's literal scope name and fails
+  identically when the same repository content is copied under a different one — so every routed
+  type embeds through a `begin`/`end` block with `contentName`, the same shape
+  `tw5-tid-file.json` already carries, rather than a captured `patterns` array. Nine sample
+  fixtures under `tests/samples/multids-*.multids` pin one routed type each plus the no-type
+  control; `tests/tiddlywiki5/multids.lines.tw5.test` (pre-existing, control-only) still holds
+  unchanged.
+- `tools/still.js#carriers` WALKED `fs.readdirSync` IN WHATEVER ORDER THE FILESYSTEM HANDED BACK,
+  so `still --host --sample N` and `still.test.js`'s seeded shuffle over it drew a different 40
+  carriers run to run — a real source of gate-report drift never traced to its cause. `carriers`
+  now sorts each directory's entries before walking, so the same tree draws the same sample every
+  run. Traced the disagreement the operator's brief warned this move would surface between the
+  tool's `divergencesIn` and `still.test.js`'s own from-scratch "slow" reader: this checkout's
+  `still.test.js` held green under the sort, both before and after, against the fork
+  (`/home/joshu/Synthetic-Dream-Machine/TiddlyWiki5`) and the pinned 5.4.1 reader alike, across
+  repeated runs — the specimen the brief named did not reproduce here, which this entry records
+  rather than papering over with an invented fix.
+
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`
   excluded the directory, and no tool, test or doc read from it. Git holds them.

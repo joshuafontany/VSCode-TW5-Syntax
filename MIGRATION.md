@@ -4,8 +4,8 @@ A theme rule and an `editor.tokenColorCustomizations` entry both name a scope. A
 moves takes the reader's colour with it, and VS Code reports nothing: the rule simply stops
 matching, and the construct goes the colour of prose.
 
-This repository declares **460** scope names at `v2.2.1` and **575** now. Between them, **111**
-names stand gone and **226** stand new. Every gone name appears below, with what it stands as now
+This repository declares **460** scope names at `v2.2.1` and **581** now. Between them, **111**
+names stand gone and **232** stand new. Every gone name appears below, with what it stands as now
 or why it retired. `tools/invariants/scope-migration.test.js` derives these four numbers from the
 same `declaredScopesIn` reading the row-by-row check answers to, so a grammar edit that moves them
 fails the gate rather than leaving this paragraph to go stale beside it.
