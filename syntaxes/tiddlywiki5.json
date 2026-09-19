@@ -5677,6 +5677,11 @@
                             "name": "string.entity.other.title.link.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5",
                             "patterns": [
                                 {
+                                    "comment": "The target's scheme paints as one unit under a DIFFERENT paired name than the bare autolink's, ruled 2026-09-18 (lar:///url-scheme.paints.free): the same spelling in both places costs 2 floors, so this target reaches for the field's other free option instead of reusing `markup.underline.link.external.$1`. The 10-scheme list follows utils.js#isLinkExternal, including `obsidian`; `https` sorts before `http`.",
+                                    "match": "(https|http|file|mailto|ftp|irc|news|obsidian|data|skype):(?:\\/\\/)?",
+                                    "name": "entity.name.scheme support.type.scheme"
+                                },
+                                {
                                     "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
                                     "match": "\\$:\\/[^\\s\\]\\}|]*",
                                     "name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
@@ -5692,6 +5697,11 @@
                         "1": {
                             "name": "markup.underline.link.external.tiddlywiki5 string.other.link.title.tiddlywiki5",
                             "patterns": [
+                                {
+                                    "comment": "The target's scheme paints as one unit under a DIFFERENT paired name than the bare autolink's, ruled 2026-09-18 (lar:///url-scheme.paints.free): the same spelling in both places costs 2 floors, so this target reaches for the field's other free option instead of reusing `markup.underline.link.external.$1`. The 10-scheme list follows utils.js#isLinkExternal, including `obsidian`; `https` sorts before `http`.",
+                                    "match": "(https|http|file|mailto|ftp|irc|news|obsidian|data|skype):(?:\\/\\/)?",
+                                    "name": "entity.name.scheme support.type.scheme"
+                                },
                                 {
                                     "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
                                     "match": "\\$:\\/[^\\s\\]\\}|]*",
@@ -5742,6 +5752,11 @@
                             "name": "string.entity.other.title.link.tiddlywiki5 entity.name.tiddler.field.title.tiddlywiki5",
                             "patterns": [
                                 {
+                                    "comment": "The target's scheme paints as one unit under a DIFFERENT paired name than the bare autolink's, ruled 2026-09-18 (lar:///url-scheme.paints.free): the same spelling in both places costs 2 floors, so this target reaches for the field's other free option instead of reusing `markup.underline.link.external.$1`. The 10-scheme list follows utils.js#isLinkExternal, including `obsidian`; `https` sorts before `http`.",
+                                    "match": "(https|http|file|mailto|ftp|irc|news|obsidian|data|skype):(?:\\/\\/)?",
+                                    "name": "entity.name.scheme support.type.scheme"
+                                },
+                                {
                                     "comment": "A title the host provides. wiki.js#isSystemTiddler names one by its `$:/` opening, and TiddlyWiki keeps them out of ordinary lists — a reader wants to see which titles answer to the host.",
                                     "match": "\\$:\\/[^\\s\\]\\}|]*",
                                     "name": "support.other.system.title.tiddlywiki5 constant.language.system.title.tiddlywiki5"
@@ -5771,8 +5786,8 @@
         "extlink": {
             "patterns": [
                 {
-                    "comment": "A tilde suppresses this family: TiddlyWiki hands back the text of the link it declined to make, so the span carries a quiet name and the tilde keeps its own punctuation.",
-                    "match": "(~)(file|http|https|mailto|ftp|irc|news|data|skype):[^\\s<>{}\\[\\]`|'\"\\\\^]+(?:/|\\b)",
+                    "comment": "A tilde suppresses this family: TiddlyWiki hands back the text of the link it declined to make, so the span carries a quiet name and the tilde keeps its own punctuation. `https` sorts before `http` per lar:///url-scheme.paints.free (2026-09-18) — the 9-scheme list follows extlink.js, never `obsidian`.",
+                    "match": "(~)(?:https|http|file|mailto|ftp|irc|news|data|skype):[^\\s<>{}\\[\\]`|'\"\\\\^]+(?:/|\\b)",
                     "name": "meta.link.suppressed.external.tiddlywiki5",
                     "captures": {
                         "1": {
@@ -5781,11 +5796,12 @@
                     }
                 },
                 {
-                    "match": "(file|http|https|mailto|ftp|irc|news|data|skype):[^\\s<>{}\\[\\]`|'\"\\\\^]+(?:/|\\b)",
+                    "comment": "The scheme paints as one unit — `scheme:` alone, or `scheme://` where the authority opens — under the autolink's own per-scheme name, ruled 2026-09-18 (lar:///url-scheme.paints.free): free here because RFC 3986 draws the boundary at the first `:` and no surveyed grammar (VS Code Markdown, VS Code HTML) scopes a scheme apart from its URL, so widening the existing dynamic name costs nothing new. `https` sorts before `http`; the 9-scheme list follows extlink.js, never `obsidian`.",
+                    "match": "((https|http|file|mailto|ftp|irc|news|data|skype):(?:\\/\\/)?)[^\\s<>{}\\[\\]`|'\"\\\\^]+(?:/|\\b)",
                     "name": "markup.underline.link.external.tiddlywiki5 string.other.link.title.tiddlywiki5",
                     "captures": {
                         "1": {
-                            "name": "markup.underline.link.external.$1.tiddlywiki5"
+                            "name": "markup.underline.link.external.$2.tiddlywiki5"
                         }
                     },
                     "patterns": [

@@ -196,7 +196,10 @@ const BREADTH_CEILING = (() => {
 function carriers(dir) {
   const out = [];
   const walk = (d) => {
-    for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+    const entries = fs.readdirSync(d, { withFileTypes: true })
+      .slice()
+      .sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
+    for (const e of entries) {
       if (/^(node_modules|\.git|\.worktrees|attic)$/.test(e.name)) continue;
       const p = path.join(d, e.name);
       if (e.isDirectory()) { walk(p); continue; }

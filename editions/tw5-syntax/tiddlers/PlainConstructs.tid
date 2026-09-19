@@ -10,6 +10,7 @@ description: Why a reader should meet each of these as prose — a judgement no 
     "meta.element.structure.svg": "the content of embedded SVG, plain for the same reason",
     "meta.link.wikilink": "a CamelCase word the standing rule set does not autolink, so the parser builds no link to colour",
     "meta.multids.text.html": "a multids body line handed to the wikitext grammar, plain where no construct stands",
+    "meta.tiddle.field.text.plain.tiddlywiki5.multids-file": "a multids body line whose header declared text/plain, ruled 2026-09-18 to mirror TiddlyWiki's own reading — the parser never runs wikitext rules over this type, so no theme rule should either",
     "meta.text.tiddler.fields": "a field region, plain where no field stands",
     "markup.list.unnumbered.unordered.ul.li": "the words INSIDE a bullet, never the bullet. `theme-parity` measures a list item at 23% of themes against a six-grammar panel median of 6% \u2014 markdown, asciidoc, rst, org, mediawiki and mdx all leave a list's content plain, and this grammar already paints it four times as often",
     "markup.list.numbered.ordered.ol.li": "the words INSIDE a bullet, never the bullet. `theme-parity` measures a list item at 23% of themes against a six-grammar panel median of 6% \u2014 markdown, asciidoc, rst, org, mediawiki and mdx all leave a list's content plain, and this grammar already paints it four times as often",

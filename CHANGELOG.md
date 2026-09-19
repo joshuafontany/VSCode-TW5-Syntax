@@ -2466,6 +2466,61 @@ back by upgrading, which is the definition this number answers to.
   to leave reading as one ink alongside `{`, `<` and `<%`); `colour-witness` and the opener/closer
   floor hold unmoved, and no pair drops below its seated floor, so `corpus/legibility-floor.txt`
   needs no re-seating — only a fall would ask for one.
+- A URL'S SCHEME PAINTS AS ONE UNIT, RULED 2026-09-18 (`lar:///url-scheme.paints.free`). Collided
+  `docs/prior-art/synthesis.mem` §D's golden principles — TextMate's own test, "would I want these
+  two elements styled differently?", and the asciidoctor-vscode double-scope rule at
+  `docs/scope-naming-prior-art.mem:469` — against the field: VS Code's own Markdown grammar paints
+  a whole autolink as `markup.underline.link.markdown` with no scheme scoped apart from it, and VS
+  Code's HTML grammar treats an `href` attribute's scheme identically to the rest of the string —
+  no surveyed grammar answers "yes" to TextMate's question for a scheme against its own URL. RFC
+  3986 still draws a real boundary (scheme ends at the first `:`; `//` opens the authority only
+  where a scheme carries one), so painting `scheme:` or `scheme://` as one unit costs nothing new
+  where a name already exists to widen. Measured: free on the bare autolink under its own
+  per-scheme name (`markup.underline.link.external.$1.tiddlywiki5`, widened to cover the
+  delimiter, `$1` now the whole unit and `$2` the bare scheme word) — `extlink`'s match in
+  `syntaxes/tiddlywiki5.json` widened accordingly, alternation reordered `https` before `http`
+  (the 9-scheme list stays extlink.js's own, never `obsidian`). Inside a `[[go|https://…]]` or
+  `[ext[https://…]]` target the same spelling costs 2 floors, so those targets reach for the
+  field's OTHER free option instead: `entity.name.scheme support.type.scheme`, a genuinely
+  different pairing, over the 10-scheme list `utils.js#isLinkExternal` names (`obsidian` included).
+  `tests/tiddlywiki5/tiddlywiki5.url-scheme-colour.tw5.test` red-firsts all four spellings. The
+  widened autolink span also reaches inside HTML attribute values and `.tid`/`.mem` embeddings
+  wherever `extlink` already matched — `MIGRATION.md`'s headline moves from 573/224 to 575/226 (two
+  new declared names, `entity.name.scheme` and `support.type.scheme`; nothing already published
+  went gone), and nine pinned snapshots regenerate to the wider, correctly-split reading with no
+  other drift.
+
+- `.multids` ROUTES EVERY TIDDLER'S TEXT THROUGH THE HEADER'S OWN `type`, MIRRORING
+  `tw5-tid-file.json:166-186`. `boot.js`'s `application/x-tiddlers` deserializer (~1706-1728) parses
+  the header once and extends the same fields — `type` included — onto every `title: text` line
+  after the blank line, so one declared type governs the whole file, the way `tw5-tid-file.json`
+  already routes a `.tid` body. `tw5-multids-file.json` gained `#typed-body`: a `type:` line for
+  `application/json`, `application/javascript`/`text/javascript`, `text/css`, `text/html`,
+  `image/svg+xml`/`text/xml`/`application/xml`, `text/x-markdown`/`text/markdown`, and `text/plain`
+  opens a region that never closes, inside which each `title: text` line's text embeds the named
+  guest grammar (`source.json`, `source.js`, `source.css`, `text.html.basic`, `text.xml`,
+  `text.html.markdown`) under `meta.embedded.line.<lang>`, or stays deliberately unhighlighted for
+  `text/plain`, matching TiddlyWiki's own treatment. A header naming no type, or a type nothing
+  here names, still reads every line as wikitext — the control this ruling never touches.
+  MEASURED AND CORRECTED IN THE BUILDING: a `match` rule's captured group cannot carry a reliable
+  cross-grammar `include` on this engine — proven against `tw5-fields.json`'s own working
+  wikitext-in-a-value embed, which resolves only under its own file's literal scope name and fails
+  identically when the same repository content is copied under a different one — so every routed
+  type embeds through a `begin`/`end` block with `contentName`, the same shape
+  `tw5-tid-file.json` already carries, rather than a captured `patterns` array. Nine sample
+  fixtures under `tests/samples/multids-*.multids` pin one routed type each plus the no-type
+  control; `tests/tiddlywiki5/multids.lines.tw5.test` (pre-existing, control-only) still holds
+  unchanged.
+- `tools/still.js#carriers` WALKED `fs.readdirSync` IN WHATEVER ORDER THE FILESYSTEM HANDED BACK,
+  so `still --host --sample N` and `still.test.js`'s seeded shuffle over it drew a different 40
+  carriers run to run — a real source of gate-report drift never traced to its cause. `carriers`
+  now sorts each directory's entries before walking, so the same tree draws the same sample every
+  run. Traced the disagreement the operator's brief warned this move would surface between the
+  tool's `divergencesIn` and `still.test.js`'s own from-scratch "slow" reader: this checkout's
+  `still.test.js` held green under the sort, both before and after, against the fork
+  (`/home/joshu/Synthetic-Dream-Machine/TiddlyWiki5`) and the pinned 5.4.1 reader alike, across
+  repeated runs — the specimen the brief named did not reproduce here, which this entry records
+  rather than papering over with an invented fix.
 
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`

@@ -6,7 +6,10 @@
   ],
   "patterns": [
     {
-      "comment": "The body holds tiddler lines. Wikitext reads inside a value, never at line level, so an unmatched line cannot open a run that swallows the lines after it.",
+      "include": "#typed-body"
+    },
+    {
+      "comment": "The body holds tiddler lines. Wikitext reads inside a value, never at line level, so an unmatched line cannot open a run that swallows the lines after it. A file whose header names no `type` reads every line's text as wikitext, the way TiddlyWiki reads a tiddler with no type.",
       "begin": "(?<=^$)",
       "contentName": "meta.multids.text.html.tiddlywiki5",
       "patterns": [
@@ -21,7 +24,7 @@
     {
       "comment": "Tokenize mandatory tiddler metadata.",
       "begin": "^",
-      "end": "^$",
+      "end": "^$|(?=^[ \\t]*type[ \\t]*:[ \\t]*(?:application/json|application/javascript|text/javascript|text/css|text/html|image/svg\\+xml|text/xml|application/xml|text/x-markdown|text/markdown|text/plain)[ \\t]*$)",
       "contentName": "meta.multids.tiddler.fields.tiddlywiki5",
       "patterns": [
         {
@@ -58,6 +61,393 @@
             }
           ],
           "comment": "A tiddler text field, one line of it. A pragma anchors on ^ and this capture opens mid-line, so no definition stands here and no definition body follows."
+        }
+      },
+      "comment": "boot.js takes the first colon on the line: the title runs up to it and the text follows. A line with no value defines a tiddler with empty text."
+    },
+    "typed-body": {
+      "comment": "The header's own `type` field governs every tiddler in the file \u2014 boot.js#application/x-tiddlers parses the header once and extends the same fields, `type` included, onto every `title: text` line that follows the blank line (boot.js ~1706-1728). Mirrors tw5-tid-file.json#typed-body: the type line opens a region that never closes, the remaining header fields read inside it, and every line of the body after the blank line reads its text as the guest language. A type nothing here names leaves every line reading as wikitext, the way TiddlyWiki reads a tiddler with no type.",
+      "patterns": [
+        {
+          "comment": "A `.multids` file declaring application/json. The header's `type` line reads as the field it is, and every `title: text` line after the blank line reads its text as source.json.",
+          "begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:application/json)[ \\t]*)$",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.other.attribute-name.field.tiddlywiki5"
+            },
+            "2": {
+              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+            },
+            "3": {
+              "name": "string.unquoted.field.value.tiddlywiki5"
+            }
+          },
+          "end": "(?!)",
+          "patterns": [
+            {
+              "comment": "The body, one tiddler per line, each line's text in the language the header's type names.",
+              "begin": "(?<=^$)",
+              "end": "(?!)",
+              "contentName": "meta.multids.text.html.tiddlywiki5",
+              "patterns": [
+                {
+                  "include": "#comment"
+                },
+                {
+                  "include": "#titleline-json"
+                }
+              ]
+            },
+            {
+              "include": "source.tiddlywiki5.fields"
+            }
+          ]
+        },
+        {
+          "comment": "A `.multids` file declaring application/javascript|text/javascript. The header's `type` line reads as the field it is, and every `title: text` line after the blank line reads its text as source.js.",
+          "begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:application/javascript|text/javascript)[ \\t]*)$",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.other.attribute-name.field.tiddlywiki5"
+            },
+            "2": {
+              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+            },
+            "3": {
+              "name": "string.unquoted.field.value.tiddlywiki5"
+            }
+          },
+          "end": "(?!)",
+          "patterns": [
+            {
+              "comment": "The body, one tiddler per line, each line's text in the language the header's type names.",
+              "begin": "(?<=^$)",
+              "end": "(?!)",
+              "contentName": "meta.multids.text.html.tiddlywiki5",
+              "patterns": [
+                {
+                  "include": "#comment"
+                },
+                {
+                  "include": "#titleline-javascript"
+                }
+              ]
+            },
+            {
+              "include": "source.tiddlywiki5.fields"
+            }
+          ]
+        },
+        {
+          "comment": "A `.multids` file declaring text/css. The header's `type` line reads as the field it is, and every `title: text` line after the blank line reads its text as source.css.",
+          "begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:text/css)[ \\t]*)$",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.other.attribute-name.field.tiddlywiki5"
+            },
+            "2": {
+              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+            },
+            "3": {
+              "name": "string.unquoted.field.value.tiddlywiki5"
+            }
+          },
+          "end": "(?!)",
+          "patterns": [
+            {
+              "comment": "The body, one tiddler per line, each line's text in the language the header's type names.",
+              "begin": "(?<=^$)",
+              "end": "(?!)",
+              "contentName": "meta.multids.text.html.tiddlywiki5",
+              "patterns": [
+                {
+                  "include": "#comment"
+                },
+                {
+                  "include": "#titleline-css"
+                }
+              ]
+            },
+            {
+              "include": "source.tiddlywiki5.fields"
+            }
+          ]
+        },
+        {
+          "comment": "A `.multids` file declaring text/html. The header's `type` line reads as the field it is, and every `title: text` line after the blank line reads its text as text.html.basic.",
+          "begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:text/html)[ \\t]*)$",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.other.attribute-name.field.tiddlywiki5"
+            },
+            "2": {
+              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+            },
+            "3": {
+              "name": "string.unquoted.field.value.tiddlywiki5"
+            }
+          },
+          "end": "(?!)",
+          "patterns": [
+            {
+              "comment": "The body, one tiddler per line, each line's text in the language the header's type names.",
+              "begin": "(?<=^$)",
+              "end": "(?!)",
+              "contentName": "meta.multids.text.html.tiddlywiki5",
+              "patterns": [
+                {
+                  "include": "#comment"
+                },
+                {
+                  "include": "#titleline-html"
+                }
+              ]
+            },
+            {
+              "include": "source.tiddlywiki5.fields"
+            }
+          ]
+        },
+        {
+          "comment": "A `.multids` file declaring image/svg+xml|text/xml|application/xml. The header's `type` line reads as the field it is, and every `title: text` line after the blank line reads its text as text.xml.",
+          "begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:image/svg\\+xml|text/xml|application/xml)[ \\t]*)$",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.other.attribute-name.field.tiddlywiki5"
+            },
+            "2": {
+              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+            },
+            "3": {
+              "name": "string.unquoted.field.value.tiddlywiki5"
+            }
+          },
+          "end": "(?!)",
+          "patterns": [
+            {
+              "comment": "The body, one tiddler per line, each line's text in the language the header's type names.",
+              "begin": "(?<=^$)",
+              "end": "(?!)",
+              "contentName": "meta.multids.text.html.tiddlywiki5",
+              "patterns": [
+                {
+                  "include": "#comment"
+                },
+                {
+                  "include": "#titleline-xml"
+                }
+              ]
+            },
+            {
+              "include": "source.tiddlywiki5.fields"
+            }
+          ]
+        },
+        {
+          "comment": "A `.multids` file declaring text/x-markdown|text/markdown. The header's `type` line reads as the field it is, and every `title: text` line after the blank line reads its text as text.html.markdown.",
+          "begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:text/x-markdown|text/markdown)[ \\t]*)$",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.other.attribute-name.field.tiddlywiki5"
+            },
+            "2": {
+              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+            },
+            "3": {
+              "name": "string.unquoted.field.value.tiddlywiki5"
+            }
+          },
+          "end": "(?!)",
+          "patterns": [
+            {
+              "comment": "The body, one tiddler per line, each line's text in the language the header's type names.",
+              "begin": "(?<=^$)",
+              "end": "(?!)",
+              "contentName": "meta.multids.text.html.tiddlywiki5",
+              "patterns": [
+                {
+                  "include": "#comment"
+                },
+                {
+                  "include": "#titleline-markdown"
+                }
+              ]
+            },
+            {
+              "include": "source.tiddlywiki5.fields"
+            }
+          ]
+        },
+        {
+          "comment": "A `.multids` file declaring text/plain. The header's `type` line reads as the field it is, and every `title: text` line after the blank line reads its text as plain text, unhighlighted, mirroring tw5-tid-file.json's own text/plain route.",
+          "begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:text/plain)[ \\t]*)$",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.other.attribute-name.field.tiddlywiki5"
+            },
+            "2": {
+              "name": "punctuation.separator.key-value.field.tiddlywiki5"
+            },
+            "3": {
+              "name": "string.unquoted.field.value.tiddlywiki5"
+            }
+          },
+          "end": "(?!)",
+          "patterns": [
+            {
+              "comment": "The body, one tiddler per line, its text left plain.",
+              "begin": "(?<=^$)",
+              "end": "(?!)",
+              "contentName": "meta.multids.text.html.tiddlywiki5",
+              "patterns": [
+                {
+                  "include": "#comment"
+                },
+                {
+                  "include": "#titleline-plain"
+                }
+              ]
+            },
+            {
+              "include": "source.tiddlywiki5.fields"
+            }
+          ]
+        }
+      ]
+    },
+    "titleline-json": {
+      "comment": "boot.js hands every tiddler in this file the header's own `type` field \u2014 one `type:` governs all of it, so a `json` header routes every `title: text` line's text through source.json, the same guest tiddlywiki5.tid-file routes a `.tid` body through for this type. A begin/end block carries the embed rather than a captured `match`, because vscode-textmate resolves a cross-grammar `include` reliably only there \u2014 measured against tw5-tid-file.json's own working embed and against a `match` capture's `patterns`, which never brought a foreign grammar's tokens in on this tree.",
+      "begin": "^([^:\\r\\n]*)(: ?)",
+      "beginCaptures": {
+        "1": {
+          "name": "string.value.title.field.tiddlywiki5.multids-file"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.title-text.tiddlywiki5.multids-file"
+        }
+      },
+      "end": "$",
+      "name": "meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file",
+      "contentName": "meta.tiddle.field.text.tiddlywiki5.multids-file meta.embedded.line.json",
+      "patterns": [
+        {
+          "include": "source.json"
+        }
+      ]
+    },
+    "titleline-javascript": {
+      "comment": "boot.js hands every tiddler in this file the header's own `type` field \u2014 one `type:` governs all of it, so a `javascript` header routes every `title: text` line's text through source.js, the same guest tiddlywiki5.tid-file routes a `.tid` body through for this type. A begin/end block carries the embed rather than a captured `match`, because vscode-textmate resolves a cross-grammar `include` reliably only there \u2014 measured against tw5-tid-file.json's own working embed and against a `match` capture's `patterns`, which never brought a foreign grammar's tokens in on this tree.",
+      "begin": "^([^:\\r\\n]*)(: ?)",
+      "beginCaptures": {
+        "1": {
+          "name": "string.value.title.field.tiddlywiki5.multids-file"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.title-text.tiddlywiki5.multids-file"
+        }
+      },
+      "end": "$",
+      "name": "meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file",
+      "contentName": "meta.tiddle.field.text.tiddlywiki5.multids-file meta.embedded.line.javascript",
+      "patterns": [
+        {
+          "include": "source.js"
+        }
+      ]
+    },
+    "titleline-css": {
+      "comment": "boot.js hands every tiddler in this file the header's own `type` field \u2014 one `type:` governs all of it, so a `css` header routes every `title: text` line's text through source.css, the same guest tiddlywiki5.tid-file routes a `.tid` body through for this type. A begin/end block carries the embed rather than a captured `match`, because vscode-textmate resolves a cross-grammar `include` reliably only there \u2014 measured against tw5-tid-file.json's own working embed and against a `match` capture's `patterns`, which never brought a foreign grammar's tokens in on this tree.",
+      "begin": "^([^:\\r\\n]*)(: ?)",
+      "beginCaptures": {
+        "1": {
+          "name": "string.value.title.field.tiddlywiki5.multids-file"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.title-text.tiddlywiki5.multids-file"
+        }
+      },
+      "end": "$",
+      "name": "meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file",
+      "contentName": "meta.tiddle.field.text.tiddlywiki5.multids-file meta.embedded.line.css",
+      "patterns": [
+        {
+          "include": "source.css"
+        }
+      ]
+    },
+    "titleline-html": {
+      "comment": "boot.js hands every tiddler in this file the header's own `type` field \u2014 one `type:` governs all of it, so a `html` header routes every `title: text` line's text through text.html.basic, the same guest tiddlywiki5.tid-file routes a `.tid` body through for this type. A begin/end block carries the embed rather than a captured `match`, because vscode-textmate resolves a cross-grammar `include` reliably only there \u2014 measured against tw5-tid-file.json's own working embed and against a `match` capture's `patterns`, which never brought a foreign grammar's tokens in on this tree.",
+      "begin": "^([^:\\r\\n]*)(: ?)",
+      "beginCaptures": {
+        "1": {
+          "name": "string.value.title.field.tiddlywiki5.multids-file"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.title-text.tiddlywiki5.multids-file"
+        }
+      },
+      "end": "$",
+      "name": "meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file",
+      "contentName": "meta.tiddle.field.text.tiddlywiki5.multids-file meta.embedded.line.html",
+      "patterns": [
+        {
+          "include": "text.html.basic"
+        }
+      ]
+    },
+    "titleline-xml": {
+      "comment": "boot.js hands every tiddler in this file the header's own `type` field \u2014 one `type:` governs all of it, so a `xml` header routes every `title: text` line's text through text.xml, the same guest tiddlywiki5.tid-file routes a `.tid` body through for this type. A begin/end block carries the embed rather than a captured `match`, because vscode-textmate resolves a cross-grammar `include` reliably only there \u2014 measured against tw5-tid-file.json's own working embed and against a `match` capture's `patterns`, which never brought a foreign grammar's tokens in on this tree.",
+      "begin": "^([^:\\r\\n]*)(: ?)",
+      "beginCaptures": {
+        "1": {
+          "name": "string.value.title.field.tiddlywiki5.multids-file"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.title-text.tiddlywiki5.multids-file"
+        }
+      },
+      "end": "$",
+      "name": "meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file",
+      "contentName": "meta.tiddle.field.text.tiddlywiki5.multids-file meta.embedded.line.xml",
+      "patterns": [
+        {
+          "include": "text.xml"
+        }
+      ]
+    },
+    "titleline-markdown": {
+      "comment": "boot.js hands every tiddler in this file the header's own `type` field \u2014 one `type:` governs all of it, so a `markdown` header routes every `title: text` line's text through text.html.markdown, the same guest tiddlywiki5.tid-file routes a `.tid` body through for this type. A begin/end block carries the embed rather than a captured `match`, because vscode-textmate resolves a cross-grammar `include` reliably only there \u2014 measured against tw5-tid-file.json's own working embed and against a `match` capture's `patterns`, which never brought a foreign grammar's tokens in on this tree.",
+      "begin": "^([^:\\r\\n]*)(: ?)",
+      "beginCaptures": {
+        "1": {
+          "name": "string.value.title.field.tiddlywiki5.multids-file"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.title-text.tiddlywiki5.multids-file"
+        }
+      },
+      "end": "$",
+      "name": "meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file",
+      "contentName": "meta.tiddle.field.text.tiddlywiki5.multids-file meta.embedded.line.markdown",
+      "patterns": [
+        {
+          "include": "text.html.markdown"
+        }
+      ]
+    },
+    "titleline-plain": {
+      "match": "^([^:\\r\\n]*)(: ?)(.*)$",
+      "name": "meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file",
+      "captures": {
+        "1": {
+          "name": "string.value.title.field.tiddlywiki5.multids-file"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.title-text.tiddlywiki5.multids-file"
+        },
+        "3": {
+          "name": "meta.tiddle.field.text.plain.tiddlywiki5.multids-file",
+          "comment": "A `text/plain` header routes every line's text as plain text \u2014 TiddlyWiki's own treatment for this type, which the parser never runs wikitext rules over."
         }
       },
       "comment": "boot.js takes the first colon on the line: the title runs up to it and the text follows. A line with no value defines a tiddler with empty text."

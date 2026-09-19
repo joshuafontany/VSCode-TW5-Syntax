@@ -1,0 +1,4 @@
+title: X
+type: application/javascript
+
+JS: const x = 1;
