@@ -1,0 +1,44 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A URL's scheme paints as one unit, RFC 3986's own boundary"
+
+# Ruling 2026-09-18 (lar:///url-scheme.paints.free): TextMate's own test — "would I want these
+# two elements styled differently?" — says no theme in the surveyed field (VS Code Markdown's
+# `markup.underline.link.markdown`, VS Code HTML's attribute strings) scopes a URL's scheme
+# apart from its body; RFC 3986 draws the boundary at the first `:` regardless (`//` opens the
+# authority only for schemes that carry one). The collision: painting `scheme:` or `scheme://`
+# as ONE unit is free on this tree under the bare autolink's OWN name (already per-scheme
+# dynamic, `markup.underline.link.external.$1.tiddlywiki5`) and, inside a `[[go|https://…]]` or
+# `[ext[https://…]]` target, free under the DIFFERENT paired name
+# `entity.name.scheme support.type.scheme` — reusing one identical spelling in both places costs
+# 2 floors, so the two locations spell it differently on purpose. `https` sorts before `http` in
+# every alternation below.
+
+! A bare autolink keeps its own per-scheme name, widened over the scheme+`://` unit
+
+See https://example.com/a here.
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.external.tiddlywiki5 markup.underline.link.external.https.tiddlywiki5
+#         ^ markup.underline.link.external.https.tiddlywiki5
+#           ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.underline.link.external.tiddlywiki5
+#           ^ - markup.underline.link.external.https.tiddlywiki5
+
+! A scheme without `//` widens only to its own colon; the path is a control — unaffected either way
+
+Mail me at mailto:test@example.com please.
+#          ^ markup.underline.link.external.mailto.tiddlywiki5
+#                ^ markup.underline.link.external.mailto.tiddlywiki5
+#                 ^ markup.underline.link.external.tiddlywiki5
+#                 ^ - markup.underline.link.external.mailto.tiddlywiki5
+
+! A captioned pretty link's target scopes its scheme under the paired, differently-spelled name
+
+A [[go|https://example.com]] here.
+#      ^ entity.name.scheme support.type.scheme
+#              ^ string.entity.other.title.link.tiddlywiki5
+#              ^ - entity.name.scheme
+#              ^ - support.type.scheme
+
+! An `[ext[` target scopes its scheme the same way
+
+An [ext[https://example.com]] here.
+#       ^ entity.name.scheme support.type.scheme
+#               ^ markup.underline.link.external.tiddlywiki5
+#               ^ - entity.name.scheme

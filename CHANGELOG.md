@@ -2466,6 +2466,29 @@ back by upgrading, which is the definition this number answers to.
   to leave reading as one ink alongside `{`, `<` and `<%`); `colour-witness` and the opener/closer
   floor hold unmoved, and no pair drops below its seated floor, so `corpus/legibility-floor.txt`
   needs no re-seating — only a fall would ask for one.
+- A URL'S SCHEME PAINTS AS ONE UNIT, RULED 2026-09-18 (`lar:///url-scheme.paints.free`). Collided
+  `docs/prior-art/synthesis.mem` §D's golden principles — TextMate's own test, "would I want these
+  two elements styled differently?", and the asciidoctor-vscode double-scope rule at
+  `docs/scope-naming-prior-art.mem:469` — against the field: VS Code's own Markdown grammar paints
+  a whole autolink as `markup.underline.link.markdown` with no scheme scoped apart from it, and VS
+  Code's HTML grammar treats an `href` attribute's scheme identically to the rest of the string —
+  no surveyed grammar answers "yes" to TextMate's question for a scheme against its own URL. RFC
+  3986 still draws a real boundary (scheme ends at the first `:`; `//` opens the authority only
+  where a scheme carries one), so painting `scheme:` or `scheme://` as one unit costs nothing new
+  where a name already exists to widen. Measured: free on the bare autolink under its own
+  per-scheme name (`markup.underline.link.external.$1.tiddlywiki5`, widened to cover the
+  delimiter, `$1` now the whole unit and `$2` the bare scheme word) — `extlink`'s match in
+  `syntaxes/tiddlywiki5.json` widened accordingly, alternation reordered `https` before `http`
+  (the 9-scheme list stays extlink.js's own, never `obsidian`). Inside a `[[go|https://…]]` or
+  `[ext[https://…]]` target the same spelling costs 2 floors, so those targets reach for the
+  field's OTHER free option instead: `entity.name.scheme support.type.scheme`, a genuinely
+  different pairing, over the 10-scheme list `utils.js#isLinkExternal` names (`obsidian` included).
+  `tests/tiddlywiki5/tiddlywiki5.url-scheme-colour.tw5.test` red-firsts all four spellings. The
+  widened autolink span also reaches inside HTML attribute values and `.tid`/`.mem` embeddings
+  wherever `extlink` already matched — `MIGRATION.md`'s headline moves from 573/224 to 575/226 (two
+  new declared names, `entity.name.scheme` and `support.type.scheme`; nothing already published
+  went gone), and nine pinned snapshots regenerate to the wider, correctly-split reading with no
+  other drift.
 
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`
