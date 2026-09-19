@@ -78,7 +78,7 @@ gates-held: 49 of 49
         {
             "gate": "contrast",
             "held": true,
-            "said": "contrast-witness  284 stack(s) over 65 theme(s), 1512 prose reading(s), 3 above the bar of 16, 0 unruled, 0 explaining nothing"
+            "said": "contrast-witness  285 stack(s) over 65 theme(s), 1495 prose reading(s), 2 above the bar of 16, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "corpus",
@@ -88,7 +88,7 @@ gates-held: 49 of 49
         {
             "gate": "dark-construct",
             "held": true,
-            "said": "dark-construct  332 construct(s) over 65 themes, 21 plain, 0 unaccounted"
+            "said": "dark-construct  333 construct(s) over 65 themes, 21 plain, 0 unaccounted"
         },
         {
             "gate": "darkness",
@@ -123,7 +123,7 @@ gates-held: 49 of 49
         {
             "gate": "ledger-claims",
             "held": true,
-            "said": "ledger-claims  10 claim(s) across 3 ledger(s), 0 that no longer hold"
+            "said": "ledger-claims  9 claim(s) across 3 ledger(s), 0 that no longer hold"
         },
         {
             "gate": "legibility",

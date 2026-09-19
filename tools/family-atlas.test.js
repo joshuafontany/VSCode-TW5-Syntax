@@ -122,7 +122,13 @@ test('the cost arm prices a candidate without moving the grammar', live, () => {
 // THE DIRECTION THAT MATTERS: every pair the gate reports FALLEN, the arm must name. The arm also
 // reports drops that stay above their floor, which the gate does not print, so the arm's set stands as
 // a superset by construction and an equality would fail on that difference rather than on a fault.
-const PRICED = 'variable.name.mvv-display.tiddlywiki5';
+// A CANDIDATE STACKS AT THE END. `price()` appends a candidate to `entry.stack`, and the published
+// display run's own name now already carries `entity.name.function.mvv.tiddlywiki5` last — the
+// 2026-09-18 opener-namespace ruling gave it that name so `((x))` reads as `<<x>>` does. The slow
+// reading below writes its own candidate into the grammar TEXT, so it must land in that same last
+// place — after the FULL published name, not merely after `variable.name.mvv-display` — or the
+// insertion buries itself mid-stack where nothing reads it as innermost, and prices nothing.
+const PRICED = 'variable.name.mvv-display.tiddlywiki5 entity.name.function.mvv.tiddlywiki5';
 const CANDIDATE = 'entity.name.variable.mvv.tiddlywiki5';
 
 /** The pair names a legibility reading reports as fallen below their floor. */

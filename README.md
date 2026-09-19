@@ -141,7 +141,6 @@ Three readings sit outside what a scope name can reach: the family that would ma
 | --- | --- | --- |
 | `markup.superscript.tiddlywiki5` | 63 of 65 themes | the conventional name, unthemed across the bundled set, matching markdown's own reading |
 | `markup.subscript.tiddlywiki5` | 63 of 65 themes | the same reading |
-| `variable.name.mvv-display.tiddlywiki5` | 29 of 65 themes | every truthful loud family costs this construct's neighbours their declared distinctions |
 
 A `fontStyle` rule gives each one a mark your own theme keeps its colours under:
 
@@ -149,8 +148,7 @@ A `fontStyle` rule gives each one a mark your own theme keeps its colours under:
 "editor.tokenColorCustomizations": {
   "textMateRules": [
     { "scope": "markup.superscript.tiddlywiki5", "settings": { "fontStyle": "bold" } },
-    { "scope": "markup.subscript.tiddlywiki5", "settings": { "fontStyle": "bold" } },
-    { "scope": "variable.name.mvv-display.tiddlywiki5", "settings": { "fontStyle": "underline" } }
+    { "scope": "markup.subscript.tiddlywiki5", "settings": { "fontStyle": "bold" } }
   ]
 }
 ```

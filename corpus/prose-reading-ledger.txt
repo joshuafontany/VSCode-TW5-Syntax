@@ -39,13 +39,3 @@
 # checks: paint markup.superscript.tiddlywiki5 themes <= 6
 markup.superscript               # the conventional name, unthemed across the bundled set, matching markdown's own reading
 markup.subscript                 # the same reading
-
-# A FAMILY THAT CURES ONE CONSTRUCT CAN COST FOUR DISTINCTIONS. The `((mvv))` display run answers to
-# the same reading as every other name the wiki resolves, and `entity.name.variable.mvv` halves its
-# prose readings the same way — and drops four declared distinctions below their ratchet floors: a dash
-# (59 of 65 against a floor of 60), a heading (51 against 56), a parsermode directive and a whitespace
-# directive (64 each against 65). The four other names in this family took the move with nothing
-# falling, so the cost belongs to this construct's own colour neighbourhood rather than to the family.
-# A floor ratchets up; lowering one to admit a fork would hide the next regression under this one.
-# checks: prose variable.name.mvv-display themes >= 17
-variable.name.mvv-display        # every truthful loud family costs this construct's neighbours their declared distinctions. Priced by `family-atlas --for` over eight candidates from the atlas of what themes rule on: `entity.name.variable.mvv` and `entity.name.mvv` cut invisible readings 22 to 10 and drop four floors; `entity.name.tag.mvv` reaches 0 invisible and drops eight; `storage.type.mvv` drops nine; `constant.language.mvv` drops seven. Not one candidate leaves the floors standing
