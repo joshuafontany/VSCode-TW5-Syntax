@@ -227,9 +227,22 @@ test('a ruling names a scope and a reason', () => {
     'pragmas.tw:punctuation.definition.directive  # a \\rules run narrows the rule set'
   ].join('\n');
   assert.deepStrictEqual(readExpected(text), [
-    { file: null, scope: 'meta.link.wikilink', reason: 'TiddlyWiki ships CamelCase linking disabled' },
-    { file: 'pragmas.tw', scope: 'punctuation.definition.directive', reason: 'a \\rules run narrows the rule set' }
+    { file: null, scope: 'meta.link.wikilink', reason: 'TiddlyWiki ships CamelCase linking disabled', reader: null },
+    { file: 'pragmas.tw', scope: 'punctuation.definition.directive', reason: 'a \\rules run narrows the rule set', reader: null }
   ]);
+});
+
+// A reason opening `READER <version>` (tools/reader-scope.js) names the ONE reader a ruling
+// explains, the same reason-prefix flag swallow-witness.js already carries for HOST — generalized
+// to the axis TW5_PATH moves. A ruling naming no reader answers for every reader it is asked about.
+test('a ruling may name the one reader it explains', () => {
+  const rules = readExpected('a.tw:markup.bold  # READER 5.4.1 — an unterminated run still builds there');
+  assert.strictEqual(rules[0].reader, '5.4.1');
+  assert.ok(isExpected(rules, 'dir/a.tw', 'markup.bold.tiddlywiki5', '5.4.1'));
+  assert.ok(!isExpected(rules, 'dir/a.tw', 'markup.bold.tiddlywiki5', '5.5.0-prerelease'),
+    'a ruling scoped to one reader answers for no other');
+  assert.ok(!isExpected(rules, 'dir/a.tw', 'markup.bold.tiddlywiki5'),
+    'asked with no reader in hand, a reader-scoped ruling answers for none');
 });
 
 test('a line carrying no reason reads as no ruling at all', () => {
