@@ -1060,12 +1060,13 @@ back by upgrading, which is the definition this number answers to.
   never ran. Two of them had stood that way since they were written, including both readings over
   cut ground. Each now runs for seconds rather than a millisecond, and each fails when its subject
   breaks.
-- Typing `[[` or `<<` closes itself, and both pairs match. Wikitext writes a bracketed title and a
-  macro call far more often than it writes a bare angle bracket, and the base configuration named
-  neither as a bracket nor as a closing pair — while the memetic dialect that wraps it named both.
-  Longest match wins, so `<<` and `[[` pair before `<` and `[`, and a bare `<` still opens an HTML
-  tag and closes nothing. The dialect gains `<%` `%>` in return, which belongs to the wikitext it
-  wraps.
+- Typing `[[` or `<<` now auto-closes, inserting the matching close. Wikitext writes a bracketed
+  title and a macro call far more often than it writes a bare angle bracket, and the base
+  configuration named neither as an auto-closing pair — while the memetic dialect that wraps it
+  named both. A bare `<` still opens an HTML tag and closes nothing. The dialect gains `<%` `%>`
+  in return, which belongs to the wikitext it wraps. (Auto-close only: these pairs do not
+  bracket-*match* — see "A macro call and a bracketed title close themselves and match nothing"
+  below, which states where this settled and supersedes any matching claimed here.)
 - A double-click takes a TiddlyWiki word. VS Code's default word pattern breaks a system title at
   its first character — `$:/core/ui/ViewTemplate` selects as `$` — and halves a hyphenated
   variable name, so `tv-config-toolbar` selects as `tv`. Both stand among the commonest tokens an
