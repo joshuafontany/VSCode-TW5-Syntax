@@ -200,14 +200,22 @@ back by upgrading, which is the definition this number answers to.
   bleeds, which belongs to a degenerate carrier, which that witness exempts by design. A reason opening
   HOST says so, and the summary counts those rulings rather than calling them dead.
 - A TEST THAT RE-DERIVES ITS TOOL'S READING HOLDS A SECOND IMPLEMENTATION, and the two drift apart in
-  silence. `tools/invariants/a-test-reads-its-tool.test.js` searches for the class rather than waiting
-  for an instance: every gate's test must read the gate's own verdict at least once, however many pure
-  halves it also pins. Four gate tests answered only from their tool's exports and now read its report
-  too. The detector's own first reading LIED — it matched a tool name only where one sits inline at the
-  call, and named two files blind that spawn their own tool through `const WITNESS = path.join(…)`, a
-  fault of exactly the kind this gate refuses, made by this gate. It answers in two halves now, the
-  file naming the tool and the file spawning something, with control arms for a name in a comment and
-  for a name held in a constant.
+  silence — a class this release found three times. `tools/invariants/a-test-reads-its-tool.test.js`
+  searches for the class rather than waiting for an instance: every gate's test must read the gate's
+  own verdict at least once, however many pure halves it also pins. Four gate tests answered only from
+  their tool's exports and now read its report too. The detector's own first reading LIED — it matched
+  a tool name only where one sits inline at the call, and named two files blind that spawn their own
+  tool through `const WITNESS = path.join(…)`, a fault of exactly the kind this gate refuses, made by
+  this gate. It answers in two halves now, the file naming the tool and the file spawning something,
+  with control arms for a name in a comment and for a name held in a constant. Two more instances of
+  the same class surfaced by other roads: three relation checks carried a second copy of a witness's
+  own logic, asking bare scopes and knowing nothing of which grammar a specimen opens under, so a
+  dialect relation read green in the test file while the witness refused it — the test now holds the
+  witness's report to zero instead. And three gates ran nothing at all and reported green, because
+  `test(name, options, fn)` takes one options object and each of these passed two, so the runner took
+  the second as the test body and the real body never ran — two had stood that way since they were
+  written, including both readings over cut ground; each now runs for seconds rather than a
+  millisecond and fails when its subject breaks.
 - THE STACK REPAIR LANDED ON TWO FAMILIES OF THREE. The declared distinctions and unities read the
   stack a reader meets; the opener/closer pairs and the things-met-as-one went on asking each scope
   alone, and a half-migrated instrument reads exactly as green as an unmigrated one. All four families
@@ -234,10 +242,6 @@ back by upgrading, which is the definition this number answers to.
   scheme names, so one added tomorrow answers the same day. What remains sits in the flagship's band:
   markdown's own autolink punctuation reads as prose in 32 of 65 and its body in 25, where this
   grammar's external link reads 0.
-- A TEST RE-DERIVED ITS OWN TOOL'S READING and disagreed with it. Three relation checks carried a
-  second copy of the witness's logic, asking bare scopes and knowing nothing of which grammar a
-  specimen opens under — so a dialect relation read green in the test file while the witness refused
-  it. The test holds the witness's report to zero instead.
 - A GATE ABANDONED ITS OWN READING ON THE WAY OUT. `process.exit` drops whatever stdout has not
   drained, and a gate printing a long listing then calling it loses the tail — silently, with a status
   of 0. Measured on the legibility witness, which prints 820 lines: six runs under CPU contention came
@@ -339,54 +343,14 @@ back by upgrading, which is the definition this number answers to.
 - The typo arm's determinism test accused the arm whenever the corpus moved between its two runs —
   three lines landing mid-corpus read exactly like a wandering perturbation. The corpus reports its
   own digest around the pair, so an edit names itself.
-- THE CARRIER TRUTH PASS. Five specimens said one thing and TiddlyWiki read another; each now
-  states what the host actually builds, traced with `tools/tw5-oracle.js`.
-  - `tables.spans.tw:15` wrote a row marker of `b`, which `[fhck]?` cannot take, so the host ended
-    the table there and read the line below as prose the grammar still coloured as a row. One
-    character removed.
-  - `blocks.tables.tw` labelled cells "a rowspan above", "a colspan right" and "a colspan left"
-    that never span anything — `table.js` compares a cell's WHOLE content against `~`, `>` and
-    `<`, so a mark carrying a trailing space builds an ordinary cell holding its mark as text —
-    and called one cell "left" that reads `align="right"` from its own leading space, and another
-    "right" that reads `align="left"` from its own trailing one. The marks now stand in cells that
-    actually join, the alignment labels name the align the host builds, and a fourth row states
-    the mark-with-a-space reading in its own words instead of implying a span.
-  - `pragmas.signatures.tw` gave a `\define` a `((…))` variable default. `macrodef.js`'s parameter
-    regex excludes `)` entirely — `([^)]*)` — where `fnprocdef.js`'s tolerates a nested `))`, so
-    the definition closed at the FIRST paren inside `((a variable default`, read `))` as a
-    single-line body, and every pragma below it — another definition, `\parameters`, the carrier's
-    own explanatory prose — fell through as one ordinary paragraph the grammar still painted as
-    pragma structure. The variable default now stands in a `\procedure` signature, where the host
-    reads it; `\define` keeps the three quotings it actually supports. Eleven expected-divergence
-    rulings, two ablation-ledger findings and two bracket-ledger findings retire with it — all of
-    them traced to the same swallowed pragma zone.
-  - `spans.multiline.tw` placed a `\define` and a `\procedure` after other content — buttons, a
-    `<div>`, a `<script>` — where `parsePragmas` (`wikiparser.js`) reads pragmas ONLY as a
-    consecutive run from the very start of the source, breaking for good at the first line that
-    fails to match one. Both blocks built no pragma at all; they read as the plain paragraph text
-    the fnprocdef/macrodef grammar rules kept painting as a live signature regardless. Both now
-    stand at the top of the file, beside the pragmas that already worked, so the carrier's own
-    claim — "a pragma signature opens on one line and closes on another" — holds for all four
-    signatures it carries. Two darkness-ledger findings retire with it.
-  - `tiddlywiki5.pragma.tw` (`tests/samples/`) carries a bare `\rules` with nothing after it —
-    `rules.js`'s own match regexp, `/\\rules[^\S\n]/mg`, needs a non-newline space immediately
-    after the word, so this line never matches the pragma at all and falls through as the plain
-    paragraph text its own `.snap` already pins. Traced and confirmed still true; the two
-    `OWED` expected-divergence rulings this carries stand, unmoved, since nothing here changed.
-  - Two carriers join `corpus/wikitext/` for the table forms nothing else exercised:
-    `tables.nesting.tw` (every inline construct inside a cell, a pipe inside one of them, every
-    row form at once, a full span grid, valign-then-heading ordering, and a caption a later row
-    replaces) and `tables.malformed.tw` (a row that fails whole, a ragged table, an empty row, a
-    span mark with nothing to join, and the tab-versus-space divergence `table.js` reads
-    differently from a heading bang). The tab line also parts the two regex engines — the JS
-    translation of `tw5-fields.json`'s control-character lookahead reads it where Oniguruma
-    refuses — so `tools/engine-witness.js` now accepts a `BEHAVIOUR —` reason prefix in
-    `corpus/engine-ledger.txt`, keying a ruling to the `--behaviour` arm alone the way a
-    `READER <version>` prefix keys one to a single `TW5_PATH`; the plain (compile) arm neither
-    reaches for it nor reports it idle. Six ablation-ledger findings join with the two carriers,
-    and `tools/corpus-check.test.js`'s ceiling control moves off `blocks.tables.tw`, which a
-    table's ground spread across four files no longer makes uniquely load-bearing, onto
-    `html.svg.tw`.
+- THE CARRIER TRUTH PASS. Five corpus specimens said one thing and TiddlyWiki read another —
+  a row marker `[fhck]?` cannot take, a span label naming a span `table.js` never builds, a
+  variable default that swallows a pragma zone, a bare `\rules` with no space after it, and two
+  malformed-table shapes nothing else exercised — each traced with `tools/tw5-oracle.js` and
+  corrected to what the host actually builds. The file-by-file trace (`tables.spans.tw`,
+  `blocks.tables.tw`, `pragmas.signatures.tw`, `spans.multiline.tw`, `tiddlywiki5.pragma.tw`,
+  `tables.nesting.tw`, `tables.malformed.tw`) stands in the commits that made each correction
+  (`93ea2baf` and neighbours) rather than restated here.
 
 ### Added
 - A `toml` FENCE READS FULL TOML 1.1, PRIVATELY. VS Code ships no TOML grammar, so a `toml` fence
@@ -499,15 +463,18 @@ back by upgrading, which is the definition this number answers to.
   text: measured, 93 spans across the three carriers, each one now ruled in the divergence file with the
   narrowing that retired it. The widest reading is `\rules only` with no names at all, where the host
   keeps NO rule and the whole carrier holds one paragraph.
-- A NAMING CANDIDATE NOW CARRIES ITS PRICE BEFORE ANYBODY MOVES IT. `family-atlas --for <scope>
-  --candidates a,b` reports what a candidate buys over the corpus and what it costs in the declared
-  distinctions the legibility gate holds — through THAT GATE'S OWN reading, with the grammar untouched.
-  The deciding half of `construct-legibility` stands exported and substitution-aware, so one
-  implementation answers both callers rather than a second copy drifting beside it. Welded: the arm
-  reproduces the four falls the slow reading measured for the `((mvv))` display run, floor for floor.
-- THE `((mvv))` RULING NOW RESTS ON A SEARCH RATHER THAN AN ATTEMPT. Priced over eight candidates drawn
-  from the atlas: two cut the prose readings in half and drop four floors, one reaches zero invisible and
-  drops eight, and the rest drop seven to nine. Not one leaves the floors standing.
+- THE `((mvv))` NAME NOW CARRIES A SEARCH, NOT AN ATTEMPT, AND KEEPS ITS PUBLISHED NAME. `family-atlas
+  --for <scope> --candidates a,b` reports what a candidate buys over the corpus and what it costs in
+  the declared distinctions the legibility gate holds — through THAT GATE'S OWN reading, with the
+  grammar untouched; the deciding half of `construct-legibility` stands exported and
+  substitution-aware, so one implementation answers both callers. Priced over eight candidates drawn
+  from the atlas for the `((mvv))` display run: two cut the prose readings in half and drop four
+  floors, one reaches zero invisible and drops eight, and the rest drop seven to nine — not one
+  leaves the floors standing. The name stays: it drops four declared distinctions below their ratchet
+  floors (a dash 59 of 65 against a floor of 60, a heading 51 against 56, a parsermode directive and a
+  whitespace directive 64 each against 65) where the four other names in the same family move with
+  nothing falling, so the cost belongs to this construct's colour neighbourhood rather than to the
+  family, and a floor ratchets up rather than admitting the fork.
 - A CLAIM THIS RECORD MADE ABSOLUTE STANDS TESTED, AND HELD. A transclusion's marker reads as one object
   with its interior only by joining the string family — and the space of moves closes by derivation
   rather than by taste: to paint alike, the marker must match the rule its interior's stack wins on, so
@@ -533,12 +500,6 @@ back by upgrading, which is the definition this number answers to.
   from 22 of 65 themes to 10, and the readings above the ledger's bar fall from seven to two. The
   published `variable.*` name stands first in every case; nothing retires. A weld holds the derivation
   to the contrast reading, which measured `variable`'s ratio by a different path.
-- THE `((mvv))` DISPLAY RUN KEEPS ITS NAME, AND THE LEDGER CARRIES WHAT THE MOVE WOULD COST. The same
-  family halves its prose readings too, and drops four declared distinctions below their ratchet floors:
-  a dash at 59 of 65 against a floor of 60, a heading at 51 against 56, a parsermode directive and a
-  whitespace directive at 64 each against 65. The four other names took the move with nothing falling,
-  so the cost belongs to this construct's colour neighbourhood rather than to the family. A floor
-  ratchets up; lowering one to admit a fork would hide the next regression under this one.
 - THE EXAMPLE SET ANSWERS TO THE HOST'S OWN REGEXPS, not to a list of constructs anybody recalled.
   Ranking every parser rule by how many nodes the corpus makes it build named the thin end outright —
   and the ranking's first draft LIED, pruning a walk to one coordinate space and so reading
@@ -661,14 +622,13 @@ back by upgrading, which is the definition this number answers to.
   53 of 65 and stands as the only construct whose first character reaches a real theme rule. The
   bench seeds its workspace from the corpus, so a reader flipping themes looks at the same files
   that gate the grammar.
-- `MIGRATION.md` names every scope a reader's theme rule lost. 460 scope names stand at `v2.2.1` and
-  587 here; 126 went, 253 arrived. A theme rule and an `editor.tokenColorCustomizations` entry both
-  name a scope, and when one moves VS Code reports nothing — the rule stops matching and the
-  construct goes the colour of prose. 39 of the 111 moved for one reason: they carried a qualifier in
-  FRONT of their family root, where a dot-bounded selector never reached them, so they painted prose
-  in all 65 bundled themes from the day they were written. The record derives from both grammars and
-  `tools/invariants/scope-migration.test.js` holds it to them — a name called gone that still stands,
-  a replacement nothing emits, or a gone name the record never mentions each fail that gate.
+- `MIGRATION.md` names every scope a reader's theme rule lost. A theme rule and an
+  `editor.tokenColorCustomizations` entry both name a scope, and when one moves VS Code reports
+  nothing — the rule stops matching and the construct goes the colour of prose. The current headline
+  count, and the shared shape behind 39 of the gone names (a qualifier standing in front of the
+  family root, where a dot-bounded selector never reached them), stand in `MIGRATION.md` itself
+  rather than restated here — `tools/invariants/scope-migration.test.js` derives and gate-checks
+  both from the two grammars, so this paragraph cannot drift from them the way an earlier draft did.
 - Eight shared modules under `tools/` carry tests of their own, ordered by a require graph rather
   than by a reading of names: `run-tool` backs 26 files, `tokenizer` 22, `snapshot-format` 9,
   `theme-model` 8. Each collides its deciding half against constructed input and ships a control —
@@ -741,26 +701,12 @@ back by upgrading, which is the definition this number answers to.
   enacted, and the specimen names what an enactment owes first — `macrocallinline` carries no line
   bound and a child region standing open refuses its parent's end, so a `<<` in a stylesheet with no
   `>>` ahead runs past `</style>` and takes the rest of the tiddler.
-- The whole-document lookahead ceiling wears a third construct. `codeinline.js` runs
-  `reEnd.exec(this.parser.source)` over the WHOLE source, so a code run crosses line breaks freely
-  and an unterminated delimiter renders as literal text carrying no node — the ceiling's own question
-  exactly, and the reader it names decides both the pairing and the unterminated case. The evidence
-  stood in `corpus/attribute-kind-ceiling.txt` pointing at an entry that named two constructs and not
-  this one. It now carries the third with its cost, 10 attributes across five templates, and the two
-  relaxations that ran on this arm and failed: a `begin`/`end` pair runs away in the 9 tiddlers
-  holding an unterminated code run, and a blank-line bound mis-pairs the 8 whose runs legitimately
-  cross one. No pattern moved.
-
-- A NINTH CEILING, and a sixth shape under it. This grammar embeds wikitext INSIDE quoted attribute
-  values, and a TextMate rule only ADDS scopes — so every construct opened in there wears the
-  enclosing `string.*` for as long as the region stands, and a theme rule written against `string`
-  reaches all of them. Measured over corpus and samples: 1080 of 24376 tokens stand under a string
-  they cannot leave, across 47 of 79 carriers, 8 enclosing string scopes and 67 trapped construct
-  names. Sublime prescribes `clear_scopes:` for exactly this span; vscode-textmate's `IRawRule`
-  enumerates fourteen keys and names no removal among them, so the gate MEASURES rather than asserts
-  it — three throwaway grammars, one line, the cleared arm reading byte-identical to the plain one
-  against a moved arm that stands as the control. The STACK shape collides both ways: a specimen
-  trapping nothing and a reader honouring a removal each turn the gate red.
+- The whole-document lookahead ceiling gains a third construct (`codeinline.js`'s own whole-source
+  scan) and a ninth ceiling joins the record — a construct opened inside a quoted attribute value
+  wears that value's `string.*` for as long as the region stands, which no TextMate rule can strip
+  back off. Both stand measured, evidenced and ruled on in
+  `editions/tw5-syntax/tiddlers/TextMateCeiling.tid` (harvested from `tools/textmate-ceiling.js`,
+  never hand-edited) rather than narrated a second time here.
 - `npm run delimiters` reads what a delimiter INHERITS from the content it bounds. `contentName`
   names a region's interior alone, so the marks that open and close it fall outside the content
   family by construction and nothing downstream notices. Derived over `syntaxes/`: 107 contentName
@@ -776,8 +722,8 @@ back by upgrading, which is the definition this number answers to.
   already decided and no page recorded: a scope name reads as A PROMISE ABOUT MEANING, so it says
   what a span IS and never what colour the name would inherit. `keyword.control.list` reaches 100% of
   themes and calls a bullet a keyword — declined. Borrowing markdown's list-marker name measured +19
-  points — declined. 2.3.0 moved 126 of 460 names, 39 of them for a qualifier standing in front of its
-  family root. `tools/invariants/scope-name-policy.test.js` holds the three parts a machine can check
+  points — declined. The count of names this policy moved stands in `MIGRATION.md`, not here.
+  `tools/invariants/scope-name-policy.test.js` holds the three parts a machine can check
   and, run at a floor of zero, found EIGHT standing violations nothing had reported: seven names
   nesting `punctuation` under a content root — a shape returning zero across thirteen flagship
   grammars, which Sublime's own guidance rules against — and one where a dropped dot fused `html`
@@ -959,35 +905,17 @@ back by upgrading, which is the definition this number answers to.
   checkout resolving 5.4.1 against 5.5.0-prerelease.
 - One resolver, and the house's own gate caught the second. `resolveSeed` stands beside
   `resolveTiddlyWiki` in the oracle rather than in the tool that wanted it.
-- Three more ceilings, each measured against the host and each naming a capability a later reader
-  must supply. IMPORT BY FILTER: `\import` takes a filter, not a title, so which definitions arrive
-  depends on what the wiki holds — `[tag[CeilingTag]]` renders `IMPORTED` and `[tag[OtherTag]]`
-  renders nothing, on identical calling bytes. INDIRECT ATTRIBUTE VALUE: `<$text
-  text={{X!!myfield}}/>` renders the field where it stands and nothing where it does not. ENTITY
-  VALUE: `&hellip; and &#x2014;` renders `… and —`, and the grammar names the entity exactly while
-  carrying no scope for what it stands for, because a scope names a span and never a value.
-- The ceiling shapes read five now — blind, phantom, space, wiki, value — and the two new ones carry
-  their own collisions: a wiki ceiling whose states render alike, and a value ceiling whose host
-  renders the source unchanged, both fail the gate.
-- Measured and NOT encoded: `\whitespace trim` leaves the tree identical on the specimen tried, and
-  rule-order precedence wants a genuine two-rule conflict nobody has constructed. Neither reads as a
-  ceiling on the evidence in hand, and a claim without a measurement stays out.
 - `ceiling` names what a TextMate grammar CANNOT reach about TiddlyWiki, measured rather than
   asserted, so a later reader — a language server, a tree-sitter grammar, a parser wired to the wiki
-  — inherits a mandate rather than a hunch. Five stand: whole-document lookahead (a call builds where
-  `>>` stands anywhere ahead and nowhere else), rule-set mutation (`\rules except html` deletes a
-  rule for the rest of the document), verbatim storage (a macro body builds one node with nothing
-  inside, and the grammar paints wikitext there on purpose), nested coordinate space (a typed block
-  reports 23..42 while the quoteblock inside it reports 0..14), and cross-tiddler resolution
-  (`<<d hello>>` renders `A hello B` or `A $x$ B` depending on a definition in another tiddler).
-- A ceiling RETIRES when somebody closes it, and the gate fails until it goes — the same discipline a
-  ruling explaining nothing answers to. Three collisions plant that: a host that stops parting its
-  two inputs, a grammar that starts parting them, and a phantom pointed where the grammar paints
-  nothing. Each entry states its evidence and the attempts measured against it, because a limit
-  carrying no attempt reads as an excuse dressed as architecture.
-- `\parsermode` stands measured and is NOT a ceiling. The host builds `element/heading` under
-  `block` and only `text` under `inline`, and this grammar already parts them through a dedicated
-  inline-mode region.
+  — inherits a mandate rather than a hunch. Nine stand now (up from five), each with its own evidence
+  and the attempts measured against it — a limit carrying no attempt reads as an excuse dressed as
+  architecture — recorded once in `editions/tw5-syntax/tiddlers/TextMateCeiling.tid` rather than
+  narrated here; a ceiling RETIRES when somebody closes it, and the gate fails until it goes. Two
+  candidates measured out rather than in: `\whitespace trim` leaves the tree identical on the
+  specimen tried, and rule-order precedence wants a genuine two-rule conflict nobody has
+  constructed — neither reads as a ceiling on the evidence in hand. `\parsermode` likewise stands
+  measured and is NOT a ceiling: the host builds `element/heading` under `block` and only `text`
+  under `inline`, and this grammar already parts them through a dedicated inline-mode region.
 - Specimens for 23 regions no cut in this corpus ever opened, and the unasked ceiling falls from 44
   to 21. `pragmas.signatures.tw` carries a `\define` signature closing on a later line in every
   default quoting the grammar holds a region for, and a `\parameters` directive behind it;
@@ -1055,11 +983,6 @@ back by upgrading, which is the definition this number answers to.
   file read under the dialect lost 34 spans until the dialect carried those injections itself. A
   gate reads every wikitext corpus file under both grammars and holds the dialect to losing no
   span and stripping no scope, since a superset may only add.
-- Three gates ran nothing and reported green. `test(name, options, fn)` takes one options object,
-  and each of these passed two — so the runner took the second as the test body and the real body
-  never ran. Two of them had stood that way since they were written, including both readings over
-  cut ground. Each now runs for seconds rather than a millisecond, and each fails when its subject
-  breaks.
 - Typing `[[` or `<<` now auto-closes, inserting the matching close. Wikitext writes a bracketed
   title and a macro call far more often than it writes a bare angle bracket, and the base
   configuration named neither as an auto-closing pair — while the memetic dialect that wraps it
