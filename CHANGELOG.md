@@ -2555,6 +2555,39 @@ back by upgrading, which is the definition this number answers to.
   pair rose instead and stood unrecorded until now. Re-seated in `corpus/legibility-floor.txt`
   with the ruling that moved it, 51 -> 55; no other pair in the file moves under this entry.
 
+### Added
+- `editions/tw5-syntax/` SHIPS AS A NEW SUB-PACKAGE: A TIDDLYWIKI-EDITION BUILD OF THE GRAMMAR DATA.
+  Thirteen tiddlers, its own `tiddlywiki.info` and `tsconfig.json`, and TypeScript sources compiled
+  by `tools/edition-build.js` — the wiki that reads this repository's own `tools/`, `syntaxes/`,
+  `snippets/` and `docs/` in place (see "The repository reads from inside the wiki", above) opens
+  from here. `MIGRATION.md`, `GrammarSignals.tid` and `TextMateCeiling.tid` all live as tiddlers
+  inside it, harvested rather than hand-written. CI rebuilds it and holds the tree to what the build
+  writes (`npm run edition:check`), so a source edited without a rebuild fails a merge instead of
+  shipping a stale compiled module.
+- THE MANIFEST GAINS AN `embeddedLanguages` MAP, NAMED AND COUNTED. Both wikitext grammar
+  contributions (`text.html.tiddlywiki5` and `text.html.tiddlywiki5.test`) declare one, keying each
+  `meta.embedded.block.<lang>` region this grammar emits to the VS Code language id that owns it —
+  24 entries per contribution: c, coffeescript, cpp, csharp, css, html, ini, java, javascript, json,
+  makefile, markdown, memetic-wikitext, objective-c, objective-cpp, perl, python, ruby, shellscript,
+  sql, toml, xml and xsl. This is the manifest mechanism behind "A fenced block hands its guest
+  language to the editor, not only to the colourer" above: folding, comment-toggling and bracket
+  rules follow the guest language across a fence because this map tells VS Code which editor
+  behaviour to switch to there, not because of anything the grammar colours.
+- `ThirdPartyNotices.txt` SHIPS, REQUIRED BY THE TOML GRAMMAR'S PORT. `syntaxes/toml.tw5-syntax.json`
+  hand-ports sublimehq/Packages' `TOML/TOML.sublime-syntax`, under that project's own permissive
+  licence — the same shape TextMate's own bundled grammars carry. The 23-line notice names the
+  source, its licence and its copyright holders, the way a hand port of another project's grammar
+  data requires.
+- A RESEARCH SHELF JOINS `docs/`, RECORDING THE EVIDENCE BEHIND THIS RELEASE'S NAMING AND PAINT
+  RULINGS RATHER THAN ASSERTING THEM. `docs/scope-naming-prior-art.mem` and seven files under
+  `docs/prior-art/` (`coordinator-direct`, `fixed-vocabularies`, `library-highlighters`,
+  `paint-and-delimiters`, `sublime-vs-textmate`, `synthesis`, `treesitter-and-semantic-tokens`) —
+  roughly 3,600 lines — collide this grammar's naming and bracket-painting decisions against
+  TextMate/Sublime convention, thirteen-plus flagship grammars, and tree-sitter/semantic-token
+  practice; `docs/differential-test-design.mem` records the reasoning behind the corpus/host
+  comparison method the gates run on. `SCOPE-NAMES.md`'s naming policy and the bracket/paint rulings
+  elsewhere in this section cite these as their evidentiary basis rather than asserting taste.
+
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`
   excluded the directory, and no tool, test or doc read from it. Git holds them.
