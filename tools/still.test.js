@@ -204,15 +204,29 @@ test('a ruling withdrawn drops the reach below the floor', live, () => {
 // reading does not.
 test('one reading per carrier finds the cuts that re-reading each head finds', live, async () => {
   const { divergencesIn, carriers, READINGS } = require('./still.js');
+  const { DEFAULT_TYPE } = require('./carrier-reading.js');
   const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
   const { tokenize } = require('./tokenizer.js');
   const { kindOf } = require('./region-kind.js');
+  const { standAlone } = require('./sentinel.js');
   const tw = resolveTiddlyWiki();
   if (!tw) return;                                   // the pass itself stands down with no checkout
   const oracle = boot(tw, {});
   const SENTINEL = '<<<\nQuoted\n<<<\n';
 
-  /** The reading the collapse replaces: the whole head, tokenized again at every cut. */
+  /**
+   * The reading the collapse replaces: the whole head, tokenized again at every cut.
+   *
+   * A CARRIER'S OWN TYPE STILL PICKS ITS PARSER here — `carrier-reading.js` already rules that, and
+   * an independent reimplementation that forgets it is not independent of the fault, it is a fourth
+   * witness making the same mistake. `oracle.parse` alone is hard-wired to `text/vnd.tiddlywiki`.
+   *
+   * THE SENTINEL STILL STANDS ALONE here too — `sentinel.js` already rules that a cut leaving a
+   * quote open must close it before the sentinel lands, or the sentinel's own marker reads as that
+   * quote's CLOSER instead of a fresh opener. Skipping the close is the same mistake in different
+   * clothes: a reimplementation that forgets a shared rule is not independent of the fault it
+   * shares.
+   */
   const slowly = async (file) => {
     const reading = READINGS[path.extname(file)];
     const text = fs.readFileSync(file, 'utf8');
@@ -222,13 +236,15 @@ test('one reading per carrier finds the cuts that re-reading each head finds', l
     for (let cut = 1; cut <= lines.length; cut += 1) {
       const head = lines.slice(0, cut).join('\n').replace(/\n+$/, '');
       if (!head.trim()) continue;
-      const specimen = `${head}\n\n${SENTINEL}`;
+      const stem = standAlone(head);
+      const specimen = `${stem}\n\n${SENTINEL}`;
       const read = reading.body ? reading.body(specimen) : specimen;
+      const type = reading.type ? reading.type(specimen) : DEFAULT_TYPE;
       const at = read.lastIndexOf(SENTINEL);
       const line = specimen.split('\n').length - 4;
       if (at < 0) continue;
       const tokens = (await tokenize(reading.scope, specimen))[line] ?? [];
-      const tree = flatten(oracle.parse(read).tree, { sameSpace: true });
+      const tree = flatten(oracle.parseAs(type, read).tree, { sameSpace: true });
       const parser = tree.some((n) => n.rule === 'quoteblock' && n.start === at);
       const grammar = tokens
         .some((t) => t.scopes.some((s) => s.startsWith('punctuation.definition.markup.quote.quoteblock.begin')));
@@ -261,6 +277,139 @@ test('one reading per carrier finds the cuts that re-reading each head finds', l
   }
   // THE CONTROL. Two readings that both find nothing agree perfectly and prove nothing.
   assert.ok(cuts > 0, 'no carrier in the draw diverges at any cut, so the two readings agree over nothing');
+});
+
+// TRACED. `editions/classicparserdemo/tiddlers/Classic Slider Demo.tid` declares
+// `type: text/x-tiddlywiki` — a type the oracle registers no parser for, so a body read AS that type
+// never opens a quoteblock at all. `divergencesIn` honours the declared type (`carrier-reading.js`:
+// "A TIDDLER'S OWN TYPE PICKS ITS PARSER"), so it reads the sentinel past the header as unparsed —
+// `overbound (nothing)` at every cut from the `type:` line on. The slow reimplementation above
+// forces every specimen through `oracle.parse`, which is hard-wired to `text/vnd.tiddlywiki`
+// (`tw5-oracle.js`), so it opens a quoteblock there regardless of what the carrier declares and
+// reads NO divergence at all — the identical mistake `carrier-reading.js` already names three
+// witnesses making independently: "ALL THREE handed a `.tid` body to the wikitext parser while
+// discarding the `type:` field they had just parsed out of its own header."
+test('the slow reading agrees with the fast one over a carrier declaring its own type', live, async () => {
+  const { divergencesIn, READINGS } = require('./still.js');
+  const { DEFAULT_TYPE } = require('./carrier-reading.js');
+  const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
+  const { tokenize } = require('./tokenizer.js');
+  const { kindOf } = require('./region-kind.js');
+  const { standAlone } = require('./sentinel.js');
+  const tw = resolveTiddlyWiki();
+  if (!tw) return;                                   // the pass itself stands down with no checkout
+  const oracle = boot(tw, {});
+  const SENTINEL = '<<<\nQuoted\n<<<\n';
+
+  const slowly = async (file) => {
+    const reading = READINGS[path.extname(file)];
+    const text = fs.readFileSync(file, 'utf8');
+    const lines = text.split('\n');
+    if (/^\\rules /m.test(text) || lines.length > 400) return null;
+    const found = [];
+    for (let cut = 1; cut <= lines.length; cut += 1) {
+      const head = lines.slice(0, cut).join('\n').replace(/\n+$/, '');
+      if (!head.trim()) continue;
+      const stem = standAlone(head);
+      const specimen = `${stem}\n\n${SENTINEL}`;
+      const read = reading.body ? reading.body(specimen) : specimen;
+      const type = reading.type ? reading.type(specimen) : DEFAULT_TYPE;
+      const at = read.lastIndexOf(SENTINEL);
+      const line = specimen.split('\n').length - 4;
+      if (at < 0) continue;
+      const tokens = (await tokenize(reading.scope, specimen))[line] ?? [];
+      const tree = flatten(oracle.parseAs(type, read).tree, { sameSpace: true });
+      const parser = tree.some((n) => n.rule === 'quoteblock' && n.start === at);
+      const grammar = tokens
+        .some((t) => t.scopes.some((s) => s.startsWith('punctuation.definition.markup.quote.quoteblock.begin')));
+      if (parser === grammar) continue;
+      const scopes = tokens.flatMap((t) => t.scopes)
+        .filter((s) => !/^(text\.html\.tiddlywiki5|source\.tiddlywiki5)[a-z.-]*$/.test(s) && !/quoteblock/.test(s));
+      const key = parser ? kindOf(scopes) : (() => {
+        const covering = tree.filter((n) => typeof n.start === 'number' && n.start <= at && n.end >= at && n.rule);
+        return covering.length ? covering[covering.length - 1].rule : '(nothing)';
+      })();
+      found.push({ cut, id: `${parser ? 'runaway' : 'overbound'} ${key}` });
+    }
+    return found;
+  };
+
+  const file = path.join(tw, 'editions', 'classicparserdemo', 'tiddlers', 'Classic Slider Demo.tid');
+  const fast = await divergencesIn(file);
+  const slow = await slowly(file);
+  assert.ok(fast && fast.length > 0,
+    `the traced carrier stopped diverging under the fast reading, so it no longer traces anything: ${JSON.stringify(fast)}`);
+  assert.ok(fast.every((d) => d.id === 'overbound (nothing)'),
+    `expected an unparsed classic-type body throughout, got ${JSON.stringify(fast)}`);
+  assert.deepStrictEqual(slow, fast,
+    `the two readings part over a carrier's own declared type: fast=${JSON.stringify(fast)} slow=${JSON.stringify(slow)}`);
+});
+
+// TRACED. `editions/es-ES/tiddlers/ListWidget.tid` opens a `<<<` quoteblock at line 49 and cut 50
+// lands inside it, still open. `divergencesIn` calls `standAlone(head)` before appending the
+// sentinel — sentinel.js's own rule, "A SENTINEL MUST STAND ALONE" — so the head's open quote gets
+// its own closer first and the sentinel opens a FRESH quoteblock behind it. The slow reimplementation
+// above never called `standAlone`: it appends the sentinel straight after the still-open `<<<`, so
+// the sentinel's own `<<<` reads as the CLOSER of the head's quote instead (same width, matching
+// `sentinel.js`'s own `openMarkers` rule) — a punctuation.END where the fast reading gets a
+// punctuation.BEGIN. Measured: fast reads `parser=false grammar=true` (an "overbound" runaway) at
+// this cut; slow reads `parser=true grammar=false` and calls it agreement, so it never surfaces the
+// cut at all.
+test('the slow reading closes an open quote before its sentinel, like the fast one does', live, async () => {
+  const { divergencesIn, READINGS } = require('./still.js');
+  const { DEFAULT_TYPE } = require('./carrier-reading.js');
+  const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
+  const { tokenize } = require('./tokenizer.js');
+  const { kindOf } = require('./region-kind.js');
+  const { standAlone } = require('./sentinel.js');
+  const tw = resolveTiddlyWiki();
+  if (!tw) return;                                   // the pass itself stands down with no checkout
+  const oracle = boot(tw, {});
+  const SENTINEL = '<<<\nQuoted\n<<<\n';
+
+  const slowly = async (file) => {
+    const reading = READINGS[path.extname(file)];
+    const text = fs.readFileSync(file, 'utf8');
+    const lines = text.split('\n');
+    if (/^\\rules /m.test(text) || lines.length > 400) return null;
+    const found = [];
+    for (let cut = 1; cut <= lines.length; cut += 1) {
+      const head = lines.slice(0, cut).join('\n').replace(/\n+$/, '');
+      if (!head.trim()) continue;
+      // A CUT LEAVING A QUOTE OPEN CLOSES IT FIRST, so the sentinel meets both readers at the same
+      // depth — `sentinel.js` names the hazard, and this reading answers to it the same way the
+      // fast one does.
+      const stem = standAlone(head);
+      const specimen = `${stem}\n\n${SENTINEL}`;
+      const read = reading.body ? reading.body(specimen) : specimen;
+      const type = reading.type ? reading.type(specimen) : DEFAULT_TYPE;
+      const at = read.lastIndexOf(SENTINEL);
+      const line = specimen.split('\n').length - 4;
+      if (at < 0) continue;
+      const tokens = (await tokenize(reading.scope, specimen))[line] ?? [];
+      const tree = flatten(oracle.parseAs(type, read).tree, { sameSpace: true });
+      const parser = tree.some((n) => n.rule === 'quoteblock' && n.start === at);
+      const grammar = tokens
+        .some((t) => t.scopes.some((s) => s.startsWith('punctuation.definition.markup.quote.quoteblock.begin')));
+      if (parser === grammar) continue;
+      const scopes = tokens.flatMap((t) => t.scopes)
+        .filter((s) => !/^(text\.html\.tiddlywiki5|source\.tiddlywiki5)[a-z.-]*$/.test(s) && !/quoteblock/.test(s));
+      const key = parser ? kindOf(scopes) : (() => {
+        const covering = tree.filter((n) => typeof n.start === 'number' && n.start <= at && n.end >= at && n.rule);
+        return covering.length ? covering[covering.length - 1].rule : '(nothing)';
+      })();
+      found.push({ cut, id: `${parser ? 'runaway' : 'overbound'} ${key}` });
+    }
+    return found;
+  };
+
+  const file = path.join(tw, 'editions', 'es-ES', 'tiddlers', 'ListWidget.tid');
+  const fast = await divergencesIn(file);
+  const slow = await slowly(file);
+  assert.ok(fast && fast.some((d) => d.cut === 50),
+    `the traced cut stopped diverging under the fast reading, so it no longer traces anything: ${JSON.stringify(fast)}`);
+  assert.deepStrictEqual(slow, fast,
+    `the two readings part over an open quote at the cut: fast=${JSON.stringify(fast)} slow=${JSON.stringify(slow)}`);
 });
 
 // The probe's sentinel answers in `tools/sentinel.test.js`, beside the module that spells it: the
