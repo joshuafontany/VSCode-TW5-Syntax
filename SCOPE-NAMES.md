@@ -17,7 +17,7 @@ scopes, so the names reach people whatever the grammar intends.
 ## Why this page sits here
 
 `MIGRATION.md` records what moved between two versions and names the principle behind 39 of the
-105 moves. It carries no rule, because a migration record answers about the past. `contributing.md`
+111 moves. It carries no rule, because a migration record answers about the past. `contributing.md`
 carries how to work the tree. `README.md` tells a reader which scope to name in their own settings.
 Each of the three needs this one, and none of them should hold it: a rule living inside a record
 goes stale with the record, and a rule living inside a contributor guide never reaches the reader
@@ -48,9 +48,9 @@ reach. The gain came entirely from markdown's popularity, not from any claim abo
 > parses.** TiddlyWiki's list markup is not markdown's, and a name that says otherwise trades a
 > true statement for a colour.
 
-### 2.3.0 — 105 names moved, 39 of them for one reason
+### 2.3.0 — 126 names moved, 39 of them for one reason
 
-The `2.3.0` release moved **105** of 460 declared names and added **142**. Thirty-nine moved for a
+The `2.3.0` release moved **126** of 460 declared names and added **253**. Thirty-nine moved for a
 single shape: a qualifier standing in front of the family root —
 `bold.punctuation.definition.markup.begin`, `caption.markup.other.table`, `mvv.attribute.html`.
 

@@ -6,8 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## 3.0.0 — unreleased
 
-A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 94 of the 460
-names `v2.2.1` published and adds 131 — and a reader's `editor.tokenColorCustomizations` entry
+A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 126 of the 460
+names `v2.2.1` published and adds 253 — and a reader's `editor.tokenColorCustomizations` entry
 naming any retired one stops matching SILENTLY, with VS Code reporting nothing. `MIGRATION.md`
 names every one. The reading changed beside the vocabulary: a transclusion reads as ONE object in
 38 themes where it read so in none, an image's `[img[` arrives as one marker, and every quoted
@@ -662,9 +662,9 @@ back by upgrading, which is the definition this number answers to.
   bench seeds its workspace from the corpus, so a reader flipping themes looks at the same files
   that gate the grammar.
 - `MIGRATION.md` names every scope a reader's theme rule lost. 460 scope names stand at `v2.2.1` and
-  497 here; 105 went, 142 arrived. A theme rule and an `editor.tokenColorCustomizations` entry both
+  587 here; 126 went, 253 arrived. A theme rule and an `editor.tokenColorCustomizations` entry both
   name a scope, and when one moves VS Code reports nothing — the rule stops matching and the
-  construct goes the colour of prose. 39 of the 105 moved for one reason: they carried a qualifier in
+  construct goes the colour of prose. 39 of the 111 moved for one reason: they carried a qualifier in
   FRONT of their family root, where a dot-bounded selector never reached them, so they painted prose
   in all 65 bundled themes from the day they were written. The record derives from both grammars and
   `tools/invariants/scope-migration.test.js` holds it to them — a name called gone that still stands,
@@ -776,7 +776,7 @@ back by upgrading, which is the definition this number answers to.
   already decided and no page recorded: a scope name reads as A PROMISE ABOUT MEANING, so it says
   what a span IS and never what colour the name would inherit. `keyword.control.list` reaches 100% of
   themes and calls a bullet a keyword — declined. Borrowing markdown's list-marker name measured +19
-  points — declined. 2.3.0 moved 94 of 460 names, 39 of them for a qualifier standing in front of its
+  points — declined. 2.3.0 moved 126 of 460 names, 39 of them for a qualifier standing in front of its
   family root. `tools/invariants/scope-name-policy.test.js` holds the three parts a machine can check
   and, run at a floor of zero, found EIGHT standing violations nothing had reported: seven names
   nesting `punctuation` under a content root — a shape returning zero across thirteen flagship
