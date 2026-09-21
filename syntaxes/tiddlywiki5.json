@@ -378,8 +378,8 @@
             "name": "meta.directive.parameters.tiddlywiki5",
             "patterns": [
                 {
-                    "comment": "Handle individual parameters and optional default values.",
-                    "match": "([\\w\\-]+)(?:(\\s*:\\s*)(\"[^\"]*\"|'[^']*'|\\[\\[[^\\]]*\\]\\]|[^,\\s\")]+))?",
+                    "comment": "Handle individual parameters and optional default values. parseutils.js#parseParameterDefinition names a parameter with `[^:),\\s]+` — anything but the pragma's own delimiters — so a `$`-prefixed name (`\\parameters ($a:\"one\")`, binding the widget parameter `$a`) is as valid as a bare word; `[\\w\\-]+` read only the bare-word case and left a leading `$` uncoloured.",
+                    "match": "([^:),\\s]+)(?:(\\s*:\\s*)(\"[^\"]*\"|'[^']*'|\\[\\[[^\\]]*\\]\\]|[^,\\s\")]+))?",
                     "name": "meta.variable.parameter.tiddlywiki5",
                     "captures": {
                         "1": {
@@ -853,13 +853,13 @@
                     "begin": "on(s(croll|t(orage|alled)|u(spend|bmit)|e(curitypolicyviolation|ek(ing|ed)|lect))|hashchange|c(hange|o(ntextmenu|py)|u(t|echange)|l(ick|ose)|an(cel|play(through)?))|t(imeupdate|oggle)|in(put|valid)|o(nline|ffline)|d(urationchange|r(op|ag(start|over|e(n(ter|d)|xit)|leave)?)|blclick)|un(handledrejection|load)|p(opstate|lay(ing)?|a(ste|use|ge(show|hide))|rogress)|e(nded|rror|mptied)|volumechange|key(down|up|press)|focus|w(heel|aiting)|l(oad(start|e(nd|d(data|metadata)))?|anguagechange)|a(uxclick|fterprint|bort)|r(e(s(ize|et)|jectionhandled)|atechange)|m(ouse(o(ut|ver)|down|up|enter|leave|move)|essage(error)?)|b(efore(unload|print)|lur))(?![\\w:-])",
                     "beginCaptures": {
                         "0": {
-                            "name": "meta.attribute.event-handler.html.tiddlywiki5"
+                            "name": "meta.attribute.event-handler.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5"
                         },
                         "1": {
                             "name": "entity.other.attribute-name.html.tiddlywiki5"
                         }
                     },
-                    "comment": "HTML5 attributes, event handlers",
+                    "comment": "HTML5 attributes, event handlers. The literal `on` sits outside capture 1 (which reads only the event name), so the attribute-name scope on capture 1 alone left `on` unscoped — a reader saw `onclick` split into a bare run and a coloured one. Capture 0 now carries the same scope across the whole match.",
                     "end": "(?=\\s*+[^=\\s])|(?=^$)",
                     "name": "meta.attribute.event-handler.$1.html.tiddlywiki5",
                     "patterns": [
@@ -3465,8 +3465,9 @@
                     ]
                 },
                 {
+                    "comment": "html.js parses a WIDGET tag's attribute list past a blank line — only a plain HTML tag's list stops there. Closing this region at `(?=^$)` denied every widget that blank line, matching plain-tag behaviour instead: `corpus/wikitext/html.multiline-tags.tw` names six real widget openers this costs, verified against the host by the oracle. The region now runs to the closing `>` or a genuine block boundary, the same bound the filtered-transclusion and macro-call regions already use for a value carried past a blank line.",
                     "begin": "(?:^[ \\t]*)?(<\\/?)((\\$)(?!:\\/)([a-zA-Z0-9\\-\\$\\.]+))(?<!\\/)(?=\\s|\\/?>)",
-                    "end": "(?: ?/)?>|(?=^$)",
+                    "end": "(?: ?/)?>|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
                     "name": "meta.tag.widget.$4.html.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
@@ -5488,8 +5489,19 @@
                     ]
                 },
                 {
+                    "comment": "filteredtranscludeinline.js splits on the FIRST single `|` — not `||`, which the template pattern above claims first — so a lone pipe closes the filter and opens the tooltip below rather than reading on as more filter text.",
+                    "begin": "(\\|)(?!\\|)",
+                    "end": "(?=\\|\\||\\}\\})",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.transclusion.filteredtranscludeinline.tooltip.tiddlywiki5"
+                        }
+                    },
+                    "contentName": "meta.transclusion.filteredtranscludeinline.tooltip.tiddlywiki5 string.entity.attribute.tooltip.tiddlywiki5"
+                },
+                {
                     "begin": "\\G",
-                    "end": "(?=\\|\\||\\}\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
+                    "end": "(?=\\|\\|)|(?=\\|(?!\\|))|(?=\\}\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
                     "name": "meta.filter.tiddlywiki5",
                     "patterns": [
                         {

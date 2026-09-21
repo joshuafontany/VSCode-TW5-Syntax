@@ -37,8 +37,12 @@ A class, which binds as the item class: {{{ [tag[Done]] }}}.my-class here.
 
 Every part at once: {{{ [tag[Done]] |a tooltip||A/Template}}suffix}.my-class here.
 
-A PIPE INSIDE THE FILTER ENDS THE FILTER. The host splits on the first one, so the run below binds
-`[tag[a` as its filter and `b]] ` as its tooltip rather than reading one filter operand:
+A PIPE INSIDE THE FILTER ENDS THE FILTER — per the host's own transclusion-shorthand regex, which
+splits on the first `|` wherever it falls, even inside a bracket operand: filteredtranscludeinline.js
+builds `[tag[a` as its filter and `b]] ` as its tooltip below, never one filter operand. THE GRAMMAR
+CANNOT PAINT THAT SPLIT: it reads the run through the shared filter rules, which know a `|` inside
+`[tag[...]]` is operand text, not a separator — a divergence the shorthand's own regex owns alone,
+not any other filter construct in this file:
 {{{ [tag[a|b]] }}} here.
 
 An empty filter builds nothing, and the braces read as text: {{{}}} here.
