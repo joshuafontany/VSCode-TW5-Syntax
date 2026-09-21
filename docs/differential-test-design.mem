@@ -1,6 +1,8 @@
 <<!DOCTYPE "memetic-wikitext+tiddlywiki" "lar:///ha.ka.ba/lares/api/pono/memetic-wikitext">>
 
 <<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/differential-test-design">>
+<<^ code="&#x0002;">>
+
 ```toml meta
 cacheable = true
 file-path = "docs/differential-test-design.mem"
@@ -12,8 +14,6 @@ type      = "text/memetic-wikitext+tiddlywiki"
 uri-path  = "ha.ka.ba/lares/docs/vscode-tw5-syntax/differential-test-design"
 written   = "2026-09-06"
 ```
-
-<<^ code="&#x0002;">>
 
 <<~ ahu #the-frame>>
 
