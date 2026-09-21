@@ -8,7 +8,7 @@ ledgers under `corpus/` hold the rulings each entry points at.
 ## 3.0.0 — unreleased
 
 A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 136 of the 460
-names `v2.2.1` published and adds 265 — and a reader's `editor.tokenColorCustomizations` entry
+names `v2.2.1` published and adds 269 — and a reader's `editor.tokenColorCustomizations` entry
 naming any retired one stops matching SILENTLY, with VS Code reporting nothing. `MIGRATION.md`
 names every one. The reading changed beside the vocabulary: a transclusion reads as ONE object in
 38 themes where it read so in none, an image's `[img[` arrives as one marker, and every quoted
@@ -1161,6 +1161,35 @@ back by upgrading, which is the definition this number answers to.
   count holds); seventeen `.tw5.test` fixtures and twenty-one pinned snapshots regenerate to the
   renamed call-side scopes with no other drift; the colour witness reads unchanged (0 findings)
   since the rename moved no theme-reachable prefix.
+- RULED 2026-09-21: THREE RULES MINTED A SCOPE SEGMENT FROM AUTHOR TEXT, and none of the three
+  names a selector could ever target singly, because no bundled theme paints `meta.*` at all
+  (measured: colour-witness reads the same 0 findings before and after this ruling, over the
+  bundled 65). `meta.attribute.widget.$1.html.tiddlywiki5` and
+  `meta.attribute.unrecognized.$1.html.tiddlywiki5` minted a segment from WHATEVER TEXT the
+  parser accepted as an attribute name — punctuation admitted (`(a`, `$x`, `a.b`), which no
+  TextMate selector can target regardless. Both retire the interpolation and stand FIXED:
+  `meta.attribute.widget.html.tiddlywiki5`, `meta.attribute.unrecognized.html.tiddlywiki5`. The
+  call parameter's `meta.variable.procedure.parameter.tw-$1.tiddlywiki5` carries a different
+  fault: its capture is always a clean `[\w\-]+` word when it fires, but a POSITIONAL argument —
+  one with no `name:` or `name=` ahead of it, as in `<<a=b>>`'s trailing `=b` — leaves the group
+  unmatched, and TextMate interpolates that as EMPTY, minting a dangling `tw-.tiddlywiki5` no
+  reader ever typed. The four "Dynamic param" rules that require a name (`name={{{filter}}}`,
+  `name={{indirect}}`, `name=((mvv))`, `name=<<call>>`, `` name=`substituted` ``,
+  ``` name=```substituted``` ```, `name=[[bracket]]`) never carried this fault — their name group
+  is mandatory, never optional — so only the five rules with an OPTIONAL name (the four bare
+  string forms and the final catch-all) split in two: a named variant, ordered first, requiring
+  `[\w\-]+\s*[:=]` ahead of the value and keeping `tw-$1`; a positional variant, ordered second,
+  matching the bare value alone under a FIXED fallback, `tw-positional`. `<<myMacro you'd index a
+  relation>>` and `<<myMacro 'a quoted argument'>>` are the red-first control:
+  `tiddlywiki5.macro-argument-apostrophe.tw5.test` asserted the dangling
+  `meta.variable.procedure.parameter.tw-.tiddlywiki5` before this ruling and asserts
+  `tw-positional` after. Since none of these four names — two fixed, one still-interpolated for a
+  clean capture, one fixed fallback — were ever counted in `declaredScopesIn` while they carried
+  a literal `$1` (the reader that backs `MIGRATION.md`'s headline excludes any name containing
+  `$`), the FIXED replacements are pure additions with no "gone" counterpart: `MIGRATION.md`'s
+  headline states **593** names now and **269** new, up from 589/265, gone holds at 136. Six
+  `.tw5.test` fixtures and twenty pinned snapshots regenerate; `npm run colour-witness` reads 0
+  findings throughout.
 
 ### Tooling and process
 - TWO READERS, NAMED AND KEYED, THE THIRD ONE REMOVED. See `tools/reader-scope.js`.

@@ -11,7 +11,7 @@ typo instead of flooding your file, error colours appear only where TiddlyWiki i
 the colours you see tell you what your wiki will actually render.
 
 A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 136 of the 460
-names `v2.2.1` published and adds 265 — `MIGRATION.md` names every one, with what it stands as now.
+names `v2.2.1` published and adds 269 — `MIGRATION.md` names every one, with what it stands as now.
 
 The full record of this release — every construct, ruling and measurement behind it — lives in
 [`LEDGER-3.0.0.md`](LEDGER-3.0.0.md). What follows tells what it grants you.

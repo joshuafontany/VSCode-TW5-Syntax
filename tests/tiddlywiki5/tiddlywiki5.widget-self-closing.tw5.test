@@ -27,7 +27,7 @@
 # An attribute-bearing self-closing widget keeps its attribute.
 <$transclude tiddler="X"/>
 #<- text.html.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 punctuation.definition.tag.begin.html.tiddlywiki5
-#            ^^^^^^^ text.html.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 meta.attribute.widget.tiddler.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+#            ^^^^^^^ text.html.tiddlywiki5 meta.tag.widget.transclude.html.tiddlywiki5 meta.attribute.widget.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
 
 # A stray bracket goes on reading as one; the fix widens the tag rule, never the prose.
 A stray < in prose.

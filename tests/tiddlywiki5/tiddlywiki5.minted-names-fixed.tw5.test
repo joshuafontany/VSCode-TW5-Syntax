@@ -1,0 +1,35 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A minted attribute or parameter name never leaks into a scope"
+
+# RULED 2026-09-21: `meta.attribute.widget.$1`, `meta.attribute.unrecognized.$1` and the call
+# parameter's `…parameter.tw-$1…` interpolated raw author text into a scope name. An attribute
+# name TiddlyWiki accepts with punctuation — `(a`, `$x`, `a.b` — mints a segment no TextMate
+# selector can ever target (VS Code selects by dot-bounded prefix only), and no bundled theme
+# paints `meta.*` regardless, so per-name targeting bought nobody anything. The widget and
+# unrecognized attribute catch-alls now carry FIXED names; the parameter's segment holds only for
+# a clean `[\w\-]+` word (which is all it ever captures) and falls back to a fixed
+# `tw-positional` name where the call carries no name at all — never a dangling `tw-`.
+
+! A widget attribute opening on punctuation mints no segment
+
+<$button (a="x">c</$button>
+#        ^^ meta.attribute.widget.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+
+! A widget attribute opening on a dollar mints no segment either
+
+<$link $x="y">c</$link>
+#      ^^ meta.attribute.widget.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+
+! An unrecognized HTML attribute reads the same fixed name
+
+<div a.b="x">c</div>
+#    ^^^ meta.attribute.unrecognized.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5
+
+! A positional call parameter reads a fixed fallback, never a dangling `tw-`
+
+<<a=b>>
+#  ^^ meta.variable.procedure.parameter.tw-positional.tiddlywiki5 string.unquoted.html.tiddlywiki5
+
+! A control: a NAMED call parameter still carries its own clean-word name
+
+<<myproc argname:"v">>
+#        ^^^^^^^ meta.variable.procedure.parameter.tw-argname.tiddlywiki5 variable.parameter.tiddlywiki5

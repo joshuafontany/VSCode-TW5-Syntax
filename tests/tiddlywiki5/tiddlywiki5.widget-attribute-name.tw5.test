@@ -1,14 +1,14 @@
 # SYNTAX TEST "text.html.tiddlywiki5" "A widget's attributes carry a neutral name, parted from an HTML element's"
 
-# Widget attributes fell into the HTML catch-all `meta.attribute.unrecognized.$1.html.tiddlywiki5`
+# Widget attributes fell into the HTML catch-all `meta.attribute.unrecognized.html.tiddlywiki5`
 # even though a widget attribute is never unrecognized by TiddlyWiki — every widget reads whatever
 # attribute it is handed. `#htmlwidget-attribute-widget` clones the catch-all with a neutral name,
-# `meta.attribute.widget.$1.html.tiddlywiki5`, and only the two `meta.tag.widget.*` include sites
+# `meta.attribute.widget.html.tiddlywiki5`, and only the two `meta.tag.widget.*` include sites
 # repoint to it. An HTML element keeps `unrecognized`, which IS the reading it wants for an
 # attribute it does not know. This is the CONTROL: it would have failed under the old naming.
 
 <$link to="x"/>
-#      ^^ meta.attribute.widget.to.html.tiddlywiki5
+#      ^^ meta.attribute.widget.html.tiddlywiki5
 
 <div foo="x">
-#    ^^^ meta.attribute.unrecognized.foo.html.tiddlywiki5
+#    ^^^ meta.attribute.unrecognized.html.tiddlywiki5
