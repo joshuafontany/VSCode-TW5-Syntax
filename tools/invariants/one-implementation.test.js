@@ -52,6 +52,14 @@ const COLLAPSED = [
   // filter-witness.js's own `tiddlers()` the same. The fingerprint names the WORK (the readdirSync
   // call the withFileTypes recursion shares), never walk.js's own file, per the wiki-data.js entry
   // above: a detector naming one implementation's fingerprint could only ever pass.
+  // Three ledgers share one shape — `<field> ... "<quoted text>" # reason` — and
+  // ablation-witness.js, darkness-witness.js and bracket-witness.js each carried the same
+  // `keyOf`/`readLedger` pair over it, differing only in field count and the enum's own words.
+  // The fingerprint names the shared regex tail, since that is the shape the three of them
+  // duplicated — a ledger of a DIFFERENT shape (delimiter-ledger.txt's freeform prose, say)
+  // never matches it, so this never fires on the ledgers that stayed their own.
+  { module: 'ledger-shape.js', doing: /\\\\s\*#\\\\s\?\(\.\*\)\$/,
+    what: 'parsing a `<field> ... "text" # reason` ledger line' },
   { module: 'walk.js', doing: /readdirSync\([^,]+,\s*\{\s*withFileTypes:\s*true\s*\}\)/,
     what: 'walking a directory tree',
     // A caller doing more than LISTING while it walks — copying a file, pruning a directory by

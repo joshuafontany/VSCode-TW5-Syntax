@@ -45,6 +45,7 @@ const { placed } = require('./darkness-witness.js');
 const { boot, resolveTiddlyWiki, flatten, isPlainText } = require('./tw5-oracle.js');
 const { readerOf, appliesToReader } = require('./reader-scope.js');
 const { carrierFiles } = require('./walk.js');
+const { defineLedger } = require('./ledger-shape.js');
 
 const LEDGER = path.join(ROOT, 'corpus', 'ablation-ledger.txt');
 const CARRIER_DIRS = [path.join(ROOT, 'corpus', 'wikitext'), path.join(ROOT, 'tests', 'samples')];
@@ -288,21 +289,15 @@ async function ablations(text, oracle, read = placed) {
 }
 
 /** The key a ledger line and a finding share. */
-const keyOf = (file, char, verdict, lineText) => `${file}  ${char}  ${verdict}  ${JSON.stringify(lineText)}`;
+const { keyOf, readLedger: readLedgerFile } = defineLedger([
+  { name: 'file' },
+  { name: 'char' },
+  { name: 'verdict', enum: ['OVERREACH', 'MISS'] }
+]);
 
 /** Declarations, keyed as findings key, each carrying its reason. */
 function readLedger() {
-  const declared = new Map();
-  if (!fs.existsSync(LEDGER)) return declared;
-  const shape = /^(\S+)\s+(\S+)\s+(OVERREACH|MISS)\s+("(?:[^"\\]|\\.)*")\s*#\s?(.*)$/;
-  for (const raw of fs.readFileSync(LEDGER, 'utf8').split('\n')) {
-    const line = raw.trim();
-    if (!line || line.startsWith('#')) continue;
-    const m = shape.exec(line);
-    if (!m) { declared.set(`unreadable: ${line}`, null); continue; }
-    declared.set(keyOf(m[1], m[2], m[3], JSON.parse(m[4])), m[5]);
-  }
-  return declared;
+  return readLedgerFile(LEDGER);
 }
 
 /** Every wikitext carrier, derived from the directories that hold them. */

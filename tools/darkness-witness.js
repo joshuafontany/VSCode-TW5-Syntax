@@ -53,6 +53,7 @@ const { ROOT, tokenize } = require('./tokenizer.js');
 const { boot, resolveTiddlyWiki, isPlainText, flatten } = require('./tw5-oracle.js');
 const { readerOf, appliesToReader } = require('./reader-scope.js');
 const { carrierFiles } = require('./walk.js');
+const { defineLedger } = require('./ledger-shape.js');
 
 const SCOPE = 'text.html.tiddlywiki5';
 const LEDGER = path.join(ROOT, 'corpus', 'darkness-ledger.txt');
@@ -154,21 +155,15 @@ async function darkLines(text, oracle, read = placed) {
 }
 
 /** The key a ledger line and a dark line share. */
-const keyOf = (file, rule, verdict, text) => `${file}  ${rule}  ${verdict}  ${JSON.stringify(text)}`;
+const { keyOf, readLedger: readLedgerFile } = defineLedger([
+  { name: 'file' },
+  { name: 'rule' },
+  { name: 'verdict', enum: ['MISS', 'LOST'] }
+]);
 
 /** Declarations, keyed as dark lines key, each carrying its reason. */
 function readLedger() {
-  const declared = new Map();
-  if (!fs.existsSync(LEDGER)) return declared;
-  const shape = /^(\S+)\s+(\S+)\s+(MISS|LOST)\s+("(?:[^"\\]|\\.)*")\s*#\s?(.*)$/;
-  for (const raw of fs.readFileSync(LEDGER, 'utf8').split('\n')) {
-    const line = raw.trim();
-    if (!line || line.startsWith('#')) continue;
-    const m = shape.exec(line);
-    if (!m) { declared.set(`unreadable: ${line}`, null); continue; }
-    declared.set(keyOf(m[1], m[2], m[3], JSON.parse(m[4])), m[5]);
-  }
-  return declared;
+  return readLedgerFile(LEDGER);
 }
 
 /** Every wikitext carrier, derived from the directories that hold them. */

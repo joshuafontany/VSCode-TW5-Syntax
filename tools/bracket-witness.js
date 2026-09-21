@@ -31,6 +31,7 @@ const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
 const { parseJsonc } = require('./jsonc.js');
 const { walkFiles } = require('./walk.js');
+const { defineLedger } = require('./ledger-shape.js');
 
 const LEDGER = path.join(ROOT, 'corpus', 'bracket-ledger.txt');
 const CARRIER_DIRS = [path.join(ROOT, 'tests', 'samples'), path.join(ROOT, 'corpus')];
@@ -112,20 +113,15 @@ function carriers(langs) {
 }
 
 /** The key a red and its declaration share: the line's own text rather than its number. */
-const keyOf = (file, col, text, kind, line) => `${file}  ${col}  ${text}  ${kind}  ${JSON.stringify(line)}`;
+const { keyOf, readLedger: readLedgerFile } = defineLedger([
+  { name: 'file' },
+  { name: 'col', kind: 'number' },
+  { name: 'text' },
+  { name: 'kind', enum: ['open', 'close'] }
+]);
 
 function readLedger() {
-  const declared = new Map();
-  if (!fs.existsSync(LEDGER)) return declared;
-  const shape = /^(\S+)\s+(\d+)\s+(\S+)\s+(open|close)\s+("(?:[^"\\]|\\.)*")\s*#\s?(.*)$/;
-  for (const raw of fs.readFileSync(LEDGER, 'utf8').split('\n')) {
-    const line = raw.trim();
-    if (!line || line.startsWith('#')) continue;
-    const m = shape.exec(line);
-    if (!m) { declared.set(`unreadable: ${line}`, null); continue; }
-    declared.set(keyOf(m[1], Number(m[2]), m[3], m[4], JSON.parse(m[5])), m[6]);
-  }
-  return declared;
+  return readLedgerFile(LEDGER);
 }
 
 module.exports = { redBrackets, tokenType, languages };
