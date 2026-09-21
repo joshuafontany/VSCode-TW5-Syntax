@@ -11,24 +11,24 @@
 ! A name of ordinary letters reads to its end
 
 x <<myMacro>> y
-# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5
-#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
-#         ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
-#          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5
+# ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.begin.tiddlywiki5
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5
+#         ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5
+#          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5
 
 ! A colon ends the name, and what follows it reads as a parameter
 
 x <<a:b>> y
-#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
-#    ^ - variable.name.macro.tiddlywiki5
-#    ^ meta.variable.macrocallinline.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5
+#    ^ - variable.name.procedure.tiddlywiki5
+#    ^ meta.variable.procedurecallinline.tiddlywiki5 meta.variable.procedure.parameters.tiddlywiki5
 
 ! An equals sign ends the name the same way
 
 x <<a=b>> y
-#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
-#    ^ - variable.name.macro.tiddlywiki5
-#    ^ meta.variable.macrocallinline.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5
+#    ^ - variable.name.procedure.tiddlywiki5
+#    ^ meta.variable.procedurecallinline.tiddlywiki5 meta.variable.procedure.parameters.tiddlywiki5
 
 ! A call carrying no name at all opens nothing
 
@@ -36,9 +36,9 @@ x <<a=b>> y
 # from it. No macro call stands here — and because the parser refuses the markup rather than
 # reading it, the brackets fall back to the prose around them and carry no verdict.
 NDT<<:>> here
-#  ^ - punctuation.definition.macrocallinline.begin.tiddlywiki5
-#  ^ - meta.variable.macrocallinline.tiddlywiki5
+#  ^ - punctuation.definition.procedurecallinline.begin.tiddlywiki5
+#  ^ - meta.variable.procedurecallinline.tiddlywiki5
 #  ^ - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
-#    ^ - variable.name.macro.tiddlywiki5
+#    ^ - variable.name.procedure.tiddlywiki5
 #    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
 

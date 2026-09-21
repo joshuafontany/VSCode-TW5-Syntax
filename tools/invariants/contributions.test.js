@@ -78,7 +78,12 @@ test('no language folds on the off-side rule', () => {
 // filter operand closes `]]` whose two `[` never stood adjacent, so that closer stands unmatched.
 // Both read to a reader as red.
 const AUTO_CLOSED = [['<<', '>>'], ['[[', ']]']];
-const MATCHED = [['{', '}'], ['[', ']'], ['(', ')']];
+const MATCHED = [['{', '}'], ['[', ']']];
+// RULED 2026-09-21: `(` `)` closes itself but no longer MATCHES. Wikitext prose carries an
+// unpaired parenthesis constantly — "1)", "(see above" — and VS Code's own matcher painted every
+// one it could not pair the theme's unexpected-bracket red, over any colour a scope earns. The
+// auto-closing pair stands (typing `(` still inserts `)`); only bracket matching moves.
+const CLOSES_BUT_UNMATCHED = [['(', ')']];
 // A lone angle stands unpaired in ordinary prose — 440 of TiddlyWiki's own 14485 core lines
 // carry one, and 51 of the corpus's 738. Matching them draws every one as an unclosed bracket,
 // which a reader meets as red on text the parser accepts. Surrounding fights the same prose.
@@ -96,6 +101,11 @@ test('a macro call and a bracketed title close themselves and match nothing', ()
     }
     for (const pair of MATCHED) {
       assert.ok(has(config.brackets, pair), `${lang.id} brackets no ${pair[0]}${pair[1]}`);
+      assert.ok(has(config.autoClosingPairs, pair), `${lang.id} does not close ${pair[0]} for you`);
+    }
+    for (const pair of CLOSES_BUT_UNMATCHED) {
+      assert.ok(!has(config.brackets, pair),
+        `${lang.id} matches ${pair[0]}${pair[1]} as a bracket, which ordinary prose leaves unpaired`);
       assert.ok(has(config.autoClosingPairs, pair), `${lang.id} does not close ${pair[0]} for you`);
     }
       for (const pair of NEVER_PAIRED) {

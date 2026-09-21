@@ -4,8 +4,8 @@ A theme rule and an `editor.tokenColorCustomizations` entry both name a scope. A
 moves takes the reader's colour with it, and VS Code reports nothing: the rule simply stops
 matching, and the construct goes the colour of prose.
 
-This repository declares **460** scope names at `v2.2.1` and **589** now. Between them, **127**
-names stand gone and **256** stand new. Every gone name appears below, with what it stands as now
+This repository declares **460** scope names at `v2.2.1` and **593** now. Between them, **136**
+names stand gone and **269** stand new. Every gone name appears below, with what it stands as now
 or why it retired. `tools/invariants/scope-migration.test.js` derives these four numbers from the
 same `declaredScopesIn` reading the row-by-row check answers to, so a grammar edit that moves them
 fails the gate rather than leaving this paragraph to go stale beside it.
@@ -115,6 +115,18 @@ reads apart from a single-valued one.
 | `punctuation.definition.substituted.triple..attribute.begin.tiddlywiki5` | `punctuation.definition.substituted.triple.attribute.begin.tiddlywiki5` | empty segment |
 | `punctuation.definition.text-reference.index..tiddlywiki5` | `punctuation.definition.text-reference.index.tiddlywiki5` | empty segment |
 | `punctuation.separator.function.macro.parameter.tiddlywiki5` | `punctuation.separator.parameters.tiddlywiki5` | call vocabulary |
+| `entity.name.function.macro.tiddlywiki5` | `entity.name.function.procedure.tiddlywiki5` | RULED 2026-09-21, a `<<x …>>` invocation transcludes a variable since TiddlyWiki 5.3 — the procedure ontology owns the call, `\define` keeps macro |
+| `support.function.macro.tiddlywiki5` | `support.function.procedure.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `variable.name.macro.tiddlywiki5` | `variable.name.procedure.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `variable.macro.attribute.html.tiddlywiki5` | `variable.procedure.attribute.html.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename — an `attr=<<x>>` value |
+| `meta.variable.macro.parameters.tiddlywiki5` | `meta.variable.procedure.parameters.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `meta.variable.macrocallblock.tiddlywiki5` | `meta.variable.procedurecallblock.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `meta.variable.macrocallinline.tiddlywiki5` | `meta.variable.procedurecallinline.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `punctuation.definition.macrocallblock.begin.tiddlywiki5` | `punctuation.definition.procedurecallblock.begin.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `punctuation.definition.macrocallblock.end.tiddlywiki5` | `punctuation.definition.procedurecallblock.end.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `punctuation.definition.macrocallinline.begin.tiddlywiki5` | `punctuation.definition.procedurecallinline.begin.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `punctuation.definition.macrocallinline.end.tiddlywiki5` | `punctuation.definition.procedurecallinline.end.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `punctuation.definition.tag.macrocall.tiddlywiki5` | `punctuation.definition.tag.procedurecall.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
 | `row.tbody.body.meta.table.tiddlywiki5` | `meta.table.row.tbody.body.tiddlywiki5` | root first |
 | `row.tfoot.footer.markup.other.table.tiddlywiki5` | `markup.other.table.row.tfoot.footer.tiddlywiki5` | root first |
 | `row.tfoot.footer.meta.table.tiddlywiki5` | `meta.table.row.tfoot.footer.tiddlywiki5` | root first |

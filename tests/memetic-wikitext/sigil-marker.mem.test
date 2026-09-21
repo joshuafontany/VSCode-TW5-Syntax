@@ -9,7 +9,7 @@
 <<~ set hud="aim">>
 # ^ punctuation.definition.sigil.marker.memetic-wikitext
 # ^ keyword.control.sigil.marker.memetic-wikitext
-# ^ entity.name.function.macro.tiddlywiki5
+# ^ entity.name.function.procedure.tiddlywiki5
 
 <<~/ahu>>
 # ^ keyword.control.sigil.marker.memetic-wikitext

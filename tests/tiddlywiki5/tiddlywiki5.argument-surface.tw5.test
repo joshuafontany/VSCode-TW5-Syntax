@@ -44,7 +44,7 @@
 #                  ^^^^^ support.type.property-name.argument.tiddlywiki5
 #             ^ keyword.operator.assignment.tiddlywiki5
 #                       ^ keyword.operator.assignment.tiddlywiki5
-# ^^^^^^ variable.name.macro.tiddlywiki5
+# ^^^^^^ variable.name.procedure.tiddlywiki5
 # ^^^^^^ - entity.other.attribute-name.argument.tiddlywiki5
 
 ! A widget's attribute keeps its own tail and its own separator

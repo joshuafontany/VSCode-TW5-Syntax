@@ -7,7 +7,6 @@
         ["<!--", "-->"],
         ["{", "}"],
         ["[", "]"],
-        ["(", ")"],
     ],
     // WHO DECIDES A BRACKET'S COLOUR. VS Code colours a bracket by its NESTING DEPTH out of
     // `editorBracketHighlight.foreground1..6`, over the top of the colour a theme and this grammar

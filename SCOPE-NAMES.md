@@ -48,9 +48,9 @@ reach. The gain came entirely from markdown's popularity, not from any claim abo
 > parses.** TiddlyWiki's list markup is not markdown's, and a name that says otherwise trades a
 > true statement for a colour.
 
-### 2.3.0 — 127 names moved, 39 of them for one reason
+### 2.3.0 — 136 names moved, 39 of them for one reason
 
-The `2.3.0` release moved **127** of 460 declared names and added **256**. Thirty-nine moved for a
+The `2.3.0` release moved **136** of 460 declared names and added **269**. Thirty-nine moved for a
 single shape: a qualifier standing in front of the family root —
 `bold.punctuation.definition.markup.begin`, `caption.markup.other.table`, `mvv.attribute.html`.
 

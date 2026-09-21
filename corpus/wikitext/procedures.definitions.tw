@@ -1,0 +1,52 @@
+\define greeting(who:"world")
+Hello, $who$! Also: $(currentTiddler)$ and ${ [tag[Task]] }$.
+\end
+
+\procedure greeting-proc(who:"world")
+Hello, <<who>>! A procedure body reads $who$ as literal text, never a substitution.
+\end
+
+\function double(n)
+<n> +[multiply[2]]
+\end
+
+\widget $my.greeting(who:"world")
+<p>Hello, <<who>>!</p>
+\end
+
+\define $dollar.macro() one line
+\procedure $dollar.proc() one line
+\function $dollar.fn() [tag[Task]]
+\widget $dollar.widget() one line
+
+\define default-forms(a:"double", b:'single', c:"""triple""", d:unquoted)
+$a$ $b$ $c$ $d$
+\end
+
+\procedure default-forms-proc(a:"double", b:'single', c:"""triple""", d:unquoted)
+A procedure's own default value opens the same four forms a `\define`'s does — double, single and
+triple quoted, and bare — but never substitutes into its own body the way `$a$` would in a
+`\define`. This body reads <<a>> <<b>> <<c>> <<d>> as ordinary calls instead, each one naming a
+parameter that stands as a variable in its own right, the way any `\procedure` parameter does.
+\end
+
+DEFINITIONS SIDE BY SIDE, called immediately after standing. `\define` still builds a MACRO —
+macrodef.js, with `$param$` substitution a `\procedure` lacks — while `\procedure`, `\function` and
+`\widget` all build the same PROCEDURE-family thing a `<<x>>` or `$variable` call resolves. The
+grammar keeps exactly that distinction: a `\define` name and body read `entity.name.variable.macro`
+/ `meta.variable.macro.body`, never `.procedure` — every OTHER definition above reads
+`entity.name.variable.procedure` / `entity.name.variable.function` / `entity.name.variable.widget`,
+the call-side family a `<<x>>` invocation shares since TiddlyWiki 5.3.
+
+<<greeting>>
+
+<<greeting-proc>>
+
+<$transclude $variable="double" n="21"/>
+
+<$my.greeting/>
+
+Every one of the four kinds keeps a dollar in its name the same way: `\define $dollar.macro()`,
+`\procedure $dollar.proc()`, `\function $dollar.fn()` and `\widget $dollar.widget()` above all
+parsed — fnprocdef.js and macrodef.js both read `[^(\s]+` for a name, admitting the dollar either
+way.

@@ -82,7 +82,7 @@ description: What a reader must meet as one thing and what a reader must tell ap
         {
             "what": "a called thing, and the argument it carries",
             "scopes": [
-                "variable.name.macro.tiddlywiki5",
+                "variable.name.procedure.tiddlywiki5",
                 "entity.other.attribute-name.argument.tiddlywiki5"
             ],
             "least": 63,
