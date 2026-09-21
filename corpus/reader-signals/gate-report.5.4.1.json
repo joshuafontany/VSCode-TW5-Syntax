@@ -71,7 +71,7 @@
         {
             "gate": "contrast",
             "held": true,
-            "said": "contrast-witness  291 stack(s) over 65 theme(s), 1478 prose reading(s), 0 above the bar of 16, 0 unruled, 0 explaining nothing"
+            "said": "contrast-witness  290 stack(s) over 65 theme(s), 1471 prose reading(s), 0 above the bar of 16, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "corpus",
@@ -101,12 +101,12 @@
         {
             "gate": "engine-behaviour",
             "held": true,
-            "said": "engine-witness  882 pattern(s) read against 995 corpus line(s), 1 that match differently, 0 unruled"
+            "said": "engine-witness  883 pattern(s) read against 995 corpus line(s), 1 that match differently, 0 unruled"
         },
         {
             "gate": "engine-witness",
             "held": true,
-            "said": "engine-witness  882 pattern(s) across 9 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "engine-witness  883 pattern(s) across 9 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "filter-witness",

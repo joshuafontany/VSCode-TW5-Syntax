@@ -708,6 +708,28 @@ back by upgrading, which is the definition this number answers to.
   language to the editor, not only to the colourer" above: folding, comment-toggling and bracket
   rules follow the guest language across a fence because this map tells VS Code which editor
   behaviour to switch to there, not because of anything the grammar colours.
+- RULED 2026-09-21: A NAMED FILTER RUN PREFIX'S OWN OPERATOR READ UNCOLOURED. `:sort[title]` — the
+  shape an author reaches for after `:sort`, `:filter`, `:map`, `:reduce` and the rest of the
+  named run prefixes when they forget the operand bracket TiddlyWiki actually demands (they mean
+  `:sort[title[]]`) — painted `title` with only the run's own `entity.filter.operator.title`
+  contentName, none of the five operator-step patterns firing because every one of them mandates a
+  trailing `[`/`{`/`<`/`(`/`/` bracket after the operator name. `[sort[title]]`'s `sort` (a
+  genuine operator WITH an operand) reads `keyword.operator.operator.filter.tiddlywiki5` beside
+  that same contentName; `:sort[title]`'s `title` did not. Traced against `filters.js`:
+  `:sort[title]` actually THROWS `Missing [ in filter expression` at runtime — the operand bracket
+  is never optional — so this is graceful parsing rather than a semantic claim: a sixth
+  operator-step pattern paints a bare word standing immediately before the run's own closing `]`
+  the same operator colour, so the author's typo still shows where they meant an operator name
+  rather than reading as inert content. The pattern excludes quotes and whitespace from what it
+  captures, so it can never mistake a bare QUOTED operand for the empty/default operator —
+  `["Not Legal"]`, equally malformed on its own terms but a STRING, never a name — nor trailing
+  space ahead of a multi-line operand's own closing `]`; both were measured regressions during
+  development (`corpus/samples/test.tw`'s `:test["Not Legal"]` and a multi-line indirect operand
+  in `tiddlywiki5.tw`/`tiddlywiki5.basic.tw`) and both snapshot clean again with the exclusion.
+  `npm run colour-witness` and both overreach-check sweeps (`tests/samples/*.tw` and the 389-file
+  host corpus) read unchanged; `tests/tiddlywiki5/tiddlywiki5.filter-run-prefix-operator.tw5.test`
+  is the red-first control, its red state independently reproduced by tokenizing the pre-ruling
+  grammar directly through `vscode-textmate`.
 
 ### Naming
 - A STYLED SUFFIX'S TEXT IS A VALUE, NOT A MARK. `filteredtranscludeinline.js` closes on `}}`, an

@@ -6262,6 +6262,19 @@
                                     "name": "punctuation.definition.operand.mvv.end.tiddlywiki5"
                                 }
                             }
+                        },
+                        {
+                            "comment": "Match a bare filter operator carrying NO operand at all. filters.js#parseFilterOperation always demands a trailing bracket after an operator name — `:sort[title]` throws \"Missing [ in filter expression\" at runtime, where the author almost always meant `:sort[title[]]`. A NAMED run prefix's own bracket (`:sort[`, `:filter[`, `:map[`, `:reduce[` …) opens a run exactly like any other, so this shape reaches only from there: every OTHER run either supplies an operand bracket (caught by the five patterns above) or is empty (an empty match paints nothing, same as elsewhere). Quotes and whitespace are EXCLUDED from the captured text: an operator name never carries either, where a bare quoted operand for the empty/default operator — `[\"Not Legal\"]`, equally malformed on its own but a STRING, never a name — does, and trailing space ahead of a multi-line operand's own closing `]` is not an operator name either; this rule must never paint either a colour it is not. Anchored on a following `]` so it can never absorb a later step or run past this one's own close. Graceful parsing: the author's typo still reads the operator colour every other run's operator reads, rather than the colour of plain content.",
+                            "match": "(!?)([^\\s\\[\\{<(/\\]\"']+)(?=\\])",
+                            "name": "meta.filter.operator.step.tiddlywiki5",
+                            "captures": {
+                                "1": {
+                                    "name": "keyword.operator.prefix.negation.tiddlywiki5"
+                                },
+                                "2": {
+                                    "name": "keyword.operator.operator.filter.tiddlywiki5"
+                                }
+                            }
                         }
                     ]
                 },
