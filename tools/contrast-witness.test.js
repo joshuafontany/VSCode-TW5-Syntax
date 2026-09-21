@@ -18,6 +18,7 @@ const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
 const { runTool } = require('./run-tool.js');
+const { runInSandbox } = require('./grammar-sandbox.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const live = { timeout: 900000 };
@@ -65,11 +66,32 @@ test('the reading collapses when a theme answers against another theme default',
     `the mispaired arm read ${count(broken)} against the honest ${count(honest)}, so the pairing carries no weight`);
 });
 
+// THE COLLISION. A ruling stands for a reading above the bar, so a ruling naming a scope no reading
+// leaves quiet must read idle and the gate must refuse. Planted into a sandbox rather than the tree,
+// because a gate proven only by a clean working tree answers whether the tree stands clean today.
+test('a ruling explaining nothing turns the gate red', live, () => {
+  const { code, out } = runInSandbox((sandbox) => {
+    const ledger = path.join(sandbox, 'corpus', 'prose-reading-ledger.txt');
+    fs.appendFileSync(ledger, '\nkeyword.operator.filter               # a reading no theme leaves quiet\n');
+  }, ['tools/contrast-witness.js']);
+  assert.match(out, /explaining nothing/, out.slice(-600));
+  assert.notStrictEqual(code, 0, 'an idle ruling stood and the gate held anyway');
+});
+
 // The ledger lives beside the other corpus ledgers, never inside the tool.
-test('the ruling ledger stands in the corpus', () => {
+//
+// A LEDGER NAMING NOTHING STATES A MEASUREMENT. A ruling stands here for a construct reading as body
+// text ABOVE the bar, so an empty ledger says every construct clears it — which the witness's own
+// summary must then report, or the emptiness names a ledger somebody trimmed rather than a corpus
+// that moved.
+test('the ruling ledger stands in the corpus, and its silence answers to the witness', () => {
   const ledger = path.join(ROOT, 'corpus', 'prose-reading-ledger.txt');
   assert.ok(fs.existsSync(ledger), 'no prose-reading ledger stands in corpus/');
   const text = fs.readFileSync(ledger, 'utf8');
   const rulings = text.split('\n').filter((l) => l.trim() && !l.trim().startsWith('#'));
-  assert.ok(rulings.length > 0, 'the ledger carries no ruling at all');
+  if (rulings.length) return;
+  const honest = runTool('contrast-witness.js', []).out;
+  assert.match(honest, /0 above the bar of \d+/,
+    'the ledger rules nothing while the witness reads a construct above the bar');
+  assert.match(honest, /0 unruled/, 'the ledger rules nothing while the witness names an unruled reading');
 });

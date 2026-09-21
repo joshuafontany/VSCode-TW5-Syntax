@@ -231,7 +231,7 @@
 65 a comment  vs  an import directive
 65 a comment  vs  italic
 65 a comment  vs  prose
-65 a comment  vs  strikethrough
+64 a comment  vs  strikethrough
 65 a comment  vs  subscript
 65 a comment  vs  superscript
 65 a comment  vs  underline
@@ -1010,3 +1010,15 @@
 # colour they always had. Four themes that once matched now part, and no other pair moves.
 #   a wikilink  vs  a transclusion                       51 -> 55
 
+# 2026-09-20: ONE SPENT, on the operator's strikethrough ruling.
+#
+# Struck text declares `comment.strikethrough.tiddlywiki5 markup.strikethrough.tiddlywiki5`. The
+# honest name stands last and keeps the font style every theme ruling on it already gives; the
+# `comment` family ahead of it reaches the themes that rule on neither `markup.strikethrough` nor
+# `markup.underline`. The name it drops claimed struck text reads UNDERLINED, which no reader means
+# by `~~`. Measured over the 65 bundled themes: a cue on the struck words rises from 44 themes to
+# 65, and the honest name alone — the only other spelling the theme corpus can paint — falls twelve
+# pairs, so this ruling buys the whole ratchet back for one. What it spends: struck prose now reads
+# in a comment's ink, so one theme fewer tells an author's struck aside from an author's commented
+# aside.
+#   a comment  vs  strikethrough                         65 -> 64
