@@ -1627,6 +1627,32 @@ back by upgrading, which is the definition this number answers to.
   positively check no longer declaring `( )`, and prose parentheses reading no red under the real
   pairs — plus the two existing sandboxed provocations, one of which had to move off `)` itself
   (no longer trackable) onto `]`.
+- RULED 2026-09-21: TWO NEW CARRIERS, `corpus/wikitext/procedures.calls.tw` and
+  `corpus/wikitext/procedures.definitions.tw`, exercise the call/definition split the whole rename
+  answers to, side by side rather than scattered. `procedures.calls.tw` collides every CALL form
+  against the host: inline and block `<<x>>`, positional and named parameters in every value form
+  (unquoted, double/single/triple-quoted, bracketed), a widget attribute's value carrying a call
+  (`tooltip=<<greeting>>`), a call nested inside a NAMED parameter's value
+  (`<<outer inner=<<greeting>>>>` — the host parses this; the bare-positional form
+  `<<outer <<greeting>>>>` does NOT, tested and dropped rather than asserted false), and the
+  `$variable`-prefixed `<$transclude>` widget form that calls the same name a `<<x>>` invocation
+  does. `procedures.definitions.tw` stands every DEFINITION form beside its call, restructured
+  around a real constraint the file itself surfaced: pragma mode opens only at the START of a
+  tiddler and closes at the first non-pragma-legal line, so every `\define`/`\procedure`/
+  `\function`/`\widget` block had to stand dense at the top with only blank lines between —
+  discovered by rendering the carrier and finding later blocks read as literal paragraph text
+  rather than pragmas, the same trap `tiddlywiki5.call-is-procedure-not-macro.tw5.test` (this
+  release's item-1 control) hit first. Rendered, `<<greeting-proc>>` proves `$who$` stays literal
+  in a `\procedure` body where `<<greeting>>` substitutes it in a `\define` body — the DEFINITION
+  side's own distinction, confirmed by execution rather than by reading the grammar's rules back.
+  Both carriers read 0 grammar/parser disagreement under `overreach-check` (single-file, the
+  `corpus/wikitext/*.tw` sweep at 53 files, and the 389-file host-corpus sweep), 0 undeclared
+  findings under `corpus-check` and `swallow-witness`, and 0 findings under `colour-witness` and
+  `construct-legibility`. `ablation-witness` surfaced two real, pre-existing grammar gaps these
+  carriers are the first to exercise — a call's `=` before a nested value (already OWED for
+  `inline.macros.tw`'s `<<a=b>>`, same reasoning) and a widget tag name's `.` (already OWED for
+  `html.widgets.tw`'s `<$my.widget/>`, same reasoning) — both recorded in
+  `corpus/ablation-ledger.txt` rather than fixed, since neither is this ruling's to close.
 
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`
