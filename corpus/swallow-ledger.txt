@@ -24,14 +24,41 @@
 #
 # A REASON CARRIES MEASUREMENTS, NEVER A REMEDY IT HAS NOT COLLIDED. Two traps sit under that
 # rule. A ruling that calls a divergence unfixable wants its cost counted on BOTH sides — the bound
-# on start tags looks expensive and costs nothing, since no plain HTML start tag in 2583 files
-# carries a blank line. And a remedy that reads obvious may prove unwritable: vscode-textmate
-# hands a pattern one line and no more, so an end pattern standing at a blank line cannot read the
-# line that decides the question. A remedy nobody tried reads as work owed, and sends the next
-# reader to build what will not build.
+# on start tags looks expensive and costs nothing, since of 2348 start tags TiddlyWiki accepts
+# across 2583 files, six carry a blank line, every one a widget tag, all in one core file, and all
+# already bounded — no plain HTML start tag anywhere carries one. That ruling was called unfixable
+# an hour before it landed, and measurement upheld both halves of it. And a remedy that reads
+# obvious may prove unwritable: vscode-textmate hands a pattern one line and no more, so an end
+# pattern standing at a blank line cannot read the line that decides the question. A remedy nobody
+# tried reads as work owed, and sends the next reader to build what will not build.
 #
 # A RULING THAT EXPLAINS NOTHING FAILS THE GATE. A divergence gets fixed and its line stays, and
 # the ledger then reads as a longer list of standing debt than the repository carries.
+#
+# THE WITNESS DRAWS ITS BATTERY FROM REAL CORPUS TEXT, NOT A TABLE. It once held twenty-five
+# openers written by hand, which reached twelve of the thirty-six body rules TiddlyWiki stands —
+# the other twenty-four went unasked, and the openers it did name were spelled by the same hand
+# that spelled the grammar. It now cuts every corpus file at every line, appends a blank line and a
+# sentinel, and asks both readers about the same offset: 614 cuts across 26 files, against 42
+# specimens before. Thirteen divergences surfaced where the table reported none, four of them
+# recorded as debt above and the rest ruled to TiddlyWiki's own behaviour — measured, not reasoned:
+# a comment, a definition block and an unterminated element each turn on text the parser reads
+# BEYOND the construct, which no TextMate end pattern can see.
+#
+# THREE COARSER SENTINEL READINGS WERE TRIED AND REJECTED before this one. Asking whether the
+# sentinel exists ANYWHERE calls a correct grammar wrong, because TiddlyWiki carries an element
+# with no closer to the end of the tiddler and parses blocks inside it. Asking whether it stands AT
+# THE ROOT calls every grammar wrong, because parsePragmas nests every later block beneath the
+# definition above it. A sentinel any specimen can also open collides with the head it follows. So
+# the sentinel stands at a known offset, and each reader answers for that offset alone.
+#
+# `still` READS DIFFERENT GROUND FROM THIS WITNESS, NOT THE SAME GROUND TWICE. It once pointed
+# `--host` at `./corpus` by mistake, where this witness already cuts all 38 files with the same
+# comparison — both found the same 8 classes, so the pass reported `0 unnamed` as a
+# stopping-condition verdict while measuring what this witness had already measured. Pointed at
+# `--host` proper it crosses TiddlyWiki's own 4403 carriers, standing outside this corpus and
+# inside a checkout this witness cannot reach, and found an unnamed class on its first run, in 3.4
+# seconds — the axis a reason opening HOST above answers for.
 
 # ── the lookahead the parser has and a grammar cannot ────────────────────────────────────────
 # Each of these turns on text TiddlyWiki reads BEYOND the construct, sometimes to the end of the
