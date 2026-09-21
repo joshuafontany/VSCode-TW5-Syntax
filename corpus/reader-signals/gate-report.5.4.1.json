@@ -6,7 +6,7 @@
         {
             "gate": "ablation",
             "held": true,
-            "said": "ablation-witness  355 finding(s) over 74 carrier(s): 355 declared (322 owed), 0 undeclared, 0 stale"
+            "said": "ablation-witness  339 finding(s) over 74 carrier(s): 339 declared (306 owed), 0 undeclared, 0 stale"
         },
         {
             "gate": "attribute-guard",
@@ -16,7 +16,7 @@
         {
             "gate": "attribute-witness",
             "held": true,
-            "said": "attribute-witness  10719 attribute(s) across 5 type(s), 10667 reading the kind TiddlyWiki assigned (ceiling 52)"
+            "said": "attribute-witness  10719 attribute(s) across 5 type(s), 10680 reading the kind TiddlyWiki assigned (ceiling 39)"
         },
         {
             "gate": "backtrack-witness",
@@ -71,27 +71,27 @@
         {
             "gate": "contrast",
             "held": true,
-            "said": "contrast-witness  293 stack(s) over 65 theme(s), 1501 prose reading(s), 0 above the bar of 16, 0 unruled, 0 explaining nothing"
+            "said": "contrast-witness  291 stack(s) over 65 theme(s), 1478 prose reading(s), 0 above the bar of 16, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "corpus",
             "held": true,
-            "said": "corpus-check  64 files, 587 scopes declared, 515 reached (floor 450), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  64 files, 589 scopes declared, 517 reached (floor 450), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
             "held": true,
-            "said": "dark-construct  355 construct(s) over 65 themes, 22 plain, 0 unaccounted"
+            "said": "dark-construct  354 construct(s) over 65 themes, 22 plain, 0 unaccounted"
         },
         {
             "gate": "darkness",
             "held": true,
-            "said": "darkness-witness  30 construct line(s) over 74 carrier(s) read dark: 30 declared (10 owed), 0 undeclared, 0 stale"
+            "said": "darkness-witness  23 construct line(s) over 74 carrier(s) read dark: 23 declared (3 owed), 0 undeclared, 0 stale"
         },
         {
             "gate": "delimiters",
             "held": true,
-            "said": "delimiter-inheritance  123 contentName rule(s) over 44 shape(s), 0 unruled"
+            "said": "delimiter-inheritance  124 contentName rule(s) over 45 shape(s), 0 unruled"
         },
         {
             "gate": "divergence-staleness",
@@ -101,12 +101,12 @@
         {
             "gate": "engine-behaviour",
             "held": true,
-            "said": "engine-witness  864 pattern(s) read against 991 corpus line(s), 1 that match differently, 0 unruled"
+            "said": "engine-witness  866 pattern(s) read against 995 corpus line(s), 1 that match differently, 0 unruled"
         },
         {
             "gate": "engine-witness",
             "held": true,
-            "said": "engine-witness  864 pattern(s) across 9 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "engine-witness  866 pattern(s) across 9 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "filter-witness",
@@ -126,7 +126,7 @@
         {
             "gate": "light-cone",
             "held": true,
-            "said": "light-cone  202 divergence(s) across 18 class(es), 10 quote(s) closed to ask; forward arm moved 33, backward arm moved 27, typo arm moved 34; 10 proven or unruled, 8 ruled without proof, 0 owed but reaching out"
+            "said": "light-cone  201 divergence(s) across 18 class(es), 10 quote(s) closed to ask; forward arm moved 33, backward arm moved 27, typo arm moved 34; 10 proven or unruled, 8 ruled without proof, 0 owed but reaching out"
         },
         {
             "gate": "must-fail",
@@ -226,17 +226,17 @@
         {
             "gate": "still-reach",
             "held": true,
-            "said": "reach  4429 of 4447 carrier(s) stand fully named, 99.6% (floor 99.5%); 38 carrier(s) no cut reads, 5953 divergence(s), 4 class(es) blocking"
+            "said": "reach  4429 of 4447 carrier(s) stand fully named, 99.6% (floor 99.5%); 38 carrier(s) no cut reads, 5934 divergence(s), 4 class(es) blocking"
         },
         {
             "gate": "swallow-witness",
             "held": true,
-            "said": "swallow-witness  1529 cut(s) across 48 corpus file(s), 10 quote(s) closed to ask, 13 divergence(s), 0 recorded, 0 unruled, 1 answering the host sweep, 0 ruling(s) explaining nothing"
+            "said": "swallow-witness  1533 cut(s) across 48 corpus file(s), 10 quote(s) closed to ask, 13 divergence(s), 0 recorded, 0 unruled, 1 answering the host sweep, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "theme-collision",
             "held": true,
-            "said": "theme-collision  331695 token-reading(s) over 65 themes and 51 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
+            "said": "theme-collision  332995 token-reading(s) over 65 themes and 51 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
         },
         {
             "gate": "theme-parity",
