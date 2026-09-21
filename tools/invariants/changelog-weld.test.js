@@ -15,6 +15,8 @@ const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..', '..');
 const CHANGELOG = fs.readFileSync(path.join(ROOT, 'CHANGELOG.md'), 'utf8');
+const SCOPE_NAMES = fs.readFileSync(path.join(ROOT, 'SCOPE-NAMES.md'), 'utf8');
+const MIGRATION = fs.readFileSync(path.join(ROOT, 'MIGRATION.md'), 'utf8');
 
 // Only the section under way. A published section states what it stated when it shipped, and the
 // instruments have moved on since; welding those would demand rewriting history to match today.
@@ -81,5 +83,55 @@ test('every ruling count the record states matches the divergence file', () => {
       `the record states ${figure} ruling(s); corpus/expected-divergence.txt carries ${onDisk}. ` +
         'A fix that retires a ruling updates the record with it.'
     );
+  }
+});
+
+// MIGRATION.md is the gate-checked ground truth for the scope migration: its own headline
+// derives, live, from `declaredScopesIn` reading both grammars — see scope-migration.test.js.
+// CHANGELOG.md and SCOPE-NAMES.md each restate that headline in prose, by hand, and a grammar
+// edit that moves the gate-checked numbers leaves the hand-restated copies to go stale silently.
+// This welds every restatement to MIGRATION.md's own headline rather than to a number typed here.
+
+/**
+ * The gate-checked headline MIGRATION.md states: old/new declared-scope totals, gone, new.
+ *
+ * @returns {{ oldTotal: number, newTotal: number, gone: number, added: number }}
+ */
+function migrationHeadline() {
+  const m = MIGRATION.match(
+    /declares \*\*(\d+)\*\* scope names at `v2\.2\.1` and \*\*(\d+)\*\* now\. Between them, \*\*(\d+)\*\*\s+names stand gone and \*\*(\d+)\*\* stand new/
+  );
+  assert.ok(m, 'MIGRATION.md no longer states its headline in the expected shape — the weld cannot read it');
+  return { oldTotal: Number(m[1]), newTotal: Number(m[2]), gone: Number(m[3]), added: Number(m[4]) };
+}
+
+/** Every {gone, added} pair a text restates, by matching each known restatement shape. */
+function scopeRestatements(text) {
+  const out = [];
+  let m;
+
+  m = text.match(/retires (\d+) of the (\d+)\s*\nnames `v2\.2\.1` published and adds (\d+)/);
+  if (m) out.push({ where: 'CHANGELOG intro', oldTotal: Number(m[2]), gone: Number(m[1]), added: Number(m[3]) });
+
+  m = text.match(/(\d+) scope names stand at `v2\.2\.1` and\s*\n\s*(\d+) here; (\d+) went, (\d+) arrived/);
+  if (m) out.push({ where: 'CHANGELOG body', oldTotal: Number(m[1]), newTotal: Number(m[2]), gone: Number(m[3]), added: Number(m[4]) });
+
+  m = text.match(/moved \*\*(\d+)\*\* of (\d+) declared names and added \*\*(\d+)\*\*/);
+  if (m) out.push({ where: 'SCOPE-NAMES headline', oldTotal: Number(m[2]), gone: Number(m[1]), added: Number(m[3]) });
+
+  return out;
+}
+
+test('CHANGELOG.md and SCOPE-NAMES.md restate MIGRATION.md\'s certified scope-migration headline', () => {
+  const truth = migrationHeadline();
+  const found = [...scopeRestatements(CHANGELOG), ...scopeRestatements(SCOPE_NAMES)];
+  assert.ok(found.length > 0, 'no scope-migration restatement found in CHANGELOG.md or SCOPE-NAMES.md — the weld found nothing to check');
+  for (const r of found) {
+    assert.strictEqual(r.gone, truth.gone, `${r.where} states ${r.gone} gone; MIGRATION.md's gate-checked headline states ${truth.gone}.`);
+    assert.strictEqual(r.added, truth.added, `${r.where} states ${r.added} added; MIGRATION.md's gate-checked headline states ${truth.added}.`);
+    assert.strictEqual(r.oldTotal, truth.oldTotal, `${r.where} states an old total of ${r.oldTotal}; MIGRATION.md states ${truth.oldTotal}.`);
+    if (r.newTotal !== undefined) {
+      assert.strictEqual(r.newTotal, truth.newTotal, `${r.where} states a new total of ${r.newTotal}; MIGRATION.md states ${truth.newTotal}.`);
+    }
   }
 });
