@@ -5278,7 +5278,7 @@
                 {
                     "begin": "~~(?=[^\\n]*~~)",
                     "end": "~~|(?=$)",
-                    "contentName": "markup.underline.strikethrough.tiddlywiki5 markup.strikethrough.tiddlywiki5",
+                    "contentName": "comment.strikethrough.tiddlywiki5 markup.strikethrough.tiddlywiki5",
                     "beginCaptures": {
                         "0": {
                             "name": "punctuation.definition.markup.begin.strikethrough.tiddlywiki5"

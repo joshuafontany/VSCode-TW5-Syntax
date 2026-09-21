@@ -29,13 +29,9 @@
 # their colour by naming these things something they are not. The published `variable.*` name stands
 # first in every case; nothing retires.
 
-# A VOCABULARY NO THEME AUTHOR RULES ON. `markup.superscript` and `markup.subscript` reach only 9 of
-# 65 themes at all, and markdown's own `markup.superscript` measures the same 2 of 65 paint rate this
-# grammar does — so the name matches the flagship exactly and the silence belongs to the vocabulary,
-# not to this grammar. A louder family would part these two runs from every other markup construct a
-# theme paints as a family.
-# checks: prose markup.superscript themes >= 40
-# checks: paint markup.superscript.markdown themes <= 6
-# checks: paint markup.superscript.tiddlywiki5 themes <= 6
-markup.superscript               # the conventional name, unthemed across the bundled set, matching markdown's own reading
-markup.subscript                 # the same reading
+# A VOCABULARY THAT CLEARS THE BAR BY THE INK AROUND IT. `markup.superscript` and
+# `markup.subscript` reach only 9 of the 65 bundled themes on their own, matching markdown's own
+# `markup.superscript` paint rate, so the silence belongs to the vocabulary rather than to this
+# grammar. They stand unruled here because they read invisible in 16 themes, the bar itself: a run
+# nested inside a struck span takes that span's ink (`comment.strikethrough`, ruled 2026-09-20),
+# and six themes paint it there. A reading at the bar asks for no ruling; one above it does.

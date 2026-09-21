@@ -79,7 +79,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "contrast",
             "held": true,
-            "said": "contrast-witness  293 stack(s) over 65 theme(s), 1533 prose reading(s), 2 above the bar of 16, 0 unruled, 0 explaining nothing"
+            "said": "contrast-witness  293 stack(s) over 65 theme(s), 1501 prose reading(s), 0 above the bar of 16, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "corpus",
@@ -99,7 +99,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "delimiters",
             "held": true,
-            "said": "delimiter-inheritance  123 contentName rule(s) over 43 shape(s), 0 unruled"
+            "said": "delimiter-inheritance  123 contentName rule(s) over 44 shape(s), 0 unruled"
         },
         {
             "gate": "divergence-staleness",
@@ -124,7 +124,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "ledger-claims",
             "held": true,
-            "said": "ledger-claims  9 claim(s) across 3 ledger(s), 0 that no longer hold"
+            "said": "ledger-claims  6 claim(s) across 3 ledger(s), 0 that no longer hold"
         },
         {
             "gate": "legibility",
@@ -229,7 +229,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "still",
             "held": true,
-            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 20 divergence(s) across 1 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 49.5% of corpus tokens ruled"
+            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 20 divergence(s) across 1 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 49.7% of corpus tokens ruled"
         },
         {
             "gate": "still-reach",
