@@ -34,7 +34,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "brackets",
             "held": true,
-            "said": "bracket-witness  104 carrier(s), 22 red bracket(s): 22 declared (0 owed), 0 undeclared, 0 stale; 8 in degenerate carrier(s)"
+            "said": "bracket-witness  104 carrier(s), 5 red bracket(s): 5 declared (0 owed), 0 undeclared, 0 stale; 8 in degenerate carrier(s)"
         },
         {
             "gate": "builtins",

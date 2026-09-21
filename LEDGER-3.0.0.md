@@ -1610,6 +1610,23 @@ back by upgrading, which is the definition this number answers to.
   practice; `docs/differential-test-design.mem` records the reasoning behind the corpus/host
   comparison method the gates run on. `SCOPE-NAMES.md`'s naming policy and the bracket/paint rulings
   elsewhere in this section cite these as their evidentiary basis rather than asserting taste.
+- RULED 2026-09-21: `(` AND `)` RETIRE FROM `brackets` IN BOTH LANGUAGE CONFIGURATIONS. Wikitext
+  prose carries unpaired parentheses constantly — "1)", "(see above" — and VS Code's own matcher
+  paints every one it cannot pair the theme's unexpected-bracket red, over any colour a scope
+  earns, regardless of theme. The `(` AUTO-CLOSING pair stands unchanged in both files (typing `(`
+  still inserts `)`); only the colourizer's matching list moves. `corpus/bracket-ledger.txt` loses
+  its 17 now-stale `(`/`)` declarations (5 remain, all `]`/`[`), verified by `npm run brackets`
+  reading 0 stale and 0 undeclared under both readers. `tools/grammar-sandbox.js` gained a real
+  gap this surfaced: its sandbox overlaid `tools/`, `syntaxes/`, `editions/`, `corpus/` and
+  `tests/samples/` from the working tree over a HEAD checkout, but never the root language
+  configuration files a gate like `bracket-witness` reads by `package.json` manifest path — a
+  sandboxed run collided the WORKING-TREE ledger against the COMMITTED (still-paren-carrying)
+  config and read fifteen phantom "undeclared" reds. `ROOT_FILES`, derived from
+  `contributes.languages[].configuration` rather than named by hand, now travels with every
+  sandbox. `tools/bracket-witness.test.js` gains two controls — a language configuration
+  positively check no longer declaring `( )`, and prose parentheses reading no red under the real
+  pairs — plus the two existing sandboxed provocations, one of which had to move off `)` itself
+  (no longer trackable) onto `]`.
 
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`
