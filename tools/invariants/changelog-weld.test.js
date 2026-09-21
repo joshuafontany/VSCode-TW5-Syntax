@@ -15,6 +15,12 @@ const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..', '..');
 const CHANGELOG = fs.readFileSync(path.join(ROOT, 'CHANGELOG.md'), 'utf8');
+// THE RELEASE'S RECORD STANDS BESIDE ITS STORY. CHANGELOG.md tells what a release grants a reader;
+// LEDGER-<version>.md holds every construct, ruling and measurement behind it. A figure either one
+// states answers to the same ground, so the weld reads both.
+const VERSION = require(path.join(ROOT, 'package.json')).version;
+const LEDGER_FILE = path.join(ROOT, `LEDGER-${VERSION}.md`);
+const LEDGER = fs.existsSync(LEDGER_FILE) ? fs.readFileSync(LEDGER_FILE, 'utf8') : '';
 const SCOPE_NAMES = fs.readFileSync(path.join(ROOT, 'SCOPE-NAMES.md'), 'utf8');
 const MIGRATION = fs.readFileSync(path.join(ROOT, 'MIGRATION.md'), 'utf8');
 
@@ -37,7 +43,7 @@ function unreleased(text) {
   return next < 0 ? text.slice(start) : text.slice(start, next);
 }
 
-const SECTION = unreleased(CHANGELOG);
+const SECTION = unreleased(CHANGELOG) + unreleased(LEDGER);
 
 /**
  * Every figure the section states for a given noun, as written.
@@ -59,7 +65,7 @@ function rulingsOnDisk() {
 }
 
 test('the section states a ruling count to weld', () => {
-  assert.ok(SECTION.length > 0, 'no unreleased section found in the CHANGELOG');
+  assert.ok(SECTION.length > 0, 'no unreleased section found in the CHANGELOG or its ledger');
   assert.ok(stated('ruling').length > 0, 'the section states no ruling count — nothing to weld');
 });
 
@@ -124,7 +130,8 @@ function scopeRestatements(text) {
 
 test('CHANGELOG.md and SCOPE-NAMES.md restate MIGRATION.md\'s certified scope-migration headline', () => {
   const truth = migrationHeadline();
-  const found = [...scopeRestatements(CHANGELOG), ...scopeRestatements(SCOPE_NAMES)];
+  const found = [...scopeRestatements(CHANGELOG), ...scopeRestatements(LEDGER).map((r) => ({ ...r, where: `LEDGER ${r.where}` })),
+    ...scopeRestatements(SCOPE_NAMES)];
   assert.ok(found.length > 0, 'no scope-migration restatement found in CHANGELOG.md or SCOPE-NAMES.md — the weld found nothing to check');
   for (const r of found) {
     assert.strictEqual(r.gone, truth.gone, `${r.where} states ${r.gone} gone; MIGRATION.md's gate-checked headline states ${truth.gone}.`);
