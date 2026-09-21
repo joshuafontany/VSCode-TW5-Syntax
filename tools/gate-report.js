@@ -143,7 +143,15 @@ for (const gate of gates) {
     if (spike) {
       ({ code, out } = await runInProcess(IN_PROCESS_GATES[gate]));
     } else {
-      out = execFileSync('npm', ['run', gate, '--silent'], { encoding: 'utf8', cwd: ROOT, stdio: ['ignore', 'pipe', 'pipe'] });
+      out = execFileSync('npm', ['run', gate, '--silent'], {
+        encoding: 'utf8',
+        cwd: ROOT,
+        stdio: ['ignore', 'pipe', 'pipe'],
+        // Story 0 instrumentation: names the gate on every ORACLE_TRACE line the child writes,
+        // so a trace read back afterwards needs no pid-order inference to say which gate paid
+        // for which boot/parse. A no-op when ORACLE_TRACE is unset.
+        env: { ...process.env, ORACLE_TRACE_GATE: gate }
+      });
     }
   } catch (e) {
     code = e.status ?? 1;

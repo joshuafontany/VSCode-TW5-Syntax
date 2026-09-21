@@ -20,6 +20,36 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
+
+/**
+ * Story 0 instrumentation for the content-addressed-parse-cache spike — OFF BY DEFAULT.
+ *
+ * Set ORACLE_TRACE=<path> to append one JSON line per boot() call and per parseAs() call to
+ * that file: reader path, rule set, parse mode, a content hash for parses, and wall time. This
+ * is the only way to answer "how many (reader, rule set, mode, file) parse keys repeat across
+ * the separately-spawned gate processes gate-report.js runs" — a single process's own `booted`
+ * memo (below) never sees another process's calls, so the repeat count has to be read back from
+ * a file every process appends to. Never wired into a code path unless the env var is set, so a
+ * gate run with the flag OFF costs one `process.env` read added per boot/parse call.
+ */
+const TRACE_PATH = process.env.ORACLE_TRACE || null;
+function traceEvent(event) {
+  if (!TRACE_PATH) return;
+  try {
+    fs.appendFileSync(
+      TRACE_PATH,
+      // ORACLE_TRACE_GATE is set by gate-report.js on each spawned child so a trace line names
+      // the gate that made the call, not just a pid a reader would have to cross-reference.
+      `${JSON.stringify({ pid: process.pid, gate: process.env.ORACLE_TRACE_GATE || null, t: Date.now(), ...event })}\n`
+    );
+  } catch {
+    /* tracing never fails the gate it observes */
+  }
+}
+function contentHash(text) {
+  return crypto.createHash('sha1').update(text, 'utf8').digest('hex').slice(0, 16);
+}
 
 /**
  * Every node in a parse tree, depth-first, parents before children.
@@ -267,7 +297,11 @@ const booted = new Map();
 function boot(twPath, options = {}) {
   const rules = options.rules || {};
   const key = `${twPath} ${JSON.stringify(Object.entries(rules).sort())}`;
-  if (booted.has(key)) return booted.get(key);
+  if (booted.has(key)) {
+    traceEvent({ type: 'boot', tw: twPath, rules, ms: 0, memoHit: true });
+    return booted.get(key);
+  }
+  const bootStart = Date.now();
 
   const $tw = require(path.join(twPath, 'boot', 'boot.js')).TiddlyWiki();
   // The rule set MUST stand before boot. Startup parses wikitext of its own, and the first
@@ -292,13 +326,28 @@ function boot(twPath, options = {}) {
     process.stdout.write = write;
   }
   if (!ready) throw new Error('TiddlyWiki booted asynchronously; this oracle needs it synchronous');
+  traceEvent({ type: 'boot', tw: twPath, rules, ms: Date.now() - bootStart, memoHit: false });
 
   // A TIDDLER'S OWN TYPE PICKS ITS PARSER. `$:/palettes/Nord` declares
   // `application/x-tiddler-dictionary` and the host parses its body into ONE `genesis` node, where
   // the same bytes forced through wikitext build a paragraph, two calls and a quoteblock. A reader
   // comparing that against a grammar which honours the declared type reads 252 cuts of divergence
   // on one file, and names none of them a fault of either reader.
-  const parseAs = (type, text, parserOptions = {}) => $tw.wiki.parseText(type, text, parserOptions);
+  const parseAs = (type, text, parserOptions = {}) => {
+    if (!TRACE_PATH) return $tw.wiki.parseText(type, text, parserOptions);
+    const start = Date.now();
+    const result = $tw.wiki.parseText(type, text, parserOptions);
+    traceEvent({
+      type: 'parse',
+      tw: twPath,
+      rules,
+      mode: type,
+      hash: contentHash(text),
+      bytes: text.length,
+      ms: Date.now() - start
+    });
+    return result;
+  };
   const parse = (text, parserOptions = {}) => parseAs('text/vnd.tiddlywiki', text, parserOptions);
 
   const oracle = {
