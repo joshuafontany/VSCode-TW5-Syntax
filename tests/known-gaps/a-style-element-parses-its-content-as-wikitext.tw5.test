@@ -28,9 +28,9 @@
 
 <style>
 .tc-splash-text { color: <<colour foreground>>; }
-#                        ^^ punctuation.definition.macrocallinline.begin.tiddlywiki5
-#                          ^^^^^^ variable.name.macro.tiddlywiki5
-#                                           ^^ punctuation.definition.macrocallinline.end.tiddlywiki5
+#                        ^^ punctuation.definition.procedurecallinline.begin.tiddlywiki5
+#                          ^^^^^^ variable.name.procedure.tiddlywiki5
+#                                           ^^ punctuation.definition.procedurecallinline.end.tiddlywiki5
 </style>
 
 <style>

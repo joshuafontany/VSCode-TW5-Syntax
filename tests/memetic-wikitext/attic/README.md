@@ -23,6 +23,6 @@ floor in the reading the base gives.
 `lar-uri-query` came here for a different reason. It asserts the URI's own anatomy — scheme,
 path, query, fragment — standing INSIDE a sigil, and the seed cannot reach there: the memetic
 vocabulary arrives through an `R:` injection, which fires only where the base names nothing, and
-inside a macro call the base always names `meta.variable.macro.parameters`. Quoting the value does
+inside a call the base always names `meta.variable.procedure.parameters`. Quoting the value does
 not open it either, since a positional argument opens no string region for an injection to enter.
 The same anatomy stands asserted in prose by `lar-uri-in-prose.mem.test`, which passes.

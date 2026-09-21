@@ -14,7 +14,7 @@
 // A stack no kind claims says UNCLASSIFIED rather than handing back its container: a default drawn
 // from position reads like a classification and puts a ruling about a container into the ledger.
 const KINDS = [
-  ['meta.variable.call.*', /^meta\.variable\.(call|macrocall)/],
+  ['meta.variable.call.*', /^meta\.variable\.(call|procedurecall)/],
   ['meta.directive.variable.*', /^meta\.(directive\.variable|variable\.(macro|procedure|function|widget|pragma))\./],
   ['meta.directive.parameters.*', /^meta\.directive\.parameters\./],
   ['meta.codeblock.*', /^meta\.codeblock\./],

@@ -11,9 +11,9 @@
 * <<myCall
 
   >>
-#  ^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5
 
 <<myCall
 
 >>
-#^^ text.html.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+#^^ text.html.tiddlywiki5 meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.end.tiddlywiki5

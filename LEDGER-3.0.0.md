@@ -7,8 +7,8 @@ ledgers under `corpus/` hold the rulings each entry points at.
 
 ## 3.0.0 — unreleased
 
-A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 127 of the 460
-names `v2.2.1` published and adds 256 — and a reader's `editor.tokenColorCustomizations` entry
+A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 136 of the 460
+names `v2.2.1` published and adds 265 — and a reader's `editor.tokenColorCustomizations` entry
 naming any retired one stops matching SILENTLY, with VS Code reporting nothing. `MIGRATION.md`
 names every one. The reading changed beside the vocabulary: a transclusion reads as ONE object in
 38 themes where it read so in none, an image's `[img[` arrives as one marker, and every quoted
@@ -1142,6 +1142,25 @@ back by upgrading, which is the definition this number answers to.
   rule; nothing painted moves. `MIGRATION.md` gains the eleven gone names and their replacements
   (**585** names now, **122** gone, **247** new, up from 579/111/230), six pinned snapshots and
   seven `.tw5.test` fixtures regenerate to the lengthened names with no other drift.
+- RULED 2026-09-21: A `<<x …>>` INVOCATION IS NO LONGER A MACRO CALL. Since TiddlyWiki 5.3,
+  `<<x>>` transcludes a variable — the same mechanism a `\procedure` or `\function` binds — and the
+  procedure ontology owns the CALL side of that vocabulary now. Every call-side scope renamed:
+  `entity.name.function.macro` → `entity.name.function.procedure`, `support.function.macro` →
+  `support.function.procedure`, `variable.name.macro` → `variable.name.procedure`,
+  `meta.variable.macro.parameters` → `meta.variable.procedure.parameters`,
+  `meta.variable.macro.parameter.tw-$1` → `meta.variable.procedure.parameter.tw-$1` (never declared
+  literally — a `$1` capture excludes it from the declared set, so it carries no `MIGRATION.md` row),
+  `variable.macro.attribute.html` → `variable.procedure.attribute.html` (an `attr=<<x>>` value), and
+  the shared block/inline call machinery: `macrocallblock` → `procedurecallblock`,
+  `macrocallinline` → `procedurecallinline`, `tag.macrocall` → `tag.procedurecall`. The DEFINITION
+  side keeps its name: `meta.directive.variable.macro`, `entity.name.variable.macro` and
+  `meta.variable.macro.body` still name a `\define` region, because macrodef.js still builds a
+  MACRO there — with `$param$` substitution a `\procedure` lacks — and a reader acts on that
+  distinction. `MIGRATION.md` gains twelve gone names and their replacements (**589** names now,
+  **136** gone, **265** new, up from 589/127/256 — the rename is one-for-one, so the standing
+  count holds); seventeen `.tw5.test` fixtures and twenty-one pinned snapshots regenerate to the
+  renamed call-side scopes with no other drift; the colour witness reads unchanged (0 findings)
+  since the rename moved no theme-reachable prefix.
 
 ### Tooling and process
 - TWO READERS, NAMED AND KEYED, THE THIRD ONE REMOVED. See `tools/reader-scope.js`.

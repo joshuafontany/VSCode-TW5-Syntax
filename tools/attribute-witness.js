@@ -37,7 +37,7 @@ const KINDS = {
   string: /^string\.(quoted|unquoted|other)\./,
   indirect: /^string\.text-reference\./,
   filtered: /^meta\.attribute\.filtered\./,
-  macro: /^meta\.(variable\.macrocall|attribute\.mvv)/,
+  macro: /^meta\.(variable\.procedurecall|attribute\.mvv)/,
   substituted: /^text\.substituted\./
 };
 const ANY_KIND = new RegExp(Object.values(KINDS).map((r) => `(?:${r.source})`).join('|'));

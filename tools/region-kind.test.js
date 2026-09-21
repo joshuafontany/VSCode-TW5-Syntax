@@ -24,10 +24,10 @@ const { KINDS, kindOf } = require('./region-kind.js');
 
 test('one cause keys the same however it stands enclosed', () => {
   const inProse = ['text.html.tiddlywiki5', 'meta.paragraph.tiddlywiki5',
-    'meta.variable.call.inline.tiddlywiki5', 'meta.variable.macrocallinline.tiddlywiki5',
+    'meta.variable.call.inline.tiddlywiki5', 'meta.variable.procedurecallinline.tiddlywiki5',
     'meta.variable.call.parameter.tw-.tiddlywiki5', 'string.unquoted.html.tiddlywiki5'];
   const atBlock = ['text.html.tiddlywiki5', 'meta.variable.call.block.tiddlywiki5',
-    'meta.variable.macrocallblock.tiddlywiki5', 'meta.variable.call.parameters.tiddlywiki5'];
+    'meta.variable.procedurecallblock.tiddlywiki5', 'meta.variable.call.parameters.tiddlywiki5'];
   assert.strictEqual(kindOf(inProse), kindOf(atBlock),
     'the same open region keys two ways depending on what encloses it');
   assert.strictEqual(kindOf(inProse), 'meta.variable.call.*');

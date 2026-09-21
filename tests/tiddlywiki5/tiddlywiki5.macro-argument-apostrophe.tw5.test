@@ -5,7 +5,7 @@
 # construct after it then colours as that macro's arguments.
 
 <<myMacro you'd index a relation>>
-#         ^^^ text.html.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 meta.variable.macro.parameter.tw-.tiddlywiki5 string.unquoted.html.tiddlywiki5
+#         ^^^ text.html.tiddlywiki5 meta.variable.procedurecallblock.tiddlywiki5 meta.variable.procedure.parameters.tiddlywiki5 meta.variable.procedure.parameter.tw-.tiddlywiki5 string.unquoted.html.tiddlywiki5
 
 A paragraph standing after it.
 #^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
@@ -13,10 +13,10 @@ A paragraph standing after it.
 # A quote that DOES open a parameter still opens one, whether it carries a name or stands bare.
 
 <<myMacro 'a quoted argument'>>
-#          ^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 meta.variable.macro.parameter.tw-.tiddlywiki5 string.quoted.single.html.tiddlywiki5
+#          ^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.variable.procedurecallblock.tiddlywiki5 meta.variable.procedure.parameters.tiddlywiki5 meta.variable.procedure.parameter.tw-.tiddlywiki5 string.quoted.single.html.tiddlywiki5
 
 <<myMacro name='a named argument'>>
-#               ^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5 meta.variable.macro.parameter.tw-name.tiddlywiki5 string.quoted.single.html.tiddlywiki5
+#               ^^^^^^^^^^^^^^^^ text.html.tiddlywiki5 meta.variable.procedurecallblock.tiddlywiki5 meta.variable.procedure.parameters.tiddlywiki5 meta.variable.procedure.parameter.tw-name.tiddlywiki5 string.quoted.single.html.tiddlywiki5
 
 Prose after the quoted forms.
 #^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
