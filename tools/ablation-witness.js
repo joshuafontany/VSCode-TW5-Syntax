@@ -317,11 +317,17 @@ module.exports = {
   keyOf
 };
 
-if (require.main !== module) return;
-
-(async () => {
-  const verbose = process.argv.includes('--verbose');
-  const list = process.argv.includes('--list');
+/**
+ * The CLI's own body, callable directly — by `require.main` below, or in-process by
+ * gate-report.js's `--in-process` spike, which shares one TiddlyWiki boot across every gate that
+ * exports this instead of paying a fresh boot per `npm run` child.
+ *
+ * @param {string[]} argv
+ * @returns {Promise<number>} the exit code
+ */
+async function run(argv) {
+  const verbose = argv.includes('--verbose');
+  const list = argv.includes('--list');
   const oracle = boot(resolveTiddlyWiki());
   const current = oracle.$tw.version;
   const declared = readLedger();
@@ -337,7 +343,7 @@ if (require.main !== module) return;
   }
   if (list) {
     for (const f of findings) process.stdout.write(`${f.key}  # ${declared.get(f.key) || 'REASON OWED'}\n`);
-    return;
+    return 0;
   }
   // A declaration naming a READER (tools/reader-scope.js) answers only for that one, the same
   // generalisation darkness-witness.js carries — a finding that reader never meets stays undeclared
@@ -357,5 +363,11 @@ if (require.main !== module) return;
   for (const k of stale) console.log(`  ${k} — a declaration explaining nothing: the line no longer finds it (stale)`);
   for (const k of unreadable) console.log(`  ${k.slice(12)} — a ledger line this cannot read`);
   console.log(`ablation-witness  ${findings.length} finding(s) over ${judged} carrier(s): ${findings.length - undeclared.length} declared (${owed} owed), ${undeclared.length} undeclared, ${stale.length} stale`);
-  process.exitCode = undeclared.length || stale.length || unreadable.length ? 1 : 0;
-})();
+  return undeclared.length || stale.length || unreadable.length ? 1 : 0;
+}
+
+module.exports.run = run;
+
+if (require.main === module) {
+  run(process.argv.slice(2)).then((code) => { process.exitCode = code; });
+}
