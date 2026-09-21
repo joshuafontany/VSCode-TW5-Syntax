@@ -28,7 +28,17 @@
 # quoting the grammar carries a region for; a `\parameters` directive; an inline call; an XML
 # processing instruction; a script under a type no grammar claims; an element name no grammar
 # claims inside math. Seated at 21 on 2026-09-09, down from 44 — the constructs above account for
-# the 23 that closed.
+# the 23 that closed. That 44 itself fell from an earlier 62, closing every construct that spans a
+# line break — a pragma signature, a macro argument, quoted and triple-quoted attribute values, a
+# character-data payload, a comment inside embedded JavaScript — each one CLOSED so containment
+# holds while an intermediate line end sits inside the region; scope coverage rose from 467 to 469
+# over the same change.
+#
+# THE COUNT ALSO NEEDED COLLIDING BEFORE READING BY SHAPE MEANT ANYTHING: a naive reading counted
+# 118 unbounded and 79 unasked where 98 and 62 stood once the reader walked the pattern for a
+# dollar standing as an ANCHOR rather than by shape alone. `tools/grammar-scopes.test.js` carries
+# the control that provokes a literal `\$` — carried by every widget rule and by the typed block's
+# `\$\$\$` — directly, to keep it naming no bound.
 #
 # THE RESIDUE, RE-MEASURED 2026-09-09 UNDER THREE SENTINELS. The sweep ran three times over the
 # same 906 cuts, appending a quoteblock (`<<<`), a typed block (`$$$text/plain`) and a style block

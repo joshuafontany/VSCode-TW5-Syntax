@@ -1786,17 +1786,14 @@ back by upgrading, which is the definition this number answers to.
   a ruling standing over a class no arm moved reports as judgement rather than as proof. On its
   first run the probe refuted one ledger entry and marked two rulings unproven.
 - `attribute-witness` compares the kind TiddlyWiki assigned a value against the kind this grammar
-  names for the same span. parseutils.js declares five — a quoted or bare string, a text reference,
-  a filter, a macro call, a backtick substitution — and the grammar spells all five again in its
-  own patterns, while every other gate here passes on a disagreement: the scope exists, the corpus
-  reaches it, the block boundary holds, and the kind still comes out different. The host writes
-  both halves, the type on each attribute it places and the extent to read it at, so this holds
-  only the vocabulary pairing them. Measured across TiddlyWiki's own wikitext tiddlers: 10772
-  attributes, 10545 agreeing, and a residue that stands as an upper bound rather than a defect
-  count — the probe reads one position inside each value, and a value crossing lines stands over.
-- The kind wears a word, never a position. An attribute value stands several regions deep, and
-  reading the outermost answers `meta.attribute.class` for every value while reading the innermost
-  answers with the operator inside a filtered value's first run.
+  names for the same span, ruled in `corpus/attribute-kind-ceiling.txt`: parseutils.js declares five
+  kinds and the grammar spells all five again in its own patterns, and every other gate here passes
+  on a disagreement between them. Measured across TiddlyWiki's own wikitext tiddlers before the
+  ceiling's own corrections: 10772 attributes, 10545 agreeing — the residue that ceiling narrows to
+  52, now recorded there rather than here.
+- The kind wears a word, never a position — `corpus/attribute-kind-ceiling.txt` measures the
+  correction: reading the outermost region of a filtered value answers `meta.attribute.class` for
+  every value, where reading the innermost answers with the operator inside its first run.
 - Three populations TiddlyWiki registers now gate something. The signals harvest gains the token
   each pragma rule opens on — `\define`, `\parameters`, `\function|procedure|widget`, `<!--` —
   read off each rule module's own matchRegExp, and the run prefixes registered under
@@ -1816,34 +1813,14 @@ back by upgrading, which is the definition this number answers to.
   transclusions — through TiddlyWiki's OWN compiler first: 781 compile, and all 781 read with no
   verdict and no missing filter scope. The compiler decides the population, so no reading of the
   format written here widens or narrows it.
-- A corpus specimen carries every construct that spans a line break — a pragma signature, a macro
-  argument, quoted and triple-quoted attribute values, a character-data payload, a comment inside
-  embedded JavaScript — each one CLOSED, so containment holds while an intermediate line end sits
-  inside the region. Regions no cut ever opens fall from 62 to 44 and scope coverage rises from 467
-  to 469. Two populations sit in what remains and only one wants a specimen: a region whose end can
-  match where its begin does closes inside its own line whatever a reader feeds it, which the dash
-  rules and the transclusion tokenizer both do.
-- A quoted attribute value left open inside a widget tag reads on, and stands ruled. TiddlyWiki
-  refuses the whole tag where no closing quote stands anywhere and builds the element across the
-  break where one does; of eleven accepted start tags carrying a blank line, eight carry it inside
-  a quoted value, so the string region carries on.
-- The count of unbounded regions needed colliding before it meant anything, and it read 118 and 79
-  where 98 and 62 stand. A grammar spells the line bound five ways — `$`, `(?=$)`, `^$`, `|$`,
-  `(?=$|…)` — and a reader naming it by shape misses the rest. Six inline emphasis rules ending
-  `(?=$)`, whose begin refuses to open at all without a closer on the same line, sat among the
-  runaways; so did the paragraph rule, which spells `^$` with no lookahead around it. Twenty
-  regions were never unbounded and seventeen of the residue were safe by construction. The reader
-  walks the pattern for a dollar standing as an ANCHOR now, and a literal `\$` — carried by every
-  widget rule and by the typed block — names no bound, which a control in
-  `tools/grammar-scopes.test.js` provokes directly.
-- The swallow gate holds a third ratchet: regions with no line bound that no cut ever opens. 118
-  regions carry no such bound, which alarms and means little alone — 39 stand open across a blank
-  line under some cut and AGREE with the parser, because TiddlyWiki carries those constructs too.
-  Standing open names no defect; disagreeing does, and the ledger holds all eight of those. The 79
-  left over have not been found sound, only left unasked, and from outside the two read alike:
-  a green gate. Measured with 800 upstream tiddlers added, twelve more come open, so the corpus
-  under-covers its own grammar by a knowable amount. A region arriving without a specimen that
-  opens it now raises the count and fails.
+- A corpus specimen now carries every construct that spans a line break, closed. Regions no cut ever
+  opens fell from 62 to 44 and scope coverage rose from 467 to 469 — the fuller history, and the
+  further fall to the ceiling's current count, stands in `corpus/unasked-regions-ceiling.txt`.
+- The count of unbounded regions needed colliding before it meant anything: a grammar spells the
+  line bound five ways and a reader naming it by shape miscounts, which `corpus/unasked-regions-
+  ceiling.txt` works through in full, including the control in `tools/grammar-scopes.test.js` that
+  provokes a literal `\$` — carried by every widget rule and the typed block's `\$\$\$` — directly,
+  to keep it naming no bound.
 - A self-closing `<svg …/>` closes its element. Twelve element families stand here and ten admit a
   self-close in their end pattern; the two that did not name `<svg>` and `<math>`, the roots. A
   sibling survives the gap because its end also breaks on the parent's closing tag, and a root has
@@ -1866,38 +1843,21 @@ back by upgrading, which is the definition this number answers to.
   now end at a blank line, chosen by what their end pattern awaits rather than by tag name. The
   attribute regions matter as much as the tags: a child region on the stack keeps its parent's end
   from ever being tested.
-- That bound was ruled unfixable an hour before it landed, and both halves of the ruling fell to
-  measurement. Counted across 2583 files, of 2348 start tags TiddlyWiki accepts, six carry a blank
-  line outside a quoted value — every one a widget tag, all in one core file, and all already
-  bounded — and no plain HTML tag anywhere carries one. So the bound costs nothing that stands.
-  The remedy the ruling proposed instead could not have been written at all: vscode-textmate hands
-  a pattern one line and no more, so an end pattern standing at a blank line cannot read the line
-  that would decide the question.
-- The swallow ledger fails on a ruling that explains nothing. A divergence gets fixed, its line
-  stays, and the record then carries more standing debt than the repository does — the same way a
-  list of openers outlived the rules it claimed to cover.
+- That start-tag bound was ruled unfixable an hour before it landed, and measurement upheld both
+  halves of the ruling: `corpus/swallow-ledger.txt`'s preamble carries the count (2583 files, six
+  blank-line-carrying start tags, all widget, all bounded already) and the reason the proposed remedy
+  cannot be written at all.
 - The corpus gate answers to the host as well as to itself. Its three readings all measure what
   this repository wrote — scopes declared, scopes reached, constructs contained — so a rule the
   grammar never learned reaches no scope, goes unmissed, and coverage reads full. A fourth reading
   takes its population from `activeRules`: every rule TiddlyWiki stands must fire in some specimen,
   and 43 of 43 do. One rule, `whitespace`, builds no node at all and stands named with the reason.
   A corpus that stops exercising a rule now says so instead of quietly narrowing.
-- The swallow witness draws its battery from real text instead of a table. It held twenty-five
-  openers written by hand, which reached twelve of the thirty-six body rules TiddlyWiki stands —
-  the other twenty-four went unasked, and the openers it did name were spelled by the same hand
-  that spelled the grammar. It now cuts every corpus file at every line, appends a blank line and
-  a sentinel, and asks both readers about the same offset: 614 cuts across 26 files, against 42
-  specimens before. Thirteen divergences surfaced where the table reported none, four of them
-  recorded as debt in `corpus/swallow-ledger.txt` and the rest ruled to TiddlyWiki's own
-  behaviour — measured, not reasoned: a comment, a definition block and an unterminated element
-  each turn on text the parser reads BEYOND the construct, which no TextMate end pattern can see.
-- Three coarser readings of that question misreported before this one, and each names a trap. A
-  reader asking whether the sentinel exists anywhere calls a correct grammar wrong, because
-  TiddlyWiki carries an element with no closer to the end of the tiddler and parses blocks inside
-  it. A reader asking whether it stands at the root calls every grammar wrong, because
-  parsePragmas nests every later block beneath the definition above it. A sentinel any specimen
-  can also open collides with the head it follows. So the sentinel stands at a known offset and
-  each reader answers for that offset alone.
+- The swallow witness now draws its battery from real corpus text instead of a table of twenty-five
+  hand-written openers, cutting every corpus file at every line and asking both readers about the
+  same offset. Its sentinel technique, the divergences that first run surfaced, and the three
+  coarser readings tried and rejected before it stand recorded in `corpus/swallow-ledger.txt`'s own
+  preamble.
 - A code region reads literally, and a label types it. TiddlyWiki hands a tick span and a code
   block to no parser, and every shipped grammar reached for agrees: VS Code's markdown, wooorm's
   markdown-tm-language, Pygments, nvim-treesitter, Helix and tree-sitter-markdown all decline to
@@ -2211,26 +2171,6 @@ back by upgrading, which is the definition this number answers to.
 - The corpus and samples carry the framing form the graph now writes: a control sigil names its ends,
   `from=? -> to=lar:///…`, with the bearing arrow riding between them as an unnamed positional. The
   grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
-- The attribute residue partitions class by class, and one class dissolved under the reading. A
-  "filtered or indirect value reading a neighbouring kind" heading held five entries that shared
-  nothing: two sat inside a backtick raw span, two inside a start tag broken across a blank line, and
-  one inside a macro-call parameter region no `\end` could close. The heading came from reading the
-  KIND WORD first; reading the structure first sends all five home and the heading is gone. The
-  blank-line class re-derives per attribute at 13 rather than the ~10 read off the file, and its
-  tag opener wants deriving too — the nearest `<` sits inside a `<<macro>>` value on the line above.
-- Two classes stood unmeasured behind one wrong sentence, "templates that wrap their whole body in a
-  backtick raw span". Ten attributes sit inside a raw span the grammar PAIRED AGAINST THE HOST:
-  `codeinline.js` runs `reEnd.exec(source)` over the whole document so a TiddlyWiki code run crosses
-  line breaks, while this grammar spells the construct as a `match` whose content class reads
-  `[^`\n]` — so the two pair different backticks and the mis-pairing alternates, every span the host
-  reads raw reading as wikitext and back. Four more sit inside `<style scoped>`, whose content
-  TiddlyWiki parses as WIKITEXT while this grammar hands the whole element to `source.css`.
-- The `<<<` sentinel blocks seven region entries and the earlier reading named the wrong ones. The
-  sweep ran three times over the same 906 cuts under a quoteblock, a typed block and a style block:
-  21 unasked, 14, 15, and 14 under the union. The seven that come open are the BLOCK filtered
-  transclusion and the filter, tokenize and text-reference regions the same close pops — the two
-  OUTER inline transclusion regions stay unasked under every sentinel, because they want a cut
-  standing inside a line and the probe cuts at line boundaries.
 - A RULING'S BREADTH ANSWERS TO HOW MANY CAUSES IT CAN ABSORB, never to how much ground it covers.
   `ruled-ground-ceiling.txt` counted the share of corpus tokens every ruling stood on and re-seated
   four times across one session — 55.8%, 56.6%, 57.2%, 60.0% — with a true reason every time. The
@@ -2276,8 +2216,6 @@ back by upgrading, which is the definition this number answers to.
   other by construction, and the pair wants reading together: the broadening guard weighs a key
   against the key that replaced it, and `still --reach` measures what the rulings cover on ground
   outside this repository altogether.
-- `swallow-witness --verbose` names the regions standing unasked. A ceiling nobody can act on falls
-  by luck; lowering it means writing a specimen that opens a NAMED region.
 - One grammar reading per carrier, resumed at each cut from the stack that cut's head ends on.
   A grammar reads strictly left to right, so the stack after a line answers to nothing following it;
   re-reading each head in full cost the SQUARE of a file's length and measured at 90% of a sampled
@@ -2285,12 +2223,6 @@ back by upgrading, which is the definition this number answers to.
   carriers in 31 seconds. `tokenizeFrom` holds the reading, so `tokenize` and the resumed walk stay
   one implementation, and `still.test.js` collides the two readings cut for cut with a control
   against a draw that diverges nowhere.
-- `attribute-witness --verbose` counts the disagreements standing on an attribute that carries NO
-  value in the source. TiddlyWiki types a bare `allowfullscreen` as a string and SYNTHESISES the
-  value "true", and the span it hands back covers the attribute's NAME, so naming that span a string
-  would paint the name as its own value — 15 of the 52 part that way, by construction. Reading the
-  absence of an `=` counted 29: a positional macro parameter carries no separator either and its
-  whole span IS its value, so the test is the span standing equal to the attribute's own name.
 - `legibility` takes its POPULATION from the host. Seven specimens stood in the tool by hand and the
   standing lesson answered: a hand-written enumeration cannot notice what it missed. It carried no
   emphasis at all, and emphasis holds the weakest readings in the table — a procedure definition
@@ -2321,12 +2253,10 @@ back by upgrading, which is the definition this number answers to.
   dereferences against the store, never string content — so the family shape stands FIRST and
   `string.text-reference` stands LAST and keeps any tie. Measured: a transclusion parts from a
   wikilink in 58 of 65 rather than 54, and no other pair of the seven specimens moves.
-- `still` passes over ground this repository does not hold. The gate pointed at `./corpus`, where
-  `swallow-witness` already cuts all 38 files with the same comparison — measured, both find the
-  same 8 classes — so the pass reported `0 unnamed` as a stopping-condition verdict while measuring
-  what another gate had measured. `--host` names TiddlyWiki's own tiddlers, 4403 carriers standing
-  outside this corpus and inside a checkout other gates already need. It found an unnamed class on
-  its first run, in 3.4 seconds.
+- `still` and `swallow-witness` measure different ground, not the same one twice — `still` pointed
+  at `./corpus` by mistake and only reported what `swallow-witness` already had; pointed at `--host`
+  instead it crosses 4403 carriers outside this corpus and found an unnamed class on its first run.
+  The correction and its reason stand in `corpus/swallow-ledger.txt`'s own HOST paragraph.
 - A definition-block ruling moved from the corpus ledger to the carrier ledger. No corpus cut reads
   that way once every offset reading stays in one space, and a ruling with no specimen fails the
   corpus gate by design; TiddlyWiki's own tiddlers carry it.

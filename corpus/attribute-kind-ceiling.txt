@@ -10,13 +10,16 @@
 # to read it at — and this repository holds only the vocabulary that pairs them.
 #
 # Measured over TiddlyWiki's own wikitext tiddlers: one kind agrees outright, and the residue keys
-# to seven structural causes, each named below with the specimen that carries it.
+# to seven structural causes, each named below with the specimen that carries it. The raw population
+# behind that count: 10772 attributes, 10545 agreeing, before either correction below runs.
 #
 #   A VALUE CROSSING LINES stands over rather than answering wrongly, so nothing below counts one.
 #   THE PROBE READS THE VALUE'S WHOLE SPAN. A kind region need not cover every character — a
 #   filtered value carries operators and operands under scopes of their own — so a reader landing
-#   on one position inside it reports whatever kind stands there. Reading a point rather than the
-#   span held 156 of these, and the residue below stands after that correction.
+#   on one position inside it reports whatever kind stands there: the outermost region of a filtered
+#   value answers `meta.attribute.class` for every value, where the innermost answers with the
+#   operator inside its first run. Reading a point rather than the span held 156 of these, and the
+#   residue below stands after that correction.
 #
 # A tiddler declaring a type other than text/vnd.tiddlywiki never enters the population: reading
 # an HTML template or a stylesheet as wikitext manufactures a disagreement nobody asked for.
