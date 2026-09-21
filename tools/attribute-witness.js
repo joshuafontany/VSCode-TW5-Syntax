@@ -26,6 +26,7 @@ const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
 const { parseTid } = require('./wiki-data.js');
+const { tiddlerFiles: tiddlers } = require('./walk.js');
 
 const verbose = process.argv.includes('--verbose');
 const CEILING = path.join(ROOT, 'corpus', 'attribute-kind-ceiling.txt');
@@ -50,14 +51,6 @@ if (!host) {
 }
 const oracle = boot(host, {});
 
-function tiddlers(dir, out = []) {
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    const file = path.join(dir, entry.name);
-    if (entry.isDirectory()) tiddlers(file, out);
-    else if (entry.name.endsWith('.tid')) out.push(file);
-  }
-  return out;
-}
 
 (async () => {
   const files = tiddlers(path.join(host, 'core'))

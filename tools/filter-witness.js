@@ -24,18 +24,9 @@ const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
 const { readData } = require('./wiki-data.js');
+const { tiddlerFiles: tiddlers } = require('./walk.js');
 
 const verbose = process.argv.includes('--verbose');
-
-/** Every `.tid` the host ships, wherever it keeps them. */
-function tiddlers(dir, out = []) {
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    const file = path.join(dir, entry.name);
-    if (entry.isDirectory()) tiddlers(file, out);
-    else if (entry.name.endsWith('.tid')) out.push(file);
-  }
-  return out;
-}
 
 // Where an author writes a filter: a widget's `filter` attribute, and a filtered transclusion.
 // Both spellings come from the parser's own rules — filteredtranscludeblock matches `{{{…}}}`,

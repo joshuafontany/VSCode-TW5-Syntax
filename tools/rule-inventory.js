@@ -28,6 +28,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { parseTid } = require('./wiki-data.js');
 const { resolveTiddlyWiki } = require('./tw5-oracle.js');
+const { walkMatching, tiddlerFiles } = require('./walk.js');
 
 // wikiparser.js reads one prefix per rule type. The pragma prefix reads PLURAL where the
 // other two read singular; nothing derives that, so a test pins the three transcribed.
@@ -54,12 +55,7 @@ function configKeysFor(name, types) {
  */
 function readRuleModules(twPath) {
   const dir = path.join(twPath, 'core/modules/parsers/wikiparser/rules');
-  const files = (d) =>
-    fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => {
-      const p = path.join(d, e.name);
-      return e.isDirectory() ? files(p) : e.name.endsWith('.js') ? [p] : [];
-    });
-  return files(dir)
+  return walkMatching(dir, (name) => name.endsWith('.js'))
     .map((file) => {
       const src = fs.readFileSync(file, 'utf8');
       const name = /exports\.name\s*=\s*"([^"]+)"/.exec(src);
@@ -86,19 +82,11 @@ function readRuleModules(twPath) {
 function readShippedDefaults(twPath) {
   const out = new Map();
   const dir = path.join(twPath, 'core/wiki');
-  const walk = (d) => {
-    if (!fs.existsSync(d)) return;
-    for (const e of fs.readdirSync(d, { withFileTypes: true })) {
-      const p = path.join(d, e.name);
-      if (e.isDirectory()) walk(p);
-      else if (e.name.endsWith('.tid')) {
-        const text = fs.readFileSync(p, 'utf8');
-        const m = /^title:\s*\$:\/config\/WikiParserRules\/(\S+)\s*$/m.exec(text);
-        if (m) out.set(m[1], parseTid(text).body.trim());
-      }
-    }
-  };
-  walk(dir);
+  for (const p of tiddlerFiles(dir)) {
+    const text = fs.readFileSync(p, 'utf8');
+    const m = /^title:\s*\$:\/config\/WikiParserRules\/(\S+)\s*$/m.exec(text);
+    if (m) out.set(m[1], parseTid(text).body.trim());
+  }
   return out;
 }
 

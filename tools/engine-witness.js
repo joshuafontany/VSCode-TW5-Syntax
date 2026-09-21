@@ -32,6 +32,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { ROOT } = require('./tokenizer.js');
+const { walkFiles } = require('./walk.js');
 
 const verbose = process.argv.includes('--verbose');
 const behaviour = process.argv.includes('--behaviour');
@@ -72,18 +73,13 @@ function ledger() {
 /** Every distinct non-blank line the corpus carries, which is the only string set neither engine chose. */
 function corpusLines() {
   const seen = new Set();
-  const walk = (dir) => {
-    for (const entry of fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
-      const file = path.join(dir, entry.name);
-      if (entry.isDirectory()) { walk(file); continue; }
-      if (!/\.(tw|mem|tid|multids|meta)$/.test(entry.name)) continue;
-      for (const line of fs.readFileSync(file, 'utf8').split('\n')) {
-        const text = line.replace(/\s+$/, '');
-        if (text.trim()) seen.add(text);
-      }
+  const files = walkFiles(path.join(ROOT, 'corpus')).filter((f) => /\.(tw|mem|tid|multids|meta)$/.test(f));
+  for (const file of files) {
+    for (const line of fs.readFileSync(file, 'utf8').split('\n')) {
+      const text = line.replace(/\s+$/, '');
+      if (text.trim()) seen.add(text);
     }
-  };
-  walk(path.join(ROOT, 'corpus'));
+  }
   return [...seen];
 }
 

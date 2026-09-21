@@ -32,11 +32,21 @@ const workflow = fs.readFileSync(path.join(ROOT, '.github', 'workflows', 'test.y
 const ruling = readData('CIGates.tid').data;
 
 // Every npm script the workflow runs, following one script into the scripts it calls.
+//
+// A step running `tools/gate-report.js` directly reaches every gate the manifest names, by the
+// same construction the report itself runs on — gate-report.js runs `npm run <gate>` for each name
+// gateNames() derives, so a workflow step invoking it needs no npm-run line of its own for any of
+// them. Naming this here reads the report's OWN reach rather than re-deriving a second list: the
+// day the report changes what it iterates, this changes with it because gateNames() is the one
+// this calls too.
 function reached() {
   const seeds = new Set();
   for (const m of workflow.matchAll(/npm run ([a-z0-9:-]+)/g)) seeds.add(m[1]);
   for (const m of workflow.matchAll(/run: npm test\b/g)) seeds.add('test');
   const seen = new Set();
+  if (/\bnode\s+\.?\/?tools\/gate-report\.js\b/.test(workflow)) {
+    for (const g of gateNames()) seen.add(g);
+  }
   const walk = (name) => {
     if (seen.has(name)) return;
     seen.add(name);

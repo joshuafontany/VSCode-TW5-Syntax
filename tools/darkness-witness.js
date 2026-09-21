@@ -52,6 +52,8 @@ const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
 const { boot, resolveTiddlyWiki, isPlainText, flatten } = require('./tw5-oracle.js');
 const { readerOf, appliesToReader } = require('./reader-scope.js');
+const { carrierFiles } = require('./walk.js');
+const { defineLedger } = require('./ledger-shape.js');
 
 const SCOPE = 'text.html.tiddlywiki5';
 const LEDGER = path.join(ROOT, 'corpus', 'darkness-ledger.txt');
@@ -153,37 +155,37 @@ async function darkLines(text, oracle, read = placed) {
 }
 
 /** The key a ledger line and a dark line share. */
-const keyOf = (file, rule, verdict, text) => `${file}  ${rule}  ${verdict}  ${JSON.stringify(text)}`;
+const { keyOf, readLedger: readLedgerFile } = defineLedger([
+  { name: 'file' },
+  { name: 'rule' },
+  { name: 'verdict', enum: ['MISS', 'LOST'] }
+]);
 
 /** Declarations, keyed as dark lines key, each carrying its reason. */
 function readLedger() {
-  const declared = new Map();
-  if (!fs.existsSync(LEDGER)) return declared;
-  const shape = /^(\S+)\s+(\S+)\s+(MISS|LOST)\s+("(?:[^"\\]|\\.)*")\s*#\s?(.*)$/;
-  for (const raw of fs.readFileSync(LEDGER, 'utf8').split('\n')) {
-    const line = raw.trim();
-    if (!line || line.startsWith('#')) continue;
-    const m = shape.exec(line);
-    if (!m) { declared.set(`unreadable: ${line}`, null); continue; }
-    declared.set(keyOf(m[1], m[2], m[3], JSON.parse(m[4])), m[5]);
-  }
-  return declared;
+  return readLedgerFile(LEDGER);
 }
 
 /** Every wikitext carrier, derived from the directories that hold them. */
 function carriers() {
-  return CARRIER_DIRS.flatMap((dir) => (fs.existsSync(dir)
-    ? fs.readdirSync(dir).filter((f) => f.endsWith('.tw')).sort().map((f) => path.join(dir, f))
-    : []));
+  return carrierFiles(CARRIER_DIRS);
 }
 
 module.exports = { darkLines, placed, isGround, keyOf };
 
-if (require.main !== module) return;
-
-(async () => {
-  const verbose = process.argv.includes('--verbose');
-  const list = process.argv.includes('--list');
+/**
+ * The CLI's own body, callable directly — by `require.main` below, or in-process by
+ * gate-report.js's `--in-process` spike, which shares one TiddlyWiki boot across every gate that
+ * exports this instead of paying a fresh boot per `npm run` child. Identical output either way:
+ * this prints exactly what it always printed, and a caller wanting it captured wraps console
+ * itself rather than this asking to be told how.
+ *
+ * @param {string[]} argv
+ * @returns {Promise<number>} the exit code
+ */
+async function run(argv) {
+  const verbose = argv.includes('--verbose');
+  const list = argv.includes('--list');
   const oracle = boot(resolveTiddlyWiki());
   const current = oracle.$tw.version;
   const declared = readLedger();
@@ -199,7 +201,7 @@ if (require.main !== module) return;
   }
   if (list) {
     for (const d of dark) process.stdout.write(`${d.key}  # ${declared.get(d.key) || 'REASON OWED'}\n`);
-    return;
+    return 0;
   }
   // A declaration NAMING A READER answers only for that one — a divergence this reader never
   // meets stays undeclared here exactly as if nothing named it, and a divergence it DOES meet
@@ -221,5 +223,11 @@ if (require.main !== module) return;
   for (const k of stale) console.log(`  ${k} — a declaration explaining nothing: the line no longer reads dark (stale)`);
   for (const k of unreadable) console.log(`  ${k.slice(12)} — a ledger line this cannot read`);
   console.log(`darkness-witness  ${dark.length} construct line(s) over ${judged} carrier(s) read dark: ${dark.length - undeclared.length} declared (${owed} owed), ${undeclared.length} undeclared, ${stale.length} stale`);
-  process.exitCode = undeclared.length || stale.length || unreadable.length ? 1 : 0;
-})();
+  return undeclared.length || stale.length || unreadable.length ? 1 : 0;
+}
+
+module.exports.run = run;
+
+if (require.main === module) {
+  run(process.argv.slice(2)).then((code) => { process.exitCode = code; });
+}

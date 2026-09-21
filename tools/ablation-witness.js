@@ -44,6 +44,8 @@ const { ROOT } = require('./run-tool.js');
 const { placed } = require('./darkness-witness.js');
 const { boot, resolveTiddlyWiki, flatten, isPlainText } = require('./tw5-oracle.js');
 const { readerOf, appliesToReader } = require('./reader-scope.js');
+const { carrierFiles } = require('./walk.js');
+const { defineLedger } = require('./ledger-shape.js');
 
 const LEDGER = path.join(ROOT, 'corpus', 'ablation-ledger.txt');
 const CARRIER_DIRS = [path.join(ROOT, 'corpus', 'wikitext'), path.join(ROOT, 'tests', 'samples')];
@@ -287,28 +289,20 @@ async function ablations(text, oracle, read = placed) {
 }
 
 /** The key a ledger line and a finding share. */
-const keyOf = (file, char, verdict, lineText) => `${file}  ${char}  ${verdict}  ${JSON.stringify(lineText)}`;
+const { keyOf, readLedger: readLedgerFile } = defineLedger([
+  { name: 'file' },
+  { name: 'char' },
+  { name: 'verdict', enum: ['OVERREACH', 'MISS'] }
+]);
 
 /** Declarations, keyed as findings key, each carrying its reason. */
 function readLedger() {
-  const declared = new Map();
-  if (!fs.existsSync(LEDGER)) return declared;
-  const shape = /^(\S+)\s+(\S+)\s+(OVERREACH|MISS)\s+("(?:[^"\\]|\\.)*")\s*#\s?(.*)$/;
-  for (const raw of fs.readFileSync(LEDGER, 'utf8').split('\n')) {
-    const line = raw.trim();
-    if (!line || line.startsWith('#')) continue;
-    const m = shape.exec(line);
-    if (!m) { declared.set(`unreadable: ${line}`, null); continue; }
-    declared.set(keyOf(m[1], m[2], m[3], JSON.parse(m[4])), m[5]);
-  }
-  return declared;
+  return readLedgerFile(LEDGER);
 }
 
-/** Every wikitext carrier, derived from the directories that hold them — darkness-witness's own. */
+/** Every wikitext carrier, derived from the directories that hold them. */
 function carriers() {
-  return CARRIER_DIRS.flatMap((dir) => (fs.existsSync(dir)
-    ? fs.readdirSync(dir).filter((f) => f.endsWith('.tw')).sort().map((f) => path.join(dir, f))
-    : []));
+  return carrierFiles(CARRIER_DIRS);
 }
 
 module.exports = {
@@ -323,11 +317,17 @@ module.exports = {
   keyOf
 };
 
-if (require.main !== module) return;
-
-(async () => {
-  const verbose = process.argv.includes('--verbose');
-  const list = process.argv.includes('--list');
+/**
+ * The CLI's own body, callable directly — by `require.main` below, or in-process by
+ * gate-report.js's `--in-process` spike, which shares one TiddlyWiki boot across every gate that
+ * exports this instead of paying a fresh boot per `npm run` child.
+ *
+ * @param {string[]} argv
+ * @returns {Promise<number>} the exit code
+ */
+async function run(argv) {
+  const verbose = argv.includes('--verbose');
+  const list = argv.includes('--list');
   const oracle = boot(resolveTiddlyWiki());
   const current = oracle.$tw.version;
   const declared = readLedger();
@@ -343,7 +343,7 @@ if (require.main !== module) return;
   }
   if (list) {
     for (const f of findings) process.stdout.write(`${f.key}  # ${declared.get(f.key) || 'REASON OWED'}\n`);
-    return;
+    return 0;
   }
   // A declaration naming a READER (tools/reader-scope.js) answers only for that one, the same
   // generalisation darkness-witness.js carries — a finding that reader never meets stays undeclared
@@ -363,5 +363,11 @@ if (require.main !== module) return;
   for (const k of stale) console.log(`  ${k} — a declaration explaining nothing: the line no longer finds it (stale)`);
   for (const k of unreadable) console.log(`  ${k.slice(12)} — a ledger line this cannot read`);
   console.log(`ablation-witness  ${findings.length} finding(s) over ${judged} carrier(s): ${findings.length - undeclared.length} declared (${owed} owed), ${undeclared.length} undeclared, ${stale.length} stale`);
-  process.exitCode = undeclared.length || stale.length || unreadable.length ? 1 : 0;
-})();
+  return undeclared.length || stale.length || unreadable.length ? 1 : 0;
+}
+
+module.exports.run = run;
+
+if (require.main === module) {
+  run(process.argv.slice(2)).then((code) => { process.exitCode = code; });
+}

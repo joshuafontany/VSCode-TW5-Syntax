@@ -23,6 +23,7 @@ const SENTINEL = 'The corpus sentinel stands plainly at the end.';
 
 const { declaredScopes } = require('./grammar-scopes.js');
 const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
+const { walkMatching } = require('./walk.js');
 
 // The extensions the manifest claims. A corpus specimen carries one of them; a readme, a floor
 // and a ceiling carry none, and naming those one by one lets the next control file join the
@@ -32,13 +33,8 @@ const SPECIMEN = new Set(
     .flatMap((l) => l.extensions || [])
 );
 
-function files(dir, out = []) {
-  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-    const p = path.join(dir, e.name);
-    if (e.isDirectory()) files(p, out);
-    else if (!e.name.endsWith('.snap') && [...SPECIMEN].some((x) => e.name.endsWith(x))) out.push(p);
-  }
-  return out;
+function files(dir) {
+  return walkMatching(dir, (name) => !name.endsWith('.snap') && [...SPECIMEN].some((x) => name.endsWith(x)));
 }
 
 const grammars = grammarArgs();

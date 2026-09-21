@@ -15,21 +15,15 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..', '..');
+const { walkMatching } = require('../walk.js');
+
 const TOOLS = path.join(ROOT, 'tools');
 
 // Every source under `tools/`, from a WALK. A listing stops at the first directory it meets, so a
 // file one level down escapes every rule here and carries a second implementation unnoticed.
 // The reading keys on the BARE NAME, so an allowance names a file rather than a path to it.
-function walk(dir) {
-  const found = [];
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) found.push(...walk(full));
-    else if (entry.name.endsWith('.js')) found.push(full);
-  }
-  return found;
-}
-const all = walk(TOOLS).map((f) => ({ name: path.basename(f), text: fs.readFileSync(f, 'utf8') }));
+const all = walkMatching(TOOLS, (name) => name.endsWith('.js'))
+  .map((f) => ({ name: path.basename(f), text: fs.readFileSync(f, 'utf8') }));
 
 // The instruments alone. A test sits beside the instrument it collides, and naming the work marks how
 // it collides — `theme-paint.test.js` reads a theme on purpose, to prove the tool reads it the same
@@ -51,17 +45,60 @@ const COLLAPSED = [
   // of it — and carried a reading that missed 34 of TiddlyWiki's own tiddlers. It names both
   // idioms now: the work, rather than the file that holds it.
   { module: 'wiki-data.js', doing: /indexOf\('\\n\\n'\)|lines\[i\]\.trim\(\) === ''/,
-    what: 'parsing a tiddler file' }
+    what: 'parsing a tiddler file' },
+  // Nine tools carried the same recursive listing — `for (const entry of fs.readdirSync(dir,
+  // { withFileTypes: true })...) { if directory recurse, else keep it }` — darkness-witness.js's
+  // and ablation-witness.js's own `carriers()` byte-for-byte identical, attribute-witness.js's and
+  // filter-witness.js's own `tiddlers()` the same. The fingerprint names the WORK (the readdirSync
+  // call the withFileTypes recursion shares), never walk.js's own file, per the wiki-data.js entry
+  // above: a detector naming one implementation's fingerprint could only ever pass.
+  // Three ledgers share one shape — `<field> ... "<quoted text>" # reason` — and
+  // ablation-witness.js, darkness-witness.js and bracket-witness.js each carried the same
+  // `keyOf`/`readLedger` pair over it, differing only in field count and the enum's own words.
+  // The fingerprint names the shared regex tail, since that is the shape the three of them
+  // duplicated — a ledger of a DIFFERENT shape (delimiter-ledger.txt's freeform prose, say)
+  // never matches it, so this never fires on the ledgers that stayed their own.
+  { module: 'ledger-shape.js', doing: /\\\\s\*#\\\\s\?\(\.\*\)\$/,
+    what: 'parsing a `<field> ... "text" # reason` ledger line' },
+  { module: 'walk.js', doing: /readdirSync\([^,]+,\s*\{\s*withFileTypes:\s*true\s*\}\)/,
+    what: 'walking a directory tree',
+    // A caller doing more than LISTING while it walks — copying a file, pruning a directory by
+    // name, bounding depth, stopping early once it has enough — is not the work walk.js holds,
+    // even though it shares the same readdirSync call to get there. Collapsing one of these into
+    // a plain walk would silently drop the extra behaviour, so each stands named with the reason.
+    exempt: {
+      'grammar-sandbox.js': 'copies each entry into a sandbox AS it walks — the walk is incidental '
+        + 'to the copy, never the same work of merely listing what walk.js holds',
+      'page-palette.js': 'bounds recursion at a fixed depth and stops once it has enough matches — '
+        + 'a sampling walk over a large host tree, not an exhaustive listing',
+      'still.js': 'prunes node_modules/.git/.worktrees/attic BY NAME while it walks a tree that can '
+        + 'reach well outside this repository — a plain walk has no way to say what to skip',
+      'ledger-claims.js': 'reads corpus/ ONE LEVEL ONLY, deliberately never recursing — a ledger '
+        + 'stands beside its rulings, not nested, and a recursive reading would start treating a '
+        + "subdirectory's own non-ledger .txt as a ledger"
+    }
+  }
 ];
 
-for (const { module: owner, doing, what } of COLLAPSED) {
+for (const { module: owner, doing, what, exempt } of COLLAPSED) {
   test(`only ${owner} does the work of ${what}`, () => {
     const others = sources
       .filter((s) => s.name !== owner)
+      .filter((s) => !(exempt && exempt[s.name]))
       .filter((s) => doing.test(code(s.text)))
       .map((s) => s.name);
     assert.deepStrictEqual(others, [], `tool(s) doing their own ${what} beside ${owner}`);
   });
+
+  if (exempt) {
+    test(`${owner}'s exemptions still name a file doing the work, for a reason that still holds`, () => {
+      const stale = Object.keys(exempt).filter((name) => {
+        const file = sources.find((s) => s.name === name);
+        return !file || !doing.test(code(file.text));
+      });
+      assert.deepStrictEqual(stale, [], `exemption(s) for a file that no longer does the work of ${what}`);
+    });
+  }
 
   test(`${owner} stands read`, () => {
     const readers = sources.filter((s) => s.name !== owner)

@@ -32,6 +32,7 @@ const os = require('node:os');
 const path = require('node:path');
 const { grammarArgs } = require('./tokenizer.js');
 const { resolveTiddlyWiki } = require('./tw5-oracle.js');
+const { walkMatching, tiddlerFiles } = require('./walk.js');
 
 const { BASE, readSnapshot } = require('./snapshot-format.js');
 
@@ -83,12 +84,8 @@ function main() {
 
   // ── the rules, read from their own modules ────────────────────────────────
   const ruleDir = path.join(tw, 'core/modules/parsers/wikiparser/rules');
-  const ruleFiles = (dir) =>
-    fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
-      e.isDirectory() ? ruleFiles(path.join(dir, e.name)) : e.name.endsWith('.js') ? [path.join(dir, e.name)] : []
-    );
   const rules = [];
-  for (const file of ruleFiles(ruleDir)) {
+  for (const file of walkMatching(ruleDir, (name) => name.endsWith('.js'))) {
     const src = fs.readFileSync(file, 'utf8');
     const m = /this\.matchRegExp\s*=\s*\/((?:\\.|\[(?:\\.|[^\]])*\]|[^/\\])+)\/([a-z]*)\s*;/.exec(src);
     if (!m) continue; // computed at runtime; those carry their own probes
@@ -104,18 +101,8 @@ function main() {
   }
 
   // ── what those regexes match in TiddlyWiki's own tiddlers ─────────────────
-  const tiddlers = (dir, out = []) => {
-    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-      const p = path.join(dir, e.name);
-      if (e.isDirectory()) tiddlers(p, out);
-      else if (e.name.endsWith('.tid')) out.push(p);
-    }
-    return out;
-  };
-  const corpus = [
-    ...tiddlers(path.join(tw, 'core')),
-    ...tiddlers(path.join(tw, 'editions/tw5.com/tiddlers'))
-  ].slice(0, 1200);
+  const corpus = tiddlerFiles([path.join(tw, 'core'), path.join(tw, 'editions/tw5.com/tiddlers')])
+    .slice(0, 1200);
 
   const found = new Map(rules.map((r) => [r.name, new Set()]));
   const claimed = new Set(); // one case belongs to one rule, so a verdict names one rule

@@ -44,6 +44,7 @@ const { parseTid } = require('./wiki-data.js');
 const { grammarArgs } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
 const { BASE, readSnapshot, claims, verdicts, declines } = require('./snapshot-format.js');
+const { tiddlerFiles } = require('./walk.js');
 const { readerOf, appliesToReader } = require('./reader-scope.js');
 
 /**
@@ -342,22 +343,12 @@ if (require.main === module) {
 
   /** Every Nth tiddler across TiddlyWiki's own wikis, body only, one file each. */
   const buildCorpus = (count) => {
-    const walk = (dir, out = []) => {
-      if (!fs.existsSync(dir)) return out;
-      for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-        const p = path.join(dir, e.name);
-        if (e.isDirectory()) walk(p, out);
-        else if (e.name.endsWith('.tid')) out.push(p);
-      }
-      return out;
-    };
     // Deliberately malformed content answers to its own tests, never to a grammar —
     // editions/test/tiddlers/tests/data holds parse fixtures that carry deliberate faults.
     // Excluding a path RESAMPLES the corpus rather than trimming it: the stride recomputes
     // over what remains, so two runs with different exclusions compare totals only loosely.
     const excluded = args.filter((a) => a.startsWith('--exclude=')).map((a) => a.slice('--exclude='.length));
-    const all = ['editions', 'core', 'plugins', 'themes']
-      .flatMap((d) => walk(path.join(tw, d)))
+    const all = tiddlerFiles(['editions', 'core', 'plugins', 'themes'].map((d) => path.join(tw, d)))
       .filter((f) => !excluded.some((x) => f.includes(x)))
       .sort();
     const stride = Math.max(1, Math.floor(all.length / count));

@@ -21,6 +21,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
+const { walkMatching } = require('./walk.js');
 
 const verbose = process.argv.includes('--verbose');
 const DECLARATION = path.join(ROOT, 'corpus', 'must-fail.txt');
@@ -29,16 +30,7 @@ const SCOPE = { '.tw': 'text.html.tiddlywiki5', '.mem': 'text.html.tiddlywiki5.m
 
 /** Every specimen the corpus marks malformed by name. */
 function marked() {
-  const out = [];
-  const walk = (dir) => {
-    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-      const file = path.join(dir, entry.name);
-      if (entry.isDirectory()) { walk(file); continue; }
-      if (/^degenerate\./.test(entry.name)) out.push(file);
-    }
-  };
-  walk(path.join(ROOT, 'corpus'));
-  return out;
+  return walkMatching(path.join(ROOT, 'corpus'), (name) => /^degenerate\./.test(name));
 }
 
 function declarations() {

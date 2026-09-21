@@ -30,6 +30,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { parseTid } = require('./wiki-data.js');
 const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
+const { tiddlerFiles } = require('./walk.js');
 
 // Every value form parseutils.js reads, in its order.
 const VALUE = [
@@ -103,16 +104,7 @@ if (require.main === module) {
     return;
   }
   const oracle = boot(tw, {});
-  const walk = (dir, out = []) => {
-    if (!fs.existsSync(dir)) return out;
-    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-      const p = path.join(dir, e.name);
-      if (e.isDirectory()) walk(p, out);
-      else if (e.name.endsWith('.tid')) out.push(p);
-    }
-    return out;
-  };
-  const files = ['editions', 'core', 'plugins', 'themes'].flatMap((d) => walk(path.join(tw, d)));
+  const files = tiddlerFiles(['editions', 'core', 'plugins', 'themes'].map((d) => path.join(tw, d)));
 
   let checked = 0;
   let agree = 0;
