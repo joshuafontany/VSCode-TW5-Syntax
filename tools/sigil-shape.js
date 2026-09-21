@@ -20,6 +20,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { resolveSeed } = require('./tw5-oracle.js');
+const { walkMatching } = require('./walk.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const verbose = process.argv.includes('--verbose');
@@ -64,18 +65,8 @@ function shapes(text) {
 
 /** Every memetic specimen this repository pins or sweeps. */
 function specimens() {
-  const out = [];
-  const walk = (dir) => {
-    if (!fs.existsSync(dir)) return;
-    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-      const file = path.join(dir, e.name);
-      if (e.isDirectory()) { walk(file); continue; }
-      if (file.endsWith('.mem')) out.push(file);
-    }
-  };
-  walk(path.join(ROOT, 'corpus', 'memetic'));
-  walk(path.join(ROOT, 'tests', 'samples'));
-  return out;
+  return walkMatching([path.join(ROOT, 'corpus', 'memetic'), path.join(ROOT, 'tests', 'samples')],
+    (name) => name.endsWith('.mem'));
 }
 
 const seed = resolveSeed();

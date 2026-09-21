@@ -40,6 +40,7 @@ const { ROOT, tokenize } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
 const { READINGS, DEFAULT_TYPE } = require('./carrier-reading.js');
 const { readData } = require('./wiki-data.js');
+const { walkFiles } = require('./walk.js');
 
 const verbose = process.argv.includes('--verbose');
 const LEDGER = path.join(ROOT, 'corpus', 'swallow-ledger.txt');
@@ -85,17 +86,10 @@ function ledger() {
 }
 
 function specimens() {
-  const out = [];
-  const walk = (dir) => {
-    for (const entry of fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
-      const file = path.join(dir, entry.name);
-      if (entry.isDirectory()) { walk(file); continue; }
-      const reading = READINGS[path.extname(entry.name)];
-      if (reading) out.push({ file, ...reading });
-    }
-  };
-  walk(path.join(ROOT, 'corpus'));
-  return out;
+  return walkFiles(path.join(ROOT, 'corpus')).flatMap((file) => {
+    const reading = READINGS[path.extname(file)];
+    return reading ? [{ file, ...reading }] : [];
+  });
 }
 
 

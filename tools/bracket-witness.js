@@ -30,6 +30,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
 const { parseJsonc } = require('./jsonc.js');
+const { walkFiles } = require('./walk.js');
 
 const LEDGER = path.join(ROOT, 'corpus', 'bracket-ledger.txt');
 const CARRIER_DIRS = [path.join(ROOT, 'tests', 'samples'), path.join(ROOT, 'corpus')];
@@ -100,22 +101,14 @@ function languages() {
 
 /** Every carrier a configured language claims, derived from the directories that hold them. */
 function carriers(langs) {
-  const out = [];
   const claim = (file) => {
     const matches = langs.flatMap((l) => l.extensions.filter((e) => file.endsWith(e)).map((e) => ({ l, e })));
     return matches.sort((a, b) => b.e.length - a.e.length)[0]?.l;
   };
-  const walk = (dir) => {
-    if (!fs.existsSync(dir)) return;
-    for (const entry of fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
-      const file = path.join(dir, entry.name);
-      if (entry.isDirectory()) { walk(file); continue; }
-      const lang = claim(entry.name);
-      if (lang) out.push({ file, lang });
-    }
-  };
-  CARRIER_DIRS.forEach(walk);
-  return out;
+  return CARRIER_DIRS.flatMap((dir) => walkFiles(dir)).flatMap((file) => {
+    const lang = claim(path.basename(file));
+    return lang ? [{ file, lang }] : [];
+  });
 }
 
 /** The key a red and its declaration share: the line's own text rather than its number. */

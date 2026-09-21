@@ -26,6 +26,7 @@ const path = require('node:path');
 // ONE RESOLVER. The house keeps them beside the oracle: a tool growing a second walks its own
 // candidate list, and the two answer differently the day a path moves.
 const { resolveSeed } = require('./tw5-oracle.js');
+const { walkMatching } = require('./walk.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const verbose = process.argv.includes('--verbose');
@@ -48,18 +49,8 @@ function sigilNames(text) {
 
 /** Every memetic specimen this repository sweeps or pins. */
 function specimens() {
-  const out = [];
-  const walk = (dir) => {
-    if (!fs.existsSync(dir)) return;
-    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-      const file = path.join(dir, e.name);
-      if (e.isDirectory()) { walk(file); continue; }
-      if (file.endsWith('.mem')) out.push(file);
-    }
-  };
-  walk(path.join(ROOT, 'corpus', 'memetic'));
-  walk(path.join(ROOT, 'tests', 'samples'));
-  return out;
+  return walkMatching([path.join(ROOT, 'corpus', 'memetic'), path.join(ROOT, 'tests', 'samples')],
+    (name) => name.endsWith('.mem'));
 }
 
 const seed = resolveSeed();

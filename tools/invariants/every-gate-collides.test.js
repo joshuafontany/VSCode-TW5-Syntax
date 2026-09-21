@@ -58,19 +58,12 @@ test('every gate names an instrument this repository holds', () => {
   assert.deepStrictEqual(missing, [], 'gate(s) whose instrument nothing holds');
 });
 
+const { walkMatching } = require('../walk.js');
+
 // Every test file, read once — from a WALK, never from one directory's listing. A listing stops at
 // the first directory it meets, so a collider moved one level down reads as absent and the gate it
 // plants a fault for reports uncollided.
-function walk(dir) {
-  const found = [];
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) found.push(...walk(full));
-    else if (entry.name.endsWith('.test.js')) found.push(full);
-  }
-  return found;
-}
-const suites = walk(path.join(ROOT, 'tools'))
+const suites = walkMatching(path.join(ROOT, 'tools'), (name) => name.endsWith('.test.js'))
   .map((f) => ({ file: path.relative(ROOT, f), text: fs.readFileSync(f, 'utf8') }));
 
 /**

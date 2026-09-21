@@ -52,6 +52,7 @@ const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
 const { boot, resolveTiddlyWiki, isPlainText, flatten } = require('./tw5-oracle.js');
 const { readerOf, appliesToReader } = require('./reader-scope.js');
+const { carrierFiles } = require('./walk.js');
 
 const SCOPE = 'text.html.tiddlywiki5';
 const LEDGER = path.join(ROOT, 'corpus', 'darkness-ledger.txt');
@@ -172,9 +173,7 @@ function readLedger() {
 
 /** Every wikitext carrier, derived from the directories that hold them. */
 function carriers() {
-  return CARRIER_DIRS.flatMap((dir) => (fs.existsSync(dir)
-    ? fs.readdirSync(dir).filter((f) => f.endsWith('.tw')).sort().map((f) => path.join(dir, f))
-    : []));
+  return carrierFiles(CARRIER_DIRS);
 }
 
 module.exports = { darkLines, placed, isGround, keyOf };

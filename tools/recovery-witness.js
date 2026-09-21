@@ -34,6 +34,7 @@ const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
 const { READINGS, DEFAULT_TYPE } = require('./carrier-reading.js');
+const { walkFiles } = require('./walk.js');
 
 const LEDGER = path.join(ROOT, 'corpus', 'recovery-ledger.txt');
 const verbose = process.argv.includes('--verbose');
@@ -60,28 +61,10 @@ function ledger() {
 
 /** Every carrier this sweep reads: the corpus always, host ground on request. */
 function carriers() {
-  const out = [];
-  const walk = (dir, exts) => {
-    if (!fs.existsSync(dir)) return;
-    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-      const file = path.join(dir, e.name);
-      if (e.isDirectory()) { walk(file, exts); continue; }
-      if (exts.includes(path.extname(file))) out.push(file);
-    }
-  };
-  walk(path.join(ROOT, 'corpus'), ['.tw', '.mem', '.tid', '.meta', '.multids']);
+  const exts = ['.tw', '.mem', '.tid', '.meta', '.multids'];
+  const out = walkFiles(path.join(ROOT, 'corpus')).filter((f) => exts.includes(path.extname(f)));
   if (hostSample) {
-    const host = [];
-    const walkHost = (dir) => {
-      if (!fs.existsSync(dir)) return;
-      for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-        const file = path.join(dir, e.name);
-        if (e.isDirectory()) { walkHost(file); continue; }
-        if (file.endsWith('.tid')) host.push(file);
-      }
-    };
-    walkHost(path.join(resolveTiddlyWiki(), 'editions'));
-    host.sort();
+    const host = walkFiles(path.join(resolveTiddlyWiki(), 'editions')).filter((f) => f.endsWith('.tid')).sort();
     // A DETERMINISTIC DRAW. A random sample reports a different number every run, and a ratchet
     // over a wandering number guards nothing.
     const step = Math.max(1, Math.floor(host.length / hostSample));

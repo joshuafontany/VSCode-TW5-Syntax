@@ -34,6 +34,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { tokenizeFrom } = require('./tokenizer.js');
 const { loadThemes, styleOf, probeTheme } = require('./theme-model.js');
+const { walkFiles } = require('./walk.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const LEDGER = path.join(ROOT, 'corpus', 'prose-reading-ledger.txt');
@@ -116,17 +117,10 @@ function reads(stack, theme, against) {
 
 /** Every carrier the corpus holds, with the grammar it opens under. */
 function carriers() {
-  const out = [];
-  const walk = (dir) => {
-    for (const entry of fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
-      const file = path.join(dir, entry.name);
-      if (entry.isDirectory()) { walk(file); continue; }
-      const scope = READINGS[path.extname(entry.name)];
-      if (scope) out.push({ file, scope });
-    }
-  };
-  walk(path.join(ROOT, 'corpus'));
-  return out;
+  return walkFiles(path.join(ROOT, 'corpus')).flatMap((file) => {
+    const scope = READINGS[path.extname(file)];
+    return scope ? [{ file, scope }] : [];
+  });
 }
 
 /** The rulings the ledger carries: a stack's innermost scope, and the reason it reads as prose. */

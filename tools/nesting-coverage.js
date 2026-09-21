@@ -20,6 +20,7 @@ const os = require('node:os');
 const path = require('node:path');
 const { grammarArgs } = require('./tokenizer.js');
 const { resolveTiddlyWiki } = require('./tw5-oracle.js');
+const { walkMatching, tiddlerFiles } = require('./walk.js');
 
 /**
  * The container a line opens, by the block marker it starts with.
@@ -103,12 +104,8 @@ function main() {
   }
 
   const ruleDir = path.join(tw, 'core/modules/parsers/wikiparser/rules');
-  const ruleFiles = (dir) =>
-    fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
-      e.isDirectory() ? ruleFiles(path.join(dir, e.name)) : e.name.endsWith('.js') ? [path.join(dir, e.name)] : []
-    );
   const inlineRules = [];
-  for (const file of ruleFiles(ruleDir)) {
+  for (const file of walkMatching(ruleDir, (name) => name.endsWith('.js'))) {
     const src = fs.readFileSync(file, 'utf8');
     const t = /exports\.types\s*=\s*\{([^}]*)\}/.exec(src);
     if (!t || !/inline\s*:\s*true/.test(t[1])) continue;
@@ -121,18 +118,8 @@ function main() {
     }
   }
 
-  const tiddlers = (dir, out = []) => {
-    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-      const p = path.join(dir, e.name);
-      if (e.isDirectory()) tiddlers(p, out);
-      else if (e.name.endsWith('.tid')) out.push(p);
-    }
-    return out;
-  };
-  const corpus = [
-    ...tiddlers(path.join(tw, 'core')),
-    ...tiddlers(path.join(tw, 'editions/tw5.com/tiddlers'))
-  ].slice(0, 1500);
+  const corpus = tiddlerFiles([path.join(tw, 'core'), path.join(tw, 'editions/tw5.com/tiddlers')])
+    .slice(0, 1500);
 
   // ── the pairs the corpus actually stands up ───────────────────────────────
   const pairs = new Map(); // "container/rule" -> witness hit

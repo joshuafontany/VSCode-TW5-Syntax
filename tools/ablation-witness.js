@@ -44,6 +44,7 @@ const { ROOT } = require('./run-tool.js');
 const { placed } = require('./darkness-witness.js');
 const { boot, resolveTiddlyWiki, flatten, isPlainText } = require('./tw5-oracle.js');
 const { readerOf, appliesToReader } = require('./reader-scope.js');
+const { carrierFiles } = require('./walk.js');
 
 const LEDGER = path.join(ROOT, 'corpus', 'ablation-ledger.txt');
 const CARRIER_DIRS = [path.join(ROOT, 'corpus', 'wikitext'), path.join(ROOT, 'tests', 'samples')];
@@ -304,11 +305,9 @@ function readLedger() {
   return declared;
 }
 
-/** Every wikitext carrier, derived from the directories that hold them — darkness-witness's own. */
+/** Every wikitext carrier, derived from the directories that hold them. */
 function carriers() {
-  return CARRIER_DIRS.flatMap((dir) => (fs.existsSync(dir)
-    ? fs.readdirSync(dir).filter((f) => f.endsWith('.tw')).sort().map((f) => path.join(dir, f))
-    : []));
+  return carrierFiles(CARRIER_DIRS);
 }
 
 module.exports = {
