@@ -1439,6 +1439,21 @@ back by upgrading, which is the definition this number answers to.
   region the grammar never closed — and the ladder reads structure before kind word, so a cause
   outranks the symptom it produced. The control cuts one class from the ladder and the gate reds.
 ### Changed
+- STRUCK TEXT NAMES ITSELF, AND BORROWS AN ASIDE'S INK RATHER THAN AN UNDERLINE'S. `~~struck~~`
+  declares `comment.strikethrough.tiddlywiki5 markup.strikethrough.tiddlywiki5`. A grammar pushes a
+  token's names outermost first and the last one decides each property, so the honest name keeps the
+  font style in all 17 bundled themes that rule on `markup.strikethrough`, and the `comment` family
+  ahead of it reaches every theme that rules on neither that name nor `markup.underline`. Measured
+  over the 65 bundled themes: a cue on the struck WORDS stands in 65 of them, where the underline
+  spelling reached 44 and the honest name alone reached 17. The honest name alone also drops twelve
+  pairs below their floors; this spelling spends ONE — `a comment vs strikethrough`, 65 -> 64,
+  re-seated in `corpus/legibility-floor.txt` with the ruling that spent it — because struck prose
+  now reads in a comment's ink. Every other name the 65 themes paint broadly enough to reach them
+  (`markup.deleted`, `markup.changed`, `markup.quote`, `markup.raw`, `meta.diff.header`) names a
+  diff line, a blockquote or verbatim code, and each would misdescribe the construct the way
+  `markup.underline` did. VS Code's own Markdown grammar names struck content
+  `markup.strikethrough.markdown`; the TextMate convention names only bold, italic and underline,
+  and `vscode-textmate` gained a strikethrough font style in 2022 for Markdown's sake.
 - A HEADING'S TEXT READS AS MARKUP, NOT AS A DECLARED NAME. It wore `entity.name.section` alone, the
   shape markdown publishes, and themes rule on the `entity.name` root a transclusion's title and a
   call's name share, so heading text read as one colour with a transclusion in 33 of 65 themes and
