@@ -102,7 +102,7 @@ test('a class lost from the reading fails the gate', live, () => {
   const blind = (sandbox) => {
     const file = path.join(sandbox, 'tools', 'attribute-witness.js');
     const text = fs.readFileSync(file, 'utf8');
-    const cut = text.replace(/^ *\['a start tag broken across a blank line'.*$/m, '');
+    const cut = text.replace(/^ *\['a call opening on `<<<<`'.*$/m, '');
     assert.notStrictEqual(cut, text, 'the provocation changed nothing, so it plants no fault');
     fs.writeFileSync(file, cut);
   };

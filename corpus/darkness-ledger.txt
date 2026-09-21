@@ -22,17 +22,6 @@
 # version `tw5-oracle.js` boots against, read off `$tw.version`. A line naming no reader answers to
 # whichever reader reads it; one naming a reader neither fails nor reads stale under the other.
 
-# A WIDGET'S ATTRIBUTES ACROSS LINES. The widget opens at line 81 and TiddlyWiki reads every line
-# below as its own — backtick-substituted values spanning lines among them. The grammar reads none
-# of these lines, even with the widget standing alone.
-tests/samples/tiddlywiki5.inline.widgets.tw  html  MISS  "string-replaced-attribute=`"  # OWED — a backtick-substituted value opening across lines
-tests/samples/tiddlywiki5.inline.widgets.tw  html  MISS  "`"  # OWED — the backtick closing that value on a later line
-tests/samples/tiddlywiki5.inline.widgets.tw  html  MISS  "string-replaced-block=```"  # OWED — a triple-backtick value opening across lines
-tests/samples/tiddlywiki5.inline.widgets.tw  html  MISS  "paragaph continues, then ends"  # OWED — the interior of that value
-tests/samples/tiddlywiki5.inline.widgets.tw  html  MISS  "```"  # OWED — the triple backtick closing it
-tests/samples/tiddlywiki5.inline.widgets.tw  html  MISS  "fitler=\"[filter[test]]\" #broken"  # OWED — an attribute the host still reads as the widget's own
-corpus/wikitext/html.multiline-tags.tw  html  MISS  "name=\"targetTiddler\""  # OWED — an attribute on a later line of a multi-line tag
-
 # ITALIC ACROSS LINES. TiddlyWiki carries italic across a line inside one block. The grammar's
 # italic opens only where its close stands on the same line — `//(?=[^\n]*//)` — the bound that
 # keeps an unclosed `//` from running past its own line.

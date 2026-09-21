@@ -54,8 +54,8 @@ b:"two">> mid-line.
 <$button field={{a title
 !!a field}}>an indirect attribute</$button>
 
-<$button v=((a variable
-name))>a variable attribute</$button>
+<$button v=((variable
+))>a variable attribute</$button>
 
 <$button title=[[a bracketed
 value]]>a bracketed attribute</$button>
