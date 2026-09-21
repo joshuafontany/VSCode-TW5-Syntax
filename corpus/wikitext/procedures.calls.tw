@@ -1,0 +1,58 @@
+A CALL'S FORMS COME FROM THE HOST, not from a list anybody typed here. Every line below stands
+verified against TiddlyWiki's own parser: the `macrocall` code inside transclude.js resolves a `<<x>>` invocation
+the same way a `\procedure`, `\function` or `\widget` binds — the CALL side of the vocabulary owns
+every shape here, whatever kind of thing answers to the name.
+
+! Inline and block calls
+
+An inline call stands beside prose: this text calls <<greeting>> mid-sentence.
+
+A block call stands alone on its own line:
+
+<<greeting>>
+
+! Positional parameters
+
+<<greeting one two three>>
+
+<<greeting "a double quoted value">>
+
+<<greeting 'a single quoted value'>>
+
+<<greeting """a triple quoted value""">>
+
+<<greeting [[a bracketed value]]>>
+
+! Named parameters
+
+<<greeting who=world>>
+
+<<greeting who="a double quoted value">>
+
+<<greeting who='a single quoted value'>>
+
+<<greeting who="""a triple quoted value""">>
+
+<<greeting who=[[a bracketed value]]>>
+
+! A widget attribute's value can itself be a call
+
+<$button tooltip=<<greeting>>>go</$button>
+
+! A call nested inside another call's parameter
+
+A NAMED parameter admits a nested call as its value: <<outer inner=<<greeting>>>>.
+
+! The `$`-prefixed widget form calls the same way `<<x>>` does
+
+`<$transclude>`'s `$variable` attribute names the call, and every OTHER attribute becomes an
+ordinary parameter — the same params a `<<x>>` call passes positionally or by name.
+
+<$transclude $variable="greeting"/>
+
+<$transclude $variable="greeting" who="world"/>
+
+! A function is a call too, and reads the same way
+
+<<isEven n:4>> and <$transclude $variable="isEven" n="4"/> stand in the same family: a named
+thing, invoked by `<<x>>` or by `$variable`, taking parameters either way.

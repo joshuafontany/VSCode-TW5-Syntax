@@ -19,22 +19,22 @@ A tick `<<amacro>>` reads literally.
 
 ```tw
 <<amacro>> colours under a label.
-# ^^^^^^ variable.name.macro.tiddlywiki5
+# ^^^^^^ variable.name.procedure.tiddlywiki5
 ```
 
 ```tid
 <<amacro>> colours under the extension alias.
-# ^^^^^^ variable.name.macro.tiddlywiki5
+# ^^^^^^ variable.name.procedure.tiddlywiki5
 ```
 
 ```mem
 <<amacro>> colours under the dialect label.
-# ^^^^^^ variable.name.macro.tiddlywiki5
+# ^^^^^^ variable.name.procedure.tiddlywiki5
 ```
 
 $$$text/vnd.tiddlywiki
 <<amacro>> colours where the parser itself dispatches.
-# ^^^^^^ variable.name.macro.tiddlywiki5
+# ^^^^^^ variable.name.procedure.tiddlywiki5
 $$$
 
 An unterminated `tick stands as prose.

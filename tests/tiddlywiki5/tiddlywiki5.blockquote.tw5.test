@@ -7,9 +7,9 @@ Quoted text
 #<- text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.other.paragraph.tiddlywiki5
 
 <<myMacro>>
-#<- text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5
-# ^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 variable.name.macro.tiddlywiki5
-#        ^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5
+#<- text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.begin.tiddlywiki5
+# ^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 meta.variable.procedurecallblock.tiddlywiki5 variable.name.procedure.tiddlywiki5
+#        ^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.end.tiddlywiki5
 
    <<<< Top cite
 #  ^ text.html.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 markup.quote.quoteblock.tiddlywiki5 punctuation.definition.markup.quote.quoteblock.begin.tiddlywiki5

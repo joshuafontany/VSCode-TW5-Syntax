@@ -27,11 +27,15 @@ Each language applies only to the file extensions listed, so adding one changes 
 `*.mem` files open as **Memetic-Wikitext** (`text/memetic-wikitext+tiddlywiki`), a small extension of
 TiddlyWiki wikitext used by the [Lares](https://github.com/amorphous-dreams) agent tooling. Its scope,
 `text.html.tiddlywiki5.memetic-wikitext`, includes the wikitext grammar, so ordinary wikitext highlights
-inside a `*.mem` file exactly as it does in a `*.tid` file. On top of that it highlights four additions:
+inside a `*.mem` file exactly as it does in a `*.tid` file. On top of that it highlights:
 
-* `<<~ name …>>` and its closing form `<<~ /name>>`
-* `<<^ code="&#x0001;" …>>`, a set of document-structure markers
-* `lar:` URIs, highlighted as addresses where they appear in prose
+* `<<~ name …>>` sigils and their closing form `<<~/name>>`
+* the carrier frame's `<<^ code="&#x…;" …>>` markers: the `&#x0002;` marker seats beside the
+  `&#x0001;` opener and wraps all the content through its `&#x0003;` close, the `toml meta` fence
+  included
+* `lar:` URIs, read as addresses with their structure — the three-term root, the path, each
+  `?key=value` in the query, and the fragment
+* `ni:` digests, the block check a carrier seals its body with
 * named parameters written `key=value`, which TiddlyWiki 5.4 accepts alongside `key:value`
 
 Every addition uses syntax TiddlyWiki already parses — each of the first two reads as a macro call, and a
@@ -42,19 +46,51 @@ If you do not use `*.mem` files, nothing here affects you: the language applies 
 
 ## Features
 
-Based primarily on the grammars found below, with heavy tweaking and editing.
+**The colours answer to TiddlyWiki's own parser.** Every reading asks what TiddlyWiki builds
+from the text, and paints that — so a mistake stays where you made it (an unclosed tag, call or
+inline run stops at the blank line that ends its block, as TiddlyWiki stops it), error colours
+appear only where TiddlyWiki refuses something, and a pragma, a dash run, a code span or a list
+item reads the way your wiki will render it.
+
+**A tiddler reads in the language its type names.** A `*.tid` or `*.meta` file parses its field
+block, then hands the body to the grammar its `type:` names: wikitext by default; JSON, CSS,
+JavaScript, HTML, Markdown and plain text as themselves; and `image/svg+xml`, `text/xml` and
+`application/xml` to the XML grammar. A `*.multids` file reads the same way from the one `type:`
+its header carries, since TiddlyWiki applies that type to every tiddler in the file.
+
+**Fenced code reads as real code.** A fenced block labelled with a language hands that language
+to the editor as well as the colourer — 24 of them — so comment toggling, brackets and word
+selection inside the block follow it. A `toml` fence reads full TOML 1.1 through a grammar this
+extension carries privately, since VS Code ships none (`ThirdPartyNotices.txt` credits it).
+
+**Editing meets you halfway.** `[[` and `<<` close themselves as you type. A double-click takes a
+TiddlyWiki word, so a system title like `$:/core/ui/EditTemplate` selects whole. Folding leaves
+the blank line after a block where it stands.
+
+**Your theme reads the structure.** Bold and italic carry their font style, not only a colour. A
+filter reads as its parts — prefix, brackets, operator and operand. A URL's scheme reads as one
+unit. Struck text dims like an aside in every bundled theme and strikes through wherever the theme
+supports it. A widget attribute names itself in the scope inspector.
+
+**What a line-at-a-time grammar cannot reach, it names.** Italic or code carried across a line
+break and an HTML tag carried across a blank line keep a line or blank-line bound on purpose, so
+one stray mark cannot repaint every paragraph after it. The ceiling record
+(`editions/tw5-syntax/tiddlers/TextMateCeiling.tid`) names each such limit and the kind of reader
+that could close it.
+
+The grammar grew from these, heavily reworked since:
 
 * https://github.com/shikijs/textmate-grammars-themes/blob/main/packages/tm-grammars/grammars/html.json
 * https://github.com/PaulPorfiroff/atom-language-tiddlywiki5
 * https://github.com/roma0104/sublime-tid
 
-`*.tid` and `*.meta` files have syntaxes that parse the metadata field "block" (and illegal characters detected). Every field's content, the text field included, parses as `text.html.tiddlywiki5` (defined in `./syntaxes/tiddlywiki5.json`).
-
 ## For contributors
 
 `contributing.md` carries the detail and `SCOPE-NAMES.md` carries the rule this repository names its
 scopes by — what a name promises, the three precedents that settled it, and the three parts of it a gate
-checks. In short, the grammars answer to more than their own tests:
+checks. Every gate answers under two TiddlyWiki readers: the development fork for local work and the
+pinned 5.4.1 release for CI. `LEDGER-3.0.0.md` holds the record of every construct, ruling and
+measurement behind this release. In short, the grammars answer to more than their own tests:
 
 * `npm test` — assertion files stating what each construct should scope
 * `npm run test-tools` — the tools themselves, which the gates read through
@@ -142,14 +178,15 @@ Generated by `npm run reading-recipe` from `corpus/prose-reading-ledger.txt`.
 
 ### Verdicts — on by default
 
-The grammar marks markup TiddlyWiki refuses to parse with `invalid.illegal.*` scopes, which
-most themes paint as errors — the two VS Code ships among them. A verdict answers to what
-TiddlyWiki refuses and never to what another language retired, so the family carries four
-names rather than the twelve it once did; `MIGRATION.md` records which went.
+A verdict answers to what TiddlyWiki refuses, and never to what another language retired.
+TiddlyWiki parses any tag name, any attribute name, a lone angle bracket and a stray `&` into
+the page, so none of them draws one. A single verdict stands: `invalid.illegal.field.name`, on a
+field name a `*.tid` or `*.meta` header cannot hold. Most themes paint it as an error — the two
+VS Code ships among them — and `MIGRATION.md` records the names that went.
 
 **Name the family, never a member.** A theme selector reaches a scope by dot-bounded prefix,
-so one rule on `invalid.illegal` reaches every verdict this grammar draws and keeps reaching
-them when a name gains a segment. To read them quietly:
+so one rule on `invalid.illegal` reaches that verdict and keeps reaching it when a name gains a
+segment. To read it quietly:
 
 ```json
 "editor.tokenColorCustomizations": {
@@ -181,8 +218,9 @@ never learns which one you run. Theming belongs to the theme and to you.
 language-overridable reach the per-language schema, and `editor.tokenColorCustomizations`
 carries no such mark — VS Code's theme maintainers have closed that request directly. So a
 colour contributed here would apply in every file you open, not only in wikitext. The one
-containment mechanism left is the language suffix already on every scope name this grammar
-emits, which is why they all carry `.tiddlywiki5` or `.memetic-wikitext`.
+containment mechanism left is the language suffix every scope name carries: each grammar closes
+its names on its own — `.tiddlywiki5`, `.memetic-wikitext`, `.tid-file`, `.multids-file`,
+`.fields` — and `tools/invariants/scope-suffix.test.js` holds every one to it.
 
 **A contributed default merges INTO your settings rather than sitting under them.** VS Code
 deep-merges object defaults, so writing your own `editor.tokenColorCustomizations` would
@@ -207,7 +245,9 @@ Please report issues or offer Pull Requests at the GitHub Repository:
 
 # Release Notes
 
-* https://github.com/joshuafontany/VSCode-TW5-Syntax/blob/main/CHANGELOG.md
+* [`CHANGELOG.md`](CHANGELOG.md) — what each release grants you
+* [`LEDGER-3.0.0.md`](LEDGER-3.0.0.md) — every construct, ruling and measurement behind 3.0.0
+* [`MIGRATION.md`](MIGRATION.md) — every scope name 3.0.0 retired, with what it stands as now
 
 -----------------------------------------------------------------------------------------------------------
 

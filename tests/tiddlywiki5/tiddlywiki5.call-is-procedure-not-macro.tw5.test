@@ -1,0 +1,37 @@
+# SYNTAX TEST "text.html.tiddlywiki5.test" "A call reads as a procedure; a \\define reads as a macro"
+
+# RULED 2026-09-21: since TiddlyWiki 5.3, a `<<x …>>` invocation transcludes a variable —
+# transclude.js#macrocall resolves the SAME variable a `\procedure`, `\function` or `\widget`
+# binds. The procedure ontology owns the CALL side; `\define` alone still builds a MACRO
+# (macrodef.js, with `$param$` substitution a `\procedure` lacks), so the DEFINITION side keeps
+# its old name. This carrier is the control: a call never reads `.macro`, a `\define` never
+# reads `.procedure`. A \define must stand FIRST — pragma mode only opens at the start of the
+# file, so a call ahead of it would close the zone before the definition ever parsed.
+
+! A \define still names a macro, never a procedure
+
+\define $foo() body
+#       ^^^^ entity.name.variable.macro.tiddlywiki5
+#       ^^^^ - entity.name.variable.procedure.tiddlywiki5
+#              ^^^^ meta.variable.macro.body.tiddlywiki5
+#              ^^^^ - meta.variable.procedure.body.tiddlywiki5
+
+! An inline invocation's name and angles read as a procedure, never a macro
+
+x <<myCall>> y
+# ^ meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.begin.tiddlywiki5
+# ^ - meta.variable.macrocallinline.tiddlywiki5
+# ^ - punctuation.definition.macrocallinline.begin.tiddlywiki5
+#   ^ variable.name.procedure.tiddlywiki5 support.function.procedure.tiddlywiki5 entity.name.function.procedure.tiddlywiki5
+#   ^ - variable.name.macro.tiddlywiki5
+#   ^ - support.function.macro.tiddlywiki5
+#   ^ - entity.name.function.macro.tiddlywiki5
+#        ^ variable.name.procedure.tiddlywiki5 support.function.procedure.tiddlywiki5 entity.name.function.procedure.tiddlywiki5
+#         ^ punctuation.definition.procedurecallinline.end.tiddlywiki5
+#         ^ - punctuation.definition.macrocallinline.end.tiddlywiki5
+
+! A block call reads the same way
+
+<<myBlockCall>>
+# ^ meta.variable.procedurecallblock.tiddlywiki5
+# ^ - meta.variable.macrocallblock.tiddlywiki5

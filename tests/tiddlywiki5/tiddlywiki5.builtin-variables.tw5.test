@@ -20,7 +20,7 @@
 # ^^^^^^^^^^^^^^ variable.language.builtin.tiddlywiki5
 
 <<myOwnMacro>>
-# ^^^^^^^^^^ variable.name.macro.tiddlywiki5
+# ^^^^^^^^^^ variable.name.procedure.tiddlywiki5
 #  ^^^^^^^^^ - variable.language.builtin.tiddlywiki5
 
 ! The transclusion family, carried by its prefix
@@ -31,5 +31,5 @@
 ! A name that merely opens with a core name stays the author's
 
 <<currentTiddlerOfMine>>
-# ^^^^^^^^^^^^^^^^^^^^ variable.name.macro.tiddlywiki5
+# ^^^^^^^^^^^^^^^^^^^^ variable.name.procedure.tiddlywiki5
 #  ^^^^^^^^^^^^^^^^^^^ - variable.language.builtin.tiddlywiki5

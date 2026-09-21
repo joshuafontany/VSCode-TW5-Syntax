@@ -60,6 +60,30 @@ test('a bracket spelled across several characters matches as one', () => {
   assert.deepStrictEqual(shape(reds(['a -->'], plain('a -->'), PAIRS)), ['1:3 --> close']);
 });
 
+// RULED 2026-09-21: `(` and `)` retired from every language configuration's `brackets`. Wikitext
+// prose carries unpaired parentheses constantly — "1)", "(see above" — and VS Code painted every
+// unmatched one red over any theme, a false alarm no scope earns and no reader asked for. The `(`
+// AUTO-CLOSING pair stands unchanged; only the colourizer's own matching list moves.
+
+test('neither wikitext language declares ( ) among its bracket pairs any more', () => {
+  const { languages } = require('./bracket-witness.js');
+  const configured = languages();
+  assert.ok(configured.length > 0, 'no language read from package.json — the pattern stopped matching');
+  for (const lang of configured) {
+    const names = lang.pairs.map(([open, close]) => `${open} ${close}`);
+    assert.ok(!names.includes('( )'), `${lang.id} still declares ( ) among its brackets: ${names.join(', ')}`);
+  }
+});
+
+test('ordinary prose parentheses read no red under the real wikitext pairs', () => {
+  const { languages } = require('./bracket-witness.js');
+  const wikitext = languages().find((l) => l.id === 'tiddlywiki5');
+  assert.ok(wikitext, 'no tiddlywiki5 language configuration found to read pairs from');
+  const line = 'See point 1) below (and the note above) for detail.';
+  assert.deepStrictEqual(reds([line], plain(line), wikitext.pairs), [],
+    'unpaired prose parentheses painted red under the pairs this repository ships');
+});
+
 // THE GATE, over the real grammars and every carrier.
 
 test('every red a carrier holds stands declared', slow, () => {
@@ -70,7 +94,7 @@ test('every red a carrier holds stands declared', slow, () => {
 
 test('a stray closer written into a carrier reads as a red nobody declared', slow, () => {
   const { code, out } = runInSandbox((sandbox) => {
-    fs.appendFileSync(path.join(sandbox, 'corpus', 'wikitext', 'blocks.headings.tw'), '\nA stray ) closes nothing here.\n');
+    fs.appendFileSync(path.join(sandbox, 'corpus', 'wikitext', 'blocks.headings.tw'), '\nA stray ] closes nothing here.\n');
   }, ['tools/bracket-witness.js']);
   assert.match(out, /blocks\.headings\.tw/, out.slice(-600));
   assert.notStrictEqual(code, 0, 'a stray closer read clean');

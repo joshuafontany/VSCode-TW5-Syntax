@@ -34,6 +34,15 @@ function overlay(dir, sandbox) {
   }
 }
 
+// Copy one root-level file over the sandbox's own. `overlay` walks a directory; a gate reading a
+// root manifest — `package.json`'s own configuration, or the language configurations it points
+// at — needs the single file, not everything beside it.
+function overlayFile(file, sandbox) {
+  const from = path.join(ROOT, file);
+  if (!fs.existsSync(from)) return;
+  fs.copyFileSync(from, path.join(sandbox, file));
+}
+
 /**
  * Run a command inside a sandbox, with a caller's fault written into it first.
  *
@@ -97,6 +106,7 @@ function inSandbox(dirs, mutate, argv, extra = []) {
     fs.rmSync(path.join(sandbox, 'node_modules'), { recursive: true, force: true });
     fs.symlinkSync(path.join(ROOT, 'node_modules'), path.join(sandbox, 'node_modules'));
     for (const dir of dirs) overlay(dir, sandbox);
+    for (const file of ROOT_FILES) overlayFile(file, sandbox);
     const settled = watchWrites();
     mutate(sandbox);
     if (!settled() && !mutate.unprovoked) {
@@ -122,6 +132,19 @@ function inSandbox(dirs, mutate, argv, extra = []) {
     execFileSync('git', ['worktree', 'remove', '--force', sandbox], { cwd: ROOT, stdio: 'ignore' });
   }
 }
+
+// Every root file a sandboxed gate reads by manifest path. `package.json` itself never moves
+// (only what it points at does, mid-development), so the language configurations it names for
+// `contributes.languages` travel with every sandbox — bracket-witness reads `brackets` from
+// exactly these, and a change there must collide as the working tree stands now, the same
+// reasoning WORKING answers to below.
+const ROOT_FILES = [
+  ...new Set(
+    (require(path.join(ROOT, 'package.json')).contributes || {}).languages
+      ?.map((l) => l.configuration)
+      .filter(Boolean) || []
+  )
+].map((p) => p.replace(/^\.\//, ''));
 
 const WORKING = ['tools', 'syntaxes', 'editions', 'corpus', path.join('tests', 'samples')];
 // The corpus rides across too: swallow-witness draws its whole battery from it, and a run

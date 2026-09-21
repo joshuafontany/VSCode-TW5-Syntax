@@ -378,8 +378,8 @@
             "name": "meta.directive.parameters.tiddlywiki5",
             "patterns": [
                 {
-                    "comment": "Handle individual parameters and optional default values.",
-                    "match": "([\\w\\-]+)(?:(\\s*:\\s*)(\"[^\"]*\"|'[^']*'|\\[\\[[^\\]]*\\]\\]|[^,\\s\")]+))?",
+                    "comment": "Handle individual parameters and optional default values. parseutils.js#parseParameterDefinition names a parameter with `[^:),\\s]+` — anything but the pragma's own delimiters — so a `$`-prefixed name (`\\parameters ($a:\"one\")`, binding the widget parameter `$a`) is as valid as a bare word; `[\\w\\-]+` read only the bare-word case and left a leading `$` uncoloured.",
+                    "match": "([^:),\\s]+)(?:(\\s*:\\s*)(\"[^\"]*\"|'[^']*'|\\[\\[[^\\]]*\\]\\]|[^,\\s\")]+))?",
                     "name": "meta.variable.parameter.tiddlywiki5",
                     "captures": {
                         "1": {
@@ -773,7 +773,7 @@
                                     "comment": "A macro call stands as an attribute value: reUnquotedAttribute excludes `<<` so the value reaches its own branch.",
                                     "begin": "(?=<<[^>\\s]+)",
                                     "end": "(?<=>{2})(?=(\\s|/?>|$))",
-                                    "contentName": "variable.call.attribute.html.tiddlywiki5 variable.macro.attribute.html.tiddlywiki5",
+                                    "contentName": "variable.call.attribute.html.tiddlywiki5 variable.procedure.attribute.html.tiddlywiki5",
                                     "patterns": [
                                         {
                                             "include": "#macrocallinline"
@@ -853,13 +853,13 @@
                     "begin": "on(s(croll|t(orage|alled)|u(spend|bmit)|e(curitypolicyviolation|ek(ing|ed)|lect))|hashchange|c(hange|o(ntextmenu|py)|u(t|echange)|l(ick|ose)|an(cel|play(through)?))|t(imeupdate|oggle)|in(put|valid)|o(nline|ffline)|d(urationchange|r(op|ag(start|over|e(n(ter|d)|xit)|leave)?)|blclick)|un(handledrejection|load)|p(opstate|lay(ing)?|a(ste|use|ge(show|hide))|rogress)|e(nded|rror|mptied)|volumechange|key(down|up|press)|focus|w(heel|aiting)|l(oad(start|e(nd|d(data|metadata)))?|anguagechange)|a(uxclick|fterprint|bort)|r(e(s(ize|et)|jectionhandled)|atechange)|m(ouse(o(ut|ver)|down|up|enter|leave|move)|essage(error)?)|b(efore(unload|print)|lur))(?![\\w:-])",
                     "beginCaptures": {
                         "0": {
-                            "name": "meta.attribute.event-handler.html.tiddlywiki5"
+                            "name": "meta.attribute.event-handler.html.tiddlywiki5 entity.other.attribute-name.html.tiddlywiki5"
                         },
                         "1": {
                             "name": "entity.other.attribute-name.html.tiddlywiki5"
                         }
                     },
-                    "comment": "HTML5 attributes, event handlers",
+                    "comment": "HTML5 attributes, event handlers. The literal `on` sits outside capture 1 (which reads only the event name), so the attribute-name scope on capture 1 alone left `on` unscoped — a reader saw `onclick` split into a bare run and a coloured one. Capture 0 now carries the same scope across the whole match.",
                     "end": "(?=\\s*+[^=\\s])|(?=^$)",
                     "name": "meta.attribute.event-handler.$1.html.tiddlywiki5",
                     "patterns": [
@@ -1064,7 +1064,7 @@
                     },
                     "comment": "Anything else the parser accepts A run left open ends at the blank line that ends its block, so the block after it parses whole.",
                     "end": "(?=\\s*+[^=\\s])|(?=^$)",
-                    "name": "meta.attribute.unrecognized.$1.html.tiddlywiki5",
+                    "name": "meta.attribute.unrecognized.html.tiddlywiki5",
                     "patterns": [
                         {
                             "include": "#htmlwidget-attribute-interior"
@@ -1087,7 +1087,7 @@
                     },
                     "comment": "Anything else the parser accepts A run left open ends at the blank line that ends its block, so the block after it parses whole.",
                     "end": "(?=\\s*+[^=\\s])|(?=^$)",
-                    "name": "meta.attribute.widget.$1.html.tiddlywiki5",
+                    "name": "meta.attribute.widget.html.tiddlywiki5",
                     "patterns": [
                         {
                             "include": "#htmlwidget-attribute-interior"
@@ -1114,7 +1114,7 @@
                         {
                             "begin": "(?=<<[^>\\s]+)",
                             "end": "(?<=>{2})(?=(\\s|/?>|$))",
-                            "contentName": "variable.call.attribute.html.tiddlywiki5 variable.macro.attribute.html.tiddlywiki5",
+                            "contentName": "variable.call.attribute.html.tiddlywiki5 variable.procedure.attribute.html.tiddlywiki5",
                             "patterns": [
                                 {
                                     "include": "#macrocallinline"
@@ -1485,7 +1485,7 @@
                             },
                             "comment": "Anything else the parser accepts A run left open ends at the blank line that ends its block, so the block after it parses whole.",
                             "end": "(?=\\s*+[^=\\s])|(?=^$)",
-                            "name": "meta.attribute.unrecognized.$1.html.tiddlywiki5",
+                            "name": "meta.attribute.unrecognized.html.tiddlywiki5",
                             "patterns": [
                                 {
                                     "include": "#htmlwidget-attribute-interior"
@@ -1954,7 +1954,7 @@
                             },
                             "comment": "Anything else the parser accepts A run left open ends at the blank line that ends its block, so the block after it parses whole.",
                             "end": "(?=\\s*+[^=\\s])|(?=^$)",
-                            "name": "meta.attribute.unrecognized.$1.html.tiddlywiki5",
+                            "name": "meta.attribute.unrecognized.html.tiddlywiki5",
                             "patterns": [
                                 {
                                     "include": "#htmlwidget-attribute-interior"
@@ -3465,8 +3465,9 @@
                     ]
                 },
                 {
+                    "comment": "html.js parses a WIDGET tag's attribute list past a blank line — only a plain HTML tag's list stops there. Closing this region at `(?=^$)` denied every widget that blank line, matching plain-tag behaviour instead: `corpus/wikitext/html.multiline-tags.tw` names six real widget openers this costs, verified against the host by the oracle. The region now runs to the closing `>` or a genuine block boundary, the same bound the filtered-transclusion and macro-call regions already use for a value carried past a blank line.",
                     "begin": "(?:^[ \\t]*)?(<\\/?)((\\$)(?!:\\/)([a-zA-Z0-9\\-\\$\\.]+))(?<!\\/)(?=\\s|\\/?>)",
-                    "end": "(?: ?/)?>|(?=^$)",
+                    "end": "(?: ?/)?>|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
                     "name": "meta.tag.widget.$4.html.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
@@ -3770,7 +3771,7 @@
                     "name": "meta.variable.entity.filter.operand.tiddlywiki5",
                     "captures": {
                         "1": {
-                            "name": "meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5",
+                            "name": "meta.variable.call.parameters.tiddlywiki5 meta.variable.procedure.parameters.tiddlywiki5",
                             "patterns": [
                                 {
                                     "include": "#macro-parameters"
@@ -4023,14 +4024,14 @@
         "macrocallblock": {
             "begin": "^\\s*(?<!<)(<<)(?!<)([^\\s>\"'=:]+)",
             "end": "(>>)",
-            "name": "meta.variable.call.block.tiddlywiki5 meta.variable.macrocallblock.tiddlywiki5",
-            "contentName": "meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5",
+            "name": "meta.variable.call.block.tiddlywiki5 meta.variable.procedurecallblock.tiddlywiki5",
+            "contentName": "meta.variable.call.parameters.tiddlywiki5 meta.variable.procedure.parameters.tiddlywiki5",
             "beginCaptures": {
                 "1": {
-                    "name": "punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.macrocallblock.begin.tiddlywiki5 punctuation.definition.tag.macrocall.tiddlywiki5"
+                    "name": "punctuation.definition.call.block.begin.tiddlywiki5 punctuation.definition.procedurecallblock.begin.tiddlywiki5 punctuation.definition.tag.procedurecall.tiddlywiki5"
                 },
                 "2": {
-                    "name": "variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5",
+                    "name": "variable.name.call.tiddlywiki5 variable.name.procedure.tiddlywiki5 support.function.procedure.tiddlywiki5 entity.name.function.procedure.tiddlywiki5",
                     "patterns": [
                         {
                             "include": "#builtin-variable"
@@ -4040,7 +4041,7 @@
             },
             "endCaptures": {
                 "1": {
-                    "name": "punctuation.definition.call.block.end.tiddlywiki5 punctuation.definition.macrocallblock.end.tiddlywiki5 punctuation.definition.tag.macrocall.tiddlywiki5"
+                    "name": "punctuation.definition.call.block.end.tiddlywiki5 punctuation.definition.procedurecallblock.end.tiddlywiki5 punctuation.definition.tag.procedurecall.tiddlywiki5"
                 }
             },
             "patterns": [
@@ -5393,14 +5394,14 @@
         "macrocallinline": {
             "begin": "(?<!<)(<<)(?!<)([^\\s>\"'=:]+)",
             "end": "(>>)",
-            "name": "meta.variable.call.inline.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5",
-            "contentName": "meta.variable.call.parameters.tiddlywiki5 meta.variable.macro.parameters.tiddlywiki5",
+            "name": "meta.variable.call.inline.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5",
+            "contentName": "meta.variable.call.parameters.tiddlywiki5 meta.variable.procedure.parameters.tiddlywiki5",
             "beginCaptures": {
                 "1": {
-                    "name": "punctuation.definition.call.inline.begin.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5 punctuation.definition.tag.macrocall.tiddlywiki5"
+                    "name": "punctuation.definition.call.inline.begin.tiddlywiki5 punctuation.definition.procedurecallinline.begin.tiddlywiki5 punctuation.definition.tag.procedurecall.tiddlywiki5"
                 },
                 "2": {
-                    "name": "variable.name.call.tiddlywiki5 variable.name.macro.tiddlywiki5 support.function.macro.tiddlywiki5 entity.name.function.macro.tiddlywiki5",
+                    "name": "variable.name.call.tiddlywiki5 variable.name.procedure.tiddlywiki5 support.function.procedure.tiddlywiki5 entity.name.function.procedure.tiddlywiki5",
                     "patterns": [
                         {
                             "include": "#builtin-variable"
@@ -5410,7 +5411,7 @@
             },
             "endCaptures": {
                 "1": {
-                    "name": "punctuation.definition.call.inline.end.tiddlywiki5 punctuation.definition.macrocallinline.end.tiddlywiki5 punctuation.definition.tag.macrocall.tiddlywiki5"
+                    "name": "punctuation.definition.call.inline.end.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5 punctuation.definition.tag.procedurecall.tiddlywiki5"
                 }
             },
             "patterns": [
@@ -5488,8 +5489,19 @@
                     ]
                 },
                 {
+                    "comment": "filteredtranscludeinline.js splits on the FIRST single `|` — not `||`, which the template pattern above claims first — so a lone pipe closes the filter and opens the tooltip below rather than reading on as more filter text.",
+                    "begin": "(\\|)(?!\\|)",
+                    "end": "(?=\\|\\||\\}\\})",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.transclusion.filteredtranscludeinline.tooltip.tiddlywiki5"
+                        }
+                    },
+                    "contentName": "meta.transclusion.filteredtranscludeinline.tooltip.tiddlywiki5 string.entity.attribute.tooltip.tiddlywiki5"
+                },
+                {
                     "begin": "\\G",
-                    "end": "(?=\\|\\||\\}\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
+                    "end": "(?=\\|\\|)|(?=\\|(?!\\|))|(?=\\}\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
                     "name": "meta.filter.tiddlywiki5",
                     "patterns": [
                         {
@@ -6250,6 +6262,19 @@
                                     "name": "punctuation.definition.operand.mvv.end.tiddlywiki5"
                                 }
                             }
+                        },
+                        {
+                            "comment": "Match a bare filter operator carrying NO operand at all. filters.js#parseFilterOperation always demands a trailing bracket after an operator name — `:sort[title]` throws \"Missing [ in filter expression\" at runtime, where the author almost always meant `:sort[title[]]`. A NAMED run prefix's own bracket (`:sort[`, `:filter[`, `:map[`, `:reduce[` …) opens a run exactly like any other, so this shape reaches only from there: every OTHER run either supplies an operand bracket (caught by the five patterns above) or is empty (an empty match paints nothing, same as elsewhere). Quotes and whitespace are EXCLUDED from the captured text: an operator name never carries either, where a bare quoted operand for the empty/default operator — `[\"Not Legal\"]`, equally malformed on its own but a STRING, never a name — does, and trailing space ahead of a multi-line operand's own closing `]` is not an operator name either; this rule must never paint either a colour it is not. Anchored on a following `]` so it can never absorb a later step or run past this one's own close. Graceful parsing: the author's typo still reads the operator colour every other run's operator reads, rather than the colour of plain content.",
+                            "match": "(!?)([^\\s\\[\\{<(/\\]\"']+)(?=\\])",
+                            "name": "meta.filter.operator.step.tiddlywiki5",
+                            "captures": {
+                                "1": {
+                                    "name": "keyword.operator.prefix.negation.tiddlywiki5"
+                                },
+                                "2": {
+                                    "name": "keyword.operator.operator.filter.tiddlywiki5"
+                                }
+                            }
                         }
                     ]
                 },
@@ -6587,9 +6612,10 @@
             "comment": "Shared parameter patterns for macrocallblock and macrocallinline. Supports both : and = separators, string values, and dynamic value types (macro, filter, indirect, mvv, substituted, bracket). AN ARGUMENT NAME ANSWERS TO ITS SURFACE. A call writes a named argument on a template surface, the way html, Vue, JSX, Liquid, Handlebars and MediaWiki's own `{{T|name=v}}` do, so it takes entity.other.attribute-name and reads as a widget attribute reads. variable.parameter stands FIRST and names the declaration side a reader may still rule on; the name a reader SEES stands LAST. THE SEPARATORS PART CORRECTLY. parseutils.js#parseMacroParameterAsAttribute records which of `=` and `:` an author wrote and opens the filtered, indirect, macro, MVV and substituted value grammars only for `=`; a widget attribute's `=` selects nothing, so it keeps punctuation.separator.key-value and this one keeps keyword.operator.assignment.",
             "patterns": [
                 {
-                    "begin": "(?<!\\w)(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\"\"\")",
+                    "comment": "Named: name=\"\"\"triple\"\"\". The name segment reads only where the grammar actually captured one — a clean [\\w\\-]+ word, since that is all this group ever admits — never the dangling `tw-` an unmatched optional group would interpolate.",
+                    "begin": "(?<!\\w)([\\w\\-]+)\\s*([:=])\\s*(?=\"\"\")",
                     "end": "(?<=\"\"\")",
-                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.procedure.parameter.tw-$1.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
                             "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
@@ -6609,9 +6635,25 @@
                     ]
                 },
                 {
-                    "begin": "(?<!\\w)(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\")",
+                    "comment": "Positional: \"\"\"triple\"\"\" with no name at all. A fixed fallback name, never an interpolated empty capture.",
+                    "begin": "(?<!\\w)(?=\"\"\")",
+                    "end": "(?<=\"\"\")",
+                    "name": "meta.variable.call.parameter.tw-positional.tiddlywiki5 meta.variable.procedure.parameter.tw-positional.tiddlywiki5",
+                    "patterns": [
+                        {
+                            "include": "#string"
+                        },
+                        {
+                            "match": "\\S+",
+                            "name": "string.unquoted.html.tiddlywiki5"
+                        }
+                    ]
+                },
+                {
+                    "comment": "Named: name=\"double\". The name segment reads only where the grammar actually captured one — a clean [\\w\\-]+ word, since that is all this group ever admits — never the dangling `tw-` an unmatched optional group would interpolate.",
+                    "begin": "(?<!\\w)([\\w\\-]+)\\s*([:=])\\s*(?=\")",
                     "end": "(?<=\")",
-                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.procedure.parameter.tw-$1.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
                             "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
@@ -6631,9 +6673,25 @@
                     ]
                 },
                 {
-                    "begin": "(?<!\\w)(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=')",
+                    "comment": "Positional: \"double\" with no name at all. A fixed fallback name, never an interpolated empty capture.",
+                    "begin": "(?<!\\w)(?=\")",
+                    "end": "(?<=\")",
+                    "name": "meta.variable.call.parameter.tw-positional.tiddlywiki5 meta.variable.procedure.parameter.tw-positional.tiddlywiki5",
+                    "patterns": [
+                        {
+                            "include": "#string"
+                        },
+                        {
+                            "match": "\\S+",
+                            "name": "string.unquoted.html.tiddlywiki5"
+                        }
+                    ]
+                },
+                {
+                    "comment": "Named: name='single'. The name segment reads only where the grammar actually captured one — a clean [\\w\\-]+ word, since that is all this group ever admits — never the dangling `tw-` an unmatched optional group would interpolate.",
+                    "begin": "(?<!\\w)([\\w\\-]+)\\s*([:=])\\s*(?=')",
                     "end": "(?<=')",
-                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.procedure.parameter.tw-$1.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
                             "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
@@ -6653,9 +6711,25 @@
                     ]
                 },
                 {
-                    "begin": "(?<!\\w)(?:([\\w\\-]+)\\s*([:=])\\s*)?(?=\\[\\[)",
+                    "comment": "Positional: 'single' with no name at all. A fixed fallback name, never an interpolated empty capture.",
+                    "begin": "(?<!\\w)(?=')",
+                    "end": "(?<=')",
+                    "name": "meta.variable.call.parameter.tw-positional.tiddlywiki5 meta.variable.procedure.parameter.tw-positional.tiddlywiki5",
+                    "patterns": [
+                        {
+                            "include": "#string"
+                        },
+                        {
+                            "match": "\\S+",
+                            "name": "string.unquoted.html.tiddlywiki5"
+                        }
+                    ]
+                },
+                {
+                    "comment": "Named: name=[[bracket]]. The name segment reads only where the grammar actually captured one — a clean [\\w\\-]+ word, since that is all this group ever admits — never the dangling `tw-` an unmatched optional group would interpolate.",
+                    "begin": "(?<!\\w)([\\w\\-]+)\\s*([:=])\\s*(?=\\[\\[)",
                     "end": "(?<=\\]\\])",
-                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.procedure.parameter.tw-$1.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
                             "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
@@ -6664,6 +6738,21 @@
                             "name": "keyword.operator.assignment.tiddlywiki5"
                         }
                     },
+                    "patterns": [
+                        {
+                            "include": "#string"
+                        },
+                        {
+                            "match": "\\S+",
+                            "name": "string.unquoted.html.tiddlywiki5"
+                        }
+                    ]
+                },
+                {
+                    "comment": "Positional: [[bracket]] with no name at all. A fixed fallback name, never an interpolated empty capture.",
+                    "begin": "(?<!\\w)(?=\\[\\[)",
+                    "end": "(?<=\\]\\])",
+                    "name": "meta.variable.call.parameter.tw-positional.tiddlywiki5 meta.variable.procedure.parameter.tw-positional.tiddlywiki5",
                     "patterns": [
                         {
                             "include": "#string"
@@ -6678,8 +6767,8 @@
                     "comment": "Dynamic param: name=<<macro>>",
                     "begin": "(?<!\\w)([\\w\\-]+)\\s*(=)\\s*(?=<<[^>\\s]+)",
                     "end": "(?<=>{2})",
-                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
-                    "contentName": "variable.call.attribute.html.tiddlywiki5 variable.macro.attribute.html.tiddlywiki5",
+                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.procedure.parameter.tw-$1.tiddlywiki5",
+                    "contentName": "variable.call.attribute.html.tiddlywiki5 variable.procedure.attribute.html.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
                             "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
@@ -6697,7 +6786,7 @@
                 {
                     "comment": "Dynamic param: name={{{filter}}}",
                     "match": "([\\w\\-]+)\\s*(=)\\s*(\\{{3})(.*?)(\\}{3})",
-                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.procedure.parameter.tw-$1.tiddlywiki5",
                     "captures": {
                         "1": {
                             "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
@@ -6724,7 +6813,7 @@
                 {
                     "comment": "Dynamic param: name={{indirect}}",
                     "match": "([\\w\\-]+)\\s*(=)\\s*(\\{\\{)([^{]*?)(\\}\\})",
-                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.procedure.parameter.tw-$1.tiddlywiki5",
                     "captures": {
                         "1": {
                             "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
@@ -6751,7 +6840,7 @@
                 {
                     "comment": "Dynamic param: name=((mvvvar)). parseutils.js#parseMVVReferenceAsTransclusion (also driving the attribute-value MVV above) reads the name as `[^\\s>\"'=:)]+` with no whitespace admitted, then trailing whitespace up to `))` — a name split by a space never builds an MVV here either.",
                     "match": "([\\w\\-]+)\\s*(=)\\s*(\\(\\()([^\\s()|>\"'=:]+)[ \\t]*(\\)\\))",
-                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.procedure.parameter.tw-$1.tiddlywiki5",
                     "captures": {
                         "1": {
                             "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
@@ -6774,7 +6863,7 @@
                     "comment": "Dynamic param: name=```substituted```",
                     "begin": "(?<!\\w)([\\w\\-]+)\\s*(=)\\s*(?=```)",
                     "end": "(?<=```)(?=[\\s>]|$)",
-                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.procedure.parameter.tw-$1.tiddlywiki5",
                     "contentName": "text.substituted.triple.attribute.html.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
@@ -6813,7 +6902,7 @@
                     "comment": "Dynamic param: name=`substituted`",
                     "begin": "(?<!\\w)([\\w\\-]+)\\s*(=)\\s*(?=`)",
                     "end": "(?<=`)(?=[\\s>]|$)",
-                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.procedure.parameter.tw-$1.tiddlywiki5",
                     "contentName": "text.substituted.single.attribute.html.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
@@ -6851,7 +6940,7 @@
                 {
                     "comment": "Dynamic param: name=[[bracket value]]",
                     "match": "([\\w\\-]+)\\s*(=)\\s*(\\[\\[)(.*?)(\\]\\])",
-                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.procedure.parameter.tw-$1.tiddlywiki5",
                     "contentName": "string.quoted.bracket.attribute.html.tiddlywiki5",
                     "captures": {
                         "1": {
@@ -6872,8 +6961,9 @@
                     }
                 },
                 {
-                    "match": "(?:([\\w\\-]+)\\s*([:=])\\s*)?([^\\>\"'\\s]+)",
-                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.macro.parameter.tw-$1.tiddlywiki5",
+                    "comment": "Named catch-all: name=value or name:value. The name segment reads only where the grammar actually captured one — a clean [\\w\\-]+ word, since that is all this group ever admits — never the dangling `tw-` an unmatched optional group would interpolate.",
+                    "match": "([\\w\\-]+)\\s*([:=])\\s*([^\\>\"'\\s]+)",
+                    "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.procedure.parameter.tw-$1.tiddlywiki5",
                     "captures": {
                         "1": {
                             "name": "variable.parameter.tiddlywiki5 entity.other.attribute-name.argument.tiddlywiki5 support.type.property-name.argument.tiddlywiki5"
@@ -6882,6 +6972,26 @@
                             "name": "keyword.operator.assignment.tiddlywiki5"
                         },
                         "3": {
+                            "begin": "^",
+                            "end": "$",
+                            "patterns": [
+                                {
+                                    "include": "#string"
+                                },
+                                {
+                                    "match": "\\S+",
+                                    "name": "string.unquoted.html.tiddlywiki5"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "comment": "Positional catch-all: value alone, with no name at all. A fixed fallback name, never an interpolated empty capture — matches `<<a=b>>`'s trailing `=b`, which carries no [\\w\\-]+ name ahead of it.",
+                    "match": "([^\\>\"'\\s]+)",
+                    "name": "meta.variable.call.parameter.tw-positional.tiddlywiki5 meta.variable.procedure.parameter.tw-positional.tiddlywiki5",
+                    "captures": {
+                        "1": {
                             "begin": "^",
                             "end": "$",
                             "patterns": [

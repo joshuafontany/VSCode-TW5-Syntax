@@ -18,4 +18,4 @@
 #                ^^ text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 meta.transclusion.transcludeinline.tiddlywiki5 punctuation.definition.transclusion.transcludeinline.begin.tiddlywiki5
 
 |a |<<myMacro one>> |
-#     ^^^^^^^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
+#     ^^^^^^^ text.html.tiddlywiki5 markup.other.table.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5

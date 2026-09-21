@@ -1,4 +1,4 @@
-52
+39
 # Attributes whose value this grammar reads as a kind other than the one TiddlyWiki assigned.
 # The count may fall and may never rise.
 #
@@ -24,7 +24,7 @@
 # A tiddler declaring a type other than text/vnd.tiddlywiki never enters the population: reading
 # an HTML template or a stylesheet as wikitext manufactures a disagreement nobody asked for.
 #
-# WHAT STANDS AT 52, measured class by class. The count fell from 74 when the PRAGMA ZONE learned to
+# WHAT STANDS AT 39, measured class by class. The count fell from 74 when the PRAGMA ZONE learned to
 # close mid-line. TiddlyWiki reads commentblock in pragma mode, so a comment opening a tiddler sits
 # inside the zone; parsePragmas() consumes it, looks again from wherever it ended — which may be the
 # MIDDLE of a line — finds no pragma, and hands the rest to parseBlocks(). A zone that could only
@@ -32,6 +32,14 @@
 # `--><$view field="text" .../>` on one line, and every attribute after the `-->` went unpainted
 # while the parser placed all of them. 22 attributes came back. The controls hold: a pragma standing
 # after the same `-->` keeps the zone, and so does a second comment.
+#
+# It fell again, from 52, when a WIDGET TAG'S ATTRIBUTE LIST learned to run past a blank line.
+# html.js parses a widget's attribute list the same way whether or not a blank line falls inside
+# it; only a plain HTML tag's list stops there. This grammar's widget-tag region closed at
+# `(?=^$)` regardless, so every attribute after a blank line inside a widget's own opening tag ran
+# away as ordinary paragraph text. That closed the "A START TAG BROKEN ACROSS A BLANK LINE" class
+# below outright — all 13 specimens sat inside the six widget openers it names — and the class is
+# gone from this ledger rather than re-measured at zero.
 #
 # THE PARTITION RUNS IN THE TOOL, NOT IN THIS FILE. `tools/attribute-witness.js` carries a ladder of
 # structural predicates and keys every disagreement to one; a disagreement keying to nothing stands
@@ -53,21 +61,6 @@
 #       The absence of an `=` does not name this class: a positional macro parameter carries no
 #       separator either and its whole span IS its value, so reading the separator alone counted 29
 #       where 17 stand. The span standing equal to the attribute's own name is the test.
-#
-#   13  A START TAG BROKEN ACROSS A BLANK LINE, all in `$:/core/ui/EditTemplate/body/editor`. Ruled
-#       already, in `tests/tiddlywiki5/tiddlywiki5.tag-blank-line-bound.tw5.test`: TiddlyWiki skips a
-#       blank line between attributes the way it skips a space, but where no pattern matches an end
-#       TextMate runs a region to the end of the document, and an unclosed tag then colours every
-#       construct after it as an attribute name. Counted across 2583 files, no plain HTML start tag
-#       anywhere carries a blank line, and the six that do all wear a widget name in that one file.
-#       The ruling buys the whole corpus at the cost of this file.
-#
-#       THIRTEEN, RE-DERIVED PER ATTRIBUTE — the figure once read off the file as "~10" and missed
-#       the two `{{{ }}}` values the runaway leaves standing as filtered transclusions in paragraph
-#       text rather than as attribute values. The six tags account for all thirteen: `<$edit` 5,
-#       `<$set` 1, the first `<$list` 1, `<$reveal` 3, `<$transclude` 2, the second `<$list` 1. The
-#       tag opener wants deriving too — the NEAREST `<` sits inside the `<<config-visibility-title>>`
-#       value on the line above, and reading that one left two of the thirteen keyed to nothing.
 #
 #   10  INSIDE A BACKTICK RAW SPAN THE GRAMMAR PAIRED AGAINST THE HOST, across five templates:
 #       `static.tiddler.html` 4, `tiddlywiki.js.tiddlers` 2, `html-div-tiddler` 2, and one each in

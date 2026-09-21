@@ -38,7 +38,7 @@ const KINDS = {
   string: /^string\.(quoted|unquoted|other)\./,
   indirect: /^string\.text-reference\./,
   filtered: /^meta\.attribute\.filtered\./,
-  macro: /^meta\.(variable\.macrocall|attribute\.mvv)/,
+  macro: /^meta\.(variable\.procedurecall|attribute\.mvv)/,
   substituted: /^text\.substituted\./
 };
 const ANY_KIND = new RegExp(Object.values(KINDS).map((r) => `(?:${r.source})`).join('|'));
@@ -172,8 +172,7 @@ const oracle = boot(host, {});
     ['inside an embedded stylesheet the grammar hands to CSS', (d) => /source\.css/.test(d.chain)],
     ['a call opening on `<<<<`', (d) => d.quadOpener],
     ['a triple-quoted macro parameter', (d) => d.value.startsWith('"""')],
-    ['inside a macro-call parameter region the grammar never closed', (d) => /meta\.variable\.call\.parameter/.test(d.chain)],
-    ['a start tag broken across a blank line', (d) => d.blankLineTag]
+    ['inside a macro-call parameter region the grammar never closed', (d) => /meta\.variable\.call\.parameter/.test(d.chain)]
   ];
   const classed = new Map(CLASSES.map(([name]) => [name, 0]));
   const unclassified = [];

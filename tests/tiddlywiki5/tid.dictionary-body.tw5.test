@@ -12,11 +12,11 @@ type: application/x-tiddler-dictionary
 
 blockquote-bar: <<colour muted-foreground>>
 #<- source.tiddlywiki5.tid-file entity.other.attribute-name.field.wikitext.tiddlywiki5.fields
-#               ^^ source.tiddlywiki5.tid-file meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5
-#                 ^^^^^^ source.tiddlywiki5.tid-file meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
+#               ^^ source.tiddlywiki5.tid-file meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.begin.tiddlywiki5
+#                 ^^^^^^ source.tiddlywiki5.tid-file meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5
 caption: a ''bold'' value
 #            ^^^^ source.tiddlywiki5.tid-file markup.bold.tiddlywiki5
 color: <<colour foreground>>
-#      ^^ source.tiddlywiki5.tid-file meta.variable.macrocallinline.tiddlywiki5 punctuation.definition.macrocallinline.begin.tiddlywiki5
+#      ^^ source.tiddlywiki5.tid-file meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.begin.tiddlywiki5
 tags: [[Two Words]]
 #     ^ source.tiddlywiki5.tid-file punctuation.definition.link.begin.tiddlywiki5

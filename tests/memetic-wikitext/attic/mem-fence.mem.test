@@ -8,5 +8,5 @@ A sigil <<~ flow >> and a macro <<amacro>>.
 #       ^^ punctuation.definition.sigil.begin.memetic-wikitext
 #         ^ keyword.control.sharktooth.memetic-wikitext
 #           ^^^^ entity.name.function.sigil.memetic-wikitext
-#                                 ^^^^^^ variable.name.macro.tiddlywiki5
+#                                 ^^^^^^ variable.name.procedure.tiddlywiki5
 ```

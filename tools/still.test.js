@@ -112,10 +112,10 @@ test('the breadth of a ruling never moves when the corpus grows', async () => {
 test('one cause keys the same however it stands enclosed', () => {
   const { kindOf } = require('./still.js');
   const inProse = ['text.html.tiddlywiki5', 'meta.paragraph.tiddlywiki5',
-    'meta.variable.call.inline.tiddlywiki5', 'meta.variable.macrocallinline.tiddlywiki5',
+    'meta.variable.call.inline.tiddlywiki5', 'meta.variable.procedurecallinline.tiddlywiki5',
     'meta.variable.call.parameter.tw-.tiddlywiki5', 'string.unquoted.html.tiddlywiki5'];
   const atBlock = ['text.html.tiddlywiki5', 'meta.variable.call.block.tiddlywiki5',
-    'meta.variable.macrocallblock.tiddlywiki5', 'meta.variable.call.parameters.tiddlywiki5'];
+    'meta.variable.procedurecallblock.tiddlywiki5', 'meta.variable.call.parameters.tiddlywiki5'];
   assert.strictEqual(kindOf(inProse), kindOf(atBlock),
     'the same open region keys two ways depending on what encloses it');
   assert.match(kindOf(inProse), /call/, `a call keyed as ${kindOf(inProse)}`);

@@ -7,8 +7,8 @@ ledgers under `corpus/` hold the rulings each entry points at.
 
 ## 3.0.0 — unreleased
 
-A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 127 of the 460
-names `v2.2.1` published and adds 254 — and a reader's `editor.tokenColorCustomizations` entry
+A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 136 of the 460
+names `v2.2.1` published and adds 269 — and a reader's `editor.tokenColorCustomizations` entry
 naming any retired one stops matching SILENTLY, with VS Code reporting nothing. `MIGRATION.md`
 names every one. The reading changed beside the vocabulary: a transclusion reads as ONE object in
 38 themes where it read so in none, an image's `[img[` arrives as one marker, and every quoted
@@ -708,6 +708,28 @@ back by upgrading, which is the definition this number answers to.
   language to the editor, not only to the colourer" above: folding, comment-toggling and bracket
   rules follow the guest language across a fence because this map tells VS Code which editor
   behaviour to switch to there, not because of anything the grammar colours.
+- RULED 2026-09-21: A NAMED FILTER RUN PREFIX'S OWN OPERATOR READ UNCOLOURED. `:sort[title]` — the
+  shape an author reaches for after `:sort`, `:filter`, `:map`, `:reduce` and the rest of the
+  named run prefixes when they forget the operand bracket TiddlyWiki actually demands (they mean
+  `:sort[title[]]`) — painted `title` with only the run's own `entity.filter.operator.title`
+  contentName, none of the five operator-step patterns firing because every one of them mandates a
+  trailing `[`/`{`/`<`/`(`/`/` bracket after the operator name. `[sort[title]]`'s `sort` (a
+  genuine operator WITH an operand) reads `keyword.operator.operator.filter.tiddlywiki5` beside
+  that same contentName; `:sort[title]`'s `title` did not. Traced against `filters.js`:
+  `:sort[title]` actually THROWS `Missing [ in filter expression` at runtime — the operand bracket
+  is never optional — so this is graceful parsing rather than a semantic claim: a sixth
+  operator-step pattern paints a bare word standing immediately before the run's own closing `]`
+  the same operator colour, so the author's typo still shows where they meant an operator name
+  rather than reading as inert content. The pattern excludes quotes and whitespace from what it
+  captures, so it can never mistake a bare QUOTED operand for the empty/default operator —
+  `["Not Legal"]`, equally malformed on its own terms but a STRING, never a name — nor trailing
+  space ahead of a multi-line operand's own closing `]`; both were measured regressions during
+  development (`corpus/samples/test.tw`'s `:test["Not Legal"]` and a multi-line indirect operand
+  in `tiddlywiki5.tw`/`tiddlywiki5.basic.tw`) and both snapshot clean again with the exclusion.
+  `npm run colour-witness` and both overreach-check sweeps (`tests/samples/*.tw` and the 389-file
+  host corpus) read unchanged; `tests/tiddlywiki5/tiddlywiki5.filter-run-prefix-operator.tw5.test`
+  is the red-first control, its red state independently reproduced by tokenizing the pre-ruling
+  grammar directly through `vscode-textmate`.
 
 ### Naming
 - A STYLED SUFFIX'S TEXT IS A VALUE, NOT A MARK. `filteredtranscludeinline.js` closes on `}}`, an
@@ -1142,6 +1164,54 @@ back by upgrading, which is the definition this number answers to.
   rule; nothing painted moves. `MIGRATION.md` gains the eleven gone names and their replacements
   (**585** names now, **122** gone, **247** new, up from 579/111/230), six pinned snapshots and
   seven `.tw5.test` fixtures regenerate to the lengthened names with no other drift.
+- RULED 2026-09-21: A `<<x …>>` INVOCATION IS NO LONGER A MACRO CALL. Since TiddlyWiki 5.3,
+  `<<x>>` transcludes a variable — the same mechanism a `\procedure` or `\function` binds — and the
+  procedure ontology owns the CALL side of that vocabulary now. Every call-side scope renamed:
+  `entity.name.function.macro` → `entity.name.function.procedure`, `support.function.macro` →
+  `support.function.procedure`, `variable.name.macro` → `variable.name.procedure`,
+  `meta.variable.macro.parameters` → `meta.variable.procedure.parameters`,
+  `meta.variable.macro.parameter.tw-$1` → `meta.variable.procedure.parameter.tw-$1` (never declared
+  literally — a `$1` capture excludes it from the declared set, so it carries no `MIGRATION.md` row),
+  `variable.macro.attribute.html` → `variable.procedure.attribute.html` (an `attr=<<x>>` value), and
+  the shared block/inline call machinery: `macrocallblock` → `procedurecallblock`,
+  `macrocallinline` → `procedurecallinline`, `tag.macrocall` → `tag.procedurecall`. The DEFINITION
+  side keeps its name: `meta.directive.variable.macro`, `entity.name.variable.macro` and
+  `meta.variable.macro.body` still name a `\define` region, because macrodef.js still builds a
+  MACRO there — with `$param$` substitution a `\procedure` lacks — and a reader acts on that
+  distinction. `MIGRATION.md` gains twelve gone names and their replacements (**589** names now,
+  **136** gone, **265** new, up from 589/127/256 — the rename is one-for-one, so the standing
+  count holds); seventeen `.tw5.test` fixtures and twenty-one pinned snapshots regenerate to the
+  renamed call-side scopes with no other drift; the colour witness reads unchanged (0 findings)
+  since the rename moved no theme-reachable prefix.
+- RULED 2026-09-21: THREE RULES MINTED A SCOPE SEGMENT FROM AUTHOR TEXT, and none of the three
+  names a selector could ever target singly, because no bundled theme paints `meta.*` at all
+  (measured: colour-witness reads the same 0 findings before and after this ruling, over the
+  bundled 65). `meta.attribute.widget.$1.html.tiddlywiki5` and
+  `meta.attribute.unrecognized.$1.html.tiddlywiki5` minted a segment from WHATEVER TEXT the
+  parser accepted as an attribute name — punctuation admitted (`(a`, `$x`, `a.b`), which no
+  TextMate selector can target regardless. Both retire the interpolation and stand FIXED:
+  `meta.attribute.widget.html.tiddlywiki5`, `meta.attribute.unrecognized.html.tiddlywiki5`. The
+  call parameter's `meta.variable.procedure.parameter.tw-$1.tiddlywiki5` carries a different
+  fault: its capture is always a clean `[\w\-]+` word when it fires, but a POSITIONAL argument —
+  one with no `name:` or `name=` ahead of it, as in `<<a=b>>`'s trailing `=b` — leaves the group
+  unmatched, and TextMate interpolates that as EMPTY, minting a dangling `tw-.tiddlywiki5` no
+  reader ever typed. The four "Dynamic param" rules that require a name (`name={{{filter}}}`,
+  `name={{indirect}}`, `name=((mvv))`, `name=<<call>>`, `` name=`substituted` ``,
+  ``` name=```substituted``` ```, `name=[[bracket]]`) never carried this fault — their name group
+  is mandatory, never optional — so only the five rules with an OPTIONAL name (the four bare
+  string forms and the final catch-all) split in two: a named variant, ordered first, requiring
+  `[\w\-]+\s*[:=]` ahead of the value and keeping `tw-$1`; a positional variant, ordered second,
+  matching the bare value alone under a FIXED fallback, `tw-positional`. `<<myMacro you'd index a
+  relation>>` and `<<myMacro 'a quoted argument'>>` are the red-first control:
+  `tiddlywiki5.macro-argument-apostrophe.tw5.test` asserted the dangling
+  `meta.variable.procedure.parameter.tw-.tiddlywiki5` before this ruling and asserts
+  `tw-positional` after. Since none of these four names — two fixed, one still-interpolated for a
+  clean capture, one fixed fallback — were ever counted in `declaredScopesIn` while they carried
+  a literal `$1` (the reader that backs `MIGRATION.md`'s headline excludes any name containing
+  `$`), the FIXED replacements are pure additions with no "gone" counterpart: `MIGRATION.md`'s
+  headline states **593** names now and **269** new, up from 589/265, gone holds at 136. Six
+  `.tw5.test` fixtures and twenty pinned snapshots regenerate; `npm run colour-witness` reads 0
+  findings throughout.
 
 ### Tooling and process
 - TWO READERS, NAMED AND KEYED, THE THIRD ONE REMOVED. See `tools/reader-scope.js`.
@@ -1540,6 +1610,49 @@ back by upgrading, which is the definition this number answers to.
   practice; `docs/differential-test-design.mem` records the reasoning behind the corpus/host
   comparison method the gates run on. `SCOPE-NAMES.md`'s naming policy and the bracket/paint rulings
   elsewhere in this section cite these as their evidentiary basis rather than asserting taste.
+- RULED 2026-09-21: `(` AND `)` RETIRE FROM `brackets` IN BOTH LANGUAGE CONFIGURATIONS. Wikitext
+  prose carries unpaired parentheses constantly — "1)", "(see above" — and VS Code's own matcher
+  paints every one it cannot pair the theme's unexpected-bracket red, over any colour a scope
+  earns, regardless of theme. The `(` AUTO-CLOSING pair stands unchanged in both files (typing `(`
+  still inserts `)`); only the colourizer's matching list moves. `corpus/bracket-ledger.txt` loses
+  its 17 now-stale `(`/`)` declarations (5 remain, all `]`/`[`), verified by `npm run brackets`
+  reading 0 stale and 0 undeclared under both readers. `tools/grammar-sandbox.js` gained a real
+  gap this surfaced: its sandbox overlaid `tools/`, `syntaxes/`, `editions/`, `corpus/` and
+  `tests/samples/` from the working tree over a HEAD checkout, but never the root language
+  configuration files a gate like `bracket-witness` reads by `package.json` manifest path — a
+  sandboxed run collided the WORKING-TREE ledger against the COMMITTED (still-paren-carrying)
+  config and read fifteen phantom "undeclared" reds. `ROOT_FILES`, derived from
+  `contributes.languages[].configuration` rather than named by hand, now travels with every
+  sandbox. `tools/bracket-witness.test.js` gains two controls — a language configuration
+  positively check no longer declaring `( )`, and prose parentheses reading no red under the real
+  pairs — plus the two existing sandboxed provocations, one of which had to move off `)` itself
+  (no longer trackable) onto `]`.
+- RULED 2026-09-21: TWO NEW CARRIERS, `corpus/wikitext/procedures.calls.tw` and
+  `corpus/wikitext/procedures.definitions.tw`, exercise the call/definition split the whole rename
+  answers to, side by side rather than scattered. `procedures.calls.tw` collides every CALL form
+  against the host: inline and block `<<x>>`, positional and named parameters in every value form
+  (unquoted, double/single/triple-quoted, bracketed), a widget attribute's value carrying a call
+  (`tooltip=<<greeting>>`), a call nested inside a NAMED parameter's value
+  (`<<outer inner=<<greeting>>>>` — the host parses this; the bare-positional form
+  `<<outer <<greeting>>>>` does NOT, tested and dropped rather than asserted false), and the
+  `$variable`-prefixed `<$transclude>` widget form that calls the same name a `<<x>>` invocation
+  does. `procedures.definitions.tw` stands every DEFINITION form beside its call, restructured
+  around a real constraint the file itself surfaced: pragma mode opens only at the START of a
+  tiddler and closes at the first non-pragma-legal line, so every `\define`/`\procedure`/
+  `\function`/`\widget` block had to stand dense at the top with only blank lines between —
+  discovered by rendering the carrier and finding later blocks read as literal paragraph text
+  rather than pragmas, the same trap `tiddlywiki5.call-is-procedure-not-macro.tw5.test` (this
+  release's item-1 control) hit first. Rendered, `<<greeting-proc>>` proves `$who$` stays literal
+  in a `\procedure` body where `<<greeting>>` substitutes it in a `\define` body — the DEFINITION
+  side's own distinction, confirmed by execution rather than by reading the grammar's rules back.
+  Both carriers read 0 grammar/parser disagreement under `overreach-check` (single-file, the
+  `corpus/wikitext/*.tw` sweep at 53 files, and the 389-file host-corpus sweep), 0 undeclared
+  findings under `corpus-check` and `swallow-witness`, and 0 findings under `colour-witness` and
+  `construct-legibility`. `ablation-witness` surfaced two real, pre-existing grammar gaps these
+  carriers are the first to exercise — a call's `=` before a nested value (already OWED for
+  `inline.macros.tw`'s `<<a=b>>`, same reasoning) and a widget tag name's `.` (already OWED for
+  `html.widgets.tw`'s `<$my.widget/>`, same reasoning) — both recorded in
+  `corpus/ablation-ledger.txt` rather than fixed, since neither is this ruling's to close.
 
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`
