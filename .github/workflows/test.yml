@@ -76,8 +76,23 @@ jobs:
 
   gates:
     # Every witness the manifest names, run where it can answer. A gate nobody runs measures
-    # nothing, and CI reached six of twenty-two while the rest stood green in a developer's
+    # nothing, and CI once reached six of twenty-two while the rest stood green in a developer's
     # terminal and nowhere else. tools/ci-runs-the-gates.test.js holds this list to the manifest.
+    #
+    # THIS JOB NAMED THIRTY-FOUR OF THE MANIFEST'S GATES BY HAND, one npm-run step each — the same
+    # thirty-four `tools/gate-report.js --check` already runs, in one process, reusing one TiddlyWiki
+    # boot where its own tools share one. A gate the manifest grows joined this list only when
+    # someone remembered to add a step for it; the report never forgets one, because it derives the
+    # list from the manifest rather than carrying a copy of it. So one step replaces thirty-four.
+    #
+    # This step also runs every OTHER gate the report's manifest names — fifteen the codebase
+    # already exercises elsewhere (canary/snap/compose-wikitext/corpus in the `grammar` and
+    # `compose` jobs) or under DIFFERENT terms (`signals:check`, `overreach-host`, `overreach-cut`
+    # continue-on-error in `gates-host`; `upstream-coverage` against a fresh clone in `upstream`).
+    # Running them again here, against the pinned devDependency, is not redundant in the way it
+    # looks: it makes those four checks BLOCKING for the first time, where before only their
+    # continue-on-error copies ran. That is a real strengthening of what CI enforces, not a
+    # side-effect to wave through — see the commit message for the operator's call on it.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -87,127 +102,17 @@ jobs:
           cache: npm
       - run: npm ci
 
-      # The guard the grammar does not adopt, measured against every tag in TiddlyWiki's tiddlers.
-      - name: Attribute guard
-        run: npm run attribute-guard
+      - name: Every gate the manifest names
+        run: node tools/gate-report.js --check
 
-      # A pattern a reader would feel stall, taken to unfinished input at growing sizes.
-      - name: Backtrack witness
-        run: npm run backtrack-witness
-
-      # The names TiddlyWiki's core owns, held to the judgement in the wiki.
-      - name: Built-in variables
-        run: npm run builtins
-
-      # Distinctions a reader needs, and the themes that paint them apart.
-      - name: Colour witness
-        run: npm run colour-witness
-
-      # Every scope innermost on a construct, against sixty-five themes.
-      - name: Dark constructs
-        run: npm run dark-construct
-
-      # Every line of every construct TiddlyWiki builds, against whether the grammar reads it at all.
-      - name: Darkness witness
-        run: npm run darkness
-
-      # Every bracket VS Code's own matcher paints red, against a ledger of why.
-      - name: Bracket witness
-        run: npm run brackets
-
-      # Whether the reach a theme grants a construct bought the construct any colour at all.
-      - name: Contrast witness
-        run: npm run contrast
-
-      # Whether the numbers a ruling cites still answer to the measurement they came from.
-      - name: Ledger claims
-        run: npm run ledger-claims
-
-      # Whether the two engines MATCH alike, not only compile alike.
-      - name: Engine behaviour
-        run: npm run engine-behaviour
-
-      # A construct nested in a container still reads as itself.
-      - name: Nesting coverage
-        run: npm run nesting-coverage
-
-      # Every wikitext rule the host stands, the grammar reads.
-      - name: Rule coverage
-        run: npm run rule-coverage
-
-      # An opener that never closes, bounded where the parser bounds it.
-      - name: Swallow witness
-        run: npm run swallow-witness
-      - name: Filters TiddlyWiki writes read without a verdict
-        run: npm run filter-witness
-      - name: An attribute reads the kind TiddlyWiki assigned
-        run: npm run attribute-witness
-      # The host recovers out loud; the grammar shows a reader nothing. Every silent code carries
-      # a ruling naming the ceiling that answers it.
-      - name: Where TiddlyWiki recovers, the grammar says so or a ruling stands
-        run: npm run recovery-witness
-      # A delimiter falls OUT of its content's family by construction wherever contentName covers
-      # only an interior. Every parting stands ruled, and a ruling explaining none fails.
-      - name: Every contentName delimiter parting carries a ruling
-        run: npm run delimiters
-      - name: No owed divergence reaches past the grammar
-        run: npm run light-cone
-      - name: Every construct a reader meets stands apart from the rest
-        run: npm run legibility
-      - name: Every reading standing outside a TextMate grammar still stands outside it
-        run: npm run ceiling
-      - name: Every sigil the boot seed writes stands in a specimen
-        run: npm run sigil-vocabulary
-      # A NAME IS NOT A FORM. Coverage counted the arrow's name while the arrow itself arrived in
-      # two tokens in every carrier this house writes.
-      - name: Every sigil SHAPE the seed writes stands in a specimen
-        run: npm run sigil-shape
-      - name: Every must-fail specimen still fails as declared
-        run: npm run must-fail
-      - name: Every pattern crosses to the second regex engine
-        run: npm run engine-witness
-      - name: A pass names every divergence class it finds
-        run: npm run still
-      - name: The share of carrier ground the pass crosses fully named
-        run: npm run still-reach
-
-      # What a theme paints for this grammar against six comparator grammars.
-      - name: Theme parity
-        run: npm run theme-parity
-
-      # The ruler itself, against the engine that paints. Every colour number this repository
-      # carries rests on theme-model.js, and this is the only thing that asks vscode-textmate
-      # whether it says the same.
-      - name: The colour model against the engine
-        run: npm run theme-collision
-
-      # The dialect's own composition, and its corpus against the parser.
-      - name: Memetic composition
-        run: npm run compose-memetic
-      - name: Memetic corpus against the parser
-        run: npm run overreach-corpus-memetic
-      - name: Wikitext corpus against the parser
-        run: npm run overreach-corpus-files
-
-      # Every span the grammar claims, against what TiddlyWiki builds there. Nothing unexplained.
-      - name: Divergence against the parser
-        run: npm run overreach
-
-      # A ruling stands stale only where every overreach-check run explains zero spans with it.
-      - name: No ruling in expected-divergence.txt explains nothing everywhere
-        run: npm run divergence-staleness
-
-      # Every mark the grammar claims, taken away: a mark whose removal changes nothing TiddlyWiki
-      # builds stands overreach, and an unclaimed character whose removal changes the tree stands a miss.
-      - name: Ablation witness
-        run: npm run ablation
-
-      # A gap the grammar grew to meet wants moving out of tests/known-gaps.
+      # A gap the grammar grew to meet wants moving out of tests/known-gaps. Not a gate the
+      # manifest names — tools/gate-report.js's own SKIP pattern excludes it on purpose.
       - name: Known gaps
         run: npm run tests-known-gaps
 
       # The edition's modules ship compiled. A compiler stands in this repository's own dependencies,
-      # pinned, so this rebuilds them and asks whether the tree carries what the build writes.
+      # pinned, so this rebuilds them and asks whether the tree carries what the build writes. Not a
+      # gate either, for the same reason.
       - name: The compiled edition stands current
         run: npm run edition:check
 
