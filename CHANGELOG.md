@@ -6,8 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## 3.0.0 — unreleased
 
-A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 126 of the 460
-names `v2.2.1` published and adds 253 — and a reader's `editor.tokenColorCustomizations` entry
+A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 127 of the 460
+names `v2.2.1` published and adds 254 — and a reader's `editor.tokenColorCustomizations` entry
 naming any retired one stops matching SILENTLY, with VS Code reporting nothing. `MIGRATION.md`
 names every one. The reading changed beside the vocabulary: a transclusion reads as ONE object in
 38 themes where it read so in none, an image's `[img[` arrives as one marker, and every quoted
