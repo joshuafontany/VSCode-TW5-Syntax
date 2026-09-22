@@ -174,11 +174,12 @@ function carriers() {
 module.exports = { darkLines, placed, isGround, keyOf };
 
 /**
- * The CLI's own body, callable directly — by `require.main` below, or in-process by
- * gate-report.js's `--in-process` spike, which shares one TiddlyWiki boot across every gate that
- * exports this instead of paying a fresh boot per `npm run` child. Identical output either way:
- * this prints exactly what it always printed, and a caller wanting it captured wraps console
- * itself rather than this asking to be told how.
+ * The CLI's own body, callable directly by `require.main` below — the one-implementation law
+ * this repository already holds `tools/walk.js` and `tools/ledger-shape.js` to. A retired
+ * `--in-process` spike once called this directly from `gate-report.js` too, to share one
+ * TiddlyWiki boot across gates; `tw5-oracle.js`'s own in-process parse memo now delivers a
+ * larger win than that spike measured, without sharing a process, so it's gone — this export
+ * stands on the one-implementation law alone now.
  *
  * @param {string[]} argv
  * @returns {Promise<number>} the exit code

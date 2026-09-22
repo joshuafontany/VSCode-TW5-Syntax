@@ -15,7 +15,16 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { flatten, isPlainText, verdictAt, resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
+const {
+  flatten,
+  isPlainText,
+  verdictAt,
+  resolveTiddlyWiki,
+  boot,
+  deepFreeze,
+  memoKeyFor,
+  resetParseMemoForTests
+} = require('./tw5-oracle.js');
 
 /** The span of `part` inside `text`, so no test carries a hand-counted column. */
 const span = (text, part) => {
@@ -486,4 +495,166 @@ test('the oracle parses a body as the type its tiddler declares', live, () => {
     'the oracle reads a dictionary and a wikitext body alike, so the type picks nothing');
   assert.deepStrictEqual(wikitext, oracle.parse(body).tree.map((n) => n.type),
     'the wikitext reading moved, so `parse` no longer names the default it always named');
+});
+
+// ── the parse memo (Story 1 of the parse-cache epic) ────────────────────────
+
+// THE KEY, pure — `memoKeyFor` needs no boot, so every dimension gets a direct test rather than
+// one inferred from whichever dimensions happen to vary inside a single real checkout.
+test('the memo key: changing any one dimension misses, changing none hits', () => {
+  const base = ['/some/tw', '5.4.1', 'codehash1', '[]', 'text/vnd.tiddlywiki', {}, 'hello world'];
+  const key = (...args) => memoKeyFor(...args);
+  const control = key(...base);
+
+  assert.strictEqual(key(...base), control, 'identical inputs missed their own key');
+
+  const dims = [
+    ['/other/tw', 0], // reader path
+    ['5.4.2', 1], // reported version
+    ['codehash2', 2], // oracle's own code
+    ['[["Inline/wikilink","enable"]]', 3], // rule set in force
+    ['application/x-tiddler-dictionary', 4], // parse mode / type
+    [{ parseAsInline: true }, 5] // parser options (inline flag lives here)
+  ];
+  for (const [replacement, index] of dims) {
+    const varied = base.slice();
+    varied[index] = replacement;
+    assert.notStrictEqual(key(...varied), control, `dimension ${index} changed but the key did not`);
+  }
+
+  // The source text itself.
+  const variedText = base.slice();
+  variedText[6] = 'hello worlds';
+  assert.notStrictEqual(key(...variedText), control, 'changing the source text did not change the key');
+});
+
+test('the parse memo hits on a repeat and misses when the type or text changes', live, () => {
+  resetParseMemoForTests();
+  const oracle = boot(TW);
+  const text = 'Plain prose for the memo probe.';
+
+  const first = oracle.parse(text);
+  const second = oracle.parse(text);
+  assert.strictEqual(first, second, 'an identical (reader, rules, mode, text) call missed the memo');
+
+  const otherType = oracle.parseAs('application/x-tiddler-dictionary', text);
+  assert.notStrictEqual(otherType, first, 'a different parse mode hit the same memo entry');
+
+  const otherText = oracle.parse(`${text} plus more.`);
+  assert.notStrictEqual(otherText, first, 'different source text hit the same memo entry');
+});
+
+// FREEZE. A memoized tree is shared by every later caller of the same key — a caller that
+// mutates it would corrupt what every other reader of that key sees next. Strict mode (this
+// file, and every `tools/*.js` module) turns that mutation into a thrown TypeError instead.
+/**
+ * Runs `fn`, expecting it to throw a `TypeError`, and fails the test with `msg` if it does not.
+ *
+ * Neither `assert.throws(fn, TypeError, …)` nor a plain `instanceof TypeError` works here: a
+ * mutation on a tree TiddlyWiki built throws a TypeError constructed in TiddlyWiki's OWN
+ * `vm.createContext({})` sandbox realm (`boot/boot.js:631`), whose `TypeError` is a distinct
+ * class object from this process's own — same name, different identity, so `instanceof` (and
+ * `assert.throws`'s own instanceof check) reads it as a mismatch and reports "did not throw"
+ * even though it did. Reading `.name` instead reads the right thing regardless of which realm
+ * threw it.
+ */
+function assertThrowsTypeError(fn, msg) {
+  try {
+    fn();
+  } catch (e) {
+    assert.strictEqual(e && e.name, 'TypeError', `${msg} (threw ${e && e.name}, not TypeError)`);
+    return;
+  }
+  assert.fail(msg);
+}
+
+test('a memoized tree throws on mutation instead of accepting it', live, () => {
+  resetParseMemoForTests();
+  const oracle = boot(TW);
+  const tree = oracle.parse('a mutation probe').tree;
+  assertThrowsTypeError(() => {
+    tree.push({ type: 'intruder' });
+  }, 'pushing onto a memoized tree array did not throw');
+  const node = flatten(tree)[0];
+  // Property ASSIGNMENT on a frozen object only throws under strict mode (this file has no
+  // `'use strict'` pragma); an intrinsic like Array#push always throws regardless, which is why
+  // the push above needs no such wrapper. See the deepFreeze unit test below for the full note.
+  const assignStrict = new Function('node', "'use strict'; node.type = 'tampered';");
+  assertThrowsTypeError(() => assignStrict(node), 'assigning a property on a memoized node did not throw');
+});
+
+// COLLIDER. A fresh parse (memo bypassed) and a memoized parse of the same key must agree
+// deep-equal — the freeze changes mutability, never content.
+test('a fresh parse and a memoized parse of the same key agree deep-equal', live, () => {
+  resetParseMemoForTests();
+  const oracle = boot(TW);
+  const text = 'Compare a fresh parse against a memoized one: <<macro>> and ((var)).';
+
+  const memoized = oracle.parse(text);
+  resetParseMemoForTests();
+  const fresh = oracle.parse(text);
+
+  assert.deepStrictEqual(fresh, memoized, 'a fresh parse and a memoized parse of the same key disagreed');
+  assert.notStrictEqual(fresh, memoized, 'resetting the memo should force a second, distinct object');
+});
+
+test('deepFreeze freezes nested objects and arrays, not just the top level', () => {
+  const value = { children: [{ attributes: { href: { value: 'x' } } }] };
+  deepFreeze(value);
+  // This file carries no `'use strict'` pragma, and a property assignment on a frozen object
+  // fails SILENTLY in sloppy mode rather than throwing — every consuming tool that DOES mutate
+  // would have to opt into strict mode to see the throw the freeze promises, which is exactly
+  // why every real `tools/*.js` reader either already runs strict or (checked by hand) never
+  // mutates a returned tree at all. Proving the throw here needs an explicitly strict function.
+  const assignStrict = new Function('value', "'use strict'; value.children[0].attributes.href.value = 'y';");
+  assertThrowsTypeError(() => assignStrict(value), 'a frozen property assignment did not throw in strict mode');
+  assertThrowsTypeError(() => { value.children.push({}); }, 'pushing onto a frozen array did not throw');
+});
+
+// OFF SWITCH. ORACLE_MEMO=off must bypass the memo entirely — a fresh child process proves it,
+// since the flag is read once at module load.
+test('ORACLE_MEMO=off bypasses the memo entirely', live, () => {
+  const { execFileSync } = require('node:child_process');
+  const probe = `
+    const { boot, resolveTiddlyWiki } = require(${JSON.stringify(path.resolve(__dirname, 'tw5-oracle.js'))});
+    const tw = resolveTiddlyWiki();
+    const oracle = boot(tw);
+    const a = oracle.parse('memo-off probe');
+    const b = oracle.parse('memo-off probe');
+    process.stdout.write(JSON.stringify({ same: a === b, frozen: Object.isFrozen(a.tree) }));
+  `;
+  const out = execFileSync(process.execPath, ['-e', probe], {
+    encoding: 'utf8',
+    env: { ...process.env, TW5_PATH: TW, ORACLE_MEMO: 'off' }
+  });
+  const result = JSON.parse(out);
+  assert.strictEqual(result.same, false, 'ORACLE_MEMO=off still returned the same object twice');
+  assert.strictEqual(result.frozen, false, 'ORACLE_MEMO=off still froze the tree');
+});
+
+// BOUND. A memo max smaller than the distinct-key population must evict rather than grow
+// unbounded — proven in a fresh process so the module-load-time MEMO_MAX takes effect.
+test('ORACLE_MEMO_MAX bounds the memo by evicting the least-recently-used entry', live, () => {
+  const { execFileSync } = require('node:child_process');
+  const probe = `
+    const oracleMod = require(${JSON.stringify(path.resolve(__dirname, 'tw5-oracle.js'))});
+    const { boot, resolveTiddlyWiki } = oracleMod;
+    const tw = resolveTiddlyWiki();
+    const oracle = boot(tw);
+    for (let i = 0; i < 20; i += 1) oracle.parse('bound probe ' + i);
+    // Re-parsing key 0 after the bound (5) was long exceeded must MISS (a fresh object), since
+    // it was evicted well before this call.
+    const again = oracle.parse('bound probe 0');
+    const alsoAgain = oracle.parse('bound probe 0');
+    process.stdout.write(JSON.stringify({ secondCallHitsFirst: again === alsoAgain }));
+  `;
+  const out = execFileSync(process.execPath, ['-e', probe], {
+    encoding: 'utf8',
+    env: { ...process.env, TW5_PATH: TW, ORACLE_MEMO_MAX: '5' }
+  });
+  const result = JSON.parse(out);
+  // The re-parse of key 0 (itself now the newest entry) must still memo-hit on its OWN repeat —
+  // bounding evicts old entries, it does not disable the memo for entries within the bound.
+  assert.strictEqual(result.secondCallHitsFirst, true,
+    'a freshly re-added key, itself within the bound, missed its own repeat');
 });
