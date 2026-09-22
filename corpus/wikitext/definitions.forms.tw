@@ -7,7 +7,6 @@
 one line
 \end
 
-\define macro-first-paren-wins(a:((var))) )) belongs to the body
 \procedure mvv-inline(a:((var))) body
 
 \define $dollar.macro() one line
@@ -19,6 +18,15 @@ one line
 \end
 
 \procedure dollars-stay-literal(a:"one", b:"two")
+A \PROCEDURE BODY SUBSTITUTES NOTHING. Only a `\define` body performs `$param$`/`$(var)$`/`${filter}$`
+substitution — widget.js gates both placeholder forms behind `isMacroDefinition` — so the three
+placeholders below stand as ordinary text.
+$a$ and $(b)$ and ${ [all[current]] }$
+\end
+
+\define dollars-substitute-here(a:"one", b:"two")
+A \DEFINE BODY SUBSTITUTES ALL THREE FORMS IN PLACE, so the parameter, the variable and the filter
+each colour below exactly where the procedure above left plain text.
 $a$ and $(b)$ and ${ [all[current]] }$
 \end
 
@@ -53,6 +61,13 @@ before ${ [tag[Task]] }$ after
 \end
 
 \procedure leaves-the-dollars-alone(a)
+A \PROCEDURE BODY SUBSTITUTES NOTHING HERE EITHER: the parameter and the variable below stand as
+literal text, exactly as a `\define` body would colour them if this pragma read `\define` instead.
+before $a$ and $(currentTiddler)$ after
+\end
+
+\define takes-the-dollars-here(a)
+A \DEFINE BODY SUBSTITUTES BOTH FORMS IN PLACE, unlike the procedure above.
 before $a$ and $(currentTiddler)$ after
 \end
 
@@ -107,10 +122,13 @@ body
 
 \parameters ($a:"one")
 
-A PRAGMA ANSWERS TO WHITESPACE AFTER ITS NAME. The host reads `\procedure` and then demands one, so
-the line below defines nothing and stands as body text:
+A PRAGMA READS ONLY AT THE TOP OF A TIDDLER. `wikiparser.js` runs `parsePragmas()` once, before
+`parseBlocks()`, and never returns to it, so a `\procedure` line standing below body content — as
+this one does, after the paragraphs and pragmas above — defines nothing and stands as body text,
+whether or not its keyword carries the space its name demands. `pragmas.no-space.tw` isolates that
+OTHER reason (a glued keyword and name) at a position where a spaced pragma still would define:
 
-\procedurewith-no-space()
+\procedure stands-below-body()
 
 Body text after every definition above.
 

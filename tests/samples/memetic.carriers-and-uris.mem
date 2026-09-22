@@ -1,6 +1,6 @@
-<<!DOCTYPE "memetic-wikitext+tiddlywiki" "lar:///ha.ka.ba/lares/api/pono/carriers">>
+<<!DOCTYPE "memetic-wikitext+tiddlywiki" "lar:///ha.ka.ba/lares/api/pono/memetic-wikitext">>
 
-<<^ code="&#x0001;" namespace="⊙" from="?" -> to="lar:///ha.ka.ba/lares/api/pono/carriers">>
+<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/api/pono/carriers">>
 <<^ code="&#x0002;">>
 
 ```toml meta
@@ -54,9 +54,9 @@ bearing arrow -> reads as a bearing wherever the base grammar names nothing.
 
 <<~/ahu>>
 
-<<^ code="&#x0003;">>
+<<^ code="&#x0003;">>ni:///sha-256;Y_rg3M4DJ-823JkEC9WafbWn2mL3L1FtZUwmMeUGQ_A
 
-<<^ code="&#x0004;" -> ?>>
+<<^ code="&#x0004;" -> to="?">>
 
 A BLOCK CHECK NAMES INFORMATION BY ITS DIGEST, and the base grammar reads a link inside it. Measured,
 21 of 22 hashes this house has written carry a CamelCase run the autolink rule takes.

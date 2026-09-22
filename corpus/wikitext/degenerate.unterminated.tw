@@ -19,3 +19,5 @@ An unterminated {{transclusion
 An unterminated @@color:green;style inline run in prose.
 
 <div class="never-closed">
+
+An unterminated <<macro-call with no closer anywhere ahead

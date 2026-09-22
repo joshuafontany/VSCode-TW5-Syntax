@@ -1,14 +1,21 @@
-# Scope name migration — 2.2.1 to 2.3.0
+# Scope name migration — 2.2.1 to 3.0.0
 
 A theme rule and an `editor.tokenColorCustomizations` entry both name a scope. A scope that
 moves takes the reader's colour with it, and VS Code reports nothing: the rule simply stops
 matching, and the construct goes the colour of prose.
 
-This repository declares **460** scope names at `v2.2.1` and **593** now. Between them, **136**
-names stand gone and **269** stand new. Every gone name appears below, with what it stands as now
-or why it retired. `tools/invariants/scope-migration.test.js` derives these four numbers from the
-same `declaredScopesIn` reading the row-by-row check answers to, so a grammar edit that moves them
-fails the gate rather than leaving this paragraph to go stale beside it.
+This record answers for the BASE WIKITEXT GRAMMAR alone — `syntaxes/tiddlywiki5.json` and its
+`.tid`/`.multids`/field/test-file wrappers — because it carries readers forward from `v2.2.1`, a
+published version. The memetic dialect (`syntaxes/memetic-wikitext.json`) has no outside consumer
+yet, so its own vocabulary owes no migration record and stands excluded from every count and row
+below; `corpus/must-fail.txt` rules the same way for a grammar with nothing yet to keep faith with.
+
+This repository declares **421** scope names at `v2.2.1` and **556** now. Between them, **110**
+names stand gone and **245** stand new. Every gone name appears below, with
+what it stands as now or why it retired. `tools/invariants/scope-migration.test.js` derives these
+four numbers from the same reading (memetic excluded) the row-by-row check answers to, so a
+grammar edit that moves them fails the gate rather than leaving this paragraph to go stale beside
+it.
 
 The table derives from the two grammars rather than from a hand-written list, and
 `tools/invariants/scope-migration.test.js` holds it to them: a name this record calls gone that
@@ -31,6 +38,19 @@ gone names moved for exactly that reason.
 
 If your customization named one of these, it was already painting nothing. Adopting the new
 name is the first time it will take effect.
+
+## A substituted attribute value takes the field's own root
+
+A backtick-quoted attribute value substitutes a parameter, a variable or a filter the way a
+template literal does, and VS Code's own JavaScript/TypeScript grammar names that shape
+`string.template.<lang>`. The old name opened on `text`, a root no bundled theme paints (4 of 65,
+via a bare `text` rule): the new one opens on `string`, which 62 of 65 already paint, and reads
+truer to what the span IS besides.
+
+| gone | stands as | why |
+| --- | --- | --- |
+| `text.substituted.single.attribute.html.tiddlywiki5` | `string.template.substituted.single.attribute.html.tiddlywiki5` | the field's own name for a template-shaped value, reaching `string` where `text` reached nothing |
+| `text.substituted.triple.attribute.html.tiddlywiki5` | `string.template.substituted.triple.attribute.html.tiddlywiki5` | the field's own name for a template-shaped value, reaching `string` where `text` reached nothing |
 
 ## Seven that keep their colour
 
@@ -216,57 +236,6 @@ and the characters read as the text the host keeps.
 | `invalid.illegal.ambiguous-ampersand.html.tiddlywiki5` | TiddlyWiki keeps the ampersand as text and raises nothing |
 | `invalid.illegal.character-not-allowed-here.html.tiddlywiki5` | TiddlyWiki keeps the malformed tag as text and raises nothing |
 | `invalid.illegal.unexpected-equals-sign.html.tiddlywiki5` | TiddlyWiki keeps the malformed tag as text and raises nothing |
-
-### The memetic dialect's own vocabulary, 30 names
-
-`memetic-wikitext` holds wikitext entire and adds to it. A sigil call `<<~ name arg >>` reads as
-a wikitext macro call, so it paints under the call vocabulary the base grammar already writes —
-`meta.variable.call.*`, `punctuation.definition.call.*`, `variable.name.call` — rather than
-under a parallel `meta.sigil.*` family only this dialect knew. The dialect's remaining names
-cover what wikitext has no construct for: a `lar://` URI and its parts.
-
-A theme rule naming any of these painted `.mem` files alone. A rule on the wikitext call
-vocabulary now reaches both.
-
-**Two returned, on the rule's own criterion.** `entity.name.function.sigil` and
-`punctuation.definition.sigil.close` stand again, because a sigil's VERB names what wikitext has no
-construct for: TiddlyWiki reads `<<~ set …>>` as a call on a variable spelled `~`, binds the verb as
-a POSITIONAL argument, and the base paints it `string.unquoted.html` — the same reading any value
-gets. And the reason the others went does not reach these: measured, `entity.name.function.sigil`
-paints in 65 of 65 themes through `entity.name.function`, where the retired `meta.sigil.*` family
-painted in none. A name reaching a conventional root reaches every theme; a name inventing a family
-reaches only the files that carry it.
-
-| retired | reads through |
-| --- | --- |
-| `constant.language.bearing.unresolved.memetic-wikitext` | the base grammar's own vocabulary |
-| `constant.other.blockcheck.memetic-wikitext` | the base grammar's own vocabulary |
-| `entity.name.function.sigil.definition.memetic-wikitext` | the base grammar's own vocabulary |
-| `keyword.control.carrier.eot.memetic-wikitext` | the base grammar's own vocabulary |
-| `keyword.control.carrier.etx.memetic-wikitext` | the base grammar's own vocabulary |
-| `keyword.control.carrier.memetic-wikitext` | the base grammar's own vocabulary |
-| `keyword.control.carrier.soh.memetic-wikitext` | the base grammar's own vocabulary |
-| `keyword.control.carrier.stx.memetic-wikitext` | the base grammar's own vocabulary |
-| `keyword.control.declaration.memetic-wikitext` | the base grammar's own vocabulary |
-| `keyword.control.sharktooth.memetic-wikitext` | the base grammar's own vocabulary |
-| `keyword.control.sharktooth.pragma.memetic-wikitext` | the base grammar's own vocabulary |
-| `keyword.control.sharktooth.unresolved.memetic-wikitext` | the base grammar's own vocabulary |
-| `meta.carrier.control.eot.memetic-wikitext` | the base grammar's own vocabulary |
-| `meta.carrier.control.etx.memetic-wikitext` | the base grammar's own vocabulary |
-| `meta.carrier.control.memetic-wikitext` | the base grammar's own vocabulary |
-| `meta.carrier.control.soh.memetic-wikitext` | the base grammar's own vocabulary |
-| `meta.carrier.control.stx.memetic-wikitext` | the base grammar's own vocabulary |
-| `meta.carrier.declaration.memetic-wikitext` | the base grammar's own vocabulary |
-| `meta.sigil.close.memetic-wikitext` | the base grammar's own vocabulary |
-| `meta.sigil.memetic-wikitext` | the base grammar's own vocabulary |
-| `meta.sigil.pragma.memetic-wikitext` | the base grammar's own vocabulary |
-| `meta.sigil.unresolved.memetic-wikitext` | the base grammar's own vocabulary |
-| `punctuation.definition.sigil.begin.memetic-wikitext` | the base grammar's own vocabulary |
-| `punctuation.definition.sigil.end.memetic-wikitext` | the base grammar's own vocabulary |
-| `punctuation.separator.key-value.memetic-wikitext` | the base grammar's own vocabulary |
-| `string.quoted.bracket.memetic-wikitext` | the base grammar's own vocabulary |
-| `string.quoted.double.memetic-wikitext` | the base grammar's own vocabulary |
-| `string.quoted.single.memetic-wikitext` | the base grammar's own vocabulary |
 
 ### One name standing alone
 

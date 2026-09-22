@@ -1,0 +1,14 @@
+\procedure carries-its-space()
+A PRAGMA ANSWERS TO WHITESPACE BETWEEN ITS KEYWORD AND ITS NAME. A single space earns every colour
+here: the keyword, the name and this body all read as a definition, because both lines in this
+tiddler stand at its TOP, where the pragma zone is open and a `\procedure` line WOULD define —
+isolating the one claim the next line makes: only ITS missing space costs the colour, nothing
+about position.
+\end
+
+\proceduremissing-its-space()
+
+Glued to its keyword, `procedure` and `missing-its-space` read as one unbroken word, so the parser
+never opens `\procedure` at all and that line stands as body text instead — the pragma zone was
+still open when it tried (the definition above it succeeded first, in the very same pass) and it
+failed on spacing alone.

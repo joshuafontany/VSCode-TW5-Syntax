@@ -24,7 +24,7 @@ text <<myproc param=((myvar))>>
 text <<myproc param=`text with $(var)$`>>
 #             ^ meta.variable.procedurecallinline.tiddlywiki5 variable.parameter.tiddlywiki5
 #                  ^ meta.variable.procedurecallinline.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
-#                   ^ meta.variable.procedurecallinline.tiddlywiki5 text.substituted.single.attribute.html.tiddlywiki5
+#                   ^ meta.variable.procedurecallinline.tiddlywiki5 string.template.substituted.single.attribute.html.tiddlywiki5
 
 text <<myproc param=[[value with spaces]]>>
 #             ^ meta.variable.procedurecallinline.tiddlywiki5 variable.parameter.tiddlywiki5
@@ -59,7 +59,7 @@ text <<myproc param=[[value with spaces]]>>
 #<- meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.begin.tiddlywiki5
 #   ^^ meta.variable.procedurecallblock.tiddlywiki5 variable.parameter.tiddlywiki5
 #     ^ meta.variable.procedurecallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
-#      ^ meta.variable.procedurecallblock.tiddlywiki5 text.substituted.single.attribute.html.tiddlywiki5
+#      ^ meta.variable.procedurecallblock.tiddlywiki5 string.template.substituted.single.attribute.html.tiddlywiki5
 #              ^^ meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.end.tiddlywiki5
 #                ^ -meta.variable.procedurecallblock.tiddlywiki5
 
@@ -67,9 +67,9 @@ text <<myproc param=[[value with spaces]]>>
 #<- meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.begin.tiddlywiki5
 #   ^^ meta.variable.procedurecallblock.tiddlywiki5 variable.parameter.tiddlywiki5
 #     ^ meta.variable.procedurecallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
-#      ^^^ meta.variable.procedurecallblock.tiddlywiki5 text.substituted.triple.attribute.html.tiddlywiki5 punctuation.definition.substituted.triple.attribute.begin.tiddlywiki5
-#         ^ meta.variable.procedurecallblock.tiddlywiki5 text.substituted.triple.attribute.html.tiddlywiki5
-#               ^^^ meta.variable.procedurecallblock.tiddlywiki5 text.substituted.triple.attribute.html.tiddlywiki5 punctuation.definition.substituted.triple.attribute.end.tiddlywiki5
+#      ^^^ meta.variable.procedurecallblock.tiddlywiki5 string.template.substituted.triple.attribute.html.tiddlywiki5 punctuation.definition.substituted.triple.attribute.begin.tiddlywiki5
+#         ^ meta.variable.procedurecallblock.tiddlywiki5 string.template.substituted.triple.attribute.html.tiddlywiki5
+#               ^^^ meta.variable.procedurecallblock.tiddlywiki5 string.template.substituted.triple.attribute.html.tiddlywiki5 punctuation.definition.substituted.triple.attribute.end.tiddlywiki5
 #                  ^^ meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.end.tiddlywiki5
 #                    ^ -meta.variable.procedurecallblock.tiddlywiki5
 

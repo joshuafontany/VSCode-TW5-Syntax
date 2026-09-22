@@ -7,8 +7,10 @@ ledgers under `corpus/` hold the rulings each entry points at.
 
 ## 3.0.0 — unreleased
 
-A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 136 of the 460
-names `v2.2.1` published and adds 269 — and a reader's `editor.tokenColorCustomizations` entry
+A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 110 of the 421
+names `v2.2.1` published and adds 245 — the base wikitext grammar's own count; the memetic dialect
+has no outside consumer yet, so its own vocabulary owes no migration record and stands outside
+this count entirely — and a reader's `editor.tokenColorCustomizations` entry
 naming any retired one stops matching SILENTLY, with VS Code reporting nothing. `MIGRATION.md`
 names every one. The reading changed beside the vocabulary: a transclusion reads as ONE object in
 38 themes where it read so in none, an image's `[img[` arrives as one marker, and every quoted
@@ -435,12 +437,49 @@ back by upgrading, which is the definition this number answers to.
   manifest's `embeddedLanguages` map. Comment-toggling, snippets and bracket-matching follow the
   language across the fence: `//` inside a JavaScript block rather than the host's own mark. The
   colour never depended on either declaration, which is why nothing reported their absence.
-- A filtered transclusion and a transclusion carry across a blank line, the way TiddlyWiki carries
-  them. Their regexps take newlines, so a terminated block spans blank lines and the parser keeps
-  one node; a bound written to contain a runaway ended them at the first blank line instead, and
-  1004 spans across four specimens lost their filter colouring while 89 filter operands read as
-  links. Both now end at the next line that OPENS a block, which contains a runaway without
-  cutting a body short.
+- A filtered transclusion and a transclusion end at the blank line that ends their block (ruled
+  2026-09-21, reversing an earlier choice recorded here). Their regexps take newlines, so
+  TiddlyWiki itself carries a genuinely multi-line filter or template title across a blank line to
+  a closer further down; an unclosed `{{` or `{{{`, with no closer anywhere in the file, took the
+  same licence and ran to the end of the source, painting every paragraph after it —
+  `corpus/wikitext/degenerate.unterminated.tw`'s own `{{transclusion` line names the specimen, and
+  `tools/textmate-ceiling.js`'s `whole-document lookahead` entry now carries this construct beside
+  the emphasis marks and `htmlwidget` ruled the same way (2026-09-18): a stray mark must not
+  repaint every paragraph after it, so a same-line or next-line closer still colours and a runaway
+  stops at the blank line instead of the file's end, at the cost of the rarer construct that
+  genuinely spans one.
+- A `lar:` URI reads the way a base autolink reads (ruled 2026-09-21). Gruvbox Dark Medium showed
+  three faults: the scheme painted apart from the link family (`lar` yellow against the `https://`
+  autolink's own pink `markup.underline.link.external.https.tiddlywiki5`); the empty authority's
+  `//` carried a scope of its own the root segment never needed; and the root's three terms
+  (heading, angle, dynamic) and the anchor lost their underline the moment a theme ruled on
+  `entity.name.tag` — `styleOf` (`tools/theme-model.js`) resolves fontStyle per stack POSITION, so
+  a deeper-matching rule (Gruvbox's `text.html entity.name.tag`, bold) overwrites a shallower one's
+  fontStyle (the region's own `markup.underline`) wholesale rather than merging the two. Priced two
+  cures against the 65 bundled themes: stacking the full `markup.underline.link.lar` family onto
+  the root/anchor terms wins fontStyle but ALSO overwrites their distinguishing foreground with the
+  link's own colour, erasing the very distinction `lar-root-terms.mem.test` exists to keep; stacking
+  a bare `markup.underline.lar.memetic-wikitext` (no `.link`) last wins fontStyle alone, since no
+  bundled theme defines a foreground on plain `markup.underline` — measured at the CEILING itself,
+  36 of 65, identical to the region ancestor's own reach with no leaf override at all, and within one
+  theme of the base `https://` autolink's own body text (35 of 65). Enacted the second cure on the
+  three root captures and the anchor capture. The scheme now paints as one widened unit, `lar://`,
+  under the SAME `markup.underline.link.lar.memetic-wikitext` family the whole region already
+  carries, the way `lar:///url-scheme.paints.free` (2026-09-18) widens the base autolink's own
+  scheme; consuming `://` in that one capture retired the empty-authority pattern and its
+  `punctuation.definition.authority.lar.memetic-wikitext` scope outright, and the persona-authority
+  pattern's own leading `(//)` capture, `punctuation.definition.authority.lar.memetic-wikitext`
+  again — both were reachable only through the "//" the scheme capture now owns, so nothing loses a
+  reading. `punctuation.separator.scheme.lar.memetic-wikitext` retires the same way, folded into the
+  widened scheme unit. Neither retired name carries a MIGRATION.md row: the memetic dialect has no
+  outside consumers yet, so it owes no migration record for its own vocabulary (the same standing
+  `corpus/must-fail.txt` already gives a grammar with nothing yet to keep faith with).
+  `tests/memetic-wikitext/lar-uri-in-prose.mem.test` red-firsts the widened scheme span, and
+  `tools/invariants/a-lar-uri-keeps-its-underline.test.js` measures the resolved fontStyle across
+  all 65 themes against the base `https://` autolink's own reach, with a control reconstructing the
+  pre-cure stack to prove the cure moves reach from 29/65 to the 36/65 ceiling. `node
+  tools/colour-witness.js` and `node tools/construct-legibility.js` both read 0 fallen after the
+  change.
 - A code span's backtick paints with the code it wraps. It carried `keyword.control` beside the
   run rather than nesting inside it, so it matched its own code in none of the 65 themes; nesting
   it, the way markdown, asciidoc and mdx all write it, agrees in 66%. A fenced block keeps a

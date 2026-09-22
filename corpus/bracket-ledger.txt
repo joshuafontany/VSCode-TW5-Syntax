@@ -17,3 +17,14 @@ corpus/wikitext/inline.links.tw  5  [  open  "[img[an-image.png"  # a deliberate
 corpus/wikitext/inline.links.tw  37  [  open  "which is the reading a reader sees: [ext[https://example.com/unclosed"  # a deliberate opener with no closer — the specimen shows TiddlyWiki building nothing from it, and the editor marks the opener truly
 corpus/wikitext/inline.links.tw  41  [  open  "which is the reading a reader sees: [ext[https://example.com/unclosed"  # a deliberate opener with no closer — the specimen shows TiddlyWiki building nothing from it, and the editor marks the opener truly
 corpus/wikitext/blocks.toml-fence.tw  7  [  open  "key = [1, 2,"  # a deliberate unclosed array INSIDE a toml fence the ``` closer still ends: the host never sees a TOML array, so this `[` closes nothing for it either, and the editor marks the opener truly
+
+# A FILTER LIST ITEM'S BRACKET, READ AS PLAIN TEXT PAST A BLANK LINE. Ruled 2026-09-21
+# (`LEDGER-3.0.0.md`): the filtered-transclusion region above these lines now ends at the blank
+# line before them, so `[[...]substitute[]]` reads as an ordinary paragraph rather than as filter
+# content — the wikilink rule still opens on the `[[` and closes its own `]`, but the token
+# boundary that follows leaves the editor's own bracket matcher unable to pair the inner `]`
+# against the `substitute[` that follows it in the SAME plain-text run.
+tests/samples/test.tw  61  ]  close  "  +[[Hi, I'm $(name)$ and I live in $(address)$]substitute[]] "  # OWED — see the ruling above
+tests/samples/test.tw  61  ]  close  "  -[[Hi, I'm $(name)$ and I live in $(address)$]substitute[]]"  # OWED — see the ruling above
+tests/samples/test.tw  61  ]  close  "  ~[[Hi, I'm $(name)$ and I live in $(address)$]substitute[]]"  # OWED — see the ruling above
+tests/samples/test.tw  61  ]  close  "  =[[Hi, I'm $(name)$ and I live in $(address)$]substitute[]]"  # OWED — see the ruling above

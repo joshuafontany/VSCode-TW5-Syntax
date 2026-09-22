@@ -30,50 +30,35 @@
             ]
         },
         "lar-uri": {
-            "comment": "A lar: URI reads as an address wherever it stands, sigil or prose. TW5 binds no rule to the scheme, so the base grammar takes its '//' for an italic run. The colon separates a scheme; only '=' names a parameter.",
+            "comment": "A lar: URI reads as an address wherever it stands, sigil or prose. TW5 binds no rule to the scheme, so the base grammar takes its '//' for an italic run. The scheme paints as one unit — `lar://` — under the SAME family the base autolink uses (lar:///url-scheme.paints.free, 2026-09-18): free here for the same reason, RFC 3986 draws the boundary at the first ':' and the widened unit costs nothing new where the family name already exists. Only '=' names a parameter.",
             "name": "markup.underline.link.lar.memetic-wikitext",
-            "begin": "\\b(lar)(:)(//[^\\s>\"'?#\\]]*)",
+            "begin": "\\b(lar(?::\\/\\/|:))([^\\s>\"'?#\\]]*)",
             "end": "(?=[\\s>\"'\\]])|$",
             "beginCaptures": {
                 "1": {
-                    "name": "keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext"
+                    "name": "keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext markup.underline.link.lar.memetic-wikitext"
                 },
                 "2": {
-                    "name": "punctuation.separator.scheme.lar.memetic-wikitext"
-                },
-                "3": {
                     "name": "string.unquoted.uri.lar.memetic-wikitext",
                     "patterns": [
                         {
-                            "comment": "The authority: a persona, the role it holds, and the place it stands.",
-                            "match": "(//)([^:@/\\s]+)(:)([^@/\\s]+)(@)([^/\\s]+)",
+                            "comment": "The authority: a persona, the role it holds, and the place it stands. The scheme capture already consumed the leading '//' that opens it.",
+                            "match": "(?<=:\\/\\/)([^:@/\\s]+)(:)([^@/\\s]+)(@)([^/\\s]+)",
                             "captures": {
                                 "1": {
-                                    "name": "punctuation.definition.authority.lar.memetic-wikitext"
-                                },
-                                "2": {
                                     "name": "entity.name.persona.lar.memetic-wikitext"
                                 },
-                                "3": {
+                                "2": {
                                     "name": "punctuation.separator.role.lar.memetic-wikitext"
                                 },
-                                "4": {
+                                "3": {
                                     "name": "support.role.lar.memetic-wikitext"
                                 },
-                                "5": {
+                                "4": {
                                     "name": "punctuation.separator.authority.lar.memetic-wikitext"
                                 },
-                                "6": {
+                                "5": {
                                     "name": "entity.name.place.lar.memetic-wikitext"
-                                }
-                            }
-                        },
-                        {
-                            "comment": "An empty authority, which the document form writes.",
-                            "match": "(//)(?=/)",
-                            "captures": {
-                                "1": {
-                                    "name": "punctuation.definition.authority.lar.memetic-wikitext"
                                 }
                             }
                         },
@@ -85,19 +70,19 @@
                                     "name": "punctuation.separator.path.lar.memetic-wikitext"
                                 },
                                 "2": {
-                                    "name": "entity.name.tag.heading.lar.memetic-wikitext"
+                                    "name": "entity.name.tag.heading.lar.memetic-wikitext markup.underline.lar.memetic-wikitext"
                                 },
                                 "3": {
                                     "name": "punctuation.separator.root.lar.memetic-wikitext"
                                 },
                                 "4": {
-                                    "name": "entity.name.tag.angle.lar.memetic-wikitext"
+                                    "name": "entity.name.tag.angle.lar.memetic-wikitext markup.underline.lar.memetic-wikitext"
                                 },
                                 "5": {
                                     "name": "punctuation.separator.root.lar.memetic-wikitext"
                                 },
                                 "6": {
-                                    "name": "entity.name.tag.dynamic.lar.memetic-wikitext"
+                                    "name": "entity.name.tag.dynamic.lar.memetic-wikitext markup.underline.lar.memetic-wikitext"
                                 }
                             }
                         },
@@ -135,7 +120,7 @@
                     "name": "punctuation.definition.anchor.memetic-wikitext"
                 },
                 "2": {
-                    "name": "entity.name.tag.anchor.memetic-wikitext"
+                    "name": "entity.name.tag.anchor.memetic-wikitext markup.underline.anchor.memetic-wikitext"
                 }
             }
         },

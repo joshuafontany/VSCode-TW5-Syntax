@@ -1,0 +1,9 @@
+A MACRODEF PARAMETER LIST ENDS AT THE FIRST CLOSING PAREN, balanced or not — macrodef.js reads
+`\(\s*([^)]*)\)`, never counting how many opens it already swallowed. A `((var))`-shaped default,
+legal in a `\procedure`/`\function`/`\widget` signature, closes a `\define` signature one
+character early: the parameter takes `((var` as its default and everything after the FIRST `))`
+becomes the macro's body. Nobody writes this on purpose; it stands here as the trap the well-formed
+contrast in `definitions.forms.tw` (`mvv-inline`) collides against, not as a form any author reaches
+for.
+
+\define macro-first-paren-wins(a:((var))) )) belongs to the body

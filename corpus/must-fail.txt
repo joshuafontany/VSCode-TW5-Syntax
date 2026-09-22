@@ -10,6 +10,18 @@
 # well-formed nesting throughout, and one reached for a dialect bleed the dialect cannot produce —
 # every region in the dialect grammar ends at its own line, all thirteen of them.
 #
+# `degenerate.unterminated.tw` and `degenerate.illegal.tw` each bled to the sentinel on the
+# strength of one line, `{{transclusion`/`{{` with no closer ahead — the only construct in
+# either file that reached all the way past three blank lines. The transclusion and
+# filtered-transclusion regions now end at the blank line that ends their block (2026-09-21,
+# `LEDGER-3.0.0.md`), the way every OTHER construct in these two files already reads — a bold,
+# italic or code run left open colours only its own line, exactly what
+# `degenerate.unterminated.tw` says of itself ("reaches the end of its block"). An unterminated
+# macro call joined each file to keep its declaration true: `<<foo` with no closer ahead still
+# runs to the end of the source (the operator declined a blank-line bound there on purpose — see
+# `tools/textmate-ceiling.js`'s `whole-document lookahead` entry), so both files still demonstrate
+# what their bleed declaration claims.
+#
 # HELD APART FROM THE DIVERGENCE LEDGERS ON PURPOSE. `swallow-ledger.txt` and
 # `expected-divergence.txt` record what this grammar CANNOT YET read; this file records what it
 # MUST NOT read. One list fusing both senses grows unreadable, and the entries then differ only by
@@ -20,8 +32,8 @@
 # `bleeds`  — a construct left open colours the sentinel standing after the file.
 # `verdict` — the grammar names an `invalid.` scope somewhere inside it.
 
-degenerate.unterminated.tw  bleeds   # constructs left open, each one reaching past its own block
-degenerate.illegal.tw       bleeds   # malformed markup the parser refuses, carried by the grammar
+degenerate.unterminated.tw  bleeds   # an unterminated macro call runs to the end of the source, no closer standing anywhere ahead
+degenerate.illegal.tw       bleeds   # the same unterminated macro call, joined to keep the declaration true after the transclusion bound closed
 degenerate.unterminated-blocks.tw   bleeds   # A quote block opened on `<<<` and never closed carries `markup.quote.quoteblock` past the file. The host records `unterminated-quoteblock` and recovers; the grammar carries the region and marks nothing, which `tools/recovery-witness.js` reads as a silent recovery.
 degenerate.unterminated-fence.tw    bleeds   # A fence opened on ``` and never closed carries `markup.fenced_code.block` past the file. Both readers run to the end of the source, and the host alone says so.
 

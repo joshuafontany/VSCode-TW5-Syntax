@@ -1,8 +1,10 @@
-21
+14
 # Regions whose end can never break on a line, and that no cut in this corpus ever leaves open.
 # The count may fall and may never rise.
 #
-# 98 regions carry no line bound. That number alarms and means little on its own: 77 of them stand
+# 97 regions carry no line bound (98 before the transclusion and filtered-transclusion regions
+# gained a blank-line bound, 2026-09-21, `LEDGER-3.0.0.md` — one region left the population). That
+# number alarms and means little on its own: 83 of them stand
 # open across a blank line under some cut and AGREE with the parser, because TiddlyWiki carries
 # those constructs too — a `"""` attribute value spans blank lines, a definition body runs to its
 # `\end`, an element with no closer reaches the end of the tiddler. Standing open names no defect.
