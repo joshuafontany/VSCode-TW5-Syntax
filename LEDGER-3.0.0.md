@@ -1675,6 +1675,14 @@ back by upgrading, which is the definition this number answers to.
   hand across every caller); the freeze makes that fact an invariant rather than an accident.
   `ORACLE_MEMO=off` bypasses it entirely for debugging. See `tools/tw5-oracle.js`,
   `tools/tw5-oracle.test.js`.
+- THE `--in-process` SPIKE RETIRED. It shared two gates' TiddlyWiki boot (14% of one measured
+  run) at the cost of a shared process — `TW5_PATH`, `process.exitCode`, module caches, lost
+  crash isolation. The parse memo above delivers roughly double that win across every
+  oracle-touching gate, not just two, without sharing a process, so `--in-process`,
+  `IN_PROCESS_GATES` and `runInProcess` are gone from `gate-report.js`. `ORACLE_TRACE` (off by
+  default) stays — it is what proved the memo's effect, and the only instrument that can prove
+  it again.
+
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`
   excluded the directory, and no tool, test or doc read from it. Git holds them.
