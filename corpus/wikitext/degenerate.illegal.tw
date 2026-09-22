@@ -15,3 +15,5 @@ Text with a lone & ampersand.
 [[
 
 {{
+
+An unterminated <<macro-call with no closer anywhere ahead

@@ -4052,7 +4052,7 @@
         },
         "filteredtranscludeblock": {
             "begin": "\\s*(\\{\\{\\{)",
-            "end": "(\\}\\}[^}]*\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
+            "end": "(\\}\\}[^}]*\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))|(?=^$)",
             "name": "meta.transclusion.filteredtranscludeblock.tiddlywiki5",
             "beginCaptures": {
                 "1": {
@@ -4108,7 +4108,7 @@
                 },
                 {
                     "begin": "\\G",
-                    "end": "(?=\\|\\||\\}\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
+                    "end": "(?=\\|\\||\\}\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))|(?=^$)",
                     "name": "meta.filter.tiddlywiki5",
                     "patterns": [
                         {
@@ -4122,7 +4122,7 @@
         },
         "transcludeblock": {
             "begin": "\\s*(\\{\\{)",
-            "end": "(\\}\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
+            "end": "(\\}\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))|(?=^$)",
             "name": "meta.transclusion.transcludeblock.tiddlywiki5",
             "beginCaptures": {
                 "1": {
@@ -4180,12 +4180,12 @@
                     "comment": "Tokenize text reference. A run left open ends at the blank line that ends its block, so the block after it parses whole.",
                     "name": "meta.transclusion.tokenize.tiddlywiki5",
                     "begin": "(?<=\\{\\{)",
-                    "end": "(?=\\}\\}|\\|\\|)|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
+                    "end": "(?=\\}\\}|\\|\\|)|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))|(?=^$)",
                     "patterns": [
                         {
                             "comment": "Allow dropping text reference. A run left open ends at the blank line that ends its block, so the block after it parses whole.",
                             "begin": "(?<=\\{\\{)",
-                            "end": "(?=\\}\\}|\\|\\|)|(\\S.*?)\\s*(?=$|\\}\\}|\\|\\|)|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
+                            "end": "(?=\\}\\}|\\|\\|)|(\\S.*?)\\s*(?=$|\\}\\}|\\|\\|)|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))|(?=^$)",
                             "endCaptures": {
                                 "1": {
                                     "name": "meta.transclusion.text-reference.tiddlywiki5",
@@ -5422,7 +5422,7 @@
         },
         "filteredtranscludeinline": {
             "begin": "(\\{\\{\\{)",
-            "end": "(\\}\\})([^}]*)(\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
+            "end": "(\\}\\})([^}]*)(\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))|(?=^$)",
             "name": "meta.transclusion.filteredtranscludeinline.tiddlywiki5",
             "beginCaptures": {
                 "1": {
@@ -5501,7 +5501,7 @@
                 },
                 {
                     "begin": "\\G",
-                    "end": "(?=\\|\\|)|(?=\\|(?!\\|))|(?=\\}\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
+                    "end": "(?=\\|\\|)|(?=\\|(?!\\|))|(?=\\}\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))|(?=^$)",
                     "name": "meta.filter.tiddlywiki5",
                     "patterns": [
                         {
@@ -5515,7 +5515,7 @@
         },
         "transcludeinline": {
             "begin": "(\\{\\{)",
-            "end": "(\\}\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
+            "end": "(\\}\\})|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))|(?=^$)",
             "name": "meta.transclusion.transcludeinline.tiddlywiki5",
             "beginCaptures": {
                 "1": {
@@ -5573,12 +5573,12 @@
                     "comment": "Tokenize text reference. A run left open ends at the blank line that ends its block, so the block after it parses whole.",
                     "name": "meta.transclusion.tokenize.tiddlywiki5",
                     "begin": "(?<=\\{\\{)",
-                    "end": "(?=\\}\\}|\\|\\|)|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
+                    "end": "(?=\\}\\}|\\|\\|)|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))|(?=^$)",
                     "patterns": [
                         {
                             "comment": "Allow dropping text reference. A run left open ends at the blank line that ends its block, so the block after it parses whole.",
                             "begin": "(?<=\\{\\{)",
-                            "end": "(?=\\}\\}|\\|\\|)|(\\S.*?)\\s*(?=$|\\}\\}|\\|\\|)|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))",
+                            "end": "(?=\\}\\}|\\|\\|)|(\\S.*?)\\s*(?=$|\\}\\}|\\|\\|)|(?=^(?:!|\\*|#|;|:|>|<<<|\\||---|\\\\))|(?=^$)",
                             "endCaptures": {
                                 "1": {
                                     "name": "meta.transclusion.text-reference.tiddlywiki5",

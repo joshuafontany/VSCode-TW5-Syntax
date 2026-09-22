@@ -435,12 +435,17 @@ back by upgrading, which is the definition this number answers to.
   manifest's `embeddedLanguages` map. Comment-toggling, snippets and bracket-matching follow the
   language across the fence: `//` inside a JavaScript block rather than the host's own mark. The
   colour never depended on either declaration, which is why nothing reported their absence.
-- A filtered transclusion and a transclusion carry across a blank line, the way TiddlyWiki carries
-  them. Their regexps take newlines, so a terminated block spans blank lines and the parser keeps
-  one node; a bound written to contain a runaway ended them at the first blank line instead, and
-  1004 spans across four specimens lost their filter colouring while 89 filter operands read as
-  links. Both now end at the next line that OPENS a block, which contains a runaway without
-  cutting a body short.
+- A filtered transclusion and a transclusion end at the blank line that ends their block (ruled
+  2026-09-21, reversing an earlier choice recorded here). Their regexps take newlines, so
+  TiddlyWiki itself carries a genuinely multi-line filter or template title across a blank line to
+  a closer further down; an unclosed `{{` or `{{{`, with no closer anywhere in the file, took the
+  same licence and ran to the end of the source, painting every paragraph after it —
+  `corpus/wikitext/degenerate.unterminated.tw`'s own `{{transclusion` line names the specimen, and
+  `tools/textmate-ceiling.js`'s `whole-document lookahead` entry now carries this construct beside
+  the emphasis marks and `htmlwidget` ruled the same way (2026-09-18): a stray mark must not
+  repaint every paragraph after it, so a same-line or next-line closer still colours and a runaway
+  stops at the blank line instead of the file's end, at the cost of the rarer construct that
+  genuinely spans one.
 - A code span's backtick paints with the code it wraps. It carried `keyword.control` beside the
   run rather than nesting inside it, so it matched its own code in none of the 65 themes; nesting
   it, the way markdown, asciidoc and mdx all write it, agrees in 66%. A fenced block keeps a
