@@ -101,7 +101,7 @@
         {
             "gate": "engine-behaviour",
             "held": true,
-            "said": "engine-witness  882 pattern(s) read against 1089 corpus line(s), 1 that match differently, 0 unruled"
+            "said": "engine-witness  882 pattern(s) read against 1090 corpus line(s), 1 that match differently, 0 unruled"
         },
         {
             "gate": "engine-witness",
@@ -126,7 +126,7 @@
         {
             "gate": "light-cone",
             "held": true,
-            "said": "light-cone  202 divergence(s) across 18 class(es), 10 quote(s) closed to ask; forward arm moved 34, backward arm moved 27, typo arm moved 34; 10 proven or unruled, 8 ruled without proof, 0 owed but reaching out"
+            "said": "light-cone  212 divergence(s) across 18 class(es), 10 quote(s) closed to ask; forward arm moved 34, backward arm moved 27, typo arm moved 36; 10 proven or unruled, 8 ruled without proof, 0 owed but reaching out"
         },
         {
             "gate": "must-fail",
@@ -221,7 +221,7 @@
         {
             "gate": "still",
             "held": true,
-            "said": "still  25 of 4485 carrier(s) at seed 1, 0 quote(s) closed to ask, 30 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 51.0% of corpus tokens ruled"
+            "said": "still  25 of 4485 carrier(s) at seed 1, 0 quote(s) closed to ask, 30 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 50.9% of corpus tokens ruled"
         },
         {
             "gate": "still-reach",

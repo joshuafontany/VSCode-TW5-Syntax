@@ -1,6 +1,6 @@
-<<!DOCTYPE "memetic-wikitext+tiddlywiki" "lar:///ha.ka.ba/lares/api/pono/containers">>
+<<!DOCTYPE "memetic-wikitext+tiddlywiki" "lar:///ha.ka.ba/lares/api/pono/memetic-wikitext">>
 
-<<^ code="&#x0001;" namespace="⊙" from="?" -> to="lar:///ha.ka.ba/lares/api/pono/containers">>
+<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/api/pono/containers">>
 <<^ code="&#x0002;">>
 
 ```toml meta
@@ -28,6 +28,6 @@ a quoteblock carrying <<~ sigil>> and lar:///ha.ka.ba/lares/api/pono/containers
 
 <<~/ahu>>
 
-<<^ code="&#x0003;">>
+<<^ code="&#x0003;">>ni:///sha-256;WIul98D6KBvQGSdLTMl7JFqeI8Hav085_KfCBonufGg
 
-<<^ code="&#x0004;" -> ?>>
+<<^ code="&#x0004;" -> to="?">>
