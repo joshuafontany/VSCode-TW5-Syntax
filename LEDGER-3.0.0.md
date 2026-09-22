@@ -7,8 +7,10 @@ ledgers under `corpus/` hold the rulings each entry points at.
 
 ## 3.0.0 — unreleased
 
-A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 138 of the 460
-names `v2.2.1` published and adds 271 — and a reader's `editor.tokenColorCustomizations` entry
+A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 110 of the 421
+names `v2.2.1` published and adds 245 — the base wikitext grammar's own count; the memetic dialect
+has no outside consumer yet, so its own vocabulary owes no migration record and stands outside
+this count entirely — and a reader's `editor.tokenColorCustomizations` entry
 naming any retired one stops matching SILENTLY, with VS Code reporting nothing. `MIGRATION.md`
 names every one. The reading changed beside the vocabulary: a transclusion reads as ONE object in
 38 themes where it read so in none, an image's `[img[` arrives as one marker, and every quoted

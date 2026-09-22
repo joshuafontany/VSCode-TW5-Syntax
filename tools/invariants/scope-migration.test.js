@@ -24,11 +24,29 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
-const { declaredScopesIn } = require('../grammar-scopes.js');
+const { declaredScopes } = require('../grammar-scopes.js');
 
 const ROOT = path.resolve(__dirname, '..', '..');
 const RECORD = path.join(ROOT, 'MIGRATION.md');
 const PUBLISHED = 'v2.2.1';
+
+// THE MEMETIC DIALECT OWES NO MIGRATION. The base wikitext grammar carries readers from earlier
+// published versions, so a name it retires still needs the record. `memetic-wikitext.json` has no
+// outside consumer yet — nothing to keep faith with — so its own vocabulary churns freely and this
+// weld excludes it from both readings: a name the dialect retired between versions never enters
+// `gone`, and a name it added never enters `added`. Excluding it from the PUBLISHED read as well as
+// the current one keeps the comparison symmetric — the headline answers for the base grammar alone,
+// not for one side of a dialect it no longer tracks.
+const EXCLUDE = new Set(['memetic-wikitext.json']);
+
+/** A directory's declared scopes, with the memetic dialect's own grammar left out. */
+function declaredScopesExcludingMemetic(dir) {
+  const out = new Set();
+  for (const file of fs.readdirSync(dir).filter((f) => f.endsWith('.json') && !EXCLUDE.has(f))) {
+    for (const scope of declaredScopes(path.join(dir, file))) out.add(scope);
+  }
+  return out;
+}
 
 /** The published grammars, checked out where a reader cannot disturb them. */
 let published = null;
@@ -43,14 +61,14 @@ function publishedScopes() {
       fs.writeFileSync(path.join(scratch, path.basename(file)),
         execFileSync('git', ['show', `${PUBLISHED}:${file}`], { cwd: ROOT, maxBuffer: 1 << 28 }));
     }
-    published = declaredScopesIn(scratch);
+    published = declaredScopesExcludingMemetic(scratch);
   } finally {
     fs.rmSync(scratch, { recursive: true, force: true });
   }
   return published;
 }
 
-const declared = () => declaredScopesIn(path.join(ROOT, 'syntaxes'));
+const declared = () => declaredScopesExcludingMemetic(path.join(ROOT, 'syntaxes'));
 
 /** Every row the record states, as the names its two name columns hold. */
 function rows() {
