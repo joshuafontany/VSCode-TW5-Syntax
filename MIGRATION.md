@@ -4,8 +4,8 @@ A theme rule and an `editor.tokenColorCustomizations` entry both name a scope. A
 moves takes the reader's colour with it, and VS Code reports nothing: the rule simply stops
 matching, and the construct goes the colour of prose.
 
-This repository declares **460** scope names at `v2.2.1` and **593** now. Between them, **136**
-names stand gone and **269** stand new. Every gone name appears below, with what it stands as now
+This repository declares **460** scope names at `v2.2.1` and **593** now. Between them, **138**
+names stand gone and **271** stand new. Every gone name appears below, with what it stands as now
 or why it retired. `tools/invariants/scope-migration.test.js` derives these four numbers from the
 same `declaredScopesIn` reading the row-by-row check answers to, so a grammar edit that moves them
 fails the gate rather than leaving this paragraph to go stale beside it.
@@ -31,6 +31,19 @@ gone names moved for exactly that reason.
 
 If your customization named one of these, it was already painting nothing. Adopting the new
 name is the first time it will take effect.
+
+## A substituted attribute value takes the field's own root
+
+A backtick-quoted attribute value substitutes a parameter, a variable or a filter the way a
+template literal does, and VS Code's own JavaScript/TypeScript grammar names that shape
+`string.template.<lang>`. The old name opened on `text`, a root no bundled theme paints (4 of 65,
+via a bare `text` rule): the new one opens on `string`, which 62 of 65 already paint, and reads
+truer to what the span IS besides.
+
+| gone | stands as | why |
+| --- | --- | --- |
+| `text.substituted.single.attribute.html.tiddlywiki5` | `string.template.substituted.single.attribute.html.tiddlywiki5` | the field's own name for a template-shaped value, reaching `string` where `text` reached nothing |
+| `text.substituted.triple.attribute.html.tiddlywiki5` | `string.template.substituted.triple.attribute.html.tiddlywiki5` | the field's own name for a template-shaped value, reaching `string` where `text` reached nothing |
 
 ## Seven that keep their colour
 

@@ -10,8 +10,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 typo instead of flooding your file, error colours appear only where TiddlyWiki itself objects, and
 the colours you see tell you what your wiki will actually render.
 
-A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 136 of the 460
-names `v2.2.1` published and adds 269 — `MIGRATION.md` names every one, with what it stands as now.
+A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 138 of the 460
+names `v2.2.1` published and adds 271 — `MIGRATION.md` names every one, with what it stands as now.
 
 The full record of this release — every construct, ruling and measurement behind it — lives in
 [`LEDGER-3.0.0.md`](LEDGER-3.0.0.md). What follows tells what it grants you.
@@ -71,7 +71,7 @@ what TiddlyWiki's own parser builds, and paints that.
 
 ### What it costs you
 
-- **136 scope names retire.** A `editor.tokenColorCustomizations` rule naming one of them stops
+- **138 scope names retire.** A `editor.tokenColorCustomizations` rule naming one of them stops
   matching SILENTLY — VS Code reports nothing. Most rules keep working, since a rule matches by
   prefix and a lengthened name still starts the same way; `MIGRATION.md` lists every retired name
   with its replacement.

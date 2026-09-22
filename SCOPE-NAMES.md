@@ -50,7 +50,7 @@ reach. The gain came entirely from markdown's popularity, not from any claim abo
 
 ### 2.3.0 — 136 names moved, 39 of them for one reason
 
-The `2.3.0` release moved **136** of 460 declared names and added **269**. Thirty-nine moved for a
+The `2.3.0` release moved **138** of 460 declared names and added **271**. Thirty-nine moved for a
 single shape: a qualifier standing in front of the family root —
 `bold.punctuation.definition.markup.begin`, `caption.markup.other.table`, `mvv.attribute.html`.
 
