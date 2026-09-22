@@ -28,4 +28,4 @@
 
 <$text text=`a $name$ stays literal`/>
 #              ^^^^^^ - markup.other.variable.substitute-parameter.tiddlywiki5
-#              ^^^^^^ text.substituted.single.attribute.html.tiddlywiki5
+#              ^^^^^^ string.template.substituted.single.attribute.html.tiddlywiki5

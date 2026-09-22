@@ -39,7 +39,7 @@ const KINDS = {
   indirect: /^string\.text-reference\./,
   filtered: /^meta\.attribute\.filtered\./,
   macro: /^meta\.(variable\.procedurecall|attribute\.mvv)/,
-  substituted: /^text\.substituted\./
+  substituted: /^string\.template\.substituted\./
 };
 const ANY_KIND = new RegExp(Object.values(KINDS).map((r) => `(?:${r.source})`).join('|'));
 
