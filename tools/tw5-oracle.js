@@ -284,6 +284,115 @@ function resolveTiddlyWiki(env = process.env) {
 const booted = new Map();
 
 /**
+ * The parse memo — Story 1 of the parse-cache epic (see `cache-story0.md`, `cache-story05.md`).
+ *
+ * Story 0 measured 84–85% of every gate-report run's parse TIME spent re-deriving a tree some
+ * OTHER call in the SAME process already built — divergence-staleness re-running overreach-check
+ * across ~6 rule-set variants, ablation and overreach re-parsing mutants of the same file,
+ * still-reach walking the same corpus repeatedly. Story 0.5 showed a disk cache adds only
+ * 0.4–0.5 points beyond what an in-process memo alone already captures, so this is the memo
+ * alone: a `Map`, living for the process's lifetime, never touching disk.
+ *
+ * THE KEY covers everything that changes what TiddlyWiki reads back for a `parseAs` call:
+ *   - the resolved reader path (`twPath`) — a different TiddlyWiki checkout can read differently
+ *   - `$tw.version`, the reader's OWN report of itself — two checkouts can share a path
+ *     candidate's shape but not its version, and a version bump can change parsing
+ *   - a hash of this file's own source (`oracleCodeHash`, computed once at load) — the oracle's
+ *     OWN code decides what `flatten`/`verdictAt` do with a tree; a memo keyed only on TiddlyWiki
+ *     inputs would serve a stale answer across an oracle-code change within one long-lived process
+ *   - the parser rule set in force (`rules`, sorted so key order never matters)
+ *   - the parse MODE (`type`, e.g. `text/vnd.tiddlywiki`) and every other parser option
+ *     (`parserOptions`, including `parseAsInline` where a caller sets it)
+ *   - the source text itself, by a full sha256 (not the trace's truncated 16-hex identity hash —
+ *     a memo lives for a whole process and a collision there would silently swap one file's
+ *     tree for another's; the trace only ever counts repeats, so a short hash sufficed there)
+ *
+ * Changing ANY one of these dimensions must miss the memo; changing NONE of them must hit it —
+ * see `tools/tw5-oracle.test.js`'s memo-key tests, one per dimension.
+ *
+ * FREEZE. Every memoized tree is deep-frozen before it is stored (and so before it is ever
+ * returned) — a caller that mutates a memoized tree throws in strict mode rather than
+ * corrupting the SAME object every later reader of that key receives. No consumer in this
+ * repository mutates a returned tree (checked by hand across every `tools/*.js` caller of
+ * `.parse`/`.parseAs`/`.spans`/`.readAt`) — the freeze exists to make that fact an invariant a
+ * future caller cannot silently break, not to work around one that does today.
+ *
+ * BOUND. Unbounded, the heaviest gate (divergence-staleness, which re-runs overreach-check
+ * across ~6 rule-set variants inside its own process) was measured to raise peak RSS by single-
+ * digit megabytes over memo-off for a full gate-report run's worth of distinct keys — see the
+ * commit message for the measured numbers. `ORACLE_MEMO_MAX` (default 8000 entries) bounds it
+ * anyway, evicting the least-recently-used entry, since a future gate iterating a much larger
+ * mutant population should not be trusted to stay small just because today's does.
+ *
+ * OFF SWITCH. `ORACLE_MEMO=off` bypasses the memo entirely — every call parses fresh, nothing is
+ * frozen, nothing is stored — for debugging a suspected memo-staleness bug without first proving
+ * whether the memo caused it.
+ */
+const MEMO_ENABLED = process.env.ORACLE_MEMO !== 'off';
+const MEMO_MAX = Number(process.env.ORACLE_MEMO_MAX) > 0 ? Number(process.env.ORACLE_MEMO_MAX) : 8000;
+
+let oracleCodeHashCache = null;
+function oracleCodeHash() {
+  if (oracleCodeHashCache === null) {
+    oracleCodeHashCache = crypto.createHash('sha1').update(fs.readFileSync(__filename)).digest('hex').slice(0, 16);
+  }
+  return oracleCodeHashCache;
+}
+
+/** Freezes `value` and everything reachable from it, once per object, tolerating cycles. */
+function deepFreeze(value, seen) {
+  const visited = seen || new Set();
+  if (value === null || typeof value !== 'object' || visited.has(value)) return value;
+  visited.add(value);
+  Object.freeze(value);
+  for (const key of Object.keys(value)) deepFreeze(value[key], visited);
+  return value;
+}
+
+const parseMemo = new Map();
+
+/** Read the memo, promoting the key to most-recently-used on a hit (LRU). */
+function memoGet(key) {
+  if (!parseMemo.has(key)) return undefined;
+  const value = parseMemo.get(key);
+  parseMemo.delete(key);
+  parseMemo.set(key, value);
+  return value;
+}
+
+/** Store `value` under `key`, evicting the least-recently-used entry past `MEMO_MAX`. */
+function memoSet(key, value) {
+  parseMemo.set(key, value);
+  while (parseMemo.size > MEMO_MAX) {
+    const oldest = parseMemo.keys().next().value;
+    parseMemo.delete(oldest);
+  }
+}
+
+/**
+ * The memo key, pure and exported so a unit test can prove each dimension without booting a
+ * second TiddlyWiki checkout or a second oracle-code version to get one for real.
+ */
+function memoKeyFor(twPath, version, codeHash, rulesKeyPart, type, parserOptions, text) {
+  return [
+    twPath,
+    version,
+    codeHash,
+    rulesKeyPart,
+    type,
+    JSON.stringify(parserOptions),
+    crypto.createHash('sha256').update(text, 'utf8').digest('hex')
+  ].join('\u0000');
+}
+
+/** Test-only: empties the memo and returns how many entries it held, so a test can measure size. */
+function resetParseMemoForTests() {
+  const size = parseMemo.size;
+  parseMemo.clear();
+  return size;
+}
+
+/**
  * Boot TiddlyWiki and hand back an oracle over it.
  *
  * `rules` sets $:/config/WikiParserRules entries by their key under that prefix, e.g.
@@ -333,10 +442,53 @@ function boot(twPath, options = {}) {
   // the same bytes forced through wikitext build a paragraph, two calls and a quoteblock. A reader
   // comparing that against a grammar which honours the declared type reads 252 cuts of divergence
   // on one file, and names none of them a fault of either reader.
+  const rulesKeyPart = JSON.stringify(Object.entries(rules).sort());
   const parseAs = (type, text, parserOptions = {}) => {
-    if (!TRACE_PATH) return $tw.wiki.parseText(type, text, parserOptions);
+    if (!MEMO_ENABLED) {
+      if (!TRACE_PATH) return $tw.wiki.parseText(type, text, parserOptions);
+      const start = Date.now();
+      const result = $tw.wiki.parseText(type, text, parserOptions);
+      traceEvent({
+        type: 'parse',
+        tw: twPath,
+        rules,
+        mode: type,
+        hash: contentHash(text),
+        bytes: text.length,
+        ms: Date.now() - start
+      });
+      return result;
+    }
+    // Every dimension that changes what TiddlyWiki reads back joins the key — see the memo's own
+    // doc comment above `boot()` for what each one guards against.
+    const memoKey = memoKeyFor(twPath, $tw.version, oracleCodeHash(), rulesKeyPart, type, parserOptions, text);
+    const cached = memoGet(memoKey);
+    if (cached !== undefined) {
+      traceEvent({
+        type: 'parse',
+        tw: twPath,
+        rules,
+        mode: type,
+        hash: contentHash(text),
+        bytes: text.length,
+        ms: 0,
+        memoHit: true
+      });
+      return cached;
+    }
     const start = Date.now();
     const result = $tw.wiki.parseText(type, text, parserOptions);
+    // FREEZE THE TREE, NOT THE PARSER. `parseText` hands back the live Parser instance itself
+    // (`tools`'s own consumers read `.tree`/`.diagnostics`/`.pragmaRuleClasses` etc off it, never
+    // construct one), and that instance carries `this.wiki = options.wiki` — TiddlyWiki's own
+    // live, still-mutating wiki object (`$tw.wiki.changedTiddlers` et al. are written on every
+    // later parse). Deep-freezing the WHOLE result reaches `.wiki` through that reference and
+    // freezes the live wiki out from under every later call — measured: the very next parse then
+    // throws inside `$:/core/modules/wiki.js` trying to reset `changedTiddlers`. Only `.tree` and
+    // `.diagnostics` are the memo's own promise to a caller; freeze exactly those.
+    deepFreeze(result.tree);
+    if (result.diagnostics) deepFreeze(result.diagnostics);
+    memoSet(memoKey, result);
     traceEvent({
       type: 'parse',
       tw: twPath,
@@ -344,7 +496,8 @@ function boot(twPath, options = {}) {
       mode: type,
       hash: contentHash(text),
       bytes: text.length,
-      ms: Date.now() - start
+      ms: Date.now() - start,
+      memoHit: false
     });
     return result;
   };
@@ -378,7 +531,18 @@ function boot(twPath, options = {}) {
   return oracle;
 }
 
-module.exports = { flatten, resolveSeed, isPlainText, isOpaqueBody, verdictAt, resolveTiddlyWiki, boot };
+module.exports = {
+  flatten,
+  resolveSeed,
+  isPlainText,
+  isOpaqueBody,
+  verdictAt,
+  resolveTiddlyWiki,
+  boot,
+  deepFreeze,
+  memoKeyFor,
+  resetParseMemoForTests
+};
 
 if (require.main === module) {
   const tw = resolveTiddlyWiki();

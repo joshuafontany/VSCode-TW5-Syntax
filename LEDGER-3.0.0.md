@@ -1654,6 +1654,27 @@ back by upgrading, which is the definition this number answers to.
   `html.widgets.tw`'s `<$my.widget/>`, same reasoning) — both recorded in
   `corpus/ablation-ledger.txt` rather than fixed, since neither is this ruling's to close.
 
+- THE ORACLE MEMOIZES A PARSE, IN-PROCESS ONLY. `tw5-oracle.js`'s `parse`/`parseAs` now cache
+  every tree they build for the life of the process, keyed on everything that could change what
+  TiddlyWiki reads back (reader path, `$tw.version`, a hash of the oracle's own code, the rule
+  set, the parse mode/options, and a sha256 of the source). A prior spike (Story 0/0.5 of the
+  parse-cache epic) measured 84–85% of a full `gate-report --check` run's parse TIME repeated
+  WITHIN one gate's own process — divergence-staleness alone re-runs overreach-check across ~6
+  rule-set variants against the same files — and that a disk cache across gates would add only
+  0.4–0.5 points beyond an in-process memo alone, so only the memo shipped. Measured: a full
+  `gate-report --check` drops from a 351.6s/374.6s median (memo off, pinned/fork reader, 3
+  interleaved runs each) to 260.2s/275.0s (memo on) — roughly a quarter faster — and the
+  heaviest single gate, `divergence-staleness`, from 67.2s to 28.5s (58% faster) at a peak RSS
+  cost of +1.9MB (282.4MB vs 280.5MB), bounded by an 8,000-entry LRU (`ORACLE_MEMO_MAX`) so a
+  future gate touching a much larger population cannot grow it unbounded. Every memoized tree is
+  deep-frozen before it is handed back — but ONLY the tree and diagnostics, never the whole
+  `parseText` result: that result IS TiddlyWiki's live Parser instance, carrying
+  `this.wiki = options.wiki`, the actual running `$tw.wiki` — freezing the whole object froze the
+  wiki out from under itself, and the very next parse threw inside `$:/core/modules/wiki.js`
+  resetting `changedTiddlers`. No consumer in this repository mutates a returned tree (checked by
+  hand across every caller); the freeze makes that fact an invariant rather than an accident.
+  `ORACLE_MEMO=off` bypasses it entirely for debugging. See `tools/tw5-oracle.js`,
+  `tools/tw5-oracle.test.js`.
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`
   excluded the directory, and no tool, test or doc read from it. Git holds them.
