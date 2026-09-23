@@ -1,12 +1,12 @@
 <<!DOCTYPE "memetic-wikitext+tiddlywiki" "lar:///ha.ka.ba/lares/api/pono/memetic-wikitext">>
 
-<<^ code="&#x0001;" namespace="example" from="?" -> to="lar:///ha.ka.ba/lares/api/example">>
+<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/api/example">>
 
 <<^ code="&#x0002;">>
 
 A body whose close carries a block check.
 
-<<^ code="&#x0003;">> ni:///sha-256;j1yWiREtBrtyp0nn-14FCoVTGPrIYWoom0NGp-WrjOE
+<<^ code="&#x0003;">>ni:///sha-256;j1yWiREtBrtyp0nn-14FCoVTGPrIYWoom0NGp-WrjOE
 
 <<^ code="&#x0017;">> ni:///sha-256;AAAA1234BBBB5678CCCC9012DDDD3456EEEE7890FFFF
 
@@ -16,7 +16,8 @@ A body whose close carries a block check.
 
 <<^ code="&#x0004;" -> to="?">>
 
-A parameter takes the colon spelling as well as the equals spelling, and only after a colon does
-a bracketed value read as a string: an equals hands its value to the unquoted rule first.
+A parameter takes the colon spelling as well as the equals spelling: a call reads a bracketed
+or quoted value the same way under either. A definition's own parameter list refuses the
+equals spelling --- only the colon separates a default there.
 
 <<~ kue voice:Mischief-Muse key:"a value carrying spaces" held:[[a bracketed value]]>>
