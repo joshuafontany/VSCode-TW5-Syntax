@@ -32,7 +32,7 @@
         "lar-uri": {
             "comment": "A lar: URI reads as an address wherever it stands, sigil or prose. TW5 binds no rule to the scheme, so the base grammar takes its '//' for an italic run. RULED 2026-10-06 (lar:///ha.ka.ba/lares/api/pono.uri-palette, the punctuation-and-no-underline pass): a lar: address NAMES rather than fetches, so the whole family wears a COLOURLESS parent — `meta.uri.lar.memetic-wikitext`, measured 0/65 bundled themes give it any foreground or fontStyle of its own — and every separator (the scheme's own ':'/'://, the slash introducing the root, every other path slash, the authority's ':'/'@') reads as plain punctuation with nothing to override it. Each NAMED leaf (persona, role, place, heading, angle, dynamic) still carries its own distinguishing scope and so keeps its own ink; arbitrary path text carries none and reads as ordinary prose, which is honest — it is not a construct this grammar names. Only '=' names a parameter.",
             "name": "meta.uri.lar.memetic-wikitext",
-            "begin": "\\b(lar)(:\\/\\/|:)((?:[^:@/\\s]+:[^@/\\s]+@[^/\\s]+)?)(?:(/)(?=[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+(?:[/\\s>\"\\']|$)))?([^\\s>\"\\'?#\\]]*)",
+            "begin": "\\b(lar)(:\\/\\/|:)((?:[^:@/\\s]+:[^@/\\s]+@[^/\\s]+|[^:@/\\s]+@[^/\\s]+)?)(?:(/)(?=[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+(?:[/\\s>\"\\']|$)))?([^\\s>\"\\'?#\\]]*)",
             "end": "(?=[\\s>\"'\\]])|$",
             "beginCaptures": {
                 "1": {
@@ -44,6 +44,7 @@
                 },
                 "3": {
                     "name": "meta.uri.authority.lar.memetic-wikitext",
+                    "comment": "RULED 2026-10-06 (a roleless authority reads as an authority): the seed's own session form (`#/lar-uri`) spells `alias:grant@host` — a role is the law's own shape — so a bare `persona@place` stands in TENSION with it, common in practice but not licensed there. Ruled anyway: the base's begin regex now admits EITHER shape, and this second alternative reuses the first one's EXISTING leaf names — persona, the authority separator, place — with no role capture at all, because none stands. No new scope name was needed for either half.",
                     "patterns": [
                         {
                             "comment": "The authority: a persona, the role it holds, and the place it stands.",
@@ -62,6 +63,21 @@
                                     "name": "punctuation.separator.authority.lar.memetic-wikitext"
                                 },
                                 "5": {
+                                    "name": "entity.name.place.lar.memetic-wikitext"
+                                }
+                            }
+                        },
+                        {
+                            "comment": "The roleless authority: a persona and the place it stands, no role between them.",
+                            "match": "([^:@/\\s]+)(@)([^/\\s]+)",
+                            "captures": {
+                                "1": {
+                                    "name": "entity.name.persona.lar.memetic-wikitext"
+                                },
+                                "2": {
+                                    "name": "punctuation.separator.authority.lar.memetic-wikitext"
+                                },
+                                "3": {
                                     "name": "entity.name.place.lar.memetic-wikitext"
                                 }
                             }

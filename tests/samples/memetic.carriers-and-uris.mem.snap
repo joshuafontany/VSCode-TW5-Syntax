@@ -416,6 +416,27 @@
 #                                  ^ text.html.tiddlywiki5.memetic-wikitext meta.uri.ni.memetic-wikitext punctuation.separator.checksum.ni.memetic-wikitext
 #                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.uri.ni.memetic-wikitext constant.other.checksum.ni.memetic-wikitext
 >
+>!! An authority with no role still reads as an authority
+#^^ text.html.tiddlywiki5.memetic-wikitext markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 punctuation.definition.heading.tiddlywiki5 markup.heading.tiddlywiki5
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 entity.name.section.tiddlywiki5 markup.heading.section.tiddlywiki5
+>
+>A roleless authority — lar://scryer@crossroads/the.flat.run — still parts into persona and
+#^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+#                       ^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext
+#                          ^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext punctuation.definition.scheme.lar.memetic-wikitext
+#                             ^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext entity.name.persona.lar.memetic-wikitext
+#                                   ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext punctuation.separator.authority.lar.memetic-wikitext
+#                                    ^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext entity.name.place.lar.memetic-wikitext
+#                                              ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext punctuation.separator.root.intro.lar.memetic-wikitext
+#                                               ^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.path.lar.memetic-wikitext entity.name.tag.heading.lar.memetic-wikitext
+#                                                  ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.path.lar.memetic-wikitext punctuation.separator.root.lar.memetic-wikitext
+#                                                   ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.path.lar.memetic-wikitext entity.name.tag.angle.lar.memetic-wikitext
+#                                                       ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.path.lar.memetic-wikitext punctuation.separator.root.lar.memetic-wikitext
+#                                                        ^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.path.lar.memetic-wikitext entity.name.tag.dynamic.lar.memetic-wikitext
+#                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+>place, the same shape a role-ful authority takes, minus the role leaf no colon ever opened.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+>
 >!! A fence reads as the language its meta names
 #^^ text.html.tiddlywiki5.memetic-wikitext markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 punctuation.definition.heading.tiddlywiki5 markup.heading.tiddlywiki5
 #  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 entity.name.section.tiddlywiki5 markup.heading.section.tiddlywiki5
