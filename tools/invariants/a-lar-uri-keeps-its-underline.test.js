@@ -3,7 +3,7 @@
 // `styleOf` (`theme-model.js`) resolves each style PROPERTY from the DEEPEST matching rule in the
 // scope stack, independently per property — so a leaf scope that wins fontStyle for an unrelated
 // reason (Gruvbox Dark Medium's `text.html entity.name.tag`, ruling `bold`) silently overwrites the
-// underline the enclosing `markup.underline.link.lar.memetic-wikitext` region set, without touching
+// underline the enclosing `markup.underline.uri.lar.memetic-wikitext` region set, without touching
 // foreground at all. Measured before this file's ruling landed (`LEDGER-3.0.0.md`, 2026-09-21): the
 // root's three terms and the `#`-anchor read aqua and bold in Gruvbox Dark Medium, carrying no
 // underline, while the punctuation between them stayed underlined — the underline flickered along
@@ -68,7 +68,7 @@ test('a lar: root term keeps at least as much underline reach as the base https 
 
 test('control: a distinguishing leaf scope with no fontStyle of its own never drops the underline', () => {
   const themes = loadThemes();
-  const base = ['text.html.tiddlywiki5', 'markup.underline.link.lar.memetic-wikitext'];
+  const base = ['text.html.tiddlywiki5', 'markup.underline.uri.lar.memetic-wikitext'];
   const withoutFix = [...base, 'entity.name.tag.heading.lar.memetic-wikitext'];
   const withFix = [...base, 'entity.name.tag.heading.lar.memetic-wikitext', 'markup.underline.lar.memetic-wikitext'];
   const count = (stack) => themes.filter((t) => {

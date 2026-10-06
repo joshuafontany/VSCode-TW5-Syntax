@@ -2,10 +2,14 @@
 //
 // A URI is one object: a reader meets an address, not a scheme beside a separator beside a digest.
 // Every flagship grammar says so with an enclosing region — markdown wraps a link in
-// `markup.underline.link.markdown`, and this grammar's own external links and `lar:` addresses wear
-// `markup.underline.link.*` too. The parts inside may differ, and should: a `lar:` root paints its
-// heading, angle and dynamic apart on purpose. What the enclosing family buys is the FLOOR — every
-// separator and mark inside an address inherits a themed ancestor instead of falling to prose.
+// `markup.underline.link.markdown`, and this grammar's own external links wear
+// `markup.underline.link.*` because they fetch. `lar:` and `ni:` NAME rather than fetch
+// (lar:///ha.ka.ba/lares/api/pono.uri-palette — THE REACH-CUT, 2026-10-06; RFC 4151 and RFC 6920
+// each describe themselves as naming schemes with no authoritative resolution mechanism), so they
+// wear `markup.underline.uri.*` instead — a sibling family, same floor, honest relation. The parts
+// inside may differ, and should: a `lar:` root paints its heading, angle and dynamic apart on
+// purpose. What the enclosing family buys is the FLOOR — every separator and mark inside an
+// address inherits a themed ancestor instead of falling to prose.
 //
 // Measured, one scheme stood without one: a block check's separators read as ordinary prose in 35 of
 // 65 bundled themes — its `:`, its three `/`, its `;` — while the same marks inside a `lar:` address
@@ -56,9 +60,9 @@ test('every URI wears an enclosing family its marks can inherit', live, async ()
       return ADDRESS[scheme].includes(text) && text.trim() && !/^(A|stamp|here\.)$/.test(text);
     });
     assert.ok(inside.length > 2, `${scheme}: the address tokenized to ${inside.length} span(s)`);
-    const bare = inside.filter((t) => !t.scopes.some((s) => /^markup\.underline\.link\./.test(s)));
+    const bare = inside.filter((t) => !t.scopes.some((s) => /^markup\.underline\.(link|uri)\./.test(s)));
     if (bare.length) {
-      failures.push(`${scheme}: ${bare.length} of ${inside.length} span(s) wear no link family — `
+      failures.push(`${scheme}: ${bare.length} of ${inside.length} span(s) wear no link/uri family — `
         + bare.map((t) => JSON.stringify(line.slice(t.startIndex, t.endIndex))).join(' '));
     }
   }

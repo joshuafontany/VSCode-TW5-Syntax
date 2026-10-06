@@ -31,12 +31,12 @@
         },
         "lar-uri": {
             "comment": "A lar: URI reads as an address wherever it stands, sigil or prose. TW5 binds no rule to the scheme, so the base grammar takes its '//' for an italic run. The scheme paints as one unit — `lar://` — under the SAME family the base autolink uses (lar:///url-scheme.paints.free, 2026-09-18): free here for the same reason, RFC 3986 draws the boundary at the first ':' and the widened unit costs nothing new where the family name already exists. Only '=' names a parameter.",
-            "name": "markup.underline.link.lar.memetic-wikitext",
+            "name": "markup.underline.uri.lar.memetic-wikitext",
             "begin": "\\b(lar(?::\\/\\/|:))((?:[^:@/\\s]+:[^@/\\s]+@[^/\\s]+)?)(?:(/)(?=[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+(?:[/\\s>\"\\']|$)))?([^\\s>\"\\'?#\\]]*)",
             "end": "(?=[\\s>\"'\\]])|$",
             "beginCaptures": {
                 "1": {
-                    "name": "keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext markup.underline.link.lar.memetic-wikitext"
+                    "name": "keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext markup.underline.uri.lar.memetic-wikitext"
                 },
                 "2": {
                     "name": "string.unquoted.uri.lar.memetic-wikitext",
@@ -177,7 +177,7 @@
         "ni-uri": {
             "comment": "A block check names information by its DIGEST — `ni:///sha-256;<hash>`, RFC 6920 — and the house seals every carrier with one. The base grammar autolinks a CamelCase run, and measured, 21 of 22 hashes the house has written carry one, so every meme showed a spurious wikilink inside its own integrity stamp. Naming the whole URI takes the run before any inner rule reaches it.",
             "match": "\\b(ni)(:)(//[^;\\s]*)(;)([A-Za-z0-9_-]+)",
-            "name": "markup.underline.link.ni.memetic-wikitext",
+            "name": "markup.underline.uri.ni.memetic-wikitext",
             "captures": {
                 "1": {
                     "name": "keyword.other.scheme.ni.memetic-wikitext support.type.scheme.ni.memetic-wikitext"
