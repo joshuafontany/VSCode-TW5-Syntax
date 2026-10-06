@@ -7,7 +7,7 @@
 uri-path = "ha.ka.ba/lares/api/pono/sample"
 ```
 
-<<~ aka lar:///ha.ka.ba/lares/api/pono/RFC-2119#normative-language>>
+<<~ kanawai lar:///ha.ka.ba/lares/api/pono/RFC-2119#normative-language>>
 
 <<~ ahu #entry>>
 
@@ -15,7 +15,7 @@ uri-path = "ha.ka.ba/lares/api/pono/sample"
 
 Prose naming lar:///ha.ka.ba/lares/api/pono/meme, a ''bold run'' and a `code span`.
 
-<<~ranks focus pulse@0..4 -> beat@5..8>>
+<<~ranks aperture pulse@0..4 -> beat@5..8>>
 <<~ loulou #entry ? -> lar:///ha.ka.ba/x.y.z>>
 <<~! wehe name(p)>>
 <<~?#unresolved>>

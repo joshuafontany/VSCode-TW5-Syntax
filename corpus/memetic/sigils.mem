@@ -2,9 +2,9 @@ A BARE VALUE BINDS A PHANTOM PARAMETER, and this line stands to show it. TiddlyW
 `https` as a parameter name and the positional slot receives nothing — the reason every sigil
 value in this house takes quotes. The form below carries the hazard on purpose.
 
-<<~ aka https://example.com/reference>>
+<<~ kanawai https://example.com/reference>>
 
-<<~ aka "https://example.com/reference">>
+<<~ kanawai "https://example.com/reference">>
 
 <<~ ahu #a-section>>
 
@@ -26,14 +26,14 @@ A body inside the section.
 !! The HUD, in the form the boot seed writes it
 
 <<~ lares aim from="lar://mara:operator@crossroads/operator.weighs.deps" -> to="lar://compita:agent@crossroads/council.options.cuts">>
-<<~ set hud="aim" mode="draft" mu="_!" stance="🏛️🗡️" focus="16/arc" feedback="9/declare-glyphs" drift-ward="a preferred answer already stands and the comparison bends toward it">>
+<<~ set hud="aim" mode="draft" mu="_!" stance="🏛️🗡️" aperture="16/arc" ooda-ha="9/declare-glyphs" drift-ward="a preferred answer already stands and the comparison bends toward it">>
 <<~ oracle "↯11 ✲ ⚃(4) ⁂:⬡🌖◈⟁">>
-<<~ set hud="yield" drift-ward="the read rides on a README and no changelog · ↻ L-Prime" focus="10/measure -> 12/measure" feedback="closed 0↺ -> open 1φ @◇:fork.depends-on.maintenance-weight">>
+<<~ set hud="yield" drift-ward="the read rides on a README and no changelog · ↻ L-Prime" aperture="10/measure -> 12/measure" ooda-ha="closed 0↺ -> open 1φ @◇:fork.depends-on.maintenance-weight">>
 <<~ lares yield from="lar://compita:agent@crossroads/council.fork.named/awaiting-weight" -> to="?">>
 
 !! The gauges, standing alone mid-stream
 
-<<~ focus "9/measure">>
+<<~ aperture "9/measure">>
 <<~ stance "poet humorist">>
 <<~ mu "*?">>
 <<~ drift-ward "the pull this exchange carries">>

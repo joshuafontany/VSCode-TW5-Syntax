@@ -28,7 +28,7 @@ A sigil's name binds to an EMPTY parameter. TiddlyWiki reads the variable as `~`
 a positional argument, so `set`, `oracle`, `stage` and `persona` all paint as any unquoted value
 would. The dialect declares no scope of its own for the thing it exists to say.
 
-<<~ set hud="aim" mode="scan" mood="🜁" mu="?" stance="🏛️" focus="26/reading">>
+<<~ set hud="aim" mode="scan" mood="🜁" mu="?" stance="🏛️" aperture="26/reading">>
 
 <<~ oracle "↯14 ✲ ⚄(4) ⁂:🜁⌗◈">>
 

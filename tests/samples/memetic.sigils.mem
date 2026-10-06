@@ -14,7 +14,7 @@ uri-path = "ha.ka.ba/lares/api/pono/sigils"
 <<~ stance "🏛️ 🗡️">>
 <<~ mu Wand "ascii/* glyph/🜂 element/Fire">>
 <<~ carry Detail "ascii/* ascii/!">>
-<<~ aka "https://www.rfc-editor.org/rfc/rfc2119">>
+<<~ kanawai "https://www.rfc-editor.org/rfc/rfc2119">>
 
 An address in prose: lar://alias:grant@host/heading.angle.dynamic/path#/fragment and one
 without an authority: lar:///ha.ka.ba/lares/docs/handoff#shift-grammar-watch.
