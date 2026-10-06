@@ -1,0 +1,36 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A fence reads as the language its meta names, not as this dialect by default"
+
+# OPERATOR'S RULING 2026-10-06: a `lar:` URI held inside text that names no construct stays HELD
+# TEXT, not an address — a bare inline code span, a plain fence and a fence labelled for another
+# language (here, toml) all name something other than this dialect, so the carrier/address/bearing
+# family must stop at their edge. A fence whose OWN info string names this dialect
+# (`memetic-wikitext`) still reads as an address, because the base grammar's own fence dispatch
+# already put `text.html.tiddlywiki5` back on the stack there.
+#
+# Every target below sits at least one column past the line's own start, so a `^` caret — which
+# shares its column numbering with the comment token before it — can address it without losing the
+# first character to that token.
+
+x `lar://alias:grant@place/lares.api.pono` held inline, unaddressed.
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - meta.uri.lar.memetic-wikitext
+
+```
+x lar://alias:grant@place/lares.api.pono check ni:///sha-256;abcdef0123
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - meta.uri.lar.memetic-wikitext
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - meta.uri.ni.memetic-wikitext
+```
+
+```toml meta
+x = "lar://alias:grant@place/lares.api.pono"
+check = "ni:///sha-256;abcdef0123"
+#         ^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.toml source.toml.tw5-syntax
+#         ^^^^^^^^^^^^^^^^^^^^^^^ - meta.uri.ni.memetic-wikitext
+```
+
+```memetic-wikitext
+x lar://alias:grant@place/lares.api.pono check ni:///sha-256;abcdef0123
+#  ^^ text.html.tiddlywiki5.memetic-wikitext markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.memetic text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext
+#                                              ^^ text.html.tiddlywiki5.memetic-wikitext markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.memetic text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.uri.ni.memetic-wikitext keyword.other.scheme.ni.memetic-wikitext support.type.scheme.ni.memetic-wikitext
+```

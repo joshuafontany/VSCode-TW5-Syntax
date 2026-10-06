@@ -230,16 +230,16 @@
                 }
             ]
         },
-        "R:text.html.tiddlywiki5": {
-            "comment": "Carriers, addresses and bearings keep their reading everywhere the base grammar reads wikitext.\n\nThe base wraps everything after the pragma zone in a region of its own — a mode, not a construct — and a rule standing at this dialect’s top level cannot reach inside one.\nAn injection can: the base’s root scope stands on the stack wherever it reads, region or no region, so one selector reaches the whole file.\nNaming the block contexts one at a time reached the three somebody listed.",
+        "R:text.html.tiddlywiki5 - (meta.embedded.block, markup.inline.raw.block.tiddlywiki5, markup.raw.inline.tiddlywiki5, meta.typedblock.tiddlywiki5), R:meta.embedded.block.memetic": {
+            "comment": "Carriers, addresses and bearings keep their reading everywhere the base grammar reads wikitext.\n\nThe base wraps everything after the pragma zone in a region of its own — a mode, not a construct — and a rule standing at this dialect’s top level cannot reach inside one.\nAn injection can: the base’s root scope stands on the stack wherever it reads, region or no region, so one selector reaches the whole file.\nNaming the block contexts one at a time reached the three somebody listed.\n\nFIX 2026-10-06 (a fence reads as the language its meta names): narrowed so the carrier/address/bearing family stops short of raw fences, fenced code, typed blocks and inline code spans, where the base grammar builds no call and the text underneath is held rather than addressed. A fence whose own info string names this dialect (`meta.embedded.block.memetic`, set by the base's own `mem`/`memetic`/`memetic-wikitext`/`text/memetic-wikitext+tiddlywiki` fence label) still carries `text.html.tiddlywiki5` and reads as an address, same as the top level — the second alternative restores exactly that one carrier, nothing wider.",
             "patterns": [
                 {
                     "include": "text.html.tiddlywiki5.memetic-wikitext#memetic"
                 }
             ]
         },
-        "L:text.html.tiddlywiki5": {
-            "comment": "A bearing arrow stands BETWEEN two named ends, inside a sigil where the base grammar's unquoted-value rule would take its dash and leave the angle to the parameters region — two tokens, neither named. An L-priority injection looks before that rule and keeps the arrow whole. It reaches only where this dialect stands, because a grammar's injections ride with the grammar.",
+        "L:text.html.tiddlywiki5 - (meta.embedded.block, markup.inline.raw.block.tiddlywiki5, markup.raw.inline.tiddlywiki5, meta.typedblock.tiddlywiki5), L:meta.embedded.block.memetic": {
+            "comment": "A bearing arrow stands BETWEEN two named ends, inside a sigil where the base grammar's unquoted-value rule would take its dash and leave the angle to the parameters region — two tokens, neither named. An L-priority injection looks before that rule and keeps the arrow whole. It reaches only where this dialect stands, because a grammar's injections ride with the grammar.\n\nFIX 2026-10-06 (same ruling as the R-priority memetic injection above): the ni: check, the bearing arrow and the carrier marker hold the same narrowing, for the same reason — a raw fence, fenced code, typed block or inline code span builds none of these, and the exception for a dialect-labelled fence restores them where the base's own dispatch already reads this tongue.",
             "patterns": [
                 {
                     "include": "text.html.tiddlywiki5.memetic-wikitext#ni-uri"
