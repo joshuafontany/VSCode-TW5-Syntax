@@ -30,20 +30,24 @@
             ]
         },
         "lar-uri": {
-            "comment": "A lar: URI reads as an address wherever it stands, sigil or prose. TW5 binds no rule to the scheme, so the base grammar takes its '//' for an italic run. The scheme paints as one unit — `lar://` — under the SAME family the base autolink uses (lar:///url-scheme.paints.free, 2026-09-18): free here for the same reason, RFC 3986 draws the boundary at the first ':' and the widened unit costs nothing new where the family name already exists. Only '=' names a parameter.",
-            "name": "markup.underline.link.lar.memetic-wikitext",
-            "begin": "\\b(lar(?::\\/\\/|:))([^\\s>\"'?#\\]]*)",
+            "comment": "A lar: URI reads as an address wherever it stands, sigil or prose. TW5 binds no rule to the scheme, so the base grammar takes its '//' for an italic run. RULED 2026-10-06 (lar:///ha.ka.ba/lares/api/pono.uri-palette, the punctuation-and-no-underline pass): a lar: address NAMES rather than fetches, so the whole family wears a COLOURLESS parent — `meta.uri.lar.memetic-wikitext`, measured 0/65 bundled themes give it any foreground or fontStyle of its own — and every separator (the scheme's own ':'/'://, the slash introducing the root, every other path slash, the authority's ':'/'@') reads as plain punctuation with nothing to override it. Each NAMED leaf (persona, role, place, heading, angle, dynamic) still carries its own distinguishing scope and so keeps its own ink; arbitrary path text carries none and reads as ordinary prose, which is honest — it is not a construct this grammar names. Only '=' names a parameter.",
+            "name": "meta.uri.lar.memetic-wikitext",
+            "begin": "\\b(lar)(:\\/\\/|:)((?:[^:@/\\s]+:[^@/\\s]+@[^/\\s]+)?)(?:(/)(?=[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+(?:[/\\s>\"\\']|$)))?([^\\s>\"\\'?#\\]]*)",
             "end": "(?=[\\s>\"'\\]])|$",
             "beginCaptures": {
                 "1": {
-                    "name": "keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext markup.underline.link.lar.memetic-wikitext"
+                    "name": "keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext"
                 },
                 "2": {
-                    "name": "string.unquoted.uri.lar.memetic-wikitext",
+                    "comment": "The whole scheme-separator run — '://' or the bare ':' — reads as ONE punctuation span, not just the colon.",
+                    "name": "punctuation.definition.scheme.lar.memetic-wikitext"
+                },
+                "3": {
+                    "name": "meta.uri.authority.lar.memetic-wikitext",
                     "patterns": [
                         {
-                            "comment": "The authority: a persona, the role it holds, and the place it stands. The scheme capture already consumed the leading '//' that opens it.",
-                            "match": "(?<=:\\/\\/)([^:@/\\s]+)(:)([^@/\\s]+)(@)([^/\\s]+)",
+                            "comment": "The authority: a persona, the role it holds, and the place it stands.",
+                            "match": "([^:@/\\s]+)(:)([^@/\\s]+)(@)([^/\\s]+)",
                             "captures": {
                                 "1": {
                                     "name": "entity.name.persona.lar.memetic-wikitext"
@@ -61,33 +65,40 @@
                                     "name": "entity.name.place.lar.memetic-wikitext"
                                 }
                             }
-                        },
+                        }
+                    ]
+                },
+                "4": {
+                    "comment": "NARROW: the '/' introducing the root segment reads OUTSIDE any coloured wrapper, so with no foreground rule of its own it falls to the editor default.",
+                    "name": "punctuation.separator.root.intro.lar.memetic-wikitext"
+                },
+                "5": {
+                    "comment": "Was `string.unquoted.uri.lar.memetic-wikitext` — a 'string' ancestor most themes colour, which left every OTHER path separator loud even though each already carried its own punctuation leaf name. Colourless now, so every '/' here reads the same quiet way capture 4's does.",
+                    "name": "meta.uri.path.lar.memetic-wikitext",
+                    "patterns": [
                         {
-                            "comment": "The root segment: heading, angle of approach, carried dynamic.",
-                            "match": "(/)([A-Za-z0-9_-]+)(\\.)([A-Za-z0-9_-]+)(\\.)([A-Za-z0-9_-]+)(?=[/\\s>\"']|$)",
+                            "comment": "The root segment: heading, angle of approach, carried dynamic. No leading slash here — capture 4 already consumed it when the lookahead matched.",
+                            "match": "([A-Za-z0-9_-]+)(\\.)([A-Za-z0-9_-]+)(\\.)([A-Za-z0-9_-]+)(?=[/\\s>\"\\']|$)",
                             "captures": {
                                 "1": {
-                                    "name": "punctuation.separator.path.lar.memetic-wikitext"
+                                    "name": "entity.name.tag.heading.lar.memetic-wikitext"
                                 },
                                 "2": {
-                                    "name": "entity.name.tag.heading.lar.memetic-wikitext markup.underline.lar.memetic-wikitext"
+                                    "name": "punctuation.separator.root.lar.memetic-wikitext"
                                 },
                                 "3": {
-                                    "name": "punctuation.separator.root.lar.memetic-wikitext"
+                                    "name": "entity.name.tag.angle.lar.memetic-wikitext"
                                 },
                                 "4": {
-                                    "name": "entity.name.tag.angle.lar.memetic-wikitext markup.underline.lar.memetic-wikitext"
-                                },
-                                "5": {
                                     "name": "punctuation.separator.root.lar.memetic-wikitext"
                                 },
-                                "6": {
-                                    "name": "entity.name.tag.dynamic.lar.memetic-wikitext markup.underline.lar.memetic-wikitext"
+                                "5": {
+                                    "name": "entity.name.tag.dynamic.lar.memetic-wikitext"
                                 }
                             }
                         },
                         {
-                            "comment": "Any other path separator.",
+                            "comment": "Any other path separator (including the leading slash of a lar: URI whose body does not open with a heading.angle.dynamic root, where capture 4 above did not fire).",
                             "match": "/",
                             "name": "punctuation.separator.path.lar.memetic-wikitext"
                         }
@@ -169,9 +180,9 @@
             ]
         },
         "ni-uri": {
-            "comment": "A block check names information by its DIGEST — `ni:///sha-256;<hash>`, RFC 6920 — and the house seals every carrier with one. The base grammar autolinks a CamelCase run, and measured, 21 of 22 hashes the house has written carry one, so every meme showed a spurious wikilink inside its own integrity stamp. Naming the whole URI takes the run before any inner rule reaches it.",
+            "comment": "A block check names information by its DIGEST — `ni:///sha-256;<hash>`, RFC 6920 — and the house seals every carrier with one. The base grammar autolinks a CamelCase run, and measured, 21 of 22 hashes the house has written carry one, so every meme showed a spurious wikilink inside its own integrity stamp. Naming the whole URI takes the run before any inner rule reaches it. RULED 2026-10-06 (the punctuation-and-no-underline pass, same ruling as lar:): ni: names rather than fetches, so the enclosing family is colourless — `meta.uri.ni.memetic-wikitext`, measured 0/65 themes give it any style of its own; its ';' already read as plain punctuation and keeps doing so, and dropping the underline stops the OTHER separators (the ':' and the nested '/' runs) from inheriting a themed ancestor they have no business wearing.",
             "match": "\\b(ni)(:)(//[^;\\s]*)(;)([A-Za-z0-9_-]+)",
-            "name": "markup.underline.link.ni.memetic-wikitext",
+            "name": "meta.uri.ni.memetic-wikitext",
             "captures": {
                 "1": {
                     "name": "keyword.other.scheme.ni.memetic-wikitext support.type.scheme.ni.memetic-wikitext"
