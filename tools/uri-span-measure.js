@@ -16,7 +16,8 @@ const LINE = 'A lar:///ha.ka.ba/lares/api/pono?k=v#frag and ni:///sha-256;abc123
 // Named spans, by [start,end) into LINE, fixed by inspection of the tokenizer output. These
 // offsets do not move across the options below (none of them changes the regex's match length).
 const SPANS = {
-  'lar.scheme':        [2, 8],    // "lar://"
+  'lar.scheme':        [2, 8],    // "lar://" (pre-punctuation-pass: one token; after: "lar" alone)
+  'lar.scheme.sep':    [5, 8],    // "://" alone, once the punctuation-and-no-underline pass splits it
   'lar.sep.pre-root':  [8, 9],    // "/" before the root segment
   'lar.root.heading':  [9, 11],   // "ha"
   'lar.root.dot1':     [11, 12],  // "."
