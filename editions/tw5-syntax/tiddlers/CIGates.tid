@@ -58,6 +58,14 @@ description: Which gates continuous integration runs, and the reason for each on
         {
             "gate": "reading-recipe",
             "why": "a reading rather than a verdict: it generates the reader-facing recipe for the constructs the prose-reading ledger rules, welding it into the README. Its own test holds the weld, and the tool refuses nothing — a gate run would only ever agree with it"
+        },
+        {
+            "gate": "uri-span-measure",
+            "why": "a scout instrument, by its own header comment: it dumps the resolved style of a sample URI's named spans across every bundled theme to JSON, and judges nothing itself — it backed the URI-palette rulings in LEDGER-3.0.0.md and is kept, named, for reproducing that measurement again"
+        },
+        {
+            "gate": "uri-span-compare",
+            "why": "the same standing as uri-span-measure, which it diffs: a scout instrument that reports a change count between two dumps and renders no verdict of its own"
         }
     ]
 }

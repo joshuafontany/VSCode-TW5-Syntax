@@ -117,6 +117,7 @@ measurement behind this release. In short, the grammars answer to more than thei
   keyed by shape, each ruled in `corpus/delimiter-ledger.txt` as a parting that serves a reader or costs one
 * `npm run package-contents` — every path the manifest names, checked inside the built package
 * `npm run bench` — a disposable editor in a container, so you can look at the grammar with your own eyes
+* `npm run uri-span-measure` — a scout instrument: the resolved style of each named span of a sample `lar:`/`ni:`/`https:` line, across every bundled theme, dumped as JSON (`> /tmp/uri-measure-<label>.json`); `npm run uri-span-compare -- before.json after.json` diffs two such dumps span by span. Both back the URI-palette rulings cited in `LEDGER-3.0.0.md` and the `memetic-wikitext.json` comments; neither is part of the shipped gate set
 
 ## Colour toggles
 
