@@ -1,0 +1,34 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "An interior separator takes the ink of the segment it opens"
+
+# RULED 2026-10-08 (the texture pass, twice over): the dialect's addresses carry no underline, so
+# every interior separator stacks the ink of the segment it opens rather than reading as plain
+# punctuation. This is the control for the whole arc — if a future change ever un-stacks one of
+# these companions, this file reds rather than the operator's own eyes catching it a third time.
+#
+# Pass one: a scheme run paints as one colour; the authority's ':'/'@' take the role/place's ink;
+# the root's two dots each take the ink of the leaf they open; a path slash takes the path text's
+# own two-level ink.
+#
+# Pass two (the operator's Gruvbox finding): `support.type` alone shared a colour with the bare
+# `entity.name` the authority falls back to in 18 of 65 bundled themes. `support.constant.scheme.lar`
+# stacked innermost on the scheme word AND its separator drops that to 4/65, measured in
+# LEDGER-3.0.0.md. The query joined the ruling too: `?`/`&` take the key's ink; `=` and the value
+# (quoted or bare) carry a new honest family, `markup.other.value.lar`, chosen because every
+# painting alternative regressed an already-distinct pair.
+
+x lar://claude:scryer@lararium/a.b.c/path
+# ^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext support.constant.scheme.lar.memetic-wikitext
+#    ^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext punctuation.definition.scheme.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext support.constant.scheme.lar.memetic-wikitext
+#             ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext punctuation.separator.role.lar.memetic-wikitext entity.name.role.lar.memetic-wikitext
+#                    ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext punctuation.separator.authority.lar.memetic-wikitext entity.name.place.lar.memetic-wikitext
+#                             ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext punctuation.separator.root.intro.lar.memetic-wikitext entity.name.tag.heading.lar.memetic-wikitext
+#                               ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext punctuation.separator.root.lar.memetic-wikitext entity.name.tag.angle.lar.memetic-wikitext
+#                                 ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext punctuation.separator.root.lar.memetic-wikitext entity.name.tag.dynamic.lar.memetic-wikitext
+#                                   ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext
+
+x and lar:///ha.ka.ba/lares/api/pono?form="quoted" done
+#                                   ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext punctuation.separator.query.memetic-wikitext entity.other.attribute-name.memetic-wikitext
+#                                        ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext keyword.operator.assignment.memetic-wikitext markup.other.value.lar.memetic-wikitext
+#                                         ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext punctuation.definition.value.lar.memetic-wikitext markup.other.value.lar.memetic-wikitext
+#                                          ^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext markup.other.value.lar.memetic-wikitext
+#                                                ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext punctuation.definition.value.lar.memetic-wikitext markup.other.value.lar.memetic-wikitext
