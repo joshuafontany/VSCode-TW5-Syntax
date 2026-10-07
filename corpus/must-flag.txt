@@ -28,6 +28,18 @@
 # A grammar-class PREFERENCE — `carriers.blockcheck.mem` carries one call site that takes the equals
 # spelling over the colon — is not a fault and gets no entry here: `--grammar` reports it and moves
 # no byte unless a caller asks it to.
+#
+# `lares-version <text>`  — a FILE-LEVEL floor line (pytest's `importorskip(..., minversion=...)`
+#                            slot), not a per-specimen field: one `FAULT_PATTERNS` table in
+#                            must-flag.js reads EVERY specimen's output, so one floor line serves
+#                            it the same way a per-specimen field never would. The text is the
+#                            literal answer `lares --version` handed back when this ledger was last
+#                            adjudicated — today's live CLI carries no `--version` subcommand at
+#                            all, so the floor is literally its refusal text, captured once. A
+#                            mismatch at run time reports PENDING (named, attributed), never a
+#                            silent pass and never a block — see must-flag.js's header comment.
+
+lares-version lares: unknown command "--version".  Run `lares help` for the list.
 
 control-set.mem          frame-grammar,etb-bare   # two codes the frame grammar never admits: DC1 outside the ends it names, and a bare ETB literal
 carriers.blockcheck.mem  etb-bare                 # the same bare-ETB fault, standing beside a block check that otherwise closes clean
