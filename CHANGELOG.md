@@ -234,10 +234,12 @@ grammar. [`LEDGER-3.0.0.md`](LEDGER-3.0.0.md) names each one.
 - `tools/composition-check.js` and `npm run compose`: does a sample still read the same way
   with another sample in front of it? A construct reaching past its own file surfaces as the
   next file reading differently — the direction no other check looks in, and the one with no
-  allowance list. Its two pure halves stand under test in `tests/tools/`.
+  allowance list. Its two pure halves stand under test beside the tool itself, in
+  `tools/composition-check.test.js`.
 - `tools/upstream-coverage.js` and `npm run upstream-coverage`: TiddlyWiki's own rule regexes
   taken to TiddlyWiki's own tiddlers, asking whether this grammar reads each construct they
-  match. Its deciding half stands under test in `tests/tools/`, and CI runs it against a fresh
+  match. Its deciding half stands under test beside the tool itself, in
+  `tools/upstream-coverage.test.js`, and CI runs it against a fresh
   TiddlyWiki checkout so an upstream rule this grammar does not read surfaces on its own.
 - Tests derived from TiddlyWiki's own rule modules. Every wikitext rule declares the regex it
   matches on; `tiddlywiki5.inline-rules`, `tiddlywiki5.block-rules`, `tiddlywiki5.horizrule`
