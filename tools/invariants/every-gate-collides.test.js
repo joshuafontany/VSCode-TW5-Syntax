@@ -33,20 +33,23 @@ function toolOf(gate) {
 /**
  * Whether a test file plants a fault and watches the instrument find it.
  *
- * Four shapes count, and the fourth matters as much as the first. A gate whose deciding half stands
+ * Six shapes count, and the last two matter as much as the first. A gate whose deciding half stands
  * under unit test collides FASTER than one provoked through a sandbox: the test constructs the
  * faulty input directly and asserts a finding comes back. A test that only runs the tool over the
  * working tree and reads its summary counts for nothing here: it answers whether the tree happens
  * to stand clean today.
  */
-function collides(text) {
-  const code = text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+function collides(code) {
   return /runProvoked|runInSandbox/.test(code)                       // a fault written into a copy of the tree
     || /notStrictEqual\(\s*code\s*,\s*0/.test(code)                 // the tool refusing, on purpose
     || /assert\.throws/.test(code)                                    // a reader refusing, on purpose
     || /\.length,\s*[1-9]/.test(code)                                 // a finding counted, from constructed input
-    || /assert\.ok\([\w.]+\.length\s*[>)]/.test(code);
+    || /assert\.ok\([\w.]+\.length\s*[>)]/.test(code)
+    || /--must-fail/.test(code);                                      // the instrument's own planted-fault arm, run
 }
+
+/** A file's code, with its comments removed — a comment naming an instrument runs nothing. */
+const codeOf = (text) => text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
 
 const gates = gateNames();
 
@@ -63,8 +66,15 @@ const { walkMatching } = require('../walk.js');
 // Every test file, read once — from a WALK, never from one directory's listing. A listing stops at
 // the first directory it meets, so a collider moved one level down reads as absent and the gate it
 // plants a fault for reports uncollided.
+//
+// BOTH HALVES READ THE CODE. A name matched over raw text and a clause matched over stripped code
+// make two predicates one file can satisfy from two unrelated parts of itself: `theme-collision.js`
+// stood green on `theme-model.test.js`, which names the tool in a line-4 comment and collides a
+// different instrument entirely, while the real `--must-fail` arm beside the tool matched no clause.
+// So a comment naming an instrument runs nothing here, exactly as `corpus-ledgers.test.js:43` reads
+// a ledger named only in a comment as opening nothing.
 const suites = walkMatching(path.join(ROOT, 'tools'), (name) => name.endsWith('.test.js'))
-  .map((f) => ({ file: path.relative(ROOT, f), text: fs.readFileSync(f, 'utf8') }));
+  .map((f) => ({ file: path.relative(ROOT, f), code: codeOf(fs.readFileSync(f, 'utf8')) }));
 
 /**
  * Every test file that collides one instrument.
@@ -75,7 +85,7 @@ const suites = walkMatching(path.join(ROOT, 'tools'), (name) => name.endsWith('.
  */
 function collidersOf(tool) {
   const named = new RegExp(`\\b${tool.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`);
-  return suites.filter((s) => named.test(s.text) && collides(s.text)).map((s) => s.file);
+  return suites.filter((s) => named.test(s.code) && collides(s.code)).map((s) => s.file);
 }
 
 test('every gate carries a test somewhere', () => {
@@ -84,7 +94,7 @@ test('every gate carries a test somewhere', () => {
     const tool = toolOf(gate);
     if (!tool) continue;
     const named = new RegExp(`\\b${tool.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`);
-    if (!suites.some((s) => named.test(s.text))) bare.push(`${gate} -> ${tool}`);
+    if (!suites.some((s) => named.test(s.code))) bare.push(`${gate} -> ${tool}`);
   }
   assert.deepStrictEqual([...new Set(bare)], [], 'gate(s) no test names at all');
 });
