@@ -7,7 +7,7 @@
 uri-path = "ha.ka.ba/lares/api/pono/sigils"
 ```
 
-<<~ ahu #sigils>>
+<<~ ahu #/sigils>>
 
 !! Sigils, each on its own line
 
@@ -17,13 +17,7 @@ uri-path = "ha.ka.ba/lares/api/pono/sigils"
 <<~ kanawai "https://www.rfc-editor.org/rfc/rfc2119">>
 
 An address in prose: lar://alias:grant@host/heading.angle.dynamic/path#/fragment and one
-without an authority: lar:///ha.ka.ba/lares/docs/handoff#shift-grammar-watch.
-
-<<~/ahu>>
-
-<<^ code="&#x0003;">>ni:///sha-256;WiHePo4X8hNKGk_skGYcIXZdqre14RZK4R1sswFyhkw
-
-<<^ code="&#x0004;" -> to="?">>
+without an authority: lar:///ha.ka.ba/lares/docs/handoff#/shift-grammar-watch.
 
 A SIGIL NAMES ITS OWN VERB. TiddlyWiki reads `<<~ set …>>` as a call on a variable spelled `~`, so
 the verb binds as a positional argument and the base paints it like any unquoted value. The dialect
@@ -33,11 +27,21 @@ names it beside that reading rather than instead of it.
 
 <<~ oracle "a reading the house takes">>
 
-A closer names the sigil it closes, which TiddlyWiki reads as part of the variable name.
+A closer names the sigil it closes, which TiddlyWiki reads as part of the variable name. The form
+repeats as held text, named by its own dialect's fence meta rather than opened a second time as a
+live closer:
 
+```memetic-wikitext
 <<~/ahu>>
+```
 
 A BEARING ARROW STANDS BETWEEN TWO NAMED ENDS, and inside a sigil the base grammar's unquoted-value
 rule would take its dash and leave the angle to the parameters region — two tokens, neither named.
 
 <<~ lares aim from="lar://claude@lararium/the-verb.names.itself" -> to="?">>
+
+<<~/ahu>>
+
+<<^ code="&#x0003;">>ni:///sha-256;0dYUgDiGdGsYjGfeSFgA7DsV4t8w6ALtYogKgHzuPFQ
+
+<<^ code="&#x0004;" -> to="?">>
