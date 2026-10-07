@@ -395,6 +395,8 @@
         "attribute-guard": "node ./tools/attribute-guard.js",
         "page-palette": "node ./tools/page-palette.js",
         "theme-collision": "node ./tools/theme-collision.js",
+        "uri-span-measure": "node ./tools/uri-span-measure.js",
+        "uri-span-compare": "node ./tools/uri-span-compare.js",
         "theme-parity": "node ./tools/theme-parity.js",
         "swallow-witness": "node ./tools/swallow-witness.js",
         "recovery-witness": "node ./tools/recovery-witness.js",
