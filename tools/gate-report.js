@@ -125,14 +125,43 @@ function splitHarvest(text) {
   return at < 0 ? { head: text, body: null } : { head: text.slice(0, at), body: text.slice(at) };
 }
 
-/** A report body, projected for COMPARISON ONLY: a SKIPPED gate's reason names the environment (a
- * TiddlyWiki version, a missing CLI) that no two readers reproduce, so its `said` text must never
- * drift the comparison — only its STATE does. Every other gate still compares by its full summary
- * line, as `--check` always has. */
+// WHICH GATES A RULING LICENSES TO STAND DOWN, read from the ruling rather than from a list here.
+// `CIGates.tid`'s `standsDown` names each gate CI runs that answers "not here" where the capability
+// it reads is absent, with that capability and the reason. A gate not named there earns nothing
+// below.
+const STANDS_DOWN = new Set((() => {
+  try { return (require('./wiki-data.js').readData('CIGates.tid').data.standsDown ?? []).map((r) => r.gate); }
+  catch { return []; }
+})());
+
+/** A report body, projected for COMPARISON ONLY.
+ *
+ * A SKIPPED gate's reason names the environment (a TiddlyWiki version, a missing CLI) that no two
+ * readers reproduce, so its `said` text must never drift the comparison — only its STATE does.
+ *
+ * AND FOR A GATE A RULING LICENSES TO STAND DOWN, NOT EVEN ITS STATE. The baseline records ONE
+ * reader's run, so a gate whose capability stands there harvests as `held` carrying its full
+ * verdict, and the same gate reads `skipped` wherever the capability is absent — which is exactly
+ * CI, where no `lares` CLI stands. Measured: `--check` under the fork reader with the CLI stripped
+ * from PATH read `must-flag` SKIPPED and reported DRIFTED, exit 1, with every gate holding. No
+ * baseline can record both answers, and recording either one makes the other a fault nobody has.
+ * So a ruled gate compares by its NAME and by holding, which exit 0 already carries.
+ *
+ * This cannot manufacture the green that means "did not run": the licence comes from a RULING in
+ * the wiki naming the capability, an UNRULED gate that skips still drifts the comparison, the
+ * `skipped` count still counts every unruled skip, `ci-runs-the-gates.test.js` fails any instrument
+ * that gains a self-skip with nothing ruling it, and a ruled gate that FAILS still fails — the
+ * ruling excuses an absence, never a verdict.
+ *
+ * Every other gate still compares by its full summary line, as `--check` always has. */
 function comparable(body) {
   return {
     ...body,
-    results: body.results.map((r) => (r.state === 'skipped' ? { gate: r.gate, state: r.state } : r))
+    skipped: body.results.filter((r) => r.state === 'skipped' && !STANDS_DOWN.has(r.gate)).length,
+    results: body.results.map((r) => {
+      if (STANDS_DOWN.has(r.gate)) return { gate: r.gate };
+      return r.state === 'skipped' ? { gate: r.gate, state: r.state } : r;
+    })
   };
 }
 

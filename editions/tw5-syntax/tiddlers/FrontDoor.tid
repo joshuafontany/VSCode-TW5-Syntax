@@ -73,6 +73,13 @@ and must carry a self-skip its own instrument can print, and an instrument that 
 down with nothing ruling it there fails — so the roster cannot read 49 of 49 whether a gate
 answered or not.
 
+The ruling also tells `gate-report --check` what it may not compare. A baseline records ONE
+reader's run, so a gate whose capability stands there harvests with its full verdict and reads
+`skipped` wherever the capability is absent; no baseline carries both answers. A gate `standsDown`
+rules therefore compares by its NAME and by holding, and nothing else. An UNRULED gate that stands
+down still drifts the comparison, and a ruled gate that FAILS still fails — the ruling excuses an
+absence, never a verdict.
+
 `tools/ci-runs-the-gates.test.js` holds the workflow to that list rather than to a copy of it. A
 gate added to the manifest joins without anybody remembering, and a reason that stops answering to
 anything — a ruling for a gate CI runs anyway, or a stand-down ruling for an instrument that cannot

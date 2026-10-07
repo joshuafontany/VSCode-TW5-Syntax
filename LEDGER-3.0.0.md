@@ -1687,6 +1687,17 @@ back by upgrading, which is the definition this number answers to.
   rather than a second list beside it, and an instrument that gains a self-skip with nothing ruling
   it there fails. Before that, a gate could learn to stand down in silence and the roster read
   49 of 49 whether it answered or not.
+- A RULED STAND-DOWN MOVES A GATE'S STATE, not only its reason, and `--check` reads neither. Blanking
+  the reason answered half the question: a baseline records ONE reader's run, so a gate whose
+  capability stands there harvests as `held` with its full verdict while the same gate reads
+  `skipped` wherever the capability is absent — which is exactly CI, where no `lares` CLI stands.
+  Measured: `--check` under the fork reader with the CLI stripped from PATH read `must-flag` SKIPPED
+  and reported DRIFTED, exit 1, with all 49 gates holding. No baseline can record both answers, and
+  recording either makes the other a fault nobody has. So a gate `standsDown` RULES compares by its
+  name and by holding, which exit 0 already carries. The licence comes from the ruling, never from
+  the shape of the line: an unruled gate that skips still drifts, the `skipped` count still counts
+  every unruled skip, and a ruled gate that FAILS still fails — the ruling excuses an ABSENCE, never
+  a verdict.
 - A ruling's breadth answers to the GROUND it stands on. The guard scored a key's shape — wildcards
   and literal segments — and ranked ground backwards: `meta.codeblock.*` carries a wildcard and
   stands on 3.5% of corpus tokens, `meta.paragraph.tiddlywiki5` carries none and stood on 18%. Worse,
