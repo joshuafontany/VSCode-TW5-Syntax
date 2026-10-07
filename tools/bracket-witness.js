@@ -32,6 +32,7 @@ const { ROOT, tokenize } = require('./tokenizer.js');
 const { parseJsonc } = require('./jsonc.js');
 const { walkFiles } = require('./walk.js');
 const { defineLedger } = require('./ledger-shape.js');
+const { owedOf } = require('./reader-scope.js');
 
 const LEDGER = path.join(ROOT, 'corpus', 'bracket-ledger.txt');
 const CARRIER_DIRS = [path.join(ROOT, 'tests', 'samples'), path.join(ROOT, 'corpus')];
@@ -152,7 +153,7 @@ if (require.main !== module) return;
   const keys = new Set(found.map((r) => r.key));
   const unreadable = [...declared.keys()].filter((k) => k.startsWith('unreadable: '));
   const stale = [...declared.keys()].filter((k) => !k.startsWith('unreadable: ') && !keys.has(k));
-  const owed = found.filter((r) => /^OWED\b/.test(declared.get(r.key) || '')).length;
+  const owed = found.filter((r) => owedOf(declared.get(r.key))).length;
   for (const r of undeclared.slice(0, verbose ? undeclared.length : 12)) {
     console.log(`  RED ${r.file}:${r.line}:${r.col}  ${r.text} ${r.kind === 'open' ? 'opens and nothing closes it' : 'closes nothing'}`);
   }

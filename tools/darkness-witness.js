@@ -51,7 +51,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { ROOT, tokenize } = require('./tokenizer.js');
 const { boot, resolveTiddlyWiki, isPlainText, flatten } = require('./tw5-oracle.js');
-const { readerOf, appliesToReader } = require('./reader-scope.js');
+const { readerOf, appliesToReader, owedOf } = require('./reader-scope.js');
 const { carrierFiles } = require('./walk.js');
 const { defineLedger } = require('./ledger-shape.js');
 
@@ -216,7 +216,7 @@ async function run(argv) {
   // reader-specificity the declaration names, never staleness.
   const stale = [...declared.keys()].filter((k) => !k.startsWith('unreadable: ') && !darkKeys.has(k)
     && appliesToReader(readerOf(declared.get(k)).version, current));
-  const owed = dark.filter((d) => declared.has(d.key) && /^OWED\b/.test(readerOf(declared.get(d.key)).rest)).length;
+  const owed = dark.filter((d) => declared.has(d.key) && owedOf(declared.get(d.key))).length;
   for (const d of undeclared.slice(0, verbose ? undeclared.length : 12)) {
     console.log(`  ${d.verdict} ${d.file}:${d.line} ${d.rule}  ${JSON.stringify(d.text.slice(0, 70))}`);
   }
