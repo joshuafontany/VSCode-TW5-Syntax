@@ -3,12 +3,12 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 50 of 50
+gates-held: 49 of 49
 tw5-version: 5.5.0-prerelease
 
 {
-    "gates": 50,
-    "held": 50,
+    "gates": 49,
+    "held": 49,
     "failing": 0,
     "skipped": 0,
     "results": [
@@ -247,12 +247,6 @@ tw5-version: 5.5.0-prerelease
             "said": "snapshot-check  text.html.tiddlywiki5.memetic-wikitext  4 pinned, 0 drifted"
         },
         {
-            "gate": "snap-meta",
-            "held": true,
-            "state": "held",
-            "said": "snapshot-check  source.tiddlywiki5.tid-file  1 pinned, 0 drifted"
-        },
-        {
             "gate": "snap-multids",
             "held": true,
             "state": "held",
@@ -265,10 +259,10 @@ tw5-version: 5.5.0-prerelease
             "said": "snapshot-check  text.html.tiddlywiki5.test  1 pinned, 0 drifted"
         },
         {
-            "gate": "snap-tid",
+            "gate": "snap-tid-meta",
             "held": true,
             "state": "held",
-            "said": "snapshot-check  source.tiddlywiki5.tid-file  2 pinned, 0 drifted"
+            "said": "snapshot-check  source.tiddlywiki5.tid-file  3 pinned, 0 drifted"
         },
         {
             "gate": "snap-wikitext",
