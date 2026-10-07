@@ -7,7 +7,7 @@
 uri-path = "ha.ka.ba/lares/api/pono/carriers"
 ```
 
-<<~ ahu #carriers>>
+<<~ ahu #/carriers>>
 
 !! A carrier naming no control code
 
@@ -56,12 +56,6 @@ bearing arrow -> reads as a bearing wherever the base grammar names nothing.
 
 and lar:///ha.ka.ba/lares/api/pono?form="quoted" carries a named value the TW5 way.
 
-<<~/ahu>>
-
-<<^ code="&#x0003;">>ni:///sha-256;Y_rg3M4DJ-823JkEC9WafbWn2mL3L1FtZUwmMeUGQ_A
-
-<<^ code="&#x0004;" -> to="?">>
-
 A BLOCK CHECK NAMES INFORMATION BY ITS DIGEST, and the base grammar reads a link inside it. Measured,
 21 of 22 hashes this house has written carry a CamelCase run the autolink rule takes.
 
@@ -94,3 +88,9 @@ check = "ni:///sha-256;held-in-a-toml-fence"
 ```memetic-wikitext
 lar://read:this-fence@nowhere/the.dialect.reads-here check ni:///sha-256;addressed-in-its-own-tongue
 ```
+
+<<~/ahu>>
+
+<<^ code="&#x0003;">>ni:///sha-256;btpiMHCg5L6ghtz2JenhjKdUtXeIDdIqbZ3pYssG73w
+
+<<^ code="&#x0004;" -> to="?">>

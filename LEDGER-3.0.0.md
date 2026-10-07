@@ -1813,6 +1813,25 @@ back by upgrading, which is the definition this number answers to.
   `IN_PROCESS_GATES` and `runInProcess` are gone from `gate-report.js`. `ORACLE_TRACE` (off by
   default) stays — it is what proved the memo's effect, and the only instrument that can prove
   it again.
+- CONTENT AFTER A CARRIER'S CLOSE READS UNPONO. `classifyPostEot` in
+  `packages/lararium-memetic-frame/src/check.ts` flags any non-whitespace byte standing after a
+  carrier's terminating EOT mark, unconditionally, and fencing admits no exemption from it — the
+  checker reads correctly, and a carrier that keeps teaching past its own close is the thing
+  wrong. One file holds one carrier, so a lesson belongs INSIDE the frame rather than trailing it.
+  `tests/samples/memetic.carriers-and-uris.mem` and `tests/samples/memetic.sigils.mem` both taught
+  past their EOT; both now carry that teaching before their ETX, in the same order they taught it
+  in, with the block check re-stamped over the body it now follows (`lares meme normalize` applied
+  the restamp and two pre-existing FRAME-clause rewrites — an ahu slot's fragment anchor on each
+  file — and reported, without applying, a pre-existing GRAMMAR-class preference on
+  `memetic.carriers-and-uris.mem` that predates this ruling). A demonstration of a frame mark reads
+  as held text inside the body, never as a second live mark: `carriers-and-uris.mem` already held
+  one second-ETX demonstration inside a ```` ```memetic-wikitext ```` fence, and `sigils.mem`'s
+  demonstration of a bare `<<~/ahu>>` closer is fenced the same way rather than standing as a
+  second live closer. Both files read `all 1 carrier(s) canonical` under `lares meme check` with
+  no post-EOT fault and no torn fault. `corpus/memetic/control-set.mem` and
+  `corpus/memetic/carriers.blockcheck.mem` carry their own checker faults deliberately — codes the
+  frame grammar does not admit — and this ruling leaves them standing: whether a grammar fixture
+  owes the carrier checker cleanliness at all is a separate ruling nobody has made.
 
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`
