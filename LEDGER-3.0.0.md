@@ -771,6 +771,67 @@ back by upgrading, which is the definition this number answers to.
   grammar directly through `vscode-textmate`.
 
 ### Naming
+- AN UNDERLINE IS ONE STROKE; A TEXTURE IS MANY JOINTS — THE SAME SEPARATOR READS OPPOSITE WAYS IN
+  THE TWO GRAMMARS. Watched in the editor rather than measured first: the base grammar's underlined
+  autolinks read as ONE continuous stroke, and a punctuation-coloured separator inside that stroke
+  breaks it into stitched pieces. Measured, three legibility pairs fell below their floors from
+  splitting the base's `:`/`//` into their own punctuation ink — a bare URL against a code span 60/65
+  (floor 61), against a wikilink 54/65 (floor 61), against a transclusion 61/65 (floor 65) — and every
+  variant tried (colon only, slashes only, both, explicitly stacked) measured IDENTICALLY, because any
+  `punctuation.*` leaf anywhere in that span lets a theme's blanket punctuation rule recolour it. The
+  base grammar KEEPS its fused scheme run (`syntaxes/tiddlywiki5.json` untouched); that refusal stands
+  as a ruling, not a defeat. The dialect's `lar:`/`ni:` addresses carry NO underline (ruled days
+  earlier), so they have no stroke to break, and RULED 2026-10-08: there the separator takes the OTHER
+  reading — every interior separator stacks the ink of the segment it opens (a scheme separator joins
+  its scheme word; a root/path slash joins the segment it introduces; the authority's `:`/`@` join the
+  role/place that follow; `ni:`'s `;` joins the digest; `#` joins the anchor) rather than reading as
+  plain punctuation. Measured with `tools/uri-span-measure.js`/`tools/uri-span-compare.js` and
+  `tools/theme-model.js` `styleOf` across all 65 bundled themes on three samples (`lar:///…` local
+  address, `lar://persona:role@place/…` session address, `ni:///sha-256;…`): every colour the address
+  resolves into AFTER the restack is a SUBSET of the colours it resolved into BEFORE, in 65/65 themes
+  for all three samples — the restack introduces no new ink, it only removes the stray default-coloured
+  freckle the old colourless separators contributed, merging those pixels into the ink of the segment
+  beside them. The address's distinct-colour count therefore drops (local: 3.48→2.48 avg; session:
+  3.54→2.91 avg; ni: 2.72→2.12 avg) while the NAMED segment groups stay exactly as distinguishable from
+  one another as they were — no two previously-distinct groups collapsed into each other's colour in
+  any theme. `https://` stands as the control and reads byte-identical before and after (`https.scheme`/
+  `https.body`, 0/65 changed). `syntaxes/tiddlywiki5.json` is not touched by this ruling.
+- THE SECOND EYES-ON PASS: A COMPANION INK PARTS A PAIR, BUT ONLY WHEN NO ONE ELSE ALREADY OWNS IT.
+  Watching the first pass land, the operator found the scheme run and the authority painting
+  IDENTICALLY in Gruvbox (all six variants) — measured, 18 of 65 bundled themes share one generic
+  rule across both `support.type` and `entity.name`, so `lar:` and `claude@lararium` read as one
+  colour wherever a theme never specialises past those two broad buckets. Priced against moving the
+  AUTHORITY (stacking a companion onto persona/role/place): every real companion tried that parted
+  the scheme collision also regressed persona's existing distinctness from the root triad, a cost
+  the house refuses. Moving the SCHEME'S OWN family instead cost nothing measured: `support.constant`
+  stacked innermost (still inside the `support` family the scheme already wears — a URI scheme is a
+  fixed, reserved identifier, the same spirit as a language's `support.constant`) drops the
+  scheme/authority collision from 18/65 to 4/65 (Gruvbox, kanagawa and material-theme fully part; the
+  4 remaining — horizon, horizon-bright, synthwave-84, vesper — fall to the editor default rather than
+  colliding with anything painted), while scheme-vs-root-triad IMPROVES (9/65 to 3/65) and
+  scheme-vs-path IMPROVES (21/65 to 8/65). A second, separate finding — root triad, path text and the
+  fragment ALL fusing in Kimbie Dark (not a bundled theme; one-light, red, solarized-dark,
+  solarized-light and vesper reproduce it) — was MEASURED AND REFUSED rather than patched: the one
+  companion (`constant.other`) that parted path from the root/fragment kin-collision (5/65 to 1/65)
+  sits under the SAME ancestor `ni:`'s pre-existing digest family already owns
+  (`constant.other.checksum.ni`), so the fix traded one collision for a worse one — path-vs-digest
+  jumped from 8/65 to 45/65, breaking the house's own `ni:'s digest stays distinct from its algorithm`
+  floor by proxy. Every other real, currently-themed family swept either collided with something ELSE
+  already assigned that family, or matched no bundled theme at all (a safe no-op, no fix). `path`
+  stands as the first pass left it; this fusion is REPORTED, not patched, pending either a new family
+  for `ni:`'s digest or the operator explicitly accepting the trade. The query joined the ruling in
+  this pass too: `?`/`&` now stack the key's own ink (they open the query's first/next pair); `=` and
+  the bare value both stack a new `markup.other.value.lar` (the key and value's own honest family,
+  chosen because every OTHER real candidate swept regressed an already-distinct pair; it currently
+  reaches 0/65 bundled themes, an honest no-op rather than a dishonest or regressive paint); and a
+  QUOTED value (`?form="quoted"`, the corpus's own form) now renders at all — before this pass the
+  region's own `end` pattern closed on the opening quote, so a quoted value fell OUT of the URI
+  entirely and read as plain prose, not even a `string` ancestor. `applyEndPatternLast: true` lets the
+  new quoted-value pattern win that tie; checked against every other character `end` watches for
+  (space, `>`, `]`, an unpaired quote with no preceding `=`), nothing in `patterns` fires there, so the
+  region still closes exactly where it did everywhere except the one case this exists to fix. No
+  measured pair regressed anywhere in this pass (checked against the full pair set the first pass
+  left, not just the pairs the operator named).
 - A STYLED SUFFIX'S TEXT IS A VALUE, NOT A MARK. `filteredtranscludeinline.js` closes on `}}`, an
   optional style, then `}`, and the grammar named the whole `}}style}` run one delimiter — so the
   style text between the braces wore the closer's own punctuation, and ablating one of its letters

@@ -52,6 +52,10 @@ stray < angle bracket takes the verdict here that it takes there.
 A query names its terms after the path — lar:///ha.ka.ba/lares/api/pono?mode=draft&hud=aim — and a
 bearing arrow -> reads as a bearing wherever the base grammar names nothing.
 
+!! A lar URI's own query takes a quoted value too
+
+and lar:///ha.ka.ba/lares/api/pono?form="quoted" carries a named value the TW5 way.
+
 <<~/ahu>>
 
 <<^ code="&#x0003;">>ni:///sha-256;Y_rg3M4DJ-823JkEC9WafbWn2mL3L1FtZUwmMeUGQ_A

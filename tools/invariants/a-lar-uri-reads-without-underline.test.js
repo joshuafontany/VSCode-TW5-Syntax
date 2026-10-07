@@ -106,27 +106,35 @@ test('no bundled theme renders a lar: or ni: span underlined', live, async () =>
   assert.deepStrictEqual(failures, [], failures.join('\n  '));
 });
 
-test('a lar: root term keeps a foreground distinct from its neighbouring punctuation', live, async () => {
-  // What the retired underline cure was really protecting: a reader must still be able to tell
-  // the heading/angle/dynamic terms apart from the dots and slashes beside them, even with
-  // nothing underlined and the enclosing family colourless. This checks the thing directly
-  // rather than the underline that used to stand in for it.
+// RETIRES this file's own prior third test, 'a lar: root term keeps a foreground distinct from
+// its neighbouring punctuation' (asserted distinct >= 20/65). RULED 2026-10-08 (the texture pass):
+// that assertion encoded the premise this file's OWN header describes retiring from the underline
+// era — a colourless separator, distinct from the leaf beside it because nothing told it to match.
+// The operator's own eyes-on reading reversed it: this dialect carries no underline to protect, so
+// the separator stops reading as plain punctuation and instead takes the ink of the segment it
+// OPENS — the root's dot now wears the SAME foreground as the term that follows it, on purpose, in
+// every theme that reaches either name at all. A `distinct >= 20` floor would now fail on the
+// correct grammar and pass on a reverted one; keeping it would guard the wrong direction.
+test('a lar: root term shares its foreground with the dot that opens it, not with the one it leaves', live, async () => {
   const themes = loadThemes();
   const { tokens } = await tokenizeFrom(DIALECT, [LINE]);
   const row = tokens[0];
-  const headingStack = stackAt(row, LINE.indexOf('ha.ka.ba'));
-  const dotStack = stackAt(row, LINE.indexOf('.', LINE.indexOf('ha.ka.ba')));
-  let distinct = 0;
+  const headingAt = LINE.indexOf('ha.ka.ba');
+  const angleAt = LINE.indexOf('ka.ba');
+  const dynamicAt = LINE.indexOf('ba', angleAt);
+  const dot1At = LINE.indexOf('.', headingAt); // between heading and angle — opens angle
+  const dot2At = LINE.indexOf('.', angleAt); // between angle and dynamic — opens dynamic
+  const angleStack = stackAt(row, angleAt);
+  const dynamicStack = stackAt(row, dynamicAt);
+  const dot1Stack = stackAt(row, dot1At);
+  const dot2Stack = stackAt(row, dot2At);
+  let sameAsOpened = 0;
   for (const t of themes) {
-    const h = styleOf(headingStack, t);
-    const d = styleOf(dotStack, t);
-    if (h.foreground !== d.foreground) distinct++;
+    if (styleOf(dot1Stack, t).foreground === styleOf(angleStack, t).foreground) sameAsOpened++;
+    if (styleOf(dot2Stack, t).foreground === styleOf(dynamicStack, t).foreground) sameAsOpened++;
   }
-  // A floor, not a literal: this records the measured reach rather than asserting every theme —
-  // the base https autolink's own body-vs-punctuation reach is the published, trusted reference
-  // (`a-uri-wears-its-family.test.js`'s sibling control). Re-measure and raise this floor if the
-  // true count moves; a floor set to the vocabulary of the day and never revisited would fail
-  // silently the day a future rename widened the gap and nobody noticed it could be raised.
-  assert.ok(distinct >= 20,
-    `the heading term's foreground differs from its own dot's in only ${distinct}/${themes.length} theme(s)`);
+  // Every theme's dot matches the term it OPENS (angle for dot1, dynamic for dot2) — the texture
+  // pass's own claim, checked rather than assumed.
+  assert.strictEqual(sameAsOpened, themes.length * 2,
+    `a root dot's foreground differs from the term it opens in some theme(s) — expected every one of ${themes.length * 2} checks to match, got ${sameAsOpened}`);
 });
