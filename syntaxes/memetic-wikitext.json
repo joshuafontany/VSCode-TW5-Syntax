@@ -34,13 +34,16 @@
             "name": "meta.uri.lar.memetic-wikitext",
             "begin": "\\b(lar)(:\\/\\/|:)((?:[^:@/\\s]+:[^@/\\s]+@[^/\\s]+|[^:@/\\s]+@[^/\\s]+)?)(?:(/)(?=[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+(?:[/\\s>\"\\']|$)))?([^\\s>\"\\'?#\\]]*)",
             "end": "(?=[\\s>\"'\\]])|$",
+            "applyEndPatternLast": true,
+            "endComment": "RULED 2026-10-08 (the operator's SECOND eyes-on pass): a quoted query value opens on the same quote character this `end` pattern watches for, so without this flag the region closed BEFORE the new quoted-value pattern (in `patterns` below) ever got a turn, and `?form=\"quoted\"` read as plain paragraph text past the `=` — not even a 'string' ancestor, nothing at all. `applyEndPatternLast` tries every nested pattern FIRST at a tied position and falls back to `end` only if none claims it; checked against every OTHER character this `end` matches (plain space, '>', ']', an unpaired quote with no preceding '='), no pattern in this rule's `patterns` list can start a match there, so the region still closes exactly where it did before everywhere except the one case this exists to fix.",
             "beginCaptures": {
                 "1": {
-                    "name": "keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext"
+                    "comment": "RULED 2026-10-08 (the operator's SECOND eyes-on pass, parting the scheme run from the authority): measured with tools/theme-model.js styleOf, `support.type.scheme.lar` alone shares its resolved colour with the bare `entity.name` the persona/role/place leaves fall back to in 18 of 65 themes — Gruvbox (all six variants), horizon/horizon-bright, kanagawa (dragon/lotus/wave), material-theme (all five variants), synthwave-84 and vesper — because those themes paint one generic rule across BOTH `support.type` and `entity.name` (measured literal collision, e.g. Gruvbox's `#fabd2f` names both). Priced against moving the authority instead (stacking a companion onto persona/role/place): every companion tried that parted the scheme collision also regressed persona's existing distinctness from the root triad (2/65 to no fewer than 5/65), a REGRESSION the house forbids. Moving the SCHEME'S OWN family instead costs nothing measured: `support.constant.scheme.lar` added innermost drops the scheme/authority collision from 18/65 to 4/65 (the remaining 4 are material-theme variants where the scheme simply falls to the editor default rather than colliding with anything painted), while scheme's collision with the root triad IMPROVES (9/65 to 3/65) and with path text improves (21/65 to 8/65) — no pair measured regresses. `support.constant` stays inside the `support` family the scheme already wears (a URI scheme is a fixed, reserved identifier, same spirit as a language's `support.constant`), so it names nothing dishonest.",
+                    "name": "keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext support.constant.scheme.lar.memetic-wikitext"
                 },
                 "2": {
-                    "comment": "The whole scheme-separator run — '://' or the bare ':' — reads as ONE punctuation span, not just the colon. RULED 2026-10-08 (the texture pass, reversing the colourless-separator ruling for THIS dialect only — the base grammar's autolink keeps its fused run, see LEDGER-3.0.0.md): a scheme run paints as ONE colour, the way the base's own `https://` does, so the separator stacks the SAME scheme family the scheme word (capture 1) already carries, innermost, so it wins the colour while `punctuation.definition.scheme` survives as the outer name for selectors.",
-                    "name": "punctuation.definition.scheme.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext"
+                    "comment": "The whole scheme-separator run — '://' or the bare ':' — reads as ONE punctuation span, not just the colon. RULED 2026-10-08 (the texture pass, reversing the colourless-separator ruling for THIS dialect only — the base grammar's autolink keeps its fused run, see LEDGER-3.0.0.md): a scheme run paints as ONE colour, the way the base's own `https://` does, so the separator stacks the SAME scheme family the scheme word (capture 1) already carries, innermost, so it wins the colour while `punctuation.definition.scheme` survives as the outer name for selectors. RULED 2026-10-08 (second pass): carries capture 1's same `support.constant.scheme.lar` addition, for the same reason — see capture 1's comment.",
+                    "name": "punctuation.definition.scheme.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext support.constant.scheme.lar.memetic-wikitext"
                 },
                 "3": {
                     "name": "meta.uri.authority.lar.memetic-wikitext",
@@ -91,6 +94,7 @@
                 "5": {
                     "comment": "Was `string.unquoted.uri.lar.memetic-wikitext` — a 'string' ancestor most themes colour, which left every OTHER path separator loud even though each already carried its own punctuation leaf name. Then `meta.uri.path.lar.memetic-wikitext`, colourless (0/65 themes) — honest about naming no construct, but costing arbitrary path text ANY selector at all. PRICED 2026-10-06: `variable.other.constant.path.lar.memetic-wikitext` reaches 65/65 (via `variable`/`variable.other.constant`/`variable.other`) while staying a distinct family from the root triad's `entity.name.tag.*` leaves below — `entity.name.tag.lar…` also reaches 65/65 but collapses that distinction, and a `string.unquoted…` name re-introduces the string ancestor the prior ruling removed. RE-PRICED 2026-10-07 (the operator's cascade reading, measured): a space-joined name reads as a FALLBACK CHAIN — the innermost name a theme reaches wins each property its own rule sets, and a theme reaching none of it keeps what the outer name resolved. So the wrapper stacks `entity.name.other.path.lar.memetic-wikitext` INSIDE `variable.other.constant.path.lar.memetic-wikitext`: painted-and-visible rises from 44/65 to 59/65 because the two names stand quiet in nearly disjoint theme sets, reached-and-invisible falls from 21/65 to 6/65 (clear of the house bar of 16, where the single name stood one above it), the root triad keeps its distinctness at 60/65, and the outer name remains an ancestor so the separators nested in it keep the quiet joint they read today (6/65, where either single-name swap cost it half). `entity.name.other` names a real entity leaf and never `.tag`, so it collides with no root term. Every '/' inside still reads the quiet way capture 4's does.",
                     "name": "variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext",
+                    "comment": "RULED 2026-10-08 (the operator's SECOND eyes-on pass, in Kimbie Dark: `/ha.ka.ba/lares/docs/reading#/the-eye.lands` read as ALL ONE colour — the root triad, the path text AND the fragment fused). Kimbie Dark is not among the house's 65 bundled themes; five bundled themes reproduce the phenomenon by eye — one-light, red, solarized-dark, solarized-light, vesper — because they rule on the bare `entity.name` selector with no deeper distinction, the same mechanism as the scheme/authority collision above. MEASURED AND REFUSED: stacking `constant.other.path.lar` innermost drops path-vs-root-triad from 5/65 to 1/65 and path-vs-fragment the same, but `constant.other.checksum.ni` (ni:'s own pre-existing digest family, untouched by this pass) sits under the SAME `constant.other` ancestor — the fix that parts path from root/frag in the kin themes COLLIDES path with ni:'s digest instead, 8/65 to 45/65, a regression the house forbids outright (`ni:'s digest stays distinct from its algorithm` was the stated floor; this breaks path-against-digest instead, which was never asked to move). Every other real, currently-themed family swept (variable.*, support.*, keyword.*, markup.*, entity.other.*) either sits under an ancestor some OTHER segment already claims (same collision, different victim) or matches no bundled theme at all (a safe no-op that does not fix the finding). `string.regexp` alone measured clean on every bound, and is refused on principle — it is the SAME `string` ancestor the 2026-10-06 ruling removed from this family, for the same reason (a blanket theme rule would drown the separators beside it). This pass leaves path AS IT STOOD after the first eyes-on round; the Kimbie-kin fusion stands UNFIXED, reported rather than patched with a regression, pending either a new family for ni:'s digest (freeing `constant.other` for path) or the operator accepting the path-vs-digest cost explicitly.",
                     "patterns": [
                         {
                             "comment": "The root segment: heading, angle of approach, carried dynamic. No leading slash here — capture 4 already consumed it when the lookahead matched. RULED 2026-10-08 (the texture pass): each dot takes the ink of the leaf it opens — dot1 opens angle, dot2 opens dynamic — so the SAME existing punctuation name now splits into two stacked forms rather than reading identically; a theme ruling on the bare `punctuation.separator.root.lar` name alone still reaches both.",
@@ -114,7 +118,7 @@
                             }
                         },
                         {
-                            "comment": "Any other path separator (including the leading slash of a lar: URI whose body does not open with a heading.angle.dynamic root, where capture 4 above did not fire). RULED 2026-10-08 (the texture pass): a path slash resolves to the SAME ink as the path text beside it, so it carries that text's exact stacked name — the two-level `variable.other.constant.path` / `entity.name.other.path` fallback chain, not just the inner leaf.",
+                            "comment": "Any other path separator (including the leading slash of a lar: URI whose body does not open with a heading.angle.dynamic root, where capture 4 above did not fire). RULED 2026-10-08 (the texture pass): a path slash resolves to the SAME ink as the path text beside it, so it carries that text's exact stacked name — the two-level `variable.other.constant.path` / `entity.name.other.path` fallback chain, not just the inner leaf. (Second pass: path's wrapper above was NOT given a third companion — see its own comment — so this separator stays as the first pass left it.)",
                             "match": "/",
                             "name": "punctuation.separator.path.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext"
                         }
@@ -123,9 +127,24 @@
             },
             "patterns": [
                 {
-                    "comment": "A value claims everything up to the next separator.",
+                    "comment": "A quoted value — `?form=\"quoted\"`, the corpus's own form (corpus/memetic/reading.in-prose.mem). RULED 2026-10-08 (the operator's SECOND eyes-on pass): before this rule, the lar-uri region's own `end` pattern stops at the opening quote (`(?=[\\s>\"'\\]])`), so a quoted value fell OUT of the URI entirely and read as plain paragraph text — not even a 'string' ancestor, nothing at all. This pattern is tried before that `end` match consumes the quote, so it wins the position and the value stays INSIDE the URI. The quote marks and the text between them both wear `markup.other.value.lar.memetic-wikitext` — chosen BY MEASUREMENT, not the obvious `string.quoted...`, which the house already ruled out for this family (see capture 5's comment above: a 'string' ancestor lets a theme's blanket rule drown every separator beside it). Priced against half a dozen honest alternatives (variable/constant/entity.other/support families), every one that painted ANY colour in any of the 65 bundled themes also introduced a NEW non-default collision with an already-distinct pair (persona, the root triad, or ni's digest) that the house forbids regressing. `markup.other.value.lar` is the only candidate measured to introduce ZERO new non-default collisions anywhere — its cost, stated plainly: it paints 0 of 65 bundled themes (none of them rule on bare `markup.other`), so the value reads as the editor's own default ink everywhere today. A future pass that finds a family painting SOME themes without regressing a measured pair should take it over this one; this ruling prefers an honest, safe no-op to a dishonest or regressive paint.",
+                    "match": "(?<==)([\"'])([^\"']*)([\"'])",
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.value.lar.memetic-wikitext markup.other.value.lar.memetic-wikitext"
+                        },
+                        "2": {
+                            "name": "markup.other.value.lar.memetic-wikitext"
+                        },
+                        "3": {
+                            "name": "punctuation.definition.value.lar.memetic-wikitext markup.other.value.lar.memetic-wikitext"
+                        }
+                    }
+                },
+                {
+                    "comment": "A bare value claims everything up to the next separator. RULED 2026-10-08 (second pass): carries the SAME `markup.other.value.lar` the quoted form above now wears, innermost, so a reader meets ONE value family whether or not it is quoted — the pre-existing `string.unquoted.memetic-wikitext` name stays as the outer/ancestor name (nothing selecting on it loses reach), but no longer decides the colour.",
                     "match": "(?<==)[^\\s>\"'&#\\]]+",
-                    "name": "string.unquoted.memetic-wikitext"
+                    "name": "string.unquoted.memetic-wikitext markup.other.value.lar.memetic-wikitext"
                 },
                 {
                     "include": "#named-param"
@@ -134,8 +153,9 @@
                     "include": "#fragment"
                 },
                 {
+                    "comment": "RULED 2026-10-08 (the operator's SECOND eyes-on pass): `?` opens the query's first key and `&` opens the next one, so both now stack the key's own ink (`#named-param`'s `entity.other.attribute-name.memetic-wikitext`) rather than reading as plain punctuation — the same interior-separator law as every other joint in this file, folded in now that the query itself is in scope.",
                     "match": "[?&]",
-                    "name": "punctuation.separator.query.memetic-wikitext"
+                    "name": "punctuation.separator.query.memetic-wikitext entity.other.attribute-name.memetic-wikitext"
                 }
             ]
         },
@@ -161,14 +181,14 @@
             "comment": "The bearing arrow rides as an unnamed positional between two named ends. A bare `?` names nothing on its own — an end states itself as `from=?` or `to=?`, where the glyph reads as an ordinary value."
         },
         "named-param": {
-            "comment": "The memetic standard writes key=value. TiddlyWiki reads `=` as the new-style separator (parseMacroParameterAsAttribute in core/modules/parsers/parseutils.js), which admits a filtered, indirect or macro value; a colon admits neither and demands a strict identifier so $:/foo cannot mis-parse.",
+            "comment": "The memetic standard writes key=value. TiddlyWiki reads `=` as the new-style separator (parseMacroParameterAsAttribute in core/modules/parsers/parseutils.js), which admits a filtered, indirect or macro value; a colon admits neither and demands a strict identifier so $:/foo cannot mis-parse. RULED 2026-10-08 (the operator's SECOND eyes-on pass): this rule is private to lar-uri (its only `#named-param` include), so `=` safely gains the value's own ink, `markup.other.value.lar.memetic-wikitext`, innermost — the interior-separator law applied to the one query separator this shared rule owns. The key's existing name stands unchanged; it was never named dishonest and no measured pair needed it moved.",
             "match": "\\b([A-Za-z0-9_-]+)\\s*(=)",
             "captures": {
                 "1": {
                     "name": "entity.other.attribute-name.memetic-wikitext"
                 },
                 "2": {
-                    "name": "keyword.operator.assignment.memetic-wikitext"
+                    "name": "keyword.operator.assignment.memetic-wikitext markup.other.value.lar.memetic-wikitext"
                 }
             }
         },
