@@ -30,9 +30,9 @@
             ]
         },
         "lar-uri": {
-            "comment": "A lar: URI reads as an address wherever it stands, sigil or prose. TW5 binds no rule to the scheme, so the base grammar takes its '//' for an italic run. RULED 2026-10-06 (lar:///ha.ka.ba/lares/api/pono.uri-palette, the punctuation-and-no-underline pass): a lar: address NAMES rather than fetches, so the whole family wears a COLOURLESS parent — `meta.uri.lar.memetic-wikitext`, measured 0/65 bundled themes give it any foreground or fontStyle of its own — and every separator (the scheme's own ':'/'://, the slash introducing the root, every other path slash, the authority's ':'/'@') reads as plain punctuation with nothing to override it. Each NAMED leaf (persona, role, place, heading, angle, dynamic) still carries its own distinguishing scope and so keeps its own ink; arbitrary path text carries none and reads as ordinary prose, which is honest — it is not a construct this grammar names. Only '=' names a parameter.",
+            "comment": "A lar: URI reads as an address wherever it stands, sigil or prose. TW5 binds no rule to the scheme, so the base grammar takes its '//' for an italic run. RULED 2026-10-06 (lar:///ha.ka.ba/lares/api/pono.uri-palette, the punctuation-and-no-underline pass): a lar: address NAMES rather than fetches, so the whole family wears a COLOURLESS parent — `meta.uri.lar.memetic-wikitext`, measured 0/65 bundled themes give it any foreground or fontStyle of its own — and every separator (the scheme's own ':'/'://, the slash introducing the root, every other path slash, the authority's ':'/'@') reads as plain punctuation with nothing to override it. Each NAMED leaf (persona, role, place, heading, angle, dynamic) still carries its own distinguishing scope and so keeps its own ink. RULED 2026-10-06 (path text gets a name themes paint): arbitrary path text — any segment past the heading.angle.dynamic root — now wears `variable.other.constant.path.lar.memetic-wikitext` rather than a colourless wrapper, reaching 65/65 themes while staying a distinct family from the root triad's own leaves (see that scope's own comment below). Only '=' names a parameter. RULED 2026-10-07 (the operator's eyes-on pass): the role wears `entity.name.role.lar.memetic-wikitext`, not `support.role…`. The old name reached 23 of 65 bundled themes, through the bare `support` prefix alone, so a role read as fallback text beside two siblings that paint — persona and place both reach 40 of 65 under `entity.name`, and the role now reaches the same 40, so the authority's three parts paint together or not at all.",
             "name": "meta.uri.lar.memetic-wikitext",
-            "begin": "\\b(lar)(:\\/\\/|:)((?:[^:@/\\s]+:[^@/\\s]+@[^/\\s]+)?)(?:(/)(?=[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+(?:[/\\s>\"\\']|$)))?([^\\s>\"\\'?#\\]]*)",
+            "begin": "\\b(lar)(:\\/\\/|:)((?:[^:@/\\s]+:[^@/\\s]+@[^/\\s]+|[^:@/\\s]+@[^/\\s]+)?)(?:(/)(?=[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+(?:[/\\s>\"\\']|$)))?([^\\s>\"\\'?#\\]]*)",
             "end": "(?=[\\s>\"'\\]])|$",
             "beginCaptures": {
                 "1": {
@@ -44,6 +44,7 @@
                 },
                 "3": {
                     "name": "meta.uri.authority.lar.memetic-wikitext",
+                    "comment": "RULED 2026-10-06 (a roleless authority reads as an authority): the seed's own session form (`#/lar-uri`) spells `alias:grant@host` — a role is the law's own shape — so a bare `persona@place` stands in TENSION with it, common in practice but not licensed there. Ruled anyway: the base's begin regex now admits EITHER shape, and this second alternative reuses the first one's EXISTING leaf names — persona, the authority separator, place — with no role capture at all, because none stands. No new scope name was needed for either half.",
                     "patterns": [
                         {
                             "comment": "The authority: a persona, the role it holds, and the place it stands.",
@@ -56,12 +57,27 @@
                                     "name": "punctuation.separator.role.lar.memetic-wikitext"
                                 },
                                 "3": {
-                                    "name": "support.role.lar.memetic-wikitext"
+                                    "name": "entity.name.role.lar.memetic-wikitext"
                                 },
                                 "4": {
                                     "name": "punctuation.separator.authority.lar.memetic-wikitext"
                                 },
                                 "5": {
+                                    "name": "entity.name.place.lar.memetic-wikitext"
+                                }
+                            }
+                        },
+                        {
+                            "comment": "The roleless authority: a persona and the place it stands, no role between them.",
+                            "match": "([^:@/\\s]+)(@)([^/\\s]+)",
+                            "captures": {
+                                "1": {
+                                    "name": "entity.name.persona.lar.memetic-wikitext"
+                                },
+                                "2": {
+                                    "name": "punctuation.separator.authority.lar.memetic-wikitext"
+                                },
+                                "3": {
                                     "name": "entity.name.place.lar.memetic-wikitext"
                                 }
                             }
@@ -73,8 +89,8 @@
                     "name": "punctuation.separator.root.intro.lar.memetic-wikitext"
                 },
                 "5": {
-                    "comment": "Was `string.unquoted.uri.lar.memetic-wikitext` — a 'string' ancestor most themes colour, which left every OTHER path separator loud even though each already carried its own punctuation leaf name. Colourless now, so every '/' here reads the same quiet way capture 4's does.",
-                    "name": "meta.uri.path.lar.memetic-wikitext",
+                    "comment": "Was `string.unquoted.uri.lar.memetic-wikitext` — a 'string' ancestor most themes colour, which left every OTHER path separator loud even though each already carried its own punctuation leaf name. Then `meta.uri.path.lar.memetic-wikitext`, colourless (0/65 themes) — honest about naming no construct, but costing arbitrary path text ANY selector at all. PRICED 2026-10-06: `variable.other.constant.path.lar.memetic-wikitext` reaches 65/65 (via `variable`/`variable.other.constant`/`variable.other`) while staying a distinct family from the root triad's `entity.name.tag.*` leaves below — `entity.name.tag.lar…` also reaches 65/65 but collapses that distinction, and a `string.unquoted…` name re-introduces the string ancestor the prior ruling removed. RE-PRICED 2026-10-07 (the operator's cascade reading, measured): a space-joined name reads as a FALLBACK CHAIN — the innermost name a theme reaches wins each property its own rule sets, and a theme reaching none of it keeps what the outer name resolved. So the wrapper stacks `entity.name.other.path.lar.memetic-wikitext` INSIDE `variable.other.constant.path.lar.memetic-wikitext`: painted-and-visible rises from 44/65 to 59/65 because the two names stand quiet in nearly disjoint theme sets, reached-and-invisible falls from 21/65 to 6/65 (clear of the house bar of 16, where the single name stood one above it), the root triad keeps its distinctness at 60/65, and the outer name remains an ancestor so the separators nested in it keep the quiet joint they read today (6/65, where either single-name swap cost it half). `entity.name.other` names a real entity leaf and never `.tag`, so it collides with no root term. Every '/' inside still reads the quiet way capture 4's does.",
+                    "name": "variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext",
                     "patterns": [
                         {
                             "comment": "The root segment: heading, angle of approach, carried dynamic. No leading slash here — capture 4 already consumed it when the lookahead matched.",
@@ -124,14 +140,14 @@
             ]
         },
         "fragment": {
-            "comment": "A fragment names an anchor. This corpus writes it with a leading slash and dots.",
+            "comment": "A fragment names an anchor. This corpus writes it with a leading slash and dots. RULED 2026-10-07 (the operator's eyes-on pass): the anchor carries NO underline — the no-underline ruling swept the lar: and ni: families and missed this shared rule, which went on painting the link cue these naming schemes no longer claim in the 37 of 65 bundled themes that rule on `markup.underline`. `entity.name.tag.anchor` reaches all 65 on its own, so the fragment keeps its ink without borrowing the cue.",
             "match": "(#)([/A-Za-z0-9_][/A-Za-z0-9_.-]*)",
             "captures": {
                 "1": {
                     "name": "punctuation.definition.anchor.memetic-wikitext"
                 },
                 "2": {
-                    "name": "entity.name.tag.anchor.memetic-wikitext markup.underline.anchor.memetic-wikitext"
+                    "name": "entity.name.tag.anchor.memetic-wikitext"
                 }
             }
         },
@@ -230,16 +246,16 @@
                 }
             ]
         },
-        "R:text.html.tiddlywiki5": {
-            "comment": "Carriers, addresses and bearings keep their reading everywhere the base grammar reads wikitext.\n\nThe base wraps everything after the pragma zone in a region of its own — a mode, not a construct — and a rule standing at this dialect’s top level cannot reach inside one.\nAn injection can: the base’s root scope stands on the stack wherever it reads, region or no region, so one selector reaches the whole file.\nNaming the block contexts one at a time reached the three somebody listed.",
+        "R:text.html.tiddlywiki5 - (meta.embedded.block, markup.inline.raw.block.tiddlywiki5, markup.raw.inline.tiddlywiki5, meta.typedblock.tiddlywiki5), R:meta.embedded.block.memetic": {
+            "comment": "Carriers, addresses and bearings keep their reading everywhere the base grammar reads wikitext.\n\nThe base wraps everything after the pragma zone in a region of its own — a mode, not a construct — and a rule standing at this dialect’s top level cannot reach inside one.\nAn injection can: the base’s root scope stands on the stack wherever it reads, region or no region, so one selector reaches the whole file.\nNaming the block contexts one at a time reached the three somebody listed.\n\nFIX 2026-10-06 (a fence reads as the language its meta names): narrowed so the carrier/address/bearing family stops short of raw fences, fenced code, typed blocks and inline code spans, where the base grammar builds no call and the text underneath is held rather than addressed. A fence whose own info string names this dialect (`meta.embedded.block.memetic`, set by the base's own `mem`/`memetic`/`memetic-wikitext`/`text/memetic-wikitext+tiddlywiki` fence label) still carries `text.html.tiddlywiki5` and reads as an address, same as the top level — the second alternative restores exactly that one carrier, nothing wider.",
             "patterns": [
                 {
                     "include": "text.html.tiddlywiki5.memetic-wikitext#memetic"
                 }
             ]
         },
-        "L:text.html.tiddlywiki5": {
-            "comment": "A bearing arrow stands BETWEEN two named ends, inside a sigil where the base grammar's unquoted-value rule would take its dash and leave the angle to the parameters region — two tokens, neither named. An L-priority injection looks before that rule and keeps the arrow whole. It reaches only where this dialect stands, because a grammar's injections ride with the grammar.",
+        "L:text.html.tiddlywiki5 - (meta.embedded.block, markup.inline.raw.block.tiddlywiki5, markup.raw.inline.tiddlywiki5, meta.typedblock.tiddlywiki5), L:meta.embedded.block.memetic": {
+            "comment": "A bearing arrow stands BETWEEN two named ends, inside a sigil where the base grammar's unquoted-value rule would take its dash and leave the angle to the parameters region — two tokens, neither named. An L-priority injection looks before that rule and keeps the arrow whole. It reaches only where this dialect stands, because a grammar's injections ride with the grammar.\n\nFIX 2026-10-06 (same ruling as the R-priority memetic injection above): the ni: check, the bearing arrow and the carrier marker hold the same narrowing, for the same reason — a raw fence, fenced code, typed block or inline code span builds none of these, and the exception for a dialect-labelled fence restores them where the base's own dispatch already reads this tongue.",
             "patterns": [
                 {
                     "include": "text.html.tiddlywiki5.memetic-wikitext#ni-uri"

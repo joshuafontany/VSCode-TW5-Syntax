@@ -1,0 +1,25 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A roleless authority reads as an authority, not as colourless path text"
+
+# OPERATOR'S RULING 2026-10-06: the seed's own law (`#/lar-uri`) gives the session form as
+# `lar://alias:grant@host/...` — a role is the law's own shape, so a roleless authority
+# (`lar://claude@lararium/...`) stands in TENSION with it, common in practice but not licensed by
+# the seed. Ruled anyway, for the same reason the colourless-path ruling already stands: 56 of 65
+# themes give the colourless path bucket no selector at all, so a roleless authority that falls
+# into it reads as one flat run next to a role-ful authority's three parted leaves. The cure reuses
+# the EXISTING leaf names (persona, the authority separator, place) — no role leaf fires, because
+# none stands.
+
+x lar://claude:scryer@lararium/the-map.reads.its-ground
+#       ^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext entity.name.persona.lar.memetic-wikitext
+#             ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext punctuation.separator.role.lar.memetic-wikitext
+#              ^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext entity.name.role.lar.memetic-wikitext
+#                    ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext punctuation.separator.authority.lar.memetic-wikitext
+#                     ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext entity.name.place.lar.memetic-wikitext
+
+x lar://claude@lararium/the-arrow.splits.in-two
+#       ^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext entity.name.persona.lar.memetic-wikitext
+#             ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext punctuation.separator.authority.lar.memetic-wikitext
+#              ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext entity.name.place.lar.memetic-wikitext
+#       ^^^^^^ - variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext
+#             ^ - entity.name.role.lar.memetic-wikitext
+#             ^ - punctuation.separator.role.lar.memetic-wikitext

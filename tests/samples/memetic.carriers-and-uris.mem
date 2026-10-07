@@ -62,3 +62,26 @@ A BLOCK CHECK NAMES INFORMATION BY ITS DIGEST, and the base grammar reads a link
 21 of 22 hashes this house has written carry a CamelCase run the autolink rule takes.
 
 <<^ code="&#x0003;">>ni:///sha-256;RLbu7oqpmxUvCAdVD6WWpVjlL6L8xEvHEp8PF32siCg
+
+!! An authority with no role still reads as an authority
+
+A roleless authority — lar://scryer@crossroads/the.flat.run — still parts into persona and
+place, the same shape a role-ful authority takes, minus the role leaf no colon ever opened.
+
+!! A fence reads as the language its meta names
+
+A `lar://held:inline@nowhere/the.dialect.stays-held` address sits inside a backtick span, held
+text rather than an address.
+
+```
+lar://held:plain-fence@nowhere/the.dialect.stays-held check ni:///sha-256;held-in-a-plain-fence
+```
+
+```toml meta
+uri = "lar://held:toml-fence@nowhere/the.dialect.stays-held"
+check = "ni:///sha-256;held-in-a-toml-fence"
+```
+
+```memetic-wikitext
+lar://read:this-fence@nowhere/the.dialect.reads-here check ni:///sha-256;addressed-in-its-own-tongue
+```
