@@ -23,25 +23,14 @@
 
 const test = require('node:test');
 const assert = require('node:assert');
-const { tokenize } = require('../tokenizer.js');
+const { tokenize, scopesOn: scopesOnScope } = require('../tokenizer.js');
 
 // A token carries the span it covers rather than the text inside it — `{startIndex, endIndex,
 // scopes}` — so the text comes back from the source line the token stands on. A reader asking a
 // token for `.text` gets `undefined`, and every comparison against it then answers "no such token"
-// about a specimen the grammar painted correctly.
-/** Every scope standing on the first token whose text equals `word`, over all lines. */
-async function scopesOn(source, word) {
-  const lines = await tokenize('text.html.tiddlywiki5', source);
-  const rows = source.split('\n');
-  for (let row = 0; row < lines.length; row += 1) {
-    for (const token of lines[row]) {
-      if ((rows[row] ?? '').slice(token.startIndex, token.endIndex).trim() === word) {
-        return token.scopes.join(' ');
-      }
-    }
-  }
-  return null;
-}
+// about a specimen the grammar painted correctly. tokenizer.js's `scopesOn` reads this once, shared
+// with attribute-value-across-lines.test.js, which walks the identical probe for an attribute value.
+const scopesOn = (source, word) => scopesOnScope('text.html.tiddlywiki5', source, word);
 
 // One attribute, written twice: once inline and once a line down. The two must read alike.
 const INLINE = '[img width=50 [ Tip | http://example.com/i.png ]]\n';
