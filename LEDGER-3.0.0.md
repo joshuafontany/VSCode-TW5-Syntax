@@ -767,7 +767,7 @@ back by upgrading, which is the definition this number answers to.
   captures, so it can never mistake a bare QUOTED operand for the empty/default operator —
   `["Not Legal"]`, equally malformed on its own terms but a STRING, never a name — nor trailing
   space ahead of a multi-line operand's own closing `]`; both were measured regressions during
-  development (`corpus/samples/test.tw`'s `:test["Not Legal"]` and a multi-line indirect operand
+  development (`tests/samples/test.tw`'s `:test["Not Legal"]` and a multi-line indirect operand
   in `tiddlywiki5.tw`/`tiddlywiki5.basic.tw`) and both snapshot clean again with the exclusion.
   `npm run colour-witness` and both overreach-check sweeps (`tests/samples/*.tw` and the 389-file
   host corpus) read unchanged; `tests/tiddlywiki5/tiddlywiki5.filter-run-prefix-operator.tw5.test`
@@ -1636,7 +1636,9 @@ back by upgrading, which is the definition this number answers to.
   stands on 3.5% of corpus tokens, `meta.paragraph.tiddlywiki5` carries none and stood on 18%. Worse,
   it examined only a key that VANISHED, so an ADDITION passed unweighed however much ground it
   claimed — and an addition is the shape a generous ruling takes. `corpus/ruled-ground-ceiling.txt`
-  ratchets what every ruling claims between them: 55.8%, down from 79.4% under container keys.
+  ratcheted what every ruling claimed between them: 55.8%, down from 79.4% under container keys.
+  It retired on 2026-09-09; `corpus/ruling-breadth-ceiling.txt` replaced it, ratcheting causes
+  absorbed rather than token share (see that file's header for why).
 - The ground reading counts TOKENS, never scopes. A token wears several scopes at once and the first union summed per scope, reading 100.9% of a corpus — the only reason the fault surfaced rather than settling in as a number nobody questioned.
 - `still.js` runs its sweep only as a command.
 - `call-parity` asserts the `<$macrocall>` widget where that scope exists. The guard read declared fields for `meta.tag.widget.macrocall`, which no grammar spells — every widget name derives from its match as `meta.tag.widget.$3` — so a careful comment sat over a branch that excluded nothing.
@@ -1690,7 +1692,7 @@ back by upgrading, which is the definition this number answers to.
 - Every pragma the host stands must reach the harvest carrying a token. A rule whose token never arrives leaves the zone guard checked against a shorter list than TiddlyWiki registers, and the run then reads green on the strength of what nobody harvested.
 - `filter-witness` reads what TiddlyWiki writes. A filter run colours structurally, so `:cascade` and `:nosuchprefix` read alike and a name the pattern cannot match simply reads as something else with nothing counting it.
 - A corpus specimen now carries every construct that spans a line break, closed. See `corpus/unasked-regions-ceiling.txt`.
-- The count of unbounded regions needed colliding before it meant anything: a grammar spells the line bound five ways and a reader naming it by shape miscounts, which `corpus/unasked-regions- ceiling.txt` works through in full, including the control in `tools/grammar-scopes.test.js` that provokes a literal `\$` — carried by every widget rule and the typed block's `\$\$\$` — directly, to keep it naming no bound.
+- The count of unbounded regions needed colliding before it meant anything: a grammar spells the line bound five ways and a reader naming it by shape miscounts, which `corpus/unasked-regions-ceiling.txt` works through in full, including the control in `tools/grammar-scopes.test.js` that provokes a literal `\$` — carried by every widget rule and the typed block's `\$\$\$` — directly, to keep it naming no bound.
 - The cut sweep reads every corpus type the wikitext parser can answer for, not only `.tw`: 757 cuts across 35 files where 627 across 26 stood.
 - That start-tag bound was ruled unfixable an hour before it landed, and measurement upheld both halves of the ruling: `corpus/swallow-ledger.txt`'s preamble carries the count (2583 files, six blank-line-carrying start tags, all widget, all bounded already) and the reason the proposed remedy cannot be written at all.
 - The corpus gate answers to the host as well as to itself. Its three readings all measure what this repository wrote — scopes declared, scopes reached, constructs contained — so a rule the grammar never learned reaches no scope, goes unmissed, and coverage reads full.
@@ -1704,7 +1706,7 @@ back by upgrading, which is the definition this number answers to.
 - Every file type the extension colours loads every grammar it registers. The runners took our grammars from a list kept beside the manifest rather than from the manifest, so a grammar registered and not listed painted in the editor and nowhere else: it read as absent to every gate, which reported green over whatever it carried.
 - A syntax-test file colours the wikitext it tests. See `.tw5.test`.
 - The corpus and samples carry the framing form the graph now writes: a control sigil names its ends, `from=? -> to=lar:///…`, with the bearing arrow riding between them as an unnamed positional. The grammar read that form already — `key=value` alignment did the work — and this pins it so it stays read.
-- A RULING'S BREADTH ANSWERS TO HOW MANY CAUSES IT CAN ABSORB, never to how much ground it covers. See `ruled-ground-ceiling.txt`.
+- A RULING'S BREADTH ANSWERS TO HOW MANY CAUSES IT CAN ABSORB, never to how much ground it covers. See `ruling-breadth-ceiling.txt` (replaced `ruled-ground-ceiling.txt`, retired 2026-09-09).
 - AUTHORING MOVES THE NEW READING BY NOTHING, and a sandbox proves it rather than the prose claiming it: forty more calls appended to a corpus file leave every key spanning the kinds it spanned before. The token share still READS beside the verdict, because a reader wants to know how much ground stands ruled, and it ratchets nothing.
 - Five retired sigil forms leave the specimens, each measured to reach 0 scopes no current form reaches: `<<~ hud Focus(10) Feedback(3)>>`, the two parenthesised `kahea` calls, `<<~ syad>>` and `<<~ moves>>`. See `meta.variable.call.parameter.tw-https`.
 - Eleven block checks restamped through `bccOf`, never by hand. Ten verify `ok`; the specimen that carries a deliberately fake check beside a real one reads `unchecked` exactly as it did before.
