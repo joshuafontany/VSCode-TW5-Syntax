@@ -13,7 +13,6 @@ tests/**
 test-bench/**
 corpus/**
 run_tests.sh
-run_snapshots.sh
 grammars.sh
 tools/**
 
