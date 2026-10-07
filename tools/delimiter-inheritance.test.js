@@ -18,6 +18,10 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { runInSandbox } = require('./grammar-sandbox.js');
 const { runTool, ROOT } = require('./run-tool.js');
+const { owedOf } = require('./reader-scope.js');
+
+/** The reason a ledger line carries, past its first `#` — what `owedOf` tests. */
+const reasonOf = (line) => line.slice(line.indexOf('#') + 1);
 
 const LEDGER = path.join(ROOT, 'corpus', 'delimiter-ledger.txt');
 
@@ -93,7 +97,7 @@ const OWED_FLOOR = 1;
 test('the debt the ledger records stands at its floor', () => {
   const owed = fs.readFileSync(LEDGER, 'utf8').split('\n')
     .filter((l) => l.trim() && !l.startsWith('#'))
-    .filter((l) => /#\s*OWED/i.test(l));
+    .filter((l) => owedOf(reasonOf(l)));
   const report = owed.map((l) => `\n  ${l.split('#')[0].trim()}`).join('');
   assert.ok(owed.length <= OWED_FLOOR, `${owed.length} ruling(s) owing a cure, floor ${OWED_FLOOR}:${report}`);
   assert.ok(owed.length >= OWED_FLOOR, `${owed.length} owed, under the floor of ${OWED_FLOOR} — lower the floor to pin the gain`);
@@ -103,7 +107,7 @@ test('the debt the ledger records stands at its floor', () => {
 test('a ruling accepting its parting reads as no debt', () => {
   const owing = 'parts markup.x <- punctuation.definition   # OWED the additive cure. A mark outside its run';
   const accepting = 'parts markup.x <- punctuation.definition   # a boundary a reader must see, so the parting serves';
-  const debt = (l) => /#\s*OWED/i.test(l);
+  const debt = (l) => owedOf(reasonOf(l));
   assert.ok(debt(owing), 'a reason opening OWED read as no debt');
   assert.ok(!debt(accepting), 'a reason accepting its parting read as debt');
 });

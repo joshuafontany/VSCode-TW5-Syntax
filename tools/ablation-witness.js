@@ -43,7 +43,7 @@ const path = require('node:path');
 const { ROOT } = require('./run-tool.js');
 const { placed } = require('./darkness-witness.js');
 const { boot, resolveTiddlyWiki, flatten, isPlainText } = require('./tw5-oracle.js');
-const { readerOf, appliesToReader } = require('./reader-scope.js');
+const { readerOf, appliesToReader, owedOf } = require('./reader-scope.js');
 const { carrierFiles } = require('./walk.js');
 const { defineLedger } = require('./ledger-shape.js');
 
@@ -358,7 +358,7 @@ async function run(argv) {
   const foundKeys = new Set(findings.map((f) => f.key));
   const stale = [...declared.keys()].filter((k) => !k.startsWith('unreadable: ') && !foundKeys.has(k)
     && appliesToReader(readerOf(declared.get(k)).version, current));
-  const owed = findings.filter((f) => declared.has(f.key) && /^OWED\b/.test(readerOf(declared.get(f.key)).rest)).length;
+  const owed = findings.filter((f) => declared.has(f.key) && owedOf(declared.get(f.key))).length;
   for (const f of undeclared.slice(0, verbose ? undeclared.length : 12)) {
     console.log(`  ${f.verdict} ${f.file}:${f.line} ${JSON.stringify(f.char)}  ${JSON.stringify(f.text.slice(0, 70))}`);
   }

@@ -50,4 +50,23 @@ function appliesToReader(entryVersion, current) {
   return !entryVersion || entryVersion === current;
 }
 
-module.exports = { readerOf, appliesToReader };
+const OWED = /^OWED\b/;
+
+/**
+ * Whether a reason, with any `READER <version>` tag peeled off, opens `OWED` — the one test six
+ * sites asked independently, three stripping the tag first and three testing the untouched text,
+ * so a row that reads OWED to one reader could read RULED to another over the identical text. A
+ * `READER <v> OWED` row in a ledger a non-stripping site reads goes silent there: the row still
+ * answers `OWED` to anyone who strips, but the site testing raw text sees `READER` first and
+ * `/^OWED\b/` never matches, so the row reads as ruled rather than owed. Sharing `readerOf`'s own
+ * prefix handling here closes that gap — a tag changes WHICH reader a reason explains, never
+ * whether the gate it owes.
+ *
+ * @param {string|null|undefined} reason
+ * @returns {boolean}
+ */
+function owedOf(reason) {
+  return OWED.test(readerOf(String(reason || '').replace(/^\s+/, '')).rest);
+}
+
+module.exports = { readerOf, appliesToReader, owedOf };
