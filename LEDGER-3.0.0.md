@@ -771,6 +771,31 @@ back by upgrading, which is the definition this number answers to.
   grammar directly through `vscode-textmate`.
 
 ### Naming
+- AN UNDERLINE IS ONE STROKE; A TEXTURE IS MANY JOINTS — THE SAME SEPARATOR READS OPPOSITE WAYS IN
+  THE TWO GRAMMARS. Watched in the editor rather than measured first: the base grammar's underlined
+  autolinks read as ONE continuous stroke, and a punctuation-coloured separator inside that stroke
+  breaks it into stitched pieces. Measured, three legibility pairs fell below their floors from
+  splitting the base's `:`/`//` into their own punctuation ink — a bare URL against a code span 60/65
+  (floor 61), against a wikilink 54/65 (floor 61), against a transclusion 61/65 (floor 65) — and every
+  variant tried (colon only, slashes only, both, explicitly stacked) measured IDENTICALLY, because any
+  `punctuation.*` leaf anywhere in that span lets a theme's blanket punctuation rule recolour it. The
+  base grammar KEEPS its fused scheme run (`syntaxes/tiddlywiki5.json` untouched); that refusal stands
+  as a ruling, not a defeat. The dialect's `lar:`/`ni:` addresses carry NO underline (ruled days
+  earlier), so they have no stroke to break, and RULED 2026-10-08: there the separator takes the OTHER
+  reading — every interior separator stacks the ink of the segment it opens (a scheme separator joins
+  its scheme word; a root/path slash joins the segment it introduces; the authority's `:`/`@` join the
+  role/place that follow; `ni:`'s `;` joins the digest; `#` joins the anchor) rather than reading as
+  plain punctuation. Measured with `tools/uri-span-measure.js`/`tools/uri-span-compare.js` and
+  `tools/theme-model.js` `styleOf` across all 65 bundled themes on three samples (`lar:///…` local
+  address, `lar://persona:role@place/…` session address, `ni:///sha-256;…`): every colour the address
+  resolves into AFTER the restack is a SUBSET of the colours it resolved into BEFORE, in 65/65 themes
+  for all three samples — the restack introduces no new ink, it only removes the stray default-coloured
+  freckle the old colourless separators contributed, merging those pixels into the ink of the segment
+  beside them. The address's distinct-colour count therefore drops (local: 3.48→2.48 avg; session:
+  3.54→2.91 avg; ni: 2.72→2.12 avg) while the NAMED segment groups stay exactly as distinguishable from
+  one another as they were — no two previously-distinct groups collapsed into each other's colour in
+  any theme. `https://` stands as the control and reads byte-identical before and after (`https.scheme`/
+  `https.body`, 0/65 changed). `syntaxes/tiddlywiki5.json` is not touched by this ruling.
 - A STYLED SUFFIX'S TEXT IS A VALUE, NOT A MARK. `filteredtranscludeinline.js` closes on `}}`, an
   optional style, then `}`, and the grammar named the whole `}}style}` run one delimiter — so the
   style text between the braces wore the closer's own punctuation, and ablating one of its letters
