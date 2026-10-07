@@ -29,7 +29,6 @@
 # their colour by naming these things something they are not. The published `variable.*` name stands
 # first in every case; nothing retires.
 
-variable.other.constant.path.lar.memetic-wikitext   # RULED 2026-10-06 (path text gets a name themes paint): arbitrary `lar:` path text — any segment past the heading.angle.dynamic root — stood colourless before, 0/65 themes giving it any selector at all. `variable.other.constant` reaches all 65, the published `variable.*` family this house names first in every such case (see the filter-operand note above), and the family's own documented cost — a third of readers meeting prose on any `variable.*` name — lands here as 21/65. `entity.name.tag` reaches 65/65 too but collapses the root triad's own distinction; a `string.unquoted…` name was already refused for reintroducing the string ancestor the prior colourless-path ruling removed. 21/65 reading as prose still beats 65/65 reading as nothing.
 
 # A VOCABULARY THAT CLEARS THE BAR BY THE INK AROUND IT. `markup.superscript` and
 # `markup.subscript` reach only 9 of the 65 bundled themes on their own, matching markdown's own

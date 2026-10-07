@@ -12,7 +12,7 @@
 x lar://claude:scryer@lararium/the-map.reads.its-ground
 #       ^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext entity.name.persona.lar.memetic-wikitext
 #             ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext punctuation.separator.role.lar.memetic-wikitext
-#              ^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext support.role.lar.memetic-wikitext
+#              ^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext entity.name.role.lar.memetic-wikitext
 #                    ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext punctuation.separator.authority.lar.memetic-wikitext
 #                     ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext entity.name.place.lar.memetic-wikitext
 
@@ -20,6 +20,6 @@ x lar://claude@lararium/the-arrow.splits.in-two
 #       ^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext entity.name.persona.lar.memetic-wikitext
 #             ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext punctuation.separator.authority.lar.memetic-wikitext
 #              ^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext meta.uri.authority.lar.memetic-wikitext entity.name.place.lar.memetic-wikitext
-#       ^^^^^^ - variable.other.constant.path.lar.memetic-wikitext
-#             ^ - support.role.lar.memetic-wikitext
+#       ^^^^^^ - variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext
+#             ^ - entity.name.role.lar.memetic-wikitext
 #             ^ - punctuation.separator.role.lar.memetic-wikitext

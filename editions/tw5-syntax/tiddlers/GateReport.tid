@@ -79,7 +79,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "contrast",
             "held": true,
-            "said": "contrast-witness  290 stack(s) over 65 theme(s), 1477 prose reading(s), 1 above the bar of 16, 0 unruled, 0 explaining nothing"
+            "said": "contrast-witness  290 stack(s) over 65 theme(s), 1457 prose reading(s), 0 above the bar of 16, 0 unruled, 0 explaining nothing"
         },
         {
             "gate": "corpus",
