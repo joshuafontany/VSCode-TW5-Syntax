@@ -474,12 +474,16 @@ back by upgrading, which is the definition this number answers to.
   widened scheme unit. Neither retired name carries a MIGRATION.md row: the memetic dialect has no
   outside consumers yet, so it owes no migration record for its own vocabulary (the same standing
   `corpus/must-fail.txt` already gives a grammar with nothing yet to keep faith with).
-  `tests/memetic-wikitext/lar-uri-in-prose.mem.test` red-firsts the widened scheme span, and
-  `tools/invariants/a-lar-uri-keeps-its-underline.test.js` measures the resolved fontStyle across
+  `tests/memetic-wikitext/lar-uri-in-prose.mem.test` red-firsted the widened scheme span.
+  `tools/invariants/a-lar-uri-keeps-its-underline.test.js` measured the resolved fontStyle across
   all 65 themes against the base `https://` autolink's own reach, with a control reconstructing the
-  pre-cure stack to prove the cure moves reach from 29/65 to the 36/65 ceiling. `node
-  tools/colour-witness.js` and `node tools/construct-legibility.js` both read 0 fallen after the
-  change.
+  pre-cure stack to prove the cure moved reach from 29/65 to a 36/65 ceiling, measured 2026-10-06.
+  `node tools/colour-witness.js` and `node tools/construct-legibility.js` both read 0 fallen after
+  the change. The ruling it guarded reversed (2026-10-08, THE TEXTURE PASS): `lar:` and `ni:`
+  carry no underline at all now, so the file it guarded retired outright.
+  `tools/invariants/a-lar-uri-reads-without-underline.test.js` replaced it, asserting directly the
+  thing the underline was always a proxy for — a root term keeps a foreground distinct from the
+  punctuation beside it.
 - A code span's backtick paints with the code it wraps. It carried `keyword.control` beside the
   run rather than nesting inside it, so it matched its own code in none of the 65 themes; nesting
   it, the way markdown, asciidoc and mdx all write it, agrees in 66%. A fenced block keeps a
@@ -832,6 +836,29 @@ back by upgrading, which is the definition this number answers to.
   region still closes exactly where it did everywhere except the one case this exists to fix. No
   measured pair regressed anywhere in this pass (checked against the full pair set the first pass
   left, not just the pairs the operator named).
+- ROOT AND PATH ARE ALLIED, RULED. A `lar:` URI's root (heading.angle.dynamic) and its path name
+  the same kind of thing — where an address points — one coarsely, one finely; their sameness
+  reads as truthful rather than as a defect. The five bundled themes that paint root, path and
+  fragment alike — one-light, red, solarized-dark, solarized-light and vesper — are reading
+  correctly, not failing; three of the five (solarized-dark, solarized-light, vesper) fuse the two
+  families by hand in their own theme files. What was refused on the way, both measured and both
+  costing more than they bought: taking `constant.other` from `ni:`'s digest, which already holds
+  that family honestly (`constant.other.checksum.ni`) — the trade moved path-vs-digest from 8/65
+  to 45/65, worse than the collision it closed (see "THE SECOND EYES-ON PASS" above); and
+  reversing path's own stack — measured, coverage over the pair set fell from 59 of 65 to 44, two
+  pairs read worse and three of the five stood unmoved. Neither move is this ruling's to make a
+  second time.
+- THE FRAGMENT STAYS UNARTICULATED, DELIBERATELY. A fragment is used in the `ahu` sigil
+  (`#/the-eye.lands`), and it reads as one span because the house has never ruled what a
+  fragment's PARTS mean — unlike the root, whose three terms carry heading, angle and dynamic.
+  This stands as an unmade decision, not a gap: when the `ahu` slot grammar defines fragment
+  segments, the fragment can articulate the way the root does. It is not split now.
+- THE WITHIN-CONSTRUCT WITNESS IS DEFERRED. No gate here ratchets on a `lar:`/`ni:` URI's own
+  internal segment distinctness, on the operator's own reason: the lar and ni URIs needed manual
+  tweaking because a `lar:` URI reads as a combination of machine code and natural language. A
+  gate ratcheting on internal segment distinctness would freeze a palette that is still being
+  tuned by hand against a half-linguistic address. The deferral stands recorded so nobody builds
+  it as an obvious missing instrument.
 - A STYLED SUFFIX'S TEXT IS A VALUE, NOT A MARK. `filteredtranscludeinline.js` closes on `}}`, an
   optional style, then `}`, and the grammar named the whole `}}style}` run one delimiter — so the
   style text between the braces wore the closer's own punctuation, and ablating one of its letters
@@ -865,9 +892,11 @@ back by upgrading, which is the definition this number answers to.
 - A BLOCK CHECK WORE NO FAMILY ITS MARKS COULD INHERIT. A `lar:` address carries an enclosing
   `markup.underline.link.lar`, and every separator inside it inherits a themed ancestor; `ni:///sha-256;…`
   carried none, so its `:`, its three `/` and its `;` fell to prose in 35 of 65 themes — in a stamp the
-  house writes on every carrier. It takes `markup.underline.link.ni` now, and its digest's prose reading
-  halves. `tools/invariants/a-uri-wears-its-family.test.js` derives the schemes from the grammar's own
-  scheme names, so one added tomorrow answers the same day. What remains sits in the flagship's band:
+  house writes on every carrier. It took `markup.underline.link.ni` then, and its digest's prose reading
+  halved. `tools/invariants/a-uri-wears-its-family.test.js` derived the schemes from the grammar's own
+  scheme names, so one added the next day would have answered the same day — it retired outright when
+  THE TEXTURE PASS (2026-10-08) reversed the ruling it guarded: `lar:` and `ni:` carry no underline
+  family left to wear, so nothing replaced it. What remains sits in the flagship's band:
   markdown's own autolink punctuation reads as prose in 32 of 65 and its body in 25, where this
   grammar's external link reads 0.
 - A CALL'S NAME AND ITS ANGLES TAKE `support.function.macro` beside the published `variable.name.macro`,

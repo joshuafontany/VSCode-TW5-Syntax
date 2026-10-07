@@ -1022,3 +1022,24 @@
 # in a comment's ink, so one theme fewer tells an author's struck aside from an author's commented
 # aside.
 #   a comment  vs  strikethrough                         65 -> 64
+
+# THE FRAGMENT STAYS UNARTICULATED, DELIBERATELY. No pair below asks a fragment's own parts apart
+# from one another (the way the root's heading/angle/dynamic parts are asked apart), because the
+# house has never ruled what a fragment's segments MEAN. `#/the-eye.lands` reads as one span on
+# purpose. When the `ahu` slot grammar defines fragment segments, a pair can seat here; until then
+# this is an unmade decision, not a missing floor.
+#
+# THE WITHIN-CONSTRUCT WITNESS IS DEFERRED. No pair below asks a `lar:`/`ni:` URI's own segments
+# apart from one another as an internal-distinctness gate (scheme vs. root vs. path vs. query vs.
+# fragment, measured against EACH OTHER rather than against a different construct). The operator's
+# reason: the lar and ni URIs needed manual tweaking because a `lar:` URI reads as a combination of
+# machine code and natural language, and a gate ratcheting on internal segment distinctness would
+# freeze a palette still being tuned by hand against a half-linguistic address. Deferred, not
+# missing.
+
+# ROOT AND PATH ARE ALLIED, RULED. No pair below asks a lar: URI's root apart from its own path
+# (or its fragment), because both name the same kind of thing — where an address points — one
+# coarsely and one finely; their sameness reads as truthful rather than as a defect. Five bundled
+# themes (one-light, red, solarized-dark, solarized-light, vesper) paint root, path and fragment
+# alike, and that reading stands RULED, not failing. See LEDGER-3.0.0.md ("Naming") for the two
+# moves measured and refused on the way.
