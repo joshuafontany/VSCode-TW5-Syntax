@@ -368,13 +368,7 @@
         "vscode-tmgrammar-test": "^0.1.3"
     },
     "scripts": {
-        "echo-test": "bash -c 'echo $(pwd) && echo ./tests/tiddlywiki5/*.tw5.test'",
-        "list-test": "bash -c 'ls ./tests/tiddlywiki5/*.tw5.test'",
         "test": "bash ./run_tests.sh './tests/tiddlywiki5/*.tw5.test'",
-        "tests-advanced": "bash ./run_tests.sh './tests/tiddlywiki5/html.advanced.tw5.test'",
-        "tests-basic": "bash ./run_tests.sh './tests/tiddlywiki5/html.basic.tw5.test'",
-        "tests-htmltiddler": "bash ./run_tests.sh './tests/tiddlywiki5/html.tiddler.tw5.test'",
-        "tests-wikitext": "bash ./run_tests.sh './tests/tiddlywiki5/tiddlywiki5.*.tw5.test'",
         "tests-memetic": "bash ./run_tests.sh './tests/memetic-wikitext/*.mem.test'",
         "lint-closure": "node ./tools/terminator-closure.js ./syntaxes/memetic-wikitext.json",
         "test-tools": "node --test --test-concurrency=4 \"./tools/**/*.test.js\"",
@@ -442,8 +436,7 @@
         "bench:down": "bash ./tools/bench.sh down",
         "tests-known-gaps": "bash ./tools/known-gaps.sh",
         "snap-wikitext": "node ./tools/snapshot-check.js text.html.tiddlywiki5 './tests/samples/*.tw'",
-        "snap-tid": "node ./tools/snapshot-check.js source.tiddlywiki5.tid-file './tests/samples/*.tid'",
-        "snap-meta": "node ./tools/snapshot-check.js source.tiddlywiki5.tid-file './tests/samples/*.meta'",
+        "snap-tid-meta": "node ./tools/snapshot-check.js source.tiddlywiki5.tid-file './tests/samples/*.tid' './tests/samples/*.meta'",
         "snap-multids": "node ./tools/snapshot-check.js source.tiddlywiki5.multids-file './tests/samples/*.multids'",
         "snap-memetic": "node ./tools/snapshot-check.js text.html.tiddlywiki5.memetic-wikitext './tests/samples/*.mem'",
         "snap-testfile": "node ./tools/snapshot-check.js text.html.tiddlywiki5.test './tests/samples/*.tw5.test'",
@@ -451,8 +444,8 @@
         "canary-memetic": "node ./tools/bleed-canary.js text.html.tiddlywiki5.memetic-wikitext './tests/samples/*.mem'",
         "canary-tid": "node ./tools/bleed-canary.js source.tiddlywiki5.tid-file \"./tests/samples/*.tid\"",
         "canary": "npm run canary-wikitext && npm run canary-tid && npm run canary-memetic",
-        "snap": "npm run snap-wikitext && npm run snap-tid && npm run snap-meta && npm run snap-multids && npm run snap-memetic && npm run snap-testfile",
-        "snap-update": "npm run snap-wikitext -- --update && npm run snap-tid -- --update && npm run snap-meta -- --update && npm run snap-multids -- --update && npm run snap-memetic -- --update && npm run snap-testfile -- --update"
+        "snap": "npm run snap-wikitext && npm run snap-tid-meta && npm run snap-multids && npm run snap-memetic && npm run snap-testfile",
+        "snap-update": "npm run snap-wikitext -- --update && npm run snap-tid-meta -- --update && npm run snap-multids -- --update && npm run snap-memetic -- --update && npm run snap-testfile -- --update"
     },
     "npmConfig": {
         "script-shell": "/bin/bash"

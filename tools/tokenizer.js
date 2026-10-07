@@ -131,5 +131,29 @@ async function tokenizeFrom(scope, lines, stack = null) {
   return { tokens, stacks };
 }
 
-module.exports = { ROOT, grammarArgs, grammarRegistry, snapshot, tokenize, tokenizeFrom };
+/**
+ * The scopes a word carries, wherever a token's own text equals it exactly — joined as one string,
+ * or `null` if no token matches. Two invariants read this identically (an attribute value and an
+ * image attribute, each written once inline and once spanning a line break); one body here answers
+ * both rather than carrying the same walk twice.
+ *
+ * @param {string} scope  the grammar the text opens under
+ * @param {string} text
+ * @param {string} word  the exact token text to find
+ * @returns {Promise<string|null>}
+ */
+async function scopesOn(scope, text, word) {
+  const lines = await tokenize(scope, text);
+  const rows = text.split('\n');
+  for (let row = 0; row < lines.length; row += 1) {
+    for (const token of lines[row]) {
+      if ((rows[row] ?? '').slice(token.startIndex, token.endIndex).trim() === word) {
+        return token.scopes.join(' ');
+      }
+    }
+  }
+  return null;
+}
+
+module.exports = { ROOT, grammarArgs, grammarRegistry, snapshot, tokenize, tokenizeFrom, scopesOn };
 

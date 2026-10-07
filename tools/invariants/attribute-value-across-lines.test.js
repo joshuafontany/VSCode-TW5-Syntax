@@ -25,23 +25,12 @@
 
 const test = require('node:test');
 const assert = require('node:assert');
-const { tokenize } = require('../tokenizer.js');
+const { tokenize, scopesOn: scopesOnScope } = require('../tokenizer.js');
 
 // A token carries the span it covers rather than the text inside it, so the text comes back from the
-// source line the token stands on.
-/** Every scope standing on the first token whose text equals `word`. */
-async function scopesOn(source, word) {
-  const lines = await tokenize('text.html.tiddlywiki5', source);
-  const rows = source.split('\n');
-  for (let row = 0; row < lines.length; row += 1) {
-    for (const token of lines[row]) {
-      if ((rows[row] ?? '').slice(token.startIndex, token.endIndex).trim() === word) {
-        return token.scopes.join(' ');
-      }
-    }
-  }
-  return null;
-}
+// source line the token stands on. tokenizer.js's `scopesOn` reads this once, shared with
+// image-attribute-list.test.js, which walks the identical probe for an image attribute.
+const scopesOn = (source, word) => scopesOnScope('text.html.tiddlywiki5', source, word);
 
 // Each value written twice: once inline, once carried across a break. The word named is the one a
 // reader looks at, and it must read alike both ways.

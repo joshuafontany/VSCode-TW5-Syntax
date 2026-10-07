@@ -10,8 +10,8 @@
 // while its own compare path disagrees with its writer on some inputs, so this uses the
 // writer alone and does the comparing here.
 //
-//   node tools/snapshot-check.js <scope> <glob>            compare, exit non-zero on drift
-//   node tools/snapshot-check.js <scope> <glob> --update   rewrite the pinned snapshots
+//   node tools/snapshot-check.js <scope> <glob> [<glob> ...]            compare, exit non-zero on drift
+//   node tools/snapshot-check.js <scope> <glob> [<glob> ...] --update   rewrite the pinned snapshots
 
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
@@ -34,17 +34,18 @@ function listFiles(pattern) {
     .map((f) => path.join(dir, f));
 }
 
-const [scope, pattern, ...rest] = process.argv.slice(2);
-if (!scope || !pattern) {
-  console.error('Usage: node tools/snapshot-check.js <scope> <glob> [--update]');
+const [scope, ...rest] = process.argv.slice(2);
+const update = rest.includes('--update');
+const patterns = rest.filter((a) => a !== '--update');
+if (!scope || patterns.length === 0) {
+  console.error('Usage: node tools/snapshot-check.js <scope> <glob> [<glob> ...] [--update]');
   process.exitCode = 2;
   return;
 }
-const update = rest.includes('--update');
 
-const sources = listFiles(pattern);
+const sources = patterns.flatMap(listFiles);
 if (sources.length === 0) {
-  console.error(`no sources matched ${pattern}`);
+  console.error(`no sources matched ${patterns.join(' ')}`);
   process.exitCode = 2;
   return;
 }

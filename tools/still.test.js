@@ -208,11 +208,10 @@ test('one reading per carrier finds the cuts that re-reading each head finds', l
   const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
   const { tokenize } = require('./tokenizer.js');
   const { kindOf } = require('./region-kind.js');
-  const { standAlone } = require('./sentinel.js');
+  const { SENTINEL, standAlone } = require('./sentinel.js');
   const tw = resolveTiddlyWiki();
   if (!tw) return;                                   // the pass itself stands down with no checkout
   const oracle = boot(tw, {});
-  const SENTINEL = '<<<\nQuoted\n<<<\n';
 
   /**
    * The reading the collapse replaces: the whole head, tokenized again at every cut.
@@ -295,11 +294,10 @@ test('the slow reading agrees with the fast one over a carrier declaring its own
   const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
   const { tokenize } = require('./tokenizer.js');
   const { kindOf } = require('./region-kind.js');
-  const { standAlone } = require('./sentinel.js');
+  const { SENTINEL, standAlone } = require('./sentinel.js');
   const tw = resolveTiddlyWiki();
   if (!tw) return;                                   // the pass itself stands down with no checkout
   const oracle = boot(tw, {});
-  const SENTINEL = '<<<\nQuoted\n<<<\n';
 
   const slowly = async (file) => {
     const reading = READINGS[path.extname(file)];
@@ -361,11 +359,10 @@ test('the slow reading closes an open quote before its sentinel, like the fast o
   const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
   const { tokenize } = require('./tokenizer.js');
   const { kindOf } = require('./region-kind.js');
-  const { standAlone } = require('./sentinel.js');
+  const { SENTINEL, standAlone } = require('./sentinel.js');
   const tw = resolveTiddlyWiki();
   if (!tw) return;                                   // the pass itself stands down with no checkout
   const oracle = boot(tw, {});
-  const SENTINEL = '<<<\nQuoted\n<<<\n';
 
   const slowly = async (file) => {
     const reading = READINGS[path.extname(file)];
