@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 // What every gate says, gathered where a reader can open it.
 //
-// Seventeen gates stand here and each one prints a line nobody keeps. A reader who wants the
-// grammar's state runs them all and reads scrollback; a reader who opens the wiki sees the
-// rulings that govern them and nothing about whether they hold.
+// The gates stand here, each one printing a line nobody keeps — the manifest names how many, so
+// this sentence never counts them. A reader who wants the grammar's state runs them all and reads
+// scrollback; a reader who opens the wiki sees the rulings that govern them and nothing about
+// whether they hold.
 //
 // This runs each gate the manifest registers and writes down what it said. A HARVEST, so no hand
 // edits it and it goes stale the moment the tree moves — which serves the reader: a report that
