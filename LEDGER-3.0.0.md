@@ -1592,6 +1592,32 @@ back by upgrading, which is the definition this number answers to.
 - The two sandbox runners share one body. They differed in which directories the sandbox takes from the working tree, which is now the argument rather than a second copy of everything else.
 - The vendored grammars stand in `tests/grammars/` with an account of where they came from, and a gate holds the directory to it: a grammar here that no runner loads fails, and so does a path `grammars.sh` names that nothing holds.
 - An instrument and the test that collides it stand in one directory. See `tools/`.
+- THE COLLIDER INVARIANT GUARDS THE GATES AND NOTHING ELSE, and this line states the hole rather than
+  closing it. `tools/invariants/every-gate-collides.test.js` pairs test files against the instrument
+  each GATE runs, taking its population from `gateNames()` — the manifest, by way of the report. An
+  invariant runs no manifest script, so no invariant ever enters that pairing: the thirty-nine guards
+  under `tools/invariants/` stand EXEMPT BY CONSTRUCTION, that one among them, and nothing asks
+  whether a guard of theirs can fail. Four instruments that BLOCK a merge stand outside the gate list
+  too, each named in `CIGates.tid` under `alsoGates` — the SKIP pattern in `gate-report.js` reaches
+  them only as prefixes sharing one reason, so the ruling in the wiki is where a reader meets them by
+  name: `edition:check`, `lint-closure`, `package-contents`, `tests-known-gaps`. Two of the four
+  carry a test that plants a fault (`tools/edition-build.test.js`, `tools/terminator-closure.test.js`);
+  `tools/package-contents.js` and `tools/known-gaps.sh` carry no test file at all, so CI blocks on two
+  instruments nothing collides. Widening the pairing to reach the invariants would ask every guard to
+  plant a fault in itself, which names a second instrument rather than a wider clause — until one
+  stands, the exemption answers for the silence.
+- A HARVEST ANSWERS IN TWO ARMS, AND A GATE RUNS THE READING ONE. `ceiling` and `builtins` stood in the
+  gate list on their WRITING arms, and the two failed differently. `ceiling` carried `--write`, so
+  every pass — including `gate-report --check`, whose own evidence is a clean tree — rewrote
+  `editions/tw5-syntax/tiddlers/TextMateCeiling.tid`, measured by its mtime moving under the old arm
+  and standing still under the new. `builtins` ran with no `--check`, which writes the SHIPPED
+  `syntaxes/tiddlywiki5.json` only where it DRIFTS from the tiddler that holds the list — and then
+  prints `the grammar written` and exits 0. So the gate standing between the list and the grammar
+  REPAIRED the parting it exists to report, and no run could ever fail on it; `BuiltInVariables-Doc`
+  already told a reader a gate ran the `--check` arm, two releases before one did. Both now join
+  `edition:build`/`edition:check` and `signals`/`signals:check`: the bare name writes for a hand that
+  means to, the `:check` name reads and renders the verdict, and `gate-report.js`'s SKIP pattern
+  anchors the two write arms by name beside the others.
 - Two tests resolved the TiddlyWiki this repo answers to by hand, reading the environment and falling back to a sibling checkout, where the oracle already tries three more candidates behind that. A contributor whose checkout stood somewhere only the oracle finds saw those two skip while every other gate ran.
 - A gate holds that claim. It boots the edition, compares every arriving tiddler against the bytes on disk, and derives its expectation from the specs rather than listing the directories again — so a sixth directory gets checked without anybody editing the gate.
 - `attribute-witness` keys every disagreement to the structure that produced it and fails on one that keys to nothing. A residue counted but unpartitioned reads like a measurement and carries none: a class that grows hides behind a class that shrinks while the total holds.

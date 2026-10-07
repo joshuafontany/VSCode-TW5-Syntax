@@ -59,7 +59,19 @@ const primaryVersion = (() => {
 // atlas reads what themes rule on and refuses nothing — and the
 // per-scope runs of a gathering script that is not itself a gate.
 // `gates` names this tool, which would run itself and never stop.
-const SKIP = /^(gates$|bench|edition|snap-update|signals$|test|tests-|vscode|package|watch|compile|lint|corpus-verbose|rule-inventory|theme-paint|family-atlas|reading-recipe|page-palette|tw5-oracle|uri-span-measure|uri-span-compare)/;
+//
+// AND EVERY HARVEST'S WRITING ARM. A harvest answers in two arms: one READS and renders a verdict,
+// one WRITES the tracked file the reading compares against. The reading arm belongs among the
+// gates; the writing arm never does, because a gate that writes dirties the tree on every sweep —
+// including under this tool's own `--check`, where a clean tree is the evidence. `edition:build`
+// stands aside for `edition:check` and `signals` for `signals:check`; `ceiling` and `builtins` join
+// them here. `ceiling` carried `--write` and rewrote `TextMateCeiling.tid` on every pass; `builtins`
+// ran with no `--check`, which writes the SHIPPED `syntaxes/tiddlywiki5.json` wherever it parts from
+// the tiddler and then reports success — so that gate repaired the drift it stands to report, and no
+// run could fail on it. The names are anchored one by one, not keyed on a suffix: this list is the
+// only place a script leaves the gate set, and hiding two CI instruments behind a loose prefix is what
+// `CIGates.tid` now answers for. Adding a name here means adding it to that ruling's reasons too.
+const SKIP = /^(gates$|bench|edition|snap-update|signals$|ceiling$|builtins$|test|tests-|vscode|package|watch|compile|lint|corpus-verbose|rule-inventory|theme-paint|family-atlas|reading-recipe|page-palette|tw5-oracle|uri-span-measure|uri-span-compare)/;
 
 const scripts = require(path.join(ROOT, 'package.json')).scripts;
 

@@ -11,6 +11,20 @@
 // it stands for and watch it fail? A test that only runs the tool and reads its summary answers
 // whether the tree happens to stand clean today.
 //
+// WHAT THIS DOES NOT GUARD, written down because the construction hides it. The population comes
+// from `gateNames()` — the GATES the manifest names — and each gate's instrument is matched against
+// the test files beside it. An invariant runs no manifest script, so no invariant ever enters the
+// pairing: every guard under this directory, this one among them, stands EXEMPT BY CONSTRUCTION,
+// and nothing anywhere asks whether a guard of theirs can fail. Four instruments that BLOCK a merge
+// stand outside the gate list too, named one by one in `CIGates.tid` under `alsoGates` — the SKIP
+// pattern in `gate-report.js` reaches them only as prefixes sharing one reason, so that ruling is
+// where a reader meets them: `edition:check`, `lint-closure`, `package-contents`,
+// `tests-known-gaps`. Two carry a test that plants a fault (`edition-build.test.js`,
+// `terminator-closure.test.js`); `package-contents.js` and `known-gaps.sh` carry none at all.
+// Widening this pairing to reach the invariants would ask every guard to plant a fault in itself,
+// which names a second instrument rather than a wider clause — see `LEDGER-3.0.0.md` under Tooling
+// and process.
+//
 //   node --test tools/invariants/every-gate-collides.test.js
 
 'use strict';

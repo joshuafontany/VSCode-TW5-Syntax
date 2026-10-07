@@ -37,7 +37,7 @@ tw5-version: 5.5.0-prerelease
             "said": "bracket-witness  108 carrier(s), 9 red bracket(s): 9 declared (4 owed), 0 undeclared, 0 stale; 8 in degenerate carrier(s)"
         },
         {
-            "gate": "builtins",
+            "gate": "builtins:check",
             "held": true,
             "said": "builtins-sync  7 name(s) and 1 prefix(es), the grammar current"
         },
@@ -57,9 +57,9 @@ tw5-version: 5.5.0-prerelease
             "said": "bleed-canary  text.html.tiddlywiki5  23 samples, 0 bleeding, 1 ending inside a construct TiddlyWiki also carries"
         },
         {
-            "gate": "ceiling",
+            "gate": "ceiling:check",
             "held": true,
-            "said": "textmate-ceiling  9 ceiling(s) measured against TiddlyWiki, 0 that no longer stand, written"
+            "said": "textmate-ceiling  9 ceiling(s) measured against TiddlyWiki, 0 that no longer stand"
         },
         {
             "gate": "colour-witness",
