@@ -1,7 +1,7 @@
 {
-    "gates": 50,
-    "held": 50,
-    "failing": 0,
+    "gates": 49,
+    "held": 48,
+    "failing": 1,
     "results": [
         {
             "gate": "ablation",
@@ -29,7 +29,7 @@
             "said": "bracket-witness  108 carrier(s), 9 red bracket(s): 9 declared (4 owed), 0 undeclared, 0 stale; 8 in degenerate carrier(s)"
         },
         {
-            "gate": "builtins",
+            "gate": "builtins:check",
             "held": true,
             "said": "builtins-sync  7 name(s) and 1 prefix(es), the grammar current"
         },
@@ -49,9 +49,9 @@
             "said": "bleed-canary  text.html.tiddlywiki5  23 samples, 0 bleeding, 1 ending inside a construct TiddlyWiki also carries"
         },
         {
-            "gate": "ceiling",
+            "gate": "ceiling:check",
             "held": true,
-            "said": "textmate-ceiling  9 ceiling(s) measured against TiddlyWiki, 0 that no longer stand, written"
+            "said": "textmate-ceiling  9 ceiling(s) measured against TiddlyWiki, 0 that no longer stand"
         },
         {
             "gate": "colour-witness",
@@ -135,8 +135,8 @@
         },
         {
             "gate": "must-flag",
-            "held": true,
-            "said": "must-flag  2 declaration(s), 0 that assert nothing"
+            "held": false,
+            "said": "must-flag  2 declaration(s), 1 that assert nothing"
         },
         {
             "gate": "nesting-coverage",
@@ -199,11 +199,6 @@
             "said": "snapshot-check  text.html.tiddlywiki5.memetic-wikitext  4 pinned, 0 drifted"
         },
         {
-            "gate": "snap-meta",
-            "held": true,
-            "said": "snapshot-check  source.tiddlywiki5.tid-file  1 pinned, 0 drifted"
-        },
-        {
             "gate": "snap-multids",
             "held": true,
             "said": "snapshot-check  source.tiddlywiki5.multids-file  9 pinned, 0 drifted"
@@ -214,9 +209,9 @@
             "said": "snapshot-check  text.html.tiddlywiki5.test  1 pinned, 0 drifted"
         },
         {
-            "gate": "snap-tid",
+            "gate": "snap-tid-meta",
             "held": true,
-            "said": "snapshot-check  source.tiddlywiki5.tid-file  2 pinned, 0 drifted"
+            "said": "snapshot-check  source.tiddlywiki5.tid-file  3 pinned, 0 drifted"
         },
         {
             "gate": "snap-wikitext",
