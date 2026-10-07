@@ -1832,6 +1832,18 @@ back by upgrading, which is the definition this number answers to.
   `corpus/memetic/carriers.blockcheck.mem` carry their own checker faults deliberately — codes the
   frame grammar does not admit — and this ruling leaves them standing: whether a grammar fixture
   owes the carrier checker cleanliness at all is a separate ruling nobody has made.
+- THAT SEPARATE RULING: THEY STAY, LABELLED, AND A GATE WATCHES THEM. `control-set.mem` and
+  `carriers.blockcheck.mem` carry structures `lares meme check` refuses on purpose — a DC1 carrier
+  reading outside the frame grammar, and a bare-ETB carrier `$carrier-sila` would only ever mint
+  behind a computed, verified check — written to measure the carrier checker against text that is
+  almost a carrier. Both now say so where a reader meets them: a prose label standing between the
+  `DOCTYPE` and the first carrier names each fault, points at its declaration, and says the grammar
+  reads past both regardless — itself plain prose, so the label trips no structure of its own.
+  `tools/must-flag.js` and `corpus/must-flag.txt` hold the other half: the declaration names each
+  file's exact fault set, the gate runs `lares meme check` over each declared file and passes only
+  when the set tripped matches the set declared — a file that comes back canonical FAILS (the
+  checker went blind, or the fixture went tame), and a file tripping an undeclared fault FAILS too.
+  Skips honestly, printing why, when no `lares` CLI stands on PATH. Registered as a 50th gate.
 
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`

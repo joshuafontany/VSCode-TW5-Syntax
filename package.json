@@ -408,6 +408,7 @@
         "sigil-vocabulary": "node ./tools/sigil-vocabulary.js",
         "sigil-shape": "node ./tools/sigil-shape.js",
         "must-fail": "node ./tools/must-fail.js",
+        "must-flag": "node ./tools/must-flag.js",
         "engine-witness": "node ./tools/engine-witness.js",
         "engine-behaviour": "node ./tools/engine-witness.js --behaviour",
         "still": "node ./tools/still.js --host --sample 25",
