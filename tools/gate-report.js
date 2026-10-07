@@ -60,18 +60,32 @@ const primaryVersion = (() => {
 // per-scope runs of a gathering script that is not itself a gate.
 // `gates` names this tool, which would run itself and never stop.
 //
-// AND EVERY HARVEST'S WRITING ARM. A harvest answers in two arms: one READS and renders a verdict,
-// one WRITES the tracked file the reading compares against. The reading arm belongs among the
-// gates; the writing arm never does, because a gate that writes dirties the tree on every sweep —
-// including under this tool's own `--check`, where a clean tree is the evidence. `edition:build`
-// stands aside for `edition:check` and `signals` for `signals:check`; `ceiling` and `builtins` join
-// them here. `ceiling` carried `--write` and rewrote `TextMateCeiling.tid` on every pass; `builtins`
-// ran with no `--check`, which writes the SHIPPED `syntaxes/tiddlywiki5.json` wherever it parts from
-// the tiddler and then reports success — so that gate repaired the drift it stands to report, and no
-// run could fail on it. The names are anchored one by one, not keyed on a suffix: this list is the
-// only place a script leaves the gate set, and hiding two CI instruments behind a loose prefix is what
-// `CIGates.tid` now answers for. Adding a name here means adding it to that ruling's reasons too.
-const SKIP = /^(gates$|bench|edition|snap-update|signals$|ceiling$|builtins$|test|tests-|vscode|package|watch|compile|lint|corpus-verbose|rule-inventory|theme-paint|family-atlas|reading-recipe|page-palette|tw5-oracle|uri-span-measure|uri-span-compare)/;
+// AND EVERY HARVEST'S WRITING ARM, DERIVED FROM ITS NAME. A harvest answers in two arms: one READS
+// and renders a verdict, one WRITES the tracked file the reading compares against. The reading arm
+// belongs among the gates; the writing arm never does, because a gate that writes dirties the tree
+// on every sweep — including under this tool's own `--check`, where a clean tree is the evidence.
+//
+// THE BARE NAME READS AND `:write` MUTATES, so a write arm needs no entry in any list: `WRITE_ARM`
+// below reads it off the suffix. `ceiling`/`ceiling:write`, `builtins`/`builtins:write`,
+// `signals`/`signals:write`, `edition`/`edition:write` all answer that one derivation, after the
+// four pairs spelled the direction four ways between them and two of them spelled it backwards.
+// `ceiling` carried `--write` in its BARE name and rewrote `TextMateCeiling.tid` on every pass;
+// `builtins` ran bare with no `--check`, which writes the SHIPPED `syntaxes/tiddlywiki5.json`
+// wherever it parts from the tiddler and then reports success — so that gate repaired the drift it
+// stands to report, and no run could fail on it. Naming the write arms one by one re-created at the
+// NAMING layer exactly the hazard a hand-kept list carries: a pair added tomorrow is skipped only if
+// somebody remembers. The suffix never forgets.
+//
+// `NOT_A_GATE` keeps the rest, anchored one by one — a builder, a server, a reporting tool that
+// answers a question rather than judging one, the per-scope runs of a gathering script, and `gates`
+// itself, which would run this tool inside itself and never stop. These leave the gate set for
+// reasons a suffix cannot carry, and hiding two CI instruments behind a loose prefix is what
+// `CIGates.tid` now answers for: adding a name here means adding it to that ruling's reasons too.
+// `edition` stands here among them and NOT as a write arm — its reading arm blocks a merge from
+// CI's own step, outside this report, under `alsoGates`.
+const WRITE_ARM = /:write$/;
+const NOT_A_GATE = /^(gates$|bench|edition$|test|tests-|vscode|package|watch|compile|lint|corpus-verbose|rule-inventory|theme-paint|family-atlas|reading-recipe|page-palette|tw5-oracle|uri-span-measure|uri-span-compare)/;
+const SKIP = new RegExp(`${WRITE_ARM.source}|${NOT_A_GATE.source}`);
 
 const scripts = require(path.join(ROOT, 'package.json')).scripts;
 

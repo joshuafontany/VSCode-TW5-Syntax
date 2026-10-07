@@ -35,7 +35,7 @@
             "said": "bracket-witness  108 carrier(s), 9 red bracket(s): 9 declared (4 owed), 0 undeclared, 0 stale; 8 in degenerate carrier(s)"
         },
         {
-            "gate": "builtins:check",
+            "gate": "builtins",
             "held": true,
             "state": "held",
             "said": "builtins-sync  7 name(s) and 1 prefix(es), the grammar current"
@@ -59,7 +59,7 @@
             "said": "bleed-canary  text.html.tiddlywiki5  23 samples, 0 bleeding, 1 ending inside a construct TiddlyWiki also carries"
         },
         {
-            "gate": "ceiling:check",
+            "gate": "ceiling",
             "held": true,
             "state": "held",
             "said": "textmate-ceiling  9 ceiling(s) measured against TiddlyWiki, 0 that no longer stand"
@@ -227,7 +227,7 @@
             "said": "sigil-vocabulary  18 sigil(s) the seed writes across 11 specimen(s), 0 unexercised, 7 carried beyond the seed"
         },
         {
-            "gate": "signals:check",
+            "gate": "signals",
             "held": true,
             "state": "held",
             "said": "grammar-signals  TiddlyWiki 5.4.1 — 83 operator(s), 69 widget(s), 44 rule(s), the peer harvest (corpus/reader-signals/5.4.1.json) current"

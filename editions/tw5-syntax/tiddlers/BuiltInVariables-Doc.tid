@@ -22,10 +22,11 @@ between releases.
 ! How the grammar reads it
 
 `tools/builtins-sync.js` reads this tiddler and writes the alternation the grammar matches on.
-Run it with `--check` and it reports drift without writing; a gate runs it that way, so the
-grammar and this tiddler cannot part company without the gate saying so.
+Run it with `--check` and it reports drift without writing; `npm run builtins` is that arm, and a
+gate runs it, so the grammar and this tiddler cannot part company without the gate saying so.
 
-Edit the list here. Run `npm run builtins`. The grammar follows.
+THE BARE NAME READS AND `:write` MUTATES. Edit the list here. Run `npm run builtins:write`. The
+grammar follows.
 
 ! Why a bare minimum
 

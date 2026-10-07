@@ -40,7 +40,7 @@ no pragma-mode rule.
 
 ''Eight rules hold it open'', and TiddlyWiki names them itself: `commentblock`, `fnprocdef`,
 `import`, `macrodef`, `parameters`, `parsermode`, `rules`, `whitespace`. An HTML comment keeps
-reading pragmas exactly as a directive does. `npm run signals` harvests the set and a gate holds the
+reading pragmas exactly as a directive does. `npm run signals:write` harvests the set and a gate holds the
 zone's own account to it, so a rule the host adds to pragma mode surfaces here rather than closing a
 zone quietly.
 
@@ -94,9 +94,9 @@ comes from the manifest by way of the report, so one added joins without anybody
 
 !! How a new TiddlyWiki reaches the grammar
 
-# `npm run signals` boots this edition against the TiddlyWiki the repo answers to, and writes what it found.
+# `npm run signals:write` boots this edition against the TiddlyWiki the repo answers to, and writes what it found. The bare `npm run signals` reads the harvest back against the host, which is the arm a gate runs.
 # `npm run rule-coverage` holds the grammar to it: every wikitext rule the host stands, the grammar reads — under its own name, or under one a line declares.
-# `npm run builtins:check` holds the grammar to the judgement beside it — the gate reads only, and `npm run builtins` projects the tiddler into the grammar when an operator means to.
+# `npm run builtins` holds the grammar to the judgement beside it — the bare name reads, so the gate never writes, and `npm run builtins:write` projects the tiddler into the grammar when an operator means to.
 # A rule the host added and the grammar never learned fails the second step, so a version bump arrives as a failing gate rather than as a construct that quietly reads as prose.
 
 Nothing in that chain edits the grammar for you. It reports what a release changed and stops, so

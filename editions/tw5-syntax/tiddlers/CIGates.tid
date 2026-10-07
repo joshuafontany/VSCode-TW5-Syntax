@@ -6,13 +6,13 @@ description: Which gates continuous integration runs, and the reason for each on
 
 {
     "alsoGates": [
-        "edition:check",
+        "edition",
         "lint-closure",
         "package-contents",
         "tests-known-gaps"
     ],
     "reporting": [
-        "signals:check",
+        "signals",
         "overreach-host",
         "overreach-cut",
         "upstream-coverage"
@@ -42,8 +42,8 @@ description: Which gates continuous integration runs, and the reason for each on
             "why": "a reading rather than a verdict: it reports how loudly a scope paints, and the gates that RULE on that stand separately"
         },
         {
-            "gate": "edition:build",
-            "why": "a builder. `edition:check` renders the verdict over what it produces, and stands among the gates"
+            "gate": "edition:write",
+            "why": "a builder, and the WRITING arm of a harvest pair: the bare name reads and `:write` mutates, so this rebuilds the edition's modules for a hand that means to. `edition` renders the verdict over what it produces, and CI runs that arm in its own blocking step among the four the report leaves aside"
         },
         {
             "gate": "bench",

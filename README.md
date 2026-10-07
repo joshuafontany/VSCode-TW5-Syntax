@@ -112,7 +112,7 @@ measurement behind this release. In short, the grammars answer to more than thei
 * `npm run overreach-corpus-files` / `overreach-corpus-memetic` — the corpus, in both dialects, against the parser and the written rulings
 * `npm run compose-memes` — composition over whatever memetic writing stands beside this checkout; set `MEMES` to one or more directories
 * `npm run legibility` — whether a reader can tell one construct from another: every pair over every bundled theme, each carrying its own floor
-* `npm run ceiling:check` — what a TextMate grammar CANNOT reach about TiddlyWiki, measured against the host and naming the kind of reader that closes each one. A ceiling somebody closes RETIRES, and the gate fails until it goes. `npm run ceiling` measures the same and refreshes the harvested `TextMateCeiling` tiddler with it, which the gate never writes
+* `npm run ceiling` — what a TextMate grammar CANNOT reach about TiddlyWiki, measured against the host and naming the kind of reader that closes each one. A ceiling somebody closes RETIRES, and the gate fails until it goes. The bare name READS, so the gate never writes; `npm run ceiling:write` measures the same and refreshes the harvested `TextMateCeiling` tiddler with it
 * `npm run delimiters` — what a delimiter inherits from the content it bounds: every `contentName` in the tree,
   keyed by shape, each ruled in `corpus/delimiter-ledger.txt` as a parting that serves a reader or costs one
 * `npm run package-contents` — every path the manifest names, checked inside the built package

@@ -298,7 +298,7 @@ back by upgrading, which is the definition this number answers to.
   each rule module and names `commentblock` among them, so an HTML comment keeps reading pragmas
   exactly as a directive does. Reading the backslash keywords alone closed the zone on the first
   `<!-- -->` line of a sample and took fifty-four pragmas with it, while the parser built every one.
-  `npm run signals` harvests the set from the host and a gate holds the zone's own account to it.
+  `npm run signals:write` harvests the set from the host and a gate holds the zone's own account to it.
 - The dialect's sigils read everywhere the base grammar reads. Its injection named three block
   contexts by hand, and a sigil inside an unordered list read as an ordinary macro call for it — the
   selector reached the three somebody listed. One selector on the base's root scope reaches the whole
@@ -1558,7 +1558,7 @@ back by upgrading, which is the definition this number answers to.
 - The composition gate reads a prologue as position-dependent by construction. A file whose first construct is a pragma cannot survive being preceded — that IS the construct, and markdown's front matter carries the same property — so such a file answers for standing FIRST, and the parser decides how far its prologue reaches rather than a walk over its lines.
 - A syntax-test fixture asserting pragma colouring declares the wrapper scope. See `text.html.tiddlywiki5`.
 - Every snippet says what it inserts. 73 of the 125 carried no description, so a learner reaching for `\rules` met a name and a body and nothing saying what the construct does.
-- A TypeScript compiler stands in this repository's own dependencies, pinned to the version whose bytes the committed modules carry. Continuous integration rebuilds the edition and asks whether the tree holds what the build writes — `npm run edition:check` — so a source edited without a rebuild fails a merge rather than shipping.
+- A TypeScript compiler stands in this repository's own dependencies, pinned to the version whose bytes the committed modules carry. Continuous integration rebuilds the edition and asks whether the tree holds what the build writes — `npm run edition` — so a source edited without a rebuild fails a merge rather than shipping.
 - The backtrack witness answers to a control rather than to the machine. Its budget stands in wall time, so run beside a dozen other gates the whole set slowed together and the slowest pattern crossed eight milliseconds having done nothing different — 1.4ms alone, past 8 under the suite, on the same bytes.
 - The edition's compiled modules answer to the TypeScript standing beside them. TypeScript sits in no dependency of this repository — the build finds a compiler in a parent checkout — so nothing in continuous integration could rebuild and compare, and the compiled modules ARE the shipped artifact.
 - The build verifies every module it compiles. It named one by hand and checked that one; a second arrived, compiled, and stood unverified beside it.
@@ -1600,7 +1600,7 @@ back by upgrading, which is the definition this number answers to.
   whether a guard of theirs can fail. Four instruments that BLOCK a merge stand outside the gate list
   too, each named in `CIGates.tid` under `alsoGates` — the SKIP pattern in `gate-report.js` reaches
   them only as prefixes sharing one reason, so the ruling in the wiki is where a reader meets them by
-  name: `edition:check`, `lint-closure`, `package-contents`, `tests-known-gaps`. Two of the four
+  name: `edition`, `lint-closure`, `package-contents`, `tests-known-gaps`. Two of the four
   carry a test that plants a fault (`tools/edition-build.test.js`, `tools/terminator-closure.test.js`);
   `tools/package-contents.js` and `tools/known-gaps.sh` carry no test file at all, so CI blocks on two
   instruments nothing collides. Widening the pairing to reach the invariants would ask every guard to
@@ -1614,10 +1614,28 @@ back by upgrading, which is the definition this number answers to.
   `syntaxes/tiddlywiki5.json` only where it DRIFTS from the tiddler that holds the list — and then
   prints `the grammar written` and exits 0. So the gate standing between the list and the grammar
   REPAIRED the parting it exists to report, and no run could ever fail on it; `BuiltInVariables-Doc`
-  already told a reader a gate ran the `--check` arm, two releases before one did. Both now join
-  `edition:build`/`edition:check` and `signals`/`signals:check`: the bare name writes for a hand that
-  means to, the `:check` name reads and renders the verdict, and `gate-report.js`'s SKIP pattern
-  anchors the two write arms by name beside the others.
+  already told a reader a gate ran the `--check` arm, two releases before one did.
+- THE BARE NAME READS AND `:write` MUTATES, which is the line above stated at the naming layer rather
+  than one pair at a time. The four harvest pairs spelled the direction four ways between them and
+  two spelled it backwards: `ceiling` carried `--write` in its BARE name, so the name a hand reaches
+  for first was the destructive one, and `builtins` ran bare with no `--check` for the same reason.
+  Reading the fix as "move the gate to the `:check` arm" left that standing — a `:check` suffix says
+  the WRITE is the default and the reading is the exception, which is the ruling one line above
+  inverted. So: `ceiling`, `builtins`, `signals` and `edition` READ and render a verdict, and
+  `ceiling:write`, `builtins:write`, `signals:write` and `edition:write` mutate. `snap`/`snap-update`
+  already worked this way and is the precedent; writing is a flag, never a side effect of reading;
+  and the one external reading available says nothing — three formatters default to writing, three to
+  reading — while all six carry both arms under one name, so the house's own ruling governs its own
+  naming system.
+- `gate-report.js`'s SKIP derives the write arm from the SUFFIX rather than carrying a name list.
+  Anchoring each write arm by name re-created at the naming layer exactly the hazard a hand-kept list
+  carries: a pair added tomorrow leaves the gate set only if somebody remembers. `:write` never
+  forgets. The names that stay anchored one by one leave for reasons a suffix cannot carry — a
+  builder, a server, a reading that judges nothing, and `gates` itself — and each is ruled by name in
+  `CIGates.tid`. The gate count stands unmoved across the rename, 49 under both readers: three keys
+  move alphabetically (`builtins:check` → `builtins`, `ceiling:check` → `ceiling`, `signals:check` →
+  `signals`) and the population does not. `edition` stands among `alsoGates`, blocking from CI's own
+  step, exactly where `edition:check` stood.
 - Two tests resolved the TiddlyWiki this repo answers to by hand, reading the environment and falling back to a sibling checkout, where the oracle already tries three more candidates behind that. A contributor whose checkout stood somewhere only the oracle finds saw those two skip while every other gate ran.
 - A gate holds that claim. It boots the edition, compares every arriving tiddler against the bytes on disk, and derives its expectation from the specs rather than listing the directories again — so a sixth directory gets checked without anybody editing the gate.
 - `attribute-witness` keys every disagreement to the structure that produced it and fails on one that keys to nothing. A residue counted but unpartitioned reads like a measurement and carries none: a class that grows hides behind a class that shrinks while the total holds.
