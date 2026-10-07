@@ -83,7 +83,40 @@ function gateNames() {
     .sort();
 }
 
-module.exports = { SKIP, gateNames };
+// A SELF-SKIP, under the one house-wide convention this gate report ENFORCES rather than invents
+// (D3): a gate's summary line reading `<tool>  SKIP — <reason>` and exiting 0 is recorded as
+// SKIPPED, with its reason, never as a verdict — the same shape `recovery-witness.js:107` already
+// prints and this reader already picks up as a summary line. Any later optional-tool gate earns the
+// third state for free by printing its own summary this way; nothing here is must-flag-specific.
+const SELF_SKIP = /^\S+\s{2,}SKIP\s+—\s+\S/;
+
+/** held / failed / skipped, from a gate's own exit code and its own summary line. A skip still
+ * exits 0 (it is not a failure), so `held` stays true for it — `skipped` is the finer reading a
+ * caller wanting the third state asks for instead. */
+function classify(held, said) {
+  if (held && SELF_SKIP.test(said)) return 'skipped';
+  return held ? 'held' : 'failed';
+}
+
+/** The whole-harvest TEXT (a `.tid` with a header, or a bare peer JSON) split at its JSON body, so
+ * a caller can compare the header bytes and the body structure separately. */
+function splitHarvest(text) {
+  const at = text.indexOf('{');
+  return at < 0 ? { head: text, body: null } : { head: text.slice(0, at), body: text.slice(at) };
+}
+
+/** A report body, projected for COMPARISON ONLY: a SKIPPED gate's reason names the environment (a
+ * TiddlyWiki version, a missing CLI) that no two readers reproduce, so its `said` text must never
+ * drift the comparison — only its STATE does. Every other gate still compares by its full summary
+ * line, as `--check` always has. */
+function comparable(body) {
+  return {
+    ...body,
+    results: body.results.map((r) => (r.state === 'skipped' ? { gate: r.gate, state: r.state } : r))
+  };
+}
+
+module.exports = { SKIP, gateNames, classify, splitHarvest, comparable };
 
 if (require.main !== module) return;
 
@@ -124,11 +157,13 @@ for (const gate of gates) {
   const lines = out.trim().split('\n').filter((l) => l.trim());
   const summary = [...lines].reverse().find((l) => /^\S+ {2,}\S/.test(l.trim()));
   const said = (summary ?? lines[lines.length - 1] ?? '').trim();
-  results.push({ gate, held: code === 0, said: said.trim() });
+  const held = code === 0;
+  results.push({ gate, held, state: classify(held, said), said: said.trim() });
 }
 
 const held = results.filter((r) => r.held).length;
-const body = { gates: results.length, held, failing: results.length - held, results };
+const skipped = results.filter((r) => r.state === 'skipped').length;
+const body = { gates: results.length, held, failing: results.length - held, skipped, results };
 
 const tid = 'title: $:/tw5-syntax/GateReport\n'
   + 'type: application/json\n'
@@ -146,16 +181,31 @@ const label = isPrimary ? 'the report' : `the peer report (${path.relative(ROOT,
 
 const standing = fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : null;
 if (check) {
-  const same = standing === rendered;
+  // (D3) A SKIPPED gate's reason names the environment — a TiddlyWiki version, a missing CLI —
+  // which no two readers reproduce, so `--check` reads its STATE rather than its summary bytes.
+  // Every other gate still compares its full summary line, exactly as before. The header (title,
+  // tags, gates-held, tw5-version — none of it skip-reason text) still compares literally: only
+  // the body's per-result projection is normalized.
+  const standingSplit = standing ? splitHarvest(standing) : null;
+  const renderedSplit = splitHarvest(rendered);
+  let standingBody = null;
+  try { standingBody = standingSplit && standingSplit.body ? JSON.parse(standingSplit.body) : null; }
+  catch { standingBody = null; }
+  const headSame = !!standingSplit && standingSplit.head === renderedSplit.head;
+  const bodySame = !!standingBody
+    && JSON.stringify(comparable(standingBody)) === JSON.stringify(comparable(body));
+  const same = headSame && bodySame;
   for (const r of results.filter((x) => !x.held)) console.error(`  ${r.gate} does not hold: ${r.said}`);
+  for (const r of results.filter((x) => x.state === 'skipped')) console.log(`  ${r.gate} SKIPPED: ${r.said}`);
   if (!same) console.error(`  ${label} differs from what the gates say now`);
-  console.log(`gate-report  ${held} of ${results.length} gate(s) hold, ${label} ${same ? 'current' : 'DRIFTED'}`);
+  console.log(`gate-report  ${held} of ${results.length} gate(s) hold (${skipped} skipped), `
+    + `${label} ${same ? 'current' : 'DRIFTED'}`);
   process.exitCode = same && held === results.length ? 0 : 1;
   return;
 }
 if (!isPrimary) fs.mkdirSync(PEER_DIR, { recursive: true });
 fs.writeFileSync(target, rendered);
-console.log(`gate-report  ${held} of ${results.length} gate(s) hold, ${label} written`);
+console.log(`gate-report  ${held} of ${results.length} gate(s) hold (${skipped} skipped), ${label} written`);
 for (const r of results.filter((x) => !x.held)) console.error(`  ${r.gate} does not hold: ${r.said}`);
 process.exitCode = held === results.length ? 0 : 1;
 return;

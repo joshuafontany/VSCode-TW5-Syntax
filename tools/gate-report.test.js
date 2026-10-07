@@ -61,6 +61,46 @@ test('every gate the report runs takes no argument the manifest withholds', () =
 
 // A verdict CI reads, the local sweep must read too.
 //
+// D3: a SKIPPED gate carries a STATE, and its reason must never drift `--check`. `recovery-witness`
+// and must-flag's own SKIP line already print `<tool>  SKIP — <reason>`; a future optional-tool
+// gate earns the third state for free the day it prints its summary the same way.
+const { classify, splitHarvest, comparable } = require('./gate-report.js');
+
+test('classify reads a self-skip summary line as "skipped", never "held" alone', () => {
+  assert.strictEqual(classify(true, 'recovery-witness  SKIP — TiddlyWiki 5.4.1 carries no parser diagnostics API'), 'skipped');
+  assert.strictEqual(classify(true, 'must-flag  SKIP — no `lares` CLI stands on PATH'), 'skipped');
+  assert.strictEqual(classify(true, 'must-flag  2 declaration(s), 0 blocking, 1 pending (undeclared, not blocking)'), 'held');
+  assert.strictEqual(classify(false, 'ablation-witness  2 finding(s) stale'), 'failed');
+});
+
+test('comparable blanks a skipped gate\'s reason, and nothing else\'s', () => {
+  const body = {
+    gates: 2, held: 2, failing: 0, skipped: 1,
+    results: [
+      { gate: 'recovery-witness', held: true, state: 'skipped', said: 'recovery-witness  SKIP — TiddlyWiki 5.4.1 carries no diagnostics' },
+      { gate: 'ablation', held: true, state: 'held', said: 'ablation-witness  331 finding(s) over 78 carrier(s)' }
+    ]
+  };
+  const drifted = JSON.parse(JSON.stringify(body));
+  drifted.results[0].said = 'recovery-witness  SKIP — TiddlyWiki 5.5.0-prerelease carries no diagnostics';
+  assert.strictEqual(JSON.stringify(comparable(body)), JSON.stringify(comparable(drifted)),
+    'a skipped gate\'s own reason text drifted the comparison, which no two readers can ever agree on');
+  const reallyDrifted = JSON.parse(JSON.stringify(body));
+  reallyDrifted.results[1].said = 'ablation-witness  330 finding(s) over 78 carrier(s)';
+  assert.notStrictEqual(JSON.stringify(comparable(body)), JSON.stringify(comparable(reallyDrifted)),
+    'a HELD gate\'s summary line must still drift the comparison exactly as before');
+});
+
+test('splitHarvest separates the .tid header (or bare JSON) from the JSON body', () => {
+  const tid = 'title: $:/tw5-syntax/GateReport\ntw5-version: 5.5.0\n\n{\n    "gates": 1\n}\n';
+  const split = splitHarvest(tid);
+  assert.match(split.head, /^title: \$:\/tw5-syntax\/GateReport/);
+  assert.deepStrictEqual(JSON.parse(split.body), { gates: 1 });
+  const peer = '{\n    "gates": 1\n}\n';
+  assert.strictEqual(splitHarvest(peer).head, '');
+  assert.deepStrictEqual(JSON.parse(splitHarvest(peer).body), { gates: 1 });
+});
+
 // The gate list derives from the manifest by the SHAPE of a script's body — a script invoking a
 // tool directly. `snap` invokes its per-scope siblings instead, so the derivation passed it over
 // while the skip pattern's own comment recorded it as carrying them whole. Measured: `npm run
