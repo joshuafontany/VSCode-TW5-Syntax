@@ -3,12 +3,12 @@ type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: Gate report
 description: What each gate said when it last ran — harvested, never hand-written
-gates-held: 49 of 49
+gates-held: 50 of 50
 tw5-version: 5.5.0-prerelease
 
 {
-    "gates": 49,
-    "held": 49,
+    "gates": 50,
+    "held": 50,
     "failing": 0,
     "results": [
         {
@@ -109,7 +109,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "engine-behaviour",
             "held": true,
-            "said": "engine-witness  884 pattern(s) read against 1090 corpus line(s), 1 that match differently, 0 unruled"
+            "said": "engine-witness  884 pattern(s) read against 1102 corpus line(s), 1 that match differently, 0 unruled"
         },
         {
             "gate": "engine-witness",
@@ -140,6 +140,11 @@ tw5-version: 5.5.0-prerelease
             "gate": "must-fail",
             "held": true,
             "said": "must-fail  9 specimen(s), 9 declaration(s), 0 that assert nothing"
+        },
+        {
+            "gate": "must-flag",
+            "held": true,
+            "said": "must-flag  2 declaration(s), 0 that assert nothing"
         },
         {
             "gate": "nesting-coverage",
@@ -229,7 +234,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "still",
             "held": true,
-            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 20 divergence(s) across 1 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 50.9% of corpus tokens ruled"
+            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 20 divergence(s) across 1 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 50.5% of corpus tokens ruled"
         },
         {
             "gate": "still-reach",
@@ -239,7 +244,7 @@ tw5-version: 5.5.0-prerelease
         {
             "gate": "swallow-witness",
             "held": true,
-            "said": "swallow-witness  1689 cut(s) across 52 corpus file(s), 10 quote(s) closed to ask, 10 divergence(s), 0 recorded, 0 unruled, 1 answering the host sweep, 0 ruling(s) explaining nothing"
+            "said": "swallow-witness  1703 cut(s) across 52 corpus file(s), 10 quote(s) closed to ask, 10 divergence(s), 0 recorded, 0 unruled, 1 answering the host sweep, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "theme-collision",
