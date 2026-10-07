@@ -1656,7 +1656,19 @@ back by upgrading, which is the definition this number answers to.
 - Every offset reading stays in ONE coordinate space. A nested parse restarts offsets at zero — measured, `$$$text/vnd.tiddlywiki` holding a quoteblock reports the typed block at 23..42 and the quoteblock inside it at 0..14 — so a witness asking which rule covers an absolute offset read an inner node as standing at the top of the document.
 - A pragma signature left open, ruled on corpus ground rather than carrier ground. See `pragmas.signatures.tw`.
 - The bogus matches had MASKED a real class. With the readings honest, a cut inside a `\define` body reports what stands there: one `set/macrodef` node and nothing inside it, because TiddlyWiki stores a macro body verbatim and never parses it, while the grammar paints wikitext in there on purpose.
-- A skip carries a ruling, never a sentence. See `CIGates.tid`.
+- A skip carries a ruling, never a sentence. See `CIGates.tid`, which keeps TWO absences apart and
+  rules each by name. `skipped` holds a gate CI is configured never to run; `standsDown` holds a
+  gate CI DOES run which answers "not here" at runtime because the capability it reads is absent,
+  printing `<tool>  SKIP — <reason>`, exiting 0, and harvesting as the skipped STATE rather than as
+  a verdict the environment cannot reproduce. One key for both would have read as the other: the
+  invariant that holds `skipped` asserts nothing named there is reached by CI, and both instruments
+  that stand down — `must-flag` where no `lares` CLI stands on PATH, `recovery-witness` against a
+  TiddlyWiki carrying no parser diagnostics API — ARE reached. So `standsDown` answers to the
+  inverse rule, and `ci-runs-the-gates.test.js` holds it: every gate named there must be one CI
+  runs AND must carry a self-skip its own instrument can print, derived by reading the instrument
+  rather than a second list beside it, and an instrument that gains a self-skip with nothing ruling
+  it there fails. Before that, a gate could learn to stand down in silence and the roster read
+  49 of 49 whether it answered or not.
 - A ruling's breadth answers to the GROUND it stands on. The guard scored a key's shape — wildcards
   and literal segments — and ranked ground backwards: `meta.codeblock.*` carries a wildcard and
   stands on 3.5% of corpus tokens, `meta.paragraph.tiddlywiki5` carries none and stood on 18%. Worse,

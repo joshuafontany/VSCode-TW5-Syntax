@@ -88,6 +88,12 @@ function gateNames() {
 // SKIPPED, with its reason, never as a verdict — the same shape `recovery-witness.js:107` already
 // prints and this reader already picks up as a summary line. Any later optional-tool gate earns the
 // third state for free by printing its own summary this way; nothing here is must-flag-specific.
+//
+// A SKIP CARRIES A RULING. `CIGates.tid` holds a gate that may stand down under `standsDown`, with
+// the capability it reads and the reason — kept apart from `skipped`, which rules a gate CI never
+// runs at all. `ci-runs-the-gates.test.js` reads this shape out of each instrument and fails one
+// that gains a self-skip with nothing ruling it there, so a gate cannot learn to stand down in
+// silence while the roster still reads every gate holding.
 const SELF_SKIP = /^\S+\s{2,}SKIP\s+—\s+\S/;
 
 /** held / failed / skipped, from a gate's own exit code and its own summary line. A skip still

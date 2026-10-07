@@ -23,7 +23,7 @@ when the world moves and nobody notices. A harvest goes stale on a version, and 
 |<<lar-link "$:/tw5-syntax/PlainConstructs">> |judgement — why a construct reads as prose rather than as a thing |
 |<<lar-link "$:/tw5-syntax/FieldReading">> |judgement — which header fields take the wikitext reading, and why each exception stands |
 |<<lar-link "$:/tw5-syntax/GrammarSignals">> |harvest — every filter operator, widget and wikitext rule this TiddlyWiki registers |
-|<<lar-link "$:/tw5-syntax/CIGates">> |judgement — which gates continuous integration runs, and the reason for each one it does not |
+|<<lar-link "$:/tw5-syntax/CIGates">> |judgement — which gates continuous integration runs, the reason for each one it does not, and which of those it runs may stand down at runtime |
 |<<lar-link "$:/tw5-syntax/GateReport">> |harvest — what every gate said when it last ran |
 |<<lar-link "$:/tw5-syntax/EditionBuild">> |harvest — the compiler that built the edition's modules, and the sources they answer to |
 
@@ -58,16 +58,25 @@ where no prologue can stand.
 !! What continuous integration runs
 
 Every witness the manifest names, CI runs — or <<lar-link "$:/tw5-syntax/CIGates">> carries the
-reason it does not. Three kinds stand there:
+reason it does not. Four kinds stand there:
 
 |!kind |!what it means |
 |''run'' |the gate blocks a merge |
 |''reporting'' |the gate answers to a TiddlyWiki this repository does not pin, so upstream moving reports rather than blocks |
-|''skipped'' |a ruling names what stands in the way, and the specification lives beside it |
+|''skipped'' |CI is configured never to run it: a ruling names what stands in the way, and the specification lives beside it |
+|''standsDown'' |CI runs it, and it stands down at runtime where the capability it reads is absent — printing `<tool>  SKIP — <reason>`, exiting 0, and harvesting as the ''skipped state'' rather than as a verdict |
+
+''A skip carries a ruling, never a sentence.'' The two absences stay apart because one ruling
+covering both would read as the other: `skipped` rules a gate CI never reaches, `standsDown` a gate
+CI does reach that may answer "not here". Every gate named under `standsDown` must be one CI runs
+and must carry a self-skip its own instrument can print, and an instrument that learns to stand
+down with nothing ruling it there fails — so the roster cannot read 49 of 49 whether a gate
+answered or not.
 
 `tools/ci-runs-the-gates.test.js` holds the workflow to that list rather than to a copy of it. A
 gate added to the manifest joins without anybody remembering, and a reason that stops answering to
-anything — a ruling for a gate CI runs anyway — fails the same way a missing one does.
+anything — a ruling for a gate CI runs anyway, or a stand-down ruling for an instrument that cannot
+stand down — fails the same way a missing one does.
 
 !! Running a gate from here
 
