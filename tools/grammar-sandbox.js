@@ -146,11 +146,11 @@ const ROOT_FILES = [
   )
 ].map((p) => p.replace(/^\.\//, ''));
 
-const WORKING = ['tools', 'syntaxes', 'editions', 'corpus', path.join('tests', 'samples')];
+const WORKING = ['tools', 'syntaxes', 'editions', 'corpus', 'reader-signals', path.join('tests', 'samples')];
 // The corpus rides across too: swallow-witness draws its whole battery from it, and a run
 // reading HEAD's corpus would collide a working-tree grammar against specimens the working tree
 // has since changed — or against a ledger it has yet to commit.
-const AT_HEAD = ['tools', 'syntaxes', 'editions', 'corpus'];
+const AT_HEAD = ['tools', 'syntaxes', 'editions', 'corpus', 'reader-signals'];
 
 /**
  * Run a command inside a sandbox a caller may write into first.

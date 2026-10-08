@@ -274,7 +274,7 @@ tw5-version: 5.5.0-prerelease
             "gate": "still",
             "held": true,
             "state": "held",
-            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 20 divergence(s) across 1 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 50.2% of corpus tokens ruled"
+            "said": "still  25 of 4550 carrier(s) at seed 1, 11 quote(s) closed to ask, 20 divergence(s) across 1 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 53.2% of corpus tokens ruled"
         },
         {
             "gate": "still-reach",

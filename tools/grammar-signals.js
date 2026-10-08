@@ -38,13 +38,16 @@ const { resolveTiddlyWiki } = require('./tw5-oracle.js');
 // the edition's own build reads exactly this file, and every other gate that reads it (rule-
 // coverage.js, filter-witness.js, construct-legibility.js, light-cone.js) keeps answering to
 // whichever reader wrote it, unaffected. A reader whose version does not match that file's own
-// `tw5-version` field gets a PEER snapshot instead — corpus/reader-signals/<version>.json — so
+// `tw5-version` field gets a PEER snapshot instead — reader-signals/<version>.json — so
 // `--check` compares each reader against ITS OWN baseline and neither fails nor reads stale under
 // the other. Two readers exist here: this repository's own fork (local development, TW5_PATH) and
 // the pinned `tiddlywiki` devDependency (CI); `GrammarSignals.tid` answers for whichever booted
 // when someone last ran `signals` with no `--check`, and a peer file answers for the rest.
-const PEER_DIR = path.join(ROOT, 'corpus', 'reader-signals');
-const sanitizeVersion = (v) => v.replace(/[^A-Za-z0-9.+-]/g, '_');
+// The home and the version flattening come from `reader-scope.js`, which carries the one name for
+// them. A peer snapshot is DERIVED and stands outside `corpus/`, which holds what a hand authored:
+// a snapshot inside it joined the ground `still.js` measures the ruled share over, so a harvest
+// moved a measurement — see `tools/invariants/a-harvest-moves-no-measurement.test.js`.
+const { PEER_DIR, sanitizeVersion } = require('./reader-scope.js');
 const primaryVersion = (() => {
   if (!fs.existsSync(HARVEST)) return null;
   const m = /^tw5-version:\s*(.+)$/m.exec(fs.readFileSync(HARVEST, 'utf8'));

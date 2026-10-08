@@ -29,7 +29,7 @@ const harvest = () => {
 
 // KEYED ON THE READER (tools/reader-scope.js's own generalisation, applied to a harvest rather
 // than a ruling). `GrammarSignals.tid` answers for the reader that last wrote it with no
-// `--check`; every OTHER reader gets its own peer snapshot under corpus/reader-signals/, so this
+// `--check`; every OTHER reader gets its own peer snapshot under reader-signals/, so this
 // holds whichever reader booted here — never stale under the reader it does not name.
 test('the harvest matches the TiddlyWiki this repo boots against', live, () => {
   const { code, out } = runTool('grammar-signals.js', ['--check']);

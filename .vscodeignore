@@ -12,6 +12,7 @@
 tests/**
 test-bench/**
 corpus/**
+reader-signals/**
 run_tests.sh
 grammars.sh
 tools/**
