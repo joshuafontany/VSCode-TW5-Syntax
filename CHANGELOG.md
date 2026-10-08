@@ -4,7 +4,7 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## 3.0.0 — unreleased
+## 3.0.0
 
 **3.0.0 stops guessing.** It reads your wikitext the way TiddlyWiki reads it, so a typo stays a
 typo instead of flooding your file, error colours appear only where TiddlyWiki itself objects, and

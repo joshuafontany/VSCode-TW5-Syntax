@@ -5,7 +5,7 @@ reader looks for. [`CHANGELOG.md`](CHANGELOG.md) tells what the release grants; 
 record underneath it. `MIGRATION.md` names every retired scope with what it stands as now, and the
 ledgers under `corpus/` hold the rulings each entry points at.
 
-## 3.0.0 — unreleased
+## 3.0.0
 
 A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 110 of the 421
 names `v2.2.1` published and adds 245 — the base wikitext grammar's own count; the memetic dialect
