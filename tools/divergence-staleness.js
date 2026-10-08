@@ -86,15 +86,24 @@ function execute(run, cwd, expectedArg = EXPECTED_REL) {
   // Node opens a forward-slash path on Windows as readily as a native one.
   const rulingsUsedFile = path.join(scratch, 'used.json').split(path.sep).join('/');
   const command = `${run.body.replace(`--expected=${EXPECTED_REL}`, `--expected=${expectedArg}`)} --rulings-used=${rulingsUsedFile}`;
+  // THE CHILD'S OWN WORDS, NOT ONLY ITS EXIT CODE. A run that dies before writing its reading has
+  // a reason, and swallowing stderr left this gate reporting only that the file was missing — which
+  // names the symptom and nothing a reader can act on.
   let code = 0;
+  let said = '';
   try {
-    execFileSync('bash', ['-c', command], { cwd, stdio: 'ignore', env: process.env });
+    execFileSync('bash', ['-c', command],
+      { cwd, stdio: ['ignore', 'ignore', 'pipe'], encoding: 'utf8', env: process.env });
   } catch (e) {
     code = e.status ?? 1;
+    said = (e.stderr || '').toString().trim();
   }
   if (!fs.existsSync(rulingsUsedFile)) {
     fs.rmSync(scratch, { recursive: true, force: true });
-    throw new Error(`${run.name} wrote no rulings-used file — it never reached the point overreach-check.js writes one (exit ${code})`);
+    throw new Error(`${run.name} wrote no rulings-used file — it never reached the point `
+      + `overreach-check.js writes one (exit ${code})`
+      + (said ? `\n  it said: ${said.split('\n').slice(-6).join('\n  ')}` : '')
+      + `\n  the command: ${command}`);
   }
   const { used } = JSON.parse(fs.readFileSync(rulingsUsedFile, 'utf8'));
   fs.rmSync(scratch, { recursive: true, force: true });
