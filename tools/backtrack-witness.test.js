@@ -69,7 +69,13 @@ test('the worst reading keeps headroom against the budget', live, () => {
   // contention only ever adds time. The witness reads 1.4ms alone and crossed 4 beside 386 tests,
   // where every round of a single run met the same contention — so the statistic wants applying one
   // level up, or this check measures the machine exactly as the reading it guards once did.
-  const runs = [runTool('backtrack-witness.js'), runTool('backtrack-witness.js'), runTool('backtrack-witness.js')];
+  //
+  // FIVE ROUNDS, NOT THREE. Measured on a shared macOS runner: the least of three read 4.03ms
+  // against a budget of 8, failing the headroom this asserts by three hundredths of a
+  // millisecond, while the same commit passed on an identical leg beside it. Taking the least of
+  // more rounds can only LOWER the figure, never raise one — so it widens no floor and cannot turn
+  // a real stall green, because a pattern that stalls stalls in every round.
+  const runs = Array.from({ length: 5 }, () => runTool('backtrack-witness.js'));
   const readings = runs.map((r) => Number(/worst ([\d.]+)ms against a budget of ([\d.]+)ms/.exec(r.out)[1]));
   const out = runs[readings.indexOf(Math.min(...readings))].out;
   const worst = Math.min(...readings);
