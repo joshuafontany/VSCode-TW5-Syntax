@@ -24,6 +24,14 @@ description: Which gates continuous integration runs, and the reason for each on
             "why": "stands down where no `lares` CLI stands on PATH. The carrier checker whose declared faults it adjudicates ships in a sibling repository, and no continuous-integration runner installs one — so the instrument prints `must-flag  SKIP — …`, exits 0, and the harvest records the STATE rather than a CLI-present verdict the environment cannot reproduce. A missing declared fault stays blocking wherever the CLI does stand"
         },
         {
+            "gate": "sigil-shape",
+            "why": "stands down where no boot seed stands beside this checkout. The seed it measures the sigil shapes against lives in a sibling repository, and a standalone clone — which is what continuous integration checks out — reaches none, so the instrument prints `sigil-shape  SKIP — \u2026`, exits 0, and the harvest records the STATE rather than a reading the environment cannot reproduce. An unexercised shape stays blocking wherever the seed does stand"
+        },
+        {
+            "gate": "sigil-vocabulary",
+            "why": "stands down on the same ground as `sigil-shape`, and for the same seed: a standalone clone reaches no boot seed, so no vocabulary answers and the harvest records that state. A sigil the seed writes and no specimen exercises stays blocking wherever the seed does stand"
+        },
+        {
             "gate": "recovery-witness",
             "why": "stands down against a TiddlyWiki carrying no parser diagnostics API. It reads back the `diagnostics` field `WikiParser.addDiagnostic` fills, which only this repository's own fork exposes, so under the pinned release it prints its SKIP naming the version it met and the harvest records that state. A reader that does carry the API gets the full verdict"
         }

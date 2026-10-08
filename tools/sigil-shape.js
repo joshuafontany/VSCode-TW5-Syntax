@@ -71,7 +71,10 @@ function specimens() {
 
 const seed = resolveSeed();
 if (!seed) {
-  console.log('sigil-shape  no boot seed stands beside this checkout, so no shape answers');
+  // THE HOUSE SKIP CONTRACT. The seed stands in a sibling repository, so a standalone clone reads
+  // "not here" rather than a verdict, and the harvest must record that STATE — not a reading the
+  // environment cannot reproduce. `CIGates.tid` rules this stand-down.
+  console.log('sigil-shape  SKIP — no boot seed stands beside this checkout, so no shape answers');
   process.exitCode = 0;
   return;
 }

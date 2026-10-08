@@ -55,7 +55,9 @@ function specimens() {
 
 const seed = resolveSeed();
 if (!seed) {
-  console.log('sigil-vocabulary  no boot seed stands beside this checkout, so no vocabulary answers');
+  // THE HOUSE SKIP CONTRACT, as `sigil-shape` carries it and for the same reason: the seed stands
+  // in a sibling repository, so a standalone clone records the STATE, under a `CIGates.tid` ruling.
+  console.log('sigil-vocabulary  SKIP — no boot seed stands beside this checkout, so no vocabulary answers');
   process.exitCode = 0;
   return;
 }
