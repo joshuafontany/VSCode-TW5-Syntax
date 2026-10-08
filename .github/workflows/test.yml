@@ -87,7 +87,7 @@ jobs:
     #
     # This step also runs every OTHER gate the report's manifest names — fifteen the codebase
     # already exercises elsewhere (canary/snap/compose-wikitext/corpus in the `grammar` and
-    # `compose` jobs) or under DIFFERENT terms (`signals:check`, `overreach-host`, `overreach-cut`
+    # `compose` jobs) or under DIFFERENT terms (`signals`, `overreach-host`, `overreach-cut`
     # continue-on-error in `gates-host`; `upstream-coverage` against a fresh clone in `upstream`).
     # Running them again here, against the pinned devDependency, is not redundant in the way it
     # looks: it makes those four checks BLOCKING for the first time, where before only their
@@ -114,7 +114,7 @@ jobs:
       # pinned, so this rebuilds them and asks whether the tree carries what the build writes. Not a
       # gate either, for the same reason.
       - name: The compiled edition stands current
-        run: npm run edition:check
+        run: npm run edition
 
   gates-host:
     # Gates whose answer moves with the TiddlyWiki they read. The harvest names a version, and the
@@ -135,7 +135,7 @@ jobs:
           cache: npm
       - run: npm ci
       - name: The harvest matches the TiddlyWiki this reads
-        run: npm run signals:check
+        run: npm run signals
       - name: The grammar against the host's own tiddlers
         run: npm run overreach-host
       - name: The same, cut mid-keystroke

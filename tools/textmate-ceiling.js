@@ -52,7 +52,8 @@ const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
 const verbose = process.argv.includes('--verbose');
 // WRITING IS A FLAG, never a side effect of reading. Tests invoke this tool in parallel and other
 // tests read the tiddlers directory beside it; a gate that writes on every run turns its own suite
-// into shared mutable state. `npm run ceiling` passes the flag, so the harvest stays current.
+// into shared mutable state. The bare `npm run ceiling` READS; `npm run ceiling:write` passes the
+// flag, so a hand that means to refreshes the harvest.
 const write = process.argv.includes('--write');
 const OUT = path.join(__dirname, '..', 'editions', 'tw5-syntax', 'tiddlers', 'TextMateCeiling.tid');
 const TW = resolveTiddlyWiki();

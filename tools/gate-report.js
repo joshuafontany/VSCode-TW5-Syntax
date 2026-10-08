@@ -60,18 +60,32 @@ const primaryVersion = (() => {
 // per-scope runs of a gathering script that is not itself a gate.
 // `gates` names this tool, which would run itself and never stop.
 //
-// AND EVERY HARVEST'S WRITING ARM. A harvest answers in two arms: one READS and renders a verdict,
-// one WRITES the tracked file the reading compares against. The reading arm belongs among the
-// gates; the writing arm never does, because a gate that writes dirties the tree on every sweep —
-// including under this tool's own `--check`, where a clean tree is the evidence. `edition:build`
-// stands aside for `edition:check` and `signals` for `signals:check`; `ceiling` and `builtins` join
-// them here. `ceiling` carried `--write` and rewrote `TextMateCeiling.tid` on every pass; `builtins`
-// ran with no `--check`, which writes the SHIPPED `syntaxes/tiddlywiki5.json` wherever it parts from
-// the tiddler and then reports success — so that gate repaired the drift it stands to report, and no
-// run could fail on it. The names are anchored one by one, not keyed on a suffix: this list is the
-// only place a script leaves the gate set, and hiding two CI instruments behind a loose prefix is what
-// `CIGates.tid` now answers for. Adding a name here means adding it to that ruling's reasons too.
-const SKIP = /^(gates$|bench|edition|snap-update|signals$|ceiling$|builtins$|test|tests-|vscode|package|watch|compile|lint|corpus-verbose|rule-inventory|theme-paint|family-atlas|reading-recipe|page-palette|tw5-oracle|uri-span-measure|uri-span-compare)/;
+// AND EVERY HARVEST'S WRITING ARM, DERIVED FROM ITS NAME. A harvest answers in two arms: one READS
+// and renders a verdict, one WRITES the tracked file the reading compares against. The reading arm
+// belongs among the gates; the writing arm never does, because a gate that writes dirties the tree
+// on every sweep — including under this tool's own `--check`, where a clean tree is the evidence.
+//
+// THE BARE NAME READS AND `:write` MUTATES, so a write arm needs no entry in any list: `WRITE_ARM`
+// below reads it off the suffix. `ceiling`/`ceiling:write`, `builtins`/`builtins:write`,
+// `signals`/`signals:write`, `edition`/`edition:write` all answer that one derivation, after the
+// four pairs spelled the direction four ways between them and two of them spelled it backwards.
+// `ceiling` carried `--write` in its BARE name and rewrote `TextMateCeiling.tid` on every pass;
+// `builtins` ran bare with no `--check`, which writes the SHIPPED `syntaxes/tiddlywiki5.json`
+// wherever it parts from the tiddler and then reports success — so that gate repaired the drift it
+// stands to report, and no run could fail on it. Naming the write arms one by one re-created at the
+// NAMING layer exactly the hazard a hand-kept list carries: a pair added tomorrow is skipped only if
+// somebody remembers. The suffix never forgets.
+//
+// `NOT_A_GATE` keeps the rest, anchored one by one — a builder, a server, a reporting tool that
+// answers a question rather than judging one, the per-scope runs of a gathering script, and `gates`
+// itself, which would run this tool inside itself and never stop. These leave the gate set for
+// reasons a suffix cannot carry, and hiding two CI instruments behind a loose prefix is what
+// `CIGates.tid` now answers for: adding a name here means adding it to that ruling's reasons too.
+// `edition` stands here among them and NOT as a write arm — its reading arm blocks a merge from
+// CI's own step, outside this report, under `alsoGates`.
+const WRITE_ARM = /:write$/;
+const NOT_A_GATE = /^(gates$|bench|edition$|test|tests-|vscode|package|watch|compile|lint|corpus-verbose|rule-inventory|theme-paint|family-atlas|reading-recipe|page-palette|tw5-oracle|uri-span-measure|uri-span-compare)/;
+const SKIP = new RegExp(`${WRITE_ARM.source}|${NOT_A_GATE.source}`);
 
 const scripts = require(path.join(ROOT, 'package.json')).scripts;
 
@@ -88,6 +102,12 @@ function gateNames() {
 // SKIPPED, with its reason, never as a verdict — the same shape `recovery-witness.js:107` already
 // prints and this reader already picks up as a summary line. Any later optional-tool gate earns the
 // third state for free by printing its own summary this way; nothing here is must-flag-specific.
+//
+// A SKIP CARRIES A RULING. `CIGates.tid` holds a gate that may stand down under `standsDown`, with
+// the capability it reads and the reason — kept apart from `skipped`, which rules a gate CI never
+// runs at all. `ci-runs-the-gates.test.js` reads this shape out of each instrument and fails one
+// that gains a self-skip with nothing ruling it there, so a gate cannot learn to stand down in
+// silence while the roster still reads every gate holding.
 const SELF_SKIP = /^\S+\s{2,}SKIP\s+—\s+\S/;
 
 /** held / failed / skipped, from a gate's own exit code and its own summary line. A skip still
@@ -105,14 +125,43 @@ function splitHarvest(text) {
   return at < 0 ? { head: text, body: null } : { head: text.slice(0, at), body: text.slice(at) };
 }
 
-/** A report body, projected for COMPARISON ONLY: a SKIPPED gate's reason names the environment (a
- * TiddlyWiki version, a missing CLI) that no two readers reproduce, so its `said` text must never
- * drift the comparison — only its STATE does. Every other gate still compares by its full summary
- * line, as `--check` always has. */
+// WHICH GATES A RULING LICENSES TO STAND DOWN, read from the ruling rather than from a list here.
+// `CIGates.tid`'s `standsDown` names each gate CI runs that answers "not here" where the capability
+// it reads is absent, with that capability and the reason. A gate not named there earns nothing
+// below.
+const STANDS_DOWN = new Set((() => {
+  try { return (require('./wiki-data.js').readData('CIGates.tid').data.standsDown ?? []).map((r) => r.gate); }
+  catch { return []; }
+})());
+
+/** A report body, projected for COMPARISON ONLY.
+ *
+ * A SKIPPED gate's reason names the environment (a TiddlyWiki version, a missing CLI) that no two
+ * readers reproduce, so its `said` text must never drift the comparison — only its STATE does.
+ *
+ * AND FOR A GATE A RULING LICENSES TO STAND DOWN, NOT EVEN ITS STATE. The baseline records ONE
+ * reader's run, so a gate whose capability stands there harvests as `held` carrying its full
+ * verdict, and the same gate reads `skipped` wherever the capability is absent — which is exactly
+ * CI, where no `lares` CLI stands. Measured: `--check` under the fork reader with the CLI stripped
+ * from PATH read `must-flag` SKIPPED and reported DRIFTED, exit 1, with every gate holding. No
+ * baseline can record both answers, and recording either one makes the other a fault nobody has.
+ * So a ruled gate compares by its NAME and by holding, which exit 0 already carries.
+ *
+ * This cannot manufacture the green that means "did not run": the licence comes from a RULING in
+ * the wiki naming the capability, an UNRULED gate that skips still drifts the comparison, the
+ * `skipped` count still counts every unruled skip, `ci-runs-the-gates.test.js` fails any instrument
+ * that gains a self-skip with nothing ruling it, and a ruled gate that FAILS still fails — the
+ * ruling excuses an absence, never a verdict.
+ *
+ * Every other gate still compares by its full summary line, as `--check` always has. */
 function comparable(body) {
   return {
     ...body,
-    results: body.results.map((r) => (r.state === 'skipped' ? { gate: r.gate, state: r.state } : r))
+    skipped: body.results.filter((r) => r.state === 'skipped' && !STANDS_DOWN.has(r.gate)).length,
+    results: body.results.map((r) => {
+      if (STANDS_DOWN.has(r.gate)) return { gate: r.gate };
+      return r.state === 'skipped' ? { gate: r.gate, state: r.state } : r;
+    })
   };
 }
 

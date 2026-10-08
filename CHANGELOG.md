@@ -94,6 +94,11 @@ Every reading above answers to TiddlyWiki's own parser under two named readers â
 fork and the pinned 5.4.1 release â€” and the gates, ledgers and floors that hold it live beside the
 grammar. [`LEDGER-3.0.0.md`](LEDGER-3.0.0.md) names each one.
 
+Every harvest in the manifest answers to one naming rule: **the bare name reads and `:write`
+mutates**. `ceiling`, `builtins`, `signals` and `edition` render a verdict and touch nothing;
+`ceiling:write`, `builtins:write`, `signals:write` and `edition:write` refresh what the reading
+compares against. Writing stays a flag you reach for, never a side effect of asking.
+
 ## 2.2.1
 
 ### Fixed
