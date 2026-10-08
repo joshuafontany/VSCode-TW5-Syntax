@@ -165,7 +165,7 @@ test('no gate stands under both absences at once', () => {
 // recorded in the SKIPPED state stood down for that reader, whatever the source scan says.
 test('every gate a harvest recorded as skipped carries a ruling', () => {
   const harvests = [path.join(ROOT, 'editions', 'tw5-syntax', 'tiddlers', 'GateReport.tid')];
-  const peers = path.join(ROOT, 'corpus', 'reader-signals');
+  const { PEER_DIR: peers } = require('../reader-scope.js');
   if (fs.existsSync(peers)) {
     for (const f of fs.readdirSync(peers).filter((n) => /^gate-report\..*\.json$/.test(n))) {
       harvests.push(path.join(peers, f));

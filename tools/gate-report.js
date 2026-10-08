@@ -40,14 +40,16 @@ const check = process.argv.includes('--check');
 // the TiddlyWiki they booted against — recovery-witness prints its version in a SKIP reason,
 // grammar-signals prints it outright — so the harvested report differs by reader even where every
 // gate holds. `GateReport.tid` stays the reader that last wrote it with no `--check`; every OTHER
-// reader gets a peer snapshot under corpus/reader-signals/, so `--check` compares each reader
-// against ITS OWN baseline rather than reading a true 49-of-49 as DRIFTED.
+// reader gets a peer snapshot under reader-signals/, so `--check` compares each reader against ITS
+// OWN baseline rather than reading a true 49-of-49 as DRIFTED. The home and the version flattening
+// both come from `reader-scope.js`, which carries the one name for them: a peer snapshot is DERIVED
+// and stands outside `corpus/`, which holds what a hand authored — a snapshot inside it joined the
+// ground `still.js` measures the ruled share over, so a harvest moved a measurement.
 const currentVersion = (() => {
   const tw = resolveTiddlyWiki();
   return tw ? boot(tw).$tw.version : null;
 })();
-const PEER_DIR = path.join(ROOT, 'corpus', 'reader-signals');
-const sanitizeVersion = (v) => v.replace(/[^A-Za-z0-9.+-]/g, '_');
+const { PEER_DIR, sanitizeVersion } = require('./reader-scope.js');
 const primaryVersion = (() => {
   if (!fs.existsSync(OUT)) return null;
   const m = /^tw5-version:\s*(.+)$/m.exec(fs.readFileSync(OUT, 'utf8'));

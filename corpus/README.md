@@ -40,6 +40,15 @@ against the families its delimiters carry; `delimiter-ledger.txt` rules every sh
 whether the parting serves a reader or costs one. A shape nobody ruled fails the gate, and so does
 a ruling naming a shape the tree stopped declaring.
 
+**What stands here, and what does not.** THIS DIRECTORY HOLDS WHAT A HAND AUTHORED. A harvest is
+derived — the host's own answer, or the gates' — and stands outside, under `reader-signals/` for a
+peer reader's snapshot and among the edition's tiddlers for the primary reader's. Measured, which is
+why the law reads this way: the peer snapshots once stood under `corpus/reader-signals/`, and
+`still.js` counts the token stacks of every file here that does not end `.txt` or `.md` — so each
+`.json` snapshot joined the ground the ruled share is measured over, at 50.2% with them present
+against 53.2% without, and the figure then rode into the next harvest's own summary line.
+`tools/invariants/a-harvest-moves-no-measurement.test.js` holds that door shut.
+
 The bench seeds its workspace from here, so you look at the same files that gate the
 grammar.
 

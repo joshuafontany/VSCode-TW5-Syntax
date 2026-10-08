@@ -1218,8 +1218,8 @@ back by upgrading, which is the definition this number answers to.
   (`tools/region-kind.js`). `still` and `swallow-witness` both keyed on the first
   meta./source./string. scope in the stack, which stands OUTERMOST, so one cause filed under
   whichever region enclosed it — a call opening a block keyed as a call, the same call opening
-  inside prose keyed as a paragraph. `markup.*` names no kind deliberately: it stands on 38% of
-  corpus tokens and would absorb any finding. A stack no kind claims reads UNCLASSIFIED and gets
+  inside prose keyed as a paragraph. `markup.*` names no kind deliberately: it stood on 38% of
+  corpus tokens when this landed, 31.4% measured 2026-10-07, and would absorb any finding. A stack no kind claims reads UNCLASSIFIED and gets
   examined rather than filed under its container.
 - Every call site names a call beside the name it publishes. `<<name …>>` reaches a macro, a
   procedure, a function or a custom widget, and nothing at the site says which — TiddlyWiki refuses
@@ -1698,9 +1698,29 @@ back by upgrading, which is the definition this number answers to.
   the shape of the line: an unruled gate that skips still drifts, the `skipped` count still counts
   every unruled skip, and a ruled gate that FAILS still fails — the ruling excuses an ABSENCE, never
   a verdict.
+- THE CORPUS HOLDS WHAT A HAND AUTHORED; A HARVEST IS DERIVED; THEY DO NOT SHARE A DIRECTORY. The
+  per-reader peer snapshots `gate-report.js` and `grammar-signals.js` write stood under
+  `corpus/reader-signals/`, and `still.js` counts the token stacks of every file under `corpus/`
+  that does not end `.txt` or `.md` — so each `.json` snapshot joined the ground the ruled share is
+  measured over, and the share then rode into the next harvest's own summary line. Measured on one
+  tree with nothing else changed: 50.2% of corpus tokens ruled with the snapshots present, 53.2%
+  with them removed, identical on two branches, so the cause was the directory and no schema. It
+  showed as a number nobody could reproduce — one reader reported the line wobbling 50.5 to 50.2
+  between runs, having re-harvested in between; a later reader ran it 43 times and found it
+  byte-stable, correctly, never harvesting mid-run; and a hand had already sorted an unsorted walk
+  on suspicion without once reproducing a symptom. Both writers moved to `reader-signals/` beside
+  the corpus, keyed through ONE name in `reader-scope.js` so a third writer cannot spell the home a
+  second way, and `tools/invariants/a-harvest-moves-no-measurement.test.js` holds the door: it
+  harvests, reads the measurement, harvests something else, and requires the two readings
+  byte-identical, with a planted-fault arm landing the same two harvests inside `corpus/` and
+  requiring the reading to part. The 53.2% is the TRUE figure and reads 2.7 points above the old
+  one for that reason — not drift. NOTHING RATCHETS ON IT, verified: `ruled-ground-ceiling.txt`
+  retired on 2026-09-09, no floor or ceiling file reads the share, and `ruling-breadth-ceiling.txt`
+  ratchets causes absorbed instead.
 - A ruling's breadth answers to the GROUND it stands on. The guard scored a key's shape — wildcards
   and literal segments — and ranked ground backwards: `meta.codeblock.*` carries a wildcard and
-  stands on 3.5% of corpus tokens, `meta.paragraph.tiddlywiki5` carries none and stood on 18%. Worse,
+  stood on 3.5% of corpus tokens, `meta.paragraph.tiddlywiki5` carries none and stood on 18% (4.4%
+  and 27.6% measured 2026-10-07 — every such share moves as the corpus gets authored). Worse,
   it examined only a key that VANISHED, so an ADDITION passed unweighed however much ground it
   claimed — and an addition is the shape a generous ruling takes. `corpus/ruled-ground-ceiling.txt`
   ratcheted what every ruling claimed between them: 55.8%, down from 79.4% under container keys.

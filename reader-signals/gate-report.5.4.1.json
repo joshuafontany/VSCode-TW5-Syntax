@@ -230,7 +230,7 @@
             "gate": "signals",
             "held": true,
             "state": "held",
-            "said": "grammar-signals  TiddlyWiki 5.4.1 — 83 operator(s), 69 widget(s), 44 rule(s), the peer harvest (corpus/reader-signals/5.4.1.json) current"
+            "said": "grammar-signals  TiddlyWiki 5.4.1 — 83 operator(s), 69 widget(s), 44 rule(s), the peer harvest (reader-signals/5.4.1.json) current"
         },
         {
             "gate": "snap-memetic",
@@ -266,7 +266,7 @@
             "gate": "still",
             "held": true,
             "state": "held",
-            "said": "still  25 of 4485 carrier(s) at seed 1, 0 quote(s) closed to ask, 30 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 50.2% of corpus tokens ruled"
+            "said": "still  25 of 4485 carrier(s) at seed 1, 0 quote(s) closed to ask, 30 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 53.2% of corpus tokens ruled"
         },
         {
             "gate": "still-reach",

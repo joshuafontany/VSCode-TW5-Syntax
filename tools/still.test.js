@@ -105,7 +105,7 @@ test('the breadth of a ruling never moves when the corpus grows', async () => {
 // A runaway got keyed on the first meta./source./string. scope in the token's stack, which stands
 // OUTERMOST, so the same fault filed under `meta.variable.call.block` where a call opened a block
 // and under `meta.paragraph` where the same call opened inside prose. Two keys, one cause, and the
-// second stands on 18% of the corpus while naming a fault that reaches one construct.
+// second stands on 27.6% of the corpus while naming a fault that reaches one construct.
 //
 // `attribute-witness` met innermost-versus-outermost three times and the house ruled it: read a
 // KIND vocabulary, never a position. This reads the same way.
