@@ -80,7 +80,11 @@ function staleness(total, results) {
  */
 function execute(run, cwd, expectedArg = EXPECTED_REL) {
   const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'divergence-staleness-'));
-  const rulingsUsedFile = path.join(scratch, 'used.json');
+  // FORWARD SLASHES, BECAUSE BASH READS THIS. The path goes into a command line `bash -c` reads,
+  // and a Windows temp path carries backslashes that bash takes as escapes — the tool then writes
+  // its reading somewhere nobody looks and the run reads as "never reached the point it writes one".
+  // Node opens a forward-slash path on Windows as readily as a native one.
+  const rulingsUsedFile = path.join(scratch, 'used.json').split(path.sep).join('/');
   const command = `${run.body.replace(`--expected=${EXPECTED_REL}`, `--expected=${expectedArg}`)} --rulings-used=${rulingsUsedFile}`;
   let code = 0;
   try {

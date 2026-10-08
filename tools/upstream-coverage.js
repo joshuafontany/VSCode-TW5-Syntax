@@ -26,7 +26,7 @@
 // The deciding half stands under test in tools/upstream-coverage.test.js, against
 // snapshots that state their answer rather than leaving a grammar to supply it.
 
-const { execFileSync } = require('node:child_process');
+const { snapRun } = require('./snap-run.js');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -164,10 +164,7 @@ function main() {
   });
 
   const grammars = grammarArgs();
-  execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', 'text.html.tiddlywiki5', '-u', ...probes], {
-    stdio: ['ignore', 'ignore', 'inherit'],
-    shell: process.platform === 'win32'
-  });
+  snapRun([...grammars, '-s', 'text.html.tiddlywiki5', '-u'], probes);
 
   const scoped = new Map();
   probes.forEach((file, i) => {

@@ -12,7 +12,7 @@
 //
 //   node tools/corpus-check.js [--verbose]
 
-const { execFileSync } = require('node:child_process');
+const { snapRun } = require('./snap-run.js');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -76,30 +76,10 @@ for (const [scope, entries] of byScope) {
   const control = path.join(scratch, 'control-' + scope.replace(/\./g, '_') + path.extname(entries[0].src));
   fs.writeFileSync(control, (path.extname(control) === '.tid' || path.extname(control) === '.meta'
     ? 'title: Control\n\n' : path.extname(control) === '.multids' ? 'title: $:/control/\n\n' : '') + SENTINEL + '\n');
-  // ONE RUN PER BATCH, NOT PER SCOPE. Windows hands the whole argument list to cmd.exe, which
-  // refuses past about 8k characters — "The command line is too long" — and a corpus that keeps
-  // growing walks into that ceiling with no warning. Batching by measured length keeps every run
-  // short of it on every platform, and the control rides each batch so the baseline is the same
-  // reading either way.
-  const BUDGET = 6000;
-  const fixed = ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', control];
-  const spent = fixed.reduce((n, a) => n + a.length + 3, 0);
-  const batches = [[]];
-  let length = spent;
-  for (const e of entries) {
-    const cost = e.copy.length + 3;
-    if (batches[batches.length - 1].length && length + cost > BUDGET) {
-      batches.push([]);
-      length = spent;
-    }
-    batches[batches.length - 1].push(e.copy);
-    length += cost;
-  }
-  for (const batch of batches) {
-    execFileSync('npx', [...fixed, ...batch], {
-      stdio: ['ignore', 'ignore', 'inherit'], shell: process.platform === 'win32'
-    });
-  }
+  // The shared runner batches the file list, since cmd.exe refuses a long command line and a
+  // growing corpus reaches that ceiling with no warning. The control rides every batch, because a
+  // baseline read once per batch is the same baseline.
+  snapRun([...grammars, '-s', scope, '-u', control], entries.map((e) => e.copy));
   const baseline = new Set();
   for (const line of fs.readFileSync(`${control}.snap`, 'utf8').split('\n')) {
     const m = /^#\s*\^+\s+(.*)$/.exec(line);

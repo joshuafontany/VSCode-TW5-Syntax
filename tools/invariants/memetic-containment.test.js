@@ -14,7 +14,7 @@ const assert = require('node:assert');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { execFileSync } = require('node:child_process');
+const { snapRun } = require('../snap-run.js');
 const { grammarArgs } = require('../tokenizer.js');
 
 const ROOT = path.resolve(__dirname, '..', '..');
@@ -62,8 +62,7 @@ test('a construct leaves the paragraph after it alone', { skip: grammars.length 
   const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-contain-'));
   const file = path.join(scratch, 'probe.mem');
   fs.writeFileSync(file, opens.map((r) => `${SPECIMENS[r]}\n\n${SENTENCE}\n`).join('\n'));
-  execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', grammar.scopeName, '-u', file],
-    { cwd: ROOT, stdio: ['ignore', 'ignore', 'ignore'] });
+  snapRun([...grammars, '-s', grammar.scopeName, '-u'], [file], { stdio: ['ignore', 'ignore', 'ignore'] });
 
   const foreign = annotationsOver(`${file}.snap`, SENTENCE)
     .map((scopes) => scopes.filter((s) => !s.startsWith('text.html.tiddlywiki5') && !s.includes('paragraph')))

@@ -14,7 +14,7 @@ const assert = require('node:assert');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { execFileSync } = require('node:child_process');
+const { snapRun } = require('../snap-run.js');
 const { grammarArgs } = require('../tokenizer.js');
 
 const ROOT = path.resolve(__dirname, '..', '..');
@@ -54,8 +54,7 @@ test('a wikitext file reads the same under the dialect that wraps it', { ...live
     return { source: f, wikitext: path.join(scratch, `${stem}.tw`), memetic: path.join(scratch, `${stem}.mem`) };
   });
   const snap = (scope, targets) =>
-    execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', ...targets],
-      { cwd: ROOT, stdio: ['ignore', 'ignore', 'ignore'] });
+    snapRun([...grammars, '-s', scope, '-u'], targets, { stdio: ['ignore', 'ignore', 'ignore'] });
   snap('text.html.tiddlywiki5', pairs.map((p) => p.wikitext));
   snap('text.html.tiddlywiki5.memetic-wikitext', pairs.map((p) => p.memetic));
 

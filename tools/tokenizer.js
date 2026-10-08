@@ -11,6 +11,7 @@
 'use strict';
 
 const { execFileSync } = require('node:child_process');
+const { snapRun } = require('./snap-run.js');
 const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..');
@@ -43,11 +44,8 @@ function grammarArgs() {
  */
 function snapshot(scope, files, options = {}) {
   if (!files.length) return;
-  execFileSync('npx',
-    ['vscode-tmgrammar-snap', ...grammarArgs(), ...(options.extra ?? []), '-s', scope, '-u', ...files],
-    // `npx` is a `.cmd` shim on Windows, which `execFileSync` cannot spawn directly.
-    { cwd: ROOT, stdio: options.quiet === false ? 'inherit' : 'ignore',
-      shell: process.platform === 'win32' });
+  snapRun([...grammarArgs(), ...(options.extra ?? []), '-s', scope, '-u'], files,
+    { stdio: options.quiet === false ? 'inherit' : 'ignore' });
 }
 
 // ── the same grammars, read in this process ───────────────────────────────────────────────────

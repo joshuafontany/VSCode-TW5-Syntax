@@ -103,12 +103,17 @@ test('arguments reach the tool in the order a caller names them', () => {
 // Measured under a full parallel sweep: a reading crossed the 1 MB `maxBuffer` default, Node killed
 // its writer with SIGTERM at 1 070 461 bytes, and the death read as a legibility gate reporting a pair
 // standing at 65 of 65 as missing — so a reader chased a grammar defect that was a dead process.
-test('a tool killed by a signal refuses to read as a refusal', () => {
-  assert.throws(
-    () => runNode(['-e', 'process.kill(process.pid, "SIGKILL")']),
-    /died by SIGKILL/,
-    'a signal death came back as a reading');
-});
+// Windows carries no POSIX signal delivery: `process.kill(pid, 'SIGKILL')` terminates the process
+// with an EXIT CODE and the reading comes back as a refusal, which is the correct reading of what
+// actually happened there. The guard this test pins stands for the platforms that can deliver one.
+test('a tool killed by a signal refuses to read as a refusal',
+  { skip: process.platform === 'win32' ? 'Windows delivers no POSIX signal to kill a child with' : false },
+  () => {
+    assert.throws(
+      () => runNode(['-e', 'process.kill(process.pid, "SIGKILL")']),
+      /died by SIGKILL/,
+      'a signal death came back as a reading');
+  });
 
 // A READING LONGER THAN THE BUFFER GETS ITS WRITER KILLED, so a gate's own verbose output must fit.
 test('a reading far past the old default arrives whole', () => {

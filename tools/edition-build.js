@@ -20,12 +20,22 @@ const path = require('node:path');
 const ROOT = path.resolve(__dirname, '..');
 const PROJECT = path.join(ROOT, 'editions', 'tw5-syntax', 'tsconfig.json');
 
+/**
+ * The compiler, as a FILE THIS NODE CAN RUN.
+ *
+ * `node_modules/.bin/tsc` is a POSIX shell script with a `tsc.cmd` sibling on Windows, and
+ * `execFileSync` spawning the extensionless one there dies — so the build read `1 !== 0` on a
+ * runner carrying a perfectly good compiler. The package's own `bin/tsc` is plain JavaScript,
+ * which `process.execPath` runs the same way everywhere.
+ *
+ * @returns {string|null} a path to run with this Node, or nothing if no compiler stands
+ */
 function resolveCompiler() {
   const candidates = [
     process.env.TSC_PATH,
-    path.join(ROOT, 'node_modules', '.bin', 'tsc'),
-    path.join(ROOT, '..', 'node_modules', '.bin', 'tsc'),
-    path.join(ROOT, '..', '..', 'node_modules', '.bin', 'tsc')
+    path.join(ROOT, 'node_modules', 'typescript', 'bin', 'tsc'),
+    path.join(ROOT, '..', 'node_modules', 'typescript', 'bin', 'tsc'),
+    path.join(ROOT, '..', '..', 'node_modules', 'typescript', 'bin', 'tsc')
   ].filter(Boolean);
   return candidates.find((c) => fs.existsSync(c)) ?? null;
 }
@@ -47,7 +57,7 @@ const before = Object.fromEntries(fs.readdirSync(SRC_DIR)
   .map((f) => [f, fs.existsSync(path.join(OUT_DIR, f)) ? fs.readFileSync(path.join(OUT_DIR, f), 'utf8') : null]));
 
 try {
-  execFileSync(tsc, ['-p', PROJECT], { cwd: ROOT, stdio: 'inherit' });
+  execFileSync(process.execPath, [tsc, '-p', PROJECT], { cwd: ROOT, stdio: 'inherit' });
 } catch (e) {
   process.exitCode = e.status || 1;
   return;
@@ -91,7 +101,9 @@ for (const source of sources) {
 const crypto = require('node:crypto');
 const record = {
   compiler: (() => {
-    try { return execFileSync(tsc, ['--version'], { encoding: 'utf8' }).trim(); } catch { return 'unknown'; }
+    try {
+      return execFileSync(process.execPath, [tsc, '--version'], { encoding: 'utf8' }).trim();
+    } catch { return 'unknown'; }
   })(),
   sources: Object.fromEntries(sources.map((source) =>
     [source, crypto.createHash('sha256').update(fs.readFileSync(path.join(SRC, source))).digest('hex')]))
