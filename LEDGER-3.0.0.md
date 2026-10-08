@@ -298,7 +298,7 @@ back by upgrading, which is the definition this number answers to.
   each rule module and names `commentblock` among them, so an HTML comment keeps reading pragmas
   exactly as a directive does. Reading the backslash keywords alone closed the zone on the first
   `<!-- -->` line of a sample and took fifty-four pragmas with it, while the parser built every one.
-  `npm run signals` harvests the set from the host and a gate holds the zone's own account to it.
+  `npm run signals:write` harvests the set from the host and a gate holds the zone's own account to it.
 - The dialect's sigils read everywhere the base grammar reads. Its injection named three block
   contexts by hand, and a sigil inside an unordered list read as an ordinary macro call for it — the
   selector reached the three somebody listed. One selector on the base's root scope reaches the whole
@@ -1218,8 +1218,8 @@ back by upgrading, which is the definition this number answers to.
   (`tools/region-kind.js`). `still` and `swallow-witness` both keyed on the first
   meta./source./string. scope in the stack, which stands OUTERMOST, so one cause filed under
   whichever region enclosed it — a call opening a block keyed as a call, the same call opening
-  inside prose keyed as a paragraph. `markup.*` names no kind deliberately: it stands on 38% of
-  corpus tokens and would absorb any finding. A stack no kind claims reads UNCLASSIFIED and gets
+  inside prose keyed as a paragraph. `markup.*` names no kind deliberately: it stood on 38% of
+  corpus tokens when this landed, 31.4% measured 2026-10-07, and would absorb any finding. A stack no kind claims reads UNCLASSIFIED and gets
   examined rather than filed under its container.
 - Every call site names a call beside the name it publishes. `<<name …>>` reaches a macro, a
   procedure, a function or a custom widget, and nothing at the site says which — TiddlyWiki refuses
@@ -1558,7 +1558,7 @@ back by upgrading, which is the definition this number answers to.
 - The composition gate reads a prologue as position-dependent by construction. A file whose first construct is a pragma cannot survive being preceded — that IS the construct, and markdown's front matter carries the same property — so such a file answers for standing FIRST, and the parser decides how far its prologue reaches rather than a walk over its lines.
 - A syntax-test fixture asserting pragma colouring declares the wrapper scope. See `text.html.tiddlywiki5`.
 - Every snippet says what it inserts. 73 of the 125 carried no description, so a learner reaching for `\rules` met a name and a body and nothing saying what the construct does.
-- A TypeScript compiler stands in this repository's own dependencies, pinned to the version whose bytes the committed modules carry. Continuous integration rebuilds the edition and asks whether the tree holds what the build writes — `npm run edition:check` — so a source edited without a rebuild fails a merge rather than shipping.
+- A TypeScript compiler stands in this repository's own dependencies, pinned to the version whose bytes the committed modules carry. Continuous integration rebuilds the edition and asks whether the tree holds what the build writes — `npm run edition` — so a source edited without a rebuild fails a merge rather than shipping.
 - The backtrack witness answers to a control rather than to the machine. Its budget stands in wall time, so run beside a dozen other gates the whole set slowed together and the slowest pattern crossed eight milliseconds having done nothing different — 1.4ms alone, past 8 under the suite, on the same bytes.
 - The edition's compiled modules answer to the TypeScript standing beside them. TypeScript sits in no dependency of this repository — the build finds a compiler in a parent checkout — so nothing in continuous integration could rebuild and compare, and the compiled modules ARE the shipped artifact.
 - The build verifies every module it compiles. It named one by hand and checked that one; a second arrived, compiled, and stood unverified beside it.
@@ -1592,6 +1592,50 @@ back by upgrading, which is the definition this number answers to.
 - The two sandbox runners share one body. They differed in which directories the sandbox takes from the working tree, which is now the argument rather than a second copy of everything else.
 - The vendored grammars stand in `tests/grammars/` with an account of where they came from, and a gate holds the directory to it: a grammar here that no runner loads fails, and so does a path `grammars.sh` names that nothing holds.
 - An instrument and the test that collides it stand in one directory. See `tools/`.
+- THE COLLIDER INVARIANT GUARDS THE GATES AND NOTHING ELSE, and this line states the hole rather than
+  closing it. `tools/invariants/every-gate-collides.test.js` pairs test files against the instrument
+  each GATE runs, taking its population from `gateNames()` — the manifest, by way of the report. An
+  invariant runs no manifest script, so no invariant ever enters that pairing: the thirty-nine guards
+  under `tools/invariants/` stand EXEMPT BY CONSTRUCTION, that one among them, and nothing asks
+  whether a guard of theirs can fail. Four instruments that BLOCK a merge stand outside the gate list
+  too, each named in `CIGates.tid` under `alsoGates` — the SKIP pattern in `gate-report.js` reaches
+  them only as prefixes sharing one reason, so the ruling in the wiki is where a reader meets them by
+  name: `edition`, `lint-closure`, `package-contents`, `tests-known-gaps`. Two of the four
+  carry a test that plants a fault (`tools/edition-build.test.js`, `tools/terminator-closure.test.js`);
+  `tools/package-contents.js` and `tools/known-gaps.sh` carry no test file at all, so CI blocks on two
+  instruments nothing collides. Widening the pairing to reach the invariants would ask every guard to
+  plant a fault in itself, which names a second instrument rather than a wider clause — until one
+  stands, the exemption answers for the silence.
+- A HARVEST ANSWERS IN TWO ARMS, AND A GATE RUNS THE READING ONE. `ceiling` and `builtins` stood in the
+  gate list on their WRITING arms, and the two failed differently. `ceiling` carried `--write`, so
+  every pass — including `gate-report --check`, whose own evidence is a clean tree — rewrote
+  `editions/tw5-syntax/tiddlers/TextMateCeiling.tid`, measured by its mtime moving under the old arm
+  and standing still under the new. `builtins` ran with no `--check`, which writes the SHIPPED
+  `syntaxes/tiddlywiki5.json` only where it DRIFTS from the tiddler that holds the list — and then
+  prints `the grammar written` and exits 0. So the gate standing between the list and the grammar
+  REPAIRED the parting it exists to report, and no run could ever fail on it; `BuiltInVariables-Doc`
+  already told a reader a gate ran the `--check` arm, two releases before one did.
+- THE BARE NAME READS AND `:write` MUTATES, which is the line above stated at the naming layer rather
+  than one pair at a time. The four harvest pairs spelled the direction four ways between them and
+  two spelled it backwards: `ceiling` carried `--write` in its BARE name, so the name a hand reaches
+  for first was the destructive one, and `builtins` ran bare with no `--check` for the same reason.
+  Reading the fix as "move the gate to the `:check` arm" left that standing — a `:check` suffix says
+  the WRITE is the default and the reading is the exception, which is the ruling one line above
+  inverted. So: `ceiling`, `builtins`, `signals` and `edition` READ and render a verdict, and
+  `ceiling:write`, `builtins:write`, `signals:write` and `edition:write` mutate. `snap`/`snap-update`
+  already worked this way and is the precedent; writing is a flag, never a side effect of reading;
+  and the one external reading available says nothing — three formatters default to writing, three to
+  reading — while all six carry both arms under one name, so the house's own ruling governs its own
+  naming system.
+- `gate-report.js`'s SKIP derives the write arm from the SUFFIX rather than carrying a name list.
+  Anchoring each write arm by name re-created at the naming layer exactly the hazard a hand-kept list
+  carries: a pair added tomorrow leaves the gate set only if somebody remembers. `:write` never
+  forgets. The names that stay anchored one by one leave for reasons a suffix cannot carry — a
+  builder, a server, a reading that judges nothing, and `gates` itself — and each is ruled by name in
+  `CIGates.tid`. The gate count stands unmoved across the rename, 49 under both readers: three keys
+  move alphabetically (`builtins:check` → `builtins`, `ceiling:check` → `ceiling`, `signals:check` →
+  `signals`) and the population does not. `edition` stands among `alsoGates`, blocking from CI's own
+  step, exactly where `edition:check` stood.
 - Two tests resolved the TiddlyWiki this repo answers to by hand, reading the environment and falling back to a sibling checkout, where the oracle already tries three more candidates behind that. A contributor whose checkout stood somewhere only the oracle finds saw those two skip while every other gate ran.
 - A gate holds that claim. It boots the edition, compares every arriving tiddler against the bytes on disk, and derives its expectation from the specs rather than listing the directories again — so a sixth directory gets checked without anybody editing the gate.
 - `attribute-witness` keys every disagreement to the structure that produced it and fails on one that keys to nothing. A residue counted but unpartitioned reads like a measurement and carries none: a class that grows hides behind a class that shrinks while the total holds.
@@ -1630,10 +1674,53 @@ back by upgrading, which is the definition this number answers to.
 - Every offset reading stays in ONE coordinate space. A nested parse restarts offsets at zero — measured, `$$$text/vnd.tiddlywiki` holding a quoteblock reports the typed block at 23..42 and the quoteblock inside it at 0..14 — so a witness asking which rule covers an absolute offset read an inner node as standing at the top of the document.
 - A pragma signature left open, ruled on corpus ground rather than carrier ground. See `pragmas.signatures.tw`.
 - The bogus matches had MASKED a real class. With the readings honest, a cut inside a `\define` body reports what stands there: one `set/macrodef` node and nothing inside it, because TiddlyWiki stores a macro body verbatim and never parses it, while the grammar paints wikitext in there on purpose.
-- A skip carries a ruling, never a sentence. See `CIGates.tid`.
+- A skip carries a ruling, never a sentence. See `CIGates.tid`, which keeps TWO absences apart and
+  rules each by name. `skipped` holds a gate CI is configured never to run; `standsDown` holds a
+  gate CI DOES run which answers "not here" at runtime because the capability it reads is absent,
+  printing `<tool>  SKIP — <reason>`, exiting 0, and harvesting as the skipped STATE rather than as
+  a verdict the environment cannot reproduce. One key for both would have read as the other: the
+  invariant that holds `skipped` asserts nothing named there is reached by CI, and both instruments
+  that stand down — `must-flag` where no `lares` CLI stands on PATH, `recovery-witness` against a
+  TiddlyWiki carrying no parser diagnostics API — ARE reached. So `standsDown` answers to the
+  inverse rule, and `ci-runs-the-gates.test.js` holds it: every gate named there must be one CI
+  runs AND must carry a self-skip its own instrument can print, derived by reading the instrument
+  rather than a second list beside it, and an instrument that gains a self-skip with nothing ruling
+  it there fails. Before that, a gate could learn to stand down in silence and the roster read
+  49 of 49 whether it answered or not.
+- A RULED STAND-DOWN MOVES A GATE'S STATE, not only its reason, and `--check` reads neither. Blanking
+  the reason answered half the question: a baseline records ONE reader's run, so a gate whose
+  capability stands there harvests as `held` with its full verdict while the same gate reads
+  `skipped` wherever the capability is absent — which is exactly CI, where no `lares` CLI stands.
+  Measured: `--check` under the fork reader with the CLI stripped from PATH read `must-flag` SKIPPED
+  and reported DRIFTED, exit 1, with all 49 gates holding. No baseline can record both answers, and
+  recording either makes the other a fault nobody has. So a gate `standsDown` RULES compares by its
+  name and by holding, which exit 0 already carries. The licence comes from the ruling, never from
+  the shape of the line: an unruled gate that skips still drifts, the `skipped` count still counts
+  every unruled skip, and a ruled gate that FAILS still fails — the ruling excuses an ABSENCE, never
+  a verdict.
+- THE CORPUS HOLDS WHAT A HAND AUTHORED; A HARVEST IS DERIVED; THEY DO NOT SHARE A DIRECTORY. The
+  per-reader peer snapshots `gate-report.js` and `grammar-signals.js` write stood under
+  `corpus/reader-signals/`, and `still.js` counts the token stacks of every file under `corpus/`
+  that does not end `.txt` or `.md` — so each `.json` snapshot joined the ground the ruled share is
+  measured over, and the share then rode into the next harvest's own summary line. Measured on one
+  tree with nothing else changed: 50.2% of corpus tokens ruled with the snapshots present, 53.2%
+  with them removed, identical on two branches, so the cause was the directory and no schema. It
+  showed as a number nobody could reproduce — one reader reported the line wobbling 50.5 to 50.2
+  between runs, having re-harvested in between; a later reader ran it 43 times and found it
+  byte-stable, correctly, never harvesting mid-run; and a hand had already sorted an unsorted walk
+  on suspicion without once reproducing a symptom. Both writers moved to `reader-signals/` beside
+  the corpus, keyed through ONE name in `reader-scope.js` so a third writer cannot spell the home a
+  second way, and `tools/invariants/a-harvest-moves-no-measurement.test.js` holds the door: it
+  harvests, reads the measurement, harvests something else, and requires the two readings
+  byte-identical, with a planted-fault arm landing the same two harvests inside `corpus/` and
+  requiring the reading to part. The 53.2% is the TRUE figure and reads 2.7 points above the old
+  one for that reason — not drift. NOTHING RATCHETS ON IT, verified: `ruled-ground-ceiling.txt`
+  retired on 2026-09-09, no floor or ceiling file reads the share, and `ruling-breadth-ceiling.txt`
+  ratchets causes absorbed instead.
 - A ruling's breadth answers to the GROUND it stands on. The guard scored a key's shape — wildcards
   and literal segments — and ranked ground backwards: `meta.codeblock.*` carries a wildcard and
-  stands on 3.5% of corpus tokens, `meta.paragraph.tiddlywiki5` carries none and stood on 18%. Worse,
+  stood on 3.5% of corpus tokens, `meta.paragraph.tiddlywiki5` carries none and stood on 18% (4.4%
+  and 27.6% measured 2026-10-07 — every such share moves as the corpus gets authored). Worse,
   it examined only a key that VANISHED, so an ADDITION passed unweighed however much ground it
   claimed — and an addition is the shape a generous ruling takes. `corpus/ruled-ground-ceiling.txt`
   ratcheted what every ruling claimed between them: 55.8%, down from 79.4% under container keys.

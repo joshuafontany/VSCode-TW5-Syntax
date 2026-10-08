@@ -41,6 +41,7 @@ const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
 const { READINGS, DEFAULT_TYPE } = require('./carrier-reading.js');
 const { readData } = require('./wiki-data.js');
 const { walkFiles } = require('./walk.js');
+const { owedOf } = require('./reader-scope.js');
 
 const verbose = process.argv.includes('--verbose');
 const LEDGER = path.join(ROOT, 'corpus', 'swallow-ledger.txt');
@@ -78,7 +79,7 @@ function ledger() {
     entries.push({
       direction,
       key,
-      claims: /^OWED\b/.test(reason) ? 'owed' : 'ruled',
+      claims: owedOf(reason) ? 'owed' : 'ruled',
       re: new RegExp(`^${key.split('*').map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('.*')}$`)
     });
   }

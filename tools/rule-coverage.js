@@ -34,7 +34,7 @@ const ALIAS = {
 };
 
 if (!fs.existsSync(HARVEST)) {
-  console.error('  no harvest stands — run `npm run signals` against the TiddlyWiki this repo answers to');
+  console.error('  no harvest stands — run `npm run signals:write` against the TiddlyWiki this repo answers to');
   process.exitCode = 2;
   return;
 }

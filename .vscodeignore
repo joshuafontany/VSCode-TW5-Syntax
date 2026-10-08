@@ -12,8 +12,8 @@
 tests/**
 test-bench/**
 corpus/**
+reader-signals/**
 run_tests.sh
-run_snapshots.sh
 grammars.sh
 tools/**
 

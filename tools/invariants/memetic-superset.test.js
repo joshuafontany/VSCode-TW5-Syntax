@@ -15,6 +15,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
+const { grammarArgs } = require('../tokenizer.js');
 
 const ROOT = path.resolve(__dirname, '..', '..');
 const CORPUS = path.join(ROOT, 'corpus', 'wikitext');
@@ -31,10 +32,11 @@ function spans(file) {
   return out;
 }
 
+// tokenizer.js's own `grammarArgs()` resolves and caches this; two invariants once inlined the same
+// shell invocation to get it independently, memetic-containment.test.js among them.
 const grammars = (() => {
   try {
-    return execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'],
-      { cwd: ROOT, encoding: 'utf8' }).trim().split('\n').filter(Boolean);
+    return grammarArgs();
   } catch { return []; }
 })();
 

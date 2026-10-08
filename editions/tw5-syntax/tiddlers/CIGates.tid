@@ -2,22 +2,32 @@ title: $:/tw5-syntax/CIGates
 type: application/json
 tags: $:/tags/TW5Syntax/GrammarData
 caption: CI gates
-description: Which gates continuous integration runs, and the reason for each one it does not
+description: Which gates continuous integration runs, and the reason for each one it does not — and which of the gates it does run may stand down at runtime, with the reason for each
 
 {
     "alsoGates": [
-        "edition:check",
+        "edition",
         "lint-closure",
         "package-contents",
         "tests-known-gaps"
     ],
     "reporting": [
-        "signals:check",
+        "signals",
         "overreach-host",
         "overreach-cut",
         "upstream-coverage"
     ],
     "skipped": [],
+    "standsDown": [
+        {
+            "gate": "must-flag",
+            "why": "stands down where no `lares` CLI stands on PATH. The carrier checker whose declared faults it adjudicates ships in a sibling repository, and no continuous-integration runner installs one — so the instrument prints `must-flag  SKIP — …`, exits 0, and the harvest records the STATE rather than a CLI-present verdict the environment cannot reproduce. A missing declared fault stays blocking wherever the CLI does stand"
+        },
+        {
+            "gate": "recovery-witness",
+            "why": "stands down against a TiddlyWiki carrying no parser diagnostics API. It reads back the `diagnostics` field `WikiParser.addDiagnostic` fills, which only this repository's own fork exposes, so under the pinned release it prints its SKIP naming the version it met and the harvest records that state. A reader that does carry the API gets the full verdict"
+        }
+    ],
     "notGates": [
         {
             "gate": "tw5-oracle",
@@ -32,8 +42,8 @@ description: Which gates continuous integration runs, and the reason for each on
             "why": "a reading rather than a verdict: it reports how loudly a scope paints, and the gates that RULE on that stand separately"
         },
         {
-            "gate": "edition:build",
-            "why": "a builder. `edition:check` renders the verdict over what it produces, and stands among the gates"
+            "gate": "edition:write",
+            "why": "a builder, and the WRITING arm of a harvest pair: the bare name reads and `:write` mutates, so this rebuilds the edition's modules for a hand that means to. `edition` renders the verdict over what it produces, and CI runs that arm in its own blocking step among the four the report leaves aside"
         },
         {
             "gate": "bench",

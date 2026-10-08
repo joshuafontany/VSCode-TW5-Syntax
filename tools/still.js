@@ -127,9 +127,10 @@ async function stackCounts() {
  * The share of corpus TOKENS a ruling key stands on.
  *
  * A key's breadth lives in the GROUND it claims, never in the punctuation of its name. Measured:
- * `meta.codeblock.*` carries a wildcard and stands on 3.5% of tokens; `meta.paragraph.tiddlywiki5`
- * carries none and stands on 18%. A reader scoring the spelling ranks those backwards, and a ruling
- * on the second passes as the narrower of the two.
+ * `meta.codeblock.*` carries a wildcard and stands on 4.4% of tokens; `meta.paragraph.tiddlywiki5`
+ * carries none and stands on 27.6% (measured 2026-10-07). A reader scoring the spelling ranks those
+ * backwards, and a ruling on the second passes as the narrower of the two. Every figure here moves
+ * as the corpus gets authored, which is why nothing ratchets on one.
  */
 async function groundOf(key) {
   return shareOf([matcher(key)]);

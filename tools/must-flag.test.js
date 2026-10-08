@@ -61,8 +61,10 @@ test('a must-flag specimen that stops tripping its fault fails the gate', { ...l
 });
 
 // A fault tripped that nobody declared: strip control-set.mem's entry down to one fault while the
-// file still trips two, so the checker finds a fault this ledger no longer names.
-test('a specimen tripping an undeclared fault fails the gate', { ...live, ...skip }, () => {
+// file still trips two, so the checker finds a fault this ledger no longer names. Under the third
+// state (D1) this is PENDING — reported, attributed, counted — and must NOT block, because
+// widening `faults=` to cover it would read identical to a repair while meaning the opposite.
+test('a specimen tripping an undeclared fault reports PENDING and does not block', { ...live, ...skip }, () => {
   const narrow = (sandbox) => {
     const file = path.join(sandbox, 'corpus', 'must-flag.txt');
     const text = fs.readFileSync(file, 'utf8');
@@ -73,5 +75,42 @@ test('a specimen tripping an undeclared fault fails the gate', { ...live, ...ski
   };
   const { code, out } = runInSandbox(narrow, ['tools/must-flag.js']);
   assert.match(out, /etb-bare/, out.slice(-700));
-  assert.notStrictEqual(code, 0, 'a specimen tripped an undeclared fault and the gate held anyway');
+  assert.match(out, /PENDING, not blocking/, out.slice(-700));
+  assert.match(out, /must-flag\s+\d+ declaration\(s\), 0 blocking, [1-9]\d* pending/, out.slice(-700));
+  assert.strictEqual(code, 0, 'an undeclared trip is PENDING, and must not block the gate');
+});
+
+// The live, undeclared fault this corpus carries today (`control-set.mem`'s "2 live headings"
+// reading, which no FAULT_PATTERNS entry names) must itself report PENDING and not block, with no
+// sandbox and no plant — this is what the checkout answers right now.
+test('the live undeclared fault on control-set.mem reports PENDING and does not block', live, () => {
+  const { code, out } = runTool('must-flag.js', ['--verbose']);
+  assert.match(out, /control-set\.mem trips .*which no declaration names — PENDING, not blocking/,
+    out.slice(-700));
+  assert.strictEqual(code, 0, out.slice(-700));
+});
+
+// The version slot: a declared floor that no longer matches what `lares --version` answers reports
+// a PENDING mismatch — named, attributed — never a silent pass and never a block.
+test('a lares-version floor that no longer matches reports PENDING and does not block', { ...live, ...skip }, () => {
+  const mismatch = (sandbox) => {
+    const file = path.join(sandbox, 'corpus', 'must-flag.txt');
+    const text = fs.readFileSync(file, 'utf8');
+    assert.match(text, /^lares-version .+$/m, 'the declaration carries no lares-version floor to mismatch');
+    fs.writeFileSync(file, text.replace(/^lares-version .+$/m, 'lares-version a floor this build never answered'));
+  };
+  const { code, out } = runInSandbox(mismatch, ['tools/must-flag.js']);
+  assert.match(out, /re-adjudicate the `lares-version` line/, out.slice(-700));
+  assert.strictEqual(code, 0, 'a version-floor mismatch is PENDING, and must not block the gate');
+});
+
+// No `lares` CLI on PATH (the shape CI meets): the gate self-skips under the house's own skip
+// contract — `<tool>  SKIP — <reason>`, exit 0 — rather than either failing or silently passing.
+test('with no `lares` CLI on PATH, must-flag self-skips rather than failing or passing silently', live, () => {
+  // Node must still resolve to spawn the gate at all; `lares` must not. A PATH holding only
+  // `node`'s own directory gives both at once, the same shape CI meets (no `lares` installed).
+  const nodeDir = path.dirname(process.execPath);
+  const { code, out } = runTool('must-flag.js', [], { env: { PATH: nodeDir } });
+  assert.match(out, /^must-flag {2}SKIP — /m, out.slice(-700));
+  assert.strictEqual(code, 0, out.slice(-700));
 });

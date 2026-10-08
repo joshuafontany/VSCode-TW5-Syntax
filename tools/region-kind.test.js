@@ -2,14 +2,14 @@
 //
 // A ledger key names a CAUSE. Read a stack by POSITION and one cause files two ways — the same call
 // keys under `meta.variable.call.block` where it opens a block and under `meta.paragraph` where it
-// opens inside prose, and the second stands on 18% of the corpus while naming a fault that reaches
+// opens inside prose, and the second stands on 27.6% of the corpus while naming a fault that reaches
 // one construct. Two witnesses read this vocabulary, and the breadth ceiling counts its keys, so a
 // change here moves a ratchet that guards against generous ruling.
 //
 // Three rules hold it:
 //
 //   INNERMOST FIRST. The enclosing region decides nothing; the region the cut left open does.
-//   `markup.*` NAMES NO KIND. It stands on 38% of corpus tokens, so a runaway filed under it
+//   `markup.*` NAMES NO KIND. It stands on 31.4% of corpus tokens, so a runaway filed under it
 //   absorbs any finding — the exact shape the ceiling exists to refuse.
 //   AN UNCLAIMED STACK SAYS SO. A default drawn from position reads like a classification and puts
 //   a ruling about a container into the ledger.
@@ -54,7 +54,7 @@ test('a stack no kind claims reads as unclassified, naming what stood there', ()
   assert.strictEqual(kindOf(['text.html.tiddlywiki5']), '(unclassified: bare text)');
 });
 
-// `markup.*` NAMES NO KIND, deliberately. It stands on 38% of corpus tokens, so a runaway filed
+// `markup.*` NAMES NO KIND, deliberately. It stands on 31.4% of corpus tokens, so a runaway filed
 // under it absorbs any finding — and the ledger then reads settled while nothing settled.
 test('markup claims no kind, so a runaway under it gets examined', () => {
   assert.match(kindOf(['text.html.tiddlywiki5', 'markup.bold.tiddlywiki5']), /unclassified/,

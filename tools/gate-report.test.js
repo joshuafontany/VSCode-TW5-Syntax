@@ -61,6 +61,99 @@ test('every gate the report runs takes no argument the manifest withholds', () =
 
 // A verdict CI reads, the local sweep must read too.
 //
+// D3: a SKIPPED gate carries a STATE, and its reason must never drift `--check`. `recovery-witness`
+// and must-flag's own SKIP line already print `<tool>  SKIP — <reason>`; a future optional-tool
+// gate earns the third state for free the day it prints its summary the same way.
+const { classify, splitHarvest, comparable } = require('./gate-report.js');
+
+test('classify reads a self-skip summary line as "skipped", never "held" alone', () => {
+  assert.strictEqual(classify(true, 'recovery-witness  SKIP — TiddlyWiki 5.4.1 carries no parser diagnostics API'), 'skipped');
+  assert.strictEqual(classify(true, 'must-flag  SKIP — no `lares` CLI stands on PATH'), 'skipped');
+  assert.strictEqual(classify(true, 'must-flag  2 declaration(s), 0 blocking, 1 pending (undeclared, not blocking)'), 'held');
+  assert.strictEqual(classify(false, 'ablation-witness  2 finding(s) stale'), 'failed');
+});
+
+test('comparable blanks a skipped gate\'s reason, and nothing else\'s', () => {
+  const body = {
+    gates: 2, held: 2, failing: 0, skipped: 1,
+    results: [
+      { gate: 'recovery-witness', held: true, state: 'skipped', said: 'recovery-witness  SKIP — TiddlyWiki 5.4.1 carries no diagnostics' },
+      { gate: 'ablation', held: true, state: 'held', said: 'ablation-witness  331 finding(s) over 78 carrier(s)' }
+    ]
+  };
+  const drifted = JSON.parse(JSON.stringify(body));
+  drifted.results[0].said = 'recovery-witness  SKIP — TiddlyWiki 5.5.0-prerelease carries no diagnostics';
+  assert.strictEqual(JSON.stringify(comparable(body)), JSON.stringify(comparable(drifted)),
+    'a skipped gate\'s own reason text drifted the comparison, which no two readers can ever agree on');
+  const reallyDrifted = JSON.parse(JSON.stringify(body));
+  reallyDrifted.results[1].said = 'ablation-witness  330 finding(s) over 78 carrier(s)';
+  assert.notStrictEqual(JSON.stringify(comparable(body)), JSON.stringify(comparable(reallyDrifted)),
+    'a HELD gate\'s summary line must still drift the comparison exactly as before');
+});
+
+// A GATE RULED AS STANDING DOWN MOVES ITS STATE WITH THE ENVIRONMENT, not only its reason.
+//
+// Blanking a skipped gate's reason answered half the question. The baseline records ONE reader's
+// run, so a gate whose capability stands there harvests as `held` with its full verdict, and the
+// same gate reads `skipped` wherever the capability is absent — which is exactly CI, where no
+// `lares` CLI stands. Measured: `--check` under the fork reader with the CLI stripped from PATH
+// read `must-flag` SKIPPED and reported the report DRIFTED, exit 1, with every gate holding.
+//
+// So for a gate `CIGates.tid` RULES as able to stand down, the comparison reads neither its state
+// nor its reason — only that it held, which exit 0 already carries. This cannot manufacture the
+// green that means "did not run": the licence comes from a RULING naming the capability, an
+// unruled gate that skips still drifts the comparison, `ci-runs-the-gates.test.js` fails any
+// instrument that gains a self-skip with no ruling, and a gate that FAILS still fails here.
+test('comparable reads a ruled stand-down gate by neither state nor reason', () => {
+  const { readData } = require('./wiki-data.js');
+  const ruled = (readData('CIGates.tid').data.standsDown ?? []).map((r) => r.gate);
+  assert.ok(ruled.length > 0, 'no gate stands ruled as able to stand down, so this reading answers nothing');
+  const gate = ruled[0];
+  const standing = {
+    gates: 2, held: 2, failing: 0, skipped: 0,
+    results: [
+      { gate, held: true, state: 'held', said: `${gate}  2 declaration(s), 0 blocking` },
+      { gate: 'ablation', held: true, state: 'held', said: 'ablation-witness  331 finding(s)' }
+    ]
+  };
+  const stoodDown = {
+    gates: 2, held: 2, failing: 0, skipped: 1,
+    results: [
+      { gate, held: true, state: 'skipped', said: `${gate}  SKIP — the capability it reads stands nowhere here` },
+      { gate: 'ablation', held: true, state: 'held', said: 'ablation-witness  331 finding(s)' }
+    ]
+  };
+  assert.strictEqual(JSON.stringify(comparable(standing)), JSON.stringify(comparable(stoodDown)),
+    'a ruled gate standing down drifted the comparison, so no baseline a reader holding the '
+    + 'capability harvests can ever read current where it is absent');
+  // THE LICENCE IS THE RULING, never the shape of the line. An unruled gate that skips drifts.
+  const unruled = JSON.parse(JSON.stringify(standing));
+  unruled.results[1].state = 'skipped';
+  unruled.results[1].said = 'ablation-witness  SKIP — nothing rules this one';
+  unruled.skipped = 1;
+  assert.notStrictEqual(JSON.stringify(comparable(standing)), JSON.stringify(comparable(unruled)),
+    'an UNRULED gate newly standing down read as current, which is the green that means "did not run"');
+  // And a ruled gate that FAILS is a failure, not an absence.
+  const failed = JSON.parse(JSON.stringify(standing));
+  failed.results[0].held = false;
+  failed.results[0].state = 'failed';
+  failed.results[0].said = `${gate}  1 declared fault(s) the checker no longer finds`;
+  failed.held = 1;
+  failed.failing = 1;
+  assert.notStrictEqual(JSON.stringify(comparable(standing)), JSON.stringify(comparable(failed)),
+    'a ruled gate that FAILED read as current, so the ruling excused a verdict rather than an absence');
+});
+
+test('splitHarvest separates the .tid header (or bare JSON) from the JSON body', () => {
+  const tid = 'title: $:/tw5-syntax/GateReport\ntw5-version: 5.5.0\n\n{\n    "gates": 1\n}\n';
+  const split = splitHarvest(tid);
+  assert.match(split.head, /^title: \$:\/tw5-syntax\/GateReport/);
+  assert.deepStrictEqual(JSON.parse(split.body), { gates: 1 });
+  const peer = '{\n    "gates": 1\n}\n';
+  assert.strictEqual(splitHarvest(peer).head, '');
+  assert.deepStrictEqual(JSON.parse(splitHarvest(peer).body), { gates: 1 });
+});
+
 // The gate list derives from the manifest by the SHAPE of a script's body — a script invoking a
 // tool directly. `snap` invokes its per-scope siblings instead, so the derivation passed it over
 // while the skip pattern's own comment recorded it as carrying them whole. Measured: `npm run

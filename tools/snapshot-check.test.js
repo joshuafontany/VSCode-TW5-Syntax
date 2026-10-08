@@ -24,16 +24,23 @@ const { runNode, ROOT } = require('./run-tool.js');
 const GRAMMAR = path.join(ROOT, 'syntaxes', 'tiddlywiki5.json');
 const live = { timeout: 600000 };
 
-/** The per-scope runs the manifest names, so a scope added later joins without anybody listing it. */
+/**
+ * The per-scope runs the manifest names, so a scope added later joins without anybody listing it.
+ * A run may carry several globs (one scope read over several extensions, e.g. `.tid` + `.meta`), so
+ * each entry is `[scope, globs[]]` rather than one glob apiece.
+ */
 const scopeRuns = () => Object.entries(require(path.join(ROOT, 'package.json')).scripts)
   .filter(([name, body]) => /^snap-/.test(name) && name !== 'snap-update' && body.includes('snapshot-check.js'))
   .map(([, body]) => body.replace(/^node \.\//, '').match(/(\S+snapshot-check\.js)\s+(\S+)\s+(.+)$/))
   .filter(Boolean)
-  .map(([, tool, scope, glob]) => [scope, glob.replace(/^['"]|['"]$/g, '')]);
+  .map(([, tool, scope, globs]) => [scope, globs.trim().split(/\s+/).map((g) => g.replace(/^['"]|['"]$/g, ''))]);
 
 test('the manifest names a snapshot run for every scope this grammar stands', live, () => {
   const runs = scopeRuns();
-  assert.ok(runs.length >= 6, `the manifest names ${runs.length} snapshot run(s), where the grammar stands more`);
+  // A fused run (one script, several globs) still answers for every glob it carries, so the floor
+  // tracks GLOBS, not scripts — a fusion that drops no population must not read as a regression.
+  const globCount = runs.reduce((n, [, globs]) => n + globs.length, 0);
+  assert.ok(globCount >= 6, `the manifest names ${globCount} snapshot glob(s), where the grammar stands more`);
   const scopes = runs.map(([scope]) => scope);
   for (const wanted of ['text.html.tiddlywiki5', 'text.html.tiddlywiki5.memetic-wikitext']) {
     assert.ok(scopes.includes(wanted), `no snapshot run pins ${wanted}`);
@@ -41,8 +48,8 @@ test('the manifest names a snapshot run for every scope this grammar stands', li
 });
 
 test('every pinned reading holds against the grammar as it stands', live, () => {
-  for (const [scope, glob] of scopeRuns()) {
-    const { code, out } = runNode(['tools/snapshot-check.js', scope, glob]);
+  for (const [scope, globs] of scopeRuns()) {
+    const { code, out } = runNode(['tools/snapshot-check.js', scope, ...globs]);
     assert.match(out, /\d+ pinned, 0 drifted/, `${scope}\n${out.slice(-1500)}`);
     assert.strictEqual(code, 0, `${scope} drifted\n${out.slice(-1500)}`);
   }

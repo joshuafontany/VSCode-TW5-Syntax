@@ -43,8 +43,9 @@ test('every ceiling this repository names still stands', live, () => {
 // later effort scoping a language server or a tree-sitter grammar opens the wiki. The tiddler is a
 // HARVEST — hand-editing it goes stale the moment the tree moves.
 // The tiddler stands COMMITTED and this test never writes it: the suite runs in parallel and other
-// tests read that directory, so a check that wrote would make its own suite race. `npm run ceiling`
-// carries `--write`, and the comparison below catches a harvest left behind.
+// tests read that directory, so a check that wrote would make its own suite race. The bare
+// `npm run ceiling` reads; `npm run ceiling:write` carries `--write`, and the comparison below
+// catches a harvest left behind.
 test('the wiki carries the mandate, harvested and current', live, () => {
   const tid = path.join(ROOT, 'editions', 'tw5-syntax', 'tiddlers', 'TextMateCeiling.tid');
   assert.ok(fs.existsSync(tid), 'the ceiling writes no tiddler, so the wiki carries no mandate');

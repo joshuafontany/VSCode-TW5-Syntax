@@ -47,7 +47,7 @@ const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
 const { READINGS, DEFAULT_TYPE } = require('./carrier-reading.js');
 const { unboundedRegions, regionsEndingOn } = require('./grammar-scopes.js');
 const { kindOf } = require('./region-kind.js');
-const { readerOf, appliesToReader } = require('./reader-scope.js');
+const { readerOf, appliesToReader, owedOf } = require('./reader-scope.js');
 const { walkFiles } = require('./walk.js');
 
 const verbose = process.argv.includes('--verbose');
@@ -105,7 +105,7 @@ function ledger() {
     // a degenerate carrier, which this witness exempts by design. A reason opening HOST says so, and the
     // summary counts those rulings rather than hiding them.
     const { version: reader, rest: unscoped } = readerOf(reason);
-    entries.push({ direction, key, reason, owed: /^OWED\b/.test(unscoped), host: /^HOST\b/.test(unscoped), reader,
+    entries.push({ direction, key, reason, owed: owedOf(reason), host: /^HOST\b/.test(unscoped), reader,
       re: new RegExp(`^${key.split('*').map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('.*')}$`) });
   }
   return entries;

@@ -3,7 +3,7 @@
 // A runaway names the region a cut left open, and a scope stack carries several. A reader taking a
 // POSITION picks whichever region encloses the rest: the same call files under
 // `meta.variable.call.block` where it opens a block and under `meta.paragraph` where it opens inside
-// prose — one cause, two keys, and the second stands on 18% of the corpus while naming a fault that
+// prose — one cause, two keys, and the second stands on 27.6% of the corpus while naming a fault that
 // reaches one construct. Two witnesses read this the same way, so the vocabulary stands in one place.
 //
 // `attribute-witness` met innermost-versus-outermost three times and the house ruled it: read a KIND
@@ -26,7 +26,7 @@ const KINDS = [
   ['meta.table.*', /^meta\.table\./]
 ];
 
-// `markup.*` names no kind here, deliberately. It stands on 38% of corpus tokens — bold, headings,
+// `markup.*` names no kind here, deliberately. It stands on 31.4% of corpus tokens — bold, headings,
 // lists and links between them — so a runaway filed under it absorbs any finding, which is the
 // shape the warning at the head of `still.js` names. A stack whose innermost claimed region is
 // markup reads UNCLASSIFIED and gets examined.

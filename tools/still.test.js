@@ -105,7 +105,7 @@ test('the breadth of a ruling never moves when the corpus grows', async () => {
 // A runaway got keyed on the first meta./source./string. scope in the token's stack, which stands
 // OUTERMOST, so the same fault filed under `meta.variable.call.block` where a call opened a block
 // and under `meta.paragraph` where the same call opened inside prose. Two keys, one cause, and the
-// second stands on 18% of the corpus while naming a fault that reaches one construct.
+// second stands on 27.6% of the corpus while naming a fault that reaches one construct.
 //
 // `attribute-witness` met innermost-versus-outermost three times and the house ruled it: read a
 // KIND vocabulary, never a position. This reads the same way.
@@ -208,11 +208,10 @@ test('one reading per carrier finds the cuts that re-reading each head finds', l
   const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
   const { tokenize } = require('./tokenizer.js');
   const { kindOf } = require('./region-kind.js');
-  const { standAlone } = require('./sentinel.js');
+  const { SENTINEL, standAlone } = require('./sentinel.js');
   const tw = resolveTiddlyWiki();
   if (!tw) return;                                   // the pass itself stands down with no checkout
   const oracle = boot(tw, {});
-  const SENTINEL = '<<<\nQuoted\n<<<\n';
 
   /**
    * The reading the collapse replaces: the whole head, tokenized again at every cut.
@@ -295,11 +294,10 @@ test('the slow reading agrees with the fast one over a carrier declaring its own
   const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
   const { tokenize } = require('./tokenizer.js');
   const { kindOf } = require('./region-kind.js');
-  const { standAlone } = require('./sentinel.js');
+  const { SENTINEL, standAlone } = require('./sentinel.js');
   const tw = resolveTiddlyWiki();
   if (!tw) return;                                   // the pass itself stands down with no checkout
   const oracle = boot(tw, {});
-  const SENTINEL = '<<<\nQuoted\n<<<\n';
 
   const slowly = async (file) => {
     const reading = READINGS[path.extname(file)];
@@ -361,11 +359,10 @@ test('the slow reading closes an open quote before its sentinel, like the fast o
   const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
   const { tokenize } = require('./tokenizer.js');
   const { kindOf } = require('./region-kind.js');
-  const { standAlone } = require('./sentinel.js');
+  const { SENTINEL, standAlone } = require('./sentinel.js');
   const tw = resolveTiddlyWiki();
   if (!tw) return;                                   // the pass itself stands down with no checkout
   const oracle = boot(tw, {});
-  const SENTINEL = '<<<\nQuoted\n<<<\n';
 
   const slowly = async (file) => {
     const reading = READINGS[path.extname(file)];
