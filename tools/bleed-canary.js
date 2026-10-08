@@ -16,7 +16,7 @@
 // it; the gate's own collision asks for it too, since a reading that excuses nothing provable
 // excuses everything.
 
-const { execFileSync } = require('node:child_process');
+const { snapRun } = require('./snap-run.js');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -103,10 +103,7 @@ for (const src of sources) {
 const grammars = grammarArgs();
 
 const staged = sources.map((src) => path.join(scratch, path.basename(src)));
-execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', ...staged], {
-  stdio: ['ignore', 'ignore', 'inherit'],
-  shell: process.platform === 'win32'
-});
+snapRun([...grammars, '-s', scope, '-u'], staged);
 
 let bleeding = 0;
 let inherited = 0;

@@ -32,7 +32,7 @@
 
 'use strict';
 
-const { execFileSync } = require('node:child_process');
+const { snapRun } = require('./snap-run.js');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -84,9 +84,7 @@ const comparatorGrammars = COMPARATORS.flatMap((c) => ['-g', path.join(GRAMMARS,
 function tokenize(source, extension, scope) {
   const file = path.join(scratch, `probe-${extension.slice(1)}${extension}`);
   fs.writeFileSync(file, source);
-  execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, ...comparatorGrammars, '-s', scope, '-u', file],
-    // `npx` is a `.cmd` shim on Windows, which `execFileSync` cannot spawn directly.
-    { cwd: ROOT, stdio: 'ignore', shell: process.platform === 'win32' });
+  snapRun([...grammars, ...comparatorGrammars, '-s', scope, '-u'], [file], { stdio: 'ignore' });
   const out = [];
   for (const { source: line, annotations } of readSnapshot(fs.readFileSync(`${file}.snap`, 'utf8'))) {
     if (!line || !line.trim()) continue;

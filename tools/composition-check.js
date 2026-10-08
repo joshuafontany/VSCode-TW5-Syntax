@@ -26,7 +26,7 @@
 // one sample, and keying by text compares one sample's reading against another's, which read
 // as three failing pairs while every sample composed.
 
-const { execFileSync } = require('node:child_process');
+const { snapRun } = require('./snap-run.js');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -176,10 +176,7 @@ function main() {
   });
 
   const grammars = grammarArgs();
-  execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', ...files], {
-    stdio: ['ignore', 'ignore', 'inherit'],
-    shell: process.platform === 'win32'
-  });
+  snapRun([...grammars, '-s', scope, '-u'], files);
 
   const soloReadings = solo.map((f) => readingsOf(fs.readFileSync(`${f}.snap`, 'utf8')));
   // The prologue each file carries, read off the parser rather than off its lines.

@@ -13,7 +13,7 @@
 //   node tools/snapshot-check.js <scope> <glob> [<glob> ...]            compare, exit non-zero on drift
 //   node tools/snapshot-check.js <scope> <glob> [<glob> ...] --update   rewrite the pinned snapshots
 
-const { execFileSync } = require('node:child_process');
+const { snapRun } = require('./snap-run.js');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -56,10 +56,7 @@ for (const src of sources) fs.copyFileSync(src, path.join(scratch, path.basename
 const grammars = grammarArgs();
 
 const staged = sources.map((src) => path.join(scratch, path.basename(src)));
-execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', ...staged], {
-  stdio: ['ignore', 'ignore', 'inherit'],
-  shell: process.platform === 'win32'
-});
+snapRun([...grammars, '-s', scope, '-u'], staged);
 
 let drift = 0;
 let checked = 0;

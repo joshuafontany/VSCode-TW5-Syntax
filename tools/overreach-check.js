@@ -37,6 +37,7 @@
 // tools/overreach-check.test.js; the .snap format itself lives in tools/snapshot-format.js.
 
 const { execFileSync } = require('node:child_process');
+const { snapRun } = require('./snap-run.js');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -393,10 +394,7 @@ if (require.main === module) {
     return;
   }
   const grammars = grammarArgs();
-  execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', ...copies], {
-    stdio: ['ignore', 'ignore', 'inherit'],
-    shell: process.platform === 'win32'
-  });
+  snapRun([...grammars, '-s', scope, '-u'], copies);
 
   const byScope = { overreach: new Map(), invention: new Map() };
   let ruled = 0;

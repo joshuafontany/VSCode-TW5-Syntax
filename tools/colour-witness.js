@@ -25,6 +25,7 @@ const fs = require('node:fs');
 const { declaredScopesIn } = require('./grammar-scopes.js');
 const path = require('node:path');
 const { grammarArgs } = require('./tokenizer.js');
+const { snapRun } = require('./snap-run.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const THEMES = path.join(ROOT, 'node_modules', 'tm-themes', 'themes');
@@ -101,16 +102,12 @@ function openerCloserPairs(scopes) {
  * @returns {Record<string,string>}
  */
 function stacksOverWords(specimen, words, scope = 'text.html.tiddlywiki5') {
-  const { execFileSync } = require('node:child_process');
   const os = require('node:os');
   const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-colour-'));
   const file = path.join(scratch, scope.endsWith('memetic-wikitext') ? 'probe.mem' : 'probe.tw');
   fs.writeFileSync(file, specimen);
   const grammars = grammarArgs();
-  execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', file],
-    // `npx` is a `.cmd` shim on Windows, which `execFileSync` cannot spawn directly — it answers
-    // `status: null` and a spawn error carrying itself. The sibling tools all pass this.
-    { cwd: ROOT, stdio: ['ignore', 'ignore', 'ignore'], shell: process.platform === 'win32' });
+  snapRun([...grammars, '-s', scope, '-u'], [file], { stdio: ['ignore', 'ignore', 'ignore'] });
   const out = {};
   let line = null;
   for (const text of fs.readFileSync(`${file}.snap`, 'utf8').split('\n')) {
