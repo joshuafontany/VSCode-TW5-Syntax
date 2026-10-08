@@ -108,7 +108,9 @@ function stacksOverWords(specimen, words, scope = 'text.html.tiddlywiki5') {
   fs.writeFileSync(file, specimen);
   const grammars = grammarArgs();
   execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', file],
-    { cwd: ROOT, stdio: ['ignore', 'ignore', 'ignore'] });
+    // `npx` is a `.cmd` shim on Windows, which `execFileSync` cannot spawn directly — it answers
+    // `status: null` and a spawn error carrying itself. The sibling tools all pass this.
+    { cwd: ROOT, stdio: ['ignore', 'ignore', 'ignore'], shell: process.platform === 'win32' });
   const out = {};
   let line = null;
   for (const text of fs.readFileSync(`${file}.snap`, 'utf8').split('\n')) {

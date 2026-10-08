@@ -85,7 +85,8 @@ function tokenize(source, extension, scope) {
   const file = path.join(scratch, `probe-${extension.slice(1)}${extension}`);
   fs.writeFileSync(file, source);
   execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, ...comparatorGrammars, '-s', scope, '-u', file],
-    { cwd: ROOT, stdio: 'ignore' });
+    // `npx` is a `.cmd` shim on Windows, which `execFileSync` cannot spawn directly.
+    { cwd: ROOT, stdio: 'ignore', shell: process.platform === 'win32' });
   const out = [];
   for (const { source: line, annotations } of readSnapshot(fs.readFileSync(`${file}.snap`, 'utf8'))) {
     if (!line || !line.trim()) continue;

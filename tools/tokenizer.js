@@ -45,7 +45,9 @@ function snapshot(scope, files, options = {}) {
   if (!files.length) return;
   execFileSync('npx',
     ['vscode-tmgrammar-snap', ...grammarArgs(), ...(options.extra ?? []), '-s', scope, '-u', ...files],
-    { cwd: ROOT, stdio: options.quiet === false ? 'inherit' : 'ignore' });
+    // `npx` is a `.cmd` shim on Windows, which `execFileSync` cannot spawn directly.
+    { cwd: ROOT, stdio: options.quiet === false ? 'inherit' : 'ignore',
+      shell: process.platform === 'win32' });
 }
 
 // ── the same grammars, read in this process ───────────────────────────────────────────────────
