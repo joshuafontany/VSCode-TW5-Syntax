@@ -34,7 +34,7 @@ function laresOnPath() {
 const HAVE_LARES = laresOnPath();
 const skip = HAVE_LARES ? {} : { skip: 'no `lares` CLI stands on PATH for this collision' };
 
-test('every must-flag specimen still trips the fault it declares', live, () => {
+test('every must-flag specimen still trips the fault it declares', { ...live, ...skip }, () => {
   const { code, out } = runTool('must-flag.js');
   assert.match(out, /must-flag  \d+ declaration\(s\)/, out.slice(-600));
   assert.strictEqual(code, 0, out.slice(-600));
@@ -83,7 +83,7 @@ test('a specimen tripping an undeclared fault reports PENDING and does not block
 // The live, undeclared fault this corpus carries today (`control-set.mem`'s "2 live headings"
 // reading, which no FAULT_PATTERNS entry names) must itself report PENDING and not block, with no
 // sandbox and no plant — this is what the checkout answers right now.
-test('the live undeclared fault on control-set.mem reports PENDING and does not block', live, () => {
+test('the live undeclared fault on control-set.mem reports PENDING and does not block', { ...live, ...skip }, () => {
   const { code, out } = runTool('must-flag.js', ['--verbose']);
   assert.match(out, /control-set\.mem trips .*which no declaration names — PENDING, not blocking/,
     out.slice(-700));

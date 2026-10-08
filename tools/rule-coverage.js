@@ -143,7 +143,12 @@ const HOUSE_RULING = {
   'lar-sigil-pragma': 'a sigil standing in the pragma zone, which the grammar reads through the same '
     + 'call vocabulary and the zone anchors already bound',
 };
-const houseRules = fs.existsSync(HOUSE_DIR)
+// THE PLUGIN STANDS IN THE PARENT WORKSPACE, and this repository publishes standalone. A clone
+// holding only the grammar reaches no plugin source, so the house population reads EMPTY rather
+// than SHORT: an idle ruling there says nothing was witnessed, not that a ruling went stale. Only a
+// checkout that can see the plugin gets to call a ruling idle.
+const HOUSE_PRESENT = fs.existsSync(HOUSE_DIR);
+const houseRules = HOUSE_PRESENT
   ? fs.readdirSync(HOUSE_DIR).filter((f) => f.endsWith('.ts'))
       .filter((f) => /^export const name\s*=/m.test(fs.readFileSync(path.join(HOUSE_DIR, f), 'utf8')))
       .map((f) => f.replace(/\.ts$/, ''))
@@ -152,14 +157,21 @@ const houseUnruled = houseRules.filter((r) => !HOUSE_RULING[r]);
 for (const rule of houseUnruled) {
   console.error(`  the house plugin registers "${rule}" and nothing here says how the grammar reads it`);
 }
-const houseIdle = Object.keys(HOUSE_RULING).filter((r) => !houseRules.includes(r));
+const houseIdle = HOUSE_PRESENT
+  ? Object.keys(HOUSE_RULING).filter((r) => !houseRules.includes(r))
+  : [];
 for (const rule of houseIdle) {
   console.error(`  "${rule}" carries a ruling and the plugin registers no such rule`);
 }
 
 if (verbose) for (const rule of houseRules) console.log(`  ${rule.padEnd(20)}${HOUSE_RULING[rule] ?? '(no ruling)'}`);
+// THE HOUSE READING STANDS OFF THE SUMMARY LINE. The gate report harvests that line and compares
+// it across readers, and the plugin's reach is a property of the CHECKOUT, not of the grammar: a
+// standalone clone would drift the comparison on a difference that says nothing about coverage.
+console.log(HOUSE_PRESENT
+  ? `  the house plugin stands ${houseRules.length} rule(s), all ruled`
+  : '  the house plugin stands outside this checkout, so no rule of its own reaches this reading');
 console.log(`rule-coverage  TiddlyWiki ${version}: ${signals.wikiRules.length} rule(s), `
-  + `${houseRules.length} house rule(s) all ruled, `
   + `${read.length} read, ${aliased.length} under another name, ${unread.length + idle.length} unaccounted; `
   + `${tokens.length} pragma keyword(s) guarded across ${(signals.pragmaRules ?? []).length} rule(s)`);
 process.exitCode = unread.length + idle.length + unguarded.length + tokenless.length
