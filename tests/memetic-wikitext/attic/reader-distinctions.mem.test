@@ -1,0 +1,23 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A reader tells the framing from what it frames"
+
+# TextMate's question, asked of the dialect: "would I want these two elements styled differently?"
+#
+# The sharktooth opens a sigil in the house's namespace. The carrier mark opens the framing that
+# carries the meme, and what it names IS a control character — STX, ETX, EOT. A reader scanning a
+# meme wants the framing to stand off from what the framing carries. Measured across 65 bundled
+# themes the two read apart in 56 of them; carrying one keyword family between them, they read
+# apart in none.
+
+! The sharktooth opens a sigil in the house namespace
+
+<<~ ahu #section >>
+# ^ keyword.control.sharktooth.memetic-wikitext
+# ^ - constant.character.carrier.stx.memetic-wikitext
+#   ^^^ meta.sigil.memetic-wikitext entity.name.function.sigil.memetic-wikitext
+
+! The carrier mark opens the framing that carries the meme
+
+<<^ code="&#x0002;" >>
+# ^ constant.character.carrier.stx.memetic-wikitext
+# ^ - keyword.control.sharktooth.memetic-wikitext
+#   ^^^^ meta.carrier.control.stx.memetic-wikitext entity.other.attribute-name.memetic-wikitext

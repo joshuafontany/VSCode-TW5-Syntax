@@ -1,0 +1,11 @@
+<<~ ahu #never-closed>>
+
+A body that never meets its close.
+
+<<~ unknown-sigil with a body>>
+
+<< not a sigil>>
+
+<<~ ahu #opens-and-never-closes>>
+
+A section body reaching past the end of the file, so the carrier after it never stands alone.

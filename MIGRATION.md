@@ -1,0 +1,281 @@
+# Scope name migration — 2.2.1 to 3.0.0
+
+A theme rule and an `editor.tokenColorCustomizations` entry both name a scope. A scope that
+moves takes the reader's colour with it, and VS Code reports nothing: the rule simply stops
+matching, and the construct goes the colour of prose.
+
+This record answers for the BASE WIKITEXT GRAMMAR alone — `syntaxes/tiddlywiki5.json` and its
+`.tid`/`.multids`/field/test-file wrappers — because it carries readers forward from `v2.2.1`, a
+published version. The memetic dialect (`syntaxes/memetic-wikitext.json`) has no outside consumer
+yet, so its own vocabulary owes no migration record and stands excluded from every count and row
+below; `corpus/must-fail.txt` rules the same way for a grammar with nothing yet to keep faith with.
+
+This repository declares **421** scope names at `v2.2.1` and **556** now. Between them, **110**
+names stand gone and **245** stand new. Every gone name appears below, with
+what it stands as now or why it retired. `tools/invariants/scope-migration.test.js` derives these
+four numbers from the same reading (memetic excluded) the row-by-row check answers to, so a
+grammar edit that moves them fails the gate rather than leaving this paragraph to go stale beside
+it.
+
+The table derives from the two grammars rather than from a hand-written list, and
+`tools/invariants/scope-migration.test.js` holds it to them: a name this record calls gone that
+still stands, or a replacement the grammar does not declare, fails that gate.
+
+## The principle most of these share
+
+A TextMate selector reaches a scope by a **dot-bounded prefix**, so only the segments at the
+FRONT of a name can be selected on. A name carrying its qualifier in front of its family root —
+`bold.punctuation.definition.markup.begin`, `caption.markup.other.table`,
+`colspan.left.meta.cell.td`, `numbered.ordered.ol.li.markup.list`, `mvv.attribute.html` —
+stands outside every theme rule written against `punctuation`, `markup`, `meta` or `entity`. No
+theme's root selector ever reached them, which is why nothing reported the names as broken:
+they painted the colour of prose in every bundled theme, and they did so from the day they
+were written.
+
+Their replacements put the root first and keep the qualifier as a suffix, so a rule on the
+family root reaches the construct and a deeper rule can still single it out. **39 of the 111**
+gone names moved for exactly that reason.
+
+If your customization named one of these, it was already painting nothing. Adopting the new
+name is the first time it will take effect.
+
+## A substituted attribute value takes the field's own root
+
+A backtick-quoted attribute value substitutes a parameter, a variable or a filter the way a
+template literal does, and VS Code's own JavaScript/TypeScript grammar names that shape
+`string.template.<lang>`. The old name opened on `text`, a root no bundled theme paints (4 of 65,
+via a bare `text` rule): the new one opens on `string`, which 62 of 65 already paint, and reads
+truer to what the span IS besides.
+
+| gone | stands as | why |
+| --- | --- | --- |
+| `text.substituted.single.attribute.html.tiddlywiki5` | `string.template.substituted.single.attribute.html.tiddlywiki5` | the field's own name for a template-shaped value, reaching `string` where `text` reached nothing |
+| `text.substituted.triple.attribute.html.tiddlywiki5` | `string.template.substituted.triple.attribute.html.tiddlywiki5` | the field's own name for a template-shaped value, reaching `string` where `text` reached nothing |
+
+## Seven that keep their colour
+
+A filter operand's brackets spelled themselves `string.punctuation.definition.operand.begin`,
+`variable.…` and `entity.name.…`, nesting `punctuation` under the content root. A theme reached
+those marks through the content root alone — `string` in 62 of 65 bundled themes, `variable` in
+58, `entity` in 40 — and never through `punctuation`, which the name buried where no selector
+reaches.
+
+Each stands as two scopes on one span: `punctuation.definition.operand.<kind>.<bound>` first,
+and the content family the mark bounds LAST. The content scope stands innermost, so every theme
+paints these marks exactly the colour it painted before, and a rule written against
+`punctuation` now reaches them as well. A customization naming one of the gone names wants the
+new punctuation name; a customization naming `string`, `variable` or `entity` needs no change.
+
+A heading's `!` mark wore the same fault from the other side. It carried two scopes already —
+`punctuation.definition.heading` and `markup.heading.punctuation.definition` — the second of
+which nested punctuation under a content root. It stands as `markup.heading`, which reaches the
+same 55 of 65 themes through the same `markup.heading` rules, so nothing a reader sees moves.
+
+RULED 2026-09-18, SUPERSEDING TWO OF THE SEVEN: `punctuation.definition.operand.variable.begin/end`
+and `punctuation.definition.operand.indirect.begin/end` drop the trailing content family this
+section describes — they now stand punctuation-only, parted from `variable.entity.filter.operand`
+and `entity.name.indirect.operand` rather than carrying them. This is the trade FILTERS READ AS
+PARTS makes: see `corpus/delimiter-ledger.txt`'s `parts entity.filter` row. The `string` operand
+brackets this section also describes keep their old stacked shape unchanged, and the new
+`punctuation.definition.operand.mvv.begin/end` brackets never carried a content family to begin
+with — they are wholly new, parted from the variable brackets by name so a multi-valued operand
+reads apart from a single-valued one.
+
+## Names that moved
+
+| gone at 2.2.1 | stands as at 2.3.0 | why |
+| --- | --- | --- |
+| `source.toml` | `source.toml.tw5-syntax` | the `toml` fence arm now includes a vendored TOML grammar at a private scope, so it can never claim a reader's own `source.toml` theme rule or `.toml` file association |
+| `bold.punctuation.definition.markup.begin.tiddlywiki5` | `punctuation.definition.markup.begin.bold.tiddlywiki5` | root first |
+| `bold.punctuation.definition.markup.end.tiddlywiki5` | `punctuation.definition.markup.end.bold.tiddlywiki5` | root first |
+| `caption.markup.other.table.tiddlywiki5` | `markup.other.table.caption.tiddlywiki5` | root first |
+| `caption.meta.table.tiddlywiki5` | `meta.table.caption.tiddlywiki5` | root first |
+| `classes.markup.other.table.tiddlywiki5` | `markup.other.table.classes.tiddlywiki5` | root first |
+| `classes.meta.table.tiddlywiki5` | `meta.table.classes.tiddlywiki5` | root first |
+| `colspan.left.meta.cell.td.tiddlywiki5` | `meta.cell.td.colspan.left.tiddlywiki5` | root first |
+| `colspan.left.punctuation.definition.cell.tiddlywiki5` | `punctuation.definition.cell.colspan.left.tiddlywiki5` | root first |
+| `colspan.right.meta.cell.td.tiddlywiki5` | `meta.cell.td.colspan.right.tiddlywiki5` | root first |
+| `colspan.right.punctuation.definition.cell.tiddlywiki5` | `punctuation.definition.cell.colspan.right.tiddlywiki5` | root first |
+| `entity.name.punctuation.definition.operand.begin.tiddlywiki5` | `punctuation.definition.operand.indirect.begin.tiddlywiki5` | punctuation stacks, never nests |
+| `entity.name.punctuation.definition.operand.end.tiddlywiki5` | `punctuation.definition.operand.indirect.end.tiddlywiki5` | punctuation stacks, never nests |
+| `entity.name.variable-parameter.tiddlywiki5` | `variable.name.substitute-variable.tiddlywiki5` | substitution vocabulary |
+| `filtered.attribute.html.tiddlywiki5` | `meta.attribute.filtered.html.tiddlywiki5` | root first |
+| `heading.th.meta.cell.tiddlywiki5` | `meta.cell.heading.th.tiddlywiki5` | root first |
+| `indirect.attribute.html.tiddlywiki5` | `meta.attribute.indirect.html.tiddlywiki5` | root first |
+| `italic.punctuation.definition.markup.begin.tiddlywiki5` | `punctuation.definition.markup.begin.italic.tiddlywiki5` | root first |
+| `italic.punctuation.definition.markup.end.tiddlywiki5` | `punctuation.definition.markup.end.italic.tiddlywiki5` | root first |
+| `keyword.control.directive.function.html.tiddlywiki5` | `keyword.control.directive.function.tiddlywiki5` | names this grammar, not HTML |
+| `keyword.control.directive.procedure.html.tiddlywiki5` | `keyword.control.directive.procedure.tiddlywiki5` | names this grammar, not HTML |
+| `keyword.control.directive.widget.html.tiddlywiki5` | `keyword.control.directive.widget.tiddlywiki5` | names this grammar, not HTML |
+| `keyword.control.operator.prefix.negation.tiddlywiki5` | `keyword.operator.prefix.negation.tiddlywiki5` | a filter operator is an operator |
+| `keyword.control.operator.suffix.tiddlywiki5` | `keyword.operator.suffix.separator.tiddlywiki5` | a filter operator is an operator |
+| `keyword.control.raw.tick.tiddlywiki5` | `keyword.control.raw.fence.tiddlywiki5` | names what it marks |
+| `keyword.operator.prefix.equals.all.union.tiddlywiki5` | `storage.modifier.prefix.equals.all.union.tiddlywiki5` | RULED 2026-09-18, filters read as parts: a filter run's prefix is a modifier on the run, not the run's own operator |
+| `keyword.operator.prefix.minus.except.difference.tiddlywiki5` | `storage.modifier.prefix.minus.except.difference.tiddlywiki5` | RULED 2026-09-18, filters read as parts: a filter run's prefix is a modifier on the run, not the run's own operator |
+| `keyword.operator.prefix.plus.and.accumulate.tiddlywiki5` | `storage.modifier.prefix.plus.and.accumulate.tiddlywiki5` | RULED 2026-09-18, filters read as parts: a filter run's prefix is a modifier on the run, not the run's own operator |
+| `keyword.operator.prefix.tilde.else.else.tiddlywiki5` | `storage.modifier.prefix.tilde.else.else.tiddlywiki5` | RULED 2026-09-18, filters read as parts: a filter run's prefix is a modifier on the run, not the run's own operator |
+| `keyword.other.variable.variable-parameter.begin.tiddlywiki5` | `keyword.other.variable.substitute-parameter.begin.tiddlywiki5` | substitution vocabulary |
+| `keyword.other.variable.variable-parameter.end.tiddlywiki5` | `keyword.other.variable.substitute-parameter.end.tiddlywiki5` | substitution vocabulary |
+| `keyword.other.variable.variable-reference.begin.tiddlywiki5` | `keyword.other.variable.substitute-variable.begin.tiddlywiki5` | substitution vocabulary |
+| `keyword.other.variable.variable-reference.end.tiddlywiki5` | `keyword.other.variable.substitute-variable.end.tiddlywiki5` | substitution vocabulary |
+| `list.attribute.image.tiddlywiki5` | `meta.attribute.list.image.tiddlywiki5` | root first |
+| `listquote.quote.markup.list.tiddlywiki5` | `markup.list.listquote.quote.tiddlywiki5` | root first |
+| `markup.heading.punctuation.definition.tiddlywiki5` | `markup.heading.tiddlywiki5` | punctuation stacks, never nests |
+| `markup.other.variable.variable-parameter.tiddlywiki5` | `markup.other.variable.substitute-parameter.tiddlywiki5` | substitution vocabulary |
+| `markup.other.variable.variable-reference.tiddlywiki5` | `markup.other.variable.substitute-variable.tiddlywiki5` | substitution vocabulary |
+| `markup.underline.link.wikilink.tiddlywiki5` | `meta.link.wikilink.tiddlywiki5` | family a theme rules on |
+| `meta.multids.tiddler.title.text.htmltiddlywiki5.multids-file` | `meta.multids.tiddler.title.text.html.tiddlywiki5.multids-file` | one segment, one word |
+| `meta.tiddler.fields.tiddlywiki5` | `meta.text.tiddler.fields.tiddlywiki5.tid-file` | root first, then the tid-file grammar's own suffix |
+| `mvv.attribute.html.tiddlywiki5` | `meta.attribute.mvv.html.tiddlywiki5` | root first |
+| `mvv.default.parameter.tiddlywiki5` | `variable.parameter.mvv.default.tiddlywiki5` | root first |
+| `numbered.ordered.ol.li.markup.list.tiddlywiki5` | `markup.list.numbered.ordered.ol.li.tiddlywiki5` | root first |
+| `punctuation.definition.link.inner.begin.tiddlywiki5` | `punctuation.definition.link.begin.tiddlywiki5` | one mark, one token |
+| `punctuation.definition.link.inner.end.tiddlywiki5` | `punctuation.definition.link.end.tiddlywiki5` | one mark, one token |
+| `punctuation.definition.link.outer.end.tiddlywiki5` | `punctuation.definition.link.end.tiddlywiki5` | one mark, one token |
+| `punctuation.definition.substituted.triple..attribute.begin.tiddlywiki5` | `punctuation.definition.substituted.triple.attribute.begin.tiddlywiki5` | empty segment |
+| `punctuation.definition.text-reference.index..tiddlywiki5` | `punctuation.definition.text-reference.index.tiddlywiki5` | empty segment |
+| `punctuation.separator.function.macro.parameter.tiddlywiki5` | `punctuation.separator.parameters.tiddlywiki5` | call vocabulary |
+| `entity.name.function.macro.tiddlywiki5` | `entity.name.function.procedure.tiddlywiki5` | RULED 2026-09-21, a `<<x …>>` invocation transcludes a variable since TiddlyWiki 5.3 — the procedure ontology owns the call, `\define` keeps macro |
+| `support.function.macro.tiddlywiki5` | `support.function.procedure.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `variable.name.macro.tiddlywiki5` | `variable.name.procedure.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `variable.macro.attribute.html.tiddlywiki5` | `variable.procedure.attribute.html.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename — an `attr=<<x>>` value |
+| `meta.variable.macro.parameters.tiddlywiki5` | `meta.variable.procedure.parameters.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `meta.variable.macrocallblock.tiddlywiki5` | `meta.variable.procedurecallblock.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `meta.variable.macrocallinline.tiddlywiki5` | `meta.variable.procedurecallinline.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `punctuation.definition.macrocallblock.begin.tiddlywiki5` | `punctuation.definition.procedurecallblock.begin.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `punctuation.definition.macrocallblock.end.tiddlywiki5` | `punctuation.definition.procedurecallblock.end.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `punctuation.definition.macrocallinline.begin.tiddlywiki5` | `punctuation.definition.procedurecallinline.begin.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `punctuation.definition.macrocallinline.end.tiddlywiki5` | `punctuation.definition.procedurecallinline.end.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `punctuation.definition.tag.macrocall.tiddlywiki5` | `punctuation.definition.tag.procedurecall.tiddlywiki5` | RULED 2026-09-21, call-side procedure rename |
+| `row.tbody.body.meta.table.tiddlywiki5` | `meta.table.row.tbody.body.tiddlywiki5` | root first |
+| `row.tfoot.footer.markup.other.table.tiddlywiki5` | `markup.other.table.row.tfoot.footer.tiddlywiki5` | root first |
+| `row.tfoot.footer.meta.table.tiddlywiki5` | `meta.table.row.tfoot.footer.tiddlywiki5` | root first |
+| `row.thead.header.markup.other.table.tiddlywiki5` | `markup.other.table.row.thead.header.tiddlywiki5` | root first |
+| `row.thead.header.meta.table.tiddlywiki5` | `meta.table.row.thead.header.tiddlywiki5` | root first |
+| `rowspan.down.meta.cell.td.tiddlywiki5` | `meta.cell.td.rowspan.down.tiddlywiki5` | root first |
+| `rowspan.down.punctuation.definition.cell.tiddlywiki5` | `punctuation.definition.cell.rowspan.down.tiddlywiki5` | root first |
+| `string.punctuation.definition.operand.begin.tiddlywiki5` | `punctuation.definition.operand.string.begin.tiddlywiki5` | punctuation stacks, never nests |
+| `string.punctuation.definition.operand.end.tiddlywiki5` | `punctuation.definition.operand.string.end.tiddlywiki5` | punctuation stacks, never nests |
+| `strikethrough.punctuation.definition.markup.begin.tiddlywiki5` | `punctuation.definition.markup.begin.strikethrough.tiddlywiki5` | root first |
+| `strikethrough.punctuation.definition.markup.end.tiddlywiki5` | `punctuation.definition.markup.end.strikethrough.tiddlywiki5` | root first |
+| `subscript.punctuation.definition.markup.begin.tiddlywiki5` | `punctuation.definition.markup.begin.subscript.tiddlywiki5` | root first |
+| `subscript.punctuation.definition.markup.end.tiddlywiki5` | `punctuation.definition.markup.end.subscript.tiddlywiki5` | root first |
+| `superscript.punctuation.definition.markup.begin.tiddlywiki5` | `punctuation.definition.markup.begin.superscript.tiddlywiki5` | root first |
+| `superscript.punctuation.definition.markup.end.tiddlywiki5` | `punctuation.definition.markup.end.superscript.tiddlywiki5` | root first |
+| `underscore.punctuation.definition.markup.begin.tiddlywiki5` | `punctuation.definition.markup.begin.underscore.tiddlywiki5` | root first |
+| `underscore.punctuation.definition.markup.end.tiddlywiki5` | `punctuation.definition.markup.end.underscore.tiddlywiki5` | root first |
+| `unnumbered.description.dl.dd.markup.list.tiddlywiki5` | `markup.list.unnumbered.description.dl.dd.tiddlywiki5` | root first |
+| `unnumbered.term.dl.dt.markup.list.tiddlywiki5` | `markup.list.unnumbered.term.dl.dt.tiddlywiki5` | root first |
+| `unnumbered.unordered.ul.li.markup.list.tiddlywiki5` | `markup.list.unnumbered.unordered.ul.li.tiddlywiki5` | root first |
+| `variable.punctuation.definition.operand.begin.tiddlywiki5` | `punctuation.definition.operand.variable.begin.tiddlywiki5` | punctuation stacks, never nests |
+| `variable.punctuation.definition.operand.end.tiddlywiki5` | `punctuation.definition.operand.variable.end.tiddlywiki5` | punctuation stacks, never nests |
+| `variable.name.variable-reference.tiddlywiki5` | `variable.name.substitute-variable.tiddlywiki5` | substitution vocabulary |
+
+### The scope-suffix invariant, 11 names
+
+`docs/scope-naming-prior-art.mem:469` states the golden principle: a portable scope a theme
+reaches by prefix, beside a precise scope a user can target and no other. Every name a grammar
+declares here must CLOSE on that grammar's own suffix — the reading `tools/invariants/scope-suffix.test.js`
+now holds every grammar to. Eleven names in the three field-bearing container grammars
+(`tw5-fields.json`, `tw5-multids-file.json`, `tw5-tid-file.json`) and the test-file grammar
+closed on `.tiddlywiki5` instead — the host grammar's own suffix, borrowed rather than answered
+to — so a reader wanting to target only a `.tid` file's own field syntax, say, had no name that
+reached it and nothing else. `themes match by prefix`, so appending the owning grammar's suffix
+moves no colour: every existing rule on the `.tiddlywiki5`-closing name still matches its
+lengthened replacement.
+
+Three of the eleven carried their construct into all three container grammars identically, so
+each closes on the container that declares it rather than on one shared name.
+
+| gone at 2.2.1 | stands as at 2.3.0 | why |
+| --- | --- | --- |
+| `meta.tiddler.field.tiddlywiki5` | `meta.tiddler.field.tiddlywiki5.fields` | the fields grammar's own suffix |
+| `entity.other.attribute-name.field.tiddlywiki5` | `entity.other.attribute-name.field.tiddlywiki5.fields` | the fields grammar's own suffix |
+| `entity.other.attribute-name.field.tiddlywiki5` | `entity.other.attribute-name.field.tiddlywiki5.multids-file` | the multids-file grammar's own suffix |
+| `entity.other.attribute-name.field.tiddlywiki5` | `entity.other.attribute-name.field.tiddlywiki5.tid-file` | the tid-file grammar's own suffix |
+| `punctuation.separator.key-value.field.tiddlywiki5` | `punctuation.separator.key-value.field.tiddlywiki5.fields` | the fields grammar's own suffix |
+| `punctuation.separator.key-value.field.tiddlywiki5` | `punctuation.separator.key-value.field.tiddlywiki5.multids-file` | the multids-file grammar's own suffix |
+| `punctuation.separator.key-value.field.tiddlywiki5` | `punctuation.separator.key-value.field.tiddlywiki5.tid-file` | the tid-file grammar's own suffix |
+| `string.unquoted.field.value.tiddlywiki5` | `string.unquoted.field.value.tiddlywiki5.fields` | the fields grammar's own suffix |
+| `string.unquoted.field.value.tiddlywiki5` | `string.unquoted.field.value.tiddlywiki5.multids-file` | the multids-file grammar's own suffix |
+| `string.unquoted.field.value.tiddlywiki5` | `string.unquoted.field.value.tiddlywiki5.tid-file` | the tid-file grammar's own suffix |
+| `invalid.illegal.field.name.tiddlywiki5` | `invalid.illegal.field.name.tiddlywiki5.fields` | the fields grammar's own suffix |
+| `meta.multids.text.html.tiddlywiki5` | `meta.multids.text.html.tiddlywiki5.multids-file` | the multids-file grammar's own suffix |
+| `meta.multids.tiddler.fields.tiddlywiki5` | `meta.multids.tiddler.fields.tiddlywiki5.multids-file` | the multids-file grammar's own suffix |
+| `meta.text.html.tiddlywiki5` | `meta.text.html.tiddlywiki5.tid-file` | the tid-file grammar's own suffix |
+| `meta.text.tiddler.fields.tiddlywiki5` | `meta.text.tiddler.fields.tiddlywiki5.tid-file` | the tid-file grammar's own suffix |
+| `comment.block.test.tiddlywiki5` | `comment.block.test.tiddlywiki5.test` | the test-file grammar's own suffix |
+| `punctuation.definition.comment.block.test.tiddlywiki5` | `punctuation.definition.comment.block.test.tiddlywiki5.test` | the test-file grammar's own suffix |
+
+## Names that retired
+
+### The `invalid.*` family, 12 names to 1
+
+A grammar marks invalid what TiddlyWiki refuses, never what a different language retired.
+TiddlyWiki parses any tag name and any attribute name into a node, so `<center>`, `<dir>` and
+`align=` build and render. Every verdict resting on HTML's deprecations came out — fourteen
+sites — and the tags and attributes carry their ordinary `entity.name.tag` and
+`entity.other.attribute-name` names. A construct that drew a verdict and no longer draws one
+now paints as what it is.
+
+A verdict answers to a refusal the host SAYS, too. TiddlyWiki keeps an ampersand outside
+`entity.js`'s window and a tag whose attribute list it cannot read as plain text, and raises no
+diagnostic over either, so the three verdicts that stood there invented a refusal. They came out,
+and the characters read as the text the host keeps.
+
+| retired | why |
+| --- | --- |
+| `invalid.deprecated.entity.other.attribute-name.html.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
+| `invalid.deprecated.html.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
+| `invalid.illegal.bad-angle-bracket.html.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
+| `invalid.illegal.characters-not-allowed-here.html.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
+| `invalid.illegal.event-handler-in-wikitext.html.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
+| `invalid.illegal.no-longer-supported.html.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
+| `invalid.illegal.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
+| `invalid.illegal.unrecognized-tag.html.tiddlywiki5` | a verdict answers to what TiddlyWiki refuses |
+| `invalid.illegal.ambiguous-ampersand.html.tiddlywiki5` | TiddlyWiki keeps the ampersand as text and raises nothing |
+| `invalid.illegal.character-not-allowed-here.html.tiddlywiki5` | TiddlyWiki keeps the malformed tag as text and raises nothing |
+| `invalid.illegal.unexpected-equals-sign.html.tiddlywiki5` | TiddlyWiki keeps the malformed tag as text and raises nothing |
+
+### One name standing alone
+
+| retired | why |
+| --- | --- |
+| `row.tbody.body.markup.other.table.tiddlywiki5` | the markup twin of a table body row — its `meta.table.row.tbody.body` counterpart stands, and the `thead` and `tfoot` rows keep both names |
+| `meta.tag.metadata.cdata.html.tiddlywiki5` | `<![CDATA[` names no element TiddlyWiki's html rule reads — its tag name admits `[a-zA-Z0-9\-\$\.]`, and `!` stands outside it — so the host keeps the whole construct as text and the rule that painted it as a tag retired |
+| `string.other.inline-data.html.tiddlywiki5` | the CDATA section's own content, retired with the rule that opened it |
+
+### Struck text names itself, one name
+
+`~~struck~~` declares `comment.strikethrough.tiddlywiki5 markup.strikethrough.tiddlywiki5`. The
+honest name stands last, so it decides the font style wherever a theme rules on it, and the
+`comment` family ahead of it reaches the themes that rule on neither strikethrough nor underline:
+a cue on the struck words stands in all 65 bundled themes rather than 44. The name it replaces
+claimed struck prose reads underlined.
+
+| gone | stands as | why |
+| --- | --- | --- |
+| `markup.underline.strikethrough.tiddlywiki5` | `comment.strikethrough.tiddlywiki5` | a strikethrough borrows no underline's meaning; the ink it borrows names an aside |
+
+## One mark, one token
+
+A pretty link's `[[` and `]]` each stand as ONE mark, and each now arrives as one token carrying
+one name. No grammar among twenty splits a multi-character delimiter into two separately named
+sequential tokens: VS Code html emits `</` as one token, Liquid's `{%-` as one token of three
+characters, Handlebars' `{{~{>` as one of arbitrary length, and the TextMate 1.x manual's own
+`captures` example fuses `@selector(`. Measured across the 65 bundled themes, the two halves
+painted identically in every one, so the split reached machines and no reader.
+
+The outer and inner names stand where the brackets enclose different things — `[img[` opens an
+attribute list and then a source, `[ext[` a caption and then an address — and both keep them.
+
+`punctuation.definition.link.outer.begin.tiddlywiki5` still stands, on `[ext[`'s outer bracket.
+A customization naming it for a pretty link's `[[` reaches the fused mark under
+`punctuation.definition.link.begin.tiddlywiki5`.
+
+## Reading the new names yourself
+
+```
+npm run rule-inventory      # every scope the grammars declare, by the rule declaring it
+npm run theme-paint         # what each bundled theme paints a construct
+```

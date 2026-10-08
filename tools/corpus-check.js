@@ -12,30 +12,18 @@
 //
 //   node tools/corpus-check.js [--verbose]
 
-const { execFileSync } = require('node:child_process');
+const { snapRun } = require('./snap-run.js');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { grammarArgs } = require('./tokenizer.js');
 
 const VERBOSE = process.argv.includes('--verbose');
 const SENTINEL = 'The corpus sentinel stands plainly at the end.';
 
-/** Every scope name the grammar declares, from its own name and contentName fields. */
-function declaredScopes(file) {
-  const out = new Set();
-  const walk = (node) => {
-    if (Array.isArray(node)) return node.forEach(walk);
-    if (!node || typeof node !== 'object') return;
-    for (const key of ['name', 'contentName']) {
-      const v = node[key];
-      // A $1 in a scope name resolves per match, so the declared form never appears verbatim.
-      if (typeof v === 'string' && !v.includes('$')) for (const s of v.split(/\s+/)) if (s) out.add(s);
-    }
-    for (const v of Object.values(node)) walk(v);
-  };
-  walk(JSON.parse(fs.readFileSync(file, 'utf8')));
-  return out;
-}
+const { declaredScopes } = require('./grammar-scopes.js');
+const { resolveTiddlyWiki, boot, flatten } = require('./tw5-oracle.js');
+const { walkMatching } = require('./walk.js');
 
 // The extensions the manifest claims. A corpus specimen carries one of them; a readme, a floor
 // and a ceiling carry none, and naming those one by one lets the next control file join the
@@ -45,22 +33,28 @@ const SPECIMEN = new Set(
     .flatMap((l) => l.extensions || [])
 );
 
-function files(dir, out = []) {
-  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-    const p = path.join(dir, e.name);
-    if (e.isDirectory()) files(p, out);
-    else if (!e.name.endsWith('.snap') && [...SPECIMEN].some((x) => e.name.endsWith(x))) out.push(p);
-  }
-  return out;
+function files(dir) {
+  return walkMatching(dir, (name) => !name.endsWith('.snap') && [...SPECIMEN].some((x) => name.endsWith(x)));
 }
 
-const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'], {
-  encoding: 'utf8'
-}).trim().split('\n').filter(Boolean);
+const grammars = grammarArgs();
 
-const SCOPE_OF = { '.mem': 'text.html.tiddlywiki5.memetic-wikitext', '.tid': 'source.tiddlywiki5.tid-file',
-  '.meta': 'source.tiddlywiki5.tid-file', '.multids': 'source.tiddlywiki5.multids-file' };
-const scopeFor = (f) => SCOPE_OF[path.extname(f)] ?? 'text.html.tiddlywiki5';
+// The scope a file opens under, from the manifest's own language-to-grammar link. A map written
+// beside the manifest sends a file type to the wrong grammar the moment one more appears, and
+// coverage then reads that grammar's scopes as unreachable rather than unmeasured.
+//
+// Longest suffix wins: `.tw5.test` and `.test` both end a syntax-test file, and only one of them
+// names the grammar that colours it. path.extname reads the shorter.
+const EXTENSION_SCOPE = (() => {
+  const manifest = require(path.resolve(__dirname, '..', 'package.json')).contributes;
+  const scopeOfLanguage = new Map((manifest.grammars || [])
+    .filter((g) => g.language).map((g) => [g.language, g.scopeName]));
+  return (manifest.languages || []).flatMap((l) => (l.extensions || [])
+    .map((e) => [e, scopeOfLanguage.get(l.id)]))
+    .filter(([, scope]) => scope)
+    .sort((a, b) => b[0].length - a[0].length);
+})();
+const scopeFor = (f) => (EXTENSION_SCOPE.find(([e]) => f.endsWith(e)) ?? [, 'text.html.tiddlywiki5'])[1];
 
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-corpus-'));
 const corpus = files('corpus');
@@ -82,9 +76,10 @@ for (const [scope, entries] of byScope) {
   const control = path.join(scratch, 'control-' + scope.replace(/\./g, '_') + path.extname(entries[0].src));
   fs.writeFileSync(control, (path.extname(control) === '.tid' || path.extname(control) === '.meta'
     ? 'title: Control\n\n' : path.extname(control) === '.multids' ? 'title: $:/control/\n\n' : '') + SENTINEL + '\n');
-  execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', control, ...entries.map((e) => e.copy)], {
-    stdio: ['ignore', 'ignore', 'inherit'], shell: process.platform === 'win32'
-  });
+  // The shared runner batches the file list, since cmd.exe refuses a long command line and a
+  // growing corpus reaches that ceiling with no warning. The control rides every batch, because a
+  // baseline read once per batch is the same baseline.
+  snapRun([...grammars, '-s', scope, '-u', control], entries.map((e) => e.copy));
   const baseline = new Set();
   for (const line of fs.readFileSync(`${control}.snap`, 'utf8').split('\n')) {
     const m = /^#\s*\^+\s+(.*)$/.exec(line);
@@ -109,9 +104,12 @@ for (const [scope, entries] of byScope) {
 }
 fs.rmSync(scratch, { recursive: true, force: true });
 
+// Every grammar the manifest registers declares scopes this corpus must reach. Taking them from
+// a list beside the manifest leaves a grammar's scopes unmeasured the moment one more joins:
+// coverage then reads as a gain when a rule stops firing, because the rule left the count too.
 const declared = new Set();
-for (const g of ['syntaxes/tiddlywiki5.json', 'syntaxes/memetic-wikitext.json']) {
-  for (const s of declaredScopes(g)) declared.add(s);
+for (const g of require(path.resolve(__dirname, '..', 'package.json')).contributes.grammars) {
+  for (const s of declaredScopes(g.path.replace(/^\.\//, ''))) declared.add(s);
 }
 const unreached = [...declared].filter((s) => !reached.has(s)).sort();
 
@@ -125,7 +123,11 @@ const unreachedHandoffs = unreached.length - unreachedOurs.length;
 
 const reachedCount = declared.size - unreached.length;
 const floorFile = path.join('corpus', 'coverage-floor.txt');
-const floor = fs.existsSync(floorFile) ? Number(fs.readFileSync(floorFile, 'utf8').trim()) : 0;
+// The number stands on the first line; what follows it explains the number, the way every ceiling
+// beside it reads. A reader taking the whole file answers NaN the moment a floor carries a reason.
+const floor = fs.existsSync(floorFile)
+  ? Number(fs.readFileSync(floorFile, 'utf8').split('\n')[0].trim())
+  : 0;
 
 // A ceiling, not a floor: the count of OUR OWN unreached scopes may fall and may never rise.
 const ceilingFile = path.join('corpus', 'unreached-ceiling.txt');
@@ -134,10 +136,37 @@ const ceiling = fs.existsSync(ceilingFile)
   ? Number(fs.readFileSync(ceilingFile, 'utf8').split('\n')[0].trim())
   : Infinity;
 
-console.log(`corpus-check  ${corpus.length} files, ${declared.size} scopes declared, ${reachedCount} reached (floor ${floor})`);
+// ── RULE COVERAGE — every rule the PARSER stands, some specimen makes fire ────────────────────
+//
+// Coverage above reads the grammar's own scope names, so it answers whether this repository
+// exercises what it wrote. It cannot answer whether the corpus exercises what TiddlyWiki READS:
+// a construct the grammar never learned reaches no scope, goes unmissed, and the count reads full.
+// So the second population comes from the host. `activeRules` names the rules left standing after
+// $:/config/WikiParserRules has had its say, and a rule no specimen fires marks ground the corpus
+// does not cover — the fault a hand-written battery makes, one level up from the battery.
+//
+// A rule building NO NODE escapes any reading of a tree, and naming it here as a gap reports a
+// permanent one. Measured, one such rule stands.
+const NO_NODE = {
+  whitespace: 'sets the parser\'s whitespace handling and builds nothing, so no tree carries its name'
+};
+const oracle = boot(resolveTiddlyWiki(), {});
+const active = oracle.activeRules();
+const standing = [...new Set([...active.block, ...active.inline, ...active.pragma])].sort();
+const fired = new Set();
+for (const f of corpus) {
+  // The host parses wikitext; a `.tid` or a `.multids` carries a header it never reads, and the
+  // dialect's own vocabulary rides on top of the same base.
+  if (!/\.(tw|mem)$/.test(f)) continue;
+  for (const node of flatten(oracle.parse(fs.readFileSync(f, 'utf8')).tree)) if (node.rule) fired.add(node.rule);
+}
+const unfired = standing.filter((r) => !fired.has(r) && !NO_NODE[r]);
+
+console.log(`corpus-check  ${corpus.length} files, ${declared.size} scopes declared, ${reachedCount} reached (floor ${floor}), `
+  + `${standing.length - unfired.length} of ${standing.length} parser rule(s) fired`);
 console.log(`  unreached: ${unreachedOurs.length} this grammar emits (ceiling ${ceiling}), ${unreachedHandoffs} handed to another grammar`);
 if (reachedCount < floor) {
-  console.error(`  coverage fell from ${floor} to ${reachedCount}; a rule the corpus used to reach now goes unexercised`);
+  console.error(`  coverage fell from ${floor} to ${reachedCount}; a rule the floor counts as reached now goes unexercised`);
 }
 if (unreachedOurs.length > ceiling) {
   console.error(`  ${unreachedOurs.length} of this grammar's own scopes go unexercised, above the ceiling of ${ceiling}`);
@@ -151,4 +180,10 @@ if (bleeding.length) {
   for (const b of [...new Set(bleeding)]) console.error(`    ${b}`);
 }
 console.log(`  containment: ${new Set(bleeding.map((b) => b.split('  ->')[0])).size} of ${corpus.length} files bleed`);
-process.exit(bleeding.length || reachedCount < floor || unreachedOurs.length > ceiling ? 1 : 0);
+console.log(`  rules: ${Object.keys(NO_NODE).length} of the rules TiddlyWiki stands build no node, so no tree carries them: `
+  + `${Object.entries(NO_NODE).map(([r, why]) => `${r} ${why}`).join('; ')}`);
+for (const rule of unfired) {
+  console.error(`  no corpus specimen makes TiddlyWiki fire ${rule}, so nothing here reads what it builds`);
+}
+process.exitCode = bleeding.length || unfired.length || reachedCount < floor || unreachedOurs.length > ceiling ? 1 : 0;
+return;

@@ -1,0 +1,44 @@
+# Specimens written to be malformed, and the degradation each one asserts.
+#
+# A specimen written to fail stands exempt from the gates that measure well-formed text: it bleeds
+# on purpose, so a containment check would refuse it forever. That exemption costs nothing while
+# the specimen still degrades — and the day the grammar improves past it, the specimen reads clean,
+# keeps its exemption, and every gate agrees that nothing stands wrong.
+#
+# So the exemption carries a declaration, and the declaration gets measured. Two files carrying the
+# degenerate name asserted nothing measurable and stand renamed into the swept corpus: one held
+# well-formed nesting throughout, and one reached for a dialect bleed the dialect cannot produce —
+# every region in the dialect grammar ends at its own line, all thirteen of them.
+#
+# `degenerate.unterminated.tw` and `degenerate.illegal.tw` each bled to the sentinel on the
+# strength of one line, `{{transclusion`/`{{` with no closer ahead — the only construct in
+# either file that reached all the way past three blank lines. The transclusion and
+# filtered-transclusion regions now end at the blank line that ends their block (2026-09-21,
+# `LEDGER-3.0.0.md`), the way every OTHER construct in these two files already reads — a bold,
+# italic or code run left open colours only its own line, exactly what
+# `degenerate.unterminated.tw` says of itself ("reaches the end of its block"). An unterminated
+# macro call joined each file to keep its declaration true: `<<foo` with no closer ahead still
+# runs to the end of the source (the operator declined a blank-line bound there on purpose — see
+# `tools/textmate-ceiling.js`'s `whole-document lookahead` entry), so both files still demonstrate
+# what their bleed declaration claims.
+#
+# HELD APART FROM THE DIVERGENCE LEDGERS ON PURPOSE. `swallow-ledger.txt` and
+# `expected-divergence.txt` record what this grammar CANNOT YET read; this file records what it
+# MUST NOT read. One list fusing both senses grows unreadable, and the entries then differ only by
+# whoever remembers which kind they meant.
+#
+#   <specimen>  <degradation>   # what it exists to prove
+#
+# `bleeds`  — a construct left open colours the sentinel standing after the file.
+# `verdict` — the grammar names an `invalid.` scope somewhere inside it.
+
+degenerate.unterminated.tw  bleeds   # an unterminated macro call runs to the end of the source, no closer standing anywhere ahead
+degenerate.illegal.tw       bleeds   # the same unterminated macro call, joined to keep the declaration true after the transclusion bound closed
+degenerate.unterminated-blocks.tw   bleeds   # A quote block opened on `<<<` and never closed carries `markup.quote.quoteblock` past the file. The host records `unterminated-quoteblock` and recovers; the grammar carries the region and marks nothing, which `tools/recovery-witness.js` reads as a silent recovery.
+degenerate.unterminated-fence.tw    bleeds   # A fence opened on ``` and never closed carries `markup.fenced_code.block` past the file. Both readers run to the end of the source, and the host alone says so.
+
+degenerate.unterminated-typedblock.tw   bleeds   # A typed block opened on `$$$text/plain` and never closed carries `meta.typedblock` past the file. The host records `unterminated-typedblock` and recovers at the end of the source; the grammar carries the region and marks nothing.
+degenerate.unterminated-styleblock.tw   bleeds   # A style block opened on `@@color:green;` and never closed carries `markup.other.style.styleblock` past the file. The host records `unterminated-styleblock` the moment it finds no closer ahead; the grammar reads one line and cannot know.
+degenerate.unterminated-hardlinebreaks.tw   bleeds   # A `"""` run with no closer carries `markup.other.preformatted.hardlinebreaks` past the file. The host records `unterminated-hardlinebreaks`; the grammar's region ends on its own delimiter and never meets one.
+degenerate.unterminated-definition.tw   bleeds   # A `\define` with no `\end` carries `meta.directive.variable.macro` past the file, and the host reads the body as BLANK while the grammar reads it as a body. The host records `unterminated-definition`.
+degenerate.unterminated-attribute.tw   bleeds   # A widget's quoted attribute value with no closing quote anywhere ahead: TiddlyWiki refuses the whole tag and reads the source as text, and the grammar's string region carries past the file. The reading it holds is the one `runaway meta.tag.widget.*` rules — which reads idle over a corpus carrying no such case, and explains 110 of the host's own carriers.

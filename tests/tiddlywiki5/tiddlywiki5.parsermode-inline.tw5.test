@@ -1,4 +1,4 @@
-# SYNTAX TEST "text.html.tiddlywiki5" "Under an inline parser mode no block rule stands"
+# SYNTAX TEST "text.html.tiddlywiki5.test" "Under an inline parser mode no block rule stands"
 
 # The parsermode pragma sets parseAsInline for the whole tiddler, so TiddlyWiki parses one
 # inline run and every block marker after it yields plain text. Measured: a heading marker
@@ -8,17 +8,17 @@
 
 \parsermode block
 ! A heading here
-#<- text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<- text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.tiddlywiki5
 
 ! Under inline mode the same marker reads as content
 
 \parsermode inline
 ! Not a heading here
-#<- - markup.heading.punctuation.definition.tiddlywiki5
+#<- - markup.heading.tiddlywiki5
 #<- - meta.heading.heading-1.tiddlywiki5
 * Not a list item
 #<- - punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
 
 And an inline construct still reads: [[A Link]] here
-#                                    ^ text.html.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.begin.tiddlywiki5
+#                                    ^ text.html.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.begin.tiddlywiki5
 

@@ -21,27 +21,32 @@
 // in a scratchpad does not survive a session, and a corpus somebody curated answers to
 // whoever curated it.
 //
-// --truncate cuts every specimen short at a seeded offset, so the corpus stops being
-// well-formed. TiddlyWiki's own tiddlers were written by people who know the parser, in house
+// --truncate cuts every specimen short at a seeded offset, so the corpus stops holding well-formed
+// input. TiddlyWiki's own tiddlers come from people who know the parser, writing in house
 // style, to document the parser — the best-formed wikitext in existence, and the easy end of the
 // distribution a learner writes from. Truncation manufactures the other end: an opener with no
 // close, a table missing its last row, a macro body cut mid-parameter. Both sides read the same
 // bytes, so the law holds unchanged; only the ground gets harder.
 //
-// The seed makes a finding reproducible. Nothing here is random at run time.
+// The seed makes a finding reproducible. Nothing here draws randomness at run time.
 //
 // Neither side of the comparison comes from anybody's reading of the format: the grammar
 // supplies the claims and TiddlyWiki's parser supplies the verdicts.
 //
 // The deciding half — offsetAt, review — stands under test in
-// tests/tools/overreach-check.test.js; the .snap format itself lives in tools/snapshot-format.js.
+// tools/overreach-check.test.js; the .snap format itself lives in tools/snapshot-format.js.
 
 const { execFileSync } = require('node:child_process');
+const { snapRun } = require('./snap-run.js');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { parseTid } = require('./wiki-data.js');
+const { grammarArgs } = require('./tokenizer.js');
 const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
 const { BASE, readSnapshot, claims, verdicts, declines } = require('./snapshot-format.js');
+const { tiddlerFiles } = require('./walk.js');
+const { readerOf, appliesToReader } = require('./reader-scope.js');
 
 /**
  * The spans a snapshot annotates, flattened across its lines.
@@ -74,7 +79,7 @@ function offsetAt(source, line, col) {
  * A `.tid` carries a `type` field in its header, and only some types reach the wikitext
  * parser. Asking what that parser builds from a tiddler typed `text/plain`, or from TiddlyWiki
  * Classic markup, compares the grammar against a parser that would never have run — and the
- * answer is a divergence in every span, saying nothing about either.
+ * answer diverges in every span, saying nothing about either.
  *
  * An absent type reads as wikitext, TiddlyWiki's own default. Only the header block declares a
  * type; a `type:` line standing in the body carries content.
@@ -83,11 +88,9 @@ function offsetAt(source, line, col) {
  * @returns {boolean}
  */
 function parsesAsWikitext(tid) {
-  const blank = tid.indexOf('\n\n');
-  const header = blank < 0 ? tid : tid.slice(0, blank);
-  const declared = /^type:[ \t]*(\S+)/m.exec(header);
+  const declared = parseTid(tid).fields.type;
   if (!declared) return true;
-  return declared[1] === 'text/vnd.tiddlywiki';
+  return declared === 'text/vnd.tiddlywiki';
 }
 
 /**
@@ -117,10 +120,14 @@ function readExpected(text) {
     const colon = target.lastIndexOf(':');
     const named = colon < 0 ? { file: null, scope: target } : { file: target.slice(0, colon), scope: target.slice(colon + 1) };
     if (!named.file && !named.scope) throw new Error(`ruling names neither a file nor a scope: ${line}`);
+    // A reason opening `READER <version>` (tools/reader-scope.js) names the ONE reader this
+    // ruling explains — the same reason-prefix flag swallow-witness.js already carries for HOST,
+    // generalized to the axis TW5_PATH moves rather than the axis corpus-vs-host moves.
+    const { version: reader } = readerOf(reason);
     out.push(
       colon < 0
-        ? { file: null, scope: target, reason }
-        : { file: target.slice(0, colon), scope: target.slice(colon + 1), reason }
+        ? { file: null, scope: target, reason, reader }
+        : { file: target.slice(0, colon), scope: target.slice(colon + 1), reason, reader }
     );
   }
   return out;
@@ -136,21 +143,80 @@ function readExpected(text) {
  * nothing else does: a ruling with neither a file nor a scope explains everything, and
  * readExpected refuses it.
  *
- * @param {{file:string|null, scope:string}[]} rules
+ * Sibling-aware the same way `matchingRulings` is: a scope co-declared beside the one a ruling
+ * names answers for the same construct, so `siblingsOf` widens the names this checks exactly as
+ * it widens `matchingRulings`' own search. This delegates to `matchingRulings` rather than
+ * duplicating its matching rule, so the two can never drift apart.
+ *
+ * @param {{file:string|null, scope:string, reader?:string|null}[]} rules
  * @param {string} file
  * @param {string} scope
+ * @param {(scope: string) => string[]} [siblingsOf]
+ * @param {string} [current]  the reader this run booted, from `oracle.$tw.version`; omitted, a
+ *   ruling naming no reader still answers and a ruling naming one answers for none
  * @returns {boolean}
  */
-function isExpected(rules, file, scope) {
-  return rules.some(
-    (r) =>
-      (r.scope === ''
-        ? true
-        : r.scope.startsWith('*.')
-          ? scope.endsWith(r.scope.slice(1))
-          : scope === r.scope || scope.startsWith(`${r.scope}.`)) &&
-      (r.file === null || file === r.file || file.endsWith(`/${r.file}`))
-  );
+function isExpected(rules, file, scope, siblingsOf = () => [], current) {
+  return matchingRulings(rules, file, scope, siblingsOf, current).length > 0;
+}
+
+/**
+ * Every ruling's own INDEX that explains this span, rather than whether any does.
+ *
+ * A ruling stands STALE only where it explains a span in NO run at all, and a run answers that
+ * question one ruling at a time — `isExpected` collapses the set to a boolean, which tells a caller
+ * whether the span is excused and nothing about which excuse did it. Same predicate, read the other
+ * way round.
+ *
+ * @param {{file:string|null, scope:string, reader?:string|null}[]} rules
+ * @param {string} file
+ * @param {string} scope
+ * @param {(scope:string) => string[]} [siblingsOf]
+ * @param {string} [current]  see `isExpected`
+ * @returns {number[]}
+ */
+function matchingRulings(rules, file, scope, siblingsOf = () => [], current) {
+  const names = [scope, ...siblingsOf(scope)];
+  const out = [];
+  rules.forEach((r, i) => {
+    const named = (name) => (r.scope === ''
+      ? true
+      : r.scope.startsWith('*.')
+        ? name.endsWith(r.scope.slice(1))
+        : name === r.scope || name.startsWith(`${r.scope}.`));
+    const matches = names.some(named) &&
+      (r.file === null || file === r.file || file.endsWith(`/${r.file}`)) &&
+      appliesToReader(r.reader, current);
+    if (matches) out.push(i);
+  });
+  return out;
+}
+
+/**
+ * The names each scope stands co-declared with — the other names one rule's `name` stacks beside it.
+ *
+ * A finding reports ONE name off a stack like `support.function.macro … entity.name.function.macro`,
+ * so a ruling naming a sibling in that stack answers for the same construct. A container comes from a
+ * separate rule and never joins the group, so the widening excuses no span a ruling never named. A
+ * `$N` capture placeholder matches any one segment.
+ *
+ * @param {string[]} declared  each rule's `name` / `contentName` string, as `declaredNames` returns them
+ * @returns {(scope: string) => string[]}
+ */
+function siblingsFrom(declared) {
+  const groups = declared.map((n) => n.trim().split(/\s+/));
+  const matcher = (name) => (/\$\d/.test(name)
+    ? ((re) => (scope) => re.test(scope))(new RegExp(`^${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\\\$\d/g, '[^.]+')}$`))
+    : (scope) => scope === name);
+  const indexed = groups.map((g) => g.map((name) => ({ name, is: matcher(name) })));
+  return (scope) => {
+    const out = new Set();
+    for (const g of indexed) {
+      if (!g.some((m) => m.is(scope))) continue;
+      for (const m of g) if (m.name !== scope && !/\$\d/.test(m.name)) out.add(m.name);
+    }
+    return [...out];
+  };
 }
 
 /**
@@ -183,6 +249,8 @@ function review(source, snapText, oracle) {
   for (const ann of parseSnapshot(snapText)) {
     const claimed = claims(ann.scopes);
     const condemned = declines(ann.scopes);
+    const condemnedVerdicts = verdicts(ann.scopes);
+    const condemnedSuppressions = condemned.filter((s) => !condemnedVerdicts.includes(s));
     if (claimed.length === 0 && condemned.length === 0) continue;
     const start = offsetAt(source, ann.line, ann.start);
     const end = offsetAt(source, ann.line, ann.end);
@@ -190,23 +258,48 @@ function review(source, snapText, oracle) {
     const at = { line: ann.line + 1, col: ann.start + 1, start, end, span: source.slice(start, end), rule: read.rule };
     // A span inside an unparsed definition body answers to neither question.
     if (read.innermost === 'opaque') continue;
+    // A claim naming one of THIS grammar's delimiters asserts the character is wikitext markup rather
+    // than content, so the tightest cover answers it: text there means the parser kept the character,
+    // and no table or cell around it turns a kept character into a mark. An embedded language's
+    // delimiter — a brace in a `<script>` body — claims JavaScript, which the host holds as text.
+    const mark = claimed.find((s) => /^punctuation\.definition\..*\.tiddlywiki5$/.test(s));
     if (claimed.length > 0 && read.kind === 'text') {
       findings.push({ kind: 'overreach', ...at, scope: claimed[claimed.length - 1] });
+    } else if (mark && read.innermost === 'text') {
+      findings.push({ kind: 'overreach', ...at, scope: mark });
     }
-    if (condemned.length > 0 && read.innermost === 'built') {
-      findings.push({ kind: 'invention', ...at, scope: condemned[condemned.length - 1] });
+    // A verdict and a suppression assert different things, so different evidence unseats them.
+    //
+    // A VERDICT claims the parser REFUSED. TiddlyWiki refuses by parsing nothing at all, so plain
+    // text unseats one as squarely as a built construct does — the parser looked, declined the
+    // construct, and kept the characters. Reading only `built` here left the commonest shape of
+    // all unexamined: a stray bracket in prose, which every parser run turns into text.
+    //
+    // A SUPPRESSION claims the parser declined the construct and kept the text. Text there reads
+    // as agreement, and only a construct built in its place unseats it.
+    if (condemnedVerdicts.length > 0 && (read.innermost === 'built' || read.innermost === 'text')) {
+      findings.push({ kind: 'invention', ...at, scope: condemnedVerdicts[condemnedVerdicts.length - 1] });
+    } else if (condemnedSuppressions.length > 0 && read.innermost === 'built') {
+      findings.push({ kind: 'invention', ...at, scope: condemnedSuppressions[condemnedSuppressions.length - 1] });
     }
   }
   return findings;
 }
 
-module.exports = { BASE, parseSnapshot, offsetAt, claims, verdicts, declines, readExpected, isExpected, parsesAsWikitext, review };
+module.exports = { BASE, parseSnapshot, offsetAt, claims, verdicts, declines, readExpected, isExpected, matchingRulings, siblingsFrom, parsesAsWikitext, review };
 
 if (require.main === module) {
   const args = process.argv.slice(2);
   const verbose = args.includes('--verbose');
   const expectedFile = (args.find((a) => a.startsWith('--expected=')) || '').slice('--expected='.length);
   const rulings = expectedFile ? readExpected(fs.readFileSync(expectedFile, 'utf8')) : [];
+  const rulingsUsedFile = (args.find((a) => a.startsWith('--rulings-used=')) || '').slice('--rulings-used='.length);
+  const rulingsUsed = new Set();
+  // A ruling answers for every name its construct's rule co-declares, across every grammar the
+  // manifest registers.
+  const manifest = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'), 'utf8'));
+  const siblingsOf = siblingsFrom(manifest.contributes.grammars
+    .flatMap((g) => require('./grammar-scopes.js').declaredNames(path.join(__dirname, '..', g.path))));
   const camelcase = args.includes('--camelcase');
   const truncateArg = args.find((a) => a === '--truncate' || a.startsWith('--truncate='));
   const truncating = Boolean(truncateArg);
@@ -219,14 +312,16 @@ if (require.main === module) {
   const tw = resolveTiddlyWiki();
   if (!tw) {
     console.error('no TiddlyWiki checkout resolved — set TW5_PATH');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
   const oracle = boot(tw, camelcase ? { rules: { 'Inline/wikilink': 'enable' } } : {});
+  const current = oracle.$tw.version;
 
   // A snapshot per file, taken into scratch so a run never disturbs the pinned ones.
   const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-overreach-'));
 
-  // A seeded generator, so a run that finds something can be run again and find it again.
+  // A seeded generator, so a run that finds something repeats and finds it again.
   const seeded = (seed) => () => {
     seed = (seed + 0x6d2b79f5) | 0;
     let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
@@ -249,22 +344,12 @@ if (require.main === module) {
 
   /** Every Nth tiddler across TiddlyWiki's own wikis, body only, one file each. */
   const buildCorpus = (count) => {
-    const walk = (dir, out = []) => {
-      if (!fs.existsSync(dir)) return out;
-      for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-        const p = path.join(dir, e.name);
-        if (e.isDirectory()) walk(p, out);
-        else if (e.name.endsWith('.tid')) out.push(p);
-      }
-      return out;
-    };
     // Deliberately malformed content answers to its own tests, never to a grammar —
     // editions/test/tiddlers/tests/data holds parse fixtures that carry deliberate faults.
     // Excluding a path RESAMPLES the corpus rather than trimming it: the stride recomputes
     // over what remains, so two runs with different exclusions compare totals only loosely.
     const excluded = args.filter((a) => a.startsWith('--exclude=')).map((a) => a.slice('--exclude='.length));
-    const all = ['editions', 'core', 'plugins', 'themes']
-      .flatMap((d) => walk(path.join(tw, d)))
+    const all = tiddlerFiles(['editions', 'core', 'plugins', 'themes'].map((d) => path.join(tw, d)))
       .filter((f) => !excluded.some((x) => f.includes(x)))
       .sort();
     const stride = Math.max(1, Math.floor(all.length / count));
@@ -276,9 +361,8 @@ if (require.main === module) {
       .filter(({ tid }) => parsesAsWikitext(tid))
       .map(({ src, tid }, i) => {
         // A .tid carries a header block, then a blank line, then the wikitext.
-        const blank = tid.indexOf('\n\n');
         const dest = path.join(scratch, `w${String(i).padStart(4, '0')}.tw`);
-        const body = blank < 0 ? '' : tid.slice(blank + 2);
+        const { body } = parseTid(tid);
         fs.writeFileSync(dest, truncating ? truncate(body, rand) : body);
         return { src, dest, whole: body };
       });
@@ -306,18 +390,11 @@ if (require.main === module) {
   }
   if (copies.length === 0) {
     console.error(`no files matched ${pattern}`);
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
-  const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'], {
-    encoding: 'utf8'
-  })
-    .trim()
-    .split('\n')
-    .filter(Boolean);
-  execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', ...copies], {
-    stdio: ['ignore', 'ignore', 'inherit'],
-    shell: process.platform === 'win32'
-  });
+  const grammars = grammarArgs();
+  snapRun([...grammars, '-s', scope, '-u'], copies);
 
   const byScope = { overreach: new Map(), invention: new Map() };
   let ruled = 0;
@@ -330,7 +407,9 @@ if (require.main === module) {
     scanned += 1;
     const source = fs.readFileSync(copy, 'utf8');
     for (const f of review(source, fs.readFileSync(snap, 'utf8'), oracle)) {
-      if (isExpected(rulings, files[i], f.scope)) {
+      const matched = matchingRulings(rulings, files[i], f.scope, siblingsOf, current);
+      if (matched.length > 0) {
+        for (const m of matched) rulingsUsed.add(m);
         ruled += 1;
         continue;
       }
@@ -348,7 +427,7 @@ if (require.main === module) {
       if (truncating && f.kind === 'overreach' && whole[i] !== undefined) {
         const uncut = oracle.readAt(whole[i], f.start, f.end);
         // The same law review holds: a span the whole tiddler stores rather than parses carries
-        // no answer either way. A macro body is stored verbatim, so the parser never rules on the
+        // no answer either way. A macro body stores verbatim, so the parser never rules on the
         // widgets inside it, and reading "not plain text" there as "the construct works" would
         // let the cut explain a span nothing ever examined.
         if (uncut.innermost === 'opaque') {
@@ -392,5 +471,11 @@ if (require.main === module) {
   section('overreach', 'span(s) the grammar CLAIMS and TiddlyWiki refuses');
   section('invention', 'span(s) the grammar CONDEMNS and TiddlyWiki builds');
   if (total === 0) console.log('\n  the grammar and the parser agree everywhere they were asked');
+  if (rulingsUsedFile) {
+    fs.writeFileSync(rulingsUsedFile, JSON.stringify({
+      total: rulings.length,
+      used: [...rulingsUsed].sort((a, b) => a - b)
+    }));
+  }
   process.exitCode = total === 0 ? 0 : 1;
 }

@@ -1,3 +1,10 @@
+FOUR HYPHENS BUILD A DASH, NOT A RULE. A rule answers to three or more hyphens alone on their line,
+and a dash answers to two or three anywhere — so the run below reads as a dash inside a paragraph:
+
+A ---- run inside prose.
+
+An en dash -- and an em dash --- inside one sentence.
+
 ---
 
 ----

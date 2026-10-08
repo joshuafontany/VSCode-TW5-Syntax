@@ -1,0 +1,5 @@
+A hard-linebreak run opened and never closed. It stands alone for the reason the quote-block
+carrier beside it names.
+
+"""
+An unterminated hard-linebreak run, and the last construct this carrier holds.

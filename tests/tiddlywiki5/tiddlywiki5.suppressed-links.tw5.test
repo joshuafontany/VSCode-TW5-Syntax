@@ -29,5 +29,5 @@ See $:/a/link and ~$:/b/link here.
 ! A pretty link takes no suppressor, and keeps its own reading
 
 A ~[[Pretty Link]] stands linked.
-#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.outer.begin.tiddlywiki5
+#  ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 markup.link.tiddlywiki5 punctuation.definition.link.begin.tiddlywiki5
 

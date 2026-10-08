@@ -1,7 +1,7 @@
 |A caption |c
 |!Header |!Second |h
 |left |right |
-|<|spanned left |
+|left |<|
 |>|spanned right |
 |~|spanned down |
 |Body |Cell |
@@ -12,5 +12,5 @@
 
 |Caption|c
 |head |cell |h
-|body |cell |b
+|body |cell |
 |foot |cell |f

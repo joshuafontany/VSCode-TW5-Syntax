@@ -10,7 +10,7 @@
 
 # The line after it reads as its own construct, never as filter text.
 ! A heading after a bare filter run
-#<- text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<- text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.tiddlywiki5
 #<- - meta.filter.tiddlywiki5
 
 A paragraph after a bare filter run.
@@ -22,5 +22,5 @@ A paragraph after a bare filter run.
 #  ^^^^ text.html.tiddlywiki5
 
 ! A heading after a bare MVV filter
-#<- text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.punctuation.definition.tiddlywiki5
+#<- text.html.tiddlywiki5 meta.heading.heading-1.tiddlywiki5 markup.heading.tiddlywiki5
 #<- - meta.filter.tiddlywiki5

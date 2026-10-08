@@ -1,0 +1,1045 @@
+# Of 65 bundled themes, how many tell each pair of constructs apart. Each count may rise and may
+# never fall, and a pair carrying no line here FAILS until somebody seats it — a construct joining
+# the list arrives unratcheted and says so rather than passing blind.
+#
+# ONE FLOOR ON THE WEAKEST PAIR READ GREEN THROUGH A LOSS ANYWHERE ELSE. Stripping a call of every
+# name a theme rules on left the weakest pair — a code span against prose — exactly where it stood,
+# and the gate held. The collision found that the day the gate stood up.
+#
+# THE READING MUST PAINT WHOLE CONSTRUCTS. Measured on CONTAINER scopes alone, a call, a filter run,
+# a transclusion and prose each resolve to one colour across all 65 — no theme rule reaches
+# `meta.variable.call.*` or `meta.transclusion.*`, so all four fall through to the default and 44 of
+# 65 themes paint the containers identically. That reading says a reader meets four constructs in
+# one ink; the whole-construct reading says every one of them parts from prose in all 65, because
+# the distinction rides on the punctuation and name scopes inside. A floor seated on containers
+# would rule a healthy grammar broken.
+#
+# THE `string.` FAMILY STANDS TAKEN. A wikilink wears `string.other.link.title` and a transclusion
+# wears `string.text-reference`, so a third construct named into that family reads as those two in
+# whatever theme rules on the family root. Measured: giving a code span `string.other` gained it 4
+# themes against prose and cost it 8 against a transclusion and 2 against a wikilink. A raw span
+# carries `markup.inline.raw.string` instead — the shape markdown, asciidoc and mediawiki share,
+# under this grammar's own suffix — which gains 3 and costs nothing.
+#
+# WHICH OF THE FIVE HOLDS STRING CONTENT. `string` carried five constructs against 62 themes, and a
+# theme ruling on the bare root paints every one of them alike. Read one at a time: a call and a
+# widget each wear `string.quoted.double` on a QUOTED LITERAL, which the name states truly. A filter
+# operand wears `string.entity.filter.operand` on the literal text between its brackets, also true —
+# though the BRACKETS wore `string.punctuation.definition.operand.begin`, which seated a delimiter
+# inside the string family rather than in `punctuation.definition` where every grammar writes one.
+# They stand stacked instead — `punctuation.definition.operand.string.begin` first and
+# `string.entity.filter.operand` last — which keeps the string colour those 62 themes painted, adds
+# the 40 themes ruling on `punctuation`, and moved NO pair of the 820.
+#
+# The remaining two hold no string content at all. A wikilink's `string.other.link.title` names a
+# link target, and markdown, asciidoc and mediawiki all seat a link title there — the same family-
+# shape argument the raw span already answers to — so it stands. A transclusion's
+# `string.text-reference` names what TiddlyWiki's parser assigns the INDIRECT kind: a name it
+# dereferences against the store. That one reads string by inheritance and nothing else, and it
+# carried the weakest pair in the table. Widened with `variable.other.reference` standing FIRST, a
+# transclusion parts from a wikilink in 58 rather than 54 and NO OTHER PAIR MOVES. Traced before
+# believing it: in `andromeeda` the rule `text.html string` painted `SomeTiddler` and `Some Title`
+# one colour while `{{`, `}}`, `[[` and `]]` all fell to the default, so the two constructs reached
+# a reader as one ink twice over.
+#
+# REACH BOUGHT BY MISNAMING BUYS NOTHING. `string.quoted.other` reads 58 against prose and calls a
+# raw run a quoted one; `support.type.raw` reads 58 and calls it a type the framework provides.
+# Both stand declined, the same ruling `keyword.control.list` drew at 100%.
+#
+# THE POPULATION COMES FROM THE HOST, AND ONLY THE NAMES ARE DECLARED. Seven specimens stood here
+# by hand and the standing lesson answered: a hand-written enumeration cannot notice what it missed.
+# It carried no emphasis at all, and emphasis holds the weakest readings in the whole table — a
+# procedure definition against a macro definition at 0 of 65, subscript against superscript at 0,
+# strikethrough against underline at 17. `$tw.modules.types.wikirule` names 44 rules TiddlyWiki
+# stands and the harvest records that answer, so 40 constructs measure here and four leave the table
+# by declaration: TiddlyWiki splits comment, filtered transclusion, call and transclusion by
+# POSITION, block against inline, and a reader meets one thing either way. A rule the host adds
+# arrives with no floor and says so.
+#
+# THE READING CARRIES fontStyle. A reader tells bold from italic without reading a word and most
+# themes carry that in fontStyle alone: on foreground by itself bold parted from italic in 23 of 65,
+# and a gate reading that way would have called a healthy grammar broken one family further along.
+# Foreground and fontStyle together read 56. Two pairs seated under the older reading ROSE when it
+# landed — a wikilink against prose from 61 to 65, and a code span against a wikilink from 59 to 65
+# — because the underline a wikilink wears never showed in a foreground.
+#
+# A SPECIMEN CARRIES NO TRAILING NEWLINE. One splits into an empty last line, and vscode-textmate
+# hands an empty line a token of width 1 standing in front of the newline — base scope, no character
+# painted. Flattened into the reading it adds the DEFAULT colour to every specimen and collapses
+# distinctions that stand: on `snazzy-light` a filter run and a transclusion each painted #ADB1C2
+# and #CF9C00, the filter run alone carried an unpainted space, and the phantom handed the
+# transclusion that third look for free. The pair read 63 without it and 62 with. A zero-width
+# filter does not catch it — the token measures one character wide — and not asking for the line
+# does.
+#
+# A PAIR AT 0 NAMES A THEME-SIDE FACT, NEVER A GRAMMAR DEFECT — check before healing one.
+# Measured on the six that stand at 0: this grammar names every one of them DISTINCTLY —
+# `markup.subscript` against `markup.superscript`, `meta.directive.variable.macro` against
+# `.procedure`, `markup.other.style.styleblock` against `markup.other.style`,
+# `meta.directive.parsermode` against `meta.directive.whitespace`. No theme rules on any of those
+# names, so all of them fall to one default and the pair reads 0. Adding a name that reaches a theme
+# would buy the reading by misnaming, which the house declined on `keyword.control.list` at 100% and
+# again on `string.quoted.other` at 58. A reader still parts them by their TEXT: `,,x,,` from
+# `^^x^^`, `\define` from `\procedure`. The floor records the colour reading and nothing wider.
+#
+# FIVE COUNTS FELL ONCE, BY A RULING AND NOT BY A DEFECT. A call's argument took the family its
+# SURFACE answers to — `entity.other.attribute-name`, the name html, Vue, JSX, Liquid, Handlebars
+# and MediaWiki's `{{T|name=v}}` all write for a named argument on a template surface — so a call's
+# name parts from its own argument in 57 of 65 where it parted in 25, and a call's argument reads
+# as a widget's attribute in 59 of 65. Gestalt similarity gives the converse rigorously: two things
+# painted one colour assert a relation, and this pair now asserts the one it means. The price
+# arrives in the same coin — a call reads more like a widget (65 to 61), like a typed block (65 to
+# 61), like an import directive (63 to 60), and one theme each against the parsermode and
+# whitespace directives. Thirty-two themes gained against thirteen lost, counted the same way.
+# These five stand re-seated at the new reading and ratchet from there.
+#
+# RE-SEATED 2026-09-11, BECAUSE THE RULER GOT MORE TRUTHFUL — never because a floor loosened.
+# `theme-model.js` ranked a selector's DEPTH above its POSITION in the scope stack, where
+# `vscode-textmate` lets the INNERMOST scope any rule reaches decide the colour outright. Collided
+# against the engine over the corpus — `tools/theme-collision.js` — the old model parted from it in
+# 6.6% of token-readings and handed `markup.underline.link` on a link's container where the engine
+# hands `string` on the caption inside it. The settled model parts in 0 of 199 615 readings across
+# 65 themes and 36 specimens.
+# Of the 820 pairs: 82 ROSE, 150 FELL, 588 stood, for a net of -270 theme-readings. Every count
+# here now names what a reader meets on screen. A floor re-seated for any other reason wants
+# refusing.
+#
+#   <themes that tell them apart>  <pair>
+65 a bare external link  vs  a CamelCase link
+65 a bare external link  vs  a call
+65 a bare external link  vs  a captioned external link
+65 a bare external link  vs  a filter run
+65 a bare external link  vs  a hard-linebreak run
+64 a bare external link  vs  a heading
+65 a bare external link  vs  a macro definition
+65 a bare external link  vs  a multi-value display
+65 a bare external link  vs  a parameters directive
+65 a bare external link  vs  a parsermode directive
+65 a bare external link  vs  a procedure definition
+65 a bare external link  vs  a quote block
+65 a bare external link  vs  a rules directive
+65 a bare external link  vs  a styled block
+65 a bare external link  vs  a styled span
+65 a bare external link  vs  a suppressed link
+65 a bare external link  vs  a table row
+65 a bare external link  vs  a transclusion
+65 a bare external link  vs  a typed block
+65 a bare external link  vs  a whitespace directive
+65 a bare external link  vs  a widget
+65 a bare external link  vs  an image
+65 a bare external link  vs  an import directive
+65 a bare external link  vs  italic
+65 a bare external link  vs  prose
+65 a bare external link  vs  strikethrough
+65 a bare external link  vs  subscript
+65 a bare external link  vs  superscript
+65 a bare external link  vs  underline
+65 a call  vs  a CamelCase link
+64 a call  vs  a captioned external link
+65 a call  vs  a macro definition
+65 a call  vs  a multi-value display
+65 a call  vs  a parsermode directive
+65 a call  vs  a quote block
+65 a call  vs  a rules directive
+65 a call  vs  a suppressed link
+65 a call  vs  a system link
+65 a call  vs  a table row
+65 a call  vs  a transclusion
+65 a call  vs  a whitespace directive
+65 a call  vs  a wikilink
+65 a call  vs  prose
+65 a call  vs  strikethrough
+65 a call  vs  subscript
+65 a call  vs  superscript
+65 a call  vs  underline
+65 a captioned external link  vs  a CamelCase link
+65 a captioned external link  vs  a quote block
+65 a captioned external link  vs  a rules directive
+65 a captioned external link  vs  a styled block
+65 a captioned external link  vs  a styled span
+65 a captioned external link  vs  a suppressed link
+65 a captioned external link  vs  a system link
+65 a captioned external link  vs  a table row
+65 a captioned external link  vs  a transclusion
+65 a captioned external link  vs  a typed block
+65 a captioned external link  vs  a whitespace directive
+65 a captioned external link  vs  a wikilink
+65 a captioned external link  vs  prose
+65 a captioned external link  vs  strikethrough
+65 a captioned external link  vs  subscript
+65 a captioned external link  vs  superscript
+65 a captioned external link  vs  underline
+65 a code block  vs  a bare external link
+65 a code block  vs  a call
+65 a code block  vs  a captioned external link
+65 a code block  vs  a comment
+65 a code block  vs  a conditional
+65 a code block  vs  a parameters directive
+65 a code block  vs  a styled block
+65 a code block  vs  a styled span
+65 a code block  vs  a transclusion
+65 a code block  vs  a typed block
+65 a code block  vs  a widget
+65 a code block  vs  a wikilink
+65 a code span  vs  a call
+65 a code span  vs  a captioned external link
+65 a code span  vs  a comment
+65 a code span  vs  a conditional
+65 a code span  vs  a filter run
+65 a code span  vs  a macro definition
+65 a code span  vs  a parameters directive
+65 a code span  vs  a parsermode directive
+65 a code span  vs  a procedure definition
+65 a code span  vs  a rules directive
+65 a code span  vs  a styled block
+65 a code span  vs  a styled span
+65 a code span  vs  a typed block
+65 a code span  vs  a whitespace directive
+65 a code span  vs  a widget
+65 a code span  vs  an image
+65 a code span  vs  an import directive
+65 a comment  vs  a CamelCase link
+65 a comment  vs  a bare external link
+65 a comment  vs  a call
+65 a comment  vs  a captioned external link
+65 a comment  vs  a conditional
+65 a comment  vs  a dash
+65 a comment  vs  a filter run
+65 a comment  vs  a hard-linebreak run
+65 a comment  vs  a heading
+65 a comment  vs  a horizontal rule
+65 a comment  vs  a list item
+65 a comment  vs  a macro definition
+65 a comment  vs  a multi-value display
+65 a comment  vs  a parameters directive
+65 a comment  vs  a parsermode directive
+65 a comment  vs  a procedure definition
+65 a comment  vs  a quote block
+65 a comment  vs  a rules directive
+65 a comment  vs  a styled block
+65 a comment  vs  a styled span
+65 a comment  vs  a suppressed link
+65 a comment  vs  a system link
+65 a comment  vs  a table row
+65 a comment  vs  a transclusion
+65 a comment  vs  a typed block
+65 a comment  vs  a whitespace directive
+65 a comment  vs  a widget
+65 a comment  vs  a wikilink
+65 a comment  vs  an entity
+65 a comment  vs  an image
+65 a comment  vs  an import directive
+65 a comment  vs  italic
+65 a comment  vs  prose
+64 a comment  vs  strikethrough
+65 a comment  vs  subscript
+65 a comment  vs  superscript
+65 a comment  vs  underline
+65 a conditional  vs  a CamelCase link
+65 a conditional  vs  a bare external link
+65 a conditional  vs  a dash
+65 a conditional  vs  a hard-linebreak run
+65 a conditional  vs  a heading
+65 a conditional  vs  a horizontal rule
+65 a conditional  vs  a list item
+65 a conditional  vs  a multi-value display
+65 a conditional  vs  a parsermode directive
+65 a conditional  vs  a quote block
+65 a conditional  vs  a suppressed link
+65 a conditional  vs  a system link
+65 a conditional  vs  a table row
+65 a conditional  vs  a transclusion
+65 a conditional  vs  a whitespace directive
+65 a conditional  vs  a widget
+65 a conditional  vs  a wikilink
+65 a conditional  vs  an entity
+65 a conditional  vs  an image
+65 a conditional  vs  italic
+65 a conditional  vs  prose
+65 a conditional  vs  strikethrough
+65 a conditional  vs  subscript
+65 a conditional  vs  superscript
+65 a conditional  vs  underline
+65 a dash  vs  a bare external link
+65 a dash  vs  a call
+65 a dash  vs  a captioned external link
+65 a dash  vs  a macro definition
+65 a dash  vs  a parameters directive
+65 a dash  vs  a procedure definition
+65 a dash  vs  a rules directive
+65 a dash  vs  a typed block
+65 a dash  vs  a widget
+62 a dash  vs  an image
+65 a dash  vs  an import directive
+65 a filter run  vs  a heading
+65 a filter run  vs  a horizontal rule
+65 a filter run  vs  a list item
+65 a filter run  vs  a macro definition
+65 a filter run  vs  a multi-value display
+65 a filter run  vs  a procedure definition
+65 a filter run  vs  a quote block
+65 a filter run  vs  a rules directive
+65 a filter run  vs  a system link
+65 a filter run  vs  a typed block
+65 a filter run  vs  a widget
+65 a filter run  vs  an image
+65 a filter run  vs  italic
+65 a hard-linebreak run  vs  a call
+65 a hard-linebreak run  vs  a captioned external link
+65 a hard-linebreak run  vs  a macro definition
+65 a hard-linebreak run  vs  a parameters directive
+65 a hard-linebreak run  vs  a parsermode directive
+65 a hard-linebreak run  vs  a rules directive
+65 a hard-linebreak run  vs  a styled block
+65 a hard-linebreak run  vs  a styled span
+65 a hard-linebreak run  vs  a transclusion
+65 a hard-linebreak run  vs  a typed block
+65 a hard-linebreak run  vs  a whitespace directive
+65 a hard-linebreak run  vs  a widget
+65 a hard-linebreak run  vs  a wikilink
+65 a hard-linebreak run  vs  an image
+65 a hard-linebreak run  vs  an import directive
+65 a heading  vs  a call
+65 a heading  vs  a captioned external link
+65 a heading  vs  a macro definition
+65 a heading  vs  a parameters directive
+65 a heading  vs  a parsermode directive
+65 a heading  vs  a rules directive
+65 a heading  vs  a styled block
+65 a heading  vs  a styled span
+65 a heading  vs  a typed block
+65 a heading  vs  a whitespace directive
+65 a heading  vs  a widget
+65 a heading  vs  a wikilink
+65 a heading  vs  an image
+65 a heading  vs  an import directive
+65 a horizontal rule  vs  a call
+65 a horizontal rule  vs  a captioned external link
+65 a horizontal rule  vs  a macro definition
+65 a horizontal rule  vs  a parameters directive
+65 a horizontal rule  vs  a parsermode directive
+65 a horizontal rule  vs  a rules directive
+65 a horizontal rule  vs  a styled block
+65 a horizontal rule  vs  a styled span
+65 a horizontal rule  vs  a transclusion
+65 a horizontal rule  vs  a typed block
+65 a horizontal rule  vs  a whitespace directive
+65 a horizontal rule  vs  a widget
+65 a horizontal rule  vs  a wikilink
+65 a horizontal rule  vs  an image
+65 a horizontal rule  vs  an import directive
+65 a list item  vs  a call
+65 a list item  vs  a captioned external link
+65 a list item  vs  a macro definition
+65 a list item  vs  a parameters directive
+65 a list item  vs  a parsermode directive
+65 a list item  vs  a rules directive
+65 a list item  vs  a styled block
+65 a list item  vs  a styled span
+65 a list item  vs  a transclusion
+65 a list item  vs  a typed block
+65 a list item  vs  a whitespace directive
+65 a macro definition  vs  a CamelCase link
+65 a macro definition  vs  a captioned external link
+65 a macro definition  vs  a multi-value display
+65 a macro definition  vs  a parameters directive
+65 a macro definition  vs  a quote block
+65 a macro definition  vs  a suppressed link
+65 a macro definition  vs  a system link
+65 a macro definition  vs  a table row
+65 a macro definition  vs  a transclusion
+65 a macro definition  vs  a wikilink
+65 a macro definition  vs  prose
+65 a macro definition  vs  strikethrough
+65 a macro definition  vs  subscript
+65 a macro definition  vs  superscript
+65 a macro definition  vs  underline
+65 a multi-value display  vs  a captioned external link
+65 a multi-value display  vs  a parameters directive
+64 a multi-value display  vs  a parsermode directive
+64 a multi-value display  vs  a rules directive
+65 a multi-value display  vs  a styled block
+65 a multi-value display  vs  a styled span
+65 a multi-value display  vs  a typed block
+64 a multi-value display  vs  a whitespace directive
+65 a parameters directive  vs  a CamelCase link
+65 a parameters directive  vs  a parsermode directive
+65 a parameters directive  vs  a quote block
+65 a parameters directive  vs  a rules directive
+65 a parameters directive  vs  a styled block
+65 a parameters directive  vs  a styled span
+65 a parameters directive  vs  a suppressed link
+65 a parameters directive  vs  a system link
+65 a parameters directive  vs  a table row
+65 a parameters directive  vs  a transclusion
+65 a parameters directive  vs  a typed block
+65 a parameters directive  vs  a whitespace directive
+65 a parameters directive  vs  a wikilink
+65 a parameters directive  vs  prose
+65 a parameters directive  vs  strikethrough
+65 a parameters directive  vs  subscript
+65 a parameters directive  vs  superscript
+65 a parameters directive  vs  underline
+65 a parsermode directive  vs  a CamelCase link
+65 a parsermode directive  vs  a captioned external link
+65 a parsermode directive  vs  a quote block
+65 a parsermode directive  vs  a suppressed link
+65 a parsermode directive  vs  a system link
+65 a parsermode directive  vs  a table row
+65 a parsermode directive  vs  a wikilink
+65 a parsermode directive  vs  prose
+65 a parsermode directive  vs  strikethrough
+65 a parsermode directive  vs  subscript
+65 a parsermode directive  vs  superscript
+65 a parsermode directive  vs  underline
+65 a procedure definition  vs  a CamelCase link
+65 a procedure definition  vs  a call
+65 a procedure definition  vs  a captioned external link
+65 a procedure definition  vs  a hard-linebreak run
+65 a procedure definition  vs  a heading
+65 a procedure definition  vs  a horizontal rule
+65 a procedure definition  vs  a list item
+65 a procedure definition  vs  a multi-value display
+65 a procedure definition  vs  a parameters directive
+65 a procedure definition  vs  a quote block
+65 a procedure definition  vs  a suppressed link
+65 a procedure definition  vs  a system link
+65 a procedure definition  vs  a table row
+65 a procedure definition  vs  a transclusion
+65 a procedure definition  vs  a widget
+65 a procedure definition  vs  a wikilink
+65 a procedure definition  vs  an import directive
+65 a procedure definition  vs  prose
+65 a procedure definition  vs  strikethrough
+65 a procedure definition  vs  subscript
+65 a procedure definition  vs  superscript
+65 a procedure definition  vs  underline
+65 a quote block  vs  a rules directive
+65 a quote block  vs  a styled block
+65 a quote block  vs  a styled span
+65 a quote block  vs  a transclusion
+65 a quote block  vs  a typed block
+65 a quote block  vs  a whitespace directive
+65 a rules directive  vs  a CamelCase link
+65 a rules directive  vs  a suppressed link
+65 a rules directive  vs  a system link
+65 a rules directive  vs  a table row
+65 a rules directive  vs  a transclusion
+65 a rules directive  vs  prose
+65 a rules directive  vs  strikethrough
+65 a rules directive  vs  subscript
+65 a rules directive  vs  superscript
+65 a rules directive  vs  underline
+65 a styled block  vs  a CamelCase link
+65 a styled block  vs  a suppressed link
+65 a styled block  vs  a system link
+65 a styled block  vs  a table row
+65 a styled block  vs  prose
+65 a styled block  vs  subscript
+65 a styled block  vs  superscript
+65 a styled block  vs  underline
+65 a styled span  vs  a CamelCase link
+65 a styled span  vs  a suppressed link
+65 a styled span  vs  a system link
+65 a styled span  vs  a table row
+65 a styled span  vs  prose
+65 a styled span  vs  subscript
+65 a styled span  vs  superscript
+65 a styled span  vs  underline
+65 a system link  vs  a transclusion
+65 a system link  vs  a typed block
+65 a system link  vs  a whitespace directive
+65 a table row  vs  a transclusion
+65 a table row  vs  a typed block
+65 a table row  vs  a whitespace directive
+65 a transclusion  vs  a CamelCase link
+65 a transclusion  vs  a typed block
+65 a transclusion  vs  prose
+65 a transclusion  vs  underline
+65 a typed block  vs  a CamelCase link
+65 a typed block  vs  a suppressed link
+65 a typed block  vs  prose
+65 a typed block  vs  underline
+65 a whitespace directive  vs  a CamelCase link
+65 a whitespace directive  vs  a suppressed link
+65 a whitespace directive  vs  prose
+65 a widget  vs  a CamelCase link
+65 a widget  vs  a captioned external link
+65 a widget  vs  a list item
+65 a widget  vs  a macro definition
+65 a widget  vs  a multi-value display
+65 a widget  vs  a parameters directive
+65 a widget  vs  a parsermode directive
+65 a widget  vs  a quote block
+65 a widget  vs  a rules directive
+65 a widget  vs  a styled block
+65 a widget  vs  a styled span
+65 a widget  vs  a suppressed link
+65 a widget  vs  a system link
+65 a widget  vs  a table row
+65 a widget  vs  a transclusion
+65 a widget  vs  a whitespace directive
+65 a widget  vs  a wikilink
+65 a widget  vs  an image
+65 a widget  vs  an import directive
+65 a widget  vs  italic
+65 a widget  vs  prose
+65 a widget  vs  strikethrough
+65 a widget  vs  subscript
+65 a widget  vs  superscript
+65 a widget  vs  underline
+65 a wikilink  vs  a CamelCase link
+65 a wikilink  vs  a quote block
+65 a wikilink  vs  a rules directive
+65 a wikilink  vs  a suppressed link
+65 a wikilink  vs  a system link
+65 a wikilink  vs  a table row
+65 a wikilink  vs  a typed block
+65 a wikilink  vs  a whitespace directive
+65 a wikilink  vs  prose
+65 a wikilink  vs  subscript
+65 a wikilink  vs  superscript
+65 an entity  vs  a bare external link
+65 an entity  vs  a call
+65 an entity  vs  a captioned external link
+65 an entity  vs  a filter run
+65 an entity  vs  a macro definition
+65 an entity  vs  a parameters directive
+65 an entity  vs  a parsermode directive
+65 an entity  vs  a procedure definition
+65 an entity  vs  a rules directive
+65 an entity  vs  a styled block
+65 an entity  vs  a styled span
+64 an entity  vs  a transclusion
+65 an entity  vs  a typed block
+65 an entity  vs  a whitespace directive
+65 an entity  vs  a widget
+65 an entity  vs  a wikilink
+65 an entity  vs  an image
+65 an entity  vs  an import directive
+65 an image  vs  a CamelCase link
+65 an image  vs  a call
+65 an image  vs  a list item
+65 an image  vs  a multi-value display
+65 an image  vs  a quote block
+65 an image  vs  a suppressed link
+65 an image  vs  a system link
+65 an image  vs  a table row
+65 an image  vs  a transclusion
+65 an image  vs  a typed block
+65 an image  vs  a wikilink
+65 an image  vs  an import directive
+65 an image  vs  prose
+65 an image  vs  strikethrough
+65 an image  vs  subscript
+65 an image  vs  superscript
+65 an image  vs  underline
+65 an import directive  vs  a CamelCase link
+65 an import directive  vs  a list item
+65 an import directive  vs  a macro definition
+65 an import directive  vs  a multi-value display
+65 an import directive  vs  a quote block
+65 an import directive  vs  a rules directive
+65 an import directive  vs  a styled block
+65 an import directive  vs  a styled span
+65 an import directive  vs  a suppressed link
+65 an import directive  vs  a system link
+65 an import directive  vs  a table row
+65 an import directive  vs  a transclusion
+65 an import directive  vs  a typed block
+65 an import directive  vs  a wikilink
+65 an import directive  vs  italic
+65 an import directive  vs  prose
+65 an import directive  vs  strikethrough
+65 an import directive  vs  subscript
+65 an import directive  vs  superscript
+65 an import directive  vs  underline
+65 bold  vs  a bare external link
+65 bold  vs  a call
+65 bold  vs  a captioned external link
+65 bold  vs  a comment
+65 bold  vs  a conditional
+65 bold  vs  a macro definition
+65 bold  vs  a parameters directive
+65 bold  vs  a parsermode directive
+65 bold  vs  a procedure definition
+65 bold  vs  a rules directive
+65 bold  vs  a typed block
+65 bold  vs  a whitespace directive
+65 bold  vs  a widget
+65 bold  vs  an image
+65 bold  vs  an import directive
+65 italic  vs  a call
+65 italic  vs  a captioned external link
+65 italic  vs  a parameters directive
+65 italic  vs  a rules directive
+65 italic  vs  a styled block
+65 italic  vs  a styled span
+65 italic  vs  a transclusion
+65 italic  vs  a typed block
+65 italic  vs  a wikilink
+65 strikethrough  vs  a styled block
+65 strikethrough  vs  a styled span
+65 strikethrough  vs  a transclusion
+65 strikethrough  vs  a typed block
+65 strikethrough  vs  a whitespace directive
+65 subscript  vs  a transclusion
+65 subscript  vs  a typed block
+65 subscript  vs  a whitespace directive
+65 superscript  vs  a transclusion
+65 superscript  vs  a typed block
+65 superscript  vs  a whitespace directive
+65 underline  vs  a whitespace directive
+64 a bare external link  vs  a horizontal rule
+64 a bare external link  vs  a list item
+64 a call  vs  a styled block
+64 a call  vs  a styled span
+64 a code block  vs  a filter run
+64 a code block  vs  a macro definition
+64 a code block  vs  a procedure definition
+64 a code block  vs  an import directive
+64 a code span  vs  a transclusion
+64 a code span  vs  a wikilink
+64 a conditional  vs  a call
+64 a conditional  vs  a styled block
+64 a conditional  vs  a styled span
+64 a conditional  vs  a typed block
+64 a dash  vs  a filter run
+64 a filter run  vs  a parsermode directive
+64 a filter run  vs  a styled block
+64 a filter run  vs  a styled span
+64 a filter run  vs  a whitespace directive
+64 a filter run  vs  a wikilink
+64 a macro definition  vs  a typed block
+64 a multi-value display  vs  a wikilink
+64 a parsermode directive  vs  a transclusion
+64 a procedure definition  vs  a typed block
+64 a procedure definition  vs  italic
+64 a transclusion  vs  a suppressed link
+64 a transclusion  vs  a whitespace directive
+64 a wikilink  vs  a styled block
+64 a wikilink  vs  a styled span
+64 an image  vs  a captioned external link
+64 bold  vs  a filter run
+64 bold  vs  a transclusion
+64 bold  vs  a wikilink
+64 italic  vs  a macro definition
+63 a code block  vs  a dash
+63 a code block  vs  a rules directive
+63 a code span  vs  a dash
+63 a dash  vs  a system link
+63 a dash  vs  italic
+63 a filter run  vs  a CamelCase link
+62 a filter run  vs  a call
+63 a filter run  vs  a hard-linebreak run
+63 a filter run  vs  a suppressed link
+63 a filter run  vs  a table row
+63 a filter run  vs  prose
+63 a filter run  vs  strikethrough
+63 a filter run  vs  subscript
+63 a filter run  vs  superscript
+63 a filter run  vs  underline
+63 a heading  vs  a system link
+63 a heading  vs  italic
+63 a horizontal rule  vs  italic
+63 a list item  vs  a wikilink
+63 a parameters directive  vs  a captioned external link
+63 a rules directive  vs  a styled block
+63 a rules directive  vs  a styled span
+63 a styled block  vs  a typed block
+63 a styled span  vs  a typed block
+63 an entity  vs  italic
+63 an image  vs  a parameters directive
+63 an image  vs  italic
+63 bold  vs  a heading
+63 bold  vs  a horizontal rule
+63 bold  vs  a multi-value display
+63 bold  vs  a styled block
+63 bold  vs  a styled span
+63 bold  vs  an entity
+63 italic  vs  a parsermode directive
+63 italic  vs  a whitespace directive
+62 a code block  vs  a horizontal rule
+62 a code block  vs  an entity
+62 a code block  vs  an image
+61 a conditional  vs  a parameters directive
+62 a dash  vs  a transclusion
+62 a parsermode directive  vs  a styled block
+62 a parsermode directive  vs  a styled span
+62 a parsermode directive  vs  a typed block
+62 a rules directive  vs  a typed block
+62 a styled block  vs  a transclusion
+62 a styled block  vs  a whitespace directive
+62 a styled span  vs  a transclusion
+62 a styled span  vs  a whitespace directive
+62 a typed block  vs  a whitespace directive
+62 a wikilink  vs  strikethrough
+62 a wikilink  vs  underline
+62 an entity  vs  a system link
+62 an image  vs  a styled block
+62 an image  vs  a styled span
+62 an import directive  vs  a parsermode directive
+62 an import directive  vs  a whitespace directive
+62 bold  vs  a CamelCase link
+62 bold  vs  a code block
+62 bold  vs  a system link
+62 bold  vs  prose
+62 italic  vs  a CamelCase link
+62 italic  vs  prose
+61 a bare external link  vs  a system link
+61 a bare external link  vs  a wikilink
+61 a call  vs  a parameters directive
+61 a call  vs  a typed block
+61 a code block  vs  a CamelCase link
+61 a code block  vs  prose
+61 a code span  vs  a bare external link
+61 a dash  vs  a hard-linebreak run
+61 a dash  vs  a heading
+61 a dash  vs  a quote block
+61 a dash  vs  a suppressed link
+61 a dash  vs  a table row
+61 a dash  vs  a wikilink
+61 a dash  vs  strikethrough
+61 a dash  vs  subscript
+61 a dash  vs  superscript
+61 a dash  vs  underline
+61 a filter run  vs  a parameters directive
+61 a heading  vs  a CamelCase link
+61 a heading  vs  a quote block
+61 a heading  vs  prose
+61 a heading  vs  strikethrough
+61 a macro definition  vs  a styled block
+61 a macro definition  vs  a styled span
+61 a procedure definition  vs  a styled block
+61 a procedure definition  vs  a styled span
+61 an image  vs  a rules directive
+61 an import directive  vs  a call
+61 bold  vs  a code span
+61 bold  vs  a dash
+61 italic  vs  a multi-value display
+61 italic  vs  a system link
+60 a code span  vs  italic
+60 a dash  vs  a multi-value display
+60 a dash  vs  a parsermode directive
+60 a dash  vs  a styled block
+60 a dash  vs  a styled span
+60 a dash  vs  a whitespace directive
+60 a filter run  vs  a transclusion
+60 a heading  vs  a horizontal rule
+60 a horizontal rule  vs  a system link
+60 a horizontal rule  vs  strikethrough
+60 a procedure definition  vs  an image
+60 a widget  vs  a typed block
+60 an entity  vs  a hard-linebreak run
+60 an entity  vs  a list item
+60 an entity  vs  a multi-value display
+60 an entity  vs  a table row
+60 an entity  vs  strikethrough
+60 an entity  vs  subscript
+60 an entity  vs  superscript
+60 an entity  vs  underline
+60 an image  vs  a macro definition
+60 bold  vs  a quote block
+59 a code block  vs  a heading
+59 a code block  vs  a parsermode directive
+59 a code block  vs  a whitespace directive
+59 a code block  vs  italic
+59 a code span  vs  a heading
+59 a conditional  vs  a rules directive
+59 a dash  vs  a list item
+59 a heading  vs  a transclusion
+59 a multi-value display  vs  strikethrough
+57 an entity  vs  a heading
+59 an entity  vs  a quote block
+59 an entity  vs  a suppressed link
+59 bold  vs  a hard-linebreak run
+59 bold  vs  a list item
+59 bold  vs  a suppressed link
+59 bold  vs  a table row
+59 bold  vs  strikethrough
+59 bold  vs  subscript
+59 bold  vs  superscript
+59 bold  vs  underline
+59 italic  vs  a quote block
+58 a code span  vs  an entity
+58 a conditional  vs  a captioned external link
+58 a hard-linebreak run  vs  italic
+58 a macro definition  vs  a parsermode directive
+58 a macro definition  vs  a whitespace directive
+58 a multi-value display  vs  a quote block
+58 a multi-value display  vs  a system link
+58 a procedure definition  vs  a parsermode directive
+58 a procedure definition  vs  a whitespace directive
+58 italic  vs  a list item
+58 italic  vs  a suppressed link
+58 italic  vs  a table row
+58 italic  vs  strikethrough
+58 italic  vs  subscript
+58 italic  vs  superscript
+58 italic  vs  underline
+57 a code block  vs  a quote block
+55 a conditional  vs  a filter run
+57 a filter run  vs  a captioned external link
+57 a hard-linebreak run  vs  a heading
+57 a heading  vs  a list item
+57 a heading  vs  a suppressed link
+57 a heading  vs  a table row
+57 a heading  vs  subscript
+57 a heading  vs  superscript
+57 a heading  vs  underline
+57 a horizontal rule  vs  underline
+57 a system link  vs  a CamelCase link
+57 bold  vs  italic
+56 a code span  vs  a system link
+56 a heading  vs  a multi-value display
+56 a horizontal rule  vs  a list item
+56 a horizontal rule  vs  a quote block
+56 an entity  vs  prose
+56 an import directive  vs  a captioned external link
+55 a code span  vs  a CamelCase link
+55 a code span  vs  a quote block
+55 a code span  vs  strikethrough
+55 a conditional  vs  a macro definition
+55 a conditional  vs  a procedure definition
+55 a dash  vs  an entity
+55 a multi-value display  vs  a transclusion
+55 a quote block  vs  a system link
+52 a widget  vs  a call
+55 an import directive  vs  a parameters directive
+55 strikethrough  vs  a CamelCase link
+54 a code block  vs  a system link
+54 a code block  vs  strikethrough
+54 a code span  vs  prose
+54 a system link  vs  prose
+54 an entity  vs  a CamelCase link
+53 a code block  vs  a multi-value display
+53 a horizontal rule  vs  a multi-value display
+53 a quote block  vs  prose
+53 a quote block  vs  strikethrough
+53 a quote block  vs  underline
+53 an image  vs  a parsermode directive
+53 an image  vs  a whitespace directive
+50 a conditional  vs  an import directive
+52 a horizontal rule  vs  a table row
+52 a list item  vs  a system link
+52 a multi-value display  vs  underline
+52 a quote block  vs  a CamelCase link
+52 strikethrough  vs  prose
+51 a code span  vs  underline
+51 a dash  vs  a CamelCase link
+51 a dash  vs  a horizontal rule
+51 a dash  vs  prose
+51 a multi-value display  vs  a CamelCase link
+51 a multi-value display  vs  prose
+55 a wikilink  vs  a transclusion
+51 underline  vs  a CamelCase link
+50 a code block  vs  underline
+50 a parsermode directive  vs  a rules directive
+50 a rules directive  vs  a whitespace directive
+50 strikethrough  vs  a system link
+49 a code span  vs  a horizontal rule
+49 a list item  vs  strikethrough
+49 a system link  vs  a suppressed link
+48 a hard-linebreak run  vs  a horizontal rule
+48 a horizontal rule  vs  subscript
+48 a horizontal rule  vs  superscript
+48 underline  vs  prose
+47 a code block  vs  a table row
+47 a code span  vs  a multi-value display
+47 a horizontal rule  vs  a suppressed link
+47 strikethrough  vs  a suppressed link
+46 a hard-linebreak run  vs  a system link
+46 a system link  vs  a table row
+46 a system link  vs  underline
+46 an entity  vs  a horizontal rule
+46 subscript  vs  a system link
+46 superscript  vs  a system link
+45 a code block  vs  a code span
+45 a list item  vs  underline
+44 a code block  vs  a hard-linebreak run
+44 a code block  vs  a list item
+44 a code block  vs  a suppressed link
+44 a code block  vs  subscript
+44 a code block  vs  superscript
+44 a code span  vs  a table row
+44 a hard-linebreak run  vs  strikethrough
+44 strikethrough  vs  a table row
+44 strikethrough  vs  subscript
+44 strikethrough  vs  superscript
+43 a list item  vs  a CamelCase link
+43 a list item  vs  a quote block
+43 a macro definition  vs  a rules directive
+43 a procedure definition  vs  a rules directive
+42 a code span  vs  a list item
+42 a hard-linebreak run  vs  a quote block
+42 a list item  vs  a multi-value display
+42 a list item  vs  prose
+42 a quote block  vs  a table row
+42 a quote block  vs  subscript
+42 a quote block  vs  superscript
+41 a quote block  vs  a suppressed link
+39 a code span  vs  a suppressed link
+39 a multi-value display  vs  a table row
+39 underline  vs  a suppressed link
+38 a code span  vs  a hard-linebreak run
+38 a code span  vs  subscript
+38 a code span  vs  superscript
+37 a multi-value display  vs  a suppressed link
+36 a hard-linebreak run  vs  a multi-value display
+36 a hard-linebreak run  vs  underline
+36 a multi-value display  vs  subscript
+36 a multi-value display  vs  superscript
+36 a table row  vs  a CamelCase link
+36 a table row  vs  underline
+36 subscript  vs  underline
+36 superscript  vs  underline
+34 a filter run  vs  an import directive
+33 a table row  vs  prose
+32 a hard-linebreak run  vs  a CamelCase link
+32 a horizontal rule  vs  prose
+32 a suppressed link  vs  prose
+32 subscript  vs  a CamelCase link
+32 superscript  vs  a CamelCase link
+31 a horizontal rule  vs  a CamelCase link
+29 a CamelCase link  vs  a suppressed link
+29 a hard-linebreak run  vs  prose
+29 subscript  vs  prose
+29 superscript  vs  prose
+17 strikethrough  vs  underline
+16 a list item  vs  a table row
+15 a list item  vs  a suppressed link
+13 a hard-linebreak run  vs  a list item
+13 a list item  vs  subscript
+13 a list item  vs  superscript
+10 a table row  vs  a suppressed link
+6 a hard-linebreak run  vs  a table row
+6 subscript  vs  a table row
+6 superscript  vs  a table row
+4 a CamelCase link  vs  prose
+4 a hard-linebreak run  vs  a suppressed link
+4 subscript  vs  a suppressed link
+4 superscript  vs  a suppressed link
+0 a hard-linebreak run  vs  subscript
+0 a hard-linebreak run  vs  superscript
+0 a parsermode directive  vs  a whitespace directive
+0 a procedure definition  vs  a macro definition
+0 a styled block  vs  a styled span
+0 subscript  vs  superscript
+
+# 2026-09-11: THREE RE-SEATED, and the trade counted on both sides rather than the falling one.
+#
+# A DELIMITER STANDS PART OF WHAT IT DELIMITS, so it carries that construct's family beside its own
+# published name — the device MagicPython ships on a quote character and TypeScript on a backtick,
+# stated there for the same reason: a `contentName` covers only an interior, so a delimiter would
+# otherwise LOSE the colour of the thing it bounds.
+#
+# Measured across all 65 themes: `{{…}}` fell from a median 2 colours to 1 and now reads as ONE
+# object in 38 themes where it read so in NONE; `{{{…}}}` fell from 3 to 2, and the two that remain
+# carry meaning — filter STRUCTURE against operand VALUES, where the third band meant nothing.
+#
+# Against that, three pairs of 820 lost four theme-readings between them. Two name a conditional
+# against an import or a parameters directive, and that convergence reads HONEST: all three pragmas
+# carry a filter run, which now paints alike, and their distinction lives in the keyword opening
+# them rather than in the filter they share.
+
+# 2026-09-11: ONE RE-SEATED, and three forks declined with the numbers that declined them.
+#
+# An image's bounds carry `keyword.other.img` beside their own name, so `[img[` reads as one marker
+# rather than as a grey bracket, a red word and a grey bracket. That costs a dash three themes
+# against an image, the dash reaching `keyword` in those three.
+#
+# DECLINED, measured one group at a time against the same base:
+#   a pretty link's BOUNDS carrying the link title family — 6 pairs fall, and a wikilink loses 17
+#     themes of distinction from a bare external link. A reader needs that one.
+#   a pretty link's SEPARATOR alone — 6 theme-readings on one pair, and NO colour gain at all, since
+#     the bounds stay punctuation either way and the construct still reads two colours.
+#   Both want the link families parted first, the same repair `markup.underline.link.*` already owes.
+
+# 2026-09-17: SEVEN RE-SEATED, on a ruling that seats every opener in ONE namespace.
+#
+# A reader meets `{{`, `<<`, `((`, `<`, `<$` and `<%` as one gesture — something opens here — so
+# each carries a `punctuation.definition.tag.*` name, and a link's `[[` keeps its own. A macro's name
+# wears `entity.name.function.macro` and a widget's `entity.name.function.widget`, and themes rule on
+# the root the two share, so a call reads as a widget does. The ruling buys a reader that family and
+# spends the fork with it: two constructs sharing a root cannot also part on it.
+# Seven pairs of 820 carry the price, each re-seated to the reading the ruling delivers:
+#   a widget  vs  a call                                55 -> 52
+#   a conditional  vs  a filter run                     57 -> 55
+#   a filter run  vs  a call                            63 -> 62
+#   a call  vs  a captioned external link               65 -> 64
+#   a multi-value display  vs  a parsermode directive   65 -> 64
+#   a multi-value display  vs  a rules directive        65 -> 64
+#   a multi-value display  vs  a whitespace directive   65 -> 64
+#
+# THE PRICE SURVIVED A SEARCH FOR A CHEAPER ONE. Four naming schemas priced against all 820 pairs
+# with the grammar untouched. Three cost more than they returned and stand declined. Only E2 — a
+# link keeping its own punctuation name while the other four openers share the tag one — improves
+# on changing nothing, at 7 pairs fallen and 0 newly broken, and that reading seats these numbers.
+# A mark-level split that would hand `a widget vs a call` its 55 back reaches NOTHING: both names
+# resolve to one scope a theme rules on, so no rename parts them.
+#
+# A FLOOR LOWERED WITHOUT ITS RULING HIDES THE NEXT REGRESSION. These seven ratchet from here, and
+# a loss outside the ruling's own reach fails this gate as loudly as any other would.
+
+# 2026-09-18: TWO RE-SEATED, on a ruling that a heading is markup rather than a declared name.
+#
+# A heading's text wore `entity.name.section` alone — the shape markdown publishes — and themes rule
+# on the `entity.name` root a transclusion's title and a call's name also sit under, so the three
+# read alike: heading text against a transclusion one colour in 33 of 65, against a call's name in
+# 18. It keeps the published name and carries `markup.heading.section` last, which is what the text
+# IS, and which reads apart from the transclusion in all but 17 and from the call in all but 9. The
+# markdown shape shares a root with every name; the markup family shares it with none of them.
+# Two pairs of 820 carry the price, each re-seated to the reading the ruling delivers:
+#   an entity  vs  a heading                            59 -> 57
+#   a bare external link  vs  a heading                 65 -> 64
+#
+# The zero-cost names stood priced and declined: `entity.name.type` buys almost nothing (gruvbox
+# paints it yellow too), and `support.class` and `entity.other.inherited-class` name what a heading
+# is not.
+
+# 2026-09-18: ONE RE-SEATED, on the 2026-09-17 opener-namespace ruling this floor never carried to it.
+#
+# 32291b2 (lar:///the-opener.joins.one-namespace) gave a transclusion's `{{` and `}}`
+# `punctuation.definition.tag.transclusion` beside their own published name, the same
+# `punctuation.definition.tag.*` every other opening mark took that day — EXCEPT a wikilink's `[[`,
+# which the same ruling named the one exception and left in its own family. That commit counted only
+# the seven pairs its own re-seat fell; a wikilink against a transclusion rose instead, and stood
+# uncounted since. Traced: `night-owl-light`, `nord`, `solarized-dark` and `solarized-light` all rule
+# on the bare `punctuation.definition.tag` root and now paint a transclusion's braces the way they
+# already painted every other opener, while a wikilink's brackets — never in that family — keep the
+# colour they always had. Four themes that once matched now part, and no other pair moves.
+#   a wikilink  vs  a transclusion                       51 -> 55
+
+# 2026-09-20: ONE SPENT, on the operator's strikethrough ruling.
+#
+# Struck text declares `comment.strikethrough.tiddlywiki5 markup.strikethrough.tiddlywiki5`. The
+# honest name stands last and keeps the font style every theme ruling on it already gives; the
+# `comment` family ahead of it reaches the themes that rule on neither `markup.strikethrough` nor
+# `markup.underline`. The name it drops claimed struck text reads UNDERLINED, which no reader means
+# by `~~`. Measured over the 65 bundled themes: a cue on the struck words rises from 44 themes to
+# 65, and the honest name alone — the only other spelling the theme corpus can paint — falls twelve
+# pairs, so this ruling buys the whole ratchet back for one. What it spends: struck prose now reads
+# in a comment's ink, so one theme fewer tells an author's struck aside from an author's commented
+# aside.
+#   a comment  vs  strikethrough                         65 -> 64
+
+# THE FRAGMENT STAYS UNARTICULATED, DELIBERATELY. No pair below asks a fragment's own parts apart
+# from one another (the way the root's heading/angle/dynamic parts are asked apart), because the
+# house has never ruled what a fragment's segments MEAN. `#/the-eye.lands` reads as one span on
+# purpose. When the `ahu` slot grammar defines fragment segments, a pair can seat here; until then
+# this is an unmade decision, not a missing floor.
+#
+# THE WITHIN-CONSTRUCT WITNESS IS DEFERRED. No pair below asks a `lar:`/`ni:` URI's own segments
+# apart from one another as an internal-distinctness gate (scheme vs. root vs. path vs. query vs.
+# fragment, measured against EACH OTHER rather than against a different construct). The operator's
+# reason: the lar and ni URIs needed manual tweaking because a `lar:` URI reads as a combination of
+# machine code and natural language, and a gate ratcheting on internal segment distinctness would
+# freeze a palette still being tuned by hand against a half-linguistic address. Deferred, not
+# missing.
+
+# ROOT AND PATH ARE ALLIED, RULED. No pair below asks a lar: URI's root apart from its own path
+# (or its fragment), because both name the same kind of thing — where an address points — one
+# coarsely and one finely; their sameness reads as truthful rather than as a defect. Five bundled
+# themes (one-light, red, solarized-dark, solarized-light, vesper) paint root, path and fragment
+# alike, and that reading stands RULED, not failing. See LEDGER-3.0.0.md ("Naming") for the two
+# moves measured and refused on the way.

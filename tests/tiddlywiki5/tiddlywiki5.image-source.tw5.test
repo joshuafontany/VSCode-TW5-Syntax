@@ -1,0 +1,23 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "An image needs a source that holds something"
+
+# image.js skips whitespace after the inner `[` and then reads `([^\]]+?)\]\]`, so a source holding
+# nothing, or only whitespace, builds no image and TiddlyWiki keeps the brackets as text. A reader
+# meets the brackets as the text they are.
+
+A space: [img[ ]] here.
+#        ^^^^^^^^ - markup.other.image.tiddlywiki5
+#         ^^^ - keyword.other.img.tiddlywiki5
+
+A space before the inner bracket too: [img [ ]] here.
+#                                     ^^^^^^^^^ - markup.other.image.tiddlywiki5
+
+Nothing at all: [img[]] here.
+#               ^^^^^^^ - markup.other.image.tiddlywiki5
+
+# CONTROL: a source carrying a title builds, whitespace around it and all.
+An image: [img[ pic.png ]] here.
+#         ^ punctuation.definition.image.outer.begin.tiddlywiki5
+#          ^^^ keyword.other.img.tiddlywiki5
+
+A tooltip with a blank source still builds: [img[tip| ]] here.
+#                                           ^ punctuation.definition.image.outer.begin.tiddlywiki5

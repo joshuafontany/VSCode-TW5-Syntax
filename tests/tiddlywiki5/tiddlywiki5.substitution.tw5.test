@@ -1,10 +1,10 @@
-# SYNTAX TEST "text.html.tiddlywiki5" "Substitution references in a macro body"
+# SYNTAX TEST "text.html.tiddlywiki5.test" "Substitution references in a macro body"
 
 # TiddlyWiki substitutes one parameter at a time, per name:
 #   new RegExp("\\$" + escapeRegExp(param.name) + "\\$","mg")   core/…/widgets/widget.js:146
 # so each $name$ stands on its own and none reaches across the gap to the next.
-# The filter form is /\$\{([\S\s]+?)\}\$/g (core/modules/wiki.js:1166) and the variable
-# form is /\$\(([^\)\$]+)\)\$/g (widget.js:248).
+# The filter form reads /\$\{([\S\s]+?)\}\$/g (core/modules/wiki.js:1166) and the variable
+# form reads /\$\(([^\)\$]+)\)\$/g (widget.js:248).
 
 \define d(a,b,n)
 $a$ $b$

@@ -10,13 +10,14 @@
 // while its own compare path disagrees with its writer on some inputs, so this uses the
 // writer alone and does the comparing here.
 //
-//   node tools/snapshot-check.js <scope> <glob>            compare, exit non-zero on drift
-//   node tools/snapshot-check.js <scope> <glob> --update   rewrite the pinned snapshots
+//   node tools/snapshot-check.js <scope> <glob> [<glob> ...]            compare, exit non-zero on drift
+//   node tools/snapshot-check.js <scope> <glob> [<glob> ...] --update   rewrite the pinned snapshots
 
-const { execFileSync } = require('node:child_process');
+const { snapRun } = require('./snap-run.js');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { grammarArgs } = require('./tokenizer.js');
 
 // Node 22 added fs.globSync and Windows disagrees with a forward-slash glob, so the
 // listing happens here: every pattern this repository uses reads `dir/*.ext`.
@@ -33,33 +34,29 @@ function listFiles(pattern) {
     .map((f) => path.join(dir, f));
 }
 
-const [scope, pattern, ...rest] = process.argv.slice(2);
-if (!scope || !pattern) {
-  console.error('Usage: node tools/snapshot-check.js <scope> <glob> [--update]');
-  process.exit(2);
-}
+const [scope, ...rest] = process.argv.slice(2);
 const update = rest.includes('--update');
+const patterns = rest.filter((a) => a !== '--update');
+if (!scope || patterns.length === 0) {
+  console.error('Usage: node tools/snapshot-check.js <scope> <glob> [<glob> ...] [--update]');
+  process.exitCode = 2;
+  return;
+}
 
-const sources = listFiles(pattern);
+const sources = patterns.flatMap(listFiles);
 if (sources.length === 0) {
-  console.error(`no sources matched ${pattern}`);
-  process.exit(2);
+  console.error(`no sources matched ${patterns.join(' ')}`);
+  process.exitCode = 2;
+  return;
 }
 
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-snap-'));
 for (const src of sources) fs.copyFileSync(src, path.join(scratch, path.basename(src)));
 
-const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'], {
-  // No shell: cmd.exe would mangle the -c argument, and Git Bash stands on PATH
-  // wherever this runs.
-  encoding: 'utf8'
-}).trim().split('\n').filter(Boolean);
+const grammars = grammarArgs();
 
 const staged = sources.map((src) => path.join(scratch, path.basename(src)));
-execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', ...staged], {
-  stdio: ['ignore', 'ignore', 'inherit'],
-  shell: process.platform === 'win32'
-});
+snapRun([...grammars, '-s', scope, '-u'], staged);
 
 let drift = 0;
 let checked = 0;
@@ -100,4 +97,5 @@ for (const src of sources) {
 
 fs.rmSync(scratch, { recursive: true, force: true });
 console.log(`snapshot-check  ${scope}  ${checked} pinned, ${drift} drifted`);
-process.exit(drift ? 1 : 0);
+process.exitCode = drift ? 1 : 0;
+return;

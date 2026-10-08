@@ -1,0 +1,94 @@
+title: $:/tw5-syntax/TextMateCeiling
+type: application/json
+tags: $:/tags/TW5Syntax/GrammarData
+caption: TextMate ceiling
+description: What a TextMate grammar cannot reach about TiddlyWiki, and which kind of reader closes each one — harvested, never hand-written
+ceilings-standing: 9 of 9
+
+{
+    "ceilings": 9,
+    "standing": 9,
+    "entries": [
+        {
+            "key": "whole-document lookahead",
+            "shape": "blind",
+            "answeredBy": "a parser holding the whole document — tree-sitter answers this",
+            "what": "a construct that opens only where its closer stands somewhere ahead",
+            "why": "TiddlyWiki scans to the end of the source for `>>` before building a call, and builds nothing at all where none stands. A pattern reads one line and the rule stack carried across it, so both inputs open the same region. THE SAME CEILING WEARS OTHER CONSTRUCTS: `\\parameters\\s*\\(([^)]*)\\)` carries a signature across blank lines to a closing paren anywhere ahead and builds nothing where none stands — measured, a signature with a closer on a later line or across a blank line agrees with the grammar exactly, and the two part only where no `)` stands in the file at all. `codeinline.js` wears it a third way and pays the most for it: it runs `reEnd.exec(this.parser.source)` over the WHOLE source, so a code run crosses line breaks freely and an unterminated delimiter renders as literal text carrying no node. This grammar spells the construct as a `match` whose content class refuses a newline, so the two pair DIFFERENT backticks and the mis-pairing ALTERNATES — every span the host reads as raw reads as wikitext here, and every span it reads as wikitext paints raw. Measured at 10 attributes across five templates in `corpus/attribute-kind-ceiling.txt`.",
+            "tried": "a blank-line bound on the call end, which cut 116 real multi-line calls out of 16087 openers measured over 700 carriers while answering the 0 that carry no closer. Two more relaxations ran on the codeinline arm and both failed: a `begin`/`end` pair runs an unmatched opener to the end of the document, and 9 of the 2493 tiddlers swept carry an unterminated code run the host renders as literal text (`mono-block`, `splitregexp Operator`, `CallParameterValue`, `tm-new-tiddler`, `Serving TW5 from Android`, `#9739-empty-codeblock`, `Release 5.3.0`, `Linking in WikiText`, `Substituted Attribute Values`); a blank-line bound on that end mis-pairs the 8 tiddlers whose code runs legitimately cross a blank line. RULED, NOT ONLY MEASURED (2026-09-18): an inline code run, italic (`//(?=[^\\n]*//)…//|(?=$)`), bold, underline and the other emphasis marks bound their close to the SAME LINE, and `htmlwidget`'s tag/attribute rules bound a start tag at the blank line rather than reading ahead across it. A TRANSCLUSION AND A FILTERED TRANSCLUSION JOIN THE LIST (2026-09-21): both carried across a blank line on purpose, so an unclosed `{{` or `{{{` ran to the end of the source and painted every paragraph after it — `corpus/wikitext/degenerate.unterminated.tw`'s own `{{transclusion` line named the specimen. Both now end at `(?=^$)` too, alongside the same-line and next-line closers a reader still gets, which costs the one case where a real filter or template title genuinely spans a blank line to a closer further down. TiddlyWiki carries every one of these across lines and across blank lines inside one block; this grammar could widen each bound the same way `whole-document lookahead` names, and the operator ruled against it on purpose, not for lack of trying: a stray unclosed `//` or `<div` early in a tiddler would then run forward looking for its own close and paint every paragraph after it — including ones with no mark of their own — until it happened to find one, so ONE typo takes down a whole document's highlighting rather than the one line that carries it. A line-bounded miss reads as itself, wrong only where it stands; an unbounded false match reads as a cascade. `tree-sitter`, holding the whole document AND able to reparse incrementally when the guess a wrong bound made turns out wrong, can accept the cascade's cost where a stream-oriented grammar answering to a live editor cannot.",
+            "measured": "host parts (macrocallblock | parseblock), grammar reads alike"
+        },
+        {
+            "key": "rule-set mutation",
+            "shape": "phantom",
+            "answeredBy": "a reader carrying parser STATE across a document — a language server holds it; a static grammar does not",
+            "what": "a pragma that deletes a rule for the rest of the document",
+            "why": "`\\rules except html` removes the html rule from the parser instance, so a tag below it builds nothing. A grammar carries a static rule set and paints the tag either way.",
+            "tried": "nothing — a TextMate grammar names its patterns at load time, and no measured construction removes one at read time",
+            "measured": "host builds rules,parseblock, grammar paints structure inside it"
+        },
+        {
+            "key": "verbatim storage",
+            "shape": "phantom",
+            "answeredBy": "a reader parsing a stored body on demand, at the moment something renders it — the widget layer, never a syntax layer",
+            "what": "a body the host stores and never parses",
+            "why": "TiddlyWiki keeps a macro body as text and builds one `set/macrodef` node with nothing inside it; the body becomes a tree only at widget time. The grammar paints wikitext in there on purpose, since a reader meets it rendered.",
+            "tried": "nothing, and nothing should — painting it serves the reader. The ceiling names what a tool must not INFER from those scopes: no parse tree confirms them.",
+            "measured": "host builds macrodef, grammar paints structure inside it"
+        },
+        {
+            "key": "nested coordinate space",
+            "shape": "space",
+            "answeredBy": "a reader carrying a span TOGETHER WITH its space — tree-sitter injections answer this; a flat scope list does not",
+            "what": "a body the host parses in offsets of its own",
+            "why": "A typed block declaring wikitext parses its body as wikitext, and the nodes that parse builds carry offsets into the INNER text. A grammar carries one coordinate space per document, so no scope can name which space a span belongs to.",
+            "tried": "nothing at the grammar; `flatten(tree, { sameSpace: true })` answers it on the READING side, by refusing to cross into a restarted space at all",
+            "measured": "host reports typedblock at 23..42 and quoteblock at 0..14"
+        },
+        {
+            "key": "cross-tiddler resolution",
+            "shape": "wiki",
+            "answeredBy": "a symbol table over the wiki — a language server, and nothing below one",
+            "what": "bytes whose meaning stands in another tiddler",
+            "why": "`<<d hello>>` reaches a macro, a procedure, a function or a custom widget, and the definition may live anywhere in the wiki. TiddlyWiki refuses to guess at parse time and builds a `transclude`; the difference surfaces only at render, where a macro substitutes `$x$` and a procedure hands it through.",
+            "tried": "nothing — a grammar reads one file and holds no symbol table. This is the ceiling a language server exists to answer.",
+            "measured": "one source, 2 renderings: macro \"A hello B\" vs procedure \"A $x$ B\""
+        },
+        {
+            "key": "import by filter",
+            "shape": "wiki",
+            "answeredBy": "a filter engine running against a live wiki — a language server wired to the wiki, never a grammar",
+            "what": "a pragma whose effect a filter over the wiki decides",
+            "why": "`\\import` takes a FILTER, not a title, so which definitions arrive depends on what the wiki holds when it runs. Measured: `\\import [tag[GapTag]]` renders `IMPORTED` and `\\import [tag[NoSuchTag]]` renders nothing, on identical calling bytes.",
+            "tried": "nothing — a filter runs against a wiki, and a grammar holds no wiki. A language server holds one; a tree-sitter grammar does not.",
+            "measured": "one source, 2 renderings: tagged \"IMPORTED\" vs untagged \"\""
+        },
+        {
+            "key": "indirect attribute value",
+            "shape": "wiki",
+            "answeredBy": "a resolver reading tiddler fields — a language server for hover and completion; the render layer for the value itself",
+            "what": "an attribute whose value stands in another tiddler field",
+            "why": "TiddlyWiki types an attribute `indirect` and resolves the reference at widget time. Measured: `<$text text={{CeilingField!!myfield}}/>` renders the field where it stands and nothing where it does not, on identical bytes.",
+            "tried": "nothing at the grammar, which names the reference correctly and can never resolve it. `attribute-witness` reads the KIND TiddlyWiki assigns and stops there, on purpose.",
+            "measured": "one source, 2 renderings: present \"the value\" vs absent \"\""
+        },
+        {
+            "key": "enclosing scope removal",
+            "shape": "stack",
+            "answeredBy": "a reader that REPLACES a span's scope rather than only adding to it — Sublime's `clear_scopes:`, and tree-sitter, whose injections restart the highlight stack at the injected node",
+            "what": "a construct opened inside a quoted value, which wears that value's scope for as long as the region stands",
+            "why": "This grammar embeds wikitext INSIDE quoted attribute values — a substituted attribute value, a filter run in an attribute, the `lar:` injection reaching inside `string.quoted.double.html`. A TextMate rule only ADDS scopes, so every construct opened in there carries the enclosing `string.*` on its stack for as long as the region stands, and a theme rule written against `string` reaches all of them: a reader meets wikitext wearing a string's colour. Sublime prescribes the cure verbatim — where a string holds interpolated code, \"the `string.*` scope should be removed using `clear_scopes:`\" — and vscode-textmate's `IRawRule` enumerates fourteen keys naming no removal among them. Measured over corpus and samples: 1080 of 24376 tokens stand under a string they cannot leave, across 47 of 79 carriers, 8 enclosing string scopes and 67 trapped construct names — `string.text-reference` over 492 of them, `string.quoted.double.html` over 330, `string.unquoted.uri.lar` over 167.",
+            "tried": "declaring `clear_scopes: true` on the inner rule and reading the result, which this gate re-runs on every pass: the cleared arm reads BYTE-IDENTICAL to the plain arm, so the key parses and moves nothing. The additive cure stands available and answers a different question — a space-separated multi-scope name ADDS a content scope to a delimiter, the device MagicPython and VS Code TypeScript both ship — but nothing a grammar writes takes a scope back OFF a span, so it widens a reading rather than narrowing one",
+            "measured": "17 construct scope(s) stand under a string on 8 token(s), inside string.quoted.triple.html.tiddlywiki5 + string.other.link.title.tiddlywiki5 + string.text-reference.tiddlywiki5; a rule declaring clear_scopes reads identically"
+        },
+        {
+            "key": "entity value",
+            "shape": "value",
+            "answeredBy": "a reader that reports a VALUE beside a span — hover in a language server, or the render layer",
+            "what": "a construct the grammar names whose VALUE the host computes",
+            "why": "An entity parses to an `entity` node and renders to the character it names — `&hellip; and &#x2014;` renders `… and —`. The grammar names the entity exactly and carries no scope for what it stands for, because a scope names a span and never a value.",
+            "tried": "nothing, and nothing should. The ceiling names what a tool must not expect from scopes: a reader wanting the character reads the host, never the grammar.",
+            "measured": "source \"&hellip; and &#x2014;\" renders \"… and —\"; no scope carries it"
+        }
+    ]
+}

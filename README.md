@@ -18,7 +18,7 @@ This extension provides five languages, each with its own grammar and scope.
 | `tid` | `.tid`, `.meta` | `source.tiddlywiki5.tid-file` | the tiddler file format: a field block, a blank line, then a body parsed as wikitext |
 | `multids` | `.multids` | `source.tiddlywiki5.multids-file` | the multiple-tiddler file format |
 | `memetic-wikitext` | `.mem` | `text.html.tiddlywiki5.memetic-wikitext` | Memetic-Wikitext, a superset of TiddlyWiki wikitext |
-| `tiddlywiki5.test` | `.tw5.test` | `text.html.tiddlywiki5.test` | the syntax-test files used to check the grammars |
+| `tiddlywiki5.test` | `.tw5.test` | `text.html.tiddlywiki5.test` | the syntax-test files that check the grammars |
 
 Each language applies only to the file extensions listed, so adding one changes nothing about how the others behave.
 
@@ -27,11 +27,15 @@ Each language applies only to the file extensions listed, so adding one changes 
 `*.mem` files open as **Memetic-Wikitext** (`text/memetic-wikitext+tiddlywiki`), a small extension of
 TiddlyWiki wikitext used by the [Lares](https://github.com/amorphous-dreams) agent tooling. Its scope,
 `text.html.tiddlywiki5.memetic-wikitext`, includes the wikitext grammar, so ordinary wikitext highlights
-inside a `*.mem` file exactly as it does in a `*.tid` file. On top of that it highlights four additions:
+inside a `*.mem` file exactly as it does in a `*.tid` file. On top of that it highlights:
 
-* `<<~ name … >>` and its closing form `<<~ /name >>`
-* `<<^ code="&#x0001;" … >>`, a set of document-structure markers
-* `lar:` URIs, highlighted as addresses where they appear in prose
+* `<<~ name …>>` sigils and their closing form `<<~/name>>`
+* the carrier frame's `<<^ code="&#x…;" …>>` markers: the `&#x0002;` marker seats beside the
+  `&#x0001;` opener and wraps all the content through its `&#x0003;` close, the `toml meta` fence
+  included
+* `lar:` URIs, read as addresses with their structure — the three-term root, the path, each
+  `?key=value` in the query, and the fragment
+* `ni:` digests, the block check a carrier seals its body with
 * named parameters written `key=value`, which TiddlyWiki 5.4 accepts alongside `key:value`
 
 Every addition uses syntax TiddlyWiki already parses — each of the first two reads as a macro call, and a
@@ -42,17 +46,51 @@ If you do not use `*.mem` files, nothing here affects you: the language applies 
 
 ## Features
 
-Based primarily on the grammars found below, with heavy tweaking and editing.
+**The colours answer to TiddlyWiki's own parser.** Every reading asks what TiddlyWiki builds
+from the text, and paints that — so a mistake stays where you made it (an unclosed tag, call or
+inline run stops at the blank line that ends its block, as TiddlyWiki stops it), error colours
+appear only where TiddlyWiki refuses something, and a pragma, a dash run, a code span or a list
+item reads the way your wiki will render it.
+
+**A tiddler reads in the language its type names.** A `*.tid` or `*.meta` file parses its field
+block, then hands the body to the grammar its `type:` names: wikitext by default; JSON, CSS,
+JavaScript, HTML, Markdown and plain text as themselves; and `image/svg+xml`, `text/xml` and
+`application/xml` to the XML grammar. A `*.multids` file reads the same way from the one `type:`
+its header carries, since TiddlyWiki applies that type to every tiddler in the file.
+
+**Fenced code reads as real code.** A fenced block labelled with a language hands that language
+to the editor as well as the colourer — 24 of them — so comment toggling, brackets and word
+selection inside the block follow it. A `toml` fence reads full TOML 1.1 through a grammar this
+extension carries privately, since VS Code ships none (`ThirdPartyNotices.txt` credits it).
+
+**Editing meets you halfway.** `[[` and `<<` close themselves as you type. A double-click takes a
+TiddlyWiki word, so a system title like `$:/core/ui/EditTemplate` selects whole. Folding leaves
+the blank line after a block where it stands.
+
+**Your theme reads the structure.** Bold and italic carry their font style, not only a colour. A
+filter reads as its parts — prefix, brackets, operator and operand. A URL's scheme reads as one
+unit. Struck text dims like an aside in every bundled theme and strikes through wherever the theme
+supports it. A widget attribute names itself in the scope inspector.
+
+**What a line-at-a-time grammar cannot reach, it names.** Italic or code carried across a line
+break and an HTML tag carried across a blank line keep a line or blank-line bound on purpose, so
+one stray mark cannot repaint every paragraph after it. The ceiling record
+(`editions/tw5-syntax/tiddlers/TextMateCeiling.tid`) names each such limit and the kind of reader
+that could close it.
+
+The grammar grew from these, heavily reworked since:
 
 * https://github.com/shikijs/textmate-grammars-themes/blob/main/packages/tm-grammars/grammars/html.json
 * https://github.com/PaulPorfiroff/atom-language-tiddlywiki5
 * https://github.com/roma0104/sublime-tid
 
-`*.tid` and `*.meta` files have syntaxes that parse the metadata field "block" (and illegal characters detected). Every field's content, the text field included, parses as `text.html.tiddlywiki5` (defined in `./syntaxes/tiddlywiki5.json`).
-
 ## For contributors
 
-`contributing.md` carries the detail. In short, the grammars answer to more than their own tests:
+`contributing.md` carries the detail and `SCOPE-NAMES.md` carries the rule this repository names its
+scopes by — what a name promises, the three precedents that settled it, and the three parts of it a gate
+checks. Every gate answers under two TiddlyWiki readers: the development fork for local work and the
+pinned 5.4.1 release for CI. `LEDGER-3.0.0.md` holds the record of every construct, ruling and
+measurement behind this release. In short, the grammars answer to more than their own tests:
 
 * `npm test` — assertion files stating what each construct should scope
 * `npm run test-tools` — the tools themselves, which the gates read through
@@ -65,21 +103,28 @@ Based primarily on the grammars found below, with heavy tweaking and editing.
 * `npm run overreach-host` — the same question over TiddlyWiki's own tiddlers, against the written rulings
 * `npm run overreach-cut` — the same tiddlers cut short at a seeded offset, so the ground leaves well-formed input behind
 * `npm run tests-known-gaps` — the specimens stating what the grammar does not yet do, which fails when one of them starts passing
+* `npm run colour-witness` — what a reader sees rather than what a scope name says: an opener and its closer read alike in every bundled theme, and a declared distinction reaches enough of them to show
+* `npm run backtrack-witness` — what a half-typed construct costs the tokenizer, over every pattern in every grammar
 * `npm run attribute-guard` — what an attribute-list guard would cost, taken to TiddlyWiki's own tags: how many it would refuse that the parser builds. `-- --cut` cuts each tag short first, matching the input such a guard would actually meet
 * `npm run tw5-oracle -- '<wikitext>'` — the tree TiddlyWiki builds, and `-- --rules` the rules it stands
 * `npm run rule-inventory` — every parser rule, the config tiddlers it answers to, and what TiddlyWiki ships for each
 * `npm run theme-paint -- <scope>` — how many bundled themes paint a scope, and `-- --families` the whole grammar ranked
 * `npm run overreach-corpus-files` / `overreach-corpus-memetic` — the corpus, in both dialects, against the parser and the written rulings
 * `npm run compose-memes` — composition over whatever memetic writing stands beside this checkout; set `MEMES` to one or more directories
+* `npm run legibility` — whether a reader can tell one construct from another: every pair over every bundled theme, each carrying its own floor
+* `npm run ceiling` — what a TextMate grammar CANNOT reach about TiddlyWiki, measured against the host and naming the kind of reader that closes each one. A ceiling somebody closes RETIRES, and the gate fails until it goes. The bare name READS, so the gate never writes; `npm run ceiling:write` measures the same and refreshes the harvested `TextMateCeiling` tiddler with it
+* `npm run delimiters` — what a delimiter inherits from the content it bounds: every `contentName` in the tree,
+  keyed by shape, each ruled in `corpus/delimiter-ledger.txt` as a parting that serves a reader or costs one
 * `npm run package-contents` — every path the manifest names, checked inside the built package
 * `npm run bench` — a disposable editor in a container, so you can look at the grammar with your own eyes
+* `npm run uri-span-measure` — a scout instrument: the resolved style of each named span of a sample `lar:`/`ni:`/`https:` line, across every bundled theme, dumped as JSON (`> /tmp/uri-measure-<label>.json`); `npm run uri-span-compare -- before.json after.json` diffs two such dumps span by span. Both back the URI-palette rulings cited in `LEDGER-3.0.0.md` and the `memetic-wikitext.json` comments; neither is part of the shipped gate set
 
 ## Colour toggles
 
 A TextMate grammar decides how loudly a construct reads and never which parser rules a wiki
 stands — nothing in the VS Code API hands a grammar to an extension at runtime. That claim
 answers to Microsoft's tree; its consequence answers here, and
-`tests/tools/ships-no-runtime.test.js` holds it: no entry point, no activation events, only
+`tools/invariants/ships-no-runtime.test.js` holds it: no entry point, no activation events, only
 declarative contributions, no runtime dependency, and nothing executable in the package. A theme
 paints a scope when one of its own rules names that scope or a dotted prefix of it, which makes
 the scope name the default. `npm run theme-paint -- <scope>` measures any scope against the
@@ -122,24 +167,72 @@ want one:
 The suppressing `~` keeps its punctuation colour either way: `wikilinkprefix` carries its own
 rule, TiddlyWiki ships it enabled, and it consumes the `~` whether or not CamelCase stands.
 
+
+<!-- reading-recipe -->
+
+### Constructs your theme leaves quiet
+
+No construct reads as body text in more than a quarter of the 65 bundled themes, so this grammar asks a reader for no `fontStyle` rule of their own. A construct that starts reading quiet joins a table here the day it does.
+
+Generated by `npm run reading-recipe` from `corpus/prose-reading-ledger.txt`.
+<!-- reading-recipe -->
+
 ### Verdicts — on by default
 
-The grammar marks markup TiddlyWiki refuses to parse with `invalid.*` scopes, which most
-themes paint as errors — the two VS Code ships among them. Where TiddlyWiki genuinely
-refuses, a verdict earns its place; some still stand where it does not. To read them quietly
-while that settles:
+A verdict answers to what TiddlyWiki refuses, and never to what another language retired.
+TiddlyWiki parses any tag name, any attribute name, a lone angle bracket and a stray `&` into
+the page, so none of them draws one. A single verdict stands: `invalid.illegal.field.name`, on a
+field name a `*.tid` or `*.meta` header cannot hold. Most themes paint it as an error — the two
+VS Code ships among them — and `MIGRATION.md` records the names that went.
+
+**Name the family, never a member.** A theme selector reaches a scope by dot-bounded prefix,
+so one rule on `invalid.illegal` reaches that verdict and keeps reaching it when a name gains a
+segment. To read it quietly:
 
 ```json
 "editor.tokenColorCustomizations": {
   "textMateRules": [
-    { "scope": ["invalid.illegal.html.tiddlywiki5", "invalid.deprecated.html.tiddlywiki5"],
-      "settings": { "foreground": "#808080" } }
+    { "scope": "invalid.illegal", "settings": { "foreground": "#808080" } }
   ]
 }
 ```
 
+That selector also reaches an embedded block's own verdicts — a CSS or JavaScript region
+inside a tiddler — which is usually what a reader quieting errors wants. `npm run
+rule-inventory` prints the exact names, so you never need this page to list them.
+
 Both blocks work per workspace folder in `.vscode/settings.json`, so one wiki can answer
 differently from another.
+
+### Why this extension ships no colour of its own
+
+An extension **may** contribute `editor.tokenColorCustomizations` through
+`contributes.configurationDefaults`. VS Code registers it, warns nothing, and it takes
+effect; some 450 published manifests do exactly that. This one declines, for three reasons
+that hold whatever the colour.
+
+**No hardcoded colour survives an arbitrary theme.** A `foreground` that reads well on
+Default Dark+ reads as noise on a light, high-contrast or pastel theme, and the extension
+never learns which one you run. Theming belongs to the theme and to you.
+
+**A contributed default cannot be scoped to a language.** Only settings marked
+language-overridable reach the per-language schema, and `editor.tokenColorCustomizations`
+carries no such mark — VS Code's theme maintainers have closed that request directly. So a
+colour contributed here would apply in every file you open, not only in wikitext. The one
+containment mechanism left is the language suffix every scope name carries: each grammar closes
+its names on its own — `.tiddlywiki5`, `.memetic-wikitext`, `.tid-file`, `.multids-file`,
+`.fields` — and `tools/invariants/scope-suffix.test.js` holds every one to it.
+
+**A contributed default merges INTO your settings rather than sitting under them.** VS Code
+deep-merges object defaults, so writing your own `editor.tokenColorCustomizations` would
+not clear the extension's rules — removing them would take an explicit empty
+`"textMateRules": []`, which would destroy your own alongside. An opinion you cannot turn
+off without losing your own work is not a default.
+
+So the two blocks above stay a snippet you paste, theme-scoped, under your hand. What this
+extension **does** contribute by default is behavioural and carries no colour:
+`files.associations`, mapping each extension to its language. VS Code's own 24 built-in
+extensions that use `configurationDefaults` set no colour either.
 
 Per-rule switching — one toggle for each of TiddlyWiki's parser rules, resolved down a bag
 stack — waits on the tree-sitter and language-server work, where a live parser can answer
@@ -153,7 +246,9 @@ Please report issues or offer Pull Requests at the GitHub Repository:
 
 # Release Notes
 
-* https://github.com/joshuafontany/VSCode-TW5-Syntax/blob/main/CHANGELOG.md
+* [`CHANGELOG.md`](CHANGELOG.md) — what each release grants you
+* [`LEDGER-3.0.0.md`](LEDGER-3.0.0.md) — every construct, ruling and measurement behind 3.0.0
+* [`MIGRATION.md`](MIGRATION.md) — every scope name 3.0.0 retired, with what it stands as now
 
 -----------------------------------------------------------------------------------------------------------
 

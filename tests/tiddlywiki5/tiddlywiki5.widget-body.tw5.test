@@ -13,4 +13,4 @@
 #          ^^^^^^ text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 markup.bold.tiddlywiki5
 
 <$button class=x><<myMacro one>></$button>
-#                  ^^^^^^^ text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 meta.variable.macrocallinline.tiddlywiki5 variable.name.macro.tiddlywiki5
+#                  ^^^^^^^ text.html.tiddlywiki5 meta.tag.widget.button.html.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5

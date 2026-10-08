@@ -19,14 +19,16 @@
 //   node tools/rule-inventory.js [--json|--configuration]
 //
 // --configuration emits the contributes.configuration properties block, so the extension's
-// settings are generated from TiddlyWiki's rule modules rather than transcribed from them.
+// settings come off TiddlyWiki's rule modules rather than a transcription of them.
 //
 // The deciding half — configKeysFor, readShippedDefaults, buildInventory — stands under
-// test in tests/tools/rule-inventory.test.js.
+// test in tools/rule-inventory.test.js.
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { parseTid } = require('./wiki-data.js');
 const { resolveTiddlyWiki } = require('./tw5-oracle.js');
+const { walkMatching, tiddlerFiles } = require('./walk.js');
 
 // wikiparser.js reads one prefix per rule type. The pragma prefix reads PLURAL where the
 // other two read singular; nothing derives that, so a test pins the three transcribed.
@@ -53,12 +55,7 @@ function configKeysFor(name, types) {
  */
 function readRuleModules(twPath) {
   const dir = path.join(twPath, 'core/modules/parsers/wikiparser/rules');
-  const files = (d) =>
-    fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => {
-      const p = path.join(d, e.name);
-      return e.isDirectory() ? files(p) : e.name.endsWith('.js') ? [p] : [];
-    });
-  return files(dir)
+  return walkMatching(dir, (name) => name.endsWith('.js'))
     .map((file) => {
       const src = fs.readFileSync(file, 'utf8');
       const name = /exports\.name\s*=\s*"([^"]+)"/.exec(src);
@@ -85,19 +82,11 @@ function readRuleModules(twPath) {
 function readShippedDefaults(twPath) {
   const out = new Map();
   const dir = path.join(twPath, 'core/wiki');
-  const walk = (d) => {
-    if (!fs.existsSync(d)) return;
-    for (const e of fs.readdirSync(d, { withFileTypes: true })) {
-      const p = path.join(d, e.name);
-      if (e.isDirectory()) walk(p);
-      else if (e.name.endsWith('.tid')) {
-        const text = fs.readFileSync(p, 'utf8');
-        const m = /^title:\s*\$:\/config\/WikiParserRules\/(\S+)\s*$/m.exec(text);
-        if (m) out.set(m[1], text.slice(text.indexOf('\n\n') + 2).trim());
-      }
-    }
-  };
-  walk(dir);
+  for (const p of tiddlerFiles(dir)) {
+    const text = fs.readFileSync(p, 'utf8');
+    const m = /^title:\s*\$:\/config\/WikiParserRules\/(\S+)\s*$/m.exec(text);
+    if (m) out.set(m[1], parseTid(text).body.trim());
+  }
   return out;
 }
 
@@ -155,16 +144,19 @@ if (require.main === module) {
   const tw = resolveTiddlyWiki();
   if (!tw) {
     console.error('no TiddlyWiki checkout resolved — set TW5_PATH');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
   const inventory = buildInventory(tw);
   if (process.argv.includes('--configuration')) {
     console.log(JSON.stringify(configurationProperties(inventory), null, 2));
-    process.exit(0);
+    process.exitCode = 0;
+    return;
   }
   if (process.argv.includes('--json')) {
     console.log(JSON.stringify(inventory, null, 2));
-    process.exit(0);
+    process.exitCode = 0;
+    return;
   }
   const keys = inventory.flatMap((r) => r.keys);
   console.log(`rule-inventory  ${inventory.length} rules, ${keys.length} config keys\n`);

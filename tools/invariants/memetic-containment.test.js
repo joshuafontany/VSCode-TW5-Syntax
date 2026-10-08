@@ -1,0 +1,80 @@
+// A memetic construct leaves the wikitext after it alone.
+//
+// The bleed canary appends a sentence to the END of a sample and catches a construct that
+// swallows to the end of the file. A construct that corrupts the paragraph after it and then
+// recovers passes that canary untouched, and the dialect adds opening constructs the wikitext
+// grammar has no rule for.
+//
+// This puts an ordinary sentence after EVERY construct the dialect opens on, and asks that each
+// sentence carry a paragraph and nothing else. The construct list comes from the grammar's own
+// top-level patterns, so a rule added later joins the probe without anybody remembering it.
+
+const test = require('node:test');
+const assert = require('node:assert');
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
+const { snapRun } = require('../snap-run.js');
+const { grammarArgs } = require('../tokenizer.js');
+
+const ROOT = path.resolve(__dirname, '..', '..');
+const SENTENCE = 'An ordinary sentence stands here.';
+
+/** One specimen of each construct, taken from the rule's own opening pattern. */
+const SPECIMENS = {
+  'lar-uri': 'A lar:///a/b?k=v#/frag stands inline.',
+  fragment: 'An anchor #/two-clocks stands inline.',
+  bearing: 'A heading -> what it faces.',
+  sigil: '<<~ set hud="aim">> and <<~/ahu>> stand inline.',
+  carrier: '<<^ code="&#x0002;">> stands inline.',
+  'ni-uri': 'A ni:///sha-256;AbCd_09 stands inline.'
+};
+
+const grammar = JSON.parse(fs.readFileSync(path.join(ROOT, 'syntaxes', 'memetic-wikitext.json'), 'utf8'));
+const opens = (grammar.repository.memetic.patterns || []).map((p) => String(p.include).replace('#', ''));
+
+// tokenizer.js's own `grammarArgs()` resolves and caches this; two invariants once inlined the same
+// shell invocation to get it independently, memetic-superset.test.js among them.
+const grammars = (() => {
+  try {
+    return grammarArgs();
+  } catch { return []; }
+})();
+
+/** Every annotation over a given line's text, as scope lists. */
+function annotationsOver(snapshot, needle) {
+  const out = [];
+  let line = null;
+  for (const text of fs.readFileSync(snapshot, 'utf8').split('\n')) {
+    if (text.startsWith('>')) { line = text.slice(1); continue; }
+    const m = text.match(/^#\s*\^+ (.*)/);
+    if (m && line && line.includes(needle)) out.push(m[1].split(/\s+/));
+  }
+  return out;
+}
+
+test('every construct the dialect opens on carries a specimen', () => {
+  const missing = opens.filter((rule) => !(rule in SPECIMENS));
+  assert.deepStrictEqual(missing, [], `the dialect opens on rule(s) this probe never writes: ${missing.join(', ')}`);
+});
+
+test('a construct leaves the paragraph after it alone', { skip: grammars.length ? false : 'no grammar list', timeout: 600000 }, () => {
+  const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-contain-'));
+  const file = path.join(scratch, 'probe.mem');
+  fs.writeFileSync(file, opens.map((r) => `${SPECIMENS[r]}\n\n${SENTENCE}\n`).join('\n'));
+  snapRun([...grammars, '-s', grammar.scopeName, '-u'], [file], { stdio: ['ignore', 'ignore', 'ignore'] });
+
+  const foreign = annotationsOver(`${file}.snap`, SENTENCE)
+    .map((scopes) => scopes.filter((s) => !s.startsWith('text.html.tiddlywiki5') && !s.includes('paragraph')))
+    .filter((extra) => extra.length);
+  fs.rmSync(scratch, { recursive: true, force: true });
+
+  // The guard catches a reader that silently matched nothing, so it counts ANY construct rather
+  // than a number. A threshold set to the vocabulary of the day fails a grammar that grew smaller
+  // on purpose, and says the reader broke when the grammar changed.
+  assert.ok(opens.length > 0, `the dialect opens on ${opens.length} construct(s) — the reader stopped matching`);
+  assert.deepStrictEqual(
+    foreign.slice(0, 4), [],
+    `${foreign.length} span(s) after a construct carry scopes the construct should have closed`
+  );
+});

@@ -1,0 +1,89 @@
+title: $:/tw5-syntax/CIGates
+type: application/json
+tags: $:/tags/TW5Syntax/GrammarData
+caption: CI gates
+description: Which gates continuous integration runs, and the reason for each one it does not — and which of the gates it does run may stand down at runtime, with the reason for each
+
+{
+    "alsoGates": [
+        "edition",
+        "lint-closure",
+        "package-contents",
+        "tests-known-gaps"
+    ],
+    "reporting": [
+        "signals",
+        "overreach-host",
+        "overreach-cut",
+        "upstream-coverage"
+    ],
+    "skipped": [],
+    "standsDown": [
+        {
+            "gate": "must-flag",
+            "why": "stands down where no `lares` CLI stands on PATH. The carrier checker whose declared faults it adjudicates ships in a sibling repository, and no continuous-integration runner installs one — so the instrument prints `must-flag  SKIP — …`, exits 0, and the harvest records the STATE rather than a CLI-present verdict the environment cannot reproduce. A missing declared fault stays blocking wherever the CLI does stand"
+        },
+        {
+            "gate": "sigil-shape",
+            "why": "stands down where no boot seed stands beside this checkout. The seed it measures the sigil shapes against lives in a sibling repository, and a standalone clone — which is what continuous integration checks out — reaches none, so the instrument prints `sigil-shape  SKIP — \u2026`, exits 0, and the harvest records the STATE rather than a reading the environment cannot reproduce. An unexercised shape stays blocking wherever the seed does stand"
+        },
+        {
+            "gate": "sigil-vocabulary",
+            "why": "stands down on the same ground as `sigil-shape`, and for the same seed: a standalone clone reaches no boot seed, so no vocabulary answers and the harvest records that state. A sigil the seed writes and no specimen exercises stays blocking wherever the seed does stand"
+        },
+        {
+            "gate": "recovery-witness",
+            "why": "stands down against a TiddlyWiki carrying no parser diagnostics API. It reads back the `diagnostics` field `WikiParser.addDiagnostic` fills, which only this repository's own fork exposes, so under the pinned release it prints its SKIP naming the version it met and the harvest records that state. A reader that does carry the API gets the full verdict"
+        }
+    ],
+    "notGates": [
+        {
+            "gate": "tw5-oracle",
+            "why": "a reading rather than a verdict: it prints what TiddlyWiki made of a text, and answers a question the caller brought"
+        },
+        {
+            "gate": "rule-inventory",
+            "why": "a reading rather than a verdict: it lists the parser surface TiddlyWiki exposes, and judges nothing about this grammar"
+        },
+        {
+            "gate": "theme-paint",
+            "why": "a reading rather than a verdict: it reports how loudly a scope paints, and the gates that RULE on that stand separately"
+        },
+        {
+            "gate": "edition:write",
+            "why": "a builder, and the WRITING arm of a harvest pair: the bare name reads and `:write` mutates, so this rebuilds the edition's modules for a hand that means to. `edition` renders the verdict over what it produces, and CI runs that arm in its own blocking step among the four the report leaves aside"
+        },
+        {
+            "gate": "bench",
+            "why": "a server: it stands a disposable editor for a reader's own eyes, and reports nothing a gate could read"
+        },
+        {
+            "gate": "bench:packaged",
+            "why": "the same server over the packed extension, so a reader meets what a user installs rather than what the tree holds"
+        },
+        {
+            "gate": "bench:down",
+            "why": "the same server taken down, which restores the machine and reports nothing a gate could read"
+        },
+        {
+            "gate": "page-palette",
+            "why": "a reading rather than a verdict: it counts the distinct colours a whole PAGE spends, against Ware's six-to-twelve band, where every other gauge here reads one construct. A theme decides that count as much as the grammar does, so ratcheting it would re-seat on every honest change — the shape this house retired once already"
+        },
+        {
+            "gate": "family-atlas",
+            "why": "a reading rather than a verdict: it derives every selector the bundled themes rule on, with the share of that reach which leaves the colour where the editor had it, and names the families a grammar may truthfully reach for. It judges no scope this grammar writes — `contrast-witness` holds that verdict — and it refuses nothing, so a gate run would only ever agree with it"
+        },
+        {
+            "gate": "reading-recipe",
+            "why": "a reading rather than a verdict: it generates the reader-facing recipe for the constructs the prose-reading ledger rules, welding it into the README. Its own test holds the weld, and the tool refuses nothing — a gate run would only ever agree with it"
+        },
+        {
+            "gate": "uri-span-measure",
+            "why": "a scout instrument, by its own header comment: it dumps the resolved style of a sample URI's named spans across every bundled theme to JSON, and judges nothing itself — it backed the URI-palette rulings in LEDGER-3.0.0.md and is kept, named, for reproducing that measurement again"
+        },
+        {
+            "gate": "uri-span-compare",
+            "why": "the same standing as uri-span-measure, which it diffs: a scout instrument that reports a change count between two dumps and renders no verdict of its own"
+        }
+    ]
+}

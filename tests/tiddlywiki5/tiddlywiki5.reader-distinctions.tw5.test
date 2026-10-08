@@ -1,0 +1,32 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A reader tells apart what means differently"
+
+# TextMate states the question a scope name answers, and it asks the reader rather than the
+# parser: "would I want these two elements styled differently?… instead of putting everything
+# below keyword (as your formal language definition may insist)."
+#
+# Two constructs here open the same way and mean nothing alike, and each carries a second name so
+# a theme can tell them apart. Measured across 65 bundled themes: a widget reads apart from an
+# HTML element in 77% of them, a system title from an ordinary one in 94%.
+#
+# The name a reader should SEE stands LAST. A space-separated name pushes its scopes in order and
+# the last one wins a tie, so the same two names in the other order read identically to an HTML
+# tag in every theme measured.
+
+! A widget calls into TiddlyWiki; an element emits a tag
+
+<$list filter="[all[]]"/>
+# ^^^^ entity.name.function.widget.tiddlywiki5
+# ^^^^ entity.name.tag.html.tiddlywiki5
+
+<div class="x">html</div>
+#^^^ entity.name.tag.html.tiddlywiki5
+#^^^ - entity.name.function.widget.tiddlywiki5
+
+! A title the host provides, and a title an author wrote
+
+A [[$:/core/System]] and a [[Ordinary Title]] link.
+#   ^^^^^^^^^^^^^^ support.other.system.title.tiddlywiki5
+#   ^^^^^^^^^^^^^^ constant.language.system.title.tiddlywiki5
+#   ^^^^^^^^^^^^^^ string.other.link.title.tiddlywiki5
+#                            ^^^^^^^^^^^^^^ string.other.link.title.tiddlywiki5
+#                            ^^^^^^^^^^^^^^ - support.other.system.title.tiddlywiki5

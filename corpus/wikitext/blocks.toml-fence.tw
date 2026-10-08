@@ -1,0 +1,57 @@
+A `toml` FENCE INCLUDES A PRIVATE, VENDORED GRAMMAR; AN `ini` FENCE INCLUDES VS CODE'S OWN. Both
+close on their own backtick closer no matter what they hold open, so an unterminated construct
+inside a closed fence stays opaque text to the host — the host's own fence recovery never sees
+it. TOML 1.0 forms, TOML 1.1 forms, invalid escapes, a quoted-dotted table header, and an `ini`
+fence come first; the specimens that leave something open INSIDE their own (still-closed) fence
+come last.
+
+```toml
+title = "TOML example"
+[owner]
+name = "Tom"
+dob = 1979-05-27T07:32:00Z
+
+[database]
+enabled = true
+ports = [ 8001, 8001, 8002 ]
+data = [ ["gamma", "delta"], [1, 2] ]
+temp_targets = { cpu = 79.5, case = 72.0 }
+
+[servers]
+
+[servers.alpha]
+ip = "10.0.0.1"
+role = "frontend"
+```
+
+```toml
+# TOML 1.1: optional seconds in a bare time and a space-separated datetime.
+lt = 14:15
+odt = 2010-02-03 14:15Z
+
+# TOML 1.1: the \e and \xHH escapes, alongside the TOML 1.0 escape set.
+esc = "bell\e hex\x61"
+```
+
+```toml
+[fruit."var.ies"]
+# The dot inside the quoted segment stays part of ONE key, not a table nesting.
+name = "granny smith"
+```
+
+```ini
+; An ini fence includes VS Code's own source.ini, not the toml grammar.
+[section]
+key = value
+```
+
+```toml
+# An unterminated multi-line string inside an otherwise CLOSED fence: opaque to the host,
+# and the fence's own closer still ends the block.
+key = """an unterminated triple-quoted string
+```
+
+```toml
+# An unclosed array, likewise opaque and likewise closed by the fence's own closer.
+key = [1, 2,
+```

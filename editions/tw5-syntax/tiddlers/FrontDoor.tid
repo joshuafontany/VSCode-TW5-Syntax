@@ -1,0 +1,177 @@
+title: $:/tw5-syntax/FrontDoor
+tags: $:/tags/TW5Syntax
+caption: TW5-Syntax
+description: The door into this repository
+
+! TW5-Syntax
+
+A TextMate grammar for TiddlyWiki wikitext and the memetic dialect, and the instruments that hold
+it to the parser it answers to.
+
+!! What this wiki holds
+
+|!Kind |!What it answers |!How it stays true |
+|''judgement'' |a question no registry answers, which a person weighs |argued here, gated against what the host documents |
+|''harvest'' |what the installed TiddlyWiki knows |written by a boot, never by a hand |
+
+The two look alike — both JSON data tiddlers — and they fail differently. A judgement goes stale
+when the world moves and nobody notices. A harvest goes stale on a version, and says so.
+
+|!Tiddler |!Kind |
+|<<lar-link "$:/tw5-syntax/BuiltInVariables">> |judgement — which names TiddlyWiki's core owns |
+|<<lar-link "$:/tw5-syntax/ReaderRelations">> |judgement — what a reader must meet as one, and what a reader must tell apart |
+|<<lar-link "$:/tw5-syntax/PlainConstructs">> |judgement — why a construct reads as prose rather than as a thing |
+|<<lar-link "$:/tw5-syntax/FieldReading">> |judgement — which header fields take the wikitext reading, and why each exception stands |
+|<<lar-link "$:/tw5-syntax/GrammarSignals">> |harvest — every filter operator, widget and wikitext rule this TiddlyWiki registers |
+|<<lar-link "$:/tw5-syntax/CIGates">> |judgement — which gates continuous integration runs, the reason for each one it does not, and which of those it runs may stand down at runtime |
+|<<lar-link "$:/tw5-syntax/GateReport">> |harvest — what every gate said when it last ran |
+|<<lar-link "$:/tw5-syntax/EditionBuild">> |harvest — the compiler that built the edition's modules, and the sources they answer to |
+
+Each judgement carries its own reason beside it. A reason belongs with the ruling it explains, and
+a comment in a tool keeps it where nobody weighs it — so the wiki shows both, and a reason that
+stops answering to anything fails the gate that reads it, the same way a missing ruling does.
+
+!! The pragma zone, and why a fixture declares a different scope
+
+TiddlyWiki runs `parsePragmas()` once, before `parseBlocks()`, and never returns to it. A backslash
+directive standing after any block content renders as prose, so the grammar reads one only inside
+`#pragma-zone` — a region opening at the start of the source and closing at the first line that opens
+no pragma-mode rule.
+
+''Eight rules hold it open'', and TiddlyWiki names them itself: `commentblock`, `fnprocdef`,
+`import`, `macrodef`, `parameters`, `parsermode`, `rules`, `whitespace`. An HTML comment keeps
+reading pragmas exactly as a directive does. `npm run signals:write` harvests the set and a gate holds the
+zone's own account to it, so a rule the host adds to pragma mode surfaces here rather than closing a
+zone quietly.
+
+A fixture asserting pragma colouring declares `text.html.tiddlywiki5.test` rather than the base
+scope. A fixture stands as a fixture: its mandatory `# SYNTAX TEST` header reads as a numbered list
+under the base grammar, which closes the zone on line 1. The wrapper's container carries the pragma
+rules and names the base scope through `contentName`, so every assertion naming
+`text.html.tiddlywiki5` still finds it — an include compiles the other grammar's `$self`, which
+carries its `scopeName` and then flattens into its children, so nothing pushes it.
+
+<<lar-link "$:/tw5-syntax/tools/composition-check.js">> reads a prologue the same way: a file whose
+first construct opens the zone answers for standing FIRST, because preceding it puts the prologue
+where no prologue can stand.
+
+!! What continuous integration runs
+
+Every witness the manifest names, CI runs — or <<lar-link "$:/tw5-syntax/CIGates">> carries the
+reason it does not. Four kinds stand there:
+
+|!kind |!what it means |
+|''run'' |the gate blocks a merge |
+|''reporting'' |the gate answers to a TiddlyWiki this repository does not pin, so upstream moving reports rather than blocks |
+|''skipped'' |CI is configured never to run it: a ruling names what stands in the way, and the specification lives beside it |
+|''standsDown'' |CI runs it, and it stands down at runtime where the capability it reads is absent — printing `<tool>  SKIP — <reason>`, exiting 0, and harvesting as the ''skipped state'' rather than as a verdict |
+
+''A skip carries a ruling, never a sentence.'' The two absences stay apart because one ruling
+covering both would read as the other: `skipped` rules a gate CI never reaches, `standsDown` a gate
+CI does reach that may answer "not here". Every gate named under `standsDown` must be one CI runs
+and must carry a self-skip its own instrument can print, and an instrument that learns to stand
+down with nothing ruling it there fails — so the roster cannot read 49 of 49 whether a gate
+answered or not.
+
+The ruling also tells `gate-report --check` what it may not compare. A baseline records ONE
+reader's run, so a gate whose capability stands there harvests with its full verdict and reads
+`skipped` wherever the capability is absent; no baseline carries both answers. A gate `standsDown`
+rules therefore compares by its NAME and by holding, and nothing else. An UNRULED gate that stands
+down still drifts the comparison, and a ruled gate that FAILS still fails — the ruling excuses an
+absence, never a verdict.
+
+`tools/ci-runs-the-gates.test.js` holds the workflow to that list rather than to a copy of it. A
+gate added to the manifest joins without anybody remembering, and a reason that stops answering to
+anything — a ruling for a gate CI runs anyway, or a stand-down ruling for an instrument that cannot
+stand down — fails the same way a missing one does.
+
+!! Running a gate from here
+
+The wiki that shows a ruling runs the instrument that enforces it:
+
+```
+tiddlywiki editions/tw5-syntax --gate list
+tiddlywiki editions/tw5-syntax --gate colour-witness dark-construct
+tiddlywiki editions/tw5-syntax --gate
+```
+
+The command stands in this wiki as <<lar-link "$:/tw5-syntax/modules/grammar-commands">>, so a
+reader who wants to know what it does opens it rather than a file beside the wiki. Its gate list
+comes from the manifest by way of the report, so one added joins without anybody remembering.
+
+!! How a new TiddlyWiki reaches the grammar
+
+# `npm run signals:write` boots this edition against the TiddlyWiki the repo answers to, and writes what it found. The bare `npm run signals` reads the harvest back against the host, which is the arm a gate runs.
+# `npm run rule-coverage` holds the grammar to it: every wikitext rule the host stands, the grammar reads — under its own name, or under one a line declares.
+# `npm run builtins` holds the grammar to the judgement beside it — the bare name reads, so the gate never writes, and `npm run builtins:write` projects the tiddler into the grammar when an operator means to.
+# A rule the host added and the grammar never learned fails the second step, so a version bump arrives as a failing gate rather than as a construct that quietly reads as prose.
+
+Nothing in that chain edits the grammar for you. It reports what a release changed and stops, so
+an operator decides what the change means.
+
+!! The repository, readable here
+
+Five directories load into this wiki as tiddlers, read from where those files sit rather than
+copied. A `tiddlywiki.files` spec beside each one names the directory. Open a tiddler and the
+source stands there, comments and all; edit the file on disk and the next boot shows the edit.
+
+|!Directory |!Prefix |!Tag |
+|`tools/` |`$:/tw5-syntax/tools/` |`$:/tags/TW5Syntax/Tool` for an instrument, `ToolTest` for the test beside it |
+|`syntaxes/` |`$:/tw5-syntax/syntaxes/` |`$:/tags/TW5Syntax/Grammar` |
+|`snippets/` |`$:/tw5-syntax/snippets/` |`$:/tags/TW5Syntax/Snippet` |
+|`docs/` |`$:/tw5-syntax/docs/` |`$:/tags/TW5Syntax/Meme`, and `PriorArt` for the survey |
+|`tests/` |`$:/tw5-syntax/tests/` |`Assertion`, `Specimen`, `Snapshot`, `TestFixture`, `KnownGap` |
+
+The memes under `docs/` load as wikitext and render. Everything under `tests/` loads as plain
+text on purpose: a specimen exists for a tokenizer rather than for a reader, and rendering one shows
+what the construct means instead of the characters the assertion pins.
+
+<<lar-link "$:/tw5-syntax/Corpus">> names the one directory that stays outside, and why.
+
+!!! One home for the instruments
+
+An instrument and the test that collides it sit in the same directory: `tools/theme-model.js`
+beside `tools/theme-model.test.js`.
+
+Splitting them across two directories named `tools` promises a mirror that measurement refuses. Of
+the 29 tests in this repository, 15 answer a question about the whole repository rather than about
+any instrument, and 14 instruments carry no test under their own name. A reader who trusts such a
+name looks for a pairing that stands for half the files.
+
+So each directory holds one kind of thing. `tests/` holds the grammar assertions: declarative, read
+by `vscode-tmgrammar-test`, one directory per dialect, with the vendored grammars they resolve
+against under `tests/grammars/`. `tools/` holds the executable ones, which `node --test` runs. Each
+answers to its own runner, and the directory says which.
+
+The wiki reads both from the one directory and tells them apart by tag — `Tool` for an instrument,
+`ToolTest` for a test — so a reader browsing the instruments meets no test, and a reader after a
+test finds it beside what it collides.
+
+!!! Two hazards a spec carries
+
+A `tiddlywiki.files` REPLACES the scan of the directory holding it. One dropped beside the
+edition's own tiddlers stopped it loading them — the harvest went silent and the signals gate said
+so within the minute. Every spec here sits in a subdirectory of its own, holding nothing but
+itself, so it replaces a scan that would have found nothing.
+
+A `.meta` sidecar outranks a spec. The loader hard-excludes `*.meta`, and merges the sidecar's
+fields over the ones the spec asks for, so a sidecar carrying `title:` names the tiddler and the
+prefix loses. `tests/samples/tiddlywiki5.tw` arrives as `$:/wikitext.tw` because the malformed
+fixture beside it says so, which names the reason that fixture stands. The gate holds that shape by
+deriving it — a pair on disk, neither half under the house prefix — rather than by naming the
+file, so a specimen that grows a sidecar gets covered without anybody remembering.
+
+<<lar-link "$:/tw5-syntax/tools/wiki-reads-the-repo.test.js">> boots the edition and compares
+every arriving tiddler against the bytes on disk, so a spec that stops reaching a file, or a file
+that reaches the wiki changed, fails rather than goes quiet.
+
+!! Where the rest stands
+
+|!Surface |!What it carries |
+|`syntaxes/` |the grammars — one wikitext base, one dialect, two injections registered to both |
+|`tests/` |the grammar assertions — declarative, read by `vscode-tmgrammar-test`, one dialect per directory |
+|`tests/samples/` |specimens, and the snapshots `npm run snap-update` re-pins |
+|`tools/` |the witnesses, and the test beside each one that collides it against the fault it stands for |
+|`docs/prior-art/` |twenty highlighting systems surveyed, kept verbatim |
+|`tests/grammars/` |grammars other people wrote, so an embedded-language assertion resolves the scope it names |
+|`corpus/` |broad ground, gated on invariants — on disk, never in the wiki |

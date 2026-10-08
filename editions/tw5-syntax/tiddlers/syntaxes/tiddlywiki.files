@@ -1,0 +1,15 @@
+{
+    "directories": [
+        {
+            "path": "../../../../syntaxes",
+            "filesRegExp": "^.*\\.json$",
+            "isTiddlerFile": false,
+            "fields": {
+                "title": { "source": "filename", "prefix": "$:/tw5-syntax/syntaxes/" },
+                "type": "application/json",
+                "tags": "$:/tags/TW5Syntax/Grammar",
+                "text": { "source": "text" }
+            }
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+title: $:/tw5-syntax/BuiltInVariables
+type: application/json
+tags: $:/tags/TW5Syntax/GrammarData
+caption: Built-in variables
+description: The variables TiddlyWiki's core defines, which the grammar colours as the language's own rather than as an author's
+
+{
+    "exact": [
+        "actionTiddler",
+        "currentTiddler",
+        "modifier",
+        "namespace",
+        "storyTiddler",
+        "thisTiddler",
+        "transclusion"
+    ],
+    "prefixes": [
+        "tv-"
+    ]
+}

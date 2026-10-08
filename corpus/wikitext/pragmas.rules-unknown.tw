@@ -1,0 +1,7 @@
+\rules maybe bold
+
+AN ACTION THE HOST DOES NOT KNOW CHANGES NOTHING. `amendRules` answers to `only` and `except` and
+returns on anything else, so the rule set stands whole here and ''this bold run'' builds an element
+like any other.
+
+! This heading builds an element.

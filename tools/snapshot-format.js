@@ -36,7 +36,10 @@ const BASE = new Set([
  */
 function readSnapshot(text) {
   const out = [];
-  for (const raw of text.split('\n')) {
+  // A carriage return counts as a line terminator to both `.` and `$`, so the annotation regex
+  // below matches NOTHING on a CRLF file — and a caller reads a snapshot full of scopes as one
+  // carrying none. Every gate over the pinned snapshots then reports green having measured nothing.
+  for (const raw of text.split('\n').map((line) => line.replace(/\r$/, ''))) {
     if (raw.startsWith('>')) {
       out.push({ line: out.length, source: raw.slice(1), annotations: [] });
       continue;

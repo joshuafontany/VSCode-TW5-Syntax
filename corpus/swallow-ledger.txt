@@ -1,0 +1,90 @@
+# Where the two readers part at a block boundary, and what this repo ruled about each.
+#
+# tools/swallow-witness.js cuts every corpus file at every line, appends a blank line and a
+# sentinel quoteblock, and asks TiddlyWiki and the grammar the same question about the same
+# offset. A line here names a divergence already looked at; anything else fails the gate.
+#
+#   <direction> <key>   # reason
+#
+# `runaway`   the parser reads the sentinel and the grammar does not — the grammar holds a region
+#             open across a boundary the parser closes.
+# `overbound` the grammar reads the sentinel and the parser does not — the grammar closes a region
+#             the parser carries.
+#
+# The key names the scope the grammar had open (runaway) or the rule TiddlyWiki had open
+# (overbound); `*` stands for any run of characters. A reason opening OWED records a divergence
+# rather than accepting it: the gate stays green and prints it as debt. A reason opening HOST answers the
+# host sweep rather than this one — `still --host --reach` leans on it — so this witness counts it instead
+# of calling it dead, because no corpus carrier can make it live here. A reason opening `READER
+# <version>` (tools/reader-scope.js) answers for ONE reader alone — the same generalisation, on the
+# axis TW5_PATH moves rather than the axis corpus-vs-host moves: an unterminated inline run still
+# BUILDS under the pinned 5.4.1 devDependency, scanning to the end of the tiddler to recover, where
+# this repository's own fork refuses the same run. A line naming no reader answers to whichever
+# reader reads it; one naming a reader neither fails nor reads stale under the other.
+#
+# A REASON CARRIES MEASUREMENTS, NEVER A REMEDY IT HAS NOT COLLIDED. Two traps sit under that
+# rule. A ruling that calls a divergence unfixable wants its cost counted on BOTH sides — the bound
+# on start tags looks expensive and costs nothing, since of 2348 start tags TiddlyWiki accepts
+# across 2583 files, six carry a blank line, every one a widget tag, all in one core file, and all
+# already bounded — no plain HTML start tag anywhere carries one. That ruling was called unfixable
+# an hour before it landed, and measurement upheld both halves of it. And a remedy that reads
+# obvious may prove unwritable: vscode-textmate hands a pattern one line and no more, so an end
+# pattern standing at a blank line cannot read the line that decides the question. A remedy nobody
+# tried reads as work owed, and sends the next reader to build what will not build.
+#
+# A RULING THAT EXPLAINS NOTHING FAILS THE GATE. A divergence gets fixed and its line stays, and
+# the ledger then reads as a longer list of standing debt than the repository carries.
+#
+# THE WITNESS DRAWS ITS BATTERY FROM REAL CORPUS TEXT, NOT A TABLE. It once held twenty-five
+# openers written by hand, which reached twelve of the thirty-six body rules TiddlyWiki stands —
+# the other twenty-four went unasked, and the openers it did name were spelled by the same hand
+# that spelled the grammar. It now cuts every corpus file at every line, appends a blank line and a
+# sentinel, and asks both readers about the same offset: 614 cuts across 26 files, against 42
+# specimens before. Thirteen divergences surfaced where the table reported none, four of them
+# recorded as debt above and the rest ruled to TiddlyWiki's own behaviour — measured, not reasoned:
+# a comment, a definition block and an unterminated element each turn on text the parser reads
+# BEYOND the construct, which no TextMate end pattern can see.
+#
+# THREE COARSER SENTINEL READINGS WERE TRIED AND REJECTED before this one. Asking whether the
+# sentinel exists ANYWHERE calls a correct grammar wrong, because TiddlyWiki carries an element
+# with no closer to the end of the tiddler and parses blocks inside it. Asking whether it stands AT
+# THE ROOT calls every grammar wrong, because parsePragmas nests every later block beneath the
+# definition above it. A sentinel any specimen can also open collides with the head it follows. So
+# the sentinel stands at a known offset, and each reader answers for that offset alone.
+#
+# `still` READS DIFFERENT GROUND FROM THIS WITNESS, NOT THE SAME GROUND TWICE. It once pointed
+# `--host` at `./corpus` by mistake, where this witness already cuts all 38 files with the same
+# comparison — both found the same 8 classes, so the pass reported `0 unnamed` as a
+# stopping-condition verdict while measuring what this witness had already measured. Pointed at
+# `--host` proper it crosses TiddlyWiki's own 4403 carriers, standing outside this corpus and
+# inside a checkout this witness cannot reach, and found an unnamed class on its first run, in 3.4
+# seconds — the axis a reason opening HOST above answers for.
+
+# ── the lookahead the parser has and a grammar cannot ────────────────────────────────────────
+# Each of these turns on text TiddlyWiki reads BEYOND the construct, sometimes to the end of the
+# source. A TextMate end pattern reads only forward from the line in front of it, one line at a
+# time, and carries no way to ask whether a closer stands anywhere later. Where the parser's
+# answer depends on that lookahead, the grammar carries the region — the reading that holds for
+# the terminated form — the form nearly all real text takes.
+
+runaway comment.*        # `<!--` with no `-->`: measured, TiddlyWiki carries a comment across every blank line between when a closer stands later in the source, and refuses the construct outright when none does. Carrying reads the terminated form right
+runaway meta.embedded.*  # `<style>` and `<script>` with no closer: TiddlyWiki carries the element to the end of the tiddler — its own `unterminated-html` hint says so — and parses the body as WIKITEXT BLOCKS. Both readers carry; only the language of the interior differs, and CSS and JS there hold the convention every HTML grammar keeps
+runaway meta.element.*              # an SVG or MathML element reads the same way, for the same reason
+runaway meta.directive.variable.*   # a pragma signature left open: a `\define` or `\parameters` whose closing `)` stands on a later line, cut where the reader sits inside it. Measured at pragmas.signatures.tw:1, and at 3, 4 and 5 — one cut per default quoting the grammar carries a region for. TiddlyWiki refuses the definition outright where the signature closes nowhere ahead, and builds it across every blank line where the closer stands somewhere later; a definition body runs to `\end` the same way. The forward arm moves the parser's verdict on all four cuts, and the control — trailing nonsense in place of the file's own text — moves nothing, so the deciding evidence sits past what any pattern reads. Handing back the closing `)` alone moves it too, which names the evidence exactly. So the grammar carries the region, the reading that holds for every signature that closes
+
+
+# ── recorded, not accepted ───────────────────────────────────────────────────────────────────
+
+runaway meta.transclusion.*         # `{{A/Tiddler||A` left open: TiddlyWiki refuses the transclusion and parses the block after the blank line, and the grammar carries the region. tools/light-cone.js moves the parser's verdict by handing back the text the cut removed, so the decision turns on a closer standing further down the source than any pattern reads
+overbound html                      # an element with no closer, and the grammar answers by DESIGN: TiddlyWiki carries it to the end of the tiddler and says so in its own hint, and reads the body as one inline run where no blank line follows the tag. The grammar opens no region over a block element's body at all — it colours the two tags and hands what lies between to the block rules, which tests/tiddlywiki5/tiddlywiki5.widget-body.tw5.test pins for the one-line form — so the text after an unclosed tag reads as ordinary blocks rather than as that element's content. Accepted rather than owed: a reader meets colour on the blocks after an unclosed tag, where the host would hand them all to one element
+overbound codeblock                 # READER 5.5.0-prerelease — a fence DECLARING A TYPE THIS GRAMMAR EMBEDS. Measured at blocks.code-fences.tw:13, ```text/vnd.tiddlywiki: TiddlyWiki builds ONE `codeblock` node and parses nothing inside it, while the grammar hands the body to the wikitext rules the declaration names — so a construct in there opens for one reader and not the other. An UNTERMINATED fence agrees: both carry to the end of the source. A fence closing ACROSS A BLANK LINE agrees too, and measured over 4403 host carriers 147 of 1099 openers close that way against 4 that never close, so no blank-line bound belongs here. This stands in the family `tools/textmate-ceiling.js` names `nested coordinate space` — the host parses an embedded body in offsets of its own, and painting it serves the reader. Under the pinned 5.4.1 devDependency the cut this ruling measures lands inside the earlier nested-fence divergence `overbound codeinline` already names, so no cut reads this way there
+
+overbound italic     # READER 5.4.1 — an unterminated `//italic` run still BUILDS under 5.4.1, scanning to the end of the tiddler to recover (the `unterminated-*` ceiling tools/recovery-witness.js measures against the host), where this repository's own fork refuses the same run once the cut removes its closer. The grammar closes the region at the blank line either way, agreeing with the fork and diverging from 5.4.1 alone
+overbound bold       # READER 5.4.1 — the same reach, one delimiter narrower: an unterminated `''bold` run still BUILDS under 5.4.1 and the fork refuses it
+overbound underscore # READER 5.4.1 — the same reach: an unterminated `__underscore` run still BUILDS under 5.4.1 and the fork refuses it
+overbound codeinline # READER 5.4.1 — a fenced or inline code run left open still BUILDS under 5.4.1 by the same `unterminated-*` recovery, where the fork's own codeblock rule instead reads a nested backtick fence's shorter closer as ending the block; the two divergences land on the same rule name here
+
+overbound conditional  # A conditional wraps BLOCKS, so TiddlyWiki carries it across a blank line the way it carries a quote block; `conditional.js` parses its body with `parseBlocks` and closes only on `<%endif%>`. The grammar bounds the region at a blank line, which cuts a conditional holding more than one paragraph. Measured on `blocks.conditionals.tw:2`, 5 cuts. Removing the bound wants the same collision the macrocall bound needed — it cut 116 real multi-line calls the last time a bound came off untested.
+
+runaway meta.directive.parameters.*   # a `\parameters` signature whose parameter list spans lines: TiddlyWiki ends the pragma at the closing paren and parses the block after it, and the grammar's region reaches past the blank line a cut appends. The signature's own lines carry no bound a single-line pattern can read — vscode-textmate hands a pattern one line and no more — so the region stands open until its paren closes, which is the same reading every multi-line signature in this grammar carries
+runaway meta.tag.widget.*           # HOST — a quoted attribute value left open inside a widget tag: TiddlyWiki refuses the whole tag where no closing quote stands anywhere, and builds the element across the line break where one does. A value spanning lines reads normally — of eleven accepted start tags carrying a blank line, eight carry it inside a quoted value — so the string region carries on, and the reading holds for every value that closes. It reads idle over the swept corpus and explains 110 of the host's own carriers, so the corpus alone cannot retire it

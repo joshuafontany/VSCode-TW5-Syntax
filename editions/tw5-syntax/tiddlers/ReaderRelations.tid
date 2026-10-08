@@ -1,0 +1,126 @@
+title: $:/tw5-syntax/ReaderRelations
+type: application/json
+tags: $:/tags/TW5Syntax/GrammarData
+caption: Reader relations
+description: What a reader must meet as one thing and what a reader must tell apart — a judgement no registry answers
+
+{
+    "together": [
+        {
+            "what": "a link's visible text, captioned or not",
+            "specimen": "A [[Plain]] and a [[Caption|Target]] link.\nAn [ext[Ecaption|https://example.com]] and https://example.org here.\n",
+            "words": [
+                "Plain",
+                "Caption",
+                "Ecaption"
+            ],
+            "why": "A reader clicks the text, whether an author captioned it or let the title stand. Painted apart, the same act reads as two."
+        }
+    ],
+    "alike": [
+        {
+            "what": "a lar: root's three terms, which name one address between them",
+            "scopes": [
+                "entity.name.tag.heading.lar.memetic-wikitext",
+                "entity.name.tag.angle.lar.memetic-wikitext",
+                "entity.name.tag.dynamic.lar.memetic-wikitext"
+            ],
+            "least": 65,
+            "why": "Heading, angle of approach and carried dynamic name ONE address. Painted from three families they read as three unrelated things — measured, all three shared a colour in 1 of 65 themes. Each keeps a distinct tail, so a rule reaches one term alone; no bundled theme rules below entity.name.tag for a scope this grammar emits, so the difference stands available rather than visible.",
+            "specimen": "A lar:///aHeading.anAngle.aDynamic address.\n",
+            "words": [
+                "aHeading",
+                "anAngle",
+                "aDynamic"
+            ],
+            "scope": "text.html.tiddlywiki5.memetic-wikitext"
+        }
+    ],
+    "apart": [
+        {
+            "what": "a link — the text a reader clicks, and the title it reaches",
+            "scopes": [
+                "markup.underline.link.tiddlywiki5",
+                "string.entity.other.title.link.tiddlywiki5"
+            ],
+            "least": 40,
+            "why": "A caption and the title behind it do different work: one invites the click, one names where it lands.",
+            "specimen": "A [[Caption|TargetTitle]] link.\n",
+            "words": [
+                "Caption",
+                "TargetTitle"
+            ]
+        },
+        {
+            "what": "a TiddlyWiki widget and an HTML element, which open alike and mean nothing alike",
+            "scopes": [
+                "entity.name.function.widget.tiddlywiki5",
+                "entity.name.tag.html.tiddlywiki5"
+            ],
+            "least": 45,
+            "why": "A widget calls into TiddlyWiki; an element emits a tag. The host marks the difference with a dollar and the grammar did not — measured, they read alike in every theme until the widget took the family it belongs to.",
+            "specimen": "<$list filter=\"[all[]]\"/> and <div class=\"x\">text</div>\n",
+            "words": [
+                "list",
+                "div"
+            ]
+        },
+        {
+            "what": "a title the host provides and a title an author wrote",
+            "scopes": [
+                "support.other.system.title.tiddlywiki5",
+                "string.entity.other.title.link.tiddlywiki5"
+            ],
+            "least": 55,
+            "why": "wiki.js#isSystemTiddler names a system title by its $:/ opening, and TiddlyWiki keeps those out of ordinary lists. The precise name says who owns it; a second name carries it to themes, since the precise one alone reaches under half of them.",
+            "specimen": "A [[Caption|$:/core/systitle]] and a [[Caption2|AuthorTitle]] link.\n",
+            "words": [
+                "$:/core/systitle",
+                "AuthorTitle"
+            ]
+        },
+        {
+            "what": "a called thing, and the argument it carries",
+            "scopes": [
+                "variable.name.procedure.tiddlywiki5",
+                "entity.other.attribute-name.argument.tiddlywiki5"
+            ],
+            "least": 63,
+            "why": "A reader asks what you called and what you passed it. Both names sat in the `variable` family and read as one colour in 40 of 65 themes — in gruvbox-dark-medium both at #83a598 — so a call spent three to five colours inside and none of them on the two words that answer. Canon splits by language SURFACE rather than by call against definition: html, Vue, JSX, Liquid, Handlebars and MediaWiki's own `{{T|name=v}}` all take entity.other.attribute-name for a named argument on a tag or template surface. Under the argument's own family the pair read 25 of 65; under the surface's, 57. RE-SEATED 50 to 45 on 2026-09-17, on the ruling that a called thing reads as a widget does: a macro name carries entity.name.function.macro and a widget name entity.name.function.widget, themes rule on the entity.name.function root the two share, so a reader meets one gesture across call and widget, and the pair then parts on the argument's surface family alone at 45 of 65. The control settles whose loss this reads as — a widget against the attribute it carries clears its own floor unmoved under the same ruling, so the five themes track the SHARED NAME rather than any weakening on the argument's side. The argument key then took a second name on 2026-09-18, `support.type.property-name.argument` appended after the published attribute name, which stays first for every theme ruling on it: a theme painting `entity.name.function` and `entity.other.attribute-name` alike — gruvbox-dark-medium paints both #fabd2f — rules on the property-name family apart, and the pair measured 63 of 65. RE-SEATED 45 to 63 on that measurement. The call's name keeps its widget family, and the widget's attribute keeps its own, so the widget-against-call floor stands where the one-namespace ruling seated it.",
+            "specimen": "A <<aMacro anArgument=\"v\">> call.\n",
+            "words": [
+                "aMacro",
+                "anArgument"
+            ]
+        },
+        {
+            "what": "a widget, and the attribute it carries",
+            "scopes": [
+                "entity.name.function.widget.tiddlywiki5",
+                "entity.other.attribute-name.html.tiddlywiki5"
+            ],
+            "least": 45,
+            "why": "The same question a reader asks of a call, asked of a widget. This pair stands where it already stood; it holds the control the call's own pair moves against, so a name that lifts one and drops the other says so. RE-SEATED 47 to 45 on 2026-09-11, because the RULER got more truthful rather than because the grammar lost anything: theme-model ranked a selector's depth above its position in the scope stack, where vscode-textmate lets the innermost scope any rule reaches decide the colour outright, and it read a descendant selector as reaching a lone scope that carries no ancestor to match. Collided against the engine over the corpus, the old model parted from it in 6.6% of token-readings; the settled model parts in 0 of 199615. Two readings here moved under it and both fell: this pair 47 to 45, and a TiddlyWiki widget against an HTML element 62 to 57, which sits well clear of its floor of 45.",
+            "specimen": "<$list anAttribute=\"v\"/>\n",
+            "words": [
+                "list",
+                "anAttribute"
+            ]
+        },
+        {
+            "what": "a closing sigil's mark, and the verb it closes",
+            "scopes": [
+                "punctuation.definition.sigil.close.memetic-wikitext",
+                "keyword.control.sigil.memetic-wikitext"
+            ],
+            "specimen": "<<~ /ahu>>\n",
+            "words": [
+                "/",
+                "ahu"
+            ],
+            "scope": "text.html.tiddlywiki5.memetic-wikitext",
+            "least": 40,
+            "why": "Each glyph in a sigil reads as what it does, so a reader can tell the mark that closes a sigil from the verb it closes. The `~` marker every sigil opens with announces that the dialect speaks here, and reads with the verb as the dialect's keyword; the `/` close mark carries structure and reads quiet, as punctuation. The verb names an act and reads as a keyword of the dialect."
+        }
+    ]
+}

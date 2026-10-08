@@ -20,19 +20,27 @@ VSCODE_EXTROOT="${VSCODE_EXTROOT:-/nonexistent}"
 
 # Many grammars found here: https://www.npmjs.com/package/@wooorm/starry-night?activeTab=readme#languages
 
+# Our own grammars come from the manifest, never from a list kept beside it. A grammar the
+# manifest registers and this file omits loads in VS Code and nowhere else: every runner reads
+# it as absent, so an injection it carries paints nothing and every gate reports green.
+OWN_GRAMMARS=()
+while IFS= read -r _path; do
+    OWN_GRAMMARS+=("${_path}")
+done < <(node -e 'for (const g of require("./package.json").contributes.grammars) console.log(g.path);')
+
 GRAMMARS=(
-    "syntaxes/tiddlywiki5.json"
-    "tests/asm.json"
-    "tests/Asciidoctor.json"
-    "tests/APIBlueprint.tmLanguage"
-    "tests/C++.plist"
-    "tests/EEx.tmLanguage"
-    "tests/Git-config.json"
-    "tests/html.mustache.json"
-    "tests/jQuery.tmLanguage"
-    "tests/MSON.tmLanguage"
-    "tests/postscript.json"
-    "tests/python-console.json"
+    "${OWN_GRAMMARS[@]}"
+    "tests/grammars/asm.json"
+    "tests/grammars/Asciidoctor.json"
+    "tests/grammars/APIBlueprint.tmLanguage"
+    "tests/grammars/C++.plist"
+    "tests/grammars/EEx.tmLanguage"
+    "tests/grammars/Git-config.json"
+    "tests/grammars/html.mustache.json"
+    "tests/grammars/jQuery.tmLanguage"
+    "tests/grammars/MSON.tmLanguage"
+    "tests/grammars/postscript.json"
+    "tests/grammars/python-console.json"
     "${VSCODE_EXTROOT}/php/syntaxes/html.tmLanguage.json"
     "${VSCODE_EXTROOT}/python/syntaxes/MagicRegExp.tmLanguage.json"
     "${VSCODE_EXTROOT}/javascript/syntaxes/Regular Expressions (JavaScript).tmLanguage"
@@ -61,6 +69,7 @@ GRAMMARS=(
     "${TMGRAMMAR_ROOT}/haskell.json"
     "${TMGRAMMAR_ROOT}/html.json"
     "${TMGRAMMAR_ROOT}/html-derivative.json"
+    "${TMGRAMMAR_ROOT}/ini.json"
     "${TMGRAMMAR_ROOT}/java.json"
     "${TMGRAMMAR_ROOT}/javascript.json"
     "${TMGRAMMAR_ROOT}/json.json"
@@ -89,13 +98,11 @@ GRAMMARS=(
     "${TMGRAMMAR_ROOT}/shellsession.json"
     "${TMGRAMMAR_ROOT}/sql.json"
     "${TMGRAMMAR_ROOT}/swift.json"
-    "${TMGRAMMAR_ROOT}/toml.json"
     "${TMGRAMMAR_ROOT}/tsx.json"
     "${TMGRAMMAR_ROOT}/typescript.json"
     "${TMGRAMMAR_ROOT}/xml.json"
     "${TMGRAMMAR_ROOT}/xsl.json"
     "${TMGRAMMAR_ROOT}/yaml.json"
-    "syntaxes/memetic-wikitext.json"
 )
 ARGS=()
 GRAMMARS_MISSING=0

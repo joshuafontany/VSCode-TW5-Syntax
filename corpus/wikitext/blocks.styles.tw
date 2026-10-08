@@ -13,3 +13,10 @@ Both at once.
 @@color:red;an inline style run@@ after it.
 
 @@.myclass an inline class run@@ after it.
+
+A DECLARATION LIST CARRIES AS MANY DECLARATIONS AS AN AUTHOR WRITES, each ended by its semicolon:
+
+@@color:green;background:red;font-weight:bold;styled@@ after it.
+
+A class run takes its class from a `.name` standing before the content, and the host binds NO style
+attribute for it: @@.a-class .a-second-class styled@@ after it.

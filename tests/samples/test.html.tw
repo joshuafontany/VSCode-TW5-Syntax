@@ -82,7 +82,7 @@ TEST TEXT BLOCK <$transclude tiddler="test"/>
 
 <a href=value>{{{ [[fitered transclude]with[Param]operators<macro>like{this}] }}}</a>
 
-<a href=value><<test test >></a>
+<a href=value><<test test>></a>
 
 <a href=value>{{test!!this}}</a>
 

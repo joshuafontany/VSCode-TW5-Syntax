@@ -28,7 +28,9 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { parseTid } = require('./wiki-data.js');
 const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
+const { tiddlerFiles } = require('./walk.js');
 
 // Every value form parseutils.js reads, in its order.
 const VALUE = [
@@ -98,19 +100,11 @@ if (require.main === module) {
   const tw = resolveTiddlyWiki();
   if (!tw) {
     console.error('no TiddlyWiki checkout resolved — set TW5_PATH');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
   const oracle = boot(tw, {});
-  const walk = (dir, out = []) => {
-    if (!fs.existsSync(dir)) return out;
-    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-      const p = path.join(dir, e.name);
-      if (e.isDirectory()) walk(p, out);
-      else if (e.name.endsWith('.tid')) out.push(p);
-    }
-    return out;
-  };
-  const files = ['editions', 'core', 'plugins', 'themes'].flatMap((d) => walk(path.join(tw, d)));
+  const files = tiddlerFiles(['editions', 'core', 'plugins', 'themes'].map((d) => path.join(tw, d)));
 
   let checked = 0;
   let agree = 0;
@@ -118,10 +112,7 @@ if (require.main === module) {
   let tight = 0;
   const tightCases = new Set();
   for (const file of files) {
-    const text = fs.readFileSync(file, 'utf8');
-    const blank = text.indexOf('\n\n');
-    if (blank < 0) continue;
-    const body = text.slice(blank + 2);
+    const { body } = parseTid(fs.readFileSync(file, 'utf8'));
     for (const m of body.matchAll(/<\$?[A-Za-z]/g)) {
       let tag = extract(body, m.index);
       if (!tag || tag.length > 200) continue;

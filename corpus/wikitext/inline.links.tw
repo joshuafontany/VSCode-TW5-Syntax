@@ -25,3 +25,63 @@ CamelCaseLink
 [ext[https://example.com/pretty]]
 
 [ext[A label|https://example.com/pretty]]
+
+THE SCHEMES THE HOST AUTOLINKS COME FROM ITS OWN LIST, and no other scheme joins them: file, http,
+https, mailto, ftp, irc, news, data and skype.
+
+mailto:someone@example.com
+
+file:///home/x/y.txt
+
+ftp://example.com/pub/
+
+irc://example.com/room
+
+news:comp.lang.c
+
+data:text/plain,hello
+
+skype:someone
+
+A URL ENDS AT A CHARACTER THE HOST EXCLUDES, and both of the runs below link `https://example.com/a`
+alone, leaving the rest as prose: https://example.com/a|b and https://example.com/a{b}.
+
+A url inside brackets stops being a url and becomes a pretty link with its own href:
+[[https://example.com/a]]
+
+A PRETTY LINK SPLITS ON ITS FIRST PIPE AND KEEPS THE REST. The link below carries the caption `a`
+and the target `b|c`: [[a|b|c]]
+
+[[A label|$:/a/system/target]]
+
+AN EXT LINK TRIMS WHAT IT HOLDS, so the padding below reaches neither the label nor the href:
+[ext[  https://example.com/padded  ]]
+
+AN IMAGE TAKES HTML ATTRIBUTES BEFORE ITS BRACKET, and binds them with `=` the way every tag does.
+A `:` binds nothing there and drops the whole image back to prose.
+
+[img width="32" class="a-class" [an-image.png]]
+
+[img width="32"[an-image.png]]
+
+[img lazy [an-image.png]]
+
+[img width={{Size}} [an-image.png]]
+
+[img width=<<size>> [an-image.png]]
+
+[img width="32" [A tooltip|an-image.png]]
+
+[img[  a padded source.png  ]]
+
+[img[https://example.com/remote.jpg]]
+
+WHAT THE HOST REFUSES. An image needs a source and a closer, so neither line below builds one and
+both read as prose:
+
+[img[]]
+
+[img[an-image.png
+
+An ext link with no closer builds no ext link either — and the bare url inside it still autolinks,
+which is the reading a reader sees: [ext[https://example.com/unclosed

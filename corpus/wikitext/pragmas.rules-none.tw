@@ -1,0 +1,5 @@
+\rules only
+
+`only` WITH NO NAMES KEEPS NOTHING. The host filters its rule arrays down to the names listed, and an
+empty list matches no rule at all — so every line below this one reads as flat text, ''bold markup''
+and ! heading markers and [[links]] alike, and the whole carrier holds one paragraph.

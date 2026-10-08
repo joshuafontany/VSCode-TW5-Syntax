@@ -1,0 +1,61 @@
+Every construct here stands INSIDE a sentence, the way a reader meets one. A construct read alone
+answers a different question than the same construct read mid-paragraph: alone it needs only to
+carry its own scopes, and in prose it must also let a reader's eye LAND on it.
+
+Measured across sixty-five bundled themes, the opening glyph of every bracketed construct below
+paints at a perceptual distance of 0.0 from the prose beside it in forty of them. Themes rule on
+`punctuation` in order to say LEAVE IT ALONE, and Bringhurst §3.5.2 agrees: the words, not the
+punctuation, merit emphasis. So a construct lands through its CONTENT or it does not land.
+
+! The bracket family, in prose
+
+The note at {{MyTiddler}} explains the rest of it plainly.
+
+The note at {{MyTiddler||$:/core/ui/TagTemplate}} explains the rest of it plainly.
+
+The note at {{{ [tag[Done]sort[title]] }}} explains the rest of it plainly.
+
+The note at [[Link Text|TiddlerTitle]] explains the rest of it plainly.
+
+The note at [ext[caption|https://example.com]] explains the rest of it plainly.
+
+The note at [img[alt text|pic.png]] explains the rest of it plainly.
+
+The note at <<greeting name="world" tone="warm">> explains the rest of it plainly.
+
+The note at <$list filter="[tag[x]]" variable="i"/> explains the rest of it plainly.
+
+! The controls
+
+A code span lands in fifty-three of sixty-five themes, where every neighbour above lands in
+twenty-five. It reaches a real theme rule at its FIRST character, and it stands as the only
+construct in this grammar that does.
+
+The note at `code span` explains the rest of it plainly.
+
+The note at ''bold text'' explains the rest of it plainly.
+
+! Two pairs a reader needs apart
+
+A called thing against its argument reads as one colour in thirty-nine of sixty-five themes,
+`variable.name.macro` and `variable.parameter` both reaching a theme's bare `variable` rule.
+
+<<greeting name="world">>
+
+A widget against its attribute reads as one colour in twenty of sixty-five, `entity.name.function`
+and `entity.other.attribute-name` both reaching a bare `entity` rule.
+
+<$list filter="[tag[Done]]" variable="item"/>
+
+! The interior alone, without its frame
+
+MyTiddler
+
+[tag[Done]sort[title]]
+
+alt text pic.png
+
+! Prose carrying no construct, for the colour a reader's own words take
+
+The note explains the rest of it plainly, carries no construct at all, and every word here takes
+the editor's own foreground and nothing besides.

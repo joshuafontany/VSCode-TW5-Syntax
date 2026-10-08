@@ -1,0 +1,7 @@
+\rules except bold
+
+THE COMPLEMENT NARROWS THE OTHER WAY. Every rule stands except bold, so ''this bold run'' reads as
+text while //this italic run// builds an element, `this code span` builds one, and the heading below
+builds one.
+
+! This heading builds an element.

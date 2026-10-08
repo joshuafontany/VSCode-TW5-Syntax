@@ -1,0 +1,7 @@
+<!--
+
+This template is used for saving tiddlers as raw HTML
+
+--><$view field="text" format="htmlwikified" />
+
+A paragraph standing after the template.

@@ -9,12 +9,19 @@
 // sentence still carries nothing but its base scopes. One assertion per sample, written
 // by nobody, catching a whole family — and it grows by dropping a file into tests/samples.
 //
-//   node tools/bleed-canary.js <scope> <glob>
+//   node tools/bleed-canary.js <scope> <glob> [--strict]
+//
+// `--strict` drops the inheritance reading and reports every sample the grammar colours past its
+// end, including the ones TiddlyWiki carries the same way. A reader wanting the whole list asks for
+// it; the gate's own collision asks for it too, since a reading that excuses nothing provable
+// excuses everything.
 
-const { execFileSync } = require('node:child_process');
+const { snapRun } = require('./snap-run.js');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
+const { grammarArgs } = require('./tokenizer.js');
 
 // Node 22 added fs.globSync and Windows disagrees with a forward-slash glob, so the
 // listing happens here: every pattern this repository uses reads `dir/*.ext`.
@@ -31,10 +38,13 @@ function listFiles(pattern) {
     .map((f) => path.join(dir, f));
 }
 
-const [scope, pattern] = process.argv.slice(2);
+const args = process.argv.slice(2);
+const strict = args.includes('--strict');
+const [scope, pattern] = args.filter((a) => a !== '--strict');
 if (!scope || !pattern) {
   console.error('Usage: node tools/bleed-canary.js <scope> <glob>');
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
 
 const SENTINEL = 'SENTINEL the canary reads as ordinary paragraph text.';
@@ -44,49 +54,59 @@ const PLAIN = new Set([
   scope,
   'text.html.tiddlywiki5',
   'meta.text.tiddler.text.tiddlywiki5',
-  'meta.text.html.tiddlywiki5',
+  'meta.text.html.tiddlywiki5.tid-file',
   'meta.paragraph.tiddlywiki5',
   'markup.other.paragraph.tiddlywiki5',
   'field.value.text.html.tiddlywiki5'
 ]);
 
-// The canary hunts an INLINE run that never closed. A block construct crosses a blank
-// line by design — TiddlyWiki carries `@@style@@`, `<<<` quotes and typed blocks the
-// same way — so a sample ending inside one inherits legitimately rather than bleeding.
-// A prefix here names a family the canary passes over; everything else it reports.
-const SPANS_BY_DESIGN = [
-  'markup.other.style',
-  'markup.quote',
-  'meta.quote',
-  'meta.typedblock'
-];
-const spanning = (s) => SPANS_BY_DESIGN.some((p) => s.startsWith(p));
+// The canary hunts an INLINE run that never closed. A block construct crosses a blank line by
+// design — TiddlyWiki carries `@@style@@`, `<<<` quotes and typed blocks the same way — so a
+// sample ending inside one inherits legitimately rather than bleeding.
+//
+// TiddlyWiki decides which sample that names. A prefix list of families reads the grammar's own
+// vocabulary back to itself and goes stale silently: `meta.styleblock` arrived under a name no
+// prefix there covered, and two samples ending in an unterminated style block read as bleeding for
+// it — while TiddlyWiki carried the same text into the same construct and raised a diagnostic
+// saying so.
+//
+// So the question runs to the parser: does TiddlyWiki build a construct covering the appended
+// sentence? Where it does, the grammar colouring it agrees. Any quarrel about whether the construct
+// SHOULD run that far belongs to overreach, which asks that question of every span.
 
 const sources = listFiles(pattern);
 if (sources.length === 0) {
   console.error(`no sources matched ${pattern}`);
-  process.exit(2);
+  process.exitCode = 2;
+  return;
 }
+
+const host = resolveTiddlyWiki();
+if (!host) {
+  console.error('no TiddlyWiki checkout resolved — set TW5_PATH');
+  process.exitCode = 2;
+  return;
+}
+const oracle = boot(host);
 
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-canary-'));
+// The samples where TiddlyWiki itself carries the appended sentence into a construct.
+const inherits = new Set();
 for (const src of sources) {
   const body = fs.readFileSync(src, 'utf8').replace(/\s*$/, '');
-  fs.writeFileSync(path.join(scratch, path.basename(src)), `${body}\n\n${SENTINEL}\n`);
+  const staged = `${body}\n\n${SENTINEL}\n`;
+  fs.writeFileSync(path.join(scratch, path.basename(src)), staged);
+  const at = staged.lastIndexOf(SENTINEL);
+  if (!strict && oracle.readAt(staged, at, at + SENTINEL.length).kind === 'built') inherits.add(src);
 }
 
-const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'], {
-  // No shell: cmd.exe would mangle the -c argument, and Git Bash stands on PATH
-  // wherever this runs.
-  encoding: 'utf8'
-}).trim().split('\n').filter(Boolean);
+const grammars = grammarArgs();
 
 const staged = sources.map((src) => path.join(scratch, path.basename(src)));
-execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', ...staged], {
-  stdio: ['ignore', 'ignore', 'inherit'],
-  shell: process.platform === 'win32'
-});
+snapRun([...grammars, '-s', scope, '-u'], staged);
 
 let bleeding = 0;
+let inherited = 0;
 for (const src of sources) {
   const snap = path.join(scratch, `${path.basename(src)}.snap`);
   if (!fs.existsSync(snap)) {
@@ -101,8 +121,12 @@ for (const src of sources) {
   for (let i = at + 1; i < Math.min(at + 4, lines.length); i++) {
     const m = /^#\s*\^+\s+(.*)$/.exec(lines[i]);
     if (!m) continue;
-    carried = m[1].split(/\s+/).filter((s) => s && !PLAIN.has(s) && !spanning(s));
+    carried = m[1].split(/\s+/).filter((s) => s && !PLAIN.has(s));
     break;
+  }
+  if (carried && carried.length && inherits.has(src)) {
+    inherited++;
+    continue;
   }
   if (carried && carried.length) {
     bleeding++;
@@ -112,5 +136,7 @@ for (const src of sources) {
 }
 
 fs.rmSync(scratch, { recursive: true, force: true });
-console.log(`bleed-canary  ${scope}  ${sources.length} samples, ${bleeding} bleeding`);
-process.exit(bleeding ? 1 : 0);
+const carried = inherited ? `, ${inherited} ending inside a construct TiddlyWiki also carries` : '';
+console.log(`bleed-canary  ${scope}  ${sources.length} samples, ${bleeding} bleeding${carried}`);
+process.exitCode = bleeding ? 1 : 0;
+return;

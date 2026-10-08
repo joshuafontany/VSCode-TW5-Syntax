@@ -1,0 +1,49 @@
+title: $:/tw5-syntax/Corpus
+type: text/vnd.tiddlywiki
+tags: $:/tags/TW5Syntax/Doc
+
+! The corpus stays on disk
+
+The wiki reads `tools/`, `syntaxes/`, `snippets/`, `docs/` and `tests/` from where those files
+sit. The corpus stands apart, and this tiddler points at it instead of carrying it.
+
+! Why it points rather than loads
+
+A gate measures the corpus. Every scope the grammar declares should reach some file there, and
+`corpus/coverage-floor.txt` ratchets the count so a rule the corpus once exercised cannot quietly
+go unexercised. A copy of those files inside the wiki would answer that measurement twice,
+and the two copies would part on the day somebody edits one — the gate would go on reading the
+files on disk while a reader here looked at the other set and believed it.
+
+The specimens also serve a machine rather than a person. Each one exists for a tokenizer, not for
+a reader: `degenerate.*` holds unterminated constructs on purpose, and the containment check appends a
+sentence to each file and requires that sentence to carry only what the same sentence carries
+alone. Opening one in the wiki shows characters that mean something only to the gate that reads
+them.
+
+! Where it sits
+
+|!path |!ground |
+|`corpus/wikitext/` |blocks, inline runs, html, pragmas, and two degenerate files |
+|`corpus/tid/` |`.tid`, `.meta` and `.multids` files |
+|`corpus/memetic/` |sigils, `lar:` URIs, the control set, fences, and a degenerate file |
+|`corpus/testfile/` |the control the containment check measures its baseline from |
+
+Four files hold the rulings rather than the ground:
+
+|!path |!what it holds |
+|`corpus/coverage-floor.txt` |the count that may rise and may never fall |
+|`corpus/unreached-ceiling.txt` |the count that may fall and may never rise |
+|`corpus/expected-divergence.txt` |scope prefixes that diverge by ruling, each with its reason |
+|`corpus/colour-pair-floor.txt` |the pairs a theme paints apart, ratcheted |
+
+! Reading it
+
+```sh
+npm run corpus           # the gate
+npm run corpus-verbose   # and every scope nothing reaches
+```
+
+`corpus/README.md` carries the same account beside the files, so a reader who arrives through the
+directory finds it without arriving here first. `tools/bench.sh` seeds its workspace from the
+corpus, so a bench session looks at the same files that gate the grammar.

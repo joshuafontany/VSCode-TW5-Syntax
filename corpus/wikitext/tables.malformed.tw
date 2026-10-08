@@ -1,0 +1,61 @@
+A TABLE ROW STANDS OR FALLS WHOLE. The host reads a row only where a line opens on a pipe at its
+first column and ends on a pipe carrying at most one of `f`, `h`, `c` or `k`. A line failing that
+builds no row, and it ends the table above it. Nothing here opens a region, so nothing here can
+colour what follows it.
+
+|a row that never closes
+
+|a |row missing its last pipe
+
+|a |row |carrying an unknown marker |b
+
+|a |row |carrying a capital marker |H
+
+  |a row opened after two spaces |
+
+  |a class row opened after two spaces |k
+
+|
+
+A prose line, and a row-shaped line directly under it that the paragraph keeps.
+|a |b |
+
+|a |b |
+A prose line directly under a table row, which the table does not keep.
+
+A RAGGED TABLE STILL BUILDS. The host pads nothing and refuses nothing, so each row carries the cells
+it writes.
+
+|one |two |three |
+|one |
+|one |two |three |four |
+
+AN EMPTY ROW STILL BUILDS. Two pipes make a row holding one empty cell.
+
+||
+||||
+
+A MARK WITH NOTHING TO JOIN. A `<` opening a row finds no cell before it and reads as text.
+
+|<|a colspan-left mark with no cell before it |
+
+A `>` closing a row finds no cell after it, and the host hands the cell before it a span of one.
+
+|a |>|
+
+A `~` in the first row finds no row above it, and the host drops the cell.
+
+|~|a rowspan mark with no row above it |
+
+THE HOST SKIPS SPACES BEFORE A HEADING MARK AND NOTHING ELSE, so a tab leaves the `!` as text. THE
+TWO REGEX ENGINES ALSO PART WAYS HERE — this line's own tab reads differently under the WASM
+Oniguruma build and its JavaScript translation, the one control character in this corpus where
+they disagree, so it carries its own `BEHAVIOUR` ruling in `corpus/engine-ledger.txt` rather than
+crossing to the second engine unremarked like everything else here.
+
+|	!a tab before the heading mark |x |
+
+THREE MARKS WHERE TWO WERE MEANT. `^^` opens superscript, and a third `^` hands the first one back to
+vertical alignment. The same holds for `,`.
+
+|^^^three carets^^ |,,,three commas,, |

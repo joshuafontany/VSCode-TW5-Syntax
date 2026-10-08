@@ -1,0 +1,25 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "The toml and ini fence arms split: each includes its own private grammar"
+
+# `toml` includes the vendored, private source.toml.tw5-syntax (TOML 1.1: the \e and \xHH
+# escapes, optional seconds, and a quoted-dotted table-header key held as one segment). `ini`
+# includes VS Code's own source.ini, a CONTROL proving each arm reads through its own grammar.
+
+```toml
+[fruit."var.ies"]
+#<- text.html.tiddlywiki5 meta.embedded.block.toml source.toml.tw5-syntax
+#          ^ meta.section.toml entity.name.section.toml
+lt2 = 14:15
+#<- text.html.tiddlywiki5 meta.embedded.block.toml source.toml.tw5-syntax
+#      ^^^^^ constant.other.time.toml
+esc = "e\e x\x61"
+#<- text.html.tiddlywiki5 meta.embedded.block.toml source.toml.tw5-syntax
+#       ^^ constant.character.escape.toml
+#           ^^^^ constant.character.escape.unicode.8bit.toml
+```
+
+```ini
+; a comment, not invalid
+#<- text.html.tiddlywiki5 meta.embedded.block.ini source.ini punctuation.definition.comment.ini
+[section]
+key=value
+```

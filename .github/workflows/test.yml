@@ -10,21 +10,32 @@ jobs:
   grammar:
     # The harness resolves the VS Code grammar root per platform, and a runner carries
     # none of the grammars VS Code bundles. Running three platforms proves both.
+    #
+    # ONE NODE, BECAUSE THE PATTERN STANDS DECLARED. `every-test-runs.test.js` rules that a runner
+    # script carry its test pattern as a QUOTED glob, so a file standing where the glob cannot see
+    # it fails where a reader meets it rather than never running. A quoted pattern reaches Node
+    # unexpanded, and Node 20 cannot expand one — it answers `Could not find`. Nothing here promises
+    # a Node version: `engines` names only VS Code, and the claim this matrix makes is PLATFORM
+    # resolution, which three operating systems carry on their own.
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         node: [22]
-        include:
-          - os: ubuntu-latest
-            node: 20
     runs-on: ${{ matrix.os }}
     name: grammar (${{ matrix.os }}, node ${{ matrix.node }})
     defaults:
       run:
         shell: bash
     steps:
+      # FULL HISTORY, NOT A SHALLOW CUT. Several invariants are red-first against the real parent:
+      # they `git show` the commit a cure retires and the tag the published version carries. A
+      # depth-1 checkout answers `fatal: invalid object name`, which reads as a grammar fault and
+      # is not one.
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          fetch-tags: true
 
       - uses: actions/setup-node@v7
         with:
@@ -59,9 +70,87 @@ jobs:
         run: npm run corpus
 
       # The deciding half of tools/upstream-coverage.js, against snapshots whose answer
-      # is stated rather than inferred.
+      # it states rather than infers.
       - name: Tool tests
         run: npm run test-tools
+      # A TEST WRITING OUTSIDE A SANDBOX MAKES EVERY CONCURRENT READER FLAKY. One provocation wrote a
+      # tracked harvest in place and restored it in a `finally`, leaving a window the whole suite ran
+      # inside — a gate reading it at the wrong moment failed for a fault nobody had. The suite must
+      # leave the tree exactly as it found it, and a heuristic over source cannot prove that where
+      # running it can.
+      - name: The suite leaves the working tree as it found it
+        run: |
+          dirty="$(git status --porcelain)"
+          if [ -n "$dirty" ]; then
+            echo "a test wrote outside a sandbox and left the tree dirty:"; echo "$dirty"; exit 1
+          fi
+
+  gates:
+    # Every witness the manifest names, run where it can answer. A gate nobody runs measures
+    # nothing, and CI once reached six of twenty-two while the rest stood green in a developer's
+    # terminal and nowhere else. tools/ci-runs-the-gates.test.js holds this list to the manifest.
+    #
+    # THIS JOB NAMED THIRTY-FOUR OF THE MANIFEST'S GATES BY HAND, one npm-run step each — the same
+    # thirty-four `tools/gate-report.js --check` already runs, in one process, reusing one TiddlyWiki
+    # boot where its own tools share one. A gate the manifest grows joined this list only when
+    # someone remembered to add a step for it; the report never forgets one, because it derives the
+    # list from the manifest rather than carrying a copy of it. So one step replaces thirty-four.
+    #
+    # This step also runs every OTHER gate the report's manifest names — fifteen the codebase
+    # already exercises elsewhere (canary/snap/compose-wikitext/corpus in the `grammar` and
+    # `compose` jobs) or under DIFFERENT terms (`signals`, `overreach-host`, `overreach-cut`
+    # continue-on-error in `gates-host`; `upstream-coverage` against a fresh clone in `upstream`).
+    # Running them again here, against the pinned devDependency, is not redundant in the way it
+    # looks: it makes those four checks BLOCKING for the first time, where before only their
+    # continue-on-error copies ran. That is a real strengthening of what CI enforces, not a
+    # side-effect to wave through — see the commit message for the operator's call on it.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Every gate the manifest names
+        run: node tools/gate-report.js --check
+
+      # A gap the grammar grew to meet wants moving out of tests/known-gaps. Not a gate the
+      # manifest names — tools/gate-report.js's own SKIP pattern excludes it on purpose.
+      - name: Known gaps
+        run: npm run tests-known-gaps
+
+      # The edition's modules ship compiled. A compiler stands in this repository's own dependencies,
+      # pinned, so this rebuilds them and asks whether the tree carries what the build writes. Not a
+      # gate either, for the same reason.
+      - name: The compiled edition stands current
+        run: npm run edition
+
+  gates-host:
+    # Gates whose answer moves with the TiddlyWiki they read. The harvest names a version, and the
+    # overreach runs take the grammar to the host's own tiddlers. TW5_PATH stands unset here, so
+    # this resolves the pinned `tiddlywiki` devDependency `npm ci` already installed — the last
+    # pinned release, never an unpinned clone of upstream master (the operator's ruling: local
+    # development answers to this repository's own fork on TW5_PATH, and CI answers to the pinned
+    # release). tools/reader-scope.js keys every ledger entry these gates read on the reader that
+    # actually booted, so a ruling scoped to one reader neither fails nor reads stale under the
+    # other.
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: The harvest matches the TiddlyWiki this reads
+        run: npm run signals
+      - name: The grammar against the host's own tiddlers
+        run: npm run overreach-host
+      - name: The same, cut mid-keystroke
+        run: npm run overreach-cut
 
   package:
     # The package a user installs, so .vscodeignore and the manifest meet a build.
@@ -83,20 +172,6 @@ jobs:
         with:
           name: vsix
           path: /tmp/tw5-syntax.vsix
-
-  compose:
-    # Does a sample still read the same way with another sample in front of it? A
-    # construct reaching past its own file shows up here as the next file reading
-    # differently — the one direction no other gate looks in.
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run compose
 
   upstream:
     # TiddlyWiki's own rule regexes, taken to TiddlyWiki's own tiddlers, asking whether

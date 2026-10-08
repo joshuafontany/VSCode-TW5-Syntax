@@ -1,0 +1,46 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A style block closes only on a closer at the first column"
+
+# styleblock.js ends its body on `^@@` — parseBlocksTerminated skips the indentation first and
+# then asks the terminator at that position, where `^` cannot match. So an indented `@@` closes
+# nothing: at the head of a block it opens a nested, empty style block of its own, and inside a
+# paragraph it stays the paragraph's text. A reader counting closers counts the ones at column 0.
+
+@@color:red;
+#<-- punctuation.definition.markup.other.style.styleblock.begin.tiddlywiki5
+    @@
+#   ^^ - punctuation.definition.markup.other.style.styleblock.end.tiddlywiki5
+
+@@
+#<-- punctuation.definition.markup.other.style.styleblock.end.tiddlywiki5
+@@
+#<-- punctuation.definition.markup.other.style.styleblock.end.tiddlywiki5
+
+# The next block opens where the host opens it, with its style read as a style.
+@@color:blue;
+#<-- punctuation.definition.markup.other.style.styleblock.begin.tiddlywiki5
+# ^^^^^ support.type.property-name.css
+y
+@@
+#<-- punctuation.definition.markup.other.style.styleblock.end.tiddlywiki5
+
+# CONTROL: a closer at the first column closes the block it stands in.
+@@color:green;
+#<-- punctuation.definition.markup.other.style.styleblock.begin.tiddlywiki5
+z
+@@
+#<-- punctuation.definition.markup.other.style.styleblock.end.tiddlywiki5
+
+After the block.
+#<----- - markup.other.style.styleblock.tiddlywiki5
+
+# A closer carrying text after its `@@` hands that text to a paragraph, which runs on to the next
+# blank line — so a style line below it reads as the paragraph's text, never as a new block.
+@@
+#<-- punctuation.definition.markup.other.style.styleblock.begin.tiddlywiki5
+
+@@color:blue;
+#<-- punctuation.definition.markup.other.style.styleblock.end.tiddlywiki5
+# ^^^^^ meta.paragraph.tiddlywiki5
+@@background-color:red;
+#<-- - punctuation.definition.markup.other.style.styleblock.begin.tiddlywiki5
+#<-- - markup.other.style.styleblock.tiddlywiki5

@@ -1,0 +1,34 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A lar root's three terms name one address"
+
+# The root carries exactly three dot-separated terms — heading, angle of approach, carried dynamic
+# — and each may stand as a word or a hyphen-joined compound. They name ONE address between them,
+# so they share a family and a reader meets them as one thing.
+#
+# Painted from three families they read as three unrelated things: measured over the 65 bundled
+# themes, all three shared a colour in 1 of them, and Gruvbox Dark Medium gave the heading aqua
+# and the other two yellow. Under one family they read alike in all 65.
+#
+# The tails stay distinct, so a rule written against one term still reaches that term alone. No
+# bundled theme rules below `entity.name.tag` for a scope this grammar emits, so the difference
+# stands available rather than visible.
+
+! Three plain terms
+
+A lar:///ha.ka.ba/lares/api/x here.
+#        ^^ entity.name.tag.heading.lar.memetic-wikitext
+#           ^^ entity.name.tag.angle.lar.memetic-wikitext
+#              ^^ entity.name.tag.dynamic.lar.memetic-wikitext
+
+! A hyphen-joined compound in the heading slot
+
+A lar:///the-grid.walks.green/path here.
+#        ^^^^^^^^ entity.name.tag.heading.lar.memetic-wikitext
+#                 ^^^^^ entity.name.tag.angle.lar.memetic-wikitext
+#                       ^^^^^ entity.name.tag.dynamic.lar.memetic-wikitext
+
+! A hyphen-joined compound in every slot
+
+A lar:///breach.watch-close.fires-now here.
+#        ^^^^^^ entity.name.tag.heading.lar.memetic-wikitext
+#               ^^^^^^^^^^^ entity.name.tag.angle.lar.memetic-wikitext
+#                           ^^^^^^^^^ entity.name.tag.dynamic.lar.memetic-wikitext

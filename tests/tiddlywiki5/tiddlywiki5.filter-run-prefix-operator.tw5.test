@@ -1,0 +1,33 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "The operator after a named run prefix reads as an operator"
+
+# RULED 2026-09-21: `:sort[title]` — the shape an author reaches for after a NAMED filter run
+# prefix (`:sort`, `:filter`, `:map`, `:reduce` …) when they mean `:sort[title[]]` and forget the
+# operand brackets — left `title` uncoloured, carrying only the run's own contentName, where
+# `[sort[title]]`'s "sort" (a genuine operator WITH an operand) reads
+# `keyword.operator.operator.filter.tiddlywiki5`. filters.js#parseFilterOperation actually THROWS
+# "Missing [ in filter expression" on `:sort[title]` at runtime — the operand bracket is not
+# optional — but graceful parsing paints what the author typed the operator colour every other
+# run's operator reads, rather than the colour of plain content.
+#
+# The fix must stay narrow: it must never claim a bare QUOTED operand for the empty/default
+# operator (`["Not Legal"]`, equally malformed but a STRING, never a name) or trailing whitespace
+# ahead of a multi-line operand's own closing `]`.
+
+! The control: an operator WITH an operand reads as an operator, prefixed or not
+
+{{{ [sort[title]] }}}
+#    ^^^^ meta.filter.operator.step.tiddlywiki5 keyword.operator.operator.filter.tiddlywiki5
+
+{{{ :subfilter[tag[a]] }}}
+#              ^^^ meta.filter.operator.step.tiddlywiki5 keyword.operator.operator.filter.tiddlywiki5
+
+! The red case: a named prefix's bare operator, no operand at all, now reads the same way
+
+{{{ :sort[title] }}}
+#         ^^^^^ meta.filter.operator.step.tiddlywiki5 keyword.operator.operator.filter.tiddlywiki5
+
+! A quoted operand for the empty/default operator is a STRING, never claimed as an operator name
+
+{{{ :test["Not Legal"] }}}
+#         ^ - keyword.operator.operator.filter.tiddlywiki5
+#         ^ entity.filter.operator.title.tiddlywiki5

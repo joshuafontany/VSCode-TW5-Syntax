@@ -1,0 +1,16 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "Path text themes can paint gets a name, distinct from the root triad"
+
+# PRICED 2026-10-06: arbitrary path text (any segment past the dotted heading.angle.dynamic
+# triad) ended at `meta.uri.path.lar.memetic-wikitext` — measured 0/65 bundled themes give it any
+# selector. `variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext` reaches 65/65 (via `variable`,
+# `variable.other.constant` or `variable.other`) while keeping the root triad's own
+# `entity.name.tag.*` family distinct — `entity.name.tag.lar.memetic-wikitext` also reaches 65/65
+# but collapses that distinction, and a `string.unquoted…` name re-introduces the string ancestor
+# the colourless-path ruling just removed.
+
+x lar:///ha.ka.ba/lares/api/pono
+#        ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext entity.name.tag.heading.lar.memetic-wikitext
+#                 ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext
+#                 ^^^^^ - entity.name.tag.heading.lar.memetic-wikitext
+#                       ^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext
+#                           ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext

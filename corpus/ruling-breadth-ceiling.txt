@@ -1,0 +1,23 @@
+1
+# How many CAUSES the widest ruling in any ledger can absorb. The count may fall and may never rise.
+#
+# `still.js` opens with a warning: the stopping condition can be met by ruling generously — widen a
+# key far enough and every finding falls inside it. That names CAUSES, and `tools/region-kind.js`
+# already spells them. So a key spanning ONE kind names one cause however common that cause runs,
+# and a key spanning several absorbs findings nobody reasoned about.
+#
+# THIS REPLACES A RATCHET ON TOKEN SHARE, which measured the wrong thing and said so honestly four
+# times. `ruled-ground-ceiling.txt` counted the share of corpus tokens every ruling stood on, and it
+# re-seated across one session at 55.8%, 56.6%, 57.2% and 60.0% — every reason true. The corpus is
+# AUTHORED and this house authors into it constantly: writing more of what already stands ruled
+# raises the share without widening a single key. A guard that re-seats on every honest change has
+# stopped guarding, and its own reason had asked twice for the measure that stands here.
+#
+# AUTHORING MOVES THIS NUMBER BY NOTHING. Forty more calls in a corpus file leave every key spanning
+# exactly the kinds it spanned before; `still.test.js` measures that inside a sandbox rather than
+# asserting it.
+#
+# THE SHARE STILL READS, beside the verdict, because a reader wants to know how much ground stands
+# ruled. It ratchets nothing.
+#
+# Seated at 1 on 2026-09-09: every ruling in every ledger names exactly one cause.

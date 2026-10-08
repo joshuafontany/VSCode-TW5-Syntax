@@ -1,0 +1,40 @@
+# Scopes a theme's rule REACHES and leaves reading as ordinary prose, and the reason each stands.
+#
+# `theme-paint` answers whether a theme's rule reaches a scope. A rule can reach and set the colour
+# the editor already had, and then a reader meets body text however loudly every coverage gauge agrees
+# a theme found the construct. Derived over the 65 bundled themes: 1,191 of 11,756 foreground rules —
+# one in ten — paint the editor's own foreground.
+#
+# HELD APART FROM `PlainConstructs`, WHICH RULES THE OTHER FAULT. That one rules a construct NO rule
+# reaches; this one rules a construct a rule reaches and buys nothing for. The two cures differ — the
+# first wants a name themes rule on, the second wants a DIFFERENT family — and a list fusing them
+# sends a reader to the wrong repair.
+#
+# The bar stands at a quarter of the bundled set. Below it the reading names a habit every grammar
+# shares: our widget's `<` reads as prose in 18 of 65 themes and the real `html` grammar's own `<`
+# reads as prose in exactly 18 too.
+#
+#   <scope>   # the reason it stands
+#
+# checks: family variable rules-on >= 50, quiet >= 15
+# checks: family entity.name rules-on >= 30, quiet <= 1
+#
+# WHAT A FAMILY COSTS IS MEASURABLE, AND A CANDIDATE SET WRITTEN BY HAND MISSES THE ANSWER.
+# `tools/family-atlas.js` derives every selector the bundled themes rule on with the share of that
+# reach which buys nothing: `variable` carries 59 themes and 20 of them leave the colour where the
+# editor had it, while `entity.name` carries 37 and NONE of them do. So a name the wiki resolves by
+# name — a filter's variable operand, a multi-valued reference, a `$(name)$` substitution — reads
+# honestly under `entity.name.variable` and loses half its prose readings by moving there, where four
+# rounds of hand-listed candidates had offered only `support.class` and `support.type`, which buy
+# their colour by naming these things something they are not. The published `variable.*` name stands
+# first in every case; nothing retires.
+
+
+# A VOCABULARY THAT CLEARS THE BAR BY THE INK AROUND IT. `markup.superscript` and
+# `markup.subscript` reach only 9 of the 65 bundled themes on their own, matching markdown's own
+# `markup.superscript` paint rate, so the silence belongs to the vocabulary rather than to this
+# grammar. They stand unruled here because they read invisible in 16 themes, the bar itself: a run
+# nested inside a struck span takes that span's ink (`comment.strikethrough`, ruled 2026-09-20),
+# and six themes paint it there. A reading at the bar asks for no ruling; one above it does.
+
+markup.other.value.lar.memetic-wikitext   # RULED 2026-10-08 (the texture pass, the query's second round): a lar: URI's query value — bare or quoted — needed an honest name that is NOT a `string` ancestor (the house already removed `string.unquoted.uri.lar` from this same family once, for the identical reason: a blanket theme rule on `string` drowns the separators beside it). Priced against roughly a dozen real, currently-themed families, every one that painted anything in ANY bundled theme also regressed an already-distinct pair (persona, the root triad, or ni:'s digest/algorithm) — measured and recorded in LEDGER-3.0.0.md. `markup.other.value.lar` was the only candidate that regressed nothing; `contrast-witness` now finds it reached-and-quiet in 17 of 65 themes, one above this ledger's bar, because those themes rule `markup.other` to their own prose colour rather than leaving it unruled. That is the measured cost of the safe choice, not an oversight — a family that painted instead was tried first and refused for regressing a pair this house already protects.

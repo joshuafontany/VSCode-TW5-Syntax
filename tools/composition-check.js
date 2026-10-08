@@ -6,7 +6,7 @@
 // read the same way with something standing in front of it?
 //
 // A grammar that answers yes composes. One that answers no has a construct reaching
-// across a boundary it should not cross — which is the fault behind every colouring bug
+// across a boundary it should not cross — the fault behind every colouring bug
 // this repository has fixed, and the fault that hid in the upstream-coverage probe file
 // until each case got a file of its own.
 //
@@ -19,17 +19,19 @@
 // the block families TiddlyWiki spans by design, so a sample ending inside an open style
 // or quote block reads clean there and still colours whatever follows it. This has no
 // allowance list: a construct reaching past its file shows up as the next file reading
-// differently. Closing two samples' constructs turned two pairs green, which is the
+// differently. Closing two samples' constructs turned two pairs green, naming the
 // property working.
 //
 // Readings compare by position rather than by line text. The same line stands in more than
 // one sample, and keying by text compares one sample's reading against another's, which read
 // as three failing pairs while every sample composed.
 
-const { execFileSync } = require('node:child_process');
+const { snapRun } = require('./snap-run.js');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { grammarArgs } = require('./tokenizer.js');
+const { resolveTiddlyWiki, boot } = require('./tw5-oracle.js');
 
 /**
  * The scope annotations a snapshot carries, in source order.
@@ -64,19 +66,67 @@ function readingsOf(text) {
  * @param {Array<{line: string, reading: string[]}>} slice  the same span, read in company
  * @returns {string[]} source lines that read differently
  */
-function movedLines(alone, slice) {
+/**
+ * How many lines of a file stand in its PROLOGUE — the run TiddlyWiki reads in pragma mode.
+ *
+ * wikiparser.js runs parsePragmas() once, at the start of a tiddler, and never returns to it. A
+ * prologue therefore reads differently the moment anything precedes it, and no grammar can answer
+ * otherwise: that IS the construct. Markdown's front matter carries the same property, and so does
+ * every prologue in every language that has one.
+ *
+ * So composition holds for everything BELOW the prologue, and the prologue answers to the pinned
+ * snapshots instead.
+ */
+/**
+ * How many lines of a file TiddlyWiki reads in PRAGMA MODE.
+ *
+ * wikiparser.js runs parsePragmas() once, at the start of a tiddler, and never returns to it. A
+ * prologue therefore reads differently the moment anything precedes it, and no grammar can answer
+ * otherwise: that IS the construct. Markdown's front matter carries the same property, and so does
+ * every prologue in every language that has one.
+ *
+ * So composition holds for everything BELOW the prologue, and the prologue answers to the pinned
+ * snapshots instead.
+ *
+ * The parser decides where it ends. A regex walk over the lines answered for the shapes somebody
+ * listed and failed on the next one — a definition whose parameter list runs across lines, a
+ * comment block, a body carrying whatever its author wrote. TiddlyWiki reads eight rules in pragma
+ * mode and names them itself, so the run comes off the parse rather than off a list.
+ */
+const PRAGMA_MODE_RULES = new Set(['commentblock', 'fnprocdef', 'import', 'macrodef',
+  'parameters', 'parsermode', 'rules', 'whitespace']);
+function prologueLines(text, oracle) {
+  if (!oracle) return 0;
+  // TiddlyWiki skips whitespace between pragmas, so the run continues across a blank line and stops
+  // at the first node carrying anything else.
+  const nodes = oracle.spans(text)
+    .filter((n) => typeof n.start === 'number' && typeof n.end === 'number' && n.rule)
+    .sort((a, b) => a.start - b.start || b.end - a.end);
+  let reach = 0;
+  for (const node of nodes) {
+    if (node.end <= reach) continue;
+    if (text.slice(reach, node.start).trim() !== '') break;
+    if (!PRAGMA_MODE_RULES.has(node.rule)) break;
+    reach = node.end;
+  }
+  if (reach === 0) return 0;
+  return text.slice(0, reach).split('\n').length;
+}
+
+function movedLines(alone, slice, prologue = 0) {
   const moved = [];
   for (let i = 0; i < alone.length && i < slice.length; i += 1) {
     const here = alone[i];
     const there = slice[i];
     if (!here.line.trim()) continue;
     if (here.line !== there.line) return [`ALIGNMENT LOST at ${JSON.stringify(here.line.slice(0, 40))}`];
+    if (i < prologue) continue;
     if (here.reading.join('\n') !== there.reading.join('\n')) moved.push(here.line);
   }
   return moved;
 }
 
-module.exports = { readingsOf, movedLines };
+module.exports = { readingsOf, movedLines, prologueLines, PRAGMA_MODE_RULES };
 
 function listFiles(pattern) {
   const clean = pattern.replace(/^['"]|['"]$/g, '');
@@ -94,12 +144,14 @@ function main() {
   const [scope, pattern] = process.argv.slice(2);
   if (!scope || !pattern) {
     console.error('Usage: node tools/composition-check.js <scope> <glob>');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
   const sources = listFiles(pattern);
   if (sources.length < 2) {
     console.error(`need at least two sources; ${sources.length} matched ${pattern}`);
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
 
   const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'tw5-compose-'));
@@ -123,21 +175,32 @@ function main() {
     return { file: f, i, j };
   });
 
-  const grammars = execFileSync('bash', ['-c', 'source ./grammars.sh >/dev/null 2>&1; printf "%s\\n" "${ARGS[@]}"'], {
-    encoding: 'utf8'
-  }).trim().split('\n').filter(Boolean);
-  execFileSync('npx', ['vscode-tmgrammar-snap', ...grammars, '-s', scope, '-u', ...files], {
-    stdio: ['ignore', 'ignore', 'inherit'],
-    shell: process.platform === 'win32'
-  });
+  const grammars = grammarArgs();
+  snapRun([...grammars, '-s', scope, '-u'], files);
 
   const soloReadings = solo.map((f) => readingsOf(fs.readFileSync(`${f}.snap`, 'utf8')));
+  // The prologue each file carries, read off the parser rather than off its lines.
+  const host = resolveTiddlyWiki();
+  const oracle = host ? boot(host) : null;
+  if (!oracle) {
+    console.error('  no TiddlyWiki checkout resolved — a prologue would read as ordinary ground');
+    process.exitCode = 2;
+    return;
+  }
+  const prologue = solo.map((f) => prologueLines(fs.readFileSync(f, 'utf8'), oracle));
   let broken = 0;
   for (const { file, i, j } of pairs) {
     const together = readingsOf(fs.readFileSync(`${file}.snap`, 'utf8'));
     // The pair holds the first sample, then the second; each occupies one end of it.
-    const first = movedLines(soloReadings[i], together.slice(0, soloReadings[i].length));
-    const second = movedLines(soloReadings[j], together.slice(together.length - soloReadings[j].length));
+    const first = movedLines(soloReadings[i], together.slice(0, soloReadings[i].length), prologue[i]);
+    // A file carrying a prologue answers to standing FIRST. Its pragma zone opens at the start of a
+    // tiddler and nowhere else, so preceding it does not merely change those lines: the constructs
+    // below them join a different thing. Reading such a file as the second member asks whether a
+    // prologue survives a position where no prologue can stand, and it cannot, by construction —
+    // for this grammar, for markdown's front matter, for every prologue anywhere.
+    const second = prologue[j] > 0
+      ? []
+      : movedLines(soloReadings[j], together.slice(together.length - soloReadings[j].length), 0);
     if (!first.length && !second.length) continue;
     broken++;
     console.error(`\n  ${path.basename(sources[i])} followed by ${path.basename(sources[j])}:`);
@@ -147,7 +210,8 @@ function main() {
 
   fs.rmSync(scratch, { recursive: true, force: true });
   console.log(`composition-check  ${scope}  ${pairs.length} pairs, ${broken} that do not compose`);
-  process.exit(broken ? 1 : 0);
+  process.exitCode = broken ? 1 : 0;
+  return;
 }
 
 if (require.main === module) main();

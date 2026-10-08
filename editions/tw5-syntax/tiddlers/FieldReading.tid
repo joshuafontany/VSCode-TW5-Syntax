@@ -1,0 +1,39 @@
+title: $:/tw5-syntax/FieldReading
+type: application/json
+tags: $:/tags/TW5Syntax/GrammarData
+caption: Which header fields read as wikitext
+description: A header value takes the wikitext reading unless a reader declares otherwise — with the reason each exception stands on
+
+{
+    "reading": "A tiddler header carries `name: value` lines, and nothing in the file says how to read a value. A template decides at render time, and any field can reach a wikified transclusion, so no list of names can be right by construction. The grammar rules that a value takes the wikitext reading, and names the exceptions.",
+    "derived": {
+        "source": "$:/tw5-syntax/GrammarSignals, key fieldTypes, harvested from $tw.Tiddler.fieldModules",
+        "deny": {
+            "color": "editType \"color\". A colour opens with #, which the block reader takes for a numbered list item — 486 painted spans across 162 lines in TiddlyWiki's own tree, every one of them wrong.",
+            "created": "parseDate. Digits name nothing.",
+            "modified": "parseDate. Digits name nothing."
+        },
+        "open": {
+            "tags": "parseStringArray. A member carrying whitespace round-trips through stringifyList as [[Two Words]], and filters.js reads those same brackets as a run whose empty operator defaults to title. The enlist operator takes a string-array operand inside a filter outright. One notation, two readers. Measured: tags paints 15317 spans in TiddlyWiki's own tree and not one falls outside the tiddler-name family; of 3122 bracketed members none carries a pipe, so the shape that would part a quoted title from a pretty link stands empty.",
+            "list": "parseStringArray, for the same reason."
+        }
+    },
+    "ruled": {
+        "why": "TiddlyWiki declares no field type for these, so they stand as rulings rather than as a harvest. A ruling carries its reason here; the day one stops holding, the reason says so.",
+        "filter-valued": {
+            "fields": ["filter", "condition", "condition-disabled", "first-search-filter", "second-search-filter", "default-filter", "subfilter", "tag-filter"],
+            "reason": "The value speaks the filter language. A filter variable reads <count> or <targetTiddler>, which the wikitext reader takes for an HTML tag — condition alone paints 429 such spans."
+        },
+        "opaque": {
+            "fields": ["avatar"],
+            "reason": "Base-64 image bytes. The alphabet carries [[ and // by accident, and the reader paints 1622 wikilink spans and 429 italics across ten fields. Bytes name no tiddler."
+        }
+    },
+    "measured": {
+        "corpus": "TiddlyWiki's own 7012 .tid and .meta files",
+        "right": 11453,
+        "wrong": 19,
+        "residue": "title×18, where a state title spells -- and the reader takes an en-dash; list×1, where a value opens with #",
+        "boundary": "A value opens inside a capture, which confines to its own span, so an unclosed construct cannot swallow the field line beneath it. Ten broken values probed — unclosed link, bold, transclusion, widget, comment, \"\"\", @@, fence, trailing backslash, macro — and ten boundaries held."
+    }
+}

@@ -1,0 +1,45 @@
+# Specimens written to be refused by `lares meme check`, and the fault each one asserts.
+#
+# A specimen written to be torn stands exempt from every gate that measures well-formed carriers:
+# it carries the fault ON PURPOSE, to measure the carrier checker against text that is almost a
+# carrier. That exemption costs nothing while the specimen still trips its fault — and the day
+# `$carrier-sila` or the frame grammar learns to read it as sound, the specimen reports CANONICAL,
+# keeps its exemption, and every gate agrees that nothing stands wrong.
+#
+# So the exemption carries a declaration, and the declaration gets measured. A fault the checker no
+# longer finds FAILS (blind checker or tamed fixture); a fault tripped that nobody declared FAILS
+# too (an undeclared structure crept in beside the one the file was written to hold).
+#
+# HELD APART FROM `must-fail.txt`. That ledger measures the TextMate GRAMMAR against specimens
+# written to bleed; this measures `lares meme check`, a separate reader with its own refusal
+# vocabulary, against specimens written to be torn. Whether a grammar fixture owes the carrier
+# checker cleanliness at all stood as "a separate ruling nobody has made" when
+# `carriers-and-uris.mem` and `sigils.mem` were repaired past their own post-EOT fault (see
+# LEDGER-3.0.0.md, "CONTENT AFTER A CARRIER'S CLOSE READS UNPONO") — this is that ruling: the
+# two remaining torn fixtures STAY, and this ledger is what keeps them honest.
+#
+#   <specimen>  <fault-key>[,<fault-key>]   # what it exists to prove
+#
+# `frame-grammar` — a carrier reads outside the frame grammar; no opener/closer pair names its ends
+#                   and nothing repairs it.
+# `etb-bare`      — a carrier carries ETB as a bare literal, which `$carrier-sila` mints only behind
+#                   a computed, verified check.
+#
+# A grammar-class PREFERENCE — `carriers.blockcheck.mem` carries one call site that takes the equals
+# spelling over the colon — is not a fault and gets no entry here: `--grammar` reports it and moves
+# no byte unless a caller asks it to.
+#
+# `lares-version <text>`  — a FILE-LEVEL floor line (pytest's `importorskip(..., minversion=...)`
+#                            slot), not a per-specimen field: one `FAULT_PATTERNS` table in
+#                            must-flag.js reads EVERY specimen's output, so one floor line serves
+#                            it the same way a per-specimen field never would. The text is the
+#                            literal answer `lares --version` handed back when this ledger was last
+#                            adjudicated — today's live CLI carries no `--version` subcommand at
+#                            all, so the floor is literally its refusal text, captured once. A
+#                            mismatch at run time reports PENDING (named, attributed), never a
+#                            silent pass and never a block — see must-flag.js's header comment.
+
+lares-version lares: unknown command "--version".  Run `lares help` for the list.
+
+control-set.mem          frame-grammar,etb-bare   # two codes the frame grammar never admits: DC1 outside the ends it names, and a bare ETB literal
+carriers.blockcheck.mem  etb-bare                 # the same bare-ETB fault, standing beside a block check that otherwise closes clean

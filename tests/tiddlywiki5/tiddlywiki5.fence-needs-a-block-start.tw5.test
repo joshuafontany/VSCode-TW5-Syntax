@@ -1,0 +1,23 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A fence opens a block only where a block can start"
+
+# TiddlyWiki reads a fenced block as a BLOCK rule, so three backticks continuing a paragraph open
+# nothing — the parser reads them as an inline code span. Both readers agree here, and the agreement
+# is worth pinning: a region opening mid-paragraph would carry the rest of the file as fenced
+# content, and the two readers then pair every later backtick run differently.
+
+Prose line
+```ts
+#^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+
+A paragraph standing after it.
+#^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+
+# At a block start the same three backticks open the block they always did.
+
+```ts
+#^^ text.html.tiddlywiki5 markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 keyword.control.raw.fence.tiddlywiki5 punctuation.definition.raw.markup.begin.tiddlywiki5
+let a = 1
+```
+
+A paragraph after the closed fence.
+#^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5

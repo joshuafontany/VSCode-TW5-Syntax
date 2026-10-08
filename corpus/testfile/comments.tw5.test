@@ -1,0 +1,6 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A syntax-test file colours its own comments"
+
+# A comment line opens on a hash and carries prose to the end of the line, and the wikitext
+# beneath it colours the way it colours anywhere else.
+
+an ''emphasised'' run with a <<macro>> call

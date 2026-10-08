@@ -1,4 +1,4 @@
-3
+0
 # Scopes this grammar emits that no corpus file reaches. The count may fall and may never rise.
 #
 # A coverage FLOOR counts what the corpus reaches over every name a grammar declares, including
@@ -13,9 +13,27 @@
 # region for itself. Reaching all of them wanted one element per family, and the families run
 # narrow — the math object family holds mglyph and nothing else.
 #
-# The three that remain each carry a NEAR-SIBLING that claims the same text first. A table body
-# row, a macro-call parameter separator and a square-bracket string each have a name that fires
-# and a name beside it that does not, and no constructed input has reached the second.
+# NOTHING STANDS UNREACHED. Every scope this grammar emits, some corpus file reaches.
+#
+# The last three left by three different roads, and only one of them asked for corpus work.
+#
+# A square-bracket string inside a macro call reached by COVERAGE: `<<mymacro [[a bracketed value]]>>`
+# in inline.macros.tw. The shape existed and no file carried it.
+#
+# The macro-call parameter separator left by REMOVAL. It sat last in a list whose previous pattern
+# takes any run of non-space, non-quote, non-angle characters — so every character the separator
+# accepts, that pattern claims first, and the two it could not take stand claimed by the
+# quoted-string patterns above it. Twenty-nine characters, each tried in a macro call: it fired for
+# none of them.
+#
+# The table body row left the same way, for a different reason. Its three siblings name the markup
+# family on the `c`, `h` or `f` ending the line; a body row ends on nothing, and the rule carried an
+# EMPTY capture group with a name on it. A zero-width capture produces no token, so that name could
+# never appear, and copying the sibling shape onto a group that matches nothing left a scope no input
+# could reach.
+#
+# A rule the engine reaches and no input can match colours nothing and still counts among the scopes
+# a corpus must reach — so it reads as corpus work owed where the fault sits in the grammar.
 #
 # A fourth left this list when its cause turned out to sit elsewhere: a rule inside a capture
 # matched ^.*$, and a capture opens mid-line where ^ matches nothing.

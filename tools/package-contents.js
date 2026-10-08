@@ -40,5 +40,6 @@ console.log(`package-contents  ${listing.length} files packaged, ${promised.leng
 for (const m of missing) console.error(`  MISSING  ${m.path}\n           promised by ${m.from}`);
 if (missing.length) {
   console.error(`\n  the manifest names ${missing.length} path(s) the package does not carry`);
-  process.exit(1);
+  process.exitCode = 1;
+  return;
 }

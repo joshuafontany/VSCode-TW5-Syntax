@@ -1,0 +1,27 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "Every operand delimiter TiddlyWiki reads"
+
+# filters.js switches on five opening delimiters after an operator name: `[` for a literal, `<`
+# for a variable, `{` for a text reference, `(` for a multi-valued variable, and `/` for a regular
+# expression. It builds all five; the last two it also warns about as deprecated.
+#
+# A form the grammar does not read falls into the operator name, so `prefix/Some/` read as one
+# operator called `prefix/Some/` and the operand vanished into the thing that takes it. The
+# operator name stops at every delimiter the parser switches on, or it swallows the next one.
+
+! A regular-expression operand takes the family every highlighter keeps for one
+
+{{{ [prefix/Some/] }}}
+#    ^^^^^^ keyword.operator.operator.filter.tiddlywiki5
+#           ^^^^ string.regexp.tiddlywiki5
+
+! Its flags ride in round brackets after the closing slash
+
+{{{ [prefix/Some/(gi)] }}}
+#           ^^^^ string.regexp.tiddlywiki5
+#                 ^^ keyword.other.flag.regexp.tiddlywiki5
+
+! A multi-valued variable operand reads as the single-valued one beside it
+
+{{{ [tag(multiValued)] }}}
+#    ^^^ keyword.operator.operator.filter.tiddlywiki5
+#        ^^^^^^^^^^^ variable.entity.filter.operand.tiddlywiki5

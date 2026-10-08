@@ -14,10 +14,11 @@
 //   node tools/theme-paint.js --families      every scope the grammar emits, by family
 //
 // The deciding half — themeRules, paints, paintRate — stands under test in
-// tests/tools/theme-paint.test.js.
+// tools/theme-paint.test.js.
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { declaredScopes } = require('./grammar-scopes.js');
 
 const THEME_DIR = path.resolve(__dirname, '..', 'node_modules', 'tm-themes', 'themes');
 
@@ -30,14 +31,14 @@ const THEME_DIR = path.resolve(__dirname, '..', 'node_modules', 'tm-themes', 'th
  * @param {object} theme  a parsed theme JSON
  * @returns {string[]}
  */
+// One matching rule, shared. Four tools here weigh what a selector reaches, and a rule written
+// four times parts four ways the day one of them learns something.
+const { covers, rulesOf } = require('./theme-model.js');
+
 function themeRules(theme) {
-  const out = [];
-  for (const rule of theme.tokenColors || []) {
-    const scope = rule.scope;
-    if (typeof scope === 'string') out.push(...scope.replace(/\n/g, ' ').split(','));
-    else if (Array.isArray(scope)) out.push(...scope);
-  }
-  return out.map((s) => s.trim()).filter(Boolean);
+  // The model already flattens a theme, and it keeps what each rule paints; this wants only the
+  // selectors. Reading tokenColors a second way here parted from the model the day either changed.
+  return rulesOf(theme).map((rule) => rule.parts.join(' '));
 }
 
 /**
@@ -59,7 +60,7 @@ function paints(scope, rules) {
     // under-counts rather than claiming a match it could not check.
     const parts = rule.split(/\s+/);
     const target = parts[parts.length - 1];
-    if (scope === target || scope.startsWith(`${target}.`)) return target;
+      if (covers(target, scope)) return target;
   }
   return null;
 }
@@ -106,22 +107,15 @@ function paintRate(scope, themes) {
 /**
  * Every scope this grammar emits.
  *
+ * The shared collector answers this. A second reader here carried its own reading of the root
+ * `name` — the grammar's language name, never a scope — and asked sixty-five themes to paint
+ * "TiddlyWiki5".
+ *
  * @param {string} grammarPath
  * @returns {string[]}
  */
 function grammarScopes(grammarPath) {
-  const found = new Set();
-  const walk = (node) => {
-    if (Array.isArray(node)) return node.forEach(walk);
-    if (!node || typeof node !== 'object') return;
-    for (const [key, value] of Object.entries(node)) {
-      if ((key === 'name' || key === 'contentName') && typeof value === 'string') {
-        for (const s of value.split(/\s+/)) if (s && !s.includes('$')) found.add(s);
-      } else walk(value);
-    }
-  };
-  walk(JSON.parse(fs.readFileSync(grammarPath, 'utf8')));
-  return [...found].sort();
+  return [...declaredScopes(grammarPath)].sort();
 }
 
 module.exports = { THEME_DIR, themeRules, paints, loadThemes, paintRate, grammarScopes };
@@ -130,7 +124,8 @@ if (require.main === module) {
   const themes = loadThemes();
   if (themes.length === 0) {
     console.error(`no themes found in ${THEME_DIR} — run npm install`);
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
   const args = process.argv.slice(2);
   if (args.includes('--families')) {
@@ -150,11 +145,13 @@ if (require.main === module) {
     for (const { family, members, rate } of rows) {
       console.log(`  ${String(rate).padStart(2)}/${themes.length}  ${family.padEnd(28)} ${members.length} scope(s)`);
     }
-    process.exit(0);
+    process.exitCode = 0;
+    return;
   }
   if (args.length === 0) {
     console.error('usage: node tools/theme-paint.js <scope>... | --families');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
   for (const scope of args) {
     const { painted, total, via } = paintRate(scope, themes);

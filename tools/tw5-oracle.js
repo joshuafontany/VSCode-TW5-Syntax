@@ -16,10 +16,40 @@
 //   node tools/tw5-oracle.js --rules        list the rules TiddlyWiki stands
 //
 // The deciding half — flatten, isPlainText, isOpaqueBody, verdictAt — stands under test in
-// tests/tools/tw5-oracle.test.js.
+// tools/tw5-oracle.test.js.
 
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
+
+/**
+ * Story 0 instrumentation for the content-addressed-parse-cache spike — OFF BY DEFAULT.
+ *
+ * Set ORACLE_TRACE=<path> to append one JSON line per boot() call and per parseAs() call to
+ * that file: reader path, rule set, parse mode, a content hash for parses, and wall time. This
+ * is the only way to answer "how many (reader, rule set, mode, file) parse keys repeat across
+ * the separately-spawned gate processes gate-report.js runs" — a single process's own `booted`
+ * memo (below) never sees another process's calls, so the repeat count has to be read back from
+ * a file every process appends to. Never wired into a code path unless the env var is set, so a
+ * gate run with the flag OFF costs one `process.env` read added per boot/parse call.
+ */
+const TRACE_PATH = process.env.ORACLE_TRACE || null;
+function traceEvent(event) {
+  if (!TRACE_PATH) return;
+  try {
+    fs.appendFileSync(
+      TRACE_PATH,
+      // ORACLE_TRACE_GATE is set by gate-report.js on each spawned child so a trace line names
+      // the gate that made the call, not just a pid a reader would have to cross-reference.
+      `${JSON.stringify({ pid: process.pid, gate: process.env.ORACLE_TRACE_GATE || null, t: Date.now(), ...event })}\n`
+    );
+  } catch {
+    /* tracing never fails the gate it observes */
+  }
+}
+function contentHash(text) {
+  return crypto.createHash('sha1').update(text, 'utf8').digest('hex').slice(0, 16);
+}
 
 /**
  * Every node in a parse tree, depth-first, parents before children.
@@ -31,26 +61,43 @@ const path = require('node:path');
  *
  * A macro-typed attribute value carries a whole node of its own, so the walk descends into it.
  *
+ * `sameSpace` keeps the walk inside ONE coordinate space. A nested parse restarts offsets at zero —
+ * measured, a `$$$text/vnd.tiddlywiki` block reports itself at 23..42 and the quoteblock inside it
+ * at 0..14 — so a caller asking which rule covers an absolute offset reads an inner node as standing
+ * at the top of the document. The detection derives: a child starting BEFORE its parent names a
+ * restarted space, and no list of node types goes stale behind it.
+ *
+ * ONLY BEFORE. A restarted child's offsets run no further than the nested body, and the body runs no
+ * further than its parent's own span, so a restart never lands a child past the parent's end. A child
+ * standing there belongs to `parsePragmas`, which nests the whole document after a definition beneath
+ * it while the definition's own extent spans the definition alone — the same space, read in full.
+ *
  * @param {object[]} tree
+ * @param {{sameSpace?: boolean}} [options]
  * @returns {object[]}
  */
-function flatten(tree) {
+function flatten(tree, options = {}) {
+  const sameSpace = options.sameSpace === true;
+  const restarts = (parent, child) => typeof parent.start === 'number'
+    && typeof child.start === 'number'
+    && child.start < parent.start;
   const out = [];
-  const visit = (nodes) => {
+  const visit = (nodes, parent) => {
     for (const n of nodes || []) {
       if (!n || typeof n !== 'object') continue;
+      if (sameSpace && parent && restarts(parent, n)) continue;
       out.push(n);
       for (const attribute of Object.values(n.attributes || {})) {
         if (!attribute || typeof attribute !== 'object') continue;
         // Only a placed attribute joins the spans; a name or a body carrying no extent cannot
         // answer for a column.
         if (typeof attribute.start === 'number' && typeof attribute.end === 'number') out.push(attribute);
-        if (attribute.value && typeof attribute.value === 'object') visit([attribute.value]);
+        if (attribute.value && typeof attribute.value === 'object') visit([attribute.value], n);
       }
-      visit(n.children);
+      visit(n.children, n);
     }
   };
-  visit(tree);
+  visit(tree, null);
   return out;
 }
 
@@ -77,7 +124,7 @@ function isPlainText(node) {
 // Constructs TiddlyWiki stores rather than parses. macrodef and fnprocdef build a `set` node
 // carrying the body in attributes.value, which TiddlyWiki examines at the CALL, in whatever
 // context the call stands, never at the definition. Neither the name nor the body carries an
-// extent, so no column inside one can be answered for.
+// extent, so no column inside one carries an answer.
 const UNPARSED_BODY = new Set(['macrodef', 'fnprocdef']);
 
 // Rules that consume a leading mark and hand back a node BEGINNING AFTER IT. wikilinkprefix
@@ -155,7 +202,16 @@ function verdictAt(spans, start, end) {
       n.rule !== 'parseblock'
   );
   if (covers.length === 0) return { kind: 'none', innermost: 'none', rule: null, start: null, end: null };
-  const tightest = covers.reduce((a, b) => (b.end - b.start < a.end - a.start ? b : a));
+  // A TIE splits two ways, by whether the outer node carries a rule. A construct the host built from
+  // exactly this text answers for it — an extlink spans the very URL it wraps. An element a rule
+  // built AROUND content yields to the content: a table cell holding one character spans it exactly,
+  // and the text inside states what TiddlyWiki made of it. flatten() lists parents first.
+  const tightest = covers.reduce((a, b) => {
+    const wa = a.end - a.start;
+    const wb = b.end - b.start;
+    if (wa !== wb) return wb < wa ? b : a;
+    return a.rule ? a : b;
+  });
   const built = covers.filter((n) => !isPlainText(n));
   const pool = built.length > 0 ? built : covers;
   const best = pool.reduce((a, b) => (b.end - b.start < a.end - a.start ? b : a));
@@ -187,10 +243,28 @@ function verdictAt(spans, start, end) {
  *
  * @returns {string|null}
  */
-function resolveTiddlyWiki() {
+/**
+ * The operator's boot seed, where it stands beside this checkout.
+ *
+ * The seed names the vocabulary a memetic carrier writes, and it lives in the operator's own bags
+ * rather than in this repository — so a contributor holding only this checkout meets none, and a
+ * caller reads `null` and says so. `LARES_SEED` names one outright.
+ *
+ * It stands HERE beside `resolveTiddlyWiki` because the house keeps one resolver: a tool growing a
+ * second walks its own candidate list, and the two answer differently the day a path moves.
+ */
+function resolveSeed() {
   const candidates = [];
-  // TW5_PATH names a checkout outright and outranks everything.
-  if (process.env.TW5_PATH) candidates.push(process.env.TW5_PATH);
+  if (process.env.LARES_SEED) candidates.push(process.env.LARES_SEED);
+  candidates.push(path.resolve(__dirname, '..', '..', 'bags', 'lares', 'ha.ka.ba', 'lares', 'api', 'noosphere-boot.mem'));
+  return candidates.find((c) => c && fs.existsSync(c)) || null;
+}
+
+function resolveTiddlyWiki(env = process.env) {
+  const candidates = [];
+  // TW5_PATH names a checkout outright and outranks everything. A caller asking the order beneath
+  // it passes an environment that names none.
+  if (env.TW5_PATH) candidates.push(env.TW5_PATH);
   // A checkout beside this one outranks the pinned package. Parser work happens in a checkout,
   // and the released package would answer for a parser that work has already moved past —
   // silently, since both resolve and both boot.
@@ -210,6 +284,115 @@ function resolveTiddlyWiki() {
 const booted = new Map();
 
 /**
+ * The parse memo — Story 1 of the parse-cache epic (see `cache-story0.md`, `cache-story05.md`).
+ *
+ * Story 0 measured 84–85% of every gate-report run's parse TIME spent re-deriving a tree some
+ * OTHER call in the SAME process already built — divergence-staleness re-running overreach-check
+ * across ~6 rule-set variants, ablation and overreach re-parsing mutants of the same file,
+ * still-reach walking the same corpus repeatedly. Story 0.5 showed a disk cache adds only
+ * 0.4–0.5 points beyond what an in-process memo alone already captures, so this is the memo
+ * alone: a `Map`, living for the process's lifetime, never touching disk.
+ *
+ * THE KEY covers everything that changes what TiddlyWiki reads back for a `parseAs` call:
+ *   - the resolved reader path (`twPath`) — a different TiddlyWiki checkout can read differently
+ *   - `$tw.version`, the reader's OWN report of itself — two checkouts can share a path
+ *     candidate's shape but not its version, and a version bump can change parsing
+ *   - a hash of this file's own source (`oracleCodeHash`, computed once at load) — the oracle's
+ *     OWN code decides what `flatten`/`verdictAt` do with a tree; a memo keyed only on TiddlyWiki
+ *     inputs would serve a stale answer across an oracle-code change within one long-lived process
+ *   - the parser rule set in force (`rules`, sorted so key order never matters)
+ *   - the parse MODE (`type`, e.g. `text/vnd.tiddlywiki`) and every other parser option
+ *     (`parserOptions`, including `parseAsInline` where a caller sets it)
+ *   - the source text itself, by a full sha256 (not the trace's truncated 16-hex identity hash —
+ *     a memo lives for a whole process and a collision there would silently swap one file's
+ *     tree for another's; the trace only ever counts repeats, so a short hash sufficed there)
+ *
+ * Changing ANY one of these dimensions must miss the memo; changing NONE of them must hit it —
+ * see `tools/tw5-oracle.test.js`'s memo-key tests, one per dimension.
+ *
+ * FREEZE. Every memoized tree is deep-frozen before it is stored (and so before it is ever
+ * returned) — a caller that mutates a memoized tree throws in strict mode rather than
+ * corrupting the SAME object every later reader of that key receives. No consumer in this
+ * repository mutates a returned tree (checked by hand across every `tools/*.js` caller of
+ * `.parse`/`.parseAs`/`.spans`/`.readAt`) — the freeze exists to make that fact an invariant a
+ * future caller cannot silently break, not to work around one that does today.
+ *
+ * BOUND. Unbounded, the heaviest gate (divergence-staleness, which re-runs overreach-check
+ * across ~6 rule-set variants inside its own process) was measured to raise peak RSS by single-
+ * digit megabytes over memo-off for a full gate-report run's worth of distinct keys — see the
+ * commit message for the measured numbers. `ORACLE_MEMO_MAX` (default 8000 entries) bounds it
+ * anyway, evicting the least-recently-used entry, since a future gate iterating a much larger
+ * mutant population should not be trusted to stay small just because today's does.
+ *
+ * OFF SWITCH. `ORACLE_MEMO=off` bypasses the memo entirely — every call parses fresh, nothing is
+ * frozen, nothing is stored — for debugging a suspected memo-staleness bug without first proving
+ * whether the memo caused it.
+ */
+const MEMO_ENABLED = process.env.ORACLE_MEMO !== 'off';
+const MEMO_MAX = Number(process.env.ORACLE_MEMO_MAX) > 0 ? Number(process.env.ORACLE_MEMO_MAX) : 8000;
+
+let oracleCodeHashCache = null;
+function oracleCodeHash() {
+  if (oracleCodeHashCache === null) {
+    oracleCodeHashCache = crypto.createHash('sha1').update(fs.readFileSync(__filename)).digest('hex').slice(0, 16);
+  }
+  return oracleCodeHashCache;
+}
+
+/** Freezes `value` and everything reachable from it, once per object, tolerating cycles. */
+function deepFreeze(value, seen) {
+  const visited = seen || new Set();
+  if (value === null || typeof value !== 'object' || visited.has(value)) return value;
+  visited.add(value);
+  Object.freeze(value);
+  for (const key of Object.keys(value)) deepFreeze(value[key], visited);
+  return value;
+}
+
+const parseMemo = new Map();
+
+/** Read the memo, promoting the key to most-recently-used on a hit (LRU). */
+function memoGet(key) {
+  if (!parseMemo.has(key)) return undefined;
+  const value = parseMemo.get(key);
+  parseMemo.delete(key);
+  parseMemo.set(key, value);
+  return value;
+}
+
+/** Store `value` under `key`, evicting the least-recently-used entry past `MEMO_MAX`. */
+function memoSet(key, value) {
+  parseMemo.set(key, value);
+  while (parseMemo.size > MEMO_MAX) {
+    const oldest = parseMemo.keys().next().value;
+    parseMemo.delete(oldest);
+  }
+}
+
+/**
+ * The memo key, pure and exported so a unit test can prove each dimension without booting a
+ * second TiddlyWiki checkout or a second oracle-code version to get one for real.
+ */
+function memoKeyFor(twPath, version, codeHash, rulesKeyPart, type, parserOptions, text) {
+  return [
+    twPath,
+    version,
+    codeHash,
+    rulesKeyPart,
+    type,
+    JSON.stringify(parserOptions),
+    crypto.createHash('sha256').update(text, 'utf8').digest('hex')
+  ].join('\u0000');
+}
+
+/** Test-only: empties the memo and returns how many entries it held, so a test can measure size. */
+function resetParseMemoForTests() {
+  const size = parseMemo.size;
+  parseMemo.clear();
+  return size;
+}
+
+/**
  * Boot TiddlyWiki and hand back an oracle over it.
  *
  * `rules` sets $:/config/WikiParserRules entries by their key under that prefix, e.g.
@@ -223,7 +406,11 @@ const booted = new Map();
 function boot(twPath, options = {}) {
   const rules = options.rules || {};
   const key = `${twPath} ${JSON.stringify(Object.entries(rules).sort())}`;
-  if (booted.has(key)) return booted.get(key);
+  if (booted.has(key)) {
+    traceEvent({ type: 'boot', tw: twPath, rules, ms: 0, memoHit: true });
+    return booted.get(key);
+  }
+  const bootStart = Date.now();
 
   const $tw = require(path.join(twPath, 'boot', 'boot.js')).TiddlyWiki();
   // The rule set MUST stand before boot. Startup parses wikitext of its own, and the first
@@ -248,12 +435,78 @@ function boot(twPath, options = {}) {
     process.stdout.write = write;
   }
   if (!ready) throw new Error('TiddlyWiki booted asynchronously; this oracle needs it synchronous');
+  traceEvent({ type: 'boot', tw: twPath, rules, ms: Date.now() - bootStart, memoHit: false });
 
-  const parse = (text, parserOptions = {}) => $tw.wiki.parseText('text/vnd.tiddlywiki', text, parserOptions);
+  // A TIDDLER'S OWN TYPE PICKS ITS PARSER. `$:/palettes/Nord` declares
+  // `application/x-tiddler-dictionary` and the host parses its body into ONE `genesis` node, where
+  // the same bytes forced through wikitext build a paragraph, two calls and a quoteblock. A reader
+  // comparing that against a grammar which honours the declared type reads 252 cuts of divergence
+  // on one file, and names none of them a fault of either reader.
+  const rulesKeyPart = JSON.stringify(Object.entries(rules).sort());
+  const parseAs = (type, text, parserOptions = {}) => {
+    if (!MEMO_ENABLED) {
+      if (!TRACE_PATH) return $tw.wiki.parseText(type, text, parserOptions);
+      const start = Date.now();
+      const result = $tw.wiki.parseText(type, text, parserOptions);
+      traceEvent({
+        type: 'parse',
+        tw: twPath,
+        rules,
+        mode: type,
+        hash: contentHash(text),
+        bytes: text.length,
+        ms: Date.now() - start
+      });
+      return result;
+    }
+    // Every dimension that changes what TiddlyWiki reads back joins the key — see the memo's own
+    // doc comment above `boot()` for what each one guards against.
+    const memoKey = memoKeyFor(twPath, $tw.version, oracleCodeHash(), rulesKeyPart, type, parserOptions, text);
+    const cached = memoGet(memoKey);
+    if (cached !== undefined) {
+      traceEvent({
+        type: 'parse',
+        tw: twPath,
+        rules,
+        mode: type,
+        hash: contentHash(text),
+        bytes: text.length,
+        ms: 0,
+        memoHit: true
+      });
+      return cached;
+    }
+    const start = Date.now();
+    const result = $tw.wiki.parseText(type, text, parserOptions);
+    // FREEZE THE TREE, NOT THE PARSER. `parseText` hands back the live Parser instance itself
+    // (`tools`'s own consumers read `.tree`/`.diagnostics`/`.pragmaRuleClasses` etc off it, never
+    // construct one), and that instance carries `this.wiki = options.wiki` — TiddlyWiki's own
+    // live, still-mutating wiki object (`$tw.wiki.changedTiddlers` et al. are written on every
+    // later parse). Deep-freezing the WHOLE result reaches `.wiki` through that reference and
+    // freezes the live wiki out from under every later call — measured: the very next parse then
+    // throws inside `$:/core/modules/wiki.js` trying to reset `changedTiddlers`. Only `.tree` and
+    // `.diagnostics` are the memo's own promise to a caller; freeze exactly those.
+    deepFreeze(result.tree);
+    if (result.diagnostics) deepFreeze(result.diagnostics);
+    memoSet(memoKey, result);
+    traceEvent({
+      type: 'parse',
+      tw: twPath,
+      rules,
+      mode: type,
+      hash: contentHash(text),
+      bytes: text.length,
+      ms: Date.now() - start,
+      memoHit: false
+    });
+    return result;
+  };
+  const parse = (text, parserOptions = {}) => parseAs('text/vnd.tiddlywiki', text, parserOptions);
 
   const oracle = {
     $tw,
     parse,
+    parseAs,
     /** Every span TiddlyWiki built from this source, depth-first. */
     spans: (text, parserOptions) => flatten(parse(text, parserOptions).tree),
     /** What TiddlyWiki made of source[start..end). */
@@ -278,13 +531,25 @@ function boot(twPath, options = {}) {
   return oracle;
 }
 
-module.exports = { flatten, isPlainText, isOpaqueBody, verdictAt, resolveTiddlyWiki, boot };
+module.exports = {
+  flatten,
+  resolveSeed,
+  isPlainText,
+  isOpaqueBody,
+  verdictAt,
+  resolveTiddlyWiki,
+  boot,
+  deepFreeze,
+  memoKeyFor,
+  resetParseMemoForTests
+};
 
 if (require.main === module) {
   const tw = resolveTiddlyWiki();
   if (!tw) {
     console.error('no TiddlyWiki checkout resolved — set TW5_PATH');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
   const args = process.argv.slice(2);
   const oracle = boot(tw, args.includes('--camelcase') ? { rules: { 'Inline/wikilink': 'enable' } } : {});
@@ -293,7 +558,8 @@ if (require.main === module) {
     for (const type of ['pragma', 'block', 'inline']) {
       console.log(`${type.padEnd(6)} ${String(active[type].length).padStart(2)}  ${active[type].join(' ')}`);
     }
-    process.exit(0);
+    process.exitCode = 0;
+    return;
   }
   const src = (args.find((a) => !a.startsWith('--')) || '').replace(/\\n/g, '\n');
   const parsed = oracle.parse(src);

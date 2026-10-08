@@ -1,0 +1,52 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A filter run's bounds carry the operator family, not a lone colour"
+
+# The operator overrode the one-colour ruling in corpus/delimiter-ledger.txt: a filter run's
+# punctuation now parts by role instead of collapsing under one keyword.operator name. This is
+# the CONTROL for that move — every assertion here would have failed under the prior naming.
+
+! Run brackets carry punctuation only, no appended keyword.operator.filter
+
+{{{ [tag[a]] }}}
+#   ^ punctuation.definition.filter.run.begin.tiddlywiki5
+#          ^ punctuation.definition.filter.run.end.tiddlywiki5
+
+! Run prefixes read as storage.modifier, parted from the operator name and from run brackets
+
+{{{ +[tag[a]] }}}
+#   ^ storage.modifier.prefix.plus.and.accumulate.tiddlywiki5
+
+{{{ -[tag[a]] }}}
+#   ^ storage.modifier.prefix.minus.except.difference.tiddlywiki5
+
+{{{ ~[tag[a]] }}}
+#   ^ storage.modifier.prefix.tilde.else.else.tiddlywiki5
+
+{{{ =[tag[a]] }}}
+#   ^ storage.modifier.prefix.equals.all.union.tiddlywiki5
+
+{{{ :subfilter[tag[a]] }}}
+#   ^ storage.modifier.prefix.colon.named.subfilter.tiddlywiki5
+
+! The operator name reads one spelling everywhere, string and indirect operands included
+
+{{{ [tag[a]] }}}
+#    ^^^ keyword.operator.operator.filter.tiddlywiki5
+
+{{{ [text{a}] }}}
+#    ^^^^ keyword.operator.operator.filter.tiddlywiki5
+
+! Variable and indirect operand brackets read punctuation only, no entity mixed in
+
+{{{ [<variable>] }}}
+#    ^ punctuation.definition.operand.variable.begin.tiddlywiki5
+#             ^ punctuation.definition.operand.variable.end.tiddlywiki5
+
+{{{ [text{ref}] }}}
+#        ^ punctuation.definition.operand.indirect.begin.tiddlywiki5
+#            ^ punctuation.definition.operand.indirect.end.tiddlywiki5
+
+! A multi-valued operand parts from a single-valued variable by name, not just by glyph
+
+{{{ [tag(multiValued)] }}}
+#       ^ punctuation.definition.operand.mvv.begin.tiddlywiki5
+#                   ^ punctuation.definition.operand.mvv.end.tiddlywiki5
