@@ -19,7 +19,10 @@ const live = { skip: fs.existsSync(PLUGIN) ? false : 'no house plugin stands bes
 // line and returns it as literal TEXT where the grammar reads a macro call, and no gate said so.
 test('every wikirule the house plugin registers stands accounted for', live, () => {
   const { code, out } = runTool('rule-coverage.js');
-  assert.match(out, /\d+ house rule\(s\)/, out.slice(-600));
+  // The house reading stands on its OWN line, not in the summary the gate report harvests: the
+  // plugin's reach is a property of the checkout, and a standalone clone carrying none would
+  // otherwise drift that comparison on a difference saying nothing about coverage.
+  assert.match(out, /the house plugin stands \d+ rule\(s\)/, out.slice(-600));
   assert.strictEqual(code, 0, out.slice(-800));
 });
 

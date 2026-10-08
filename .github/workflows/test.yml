@@ -10,14 +10,18 @@ jobs:
   grammar:
     # The harness resolves the VS Code grammar root per platform, and a runner carries
     # none of the grammars VS Code bundles. Running three platforms proves both.
+    #
+    # ONE NODE, BECAUSE THE PATTERN STANDS DECLARED. `every-test-runs.test.js` rules that a runner
+    # script carry its test pattern as a QUOTED glob, so a file standing where the glob cannot see
+    # it fails where a reader meets it rather than never running. A quoted pattern reaches Node
+    # unexpanded, and Node 20 cannot expand one — it answers `Could not find`. Nothing here promises
+    # a Node version: `engines` names only VS Code, and the claim this matrix makes is PLATFORM
+    # resolution, which three operating systems carry on their own.
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         node: [22]
-        include:
-          - os: ubuntu-latest
-            node: 20
     runs-on: ${{ matrix.os }}
     name: grammar (${{ matrix.os }}, node ${{ matrix.node }})
     defaults:
