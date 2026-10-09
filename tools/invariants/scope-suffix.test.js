@@ -46,14 +46,13 @@ const VENDORED_FILES = new Set(['toml.tw5-syntax.json']);
 // holds the `meta.embedded.*` half of this pair to the manifest's own map). The guest is usually
 // a foreign language (`source.css`, `text.html.basic`, TextMate's own CSS/JS property and comment
 // names reused so an embedded style block or script paints exactly as the real grammar would) —
-// and three times it is one of THIS repository's OWN sibling grammars, embedded the identical way:
-// `text.html.tiddlywiki5` (the wikitext body, inside `.tid`/`.fields`/`.multids`/`.test` files),
-// `text.html.tiddlywiki5.memetic-wikitext` (the dialect body, inside a `.tid` whose `type` field
-// declares it) and `source.toml.tw5-syntax` (the vendored TOML port, fenced inside wikitext).
-// Reusing a guest's name means answering to ITS suffix, never inventing one of ours for it.
+// and twice it is one of THIS repository's OWN sibling grammars, embedded the identical way:
+// `text.html.tiddlywiki5` (the wikitext body, inside `.tid`/`.fields`/`.multids`/`.test` files)
+// and `source.toml.tw5-syntax` (the vendored TOML port, fenced inside wikitext). Reusing a guest's
+// name means answering to ITS suffix, never inventing one of ours for it.
 const GUEST_VOCABULARY = new Set([
   // The sibling grammars this repository embeds under its own other names.
-  'text.html.tiddlywiki5', 'text.html.tiddlywiki5.memetic-wikitext', 'source.toml.tw5-syntax',
+  'text.html.tiddlywiki5', 'source.toml.tw5-syntax',
   // JSON, embedded and standalone.
   'source.json',
   // JavaScript: the guest scope, and its own comment vocabulary reused for the fenced case where
