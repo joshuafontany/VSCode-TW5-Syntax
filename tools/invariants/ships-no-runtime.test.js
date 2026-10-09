@@ -22,6 +22,34 @@ const pkg = require(path.join(ROOT, 'package.json'));
 // Surfaces VS Code reads without running anything. A key outside this set contributes behaviour.
 const DECLARATIVE = new Set(['languages', 'grammars', 'snippets', 'configurationDefaults', 'configuration', 'themes', 'iconThemes', 'semanticTokenScopes']);
 
+/**
+ * What `vsce` says it would pack, or `null` when no `vsce` stands here.
+ *
+ * A BLANKET CATCH TURNED THIS GATE DARK. Reading the listing through `execFileSync`'s 1 MB default
+ * buffer, and taking any throw for an absent tool, meant the gate reported "vsce unavailable" the
+ * moment the listing grew past a megabyte — which is precisely what a LEAK does. Measured: a Claude
+ * Code worktree under `.claude/` put 10 760 files and 1 507 executables into the listing, which
+ * wrote 1 242 041 bytes, threw `ENOBUFS`, and skipped the very check that would have named it.
+ *
+ * So the buffer stands wide enough to read a leak, and only a tool that is genuinely ABSENT skips.
+ * Every other failure refuses.
+ *
+ * @returns {string[]|null} the packed paths, or null when `vsce` does not stand here
+ */
+function packedFiles() {
+  try {
+    return execFileSync('npx', ['--no-install', 'vsce', 'ls'],
+      { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], maxBuffer: 256 * 1024 * 1024 })
+      .split('\n').map((l) => l.trim()).filter(Boolean);
+  } catch (e) {
+    const absent = e.code === 'ENOENT'
+      || /could not determine executable|not found|npm ERR! could not determine/i.test(String(e.message));
+    if (absent) return null;
+    throw new Error(`vsce stands here and refused to list the package (${e.code ?? 'no code'}): `
+      + `${String(e.message).split('\n')[0]}`);
+  }
+}
+
 test('the package declares no entry point', () => {
   assert.strictEqual(pkg.main, undefined, 'a `main` entry gives the extension a runtime');
   assert.strictEqual(pkg.browser, undefined, 'a `browser` entry gives the extension a web runtime');
@@ -43,14 +71,12 @@ test('the package carries no runtime dependency', () => {
 // edit there can drop a declared grammar and nothing downstream complains. VS Code loads a
 // language whose grammar file went missing and colours nothing, silently.
 test('every declared contribution packs', { timeout: 120000 }, (t) => {
-  let listing;
-  try {
-    listing = execFileSync('npx', ['--no-install', 'vsce', 'ls'], { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
-  } catch {
-    t.skip('vsce unavailable — the ignore list stands unread');
+  const listing = packedFiles();
+  if (!listing) {
+    t.skip('no `vsce` stands here — the ignore list stands unread');
     return;
   }
-  const packed = new Set(listing.split('\n').map((l) => l.trim()).filter(Boolean));
+  const packed = new Set(listing);
   const declared = [
     ...(pkg.contributes.grammars || []).map((g) => g.path),
     ...(pkg.contributes.snippets || []).map((s) => s.path),
@@ -62,15 +88,79 @@ test('every declared contribution packs', { timeout: 120000 }, (t) => {
 
 // The manifest decides what packs. A file the ignore list misses ships whatever it holds.
 test('nothing executable packs into the extension', { timeout: 120000 }, (t) => {
-  let listing;
-  try {
-    listing = execFileSync('npx', ['--no-install', 'vsce', 'ls'], { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
-  } catch {
-    t.skip('vsce unavailable — the ignore list stands unread');
+  const packed = packedFiles();
+  if (!packed) {
+    t.skip('no `vsce` stands here — the ignore list stands unread');
     return;
   }
-  const packed = listing.split('\n').map((l) => l.trim()).filter(Boolean);
   assert.ok(packed.length > 0, 'the manifest packs nothing at all');
   const executable = packed.filter((f) => /\.(js|cjs|mjs|ts|sh)$/.test(f));
   assert.deepStrictEqual(executable, [], `executable file(s) packed: ${executable.join(', ')}`);
+});
+
+// ── THE SURFACE IS BOUNDED, NOT ONLY POPULATED ────────────────────────────────────────────────
+//
+// Every reading above asks whether what the manifest PROMISES reaches the package. None asks the
+// other direction, and the gate that builds a real .vsix — `tools/package-contents.js` — asked only
+// the same way. So the package's size was never anybody's measurement: a directory the ignore list
+// does not name ships whatever it holds, and the only thing standing between a user and this
+// repository's 128 MB of agent worktree was that nobody had run `vsce` on a machine that had one.
+//
+// So the surface derives on BOTH sides. What the manifest registers packs, and what packs is either
+// something the manifest registers or one of the few files named here, each because a user or a
+// theme author opens it. A file matching neither is a LEAK, and it reads as one.
+// ONE READING, NOT TWO. `tools/package-contents.js` owns the bound and enforces it on a real .vsix
+// in CI; this reads the same two definitions rather than restating them, because a gate and its test
+// holding separate copies of one reading drift apart in silence.
+const { SHIPPED, strayFiles, canonical } = require('../package-contents.js');
+
+test('nothing packs that the manifest does not register and the tool does not name', { timeout: 120000 }, (t) => {
+  const packed = packedFiles();
+  if (!packed) {
+    t.skip('no `vsce` stands here — the ignore list stands unread');
+    return;
+  }
+  assert.deepStrictEqual(strayFiles(packed, pkg), [],
+    'file(s) pack that nothing accounts for — name each in the tool\'s SHIPPED, or exclude it in .vscodeignore');
+});
+
+// THE COLLISION. A planted listing carries the two shapes this repository really grows — a harness
+// file and an agent worktree — and both must read as strays, or the check above rests on a tree that
+// happens to be clean today.
+test('a harness file and an agent worktree both read as strays', () => {
+  const planted = [
+    'package.json',
+    'syntaxes/tiddlywiki5.json',
+    'corpus/memetic/control-set.mem',
+    '.claude/worktrees/spirit/tools/theme-model.js',
+    'themes/gruvbox/gruvbox-dark-hard.json'
+  ];
+  assert.deepStrictEqual(strayFiles(planted, pkg), [
+    '.claude/worktrees/spirit/tools/theme-model.js',
+    'corpus/memetic/control-set.mem',
+    'themes/gruvbox/gruvbox-dark-hard.json'
+  ], 'the reading let a harness file or a worktree through');
+});
+
+// A SHIPPED NAME THAT PACKS NOTHING IS A RULING ABOUT A FILE THAT LEFT. It reads as stale here
+// rather than standing forever as permission nobody uses.
+test('every name the tool ships stands in the tree', () => {
+  for (const [file, why] of SHIPPED) {
+    assert.ok(fs.existsSync(path.join(ROOT, file)),
+      `SHIPPED names \`${file}\` — ${why} — and no such file stands here`);
+  }
+});
+
+// VSCE RENAMES THREE FILES ON THE WAY IN, and a reading that takes either spelling as the truth
+// calls the other three strays. Both spellings must land on the shipped file, and a name that
+// merely LOOKS like one of the three must not.
+test('a file vsce renames still reads as the file it ships', () => {
+  assert.deepStrictEqual(strayFiles(['readme.md', 'changelog.md', 'LICENSE.txt'], pkg), [],
+    'the package\'s own spelling of a shipped file read as a stray');
+  assert.deepStrictEqual(strayFiles(['README.md', 'CHANGELOG.md', 'LICENSE'], pkg), [],
+    'the source spelling of a shipped file read as a stray');
+  assert.strictEqual(canonical('docs/readme.md'), 'docs/readme.md',
+    'a readme somewhere else canonicalised onto the shipped one, so a whole directory could hide behind it');
+  assert.deepStrictEqual(strayFiles(['docs/readme.md'], pkg), ['docs/readme.md'],
+    'a readme in a subdirectory passed as the shipped readme');
 });

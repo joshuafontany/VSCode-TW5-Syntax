@@ -21,6 +21,23 @@ tools/**
 # loads — the grammar carries what the wiki says, projected ahead of the packaging step.
 editions/**
 
+# Agent and worktree scratch. A Claude Code session puts a git worktree under `.claude/worktrees/`,
+# and a sibling checkout there weighs over a hundred megabytes. Nothing packed it by intent: it
+# packed because nothing said otherwise, and it then SILENCED the guard that would have caught it —
+# `vsce ls` wrote 1 242 041 bytes, past `execFileSync`'s 1 MB default, and the invariant reading
+# that listing took the overflow for "vsce unavailable" and skipped.
+.claude/**
+.worktrees/**
+
+# Research prose and the release ledger: archaeology a reader of this repository wants and a user of
+# the extension never opens. The record a user does want stands at the root — the readme, the
+# changelog, MIGRATION for the scope renames and SCOPE-NAMES for a theme author.
+docs/**
+LEDGER-*.md
+
+# The attic holds a retired sketch no contribution registers.
+syntaxes/attic/**
+
 # Resolved from package.json at install time.
 node_modules/**
 package-lock.json
