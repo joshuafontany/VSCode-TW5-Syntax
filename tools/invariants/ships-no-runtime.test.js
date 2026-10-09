@@ -189,3 +189,43 @@ test('a file vsce renames still reads as the file it ships', () => {
   assert.deepStrictEqual(strayFiles(['docs/readme.md'], pkg), ['docs/readme.md'],
     'a readme in a subdirectory passed as the shipped readme');
 });
+
+// ── A CHORD REACHES A SNIPPET BY NAME ─────────────────────────────────────────────────────────
+//
+// `keybindings` stands in the declarative set because a chord onto a command VS Code already
+// carries runs no code of ours (see the ruling above). What it does carry is a NAME: the snippet it
+// inserts, looked up at keypress time. Rename the snippet and the chord keeps its key, keeps its
+// `when` clause, and does nothing — silently, in the one surface a reader reaches for with their
+// hands rather than their eyes.
+//
+// So both ends get welded: the command must come from outside this extension, and the snippet must
+// stand in a set the manifest registers for the language the chord claims.
+test('every keybinding names an outside command and a snippet that stands', () => {
+  const bindings = pkg.contributes.keybindings || [];
+  if (!bindings.length) return;
+
+  // This extension contributes no commands at all — `commands` sits outside DECLARATIVE — so every
+  // command a chord names necessarily comes from the editor. Asserted rather than assumed, because
+  // the day `commands` gets ruled in, a chord onto one would need an activation path.
+  assert.strictEqual(pkg.contributes.commands, undefined,
+    'the extension contributes commands, so a chord onto one would need a runtime to answer it');
+
+  const languages = new Set((pkg.contributes.languages || []).map((l) => l.id));
+  for (const binding of bindings) {
+    assert.ok(binding.key, `a keybinding carries no key: ${JSON.stringify(binding)}`);
+    assert.ok(binding.command, `a keybinding carries no command: ${binding.key}`);
+    assert.ok(binding.when && /editorLangId ==/.test(binding.when),
+      `${binding.key} binds with no language in its when clause — it would fire in every editor`);
+
+    const args = binding.args || {};
+    if (!args.name) continue;
+    assert.ok(languages.has(args.langId),
+      `${binding.key} inserts into ${args.langId}, which this extension registers as no language`);
+
+    const held = (pkg.contributes.snippets || [])
+      .filter((s) => s.language === args.langId)
+      .flatMap((s) => Object.keys(JSON.parse(fs.readFileSync(path.join(ROOT, s.path.replace(/^\.\//, '')), 'utf8'))));
+    assert.ok(held.includes(args.name),
+      `${binding.key} inserts "${args.name}", which no snippet set registered for ${args.langId} holds`);
+  }
+});
