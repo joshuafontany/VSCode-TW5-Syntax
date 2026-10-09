@@ -87,7 +87,7 @@ function execute(run, cwd, expectedArg = EXPECTED_REL) {
   const rulingsUsedFile = path.join(scratch, 'used.json').split(path.sep).join('/');
   const command = `${run.body.replace(`--expected=${EXPECTED_REL}`, `--expected=${expectedArg}`)} --rulings-used=${rulingsUsedFile}`;
   // THE CHILD'S OWN WORDS, NOT ONLY ITS EXIT CODE. A run that dies before writing its reading has
-  // a reason, and swallowing stderr left this gate reporting only that the file was missing — which
+  // a reason, and swallowing stderr left this gate reporting only the missing file — which
   // names the symptom and nothing a reader can act on.
   let code = 0;
   let said = '';

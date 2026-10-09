@@ -127,9 +127,9 @@ test('nothing executable packs into the extension', { timeout: 120000 }, (t) => 
 //
 // Every reading above asks whether what the manifest PROMISES reaches the package. None asks the
 // other direction, and the gate that builds a real .vsix — `tools/package-contents.js` — asked only
-// the same way. So the package's size was never anybody's measurement: a directory the ignore list
+// the same way. So nothing measured the package's size: a directory the ignore list
 // does not name ships whatever it holds, and the only thing standing between a user and this
-// repository's 128 MB of agent worktree was that nobody had run `vsce` on a machine that had one.
+// repository's 128 MB of agent worktree: nobody had yet run `vsce` on a machine carrying one.
 //
 // So the surface derives on BOTH sides. What the manifest registers packs, and what packs is either
 // something the manifest registers or one of the few files named here, each because a user or a

@@ -25,10 +25,10 @@
         { "open": "<<", "close": ">>" },
         { "open": "[[", "close": "]]" },
         { "open": "{", "close": "}"},
-		{ "open": "[", "close": "]"},
-		{ "open": "(", "close": ")" },
-		{ "open": "\"", "close": "\"" },
-		{ "open": "<!--", "close": "-->", "notIn": ["comment", "string"] }
+        { "open": "[", "close": "]"},
+        { "open": "(", "close": ")" },
+        { "open": "\"", "close": "\"" },
+        { "open": "<!--", "close": "-->", "notIn": ["comment", "string"] }
     ],
     "autoCloseBefore": ";:.,=}])>` \n\t",
     // symbols that surround a selection
@@ -43,43 +43,43 @@
         ["'", "'"],
         ["`", "`"]
     ],
-	// A TiddlyWiki word. VS Code's default breaks a system title at its first character —
-	// $:/core/ui/ViewTemplate selects as "$" — and halves a hyphenated variable name, so
-	// tv-config-toolbar selects as "tv". Both stand among the commonest things an author
-	// double-clicks. This takes a system title whole with its slashes, a pragma with its
-	// backslash, a hyphenated name entire, and a number.
-	// PRESSING ENTER INSIDE A BLOCK CONTINUES THE BLOCK.
-	//
-	// `appendText` takes a FIXED string and no backreference, so a rule cannot echo the marker its
-	// own `beforeText` matched — each depth wants its own rule. Measured over this corpus: `*` opens
-	// 357 lines, `#` 22, `>` 7, `**` 2 and `***` 1, so depth three covers every list this repository
-	// writes, and the ceiling stands here rather than in a reader's surprise.
-	//
-	// THE CEILING, NAMED: depth four and deeper continues nothing, and a MIXED marker (`*#`) reads as
-	// no rule here. VS Code cannot spell either without a runtime to compute the text, and a wrong
-	// `appendText` would continue an ordered list with a bullet — worse than continuing nothing.
-	//
-	// A lookahead holds each rule to its own depth: `^\\*(?!\\*)` reads a single bullet and leaves `**`
-	// to the rule beneath it, so one line never fires two rules.
-	"onEnterRules": [
-		{ "beforeText": "^\\*(?!\\*)\\s+\\S", "action": { "indent": "none", "appendText": "* " } },
-		{ "beforeText": "^\\*\\*(?!\\*)\\s+\\S", "action": { "indent": "none", "appendText": "** " } },
-		{ "beforeText": "^\\*\\*\\*(?!\\*)\\s+\\S", "action": { "indent": "none", "appendText": "*** " } },
-		{ "beforeText": "^#(?!#)\\s+\\S", "action": { "indent": "none", "appendText": "# " } },
-		{ "beforeText": "^##(?!#)\\s+\\S", "action": { "indent": "none", "appendText": "## " } },
-		{ "beforeText": "^###(?!#)\\s+\\S", "action": { "indent": "none", "appendText": "### " } },
-		{ "beforeText": "^>(?!>)\\s*\\S", "action": { "indent": "none", "appendText": "> " } }
-	],
-	"wordPattern": "(\\$:\\/[^\\s\\|\\[\\]\\{\\}<>\"'`]+)|(-?\\d*\\.\\d\\w*)|(\\\\?[A-Za-z_$][A-Za-z0-9_$-]*)",
-	// No offSide. That rule says a blank line belongs to the indented block above it, and
-	// TiddlyWiki ends a block AT a blank line — wikiparser.js takes /\r?\n\r?\n/ as the
-	// boundary. Of the indented lines in TiddlyWiki own tiddlers three quarters carry prose,
-	// which nests nothing, so folding them across the blank lines that separate paragraphs
-	// offers a reader regions the format never had.
-	"folding": {
-		"markers": {
-			"start": "^\\s*<!--\\s*#?region\\b.*-->",
-			"end": "^\\s*<!--\\s*#?endregion\\b.*-->"
-		}
-	}
+    // A TiddlyWiki word. VS Code's default breaks a system title at its first character —
+    // $:/core/ui/ViewTemplate selects as "$" — and halves a hyphenated variable name, so
+    // tv-config-toolbar selects as "tv". Both stand among the commonest things an author
+    // double-clicks. This takes a system title whole with its slashes, a pragma with its
+    // backslash, a hyphenated name entire, and a number.
+    // PRESSING ENTER INSIDE A BLOCK CONTINUES THE BLOCK.
+    //
+    // `appendText` takes a FIXED string and no backreference, so a rule cannot echo the marker its
+    // own `beforeText` matched — each depth wants its own rule. Measured over this corpus: `*` opens
+    // 357 lines, `#` 22, `>` 7, `**` 2 and `***` 1, so depth three covers every list this repository
+    // writes, and the ceiling stands here rather than in a reader's surprise.
+    //
+    // THE CEILING, NAMED: depth four and deeper continues nothing, and a MIXED marker (`*#`) reads as
+    // no rule here. VS Code cannot spell either without a runtime to compute the text, and a wrong
+    // `appendText` would continue an ordered list with a bullet — worse than continuing nothing.
+    //
+    // A lookahead holds each rule to its own depth: `^\\*(?!\\*)` reads a single bullet and leaves `**`
+    // to the rule beneath it, so one line never fires two rules.
+    "onEnterRules": [
+        { "beforeText": "^\\*(?!\\*)\\s+\\S", "action": { "indent": "none", "appendText": "* " } },
+        { "beforeText": "^\\*\\*(?!\\*)\\s+\\S", "action": { "indent": "none", "appendText": "** " } },
+        { "beforeText": "^\\*\\*\\*(?!\\*)\\s+\\S", "action": { "indent": "none", "appendText": "*** " } },
+        { "beforeText": "^#(?!#)\\s+\\S", "action": { "indent": "none", "appendText": "# " } },
+        { "beforeText": "^##(?!#)\\s+\\S", "action": { "indent": "none", "appendText": "## " } },
+        { "beforeText": "^###(?!#)\\s+\\S", "action": { "indent": "none", "appendText": "### " } },
+        { "beforeText": "^>(?!>)\\s*\\S", "action": { "indent": "none", "appendText": "> " } }
+    ],
+    "wordPattern": "(\\$:\\/[^\\s\\|\\[\\]\\{\\}<>\"'`]+)|(-?\\d*\\.\\d\\w*)|(\\\\?[A-Za-z_$][A-Za-z0-9_$-]*)",
+    // No offSide. That rule says a blank line belongs to the indented block above it, and
+    // TiddlyWiki ends a block AT a blank line — wikiparser.js takes /\r?\n\r?\n/ as the
+    // boundary. Of the indented lines in TiddlyWiki own tiddlers three quarters carry prose,
+    // which nests nothing, so folding them across the blank lines that separate paragraphs
+    // offers a reader regions the format never had.
+    "folding": {
+        "markers": {
+            "start": "^\\s*<!--\\s*#?region\\b.*-->",
+            "end": "^\\s*<!--\\s*#?endregion\\b.*-->"
+        }
+    }
 }

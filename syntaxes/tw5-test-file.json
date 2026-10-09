@@ -1,36 +1,36 @@
 {
-	"name": "TiddlyWiki5 test file",
-	"scopeName": "text.html.tiddlywiki5.test",
-	"fileTypes": [
-		"tw5.test"
-	],
-	"patterns": [
-		{
-			"begin": "\\A",
-			"end": "(?!)",
-			"contentName": "text.html.tiddlywiki5",
-			"patterns": [
-				{
-					"comment": "Tokenize test comment text.",
-					"begin": "^(#)\\s*",
-					"end": "$",
-					"contentName": "comment.block.test.tiddlywiki5.test",
-					"captures": {
-						"1": {
-							"name": "punctuation.definition.comment.block.test.tiddlywiki5.test"
-						}
-					}
-				},
-				{
-					"include": "text.html.tiddlywiki5#parsermode-inline-mode"
-				},
-				{
-					"include": "text.html.tiddlywiki5#pragma"
-				},
-				{
-					"include": "text.html.tiddlywiki5"
-				}
-			]
-		}
-	]
+    "name": "TiddlyWiki5 test file",
+    "scopeName": "text.html.tiddlywiki5.test",
+    "fileTypes": [
+        "tw5.test"
+    ],
+    "patterns": [
+        {
+            "begin": "\\A",
+            "end": "(?!)",
+            "contentName": "text.html.tiddlywiki5",
+            "patterns": [
+                {
+                    "comment": "Tokenize test comment text.",
+                    "begin": "^(#)\\s*",
+                    "end": "$",
+                    "contentName": "comment.block.test.tiddlywiki5.test",
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.comment.block.test.tiddlywiki5.test"
+                        }
+                    }
+                },
+                {
+                    "include": "text.html.tiddlywiki5#parsermode-inline-mode"
+                },
+                {
+                    "include": "text.html.tiddlywiki5#pragma"
+                },
+                {
+                    "include": "text.html.tiddlywiki5"
+                }
+            ]
+        }
+    ]
 }

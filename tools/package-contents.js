@@ -6,9 +6,9 @@
 // fails here and nowhere else.
 //
 // IT ONLY EVER ASKED ABOUT OMISSION. Every path the manifest promises had to stand inside the
-// package, and nothing asked the other direction — so the package's SIZE was never anybody's
-// measurement. A directory the ignore list does not name ships whatever it holds: a Claude Code
-// session leaves a git worktree under `.claude/`, and this repository's weighed 128 MB across
+// package, and nothing asked the other direction — so nothing measured the package's SIZE. A
+// directory the ignore list does not name ships whatever it holds: a Claude Code session leaves a
+// git worktree under `.claude/`, and this repository's weighed 128 MB across
 // 10 760 files, 1 507 of them executable. It would have shipped. Worse, it SILENCED the invariant
 // that reads the same listing — `vsce ls` wrote 1 242 041 bytes, past `execFileSync`'s 1 MB
 // default, and a blanket catch there took the overflow for an absent tool and skipped.

@@ -4,7 +4,7 @@
 // files to stand, and a file standing anywhere else drops out of the run in silence — the suite
 // reports the same green over a smaller population, and nothing anywhere carries the difference.
 // This repository has already paid that: a gate list keyed on how a script's NAME began hid
-// `lint-closure` and `package-contents`, two instruments CI ran, from every gate list there was.
+// `lint-closure` and `package-contents`, two instruments CI ran, from every gate list it held.
 //
 // So the population derives from a WALK, and the runner answers to it:
 //
@@ -31,7 +31,7 @@ const scripts = require(path.join(ROOT, 'package.json')).scripts;
 // `.claude` HOLDS A WHOLE SECOND CHECKOUT. A Claude Code session puts a git worktree under
 // `.claude/worktrees/<agent>/`, which carries this repository's own hundred test files at paths no
 // declared pattern reaches — so this invariant read a hundred unrun tests that every one of which
-// was already running, from here, under its own name. `.worktrees` stood in this set for the older
+// already runs, from here, under its own name. `.worktrees` stands in this set for the older
 // convention; both roots belong.
 const OUTSIDE = new Set(['node_modules', '.git', '.claude', '.worktrees', 'TiddlyWiki5', 'out', 'dist']);
 
