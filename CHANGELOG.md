@@ -6,6 +6,22 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## 3.0.1 — unreleased
 
+### Added
+
+- **A whole carrier frame in one insert.** A `carrier` snippet writes the doctype declaration, the
+  four frame markers, the toml meta block, an ahu section and the content-hash line `lares meme
+  normalize` mints — reachable by prefix, from the Insert Snippet command, or on `ctrl+k ctrl+m`
+  (`cmd+k cmd+m` on a Mac). Fourteen more cover the sigil family: the ahu block, `kanawai`, both
+  `lares` firings, both `set` firings, the `oracle`, and the `stance`, `mu`, `aperture` and ward
+  handoffs. Every sigil value quotes, so tabbing through one cannot bind a phantom parameter.
+- **A carrier head selects the language.** A file opening on `<<!DOCTYPE "…memetic-wikitext…">>` or
+  on a `<<^` frame marker now reads as Memetic-Wikitext whatever it is called — the declaration
+  decides, as the rest of the tooling already held. It takes nothing from a named `.tid` or `.tw`:
+  VS Code reads an extension before it reads a first line.
+- **Enter continues a list, an ordered list or a quote block.** Bullets and ordered items to depth
+  three. Depth four and mixed markers continue nothing, which the configuration says in place of
+  guessing.
+
 ### Changed
 
 - The description a reader meets first now reads **Syntax highlighting for TiddlyWiki5 wikitext and
