@@ -358,6 +358,16 @@
                     "langId": "memetic-wikitext",
                     "name": "Memetic Carrier Frame"
                 }
+            },
+            {
+                "key": "ctrl+k ctrl+a",
+                "mac": "cmd+k cmd+a",
+                "command": "editor.action.insertSnippet",
+                "when": "editorTextFocus && !editorReadonly && editorLangId == memetic-wikitext",
+                "args": {
+                    "langId": "memetic-wikitext",
+                    "name": "Memetic Ahu Section"
+                }
             }
         ],
         "configurationDefaults": {

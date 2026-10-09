@@ -68,9 +68,10 @@ const bleeding = [];
  * like. The tid grammar hands a declared body to the guest language through a region that never
  * closes, exactly as TiddlyWiki hands it to that parser — which means the sentinel appended below
  * reads in the GUEST language too, and grading it against a control that declares nothing reports
- * every such specimen as bleeding. Measured on the first tiddler to declare the dialect: its
- * sentinel carried `text.html.tiddlywiki5.memetic-wikitext` where the control carried the wikitext
- * body scope, and the file read as 1 of 69 bleeding while nothing had leaked.
+ * every such specimen as bleeding. Measured on a tiddler declaring a guest type: its sentinel
+ * carried the guest's body scope where the control carried wikitext's, and the file read as
+ * bleeding while nothing had leaked. `corpus/tid/fields.tid` declares `text/vnd.tiddlywiki`, which
+ * the grouping reads today.
  *
  * @param {string} text  a specimen's whole text
  * @returns {string|null} the declared type, or nothing when the header names none
