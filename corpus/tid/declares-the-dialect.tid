@@ -1,0 +1,27 @@
+caption: A tiddler whose header declares the dialect
+type: text/memetic-wikitext+tiddlywiki
+title: Declares The Dialect
+tags: [[Tag One]] TagTwo
+
+A TIDDLER ANNOUNCES ITS DIALECT IN A FIELD, never in a filename. A wiki holds tiddlers rather than
+files, so `type` carries the declaration that a `.mem` extension carries on disk — and the header
+above lists its fields out of order on purpose, with `type` standing between a caption and a title,
+because TiddlyWiki fixes no order and a rule reading this cannot assume one.
+
+Everything from the blank line down reads as memetic-wikitext, so the dialect's own constructs
+colour here exactly as they colour in a `.mem` file.
+
+<<~ ahu #/the-body>>
+
+! A heading inside the section
+
+A sigil fires with a quoted value: <<~ stance "poet humorist">>, and a bearing carries its arrow in
+<<~ lares aim from="lar://mara:operator@crossroads/operator.reads.the-declaration" -> to="lar://compita:agent@crossroads/clerk.answers.the-field">>
+
+A local address stands at lar:///ha.ka.ba/lares/api/pono/meme and a digest at
+ni:///sha-256;rwf5nn16-757tENuFe-t4Qz62-lTPMEAr4gOrxPb0Gs — two of them, so the pair of `//` runs
+closes rather than opening an italic span that never ends.
+
+<<~/ahu>>
+
+<<^ code="&#x0004;" -> to="?">>

@@ -21,7 +21,7 @@
         {
             "comment": "Tokenize mandatory tiddler metadata.",
             "begin": "^",
-            "end": "^$|(?=^[ \\t]*type[ \\t]*:[ \\t]*(?:application/json|application/javascript|text/javascript|text/css|text/html|image/svg\\+xml|text/xml|application/xml|text/x-markdown|text/markdown|application/x-tiddler-dictionary|text/plain)[ \\t]*$)",
+            "end": "^$|(?=^[ \\t]*type[ \\t]*:[ \\t]*(?:application/json|application/javascript|text/javascript|text/css|text/html|image/svg\\+xml|text/xml|application/xml|text/x-markdown|text/markdown|text/memetic-wikitext\\+tiddlywiki|application/x-tiddler-dictionary|text/plain)[ \\t]*$)",
             "contentName": "meta.text.tiddler.fields.tiddlywiki5.tid-file",
             "patterns": [
                 {
@@ -186,6 +186,38 @@
                             "patterns": [
                                 {
                                     "include": "text.xml"
+                                }
+                            ]
+                        },
+                        {
+                            "include": "source.tiddlywiki5.fields"
+                        }
+                    ]
+                },
+                {
+                    "comment": "A tiddler declaring text/memetic-wikitext+tiddlywiki. The line reads as the field it is, and everything after the header reads as the dialect.\n\nA TIDDLER'S OWN DECLARATION, read where it actually stands. `firstLine` selects a language off line one, where `title` sits, so it cannot reach a `type` field — and a real wiki holds tiddlers rather than files, which makes this field the only place a tiddler announces its dialect. Without it a tiddler DECLARING the dialect read its body as plain wikitext: every sigil coloured as a bare procedure call, every carrier head as a call's name, and no reading said so.",
+                    "begin": "^([ \\t]*type[ \\t]*)(:)([ \\t]*(?:text/memetic-wikitext\\+tiddlywiki)[ \\t]*)$",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.field.tiddlywiki5.tid-file"
+                        },
+                        "2": {
+                            "name": "punctuation.separator.key-value.field.tiddlywiki5.tid-file"
+                        },
+                        "3": {
+                            "name": "string.unquoted.field.value.tiddlywiki5.tid-file"
+                        }
+                    },
+                    "end": "(?!)",
+                    "patterns": [
+                        {
+                            "comment": "The body, in the language the type names.",
+                            "begin": "(?<=^$)",
+                            "end": "(?!)",
+                            "contentName": "meta.embedded.block.memetic-wikitext text.html.tiddlywiki5.memetic-wikitext",
+                            "patterns": [
+                                {
+                                    "include": "text.html.tiddlywiki5.memetic-wikitext"
                                 }
                             ]
                         },

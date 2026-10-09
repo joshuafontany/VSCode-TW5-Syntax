@@ -50,7 +50,7 @@ reach. The gain came entirely from markdown's popularity, not from any claim abo
 
 ### 3.0.0 — 110 names moved, 39 of them for one reason
 
-The `3.0.0` release moved **110** of 421 declared names and added **245**, the base wikitext
+The `3.0.x` line moved **110** of 421 declared names and added **247**, the base wikitext
 grammar's own count — the memetic dialect owes no migration record (see `MIGRATION.md`). Thirty-nine moved for a
 single shape: a qualifier standing in front of the family root —
 `bold.punctuation.definition.markup.begin`, `caption.markup.other.table`, `mvv.attribute.html`.

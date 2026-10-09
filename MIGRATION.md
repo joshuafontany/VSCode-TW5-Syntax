@@ -10,8 +10,8 @@ published version. The memetic dialect (`syntaxes/memetic-wikitext.json`) has no
 yet, so its own vocabulary owes no migration record and stands excluded from every count and row
 below; `corpus/must-fail.txt` rules the same way for a grammar with nothing yet to keep faith with.
 
-This repository declares **421** scope names at `v2.2.1` and **556** now. Between them, **110**
-names stand gone and **245** stand new. Every gone name appears below, with
+This repository declares **421** scope names at `v2.2.1` and **558** now. Between them, **110**
+names stand gone and **247** stand new. Every gone name appears below, with
 what it stands as now or why it retired. `tools/invariants/scope-migration.test.js` derives these
 four numbers from the same reading (memetic excluded) the row-by-row check answers to, so a
 grammar edit that moves them fails the gate rather than leaving this paragraph to go stale beside
