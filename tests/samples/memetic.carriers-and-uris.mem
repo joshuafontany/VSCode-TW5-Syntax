@@ -54,7 +54,13 @@ bearing arrow -> reads as a bearing wherever the base grammar names nothing.
 
 !! A lar URI's own query takes a quoted value too
 
-and lar:///ha.ka.ba/lares/api/pono?form="quoted" carries a named value the TW5 way.
+and lar:///ha.ka.ba/lares/api/pono?form='quoted' carries a named value the way RFC 3986 admits:
+a single quote stands among the sub-delims, so it needs no encoding.
+
+A DOUBLE-QUOTED VALUE STANDS OUTSIDE THAT LAW and the grammar reads it anyway —
+lar:///ha.ka.ba/lares/api/pono?form="quoted" spells a character `pchar` never admits, which a
+strict reader would want as `?form=%22quoted%22`. The dialect accepts what it meets; the pair
+stands here so the reading of both forms gets measured rather than assumed.
 
 A BLOCK CHECK NAMES INFORMATION BY ITS DIGEST, and the base grammar reads a link inside it. Measured,
 21 of 22 hashes this house has written carry a CamelCase run the autolink rule takes.

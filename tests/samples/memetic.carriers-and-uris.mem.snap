@@ -343,7 +343,7 @@
 #^^ text.html.tiddlywiki5.memetic-wikitext markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 punctuation.definition.heading.tiddlywiki5 markup.heading.tiddlywiki5
 #  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.heading.2.tiddlywiki5 meta.heading.heading-2.tiddlywiki5 entity.name.section.tiddlywiki5 markup.heading.section.tiddlywiki5
 >
->and lar:///ha.ka.ba/lares/api/pono?form="quoted" carries a named value the TW5 way.
+>and lar:///ha.ka.ba/lares/api/pono?form='quoted' carries a named value the way RFC 3986 admits:
 #^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
 #    ^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext support.constant.scheme.lar.memetic-wikitext
 #       ^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext punctuation.definition.scheme.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext support.constant.scheme.lar.memetic-wikitext
@@ -365,7 +365,46 @@
 #                                        ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext punctuation.definition.value.lar.memetic-wikitext markup.other.value.lar.memetic-wikitext
 #                                         ^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext markup.other.value.lar.memetic-wikitext
 #                                               ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext punctuation.definition.value.lar.memetic-wikitext markup.other.value.lar.memetic-wikitext
-#                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+#                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+>a single quote stands among the sub-delims, so it needs no encoding.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+>
+>A DOUBLE-QUOTED VALUE STANDS OUTSIDE THAT LAW and the grammar reads it anyway —
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+>lar:///ha.ka.ba/lares/api/pono?form="quoted" spells a character `pchar` never admits, which a
+#^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext support.constant.scheme.lar.memetic-wikitext
+#   ^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext punctuation.definition.scheme.lar.memetic-wikitext keyword.other.scheme.lar.memetic-wikitext support.type.scheme.lar.memetic-wikitext support.constant.scheme.lar.memetic-wikitext
+#      ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext punctuation.separator.root.intro.lar.memetic-wikitext entity.name.tag.heading.lar.memetic-wikitext
+#       ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext entity.name.tag.heading.lar.memetic-wikitext
+#         ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext punctuation.separator.root.lar.memetic-wikitext entity.name.tag.angle.lar.memetic-wikitext
+#          ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext entity.name.tag.angle.lar.memetic-wikitext
+#            ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext punctuation.separator.root.lar.memetic-wikitext entity.name.tag.dynamic.lar.memetic-wikitext
+#             ^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext entity.name.tag.dynamic.lar.memetic-wikitext
+#               ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext
+#                ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext
+#                     ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext
+#                      ^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext
+#                         ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext punctuation.separator.path.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext
+#                          ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext variable.other.constant.path.lar.memetic-wikitext entity.name.other.path.lar.memetic-wikitext
+#                              ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext punctuation.separator.query.memetic-wikitext entity.other.attribute-name.memetic-wikitext
+#                               ^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext entity.other.attribute-name.memetic-wikitext
+#                                   ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext keyword.operator.assignment.memetic-wikitext markup.other.value.lar.memetic-wikitext
+#                                    ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext punctuation.definition.value.lar.memetic-wikitext markup.other.value.lar.memetic-wikitext
+#                                     ^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext markup.other.value.lar.memetic-wikitext
+#                                           ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.uri.lar.memetic-wikitext punctuation.definition.value.lar.memetic-wikitext markup.other.value.lar.memetic-wikitext
+#                                            ^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+#                                                                ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
+#                                                                 ^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5
+#                                                                      ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
+#                                                                       ^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+>strict reader would want as `?form=%22quoted%22`. The dialect accepts what it meets; the pair
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+#                            ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5 punctuation.definition.raw.markup.single.begin.tiddlywiki5
+#                             ^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5
+#                                               ^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5 punctuation.definition.raw.markup.single.end.tiddlywiki5
+#                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
+>stands here so the reading of both forms gets measured rather than assumed.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
 >
 >A BLOCK CHECK NAMES INFORMATION BY ITS DIGEST, and the base grammar reads a link inside it. Measured,
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5

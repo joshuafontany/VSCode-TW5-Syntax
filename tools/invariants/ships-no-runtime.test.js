@@ -20,7 +20,15 @@ const ROOT = path.resolve(__dirname, '..', '..');
 const pkg = require(path.join(ROOT, 'package.json'));
 
 // Surfaces VS Code reads without running anything. A key outside this set contributes behaviour.
-const DECLARATIVE = new Set(['languages', 'grammars', 'snippets', 'configurationDefaults', 'configuration', 'themes', 'iconThemes', 'semanticTokenScopes']);
+//
+// `keybindings` STANDS HERE BY RULING, and the ruling wants stating because the key looks
+// behavioural and reads as declarative. A keybinding binds a chord to a command that already
+// exists; binding one to `editor.action.insertSnippet` — a command VS Code itself carries — asks
+// the editor to insert a snippet this extension already contributes, and runs no code of ours. No
+// `main`, no activation, nothing packed that executes. A keybinding naming a command THIS extension
+// contributes would need both, and `contributes.commands` stands outside this set, so that door
+// stays shut by the reading above rather than by this comment.
+const DECLARATIVE = new Set(['languages', 'grammars', 'snippets', 'configurationDefaults', 'configuration', 'themes', 'iconThemes', 'semanticTokenScopes', 'keybindings']);
 
 /**
  * What `vsce` says it would pack, or `null` when no `vsce` stands here.
@@ -119,9 +127,9 @@ test('nothing executable packs into the extension', { timeout: 120000 }, (t) => 
 //
 // Every reading above asks whether what the manifest PROMISES reaches the package. None asks the
 // other direction, and the gate that builds a real .vsix — `tools/package-contents.js` — asked only
-// the same way. So the package's size was never anybody's measurement: a directory the ignore list
+// the same way. So nothing measured the package's size: a directory the ignore list
 // does not name ships whatever it holds, and the only thing standing between a user and this
-// repository's 128 MB of agent worktree was that nobody had run `vsce` on a machine that had one.
+// repository's 128 MB of agent worktree: nobody had yet run `vsce` on a machine carrying one.
 //
 // So the surface derives on BOTH sides. What the manifest registers packs, and what packs is either
 // something the manifest registers or one of the few files named here, each because a user or a
@@ -180,4 +188,44 @@ test('a file vsce renames still reads as the file it ships', () => {
     'a readme somewhere else canonicalised onto the shipped one, so a whole directory could hide behind it');
   assert.deepStrictEqual(strayFiles(['docs/readme.md'], pkg), ['docs/readme.md'],
     'a readme in a subdirectory passed as the shipped readme');
+});
+
+// ── A CHORD REACHES A SNIPPET BY NAME ─────────────────────────────────────────────────────────
+//
+// `keybindings` stands in the declarative set because a chord onto a command VS Code already
+// carries runs no code of ours (see the ruling above). What it does carry is a NAME: the snippet it
+// inserts, looked up at keypress time. Rename the snippet and the chord keeps its key, keeps its
+// `when` clause, and does nothing — silently, in the one surface a reader reaches for with their
+// hands rather than their eyes.
+//
+// So both ends get welded: the command must come from outside this extension, and the snippet must
+// stand in a set the manifest registers for the language the chord claims.
+test('every keybinding names an outside command and a snippet that stands', () => {
+  const bindings = pkg.contributes.keybindings || [];
+  if (!bindings.length) return;
+
+  // This extension contributes no commands at all — `commands` sits outside DECLARATIVE — so every
+  // command a chord names necessarily comes from the editor. Asserted rather than assumed, because
+  // the day `commands` gets ruled in, a chord onto one would need an activation path.
+  assert.strictEqual(pkg.contributes.commands, undefined,
+    'the extension contributes commands, so a chord onto one would need a runtime to answer it');
+
+  const languages = new Set((pkg.contributes.languages || []).map((l) => l.id));
+  for (const binding of bindings) {
+    assert.ok(binding.key, `a keybinding carries no key: ${JSON.stringify(binding)}`);
+    assert.ok(binding.command, `a keybinding carries no command: ${binding.key}`);
+    assert.ok(binding.when && /editorLangId ==/.test(binding.when),
+      `${binding.key} binds with no language in its when clause — it would fire in every editor`);
+
+    const args = binding.args || {};
+    if (!args.name) continue;
+    assert.ok(languages.has(args.langId),
+      `${binding.key} inserts into ${args.langId}, which this extension registers as no language`);
+
+    const held = (pkg.contributes.snippets || [])
+      .filter((s) => s.language === args.langId)
+      .flatMap((s) => Object.keys(JSON.parse(fs.readFileSync(path.join(ROOT, s.path.replace(/^\.\//, '')), 'utf8'))));
+    assert.ok(held.includes(args.name),
+      `${binding.key} inserts "${args.name}", which no snippet set registered for ${args.langId} holds`);
+  }
 });

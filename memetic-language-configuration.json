@@ -45,6 +45,28 @@
     ],
     // A sigil name, a lar: URI and a #fragment each select as one word, so a double
     // click takes the whole address.
+    // PRESSING ENTER INSIDE A BLOCK CONTINUES THE BLOCK.
+    //
+    // `appendText` takes a FIXED string and no backreference, so a rule cannot echo the marker its
+    // own `beforeText` matched — each depth wants its own rule. Measured over this corpus: `*` opens
+    // 357 lines, `#` 22, `>` 7, `**` 2 and `***` 1, so depth three covers every list this repository
+    // writes, and the ceiling stands here rather than in a reader's surprise.
+    //
+    // THE CEILING, NAMED: depth four and deeper continues nothing, and a MIXED marker (`*#`) reads as
+    // no rule here. VS Code cannot spell either without a runtime to compute the text, and a wrong
+    // `appendText` would continue an ordered list with a bullet — worse than continuing nothing.
+    //
+    // A lookahead holds each rule to its own depth: `^\\*(?!\\*)` reads a single bullet and leaves `**`
+    // to the rule beneath it, so one line never fires two rules.
+    "onEnterRules": [
+        { "beforeText": "^\\*(?!\\*)\\s+\\S", "action": { "indent": "none", "appendText": "* " } },
+        { "beforeText": "^\\*\\*(?!\\*)\\s+\\S", "action": { "indent": "none", "appendText": "** " } },
+        { "beforeText": "^\\*\\*\\*(?!\\*)\\s+\\S", "action": { "indent": "none", "appendText": "*** " } },
+        { "beforeText": "^#(?!#)\\s+\\S", "action": { "indent": "none", "appendText": "# " } },
+        { "beforeText": "^##(?!#)\\s+\\S", "action": { "indent": "none", "appendText": "## " } },
+        { "beforeText": "^###(?!#)\\s+\\S", "action": { "indent": "none", "appendText": "### " } },
+        { "beforeText": "^>(?!>)\\s*\\S", "action": { "indent": "none", "appendText": "> " } }
+    ],
     "wordPattern": "(\\$:\\/[^\\s\\|\\[\\]\\{\\}<>\"'`]+)|(lar:[^\\s>]+)|(#[A-Za-z_][A-Za-z0-9_-]*)|(-?\\d*\\.\\d\\w*)|(\\\\?[A-Za-z_$][A-Za-z0-9_$-]*)",
     // A sigil block closes on a name, and a folding marker matches text rather than
     // names. Structural folding waits for a language server that can pair a close

@@ -35,7 +35,8 @@ would. The dialect declares no scope of its own for the thing it exists to say.
 ! A fragment and a query, in prose
 
 The anchor at lar:///ha.ka.ba/lares/docs/reading#/the-eye.lands names a place within a place,
-and lar:///ha.ka.ba/lares/api/pono?form="quoted" carries a named value the TW5 way.
+and lar:///ha.ka.ba/lares/api/pono?form='quoted' carries a named value RFC 3986 admits, while
+lar:///ha.ka.ba/lares/api/pono?form="quoted" carries one it refuses and this grammar reads.
 
 ! Prose carrying no sigil, for the colour a reader's own words take
 

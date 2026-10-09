@@ -122,7 +122,7 @@
             "gate": "engine-behaviour",
             "held": true,
             "state": "held",
-            "said": "engine-witness  884 pattern(s) read against 1102 corpus line(s), 1 that match differently, 0 unruled"
+            "said": "engine-witness  884 pattern(s) read against 1103 corpus line(s), 1 that match differently, 0 unruled"
         },
         {
             "gate": "engine-witness",
@@ -152,7 +152,7 @@
             "gate": "light-cone",
             "held": true,
             "state": "held",
-            "said": "light-cone  212 divergence(s) across 18 class(es), 10 quote(s) closed to ask; forward arm moved 34, backward arm moved 27, typo arm moved 36; 10 proven or unruled, 8 ruled without proof, 0 owed but reaching out"
+            "said": "light-cone  206 divergence(s) across 18 class(es), 10 quote(s) closed to ask; forward arm moved 34, backward arm moved 27, typo arm moved 36; 10 proven or unruled, 8 ruled without proof, 0 owed but reaching out"
         },
         {
             "gate": "must-fail",
@@ -266,7 +266,7 @@
             "gate": "still",
             "held": true,
             "state": "held",
-            "said": "still  25 of 4485 carrier(s) at seed 1, 0 quote(s) closed to ask, 30 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 53.2% of corpus tokens ruled"
+            "said": "still  25 of 4485 carrier(s) at seed 1, 0 quote(s) closed to ask, 30 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 53.1% of corpus tokens ruled"
         },
         {
             "gate": "still-reach",
@@ -278,7 +278,7 @@
             "gate": "swallow-witness",
             "held": true,
             "state": "held",
-            "said": "swallow-witness  1703 cut(s) across 52 corpus file(s), 10 quote(s) closed to ask, 13 divergence(s), 0 recorded, 0 unruled, 1 answering the host sweep, 0 ruling(s) explaining nothing"
+            "said": "swallow-witness  1704 cut(s) across 52 corpus file(s), 10 quote(s) closed to ask, 13 divergence(s), 0 recorded, 0 unruled, 1 answering the host sweep, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "theme-collision",

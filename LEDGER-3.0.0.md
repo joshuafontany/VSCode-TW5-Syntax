@@ -775,6 +775,29 @@ back by upgrading, which is the definition this number answers to.
   grammar directly through `vscode-textmate`.
 
 ### Naming
+- A TIDDLER'S `type` FIELD CANNOT REACH THE DIALECT, and the reason sits in where the dialect's
+  colouring lives. Built and REMOVED the same day. `syntaxes/tw5-tid-file.json`'s `typed-body` rule
+  switches a body's language on its `type` line — json, javascript, css, html, xml and markdown each
+  earn a reading that way — and adding `text/memetic-wikitext+tiddlywiki` beside them delivered a
+  wrapper scope and NOTHING ELSE: the sigil inside still read `variable.name.call.tiddlywiki5` and
+  `entity.name.function.procedure.tiddlywiki5`, exactly as the base grammar paints it, which an
+  operator saw in the editor as one yellow `~` and green internals.
+  MEASURED, three ways. `syntaxes/memetic-wikitext.json` carries ONE top-level pattern — `include
+  text.html.tiddlywiki5` — and four `injections`, and the whole dialect reading lives in those
+  injections. A grammar's own injections fire only where that grammar stands as the document's ROOT:
+  including it from another grammar yields its patterns, which re-include the base and nothing more.
+  Renaming the embedding scope to `meta.embedded.block.memetic`, which two of those selectors
+  explicitly re-admit, changed nothing. Adding `injectTo: ["source.tiddlywiki5.tid-file"]` to the
+  dialect's own contribution changed nothing either — as an injection grammar its PATTERNS apply,
+  never its injections.
+  THE ROUTE THAT WOULD WORK, un-built: a fifth grammar whose own `patterns` carry the sigil rules
+  and whose `injectTo` names the tid scopes, keyed by an injection selector on the embedded region
+  so the DECLARATION still gates it. `tw5-substitution-injection.json` and
+  `tw5-substituted-attribute-injection.json` already stand in exactly that shape, with the same
+  `injectTo` list. Nobody has asked for it.
+  AND THE GATE THAT PASSED ANYWAY: it asserted `scopes.some(s => s.endsWith('.memetic-wikitext'))`,
+  which the embedding's own `contentName` satisfied — six readings green over a feature that
+  coloured nothing. Assert the scope that DOES THE WORK, never a family suffix.
 - AN UNDERLINE IS ONE STROKE; A TEXTURE IS MANY JOINTS — THE SAME SEPARATOR READS OPPOSITE WAYS IN
   THE TWO GRAMMARS. Watched in the editor rather than measured first: the base grammar's underlined
   autolinks read as ONE continuous stroke, and a punctuation-coloured separator inside that stroke

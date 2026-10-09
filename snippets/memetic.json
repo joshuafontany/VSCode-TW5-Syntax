@@ -1,0 +1,115 @@
+{
+    "Memetic Carrier Frame": {
+        "prefix": [
+            "carrier",
+            "frame"
+        ],
+        "description": "A whole memetic-wikitext carrier: the doctype declaration, the four frame markers, the toml meta block, one ahu section and the content-hash line lares meme normalize mints",
+        "body": [
+            "<<!DOCTYPE \"memetic-wikitext+tiddlywiki\" \"lar:///ha.ka.ba/lares/api/pono/memetic-wikitext\">>",
+            "",
+            "<<^ code=\"&#x0001;\" namespace=\"${1:ॐ ँ}\" from=\"?\" -> to=\"lar:///${2:ha.ka.ba}/${3:path}\">>",
+            "<<^ code=\"&#x0002;\">>",
+            "",
+            "```toml meta",
+            "title     = \"lar:///${2:ha.ka.ba}/${3:path}\"",
+            "type      = \"text/memetic-wikitext+tiddlywiki\"",
+            "uri-path  = \"${2:ha.ka.ba}/${3:path}\"",
+            "```",
+            "",
+            "<<~ ahu #/${4:entry}>>",
+            "",
+            "! ${5:Entry}",
+            "",
+            "$0",
+            "",
+            "<<~/ahu>>",
+            "",
+            "<<^ code=\"&#x0003;\">>ni:///sha-256;${6:minted-by-lares-meme-normalize}",
+            "",
+            "<<^ code=\"&#x0004;\" -> to=\"?\">>"
+        ]
+    },
+    "Memetic Doctype Declaration": {
+        "prefix": "doctype",
+        "description": "The declaration line that names a file's dialect and its lar: address, which the finder reads in place of the path",
+        "body": "<<!DOCTYPE \"memetic-wikitext+tiddlywiki\" \"lar:///${1:ha.ka.ba/lares/api/pono/memetic-wikitext}\">>"
+    },
+    "Memetic Carrier Marker": {
+        "prefix": "code",
+        "description": "One carrier frame marker, carrying the control code that names which of the four frame positions it holds",
+        "body": "<<^ code=\"&#x000${1|1,2,3,4|};\"${2: -> to=\"?\"}>>"
+    },
+    "Memetic Meta Block": {
+        "prefix": "meta",
+        "description": "The toml meta block a carrier head carries: its title, its type and the uri-path the address derives from",
+        "body": [
+            "```toml meta",
+            "title     = \"lar:///${1:ha.ka.ba}/${2:path}\"",
+            "type      = \"text/memetic-wikitext+tiddlywiki\"",
+            "uri-path  = \"${1:ha.ka.ba}/${2:path}\"",
+            "```"
+        ]
+    },
+    "Memetic Ahu Section": {
+        "prefix": "ahu",
+        "description": "An ahu section, opened on its fragment and closed on the matching sigil so the body stands inside a named block",
+        "body": [
+            "<<~ ahu #/${1:section}>>",
+            "",
+            "$0",
+            "",
+            "<<~/ahu>>"
+        ]
+    },
+    "Memetic Kanawai": {
+        "prefix": "kanawai",
+        "description": "The kanawai firing, naming the reference a carrier holds its own terms against",
+        "body": "<<~ kanawai \"lar:///${1:ha.ka.ba/lares/ref/RFC-2119}\">>"
+    },
+    "Memetic Lares Aim": {
+        "prefix": "aim",
+        "description": "The lares aim firing that opens a turn, reading operator intent on the left and delegating to the bearing the node adopts",
+        "body": "<<~ lares aim from=\"lar://${1:alias}:operator@${2:crossroads}/${3:operator.intent.lands}\" -> to=\"lar://${4:alias}:agent@${2:crossroads}/${5:council.options.cuts}\">>"
+    },
+    "Memetic Lares Yield": {
+        "prefix": "yield",
+        "description": "The lares yield firing that closes a turn on one forward vector and hands initiative back",
+        "body": "<<~ lares yield from=\"lar://${1:alias}:agent@${2:crossroads}/${3:close.named.the-reading}\" -> to=\"?\">>"
+    },
+    "Memetic Set At Aim": {
+        "prefix": "setaim",
+        "description": "The set firing that seeds the panel at a turn's open, carrying the ward last as the frame orders it",
+        "body": "<<~ set hud=\"aim\" mode=\"${1|draft,build,seal,riff,sketch,jam,relate,talk-story,hold|}\" mu=\"${2|*!,*?,_!,_?,_0,*0,?0,!0|}\" stance=\"${3:philosopher}\" aperture=\"${4:10}/${5|pulse,beat,measure,arc,theme|}\" ooda-ha=\"${6:5}/${7|declare-aftermath,declare-glyphs,declare-attention,declare-intent,declare-consequence|}\" drift-ward=\"${8:the pull this exchange carries}\">>"
+    },
+    "Memetic Set At Yield": {
+        "prefix": "setyield",
+        "description": "The set firing that reports the panel at a turn's close, carrying the ward first and sliding each gauge from target to actual",
+        "body": "<<~ set hud=\"yield\" drift-ward=\"${1:the joint that breaks first on outside contact} · ↻ L-Prime\" aperture=\"${2:10}/${3:measure} -> ${4:12}/${5:measure}\" ooda-ha=\"closed ${6:1}↺\">>"
+    },
+    "Memetic Oracle": {
+        "prefix": "oracle",
+        "description": "The oracle firing, carrying the felt-spend, the scatter, the die face and a blind tail whose length matches the face",
+        "body": "<<~ oracle \"↯${1:12} ✲ ${2|⚀,⚁,⚂,⚃,⚄,⚅|}(${3:3}) ⁂:${4:ᚠ⊗㐂}\">>"
+    },
+    "Memetic Stance": {
+        "prefix": "stance",
+        "description": "The stance firing, naming the standpoints the following content reads within",
+        "body": "<<~ stance \"${1|philosopher,poet,satirist,humorist,private|}\">>"
+    },
+    "Memetic Mu Tool Carry": {
+        "prefix": "mu",
+        "description": "The mu firing, naming which of the five tools of Chapel Perilous the following span carries",
+        "body": "<<~ mu \"${1|*!,*?,_!,_?,*_,?!,_0,*0,?0,!0|}\">>"
+    },
+    "Memetic Aperture": {
+        "prefix": "aperture",
+        "description": "The aperture handoff, naming the attention range the following span reads at",
+        "body": "<<~ aperture \"${1:9}/${2|pulse,beat,measure,arc,theme|}\">>"
+    },
+    "Memetic Drift Ward": {
+        "prefix": "ward",
+        "description": "The drift-ward handoff, naming how far the content stands from anything outside its causal island",
+        "body": "<<~ drift-ward \"${1:the pull}\">>"
+    }
+}

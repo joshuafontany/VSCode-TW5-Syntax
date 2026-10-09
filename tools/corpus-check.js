@@ -61,21 +61,51 @@ const corpus = files('corpus');
 const reached = new Set();
 const bleeding = [];
 
-// One snapshot run per scope, over copies carrying an appended sentinel.
+/**
+ * The type a tiddler's own header declares, or nothing.
+ *
+ * A `type` FIELD CHANGES THE LANGUAGE OF EVERYTHING BELOW IT, so it changes what a clean line looks
+ * like. The tid grammar hands a declared body to the guest language through a region that never
+ * closes, exactly as TiddlyWiki hands it to that parser — which means the sentinel appended below
+ * reads in the GUEST language too, and grading it against a control that declares nothing reports
+ * every such specimen as bleeding. Measured on a tiddler declaring a guest type: its sentinel
+ * carried the guest's body scope where the control carried wikitext's, and the file read as
+ * bleeding while nothing had leaked. `corpus/tid/fields.tid` declares `text/vnd.tiddlywiki`, which
+ * the grouping reads today.
+ *
+ * @param {string} text  a specimen's whole text
+ * @returns {string|null} the declared type, or nothing when the header names none
+ */
+function declaredType(text) {
+  const header = text.split(/\r?\n\r?\n/, 1)[0];
+  const m = /^[ \t]*type[ \t]*:[ \t]*(\S+)[ \t]*$/m.exec(header);
+  return m ? m[1] : null;
+}
+
+// One snapshot run per scope AND DECLARED TYPE, over copies carrying an appended sentinel. The
+// type joins the key because it decides the baseline, not merely the colouring.
 const byScope = new Map();
 for (const f of corpus) {
+  const text = fs.readFileSync(f, 'utf8');
   const s = scopeFor(f);
+  const type = declaredType(text);
+  const key = `${s}\u0000${type ?? ''}`;
   const copy = path.join(scratch, path.basename(path.dirname(f)) + '-' + path.basename(f));
-  fs.writeFileSync(copy, fs.readFileSync(f, 'utf8').replace(/\s*$/, '') + '\n\n' + SENTINEL + '\n');
-  if (!byScope.has(s)) byScope.set(s, []);
-  byScope.get(s).push({ src: f, copy });
+  fs.writeFileSync(copy, text.replace(/\s*$/, '') + '\n\n' + SENTINEL + '\n');
+  if (!byScope.has(key)) byScope.set(key, { scope: s, type, entries: [] });
+  byScope.get(key).entries.push({ src: f, copy });
 }
-for (const [scope, entries] of byScope) {
-  // A control carrying the sentinel and nothing else. Whatever scopes it takes mark the
-  // baseline for this file type, so nothing here guesses at what a clean line looks like.
-  const control = path.join(scratch, 'control-' + scope.replace(/\./g, '_') + path.extname(entries[0].src));
-  fs.writeFileSync(control, (path.extname(control) === '.tid' || path.extname(control) === '.meta'
-    ? 'title: Control\n\n' : path.extname(control) === '.multids' ? 'title: $:/control/\n\n' : '') + SENTINEL + '\n');
+for (const [key, { scope, type, entries }] of byScope) {
+  // A control carrying the sentinel and nothing else, under the same declaration. Whatever scopes
+  // it takes mark the baseline for this file type, so nothing here guesses at what a clean line
+  // looks like.
+  const extension = path.extname(entries[0].src);
+  const control = path.join(scratch,
+    'control-' + key.replace(/\u0000/g, '--').replace(/[^A-Za-z0-9]+/g, '_') + extension);
+  const typeLine = type ? `type: ${type}\n` : '';
+  fs.writeFileSync(control, (extension === '.tid' || extension === '.meta'
+    ? `title: Control\n${typeLine}\n`
+    : extension === '.multids' ? `title: $:/control/\n${typeLine}\n` : '') + SENTINEL + '\n');
   // The shared runner batches the file list, since cmd.exe refuses a long command line and a
   // growing corpus reaches that ceiling with no warning. The control rides every batch, because a
   // baseline read once per batch is the same baseline.

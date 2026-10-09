@@ -1,4 +1,4 @@
-// The batcher divides a file list, and every file it was handed lands in exactly one batch.
+// The batcher divides a file list, and every file handed to it lands in exactly one batch.
 //
 // A BATCHER THAT DROPS A FILE READS AS A CLEAN RUN. The snapshot tool says nothing about files it
 // never met, so a file falling out of the division leaves every caller measuring a smaller

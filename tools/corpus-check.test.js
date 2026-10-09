@@ -71,6 +71,23 @@ test('a file whose construct bleeds onto the sentence after it fails the gate', 
   assert.match(out, /bleed/, out.slice(-400));
 });
 
+// AND A BLEED INSIDE A DECLARED BODY STILL READS AS ONE. The control a specimen gets graded against
+// now carries the specimen's own `type` declaration, because a declared type changes the language of
+// everything below it and so changes what a clean line looks like. A baseline that follows the
+// declaration could just as easily follow a real leak into silence, so the same device gets planted
+// inside a declared body — `fields.tid` declares `text/vnd.tiddlywiki`.
+test('a construct bleeding inside a declared body fails the gate', live, () => {
+  const bleed = (sandbox) => {
+    const file = path.join(sandbox, 'corpus', 'tid', 'fields.tid');
+    fs.appendFileSync(file, '\n@@\n');
+  };
+  const { code, out } = runInSandbox(bleed, ['tools/corpus-check.js']);
+  assert.notStrictEqual(code, 0,
+    'a declared body bled onto the sentence after it and the gate held — the type-keyed control '
+    + 'reads a leak as the guest language');
+  assert.match(out, /bleed/, out.slice(-400));
+});
+
 // The fourth reading answers to the HOST rather than to this repository: every rule TiddlyWiki
 // stands must fire somewhere in the corpus. A corpus that stops exercising a rule leaves the
 // three readings above green — nothing ever asks for the scopes it would have reached.

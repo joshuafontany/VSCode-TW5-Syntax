@@ -4,6 +4,27 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 3.0.1 — unreleased
+
+### Added
+
+- **A carrier frame in one insert.** `carrier` writes the doctype, the four frame markers, the meta
+  block, an ahu section and the hash line; fourteen more cover the sigil family. Every value quotes,
+  so tabbing through one binds no phantom parameter. `ctrl+k ctrl+m` reaches the frame and
+  `ctrl+k ctrl+a` an ahu section at the cursor (`cmd` on a Mac).
+- **A carrier head selects the language.** An untitled buffer or a file whose extension no language
+  claims reads as the dialect when line one opens on `<<!DOCTYPE "…memetic-wikitext…">>` or a `<<^`
+  marker. An extension that IS claimed still wins — including `.txt`, which Plain Text owns.
+- **Enter continues a list, an ordered list or a quote block**, to depth three.
+
+### Changed
+
+- The description a reader meets first now reads **Syntax highlighting for TiddlyWiki5 wikitext and
+  the Memetic-Wikitext dialect**. It read `TiddlyWiki5 v5.3.4 Textmate compatible Syntax / Grammar`,
+  pinning a version that had moved twice and never naming the dialect.
+
+111 rulings stand over the divergence the two readers carry.
+
 ## 3.0.0
 
 **3.0.0 stops guessing.** It reads your wikitext the way TiddlyWiki reads it, so a typo stays a
@@ -11,7 +32,8 @@ typo instead of flooding your file, error colours appear only where TiddlyWiki i
 the colours you see tell you what your wiki will actually render.
 
 A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 110 of the 421
-names `v2.2.1` published and adds 245 — `MIGRATION.md` names every one, with what it stands as now.
+names `v2.2.1` published, and 245 stand new since — `MIGRATION.md` names every one, with what it
+stands as now.
 
 The full record of this release — every construct, ruling and measurement behind it — lives in
 [`LEDGER-3.0.0.md`](LEDGER-3.0.0.md). What follows tells what it grants you.

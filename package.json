@@ -1,8 +1,8 @@
 {
     "name": "tw5-syntax",
     "displayName": "TiddlyWiki5 Syntax",
-    "description": "TiddlyWiki5 v5.3.4 Textmate compatible Syntax / Grammar",
-    "version": "3.0.0",
+    "description": "Syntax highlighting for TiddlyWiki5 wikitext and the Memetic-Wikitext dialect",
+    "version": "3.0.1",
     "icon": "tw5.png",
     "engines": {
         "vscode": "^1.43.0"
@@ -123,6 +123,7 @@
                 "mimetypes": [
                     "text/memetic-wikitext+tiddlywiki"
                 ],
+                "firstLine": "^<<(!DOCTYPE\\s+\"[^\"]*memetic-wikitext|\\^[\\s>])",
                 "configuration": "./memetic-language-configuration.json"
             }
         ],
@@ -341,6 +342,32 @@
             {
                 "language": "memetic-wikitext",
                 "path": "./snippets/snippets.json"
+            },
+            {
+                "language": "memetic-wikitext",
+                "path": "./snippets/memetic.json"
+            }
+        ],
+        "keybindings": [
+            {
+                "key": "ctrl+k ctrl+m",
+                "mac": "cmd+k cmd+m",
+                "command": "editor.action.insertSnippet",
+                "when": "editorTextFocus && !editorReadonly && editorLangId == memetic-wikitext",
+                "args": {
+                    "langId": "memetic-wikitext",
+                    "name": "Memetic Carrier Frame"
+                }
+            },
+            {
+                "key": "ctrl+k ctrl+a",
+                "mac": "cmd+k cmd+a",
+                "command": "editor.action.insertSnippet",
+                "when": "editorTextFocus && !editorReadonly && editorLangId == memetic-wikitext",
+                "args": {
+                    "langId": "memetic-wikitext",
+                    "name": "Memetic Ahu Section"
+                }
             }
         ],
         "configurationDefaults": {

@@ -145,8 +145,8 @@ const HOUSE_RULING = {
 };
 // THE PLUGIN STANDS IN THE PARENT WORKSPACE, and this repository publishes standalone. A clone
 // holding only the grammar reaches no plugin source, so the house population reads EMPTY rather
-// than SHORT: an idle ruling there says nothing was witnessed, not that a ruling went stale. Only a
-// checkout that can see the plugin gets to call a ruling idle.
+// than SHORT: an idle ruling there says nothing reached a witness, never that a ruling went stale.
+// Only a checkout that can see the plugin gets to call a ruling idle.
 const HOUSE_PRESENT = fs.existsSync(HOUSE_DIR);
 const houseRules = HOUSE_PRESENT
   ? fs.readdirSync(HOUSE_DIR).filter((f) => f.endsWith('.ts'))
