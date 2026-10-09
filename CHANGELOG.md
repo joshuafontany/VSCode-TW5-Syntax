@@ -11,8 +11,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - **A carrier frame in one insert.** `carrier` writes the doctype, the four frame markers, the meta
   block, an ahu section and the hash line; fourteen more cover the sigil family. Every value quotes,
   so tabbing through one binds no phantom parameter. `ctrl+k ctrl+m` reaches the frame.
-- **A carrier head selects the language.** A file opening on `<<!DOCTYPE "…memetic-wikitext…">>` or a
-  `<<^` marker reads as the dialect whatever it is called. A named `.tid` or `.tw` keeps its own.
+- **A carrier head selects the language.** An untitled buffer or a file whose extension no language
+  claims reads as the dialect when line one opens on `<<!DOCTYPE "…memetic-wikitext…">>` or a `<<^`
+  marker. An extension that IS claimed still wins — including `.txt`, which Plain Text owns.
 - **Enter continues a list, an ordered list or a quote block**, to depth three.
 
 ### Changed

@@ -12,7 +12,6 @@
             "<<^ code=\"&#x0002;\">>",
             "",
             "```toml meta",
-            "cacheable = true",
             "title     = \"lar:///${2:ha.ka.ba}/${3:path}\"",
             "type      = \"text/memetic-wikitext+tiddlywiki\"",
             "uri-path  = \"${2:ha.ka.ba}/${3:path}\"",
@@ -46,7 +45,6 @@
         "description": "The toml meta block a carrier head carries: its title, its type and the uri-path the address derives from",
         "body": [
             "```toml meta",
-            "cacheable = true",
             "title     = \"lar:///${1:ha.ka.ba}/${2:path}\"",
             "type      = \"text/memetic-wikitext+tiddlywiki\"",
             "uri-path  = \"${1:ha.ka.ba}/${2:path}\"",

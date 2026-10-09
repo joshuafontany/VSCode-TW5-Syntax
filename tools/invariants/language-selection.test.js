@@ -10,6 +10,12 @@
 // extension: it answers only where nothing else claims the file. The reach is purely additive, and
 // what it adds is the editor agreeing with the architecture.
 //
+// AND THE REACH RUNS NARROWER THAN "ANY NAME". Measured at the bench: a carrier head in a `.txt`
+// file colours nothing, because the built-in Plain Text language CLAIMS that extension and an
+// extension beats a first line. What `firstLine` reaches: an untitled buffer, a paste, and a file
+// whose extension no language registers. Naming it here, because the first probe written for this
+// carried a `.txt` name and read as a failure of the pattern rather than of the probe.
+//
 // WHAT COUNTS AS A CARRIER HEAD. The family holds the forms that DECLARE a carrier, which the
 // grammar itself names: the `<<!DOCTYPE …>>` declaration, and the `<<^` frame marker the memetic
 // grammar reads as `entity.name.function.carrier`. A bare `<<~ sigil>>` INVOKES and declares
