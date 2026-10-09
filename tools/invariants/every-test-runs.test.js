@@ -27,7 +27,13 @@ const ROOT = path.resolve(__dirname, '..', '..');
 const scripts = require(path.join(ROOT, 'package.json')).scripts;
 
 // Ground nobody authors. A walk that descends here reads other people's suites as this one's.
-const OUTSIDE = new Set(['node_modules', '.git', '.worktrees', 'TiddlyWiki5', 'out', 'dist']);
+//
+// `.claude` HOLDS A WHOLE SECOND CHECKOUT. A Claude Code session puts a git worktree under
+// `.claude/worktrees/<agent>/`, which carries this repository's own hundred test files at paths no
+// declared pattern reaches — so this invariant read a hundred unrun tests that every one of which
+// was already running, from here, under its own name. `.worktrees` stood in this set for the older
+// convention; both roots belong.
+const OUTSIDE = new Set(['node_modules', '.git', '.claude', '.worktrees', 'TiddlyWiki5', 'out', 'dist']);
 
 /** Every `*.test.js` this repository authors, by path relative to the root. */
 function authored(dir = ROOT) {

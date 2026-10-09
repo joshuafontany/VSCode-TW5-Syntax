@@ -71,7 +71,7 @@ const COLLAPSED = [
         + 'to the copy, never the same work of merely listing what walk.js holds',
       'page-palette.js': 'bounds recursion at a fixed depth and stops once it has enough matches — '
         + 'a sampling walk over a large host tree, not an exhaustive listing',
-      'still.js': 'prunes node_modules/.git/.worktrees/attic BY NAME while it walks a tree that can '
+      'still.js': 'prunes node_modules/.git/.claude/.worktrees/attic BY NAME while it walks a tree that can '
         + 'reach well outside this repository — a plain walk has no way to say what to skip',
       'ledger-claims.js': 'reads corpus/ ONE LEVEL ONLY, deliberately never recursing — a ledger '
         + 'stands beside its rulings, not nested, and a recursive reading would start treating a '

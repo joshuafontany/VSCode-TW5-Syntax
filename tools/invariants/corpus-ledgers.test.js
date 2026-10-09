@@ -45,11 +45,19 @@ const code = (text) => text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*
 /** The ledgers standing under a corpus directory. */
 const standing = (dir) => fs.readdirSync(dir).filter((f) => f.endsWith('.txt')).sort();
 
-/** The ledgers a set of readers names in code, mapped to the readers naming each. */
+/**
+ * The ledgers a set of readers names in code, mapped to the readers naming each.
+ *
+ * A LEDGER NAME IS A WHOLE NAME. Reading `[a-z0-9-]+\.txt` anywhere took the lowercase TAIL of any
+ * mixed-case filename for a ledger: `ThirdPartyNotices.txt`, standing in a tool for an entirely
+ * different reason, minted a phantom ledger `otices.txt` and this invariant reported an instrument
+ * reading a file nothing holds. So a name must not open mid-word — `\b` cannot say that, since the
+ * seam inside `Notices` sits between two word characters.
+ */
 function named(files) {
   const found = new Map();
   for (const file of files) {
-    for (const m of code(fs.readFileSync(file, 'utf8')).matchAll(/([a-z0-9-]+\.txt)/g)) {
+    for (const m of code(fs.readFileSync(file, 'utf8')).matchAll(/(?<![A-Za-z0-9])([a-z0-9-]+\.txt)/g)) {
       if (!found.has(m[1])) found.set(m[1], []);
       found.get(m[1]).push(path.basename(file));
     }
@@ -120,4 +128,22 @@ test('an orphan ledger and a phantom reader both read as findings', () => {
   } finally {
     fs.rmSync(scratch, { recursive: true, force: true });
   }
+});
+
+// THE COLLISION. A mixed-case filename standing in a tool for its own reasons must mint no ledger,
+// and a real ledger beside it must still read — or the tightening above traded one blindness for
+// another.
+test('a mixed-case filename mints no ledger, and a real one still reads', () => {
+  const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'corpus-ledgers-'));
+  const probe = path.join(scratch, 'probe.js');
+  fs.writeFileSync(probe, [
+    "const notices = 'ThirdPartyNotices.txt';",
+    "const camel = 'SomeCamelCase.txt';",
+    "const floor = fs.readFileSync(path.join('corpus', 'legibility-floor.txt'), 'utf8');",
+    "const bare = 'must-flag.txt';"
+  ].join('\n'));
+  const reads = [...named([probe]).keys()].sort();
+  fs.rmSync(scratch, { recursive: true, force: true });
+  assert.deepStrictEqual(reads, ['legibility-floor.txt', 'must-flag.txt'],
+    'the reading took a mixed-case filename for a ledger, or stopped seeing a real one');
 });

@@ -201,7 +201,7 @@ function carriers(dir) {
       .slice()
       .sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
     for (const e of entries) {
-      if (/^(node_modules|\.git|\.worktrees|attic)$/.test(e.name)) continue;
+      if (/^(node_modules|\.git|\.claude|\.worktrees|attic)$/.test(e.name)) continue;
       const p = path.join(d, e.name);
       if (e.isDirectory()) { walk(p); continue; }
       if (READINGS[path.extname(e.name)] && !/degenerate\./.test(e.name)) out.push(p);
