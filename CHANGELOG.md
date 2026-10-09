@@ -4,6 +4,16 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 3.0.1 — unreleased
+
+### Changed
+
+- The description a reader meets first now reads **Syntax highlighting for TiddlyWiki5 wikitext and
+  the Memetic-Wikitext dialect**. It read `TiddlyWiki5 v5.3.4 Textmate compatible Syntax / Grammar`,
+  pinning a version that had moved twice and never naming the dialect.
+
+111 rulings stand over the divergence the two readers carry.
+
 ## 3.0.0
 
 **3.0.0 stops guessing.** It reads your wikitext the way TiddlyWiki reads it, so a typo stays a

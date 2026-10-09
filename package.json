@@ -1,8 +1,8 @@
 {
     "name": "tw5-syntax",
     "displayName": "TiddlyWiki5 Syntax",
-    "description": "TiddlyWiki5 v5.3.4 Textmate compatible Syntax / Grammar",
-    "version": "3.0.0",
+    "description": "Syntax highlighting for TiddlyWiki5 wikitext and the Memetic-Wikitext dialect",
+    "version": "3.0.1",
     "icon": "tw5.png",
     "engines": {
         "vscode": "^1.43.0"
