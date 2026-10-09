@@ -34,19 +34,36 @@ const DECLARATIVE = new Set(['languages', 'grammars', 'snippets', 'configuration
  * So the buffer stands wide enough to read a leak, and only a tool that is genuinely ABSENT skips.
  * Every other failure refuses.
  *
+ * ABSENCE GETS ASKED DIRECTLY, never inferred from a failure's words. Reading the message was the
+ * first attempt and it was wrong twice over: with stderr discarded, a missing `vsce` says only
+ * `Command failed: npx --no-install vsce ls` and carries no code, so the sniff called a plain
+ * absence a refusal and redded every CI leg that has no `vsce` — which is all of them, since only
+ * the `package` job fetches one. And on Windows `npx` is a `.cmd` shim `execFileSync` cannot spawn,
+ * so the same absence arrives as `ENOENT` instead. Two questions, asked separately: does `vsce`
+ * stand here, and will it list the package.
+ *
  * @returns {string[]|null} the packed paths, or null when `vsce` does not stand here
  */
+function vsceStands() {
+  try {
+    execFileSync('npx', ['--no-install', 'vsce', '--version'],
+      { cwd: ROOT, stdio: 'ignore', shell: process.platform === 'win32' });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function packedFiles() {
+  if (!vsceStands()) return null;
   try {
     return execFileSync('npx', ['--no-install', 'vsce', 'ls'],
-      { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], maxBuffer: 256 * 1024 * 1024 })
+      { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 256 * 1024 * 1024,
+        shell: process.platform === 'win32' })
       .split('\n').map((l) => l.trim()).filter(Boolean);
   } catch (e) {
-    const absent = e.code === 'ENOENT'
-      || /could not determine executable|not found|npm ERR! could not determine/i.test(String(e.message));
-    if (absent) return null;
     throw new Error(`vsce stands here and refused to list the package (${e.code ?? 'no code'}): `
-      + `${String(e.message).split('\n')[0]}`);
+      + `${String(e.stderr || e.message).split('\n').filter(Boolean).slice(-2).join(' / ')}`);
   }
 }
 
