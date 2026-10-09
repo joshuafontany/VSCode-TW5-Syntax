@@ -20,7 +20,15 @@ const ROOT = path.resolve(__dirname, '..', '..');
 const pkg = require(path.join(ROOT, 'package.json'));
 
 // Surfaces VS Code reads without running anything. A key outside this set contributes behaviour.
-const DECLARATIVE = new Set(['languages', 'grammars', 'snippets', 'configurationDefaults', 'configuration', 'themes', 'iconThemes', 'semanticTokenScopes']);
+//
+// `keybindings` STANDS HERE BY RULING, and the ruling wants stating because the key looks
+// behavioural and reads as declarative. A keybinding binds a chord to a command that already
+// exists; binding one to `editor.action.insertSnippet` — a command VS Code itself carries — asks
+// the editor to insert a snippet this extension already contributes, and runs no code of ours. No
+// `main`, no activation, nothing packed that executes. A keybinding naming a command THIS extension
+// contributes would need both, and `contributes.commands` stands outside this set, so that door
+// stays shut by the reading above rather than by this comment.
+const DECLARATIVE = new Set(['languages', 'grammars', 'snippets', 'configurationDefaults', 'configuration', 'themes', 'iconThemes', 'semanticTokenScopes', 'keybindings']);
 
 /**
  * What `vsce` says it would pack, or `null` when no `vsce` stands here.
