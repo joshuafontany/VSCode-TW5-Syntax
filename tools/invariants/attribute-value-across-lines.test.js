@@ -45,7 +45,7 @@ const FORMS = {
     word: 'varname',
     wants: /variable\.name\.mvv\.attribute/,
     inline: '<$link to=((varname))/>\n',
-    // parseutils.js#parseMVVReferenceAsTransclusion reads the name as `[^\s>"'=:)]+` starting
+    // parseutils.js#parseMVVReferenceAsTransclusion reads the name as `[^\s>"'=)]+` starting
     // IMMEDIATELY after `((`, with no whitespace skipped first — `((\nvarname\n))` never reaches
     // the parser's own MVV branch (traced: the host reads it as three plain attributes, `to="(("`,
     // a bare `varname` and a bare `))`). Only the whitespace between the name and `))` may carry a

@@ -6,11 +6,11 @@ verified against that parser: the call it builds, and the TYPE it binds each val
 
 A name alone: <<aMacro>> here.
 
-The name admits anything but whitespace, `>`, a quote, `=` or `:` — so <<.def A definition macro>>
+The name admits anything but whitespace, `>`, a quote or `=` — so <<.def A definition macro>>
 calls `.def` with three positional values.
 
-A NAME STOPS AT ITS FIRST `:`, so <<$:/a/system/name>> calls a macro named `$` and binds
-`:/a/system/name` as a positional value — never the system title a reader sees.
+A NAME READS THROUGH A `:`, so <<$:/a/system/name>> calls the variable named `$:/a/system/name`,
+the system title a reader sees, and binds no positional value.
 
 A NAME STOPS AT `=`, and what follows binds as a value rather than as part of the name:
 <<a=b>> builds a call on `a`.

@@ -1,8 +1,8 @@
 # SYNTAX TEST "text.html.tiddlywiki5" "A macro name carries the characters the host's own name regexp admits"
 
-# TiddlyWiki reads a macro name with /([^\s>"'=:]+)/y — parseMacroInvocationAsTransclusion
-# in core/modules/parsers/parseutils.js. Colon, quote and equals END the name, and a name
-# of zero characters fails the call outright.
+# TiddlyWiki reads a macro name with /([^\s>"'=]+)/y — parseMacroInvocationAsTransclusion
+# in core/modules/parsers/parseutils.js. Quote and equals END the name, a colon reads through
+# it (TiddlyWiki5 #10015), and a name of zero characters fails the call outright.
 #
 # Every negative below stands beside a positive at the same column, so a column that stopped
 # naming anything fails loudly rather than passing empty. Every column here comes off a
@@ -16,12 +16,21 @@ x <<myMacro>> y
 #         ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5
 #          ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5
 
-! A colon ends the name, and what follows it reads as a parameter
+! A colon reads through the name, so the call names the whole run
 
 x <<a:b>> y
 #   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5
-#    ^ - variable.name.procedure.tiddlywiki5
-#    ^ meta.variable.procedurecallinline.tiddlywiki5 meta.variable.procedure.parameters.tiddlywiki5
+#    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5
+#     ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5
+#      ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5
+
+A system title reads as one name, never a `$` and a positional value:
+
+x <<$:/a/b>> y
+#   ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5
+#    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5
+#        ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5
+#    ^ - meta.variable.procedure.parameters.tiddlywiki5
 
 ! An equals sign ends the name the same way
 
@@ -30,15 +39,20 @@ x <<a=b>> y
 #    ^ - variable.name.procedure.tiddlywiki5
 #    ^ meta.variable.procedurecallinline.tiddlywiki5 meta.variable.procedure.parameters.tiddlywiki5
 
+! A colon alone names a call
+
+# The fr-FR edition writes this as prose about camel case. A colon reads as a name character, so
+# TiddlyWiki builds a call on the variable `:` here, between the prose on either side.
+NDT<<:>> here
+#  ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.begin.tiddlywiki5
+#    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5
+#     ^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5
+
 ! A call carrying no name at all opens nothing
 
-# The fr-FR edition writes this as prose about camel case, and TiddlyWiki builds plain text
-# from it. No macro call stands here — and because the parser refuses the markup rather than
-# reading it, the brackets fall back to the prose around them and carry no verdict.
-NDT<<:>> here
+# A name of zero characters fails the call, and the brackets fall back to the prose around them.
+NDT<<>> here
 #  ^ - punctuation.definition.procedurecallinline.begin.tiddlywiki5
 #  ^ - meta.variable.procedurecallinline.tiddlywiki5
-#  ^ - invalid.illegal.bad-angle-bracket.html.tiddlywiki5
 #    ^ - variable.name.procedure.tiddlywiki5
 #    ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
-

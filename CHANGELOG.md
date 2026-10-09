@@ -21,6 +21,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - The description a reader meets first now reads **Syntax highlighting for TiddlyWiki5 wikitext and
   the Memetic-Wikitext dialect**. It read `TiddlyWiki5 v5.3.4 Textmate compatible Syntax / Grammar`,
   pinning a version that had moved twice and never naming the dialect.
+- **A call name reads through a colon.** `<<$:/a/system/name>>` calls the variable named
+  `$:/a/system/name`, and `((l:x))` builds a multi-valued reference, following TiddlyWiki5 #10015 on
+  `master`. The name still stops at whitespace, `>`, a quote or `=`.
 
 111 rulings stand over the divergence the two readers carry.
 
