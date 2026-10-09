@@ -84,9 +84,12 @@ const primaryVersion = (() => {
 // reasons a suffix cannot carry, and hiding two CI instruments behind a loose prefix is what
 // `CIGates.tid` now answers for: adding a name here means adding it to that ruling's reasons too.
 // `edition` stands here among them and NOT as a write arm — its reading arm blocks a merge from
-// CI's own step, outside this report, under `alsoGates`.
+// CI's own step, outside this report, under `alsoGates`. `gruvbox-report` joins them for the same
+// reason as `family-atlas`: it derives its two readings from that gate's own `atlas()` and from
+// `construct-legibility.js`'s own `look()`, rules on neither population, and reports the gruvbox
+// six beside the bundled 65 rather than holding either one to a verdict — see `CIGates.tid`.
 const WRITE_ARM = /:write$/;
-const NOT_A_GATE = /^(gates$|bench|edition$|test|tests-|vscode|package|watch|compile|lint|corpus-verbose|rule-inventory|theme-paint|family-atlas|reading-recipe|page-palette|tw5-oracle|uri-span-measure|uri-span-compare)/;
+const NOT_A_GATE = /^(gates$|bench|edition$|test|tests-|vscode|package|watch|compile|lint|corpus-verbose|rule-inventory|theme-paint|family-atlas|gruvbox-report|reading-recipe|page-palette|tw5-oracle|uri-span-measure|uri-span-compare)/;
 const SKIP = new RegExp(`${WRITE_ARM.source}|${NOT_A_GATE.source}`);
 
 const scripts = require(path.join(ROOT, 'package.json')).scripts;

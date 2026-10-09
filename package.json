@@ -415,6 +415,7 @@
         "contrast": "node ./tools/contrast-witness.js",
         "ledger-claims": "node ./tools/ledger-claims.js",
         "family-atlas": "node ./tools/family-atlas.js --loud",
+        "gruvbox-report": "node ./tools/gruvbox-report.js --verbose",
         "reading-recipe": "node ./tools/reading-recipe.js",
         "gates": "node ./tools/gate-report.js",
         "signals": "node ./tools/grammar-signals.js --check",

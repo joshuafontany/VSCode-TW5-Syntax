@@ -1931,6 +1931,23 @@ back by upgrading, which is the definition this number answers to.
   when the set tripped matches the set declared — a file that comes back canonical FAILS (the
   checker went blind, or the fixture went tame), and a file tripping an undeclared fault FAILS too.
   Skips honestly, printing why, when no `lares` CLI stands on PATH. Registered as a 50th gate.
+- THE SIX `jdinhlife.gruvbox` THEMES ARE MEASURED AND REPORTED, NEVER RATCHETED. The earlier ruling
+  — floors stay on the bundled 65 — stands exactly where it stood: `tools/gruvbox-report.js` seats
+  nothing in `corpus/`, carries no gate entry (`CIGates.tid`'s `notGates` names why), and the
+  bundled-65 readings it prints beside the gruvbox six come straight from `family-atlas.js`'s own
+  `atlas()` and `construct-legibility.js`'s own `look()` — the same deciding halves those gates
+  already run, never a second implementation that could drift from them. `tools/gruvbox-model.js`
+  reaches the six theme JSON files the way `grammars.sh` reaches a platform's own VS Code
+  install — `GRUVBOX_THEMES_DIR` named outright, `VSCODE_EXTENSIONS_DIR` to search, or the
+  conventional per-platform extensions roots — and reads them by whatever `.json` files the
+  resolved directory holds, never a hand-listed six. Measured against the real extension
+  (`jdinhlife.gruvbox` 1.29.1): all six resolve by name (`gruvbox-dark-hard`, `gruvbox-dark-medium`,
+  `gruvbox-dark-soft`, `gruvbox-light-hard`, `gruvbox-light-medium`, `gruvbox-light-soft`); the
+  weakest construct against prose reads `a CamelCase link` 0/6 against the bundled set's own 4/65 on
+  the same specimen; the `variable` family, the bundled set's own worst leave-it-alone ratio, rules
+  on it 6/6 and leaves it quiet in 0/6 against the bundled set's 59/65 ruling on it and 20 of those
+  quiet. A machine carrying no VS Code extension — every continuous-integration checkout among them
+  — reads `gruvbox-report  SKIP — …`, named, exit 0, never a silent zero standing in for six.
 
 ### Removed
 - `grammars_archive/`. Seven reference grammars sat there, shipped to nobody — `.vscodeignore`

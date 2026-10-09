@@ -50,6 +50,10 @@ description: Which gates continuous integration runs, and the reason for each on
             "why": "a reading rather than a verdict: it reports how loudly a scope paints, and the gates that RULE on that stand separately"
         },
         {
+            "gate": "gruvbox-report",
+            "why": "a reading rather than a verdict: it reports how the six jdinhlife.gruvbox themes read beside the bundled 65, derived from family-atlas's own atlas() and construct-legibility's own look() rather than a second implementation of either, and rules on neither population — the bundled-65 floors stand untouched and this names no verdict to agree or disagree with. It stands down to a SKIP, named, where no jdinhlife.gruvbox extension resolves on the machine running it, which every continuous-integration checkout meets, since CI installs no VS Code extensions"
+        },
+        {
             "gate": "edition:write",
             "why": "a builder, and the WRITING arm of a harvest pair: the bare name reads and `:write` mutates, so this rebuilds the edition's modules for a hand that means to. `edition` renders the verdict over what it produces, and CI runs that arm in its own blocking step among the four the report leaves aside"
         },
