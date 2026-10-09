@@ -3,6 +3,9 @@ name: test
 on:
   push:
     branches: ['**']
+    # A TAG RUNS THE WHOLE SUITE AGAIN, on purpose. The release job below attaches what the jobs
+    # beside it proved IN THIS RUN, so a tag that never ran them can carry no release.
+    tags: ['v*']
   pull_request:
   workflow_dispatch:
 
@@ -167,11 +170,16 @@ jobs:
       # resolves a file the package excludes; only the built .vsix answers this.
       - name: The package carries what the manifest names
         run: npm run package-contents
-      - run: npx --yes @vscode/vsce package --allow-missing-repository --out /tmp/tw5-syntax.vsix
+      # THE NAME CARRIES THE VERSION, because this file becomes a release asset and a reader
+      # downloading `tw5-syntax.vsix` cannot tell which version they hold.
+      - name: Build the package a user installs
+        run: |
+          version=$(node -p "require('./package.json').version")
+          npx --yes @vscode/vsce package --allow-missing-repository --out "/tmp/tw5-syntax-$version.vsix"
       - uses: actions/upload-artifact@v7
         with:
           name: vsix
-          path: /tmp/tw5-syntax.vsix
+          path: /tmp/tw5-syntax-*.vsix
 
   upstream:
     # TiddlyWiki's own rule regexes, taken to TiddlyWiki's own tiddlers, asking whether
@@ -190,6 +198,114 @@ jobs:
         run: git clone --depth 1 https://github.com/TiddlyWiki/TiddlyWiki5.git /tmp/tw5
       - name: Coverage against upstream
         run: npm run upstream-coverage -- /tmp/tw5 6
+
+  release:
+    # A RELEASE IS A TAG THAT PASSED.
+    #
+    # Everything attached here was proven in THIS run by the jobs this one needs, and the .vsix is
+    # the one `package` built — downloaded, never rebuilt — so the bytes a user installs are the
+    # bytes CI measured rather than a second build that merely ought to match. `upstream` stands
+    # outside the list: it answers to TiddlyWiki's tree rather than this one and reports instead of
+    # blocking, so needing it would hand an unrelated repository a veto over this release.
+    #
+    # 3.0.0 was cut by hand from exactly this artifact. This job is that walk, written down.
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [grammar, gates, gates-host, package]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      # A PINNED NODE, because this job reads a version with it and every other job here pins one.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      # THE TAG AND THE MANIFEST NAME ONE VERSION, asserted rather than assumed. Without this a
+      # `v3.0.1` tag ships a 3.0.0 manifest and the Marketplace takes it, because nothing downstream
+      # reads the tag at all.
+      - name: The tag and the manifest name one version
+        id: version
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          manifest=$(node -p "require('./package.json').version")
+          echo "the tag names $tag; the manifest names $manifest"
+          if [ "$tag" != "$manifest" ]; then
+            echo "::error::the tag names $tag and the manifest names $manifest — a release cannot say which is wrong"
+            exit 1
+          fi
+          echo "version=$tag" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: vsix
+          path: artifact
+
+      # AND THE PACKAGE AGREES WITH BOTH. The artifact is built by a job that reads the manifest at
+      # its own checkout; this reads the version INSIDE the file about to be published, so a stale
+      # or mismatched artifact cannot reach a user under a version it does not carry.
+      - name: The package carries the version the tag names
+        run: |
+          vsix=$(ls artifact/tw5-syntax-*.vsix)
+          echo "attaching $vsix"
+          unzip -p "$vsix" extension/package.json > /tmp/packaged.json
+          packaged=$(node -p "require('/tmp/packaged.json').version")
+          if [ "$packaged" != "${{ steps.version.outputs.version }}" ]; then
+            echo "::error::the package carries $packaged where the tag names ${{ steps.version.outputs.version }}"
+            exit 1
+          fi
+          echo "vsix=$vsix" >> "$GITHUB_ENV"
+
+      # A RE-PUSHED TAG UPDATES ITS RELEASE RATHER THAN FAILING ON ONE THAT STANDS. Cutting 3.0.0
+      # moved its tag three times before the tree was right, and a job that refuses the second push
+      # makes that walk impossible.
+      - name: The release carries the package
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" "$vsix" --clobber
+            echo "the release stood already; its asset now carries this run's build"
+          else
+            repo="${{ github.repository }}"
+            {
+              echo "See [CHANGELOG.md](https://github.com/$repo/blob/$GITHUB_REF_NAME/CHANGELOG.md) for what moved, and [MIGRATION.md](https://github.com/$repo/blob/$GITHUB_REF_NAME/MIGRATION.md) if you maintain a theme."
+              echo
+              echo "The attached \`.vsix\` is the artifact this run built and verified, not a second build that merely ought to match."
+            } > /tmp/notes.md
+            gh release create "$GITHUB_REF_NAME" "$vsix" \
+              --title "${{ steps.version.outputs.version }}" \
+              --verify-tag \
+              --notes-file /tmp/notes.md
+          fi
+
+  marketplace:
+    # THE ONE STEP NOTHING CAN TAKE BACK.
+    #
+    # A GitHub release can be deleted and a tag reseated; a Marketplace version cannot be unpublished
+    # into never having existed. So this does not fire on a tag push alone. It waits on the
+    # `marketplace` ENVIRONMENT, where a required reviewer makes the publish a decision somebody
+    # makes, and it runs at all only once `MARKETPLACE_PUBLISH` stands `true` as a repository
+    # variable — a secret cannot be read in an `if`, and a job referencing an absent secret fails
+    # rather than standing aside.
+    #
+    # Until both stand, 3.0.x publishes the way 3.0.0 did: the operator runs `vsce publish
+    # --packagePath` against the release asset, and the token never leaves their machine.
+    if: startsWith(github.ref, 'refs/tags/v') && vars.MARKETPLACE_PUBLISH == 'true'
+    needs: release
+    environment: marketplace
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v7
+        with:
+          name: vsix
+          path: artifact
+      - name: Publish the package this run built
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: |
+          vsix=$(ls artifact/tw5-syntax-*.vsix)
+          npx --yes @vscode/vsce publish --packagePath "$vsix"
 
   changelog:
     # A change a user can see reaches the changelog in the commit that makes it. The one
