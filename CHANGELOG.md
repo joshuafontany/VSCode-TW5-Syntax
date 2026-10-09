@@ -68,6 +68,9 @@ what TiddlyWiki's own parser builds, and paints that.
 - **CamelCase links read quiet**, matching the wiki TiddlyWiki ships.
 - **No construct reads as plain body text** in more than a quarter of the bundled themes, so this
   grammar asks you for no theme rule of your own.
+- **The six `jdinhlife.gruvbox` themes read beside the 65 bundled ones.** `npm run gruvbox-report`
+  measures the same readings against Gruvbox Dark/Light Hard, Medium and Soft, reported rather than
+  held to a floor — see `LEDGER-3.0.0.md` for the measured numbers.
 
 ### What it costs you
 

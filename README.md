@@ -109,6 +109,7 @@ measurement behind this release. In short, the grammars answer to more than thei
 * `npm run tw5-oracle -- '<wikitext>'` — the tree TiddlyWiki builds, and `-- --rules` the rules it stands
 * `npm run rule-inventory` — every parser rule, the config tiddlers it answers to, and what TiddlyWiki ships for each
 * `npm run theme-paint -- <scope>` — how many bundled themes paint a scope, and `-- --families` the whole grammar ranked
+* `npm run gruvbox-report` — the six `jdinhlife.gruvbox` themes, read beside the bundled 65 — reported, never held to a floor. Reaches the installed extension the way `grammars.sh` reaches VS Code's own bundled grammars (`GRUVBOX_THEMES_DIR` or `VSCODE_EXTENSIONS_DIR` name it outright); a machine carrying neither extension nor override prints `gruvbox-report  SKIP — …` and exits 0, which every standalone CI checkout meets honestly
 * `npm run overreach-corpus-files` / `overreach-corpus-memetic` — the corpus, in both dialects, against the parser and the written rulings
 * `npm run compose-memes` — composition over whatever memetic writing stands beside this checkout; set `MEMES` to one or more directories
 * `npm run legibility` — whether a reader can tell one construct from another: every pair over every bundled theme, each carrying its own floor
