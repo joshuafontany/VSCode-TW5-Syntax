@@ -28,6 +28,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   reach a later one past the call.
 - **A doubled apostrophe inside a word** opens no parameter, as a single one already did:
   ``<<m the ''reified edge-DAG'' here>>`` coloured the rest of its file as arguments.
+- **A labelled fence keeps its grammar to its own closer.** A ```` fence labelled
+  `memetic-wikitext` (or any embedded language) stopped reading as that language at the first inner
+  ``` line, the closer of a paired inner fence included, though the fence itself stayed open. The
+  embedding now ends only at a run as wide as the opener, as TiddlyWiki closes the fence.
 
 ### Changed
 

@@ -4744,7 +4744,52 @@
             },
             "patterns": [
                 {
-                    "begin": "(?i)\\G(t(?:ext/vnd\\.tiddlywiki|w|w5|id|iddlywiki5?))(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(t(?:ext/vnd\\.tiddlywiki|w|w5|id|iddlywiki5?))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "text.html.tiddlywiki5",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.html.tiddlywiki5"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(t(?:ext/vnd\\.tiddlywiki|w|w5|id|iddlywiki5?))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "text.html.tiddlywiki5",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.html.tiddlywiki5"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(t(?:ext/vnd\\.tiddlywiki|w|w5|id|iddlywiki5?))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "text.html.tiddlywiki5",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.html.tiddlywiki5"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(t(?:ext/vnd\\.tiddlywiki|w|w5|id|iddlywiki5?))(?:[ \\t][^`\\n]*)?$",
                     "contentName": "text.html.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
@@ -4760,8 +4805,53 @@
                     "comment": "A fence labelled for wikitext.\n\nThe label set follows the shape the ecosystem keeps: a canonical name plus short aliases, and an extension among them the way js carries cjs and mjs and yaml carries yml. Measured across the 242 grammars this repository loads, 164 carry no alias at all, the mean is 0.43 and the most any one carries is five; no alias anywhere holds a slash or a dot.\n\nThe MIME type stands here anyway, against that shape, because it is TiddlyWiki's own vocabulary: a tiddler's `type` field spells it and a `$$$` typed block dispatches on it.\n\nNEVER claim `wikitext` or `wiki`. The ecosystem already owns both, and they mean MediaWiki."
                 },
                 {
+                    "begin": "(?i)\\G(?<=``````)(mem(?:etic(?:-wikitext)?)?|text/memetic-wikitext\\+tiddlywiki)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.memetic text.html.tiddlywiki5",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "$self"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(mem(?:etic(?:-wikitext)?)?|text/memetic-wikitext\\+tiddlywiki)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.memetic text.html.tiddlywiki5",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "$self"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(mem(?:etic(?:-wikitext)?)?|text/memetic-wikitext\\+tiddlywiki)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.memetic text.html.tiddlywiki5",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "$self"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
                     "comment": "A fence labelled for the memetic dialect. The dialect is wikitext with sigils added, so the fence reads wikitext here and the dialect's own injection supplies the sigils wherever it stands — in a .mem file, that is everywhere.\n\nThe base cannot include the dialect: the dialect already includes the base, and the cycle drops the include wherever it is spelled. The label still earns its place, because it names the tongue for a reader and keeps a memetic example out of the catch-all that would read it raw.\n\nThe set mirrors the base's: a canonical name, short aliases, and the mimetype the manifest declares.",
-                    "begin": "(?i)\\G(mem(?:etic(?:-wikitext)?)?|text/memetic-wikitext\\+tiddlywiki)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<!````)(?<=```)(mem(?:etic(?:-wikitext)?)?|text/memetic-wikitext\\+tiddlywiki)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.memetic text.html.tiddlywiki5",
                     "beginCaptures": {
                         "1": {
@@ -4776,7 +4866,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(m(?:arkdown|d|kd(?:own)?))(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(m(?:arkdown|d|kd(?:own)?))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.markdown source.gfm",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.gfm"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(m(?:arkdown|d|kd(?:own)?))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.markdown source.gfm",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.gfm"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(m(?:arkdown|d|kd(?:own)?))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.markdown source.gfm",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.gfm"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(m(?:arkdown|d|kd(?:own)?))(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.markdown source.gfm",
                     "beginCaptures": {
                         "1": {
@@ -4791,7 +4926,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(gemspec|irb|podspec|r(?:b|uby)|thor)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(gemspec|irb|podspec|r(?:b|uby)|thor)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.ruby source.ruby",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.ruby"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(gemspec|irb|podspec|r(?:b|uby)|thor)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.ruby source.ruby",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.ruby"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(gemspec|irb|podspec|r(?:b|uby)|thor)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.ruby source.ruby",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.ruby"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(gemspec|irb|podspec|r(?:b|uby)|thor)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.ruby source.ruby",
                     "beginCaptures": {
                         "1": {
@@ -4806,7 +4986,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(m(?:ak(?:efile)?|k))(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(m(?:ak(?:efile)?|k))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.makefile source.makefile",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.makefile"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(m(?:ak(?:efile)?|k))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.makefile source.makefile",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.makefile"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(m(?:ak(?:efile)?|k))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.makefile source.makefile",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.makefile"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(m(?:ak(?:efile)?|k))(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.makefile source.makefile",
                     "beginCaptures": {
                         "1": {
@@ -4821,7 +5046,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(json)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(json)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.json source.json",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.json"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(json)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.json source.json",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.json"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(json)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.json source.json",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.json"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(json)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.json source.json",
                     "beginCaptures": {
                         "1": {
@@ -4836,7 +5106,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(atom|rss|xhtml|xml)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(atom|rss|xhtml|xml)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.xml text.xml",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.xml"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(atom|rss|xhtml|xml)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.xml text.xml",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.xml"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(atom|rss|xhtml|xml)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.xml text.xml",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.xml"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(atom|rss|xhtml|xml)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.xml text.xml",
                     "beginCaptures": {
                         "1": {
@@ -4851,7 +5166,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(xsl)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(xsl)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.xsl text.xml.xsl",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.xml.xsl"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(xsl)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.xsl text.xml.xsl",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.xml.xsl"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(xsl)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.xsl text.xml.xsl",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.xml.xsl"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(xsl)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.xsl text.xml.xsl",
                     "beginCaptures": {
                         "1": {
@@ -4866,7 +5226,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(html)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(html)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.html text.html.basic",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.html.basic"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(html)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.html text.html.basic",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.html.basic"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(html)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.html text.html.basic",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.html.basic"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(html)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.html text.html.basic",
                     "beginCaptures": {
                         "1": {
@@ -4881,7 +5286,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(css)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(css)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.css source.css",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.css"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(css)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.css source.css",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.css"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(css)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.css source.css",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.css"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(css)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.css source.css",
                     "beginCaptures": {
                         "1": {
@@ -4896,7 +5346,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(p(?:erl|l))(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(p(?:erl|l))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.perl source.perl",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.perl"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(p(?:erl|l))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.perl source.perl",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.perl"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(p(?:erl|l))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.perl source.perl",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.perl"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(p(?:erl|l))(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.perl source.perl",
                     "beginCaptures": {
                         "1": {
@@ -4911,7 +5406,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(cs(?:harp)?)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(cs(?:harp)?)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.csharp source.cs",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.cs"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(cs(?:harp)?)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.csharp source.cs",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.cs"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(cs(?:harp)?)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.csharp source.cs",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.cs"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(cs(?:harp)?)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.csharp source.cs",
                     "beginCaptures": {
                         "1": {
@@ -4926,7 +5466,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(obj(?:\\-c|c|ectivec))(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(obj(?:\\-c|c|ectivec))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.objective-c source.objc",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.objc"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(obj(?:\\-c|c|ectivec))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.objective-c source.objc",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.objc"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(obj(?:\\-c|c|ectivec))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.objective-c source.objc",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.objc"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(obj(?:\\-c|c|ectivec))(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.objective-c source.objc",
                     "beginCaptures": {
                         "1": {
@@ -4941,7 +5526,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(mm)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(mm)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.objective-cpp source.objcpp",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.objcpp"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(mm)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.objective-cpp source.objcpp",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.objcpp"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(mm)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.objective-cpp source.objcpp",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.objcpp"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(mm)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.objective-cpp source.objcpp",
                     "beginCaptures": {
                         "1": {
@@ -4956,7 +5586,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(gyp|py(?:thon)?)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(gyp|py(?:thon)?)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.python source.python",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.python"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(gyp|py(?:thon)?)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.python source.python",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.python"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(gyp|py(?:thon)?)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.python source.python",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.python"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(gyp|py(?:thon)?)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.python source.python",
                     "beginCaptures": {
                         "1": {
@@ -4971,7 +5646,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(java)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(java)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.java source.java",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.java"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(java)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.java source.java",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.java"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(java)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.java source.java",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.java"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(java)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.java source.java",
                     "beginCaptures": {
                         "1": {
@@ -4986,7 +5706,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(jsp)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(jsp)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "text.html.jsp",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.html.jsp"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(jsp)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "text.html.jsp",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.html.jsp"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(jsp)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "text.html.jsp",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.html.jsp"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(jsp)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "text.html.jsp",
                     "beginCaptures": {
                         "1": {
@@ -5001,7 +5766,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(bash|sh|zsh)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(bash|sh|zsh)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.shellscript source.shell",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.shell"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(bash|sh|zsh)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.shellscript source.shell",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.shell"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(bash|sh|zsh)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.shellscript source.shell",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.shell"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(bash|sh|zsh)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.shellscript source.shell",
                     "beginCaptures": {
                         "1": {
@@ -5016,7 +5826,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(sql)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(sql)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.sql source.sql",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.sql"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(sql)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.sql source.sql",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.sql"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(sql)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.sql source.sql",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.sql"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(sql)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.sql source.sql",
                     "beginCaptures": {
                         "1": {
@@ -5031,7 +5886,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(c|p)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(c|p)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.c source.c",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.c"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(c|p)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.c source.c",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.c"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(c|p)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.c source.c",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.c"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(c|p)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.c source.c",
                     "beginCaptures": {
                         "1": {
@@ -5046,7 +5946,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(c(?:\\+\\+|c|pp)|h(?:\\+\\+|pp))(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(c(?:\\+\\+|c|pp)|h(?:\\+\\+|pp))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.cpp source.cpp",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.cpp"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(c(?:\\+\\+|c|pp)|h(?:\\+\\+|pp))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.cpp source.cpp",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.cpp"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(c(?:\\+\\+|c|pp)|h(?:\\+\\+|pp))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.cpp source.cpp",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.cpp"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(c(?:\\+\\+|c|pp)|h(?:\\+\\+|pp))(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.cpp source.cpp",
                     "beginCaptures": {
                         "1": {
@@ -5061,7 +6006,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(php(?:3|4|5|6)?)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(php(?:3|4|5|6)?)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "text.html.php",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.html.php"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(php(?:3|4|5|6)?)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "text.html.php",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.html.php"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(php(?:3|4|5|6)?)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "text.html.php",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.html.php"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(php(?:3|4|5|6)?)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "text.html.php",
                     "beginCaptures": {
                         "1": {
@@ -5076,7 +6066,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(toml)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(toml)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.toml source.toml.tw5-syntax",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.toml.tw5-syntax"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(toml)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.toml source.toml.tw5-syntax",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.toml.tw5-syntax"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(toml)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.toml source.toml.tw5-syntax",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.toml.tw5-syntax"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(toml)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.toml source.toml.tw5-syntax",
                     "beginCaptures": {
                         "1": {
@@ -5091,7 +6126,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(ini)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(ini)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.ini source.ini",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.ini"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(ini)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.ini source.ini",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.ini"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(ini)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.ini source.ini",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.ini"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(ini)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.ini source.ini",
                     "beginCaptures": {
                         "1": {
@@ -5106,7 +6186,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(diff|patch)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(diff|patch)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "text.git-commit",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.git-commit"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(diff|patch)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "text.git-commit",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.git-commit"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(diff|patch)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "text.git-commit",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "text.git-commit"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(diff|patch)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "text.git-commit",
                     "beginCaptures": {
                         "1": {
@@ -5121,7 +6246,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(c(?:offee(?:script)?|son)|iced)(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(c(?:offee(?:script)?|son)|iced)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.coffeescript source.coffee",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.coffee"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(c(?:offee(?:script)?|son)|iced)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.coffeescript source.coffee",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.coffee"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(c(?:offee(?:script)?|son)|iced)(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.coffeescript source.coffee",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.coffee"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(c(?:offee(?:script)?|son)|iced)(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.coffeescript source.coffee",
                     "beginCaptures": {
                         "1": {
@@ -5136,7 +6306,52 @@
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 },
                 {
-                    "begin": "(?i)\\G(j(?:avascript|s))(?:[ \\t][^`\\n]*)?$",
+                    "begin": "(?i)\\G(?<=``````)(j(?:avascript|s))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.javascript source.js",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.js"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{6,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!``````)(?<=`````)(j(?:avascript|s))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.javascript source.js",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.js"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{5,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!`````)(?<=````)(j(?:avascript|s))(?:[ \\t][^`\\n]*)?$",
+                    "contentName": "meta.embedded.block.javascript source.js",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.language.tiddlywiki5"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.js"
+                        }
+                    ],
+                    "while": "^(?![ \\t]{0,3}`{4,}[ \\t]*$)"
+                },
+                {
+                    "begin": "(?i)\\G(?<!````)(?<=```)(j(?:avascript|s))(?:[ \\t][^`\\n]*)?$",
                     "contentName": "meta.embedded.block.javascript source.js",
                     "beginCaptures": {
                         "1": {
@@ -5160,7 +6375,8 @@
                     },
                     "while": "^(?![ \\t]{0,3}`{3,}[ \\t]*$)"
                 }
-            ]
+            ],
+            "comment": "EACH EMBEDDED LABEL STANDS ONCE PER FENCE WIDTH (6 or more, 5, 4, 3 ticks), told apart by a fixed-width lookbehind standing AFTER `\\G` (vscode-textmate, 7.x and 9.x alike, refuses a lookbehind written between `(?i)` and `\\G`). Its `while` stops only at a run at least that wide, so a ```` fence labelled `memetic-wikitext` keeps its grammar past an inner ``` line, a paired inner fence's closer included, as TiddlyWiki's own closer law reads it (codeblock.js: a closing run at least as long as the opening). A `while` cannot back-reference the outer fence's capture, and a capture inside a lookbehind records the SHORTEST run, so the width is written out rather than measured."
         },
         "inline": {
             "patterns": [
