@@ -4022,7 +4022,8 @@
             ]
         },
         "macrocallblock": {
-            "begin": "^\\s*(?<!<)(<<)(?!<)([^\\s>\"'=:]+)",
+            "comment": "A BLOCK CALL ENDS ITS LINE. TiddlyWiki builds a block call only where `>>` closes the line; with text after the closer the line is a paragraph holding an inline call (measured on develop, with and without the memetic plug-in). So the opener refuses when the line's first `>>` carries text after it, and the paragraph's inline call takes the line; otherwise, back at block level mid-line, a `;` `*` `!` after the closer opened a list or heading. A call whose parameters run onto later lines commits at the opener, which cannot see the later `>>` (tiddlywiki5.call-followed-by-text-is-inline). The sigil marks `~` `^` `!` stay exempt until the memetic block/inline law lands (Train R), so carriers keep today's reading meanwhile.",
+            "begin": "^\\s*(?!<<(?![~^!])[^\\s>\"'=:]+(?:\"[^\"]*\"|'[^']*'|`[^`]*`|<<(?:[^>]|>(?!>))*>>|[^\"'`<>]|<(?!<)|>(?!>))*>>[ \\t]*\\S)(?<!<)(<<)(?!<)([^\\s>\"'=:]+)",
             "end": "(>>)",
             "name": "meta.variable.call.block.tiddlywiki5 meta.variable.procedurecallblock.tiddlywiki5",
             "contentName": "meta.variable.call.parameters.tiddlywiki5 meta.variable.procedure.parameters.tiddlywiki5",

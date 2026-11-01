@@ -36,6 +36,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   call across a blank line, but across 5891 of its tiddlers, 790 memes and this corpus, none of the
   2535 calls in such a line crosses one between its parameters; a value crossing a blank line
   still keeps its call. A call in a paragraph or a `<<<` block still crosses, as before.
+- **A call with text after its closer reads inline.** TiddlyWiki builds a block call only where
+  `>>` ends the line; ``<<m>>;abc``, ``<<m>>* item`` or ``<<m>>{{t}}`` is a paragraph holding an
+  inline call. The grammar opened a block call there and then read the `;`, `*` or `!` after it as a
+  list or a heading. A nested call or a quoted `>>` in a parameter is not the closer. Sigil lines
+  keep their reading until the memetic block/inline law lands.
 
 ## 3.0.1 — unreleased
 
