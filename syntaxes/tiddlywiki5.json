@@ -6963,8 +6963,8 @@
                     }
                 },
                 {
-                    "comment": "Named catch-all: name=value or name:value. The name segment reads only where the grammar actually captured one — a clean [\\w\\-]+ word, since that is all this group ever admits — never the dangling `tw-` an unmatched optional group would interpolate.",
-                    "match": "([\\w\\-]+)\\s*([:=])\\s*([^\\>\"'\\s]+)",
+                    "comment": "Named catch-all: name=value or name:value. The name segment reads only where the grammar actually captured one — a clean [\\w\\-]+ word, since that is all this group ever admits — never the dangling `tw-` an unmatched optional group would interpolate. An unquoted value carries any apostrophe after its first character: an apostrophe inside a word opens nothing (tiddlywiki5.macro-argument-apostrophe), and a doubled one used to let its second quote open a region no closing quote reached.",
+                    "match": "([\\w\\-]+)\\s*([:=])\\s*([^\\>\"'\\s][^\\>\"\\s]*)",
                     "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.procedure.parameter.tw-$1.tiddlywiki5",
                     "captures": {
                         "1": {
@@ -6989,8 +6989,8 @@
                     }
                 },
                 {
-                    "comment": "Positional catch-all: value alone, with no name at all. A fixed fallback name, never an interpolated empty capture — matches `<<a=b>>`'s trailing `=b`, which carries no [\\w\\-]+ name ahead of it.",
-                    "match": "([^\\>\"'\\s]+)",
+                    "comment": "Positional catch-all: value alone, with no name at all. A fixed fallback name, never an interpolated empty capture — matches `<<a=b>>`'s trailing `=b`, which carries no [\\w\\-]+ name ahead of it. An unquoted value carries any apostrophe after its first character: an apostrophe inside a word opens nothing (tiddlywiki5.macro-argument-apostrophe), and a doubled one used to let its second quote open a region no closing quote reached.",
+                    "match": "([^\\>\"'\\s][^\\>\"\\s]*)",
                     "name": "meta.variable.call.parameter.tw-positional.tiddlywiki5 meta.variable.procedure.parameter.tw-positional.tiddlywiki5",
                     "captures": {
                         "1": {

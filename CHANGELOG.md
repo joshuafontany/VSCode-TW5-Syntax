@@ -25,6 +25,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   slash before a `#` or `?`.
 - **An `ni:` name** stops at a quote, a backtick or `>`, where one lacking its own `;` used to
   reach a later one past the call.
+- **A doubled apostrophe inside a word** opens no parameter, as a single one already did:
+  ``<<m the ''reified edge-DAG'' here>>`` coloured the rest of its file as arguments.
 
 ## 3.0.1 — unreleased
 
