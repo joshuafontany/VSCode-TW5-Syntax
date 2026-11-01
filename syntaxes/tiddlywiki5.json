@@ -1251,10 +1251,7 @@
                                     },
                                     "patterns": [
                                         {
-                                            "include": "#htmlwidget-entities"
-                                        },
-                                        {
-                                            "include": "#inline"
+                                            "include": "#attribute-value-text"
                                         }
                                     ]
                                 }
@@ -1280,10 +1277,7 @@
                                     },
                                     "patterns": [
                                         {
-                                            "include": "#htmlwidget-entities"
-                                        },
-                                        {
-                                            "include": "#inline"
+                                            "include": "#attribute-value-text"
                                         }
                                     ]
                                 }
@@ -6430,6 +6424,20 @@
                 }
             }
         },
+        "attribute-value-text": {
+            "comment": "What an attribute or parameter value reads inside its quotes. TiddlyWiki parses a quoted value as a string, never as wikitext, so no inline span opens here: an emphasis, code, link, transclusion, call or tag region looks ahead for its closer on the rest of the line, past the value's own closing quote and past the call's `>>`, and a lone mark inside one value paired with a mark outside the call, leaving the call open to the end of the file. Entities and the autolinks LEDGER-3.0.0.md rules into values stay, each one bounded match; the substituted-attribute injection adds `$(v)$` and `${ … }$` inside a backtick value.",
+            "patterns": [
+                {
+                    "include": "#htmlwidget-entities"
+                },
+                {
+                    "include": "#extlink"
+                },
+                {
+                    "include": "#syslink"
+                }
+            ]
+        },
         "string": {
             "patterns": [
                 {
@@ -6449,7 +6457,7 @@
                     "name": "string.quoted.triple.html.tiddlywiki5",
                     "patterns": [
                         {
-                            "include": "#inline"
+                            "include": "#attribute-value-text"
                         }
                     ]
                 },
@@ -6469,7 +6477,7 @@
                     "name": "string.quoted.double.html.tiddlywiki5",
                     "patterns": [
                         {
-                            "include": "#inline"
+                            "include": "#attribute-value-text"
                         }
                     ]
                 },
@@ -6489,7 +6497,7 @@
                     "name": "string.quoted.single.html.tiddlywiki5",
                     "patterns": [
                         {
-                            "include": "#inline"
+                            "include": "#attribute-value-text"
                         }
                     ]
                 },
@@ -6572,8 +6580,8 @@
             }
         },
         "substitute-variable": {
-            "comment": "Parse substitution variable reference.",
-            "match": "(\\$\\()(.+?)(\\)\\$)",
+            "comment": "Parse substitution variable reference. The content stops at a backtick, as `substitute-filter` does and for the same reason: an unclosed `$(` stays literal inside its own value.",
+            "match": "(\\$\\()([^`]+?)(\\)\\$)",
             "name": "markup.other.variable.substitute-variable.tiddlywiki5",
             "captures": {
                 "1": {
@@ -6588,8 +6596,8 @@
             }
         },
         "substitute-filter": {
-            "comment": "Parse substitution filter reference.",
-            "match": "(\\$\\{)(.+?)(\\}\\$)",
+            "comment": "Parse substitution filter reference. The content stops at a backtick: TiddlyWiki ends a substituted value before it expands anything, so a `${` whose `}$` never arrives inside the value stays literal. The house writes `${copula}` as a mock with no closing `$`; with any character allowed it reached a later `}$` across values and calls.",
+            "match": "(\\$\\{)([^`]+?)(\\}\\$)",
             "name": "markup.other.variable.substitute-filter.tiddlywiki5",
             "captures": {
                 "1": {
@@ -6860,9 +6868,9 @@
                     }
                 },
                 {
-                    "comment": "Dynamic param: name=```substituted```",
+                    "comment": "Dynamic param: name=```substituted``` The region ends at the closing ``` itself. It once also wanted whitespace, `>` or the line end after it, so ``a=```x```b=1`` never closed and the call ran to the end of the file; TiddlyWiki needs no space there.",
                     "begin": "(?<!\\w)([\\w\\-]+)\\s*(=)\\s*(?=```)",
-                    "end": "(?<=```)(?=[\\s>]|$)",
+                    "end": "(?<=```)",
                     "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.procedure.parameter.tw-$1.tiddlywiki5",
                     "contentName": "string.template.substituted.triple.attribute.html.tiddlywiki5",
                     "beginCaptures": {
@@ -6889,19 +6897,16 @@
                             },
                             "patterns": [
                                 {
-                                    "include": "#htmlwidget-entities"
-                                },
-                                {
-                                    "include": "#inline"
+                                    "include": "#attribute-value-text"
                                 }
                             ]
                         }
                     ]
                 },
                 {
-                    "comment": "Dynamic param: name=`substituted`",
+                    "comment": "Dynamic param: name=`substituted` The region ends at the closing backtick itself. It once also wanted whitespace, `>` or the line end after it, so ``a=`x`b=1`` never closed and the call ran to the end of the file; TiddlyWiki needs no space there, and the double-quote and widget forms never asked for one.",
                     "begin": "(?<!\\w)([\\w\\-]+)\\s*(=)\\s*(?=`)",
-                    "end": "(?<=`)(?=[\\s>]|$)",
+                    "end": "(?<=`)",
                     "name": "meta.variable.call.parameter.tw-$1.tiddlywiki5 meta.variable.procedure.parameter.tw-$1.tiddlywiki5",
                     "contentName": "string.template.substituted.single.attribute.html.tiddlywiki5",
                     "beginCaptures": {
@@ -6928,10 +6933,7 @@
                             },
                             "patterns": [
                                 {
-                                    "include": "#htmlwidget-entities"
-                                },
-                                {
-                                    "include": "#inline"
+                                    "include": "#attribute-value-text"
                                 }
                             ]
                         }

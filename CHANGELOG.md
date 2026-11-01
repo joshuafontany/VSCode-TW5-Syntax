@@ -4,6 +4,28 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 3.0.2 — unreleased
+
+### Fixed
+
+- **An attribute value reads as plain text.** TiddlyWiki parses a quoted value as a string, but the
+  grammar read the whole wikitext inline set inside every value. A lone `//`, `''`, `[[` or `{{` in
+  one value paired with a closer outside the call, and the call stayed open to the end of the file.
+  A value now reads entities, autolinks and system links; a backtick value still colours its
+  `$(…)$` and `${ … }$`. Wikitext written inside a quoted value no longer colours as wikitext.
+- **A lone backtick inside a triple-backtick value** stays in the value instead of opening inline
+  code that never closed.
+- **A backtick value glued to the next parameter** (``a=`x`b=1``) ends at its backtick. It used to
+  want a space after it and ran away without one.
+- **`${ … }$` and `$( … )$` end with their backtick value.** The house's `${copula}` mock, which
+  carries no closing `$`, reached forward to the next `}$` across values and calls.
+- **A `lar:` address** stops at a backtick in its authority too
+  (``from=`lar://mara:operator@crossroads` `` ran away), ends before the doubled mark that closes
+  an italic, underline, superscript, subscript or strikethrough run, and reads its root's intro
+  slash before a `#` or `?`.
+- **An `ni:` name** stops at a quote, a backtick or `>`, where one lacking its own `;` used to
+  reach a later one past the call.
+
 ## 3.0.1 — unreleased
 
 ### Changed

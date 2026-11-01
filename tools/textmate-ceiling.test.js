@@ -163,7 +163,7 @@ test('a value ceiling the host renders unchanged fails the gate', live, () => {
 // carrying no construct inside a string and it names nothing enclosed.
 test('a stack ceiling whose specimen traps nothing fails the gate', live, () => {
   const { code, out } = runInSandbox(
-    provoke(`    source: '<$link tooltip="""a [[Page]] and {{Ref!!field}} here""">x</$link>'`,
+    provoke("    source: '<$link tooltip=`a ${ [[Page]] }$ and $(name)$ here`>x</$link>'",
       `    source: 'plain words carrying no string at all'`),
     ['tools/textmate-ceiling.js']);
   assert.match(out, /the grammar paints no construct inside a string/, out.slice(-600));

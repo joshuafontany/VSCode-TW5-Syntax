@@ -172,7 +172,15 @@ const oracle = boot(host, {});
     ['inside an embedded stylesheet the grammar hands to CSS', (d) => /source\.css/.test(d.chain)],
     ['a call opening on `<<<<`', (d) => d.quadOpener],
     ['a triple-quoted macro parameter', (d) => d.value.startsWith('"""')],
-    ['inside a macro-call parameter region the grammar never closed', (d) => /meta\.variable\.call\.parameter/.test(d.chain)]
+    ['inside a macro-call parameter region the grammar never closed', (d) => /meta\.variable\.call\.parameter/.test(d.chain)],
+    // TiddlyWiki pairs a backtick code span across the host before it reads any tag, so in
+    // ``<html lang="`<$text text={{{ … }}}/>`">`` the widget stands OUTSIDE every attribute. The
+    // grammar cannot see that pairing, opens `lang="` as a value, and reads the widget's own
+    // attribute inside that string. The key: the enclosing value belongs to an attribute of another name.
+    ['inside another attribute\'s quoted value, where TiddlyWiki paired a backtick span first', (d) => {
+      const outer = /meta\.attribute\.([\w-]+)\.html\.tiddlywiki5 string\.quoted/.exec(d.chain);
+      return outer !== null && outer[1] !== d.text.split('=')[0];
+    }]
   ];
   const classed = new Map(CLASSES.map(([name]) => [name, 0]));
   const unclassified = [];

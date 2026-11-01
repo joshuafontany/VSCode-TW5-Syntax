@@ -1,0 +1,22 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A numeric entity reads as an entity, and a bare root keeps its intro slash before a fragment or query"
+
+# Two one-token readings. The fragment rule took the `#` of `&#x0001;` for an anchor, painting an entity
+# two ways. And the root lookahead that names the slash before `ha.ka.ba` as the root's intro omitted
+# `#` and `?`, so `lar:///a.b.c#/slot` read that slash as plain path.
+
+<<^ code=`&#x0001;`>>
+#          ^ - entity.name.tag.anchor.memetic-wikitext
+
+x &#x0001; y
+#  ^ - entity.name.tag.anchor.memetic-wikitext
+
+x lar:///a.b.c#/slot y
+#       ^ punctuation.separator.root.intro.lar.memetic-wikitext
+
+x lar:///a.b.c?q=1 y
+#       ^ punctuation.separator.root.intro.lar.memetic-wikitext
+
+# CONTROL: a fragment after a path still reads as an anchor.
+
+x lar:///a.b.c/d#/slot y
+#               ^ entity.name.tag.anchor.memetic-wikitext

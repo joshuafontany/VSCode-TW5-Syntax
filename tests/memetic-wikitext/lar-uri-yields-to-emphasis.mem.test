@@ -1,0 +1,27 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A lar: address ends before the doubled mark that closes the span it stands in"
+
+# A lar: path took every character but whitespace, a quote, a backtick, `>`, `]`, `?` and `#`, so it ate
+# the `//` that closes an italic run (and `__`, `^^`, `,,`, `~~` alike): `//see lar:///a.b.c/d//` left
+# the italic open to the end of the line. A path segment never doubles those marks, so the address now
+# ends before one.
+
+//see lar:///a.b.c/d// then more
+#                   ^^ punctuation.definition.markup.end.italic.tiddlywiki5
+#                      ^^^^ - markup.italic.tiddlywiki5
+
+__see lar:///a.b.c/d__ then more
+#                      ^^^^ - markup.underline.tiddlywiki5
+
+^^see lar:///a.b.c/d^^ then more
+#                      ^^^^ - markup.superscript.tiddlywiki5
+
+,,see lar:///a.b.c/d,, then more
+#                      ^^^^ - markup.subscript.tiddlywiki5
+
+~~see lar:///a.b.c/d~~ then more
+#                      ^^^^ - markup.strikethrough.tiddlywiki5
+
+# CONTROL: a single mark inside a path stays path text.
+
+x lar:///a.b.c/d_e/f^g y
+#              ^^^ variable.other.constant.path.lar.memetic-wikitext

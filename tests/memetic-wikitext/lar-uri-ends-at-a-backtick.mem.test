@@ -1,0 +1,41 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A lar: URI inside a backtick value ends at the closing backtick"
+
+# Train Q (2026-10-31) moved every sigil value to a backtick span. The lar: rule stopped at a
+# double or single quote but never at a backtick, so `spec=`lar:///…/memetic-wikitext`>>` read the
+# closing backtick as path text, the value never closed, and the boot seed's head swallowed its
+# first eighty lines. A backtick now ends the path, the root triad, the authority and a query value.
+
+<<!DOCTYPE type=`memetic-wikitext+tiddlywiki` spec=`lar:///ha.ka.ba/lares/api/pono/memetic-wikitext`>>
+#                                                                                                  ^ string.template.substituted.single.attribute.html.tiddlywiki5 punctuation.definition.substituted.single.attribute.end.tiddlywiki5
+#                                                                                                  ^ - meta.uri.lar.memetic-wikitext
+#                                                                                                   ^^ punctuation.definition.tag.procedurecall.tiddlywiki5
+#                                                                                                   ^^ - string.template.substituted.single.attribute.html.tiddlywiki5
+!! The head closes before this
+# <- markup.heading.2.tiddlywiki5
+
+<<~ set to=`lar:///ha.ka.ba`>>
+#                        ^^ entity.name.tag.dynamic.lar.memetic-wikitext
+#                  ^^ entity.name.tag.heading.lar.memetic-wikitext
+#                          ^ string.template.substituted.single.attribute.html.tiddlywiki5 punctuation.definition.substituted.single.attribute.end.tiddlywiki5
+#                          ^ - meta.uri.lar.memetic-wikitext
+#                           ^^ punctuation.definition.tag.procedurecall.tiddlywiki5
+#                           ^^ - string.template.substituted.single.attribute.html.tiddlywiki5
+!! The head closes before this
+# <- markup.heading.2.tiddlywiki5
+
+<<~ set from=`lar://mara:operator@crossroads`>>
+#                                 ^^^^^^^^^^ entity.name.place.lar.memetic-wikitext
+#                                           ^ string.template.substituted.single.attribute.html.tiddlywiki5 punctuation.definition.substituted.single.attribute.end.tiddlywiki5
+#                                           ^ - meta.uri.lar.memetic-wikitext
+#                                            ^^ punctuation.definition.tag.procedurecall.tiddlywiki5
+#                                            ^^ - string.template.substituted.single.attribute.html.tiddlywiki5
+!! The head closes before this
+# <- markup.heading.2.tiddlywiki5
+
+<<~ set to=`lar:///ha.ka.ba/x?q=1`>>
+#                                ^ string.template.substituted.single.attribute.html.tiddlywiki5 punctuation.definition.substituted.single.attribute.end.tiddlywiki5
+#                                ^ - meta.uri.lar.memetic-wikitext
+#                                 ^^ punctuation.definition.tag.procedurecall.tiddlywiki5
+#                                 ^^ - string.template.substituted.single.attribute.html.tiddlywiki5
+!! The head closes before this
+# <- markup.heading.2.tiddlywiki5
