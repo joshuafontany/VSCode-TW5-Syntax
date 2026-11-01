@@ -2269,8 +2269,8 @@
 >
 >
 >  >>
-#^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.variable.call.inline.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 meta.variable.call.parameters.tiddlywiki5 meta.variable.procedure.parameters.tiddlywiki5
-#  ^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.variable.call.inline.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.call.inline.end.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5 punctuation.definition.tag.procedurecall.tiddlywiki5
+#^^ text.html.tiddlywiki5 markup.list.listquote.quote.tiddlywiki5
+#  ^^ text.html.tiddlywiki5 markup.list.listquote.quote.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.listquote.quote.list.markup.tiddlywiki5
 >* <<myMacro value_for_arg1 value_for_arg2>>
 #^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 punctuation.definition.list.begin.tiddlywiki5 punctuation.definition.unnumbered.unordered.ul.li.list.markup.tiddlywiki5
 # ^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5

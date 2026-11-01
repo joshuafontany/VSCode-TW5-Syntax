@@ -29,6 +29,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - **A doubled apostrophe inside a word** opens no parameter, as a single one already did:
   ``<<m the ''reified edge-DAG'' here>>`` coloured the rest of its file as arguments.
 
+### Changed
+
+- **A call standing in a list item, quote line, term, definition or heading ends at a blank
+  line.** One left open while typing ran the rest of the file as its arguments. TiddlyWiki builds a
+  call across a blank line, but across 5891 of its tiddlers, 790 memes and this corpus, none of the
+  2535 calls in such a line crosses one between its parameters; a value crossing a blank line
+  still keeps its call. A call in a paragraph or a `<<<` block still crosses, as before.
+
 ## 3.0.1 — unreleased
 
 ### Changed

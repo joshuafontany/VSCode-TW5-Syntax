@@ -4452,6 +4452,9 @@
                     },
                     "patterns": [
                         {
+                            "include": "#macrocallinline-in-line-host"
+                        },
+                        {
                             "include": "#inline"
                         }
                     ]
@@ -4473,6 +4476,9 @@
                         }
                     },
                     "patterns": [
+                        {
+                            "include": "#macrocallinline-in-line-host"
+                        },
                         {
                             "include": "#inline"
                         }
@@ -4496,6 +4502,9 @@
                     },
                     "patterns": [
                         {
+                            "include": "#macrocallinline-in-line-host"
+                        },
+                        {
                             "include": "#inline"
                         }
                     ]
@@ -4518,6 +4527,9 @@
                     },
                     "patterns": [
                         {
+                            "include": "#macrocallinline-in-line-host"
+                        },
+                        {
                             "include": "#inline"
                         }
                     ]
@@ -4539,6 +4551,9 @@
                         }
                     },
                     "patterns": [
+                        {
+                            "include": "#macrocallinline-in-line-host"
+                        },
                         {
                             "include": "#inline"
                         }
@@ -4566,6 +4581,9 @@
                     },
                     "patterns": [
                         {
+                            "include": "#macrocallinline-in-line-host"
+                        },
+                        {
                             "include": "#inline"
                         }
                     ],
@@ -4588,6 +4606,9 @@
                         }
                     },
                     "patterns": [
+                        {
+                            "include": "#macrocallinline-in-line-host"
+                        },
                         {
                             "include": "#inline"
                         }
@@ -4612,6 +4633,9 @@
                     },
                     "patterns": [
                         {
+                            "include": "#macrocallinline-in-line-host"
+                        },
+                        {
                             "include": "#inline"
                         }
                     ],
@@ -4634,6 +4658,9 @@
                         }
                     },
                     "patterns": [
+                        {
+                            "include": "#macrocallinline-in-line-host"
+                        },
                         {
                             "include": "#inline"
                         }
@@ -4658,6 +4685,9 @@
                     },
                     "patterns": [
                         {
+                            "include": "#macrocallinline-in-line-host"
+                        },
+                        {
                             "include": "#inline"
                         }
                     ],
@@ -4680,6 +4710,9 @@
                         }
                     },
                     "patterns": [
+                        {
+                            "include": "#macrocallinline-in-line-host"
+                        },
                         {
                             "include": "#inline"
                         }
@@ -5388,6 +5421,36 @@
             "patterns": [
                 {
                     "include": "#inline"
+                }
+            ]
+        },
+        "macrocallinline-in-line-host": {
+            "comment": "`macrocallinline` standing directly in a line host: a list item (`*` `#` `;` `:` `>`) or a heading (`!`). Those lines end at their newline, and a call opened in one that never closes ran the rest of the file as its arguments, so here a blank line also ends the call. TiddlyWiki builds a call across a blank line, but measured over 5891 TiddlyWiki tiddlers, 790 memes and this corpus, 0 of 2535 calls standing in such a line cross one between their parameters; the two that cross do so inside a quoted value, a nested region whose open string keeps this end from being tried. A paragraph and a `<<<` block keep `macrocallinline`, which carries a call across a blank line as the host does (tiddlywiki5.call-crosses-a-blank-line). A call nested inside another span on the line keeps the host-wide reading.",
+            "begin": "(?<!<)(<<)(?!<)([^\\s>\"'=:]+)",
+            "end": "(>>)|(?=^\\s*$)",
+            "name": "meta.variable.call.inline.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5",
+            "contentName": "meta.variable.call.parameters.tiddlywiki5 meta.variable.procedure.parameters.tiddlywiki5",
+            "beginCaptures": {
+                "1": {
+                    "name": "punctuation.definition.call.inline.begin.tiddlywiki5 punctuation.definition.procedurecallinline.begin.tiddlywiki5 punctuation.definition.tag.procedurecall.tiddlywiki5"
+                },
+                "2": {
+                    "name": "variable.name.call.tiddlywiki5 variable.name.procedure.tiddlywiki5 support.function.procedure.tiddlywiki5 entity.name.function.procedure.tiddlywiki5",
+                    "patterns": [
+                        {
+                            "include": "#builtin-variable"
+                        }
+                    ]
+                }
+            },
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.definition.call.inline.end.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5 punctuation.definition.tag.procedurecall.tiddlywiki5"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#macro-parameters"
                 }
             ]
         },

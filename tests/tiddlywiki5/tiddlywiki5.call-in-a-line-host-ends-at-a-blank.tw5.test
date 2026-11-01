@@ -1,0 +1,61 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A call standing in a list item or heading ends at a blank line"
+
+# A list item, a quote line, a term, a definition and a heading each end at their newline, and a
+# call opened in one that never closes ran the rest of the file as its arguments. TiddlyWiki
+# builds a call across a blank line, so a bail costs a reading the host keeps; measured over
+# 5891 TiddlyWiki tiddlers, 790 memes and this corpus, 0 of 2535 calls standing in such a line
+# cross a blank line between their parameters, and the two that cross do so inside a quoted
+# value, which the bail never reaches. So the call stops at a blank line here, and only here.
+
+* <<m a="x" b=
+
+A paragraph after the open call.
+#^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+
+# <<m a="x" b=
+
+A paragraph after the open call.
+#^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+
+> <<m a="x" b=
+
+A paragraph after the open call.
+#^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+
+; <<m a="x" b=
+
+A paragraph after the open call.
+#^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+
+: <<m a="x" b=
+
+A paragraph after the open call.
+#^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+
+! <<m a="x" b=
+
+A paragraph after the open call.
+#^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+
+# CONTROL: a value crossing a blank line keeps its call; the bail never reaches inside a string.
+
+* <<m a="x
+
+y">>
+
+A paragraph after the closed call.
+#^^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+
+# CONTROL: a call in a paragraph still crosses a blank line, as TiddlyWiki builds it.
+
+x <<m
+
+>>
+#^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.call.inline.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5
