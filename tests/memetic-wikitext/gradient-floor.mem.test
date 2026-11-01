@@ -18,7 +18,7 @@
 SENTINEL reads as an ordinary paragraph.
 #<- text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5
 
-<<^ code="&#x0001;" ? -> lar:///the.frame.opens
+<<^ code=`&#x0001;` from=`?` to=`lar:///the.frame.opens`
 
 >>
 #^^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5 punctuation.definition.call.block.end.tiddlywiki5

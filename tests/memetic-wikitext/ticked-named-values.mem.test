@@ -1,0 +1,37 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A named value rides in ticks, and a lar: address inside one stops at the closing tick"
+
+# EVERY VALUE OF A CALL RIDES NAMED AND TICKED (the kupono grammar). TiddlyWiki reads `name=`value``
+# as a substituted attribute value, and the dialect adds nothing on top of it: the key is an
+# attribute name, the ticks are the substituted value's own punctuation, and the text between them
+# is the value.
+
+<<~ persona name=`Lares` params=`a multitude`>>
+#           ^^^^ entity.other.attribute-name.argument.tiddlywiki5
+#               ^ keyword.operator.assignment.tiddlywiki5
+#                ^ punctuation.definition.substituted.single.attribute.begin.tiddlywiki5
+#                 ^^^^^ string.template.substituted.single.attribute.html.tiddlywiki5
+#                      ^ punctuation.definition.substituted.single.attribute.end.tiddlywiki5
+#                        ^^^^^^ entity.other.attribute-name.argument.tiddlywiki5
+
+# A LAR: ADDRESS STOPS AT THE CLOSING TICK. The `from=` end of a call is a lar: URI inside ticks. Its
+# region used to run to whitespace, a quote or a bracket, so the closing tick fell INSIDE the address
+# and the rest of the call read as value text: `to=` was no attribute, and the call's own `>>`
+# never closed. A backtick now ends the address, so the next key reads as the key it is.
+
+<<~ set lares=`aim` from=`lar:///a.b.c/x` to=`?` mode=`draft`>>
+#                                      ^ variable.other.constant.path.lar.memetic-wikitext
+#                                       ^ punctuation.definition.substituted.single.attribute.end.tiddlywiki5
+#                                         ^^ entity.other.attribute-name.argument.tiddlywiki5
+#                                                ^^^^ entity.other.attribute-name.argument.tiddlywiki5
+
+# The same holds for BOTH ends of a pranala, and the address wears its colourless parent, never the string's.
+
+<<~ pranala from=`lar:///a.b.c/x` to=`lar:///a.b.c/y`>>
+#                                 ^^ entity.other.attribute-name.argument.tiddlywiki5
+#                                                  ^ variable.other.constant.path.lar.memetic-wikitext
+
+# A SLOT WORD RIDES AS `slot=`: the fragment inside the ticks reads as the anchor it names.
+
+<<~ ahu slot=`#/head`>>
+#       ^^^^ entity.other.attribute-name.argument.tiddlywiki5
+#             ^ punctuation.definition.anchor.memetic-wikitext

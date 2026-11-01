@@ -2,17 +2,19 @@
 
 # THE DIALECT NAMES NOTHING FOR THE THING IT EXISTS TO SAY. TiddlyWiki reads `<<~ set …>>` as a call
 # on a variable spelled `~`, so the verb binds as a POSITIONAL argument and paints exactly like any
-# unquoted value a carrier writes. `set`, `oracle`, `lares` and `stage` all read `string.unquoted`.
+# unquoted value a carrier writes. `set`, `oracle`, `node` and `stage` all read `string.unquoted`.
 #
 # The base grammar must keep its reading — the host builds a transclusion here and nothing else —
-# so the dialect names the verb BESIDE what the base says rather than instead of it.
+# so the dialect names the verb BESIDE what the base says rather than instead of it. Every value of a
+# call rides NAMED and TICKED (the kupono grammar), so the base names each key an attribute.
 
-<<~ set hud="aim" mode="scan">>
+<<~ set lares=`aim` mode=`scan`>>
 #   ^^^ entity.name.function.sigil.memetic-wikitext
-#       ^^^ entity.other.attribute-name.argument.tiddlywiki5
+#       ^^^^^ entity.other.attribute-name.argument.tiddlywiki5
 
-<<~ oracle "a reading">>
+<<~ oracle throw=`a reading`>>
 #   ^^^^^^ entity.name.function.sigil.memetic-wikitext
+#          ^^^^^ entity.other.attribute-name.argument.tiddlywiki5
 
 # A CLOSER NAMES THE SIGIL IT CLOSES. TiddlyWiki reads `~/ahu` as one variable name, so the base
 # offers a reader nothing to tell a closing sigil from an opening one.
@@ -20,15 +22,17 @@
 <<~/ahu>>
 #   ^^^ entity.name.function.sigil.memetic-wikitext
 
-# A BEARING ARROW SPLITS IN TWO INSIDE A SIGIL. The base grammar's unquoted-value rule takes the
-# dash before any lower-priority injection looks, and the closing angle falls to the parameters
-# region — so `->` arrives as two tokens and neither carries the arrow's name. Every aim and yield
-# line this house writes carries this form, and the only pinned specimen writes the PROSE one.
+# THE BEARING ARROW LEAVES THE SIGIL. A call carries its ends as named values (`from=` and `to=`),
+# so no arrow stands between two values, and an arrow INSIDE a ticked value — a gauge's slide, a
+# ladder — is that value's text and wears the string's own name, never the arrow's.
 
-<<~ lares aim from="lar://a@b/c.d.e" -> to="?">>
-#                                    ^^ keyword.operator.bearing.arrow.memetic-wikitext
+<<~ set lares=`yield` aperture=`10/measure -> 12/measure` to=`?`>>
+#                                          ^^ string.template.substituted.single.attribute.html.tiddlywiki5
+#                                          ^^ - keyword.operator.bearing.arrow.memetic-wikitext
 
-# The control: the same arrow in prose, which already reads.
+# THE ARROW STAYS IN PROSE. The markers a turn writes between phases fuse a phase glyph onto the
+# arrow (`->✶ ->⏿ ->◇ ->▶ ->↺`), and a bare arrow between words still reads.
 
-A bearing arrow -> stands named in prose.
-#               ^^ keyword.operator.bearing.arrow.memetic-wikitext
+A phase marker ->✶ stands named in prose, and so does a bare -> between words.
+#              ^^ keyword.operator.bearing.arrow.memetic-wikitext
+#                                                            ^^ keyword.operator.bearing.arrow.memetic-wikitext
