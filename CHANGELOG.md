@@ -17,12 +17,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   code that never closed.
 - **A backtick value glued to the next parameter** (``a=`x`b=1``) ends at its backtick. It used to
   want a space after it and ran away without one.
-- **`${ … }$` and `$( … )$` end with their backtick value.** The house's `${copula}` mock, which
-  carries no closing `$`, reached forward to the next `}$` across values and calls.
+- **`${ … }$` and `$( … )$` end with their single-tick value.** The house's `${copula}` mock, which
+  carries no closing `$`, reached forward to the next `}$` across values and calls. A triple-tick
+  value and a `\define` body still take a lone backtick inside a substitution, as TiddlyWiki does.
 - **A `lar:` address** stops at a backtick in its authority too
-  (``from=`lar://mara:operator@crossroads` `` ran away), ends before the doubled mark that closes
-  an italic, underline, superscript, subscript or strikethrough run, and reads its root's intro
-  slash before a `#` or `?`.
+  (``from=`lar://mara:operator@crossroads` `` ran away), ends in prose before the doubled mark that
+  closes an italic, underline, superscript, subscript or strikethrough run (inside a value, where
+  no such run opens, it reads its whole path), and reads its root's intro slash before a `#` or `?`.
 - **An `ni:` name** stops at a quote, a backtick or `>`, where one lacking its own `;` used to
   reach a later one past the call.
 - **A doubled apostrophe inside a word** opens no parameter, as a single one already did:
@@ -58,7 +59,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   the Memetic-Wikitext dialect**. It read `TiddlyWiki5 v5.3.4 Textmate compatible Syntax / Grammar`,
   pinning a version that had moved twice and never naming the dialect.
 
-111 rulings stand over the divergence the two readers carry.
+113 rulings stand over the divergence the two readers carry.
 
 ## 3.0.0
 

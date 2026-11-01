@@ -25,3 +25,12 @@ __see lar:///a.b.c/d__ then more
 
 x lar:///a.b.c/d_e/f^g y
 #              ^^^ variable.other.constant.path.lar.memetic-wikitext
+
+# INSIDE A VALUE NO SPAN OPENS, so nothing there needs a doubled mark left to it: a quoted or
+# ticked value reads its whole path, snake__case and all.
+
+<<m a="lar:///a.b.c/snake__case">>
+#                   ^^^^^^^^^^^ variable.other.constant.path.lar.memetic-wikitext
+
+<<m a=`lar:///a.b.c/x//y~~z`>>
+#                   ^^^^^^^ variable.other.constant.path.lar.memetic-wikitext

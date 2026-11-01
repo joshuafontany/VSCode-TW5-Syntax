@@ -1251,6 +1251,12 @@
                                     },
                                     "patterns": [
                                         {
+                                            "include": "#substitute-filter-in-triple"
+                                        },
+                                        {
+                                            "include": "#substitute-variable-in-triple"
+                                        },
+                                        {
                                             "include": "#attribute-value-text"
                                         }
                                     ]
@@ -6424,6 +6430,80 @@
                 }
             }
         },
+        "substitute-filter-in-value": {
+            "comment": "`substitute-filter` inside a single-tick value: the content stops at a backtick. TiddlyWiki ends the value at its tick before it expands anything, so a `${` whose `}$` never arrives inside the value stays literal; the house writes `${copula}` as a mock with no closing `$`, and with any character allowed it reached a later `}$` across values and calls. A `\\define` body keeps the base rule, where a tick is ordinary text.",
+            "match": "(\\$\\{)([^`]+?)(\\}\\$)",
+            "name": "markup.other.variable.substitute-filter.tiddlywiki5",
+            "captures": {
+                "1": {
+                    "name": "keyword.other.variable.substitute-filter.begin.tiddlywiki5 punctuation.definition.substitution.begin.tiddlywiki5"
+                },
+                "2": {
+                    "name": "variable.name.substitute-filter.tiddlywiki5",
+                    "patterns": [
+                        {
+                            "include": "#filter"
+                        }
+                    ]
+                },
+                "3": {
+                    "name": "keyword.other.variable.substitute-filter.end.tiddlywiki5 punctuation.definition.substitution.end.tiddlywiki5"
+                }
+            }
+        },
+        "substitute-variable-in-value": {
+            "comment": "`substitute-variable` inside a single-tick value, stopping at a backtick for the same reason as `substitute-filter-in-value`.",
+            "match": "(\\$\\()([^`]+?)(\\)\\$)",
+            "name": "markup.other.variable.substitute-variable.tiddlywiki5",
+            "captures": {
+                "1": {
+                    "name": "keyword.other.variable.substitute-variable.begin.tiddlywiki5 punctuation.definition.substitution.begin.tiddlywiki5"
+                },
+                "2": {
+                    "name": "variable.name.substitute-variable.tiddlywiki5 entity.name.variable.substitute-variable.tiddlywiki5"
+                },
+                "3": {
+                    "name": "keyword.other.variable.substitute-variable.end.tiddlywiki5 punctuation.definition.substitution.end.tiddlywiki5"
+                }
+            }
+        },
+        "substitute-filter-in-triple": {
+            "comment": "`substitute-filter` inside a triple-tick value: a lone or doubled tick stays in the substitution, and three end it with the value.",
+            "match": "(\\$\\{)((?:[^`]|`(?!``))+?)(\\}\\$)",
+            "name": "markup.other.variable.substitute-filter.tiddlywiki5",
+            "captures": {
+                "1": {
+                    "name": "keyword.other.variable.substitute-filter.begin.tiddlywiki5 punctuation.definition.substitution.begin.tiddlywiki5"
+                },
+                "2": {
+                    "name": "variable.name.substitute-filter.tiddlywiki5",
+                    "patterns": [
+                        {
+                            "include": "#filter"
+                        }
+                    ]
+                },
+                "3": {
+                    "name": "keyword.other.variable.substitute-filter.end.tiddlywiki5 punctuation.definition.substitution.end.tiddlywiki5"
+                }
+            }
+        },
+        "substitute-variable-in-triple": {
+            "comment": "`substitute-variable` inside a triple-tick value, as `substitute-filter-in-triple`.",
+            "match": "(\\$\\()((?:[^`]|`(?!``))+?)(\\)\\$)",
+            "name": "markup.other.variable.substitute-variable.tiddlywiki5",
+            "captures": {
+                "1": {
+                    "name": "keyword.other.variable.substitute-variable.begin.tiddlywiki5 punctuation.definition.substitution.begin.tiddlywiki5"
+                },
+                "2": {
+                    "name": "variable.name.substitute-variable.tiddlywiki5 entity.name.variable.substitute-variable.tiddlywiki5"
+                },
+                "3": {
+                    "name": "keyword.other.variable.substitute-variable.end.tiddlywiki5 punctuation.definition.substitution.end.tiddlywiki5"
+                }
+            }
+        },
         "attribute-value-text": {
             "comment": "What an attribute or parameter value reads inside its quotes. TiddlyWiki parses a quoted value as a string, never as wikitext, so no inline span opens here: an emphasis, code, link, transclusion, call or tag region looks ahead for its closer on the rest of the line, past the value's own closing quote and past the call's `>>`, and a lone mark inside one value paired with a mark outside the call, leaving the call open to the end of the file. Entities and the autolinks LEDGER-3.0.0.md rules into values stay, each one bounded match; the substituted-attribute injection adds `$(v)$` and `${ … }$` inside a backtick value.",
             "patterns": [
@@ -6580,8 +6660,8 @@
             }
         },
         "substitute-variable": {
-            "comment": "Parse substitution variable reference. The content stops at a backtick, as `substitute-filter` does and for the same reason: an unclosed `$(` stays literal inside its own value.",
-            "match": "(\\$\\()([^`]+?)(\\)\\$)",
+            "comment": "Parse substitution variable reference.",
+            "match": "(\\$\\()(.+?)(\\)\\$)",
             "name": "markup.other.variable.substitute-variable.tiddlywiki5",
             "captures": {
                 "1": {
@@ -6596,8 +6676,8 @@
             }
         },
         "substitute-filter": {
-            "comment": "Parse substitution filter reference. The content stops at a backtick: TiddlyWiki ends a substituted value before it expands anything, so a `${` whose `}$` never arrives inside the value stays literal. The house writes `${copula}` as a mock with no closing `$`; with any character allowed it reached a later `}$` across values and calls.",
-            "match": "(\\$\\{)([^`]+?)(\\}\\$)",
+            "comment": "Parse substitution filter reference.",
+            "match": "(\\$\\{)(.+?)(\\}\\$)",
             "name": "markup.other.variable.substitute-filter.tiddlywiki5",
             "captures": {
                 "1": {
@@ -6896,6 +6976,12 @@
                                 }
                             },
                             "patterns": [
+                                {
+                                    "include": "#substitute-filter-in-triple"
+                                },
+                                {
+                                    "include": "#substitute-variable-in-triple"
+                                },
                                 {
                                     "include": "#attribute-value-text"
                                 }

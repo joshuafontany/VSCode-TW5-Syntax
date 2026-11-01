@@ -38,3 +38,14 @@ after the call
 after the call
 #^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
 #^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+# A BACKTICK IS ORDINARY TEXT OUTSIDE A SINGLE-TICK VALUE. A `\define` body expands `${ … }$` and
+# `$( … )$` whatever they hold (wiki.js getSubstitutedText: `/\$\{([\S\s]+?)\}\$/`), and a
+# triple-backtick value closes only at three, so a lone tick inside a substitution there stays
+# inside it. Only the single-tick value stops a substitution at its tick.
+
+<$w a=```p ${ [[`]] }$ q```/>
+#          ^^ keyword.other.variable.substitute-filter.begin.tiddlywiki5
+
+<<m a=```p $(x`y)$ q```>>
+#          ^^ keyword.other.variable.substitute-variable.begin.tiddlywiki5

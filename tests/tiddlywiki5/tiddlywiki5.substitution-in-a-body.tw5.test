@@ -1,0 +1,6 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A substitution in a macro body takes a backtick as ordinary text"
+\define m()
+hi ${ [[a`b]] }$ and $(a`b)$ end
+#  ^^ keyword.other.variable.substitute-filter.begin.tiddlywiki5
+#                    ^^ keyword.other.variable.substitute-variable.begin.tiddlywiki5
+\end
