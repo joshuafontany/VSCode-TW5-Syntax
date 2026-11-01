@@ -10,7 +10,7 @@ grammar parts it into six entities — persona, role, place, heading, angle, car
 The same address inside a quoted value keeps every one of them, because an injection reaches
 where a top-level rule cannot:
 
-<<~ lares aim from="lar://claude:scryer@lararium/the-map.reads.its-ground" -> to="?">>
+<<~ set lares=`aim` from=`lar://claude:scryer@lararium/the-map.reads.its-ground` to=`?`>>
 
 ! The bearing arrow, which reads two ways
 
@@ -20,7 +20,7 @@ The same arrow inside a sigil splits: the base grammar's unquoted-value rule tak
 before an R-priority injection ever looks, and the closing angle falls to the parameters region.
 Every aim and yield line the house writes carries this form.
 
-<<~ lares yield from="lar://claude@lararium/the-arrow.splits.in-two" -> to="?">>
+<<~ set lares=`yield` from=`lar://claude@lararium/the-arrow.splits.in-two` to=`?`>>
 
 ! The sigil's own verb
 
@@ -28,9 +28,9 @@ A sigil's name binds to an EMPTY parameter. TiddlyWiki reads the variable as `~`
 a positional argument, so `set`, `oracle`, `stage` and `persona` all paint as any unquoted value
 would. The dialect declares no scope of its own for the thing it exists to say.
 
-<<~ set hud="aim" mode="scan" mood="🜁" mu="?" stance="🏛️" aperture="26/reading">>
+<<~ set lares=`aim` mode=`scan` mood=`🜁` mu=`?` stance=`🏛️` aperture=`26/reading`>>
 
-<<~ oracle "↯14 ✲ ⚄(4) ⁂:🜁⌗◈">>
+<<~ oracle throw=`↯14 ✲ ⚄(4) ⁂:🜁⌗◈`>>
 
 ! A fragment and a query, in prose
 

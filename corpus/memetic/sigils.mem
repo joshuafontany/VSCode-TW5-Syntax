@@ -15,7 +15,7 @@ A body inside the section.
 <<~/ahu>>
 
 
-<<~ lares aim from="lar://alias:grant@host/a.b.c" -> to="lar://alias:grant@host/d.e.f">>
+<<~ set lares=`aim` from=`lar://alias:grant@host/a.b.c` to=`lar://alias:grant@host/d.e.f`>>
 
 <<~! a pragma sigil>>
 
@@ -23,30 +23,26 @@ A body inside the section.
 
 <<~ hoike lar:///a.b.c -> ?>>
 
-!! The HUD, in the form the boot seed writes it
+!! The turn frame, in the form the boot seed writes it
 
-<<~ lares aim from="lar://mara:operator@crossroads/operator.weighs.deps" -> to="lar://compita:agent@crossroads/council.options.cuts">>
-<<~ set hud="aim" mode="draft" mu="_!" stance="🏛️🗡️" aperture="16/arc" ooda-ha="9/declare-glyphs" drift-ward="a preferred answer already stands and the comparison bends toward it">>
-<<~ oracle "↯11 ✲ ⚃(4) ⁂:⬡🌖◈⟁">>
-<<~ set hud="yield" drift-ward="the read rides on a README and no changelog · ↻ L-Prime" aperture="10/measure -> 12/measure" ooda-ha="closed 0↺ -> open 1φ @◇:fork.depends-on.maintenance-weight">>
-<<~ lares yield from="lar://compita:agent@crossroads/council.fork.named/awaiting-weight" -> to="?">>
+<<~ set lares=`aim` from=`lar://mara:operator@crossroads/operator.weighs.deps` to=`lar://compita:agent@crossroads/council.options.cuts` mode=`draft` mu=`_!` stance=`🏛️ 🗡️` aperture=`16/arc` ooda-ha=`7/declare-glyphs` drift-ward=`a preferred answer already stands and the comparison bends toward it`>>
+<<~ oracle throw=`↯11 ✲ ⚃(4) ⁂:⬡🌖◈⟁`>>
+<<~ set lares=`yield` drift-ward=`the read rides on a README and no changelog · ↻ L-Prime` aperture=`16/arc -> 12/measure` ooda-ha=`closed 0↺ -> open 1φ◇:fork.depends-on.maintenance-weight` from=`lar://compita:agent@crossroads/council.fork.named/awaiting-weight` to=`?`>>
 
-!! The gauges, standing alone mid-stream
+!! The lens sigils, standing alone mid-stream
 
-<<~ aperture "9/measure">>
-<<~ stance "poet humorist">>
-<<~ mu "*?">>
-<<~ drift-ward "the pull this exchange carries">>
+<<~ stance named=`poet humorist`>>
+<<~ mu name=`Cup`>>
 
 !! The rows, each a name and its parameters
 
-<<~ mu Wand "ascii/* glyph/🜂 element/Fire feed/Visual pull/ignition">>
-<<~ carry Detail "ascii/* ascii/!">>
-<<~ season Chaos "glyph/✶ patron/Hung-Mung">>
-<<~ persona Map-Wisp "role/Scryer trigger/pattern-or-risk moves/map-structure-project-implication ~ diagrams the consequence path">>
-<<~ integrity LitWard "tell/Mana-Drift recover/re-light-L-Prime ~ map never fuses to territory">>
-<<~ shrine Household "gaia/home-niches-family-tended elyncia/single-orichalcum-figure ~ fed by one family or crew">>
-<<~ frame lares "move/intent-vector carries/bearing-vector fires/aim fires/yield ~ aim delegates at open">>
-<<~ loops "✶ observe -> ⏿ orient -> ◇ decide -> ▶ act -> ↺ hoʻoko/aftermath">>
-<<~ config Defaults>>
-<<~ node "-> refreshes the libation dish, the shrine incense burns">>
+<<~ mu name=`Wand` params=`ascii/* glyph/🜂 element/Fire feed/Visual pull/ignition`>>
+<<~ carry name=`Detail` params=`ascii/* ascii/!`>>
+<<~ season name=`Chaos` params=`glyph/✶ patron/Hung-Mung`>>
+<<~ persona name=`Map-Wisp` params=`role/Scryer trigger/pattern-or-risk moves/map-structure-project-implication ~ diagrams the consequence path`>>
+<<~ integrity name=`LitWard` params=`tell/Mana-Drift recover/re-light-L-Prime ~ map never fuses to territory`>>
+<<~ shrine name=`Household` params=`gaia/home-niches-family-tended elyncia/single-orichalcum-figure ~ fed by one family or crew`>>
+<<~ has entity=`frame` name=`set` params=`move/reality-tunnel fires/aim fires/steer fires/yield ~ one sigil, three firings`>>
+<<~ loops phases=`✶ observe -> ⏿ orient -> ◇ decide -> ▶ act -> ↺ hoʻoko/aftermath`>>
+<<~ config name=`Defaults`>>
+<<~ node action=`refreshes the libation dish, the shrine incense burns`>>

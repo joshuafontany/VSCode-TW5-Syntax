@@ -1,13 +1,13 @@
-<<!DOCTYPE "memetic-wikitext+tiddlywiki" "lar:///ha.ka.ba/lares/api/pono/memetic-wikitext">>
+<<!DOCTYPE type=`memetic-wikitext+tiddlywiki` spec=`lar:///ha.ka.ba/lares/api/pono/memetic-wikitext`>>
 
-<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/api/pono/carriers">>
-<<^ code="&#x0002;">>
+<<^ code=`&#x0001;` from=`?` to=`lar:///ha.ka.ba/lares/api/pono/carriers`>>
+<<^ code=`&#x0002;`>>
 
 ```toml meta
 uri-path = "ha.ka.ba/lares/api/pono/carriers"
 ```
 
-<<~ ahu #/carriers>>
+<<~ ahu slot=`#/carriers`>>
 
 !! A carrier naming no control code
 
@@ -16,13 +16,13 @@ opens a carrier:
 
 <<^>>
 
-<<^ from="lar:///ha.ka.ba/lares/api/pono/carriers">>
+<<^ from=`lar:///ha.ka.ba/lares/api/pono/carriers`>>
 
 !! A lar URI carrying a query and a fragment
 
-<<~ loulou lar:///ha.ka.ba/lares/docs/handoff?key=value&other=second#/fragment>>
+<<~ loulou uri=`lar:///ha.ka.ba/lares/docs/handoff?key=value&other=second#/fragment`>>
 
-<<~ loulou lar://mara:operator@crossroads/operator.reads.the-record?a=1&b=2>>
+<<~ loulou uri=`lar://mara:operator@crossroads/operator.reads.the-record?a=1&b=2`>>
 
 !! Strings in each quoting the dialect takes
 
@@ -34,9 +34,9 @@ opens a carrier:
 
 The colon spelling names a parameter too, and it takes a quoted or a bracketed value:
 
-<<~ kue voice:Mischief-Muse key:"a floor recites the bearings instead of inhabiting them">>
+<<~ kue voice=`Mischief-Muse` key=`a floor recites the bearings instead of inhabiting them`>>
 
-<<~ hoike held:[[a bracketed value carrying spaces]] voice:'a single-quoted value'>>
+<<~ hoike held=`a bracketed value carrying spaces` voice=`a single-quoted value`>>
 
 The equals spelling takes a bracketed value too, whole rather than to its first space:
 
@@ -69,7 +69,7 @@ The form repeats as held text, named by its own dialect's fence meta rather than
 time as a live block check:
 
 ```memetic-wikitext
-<<^ code="&#x0003;">>ni:///sha-256;RLbu7oqpmxUvCAdVD6WWpVjlL6L8xEvHEp8PF32siCg
+<<^ code=`&#x0003;`>>ni:///sha-256;RLbu7oqpmxUvCAdVD6WWpVjlL6L8xEvHEp8PF32siCg
 ```
 
 !! An authority with no role still reads as an authority
@@ -97,6 +97,6 @@ lar://read:this-fence@nowhere/the.dialect.reads-here check ni:///sha-256;address
 
 <<~/ahu>>
 
-<<^ code="&#x0003;">>ni:///sha-256;btpiMHCg5L6ghtz2JenhjKdUtXeIDdIqbZ3pYssG73w
+<<^ code=`&#x0003;`>>ni:///sha-256;btpiMHCg5L6ghtz2JenhjKdUtXeIDdIqbZ3pYssG73w
 
-<<^ code="&#x0004;" -> to="?">>
+<<^ code=`&#x0004;` to=`?`>>

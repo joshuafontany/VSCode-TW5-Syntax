@@ -122,17 +122,19 @@ test('the pattern reads a declaration and refuses what merely resembles one', ()
   const re = (line) => new RegExp(memetic.firstLine).test(line);
 
   for (const line of [
-    '<<!DOCTYPE "memetic-wikitext+tiddlywiki" "lar:///ha.ka.ba/lares/api/pono/memetic-wikitext">>',
-    '<<^ code="&#x0001;" namespace="ॐ ँ" from="?" -> to="lar:///ha.ka.ba/x">>',
-    '<<^ code="&#x0002;">>'
+    '<<!DOCTYPE type=`memetic-wikitext+tiddlywiki` spec=`lar:///ha.ka.ba/lares/api/pono/memetic-wikitext`>>',
+    '<<^ code=`&#x0001;` namespace=`ॐ ँ` from=`?` to=`lar:///ha.ka.ba/x`>>',
+    '<<^ code=`&#x0002;`>>'
   ]) assert.ok(re(line), `a carrier head read as no declaration: ${line.slice(0, 60)}`);
 
   for (const line of [
-    '<<!DOCTYPE "html">>',                      // a doctype naming another dialect
+    '<<!DOCTYPE type=`html`>>',                 // a doctype naming another dialect
+    '<<!DOCTYPE "memetic-wikitext+tiddlywiki" "lar:///ha.ka.ba/x">>', // the RETIRED positional doctype: a value rides named now
+    '<<!DOCTYPE "html">>',                      // a quoted doctype naming another dialect
     '<!DOCTYPE html>',                          // the HTML form the base grammar reads
     'title: Minimal',                           // a tiddler header
     '```toml meta',                             // a fence head, which markdown also opens on
-    '<<~ ahu #/entry>>',                        // an INVOCATION, which declares nothing
+    '<<~ ahu slot=`#/entry`>>',                 // an INVOCATION, which declares nothing
     '<<caret>>',                                // a plain wikitext procedure call
     'A local address lar:///ha.ka.ba/x in prose.',
     ''

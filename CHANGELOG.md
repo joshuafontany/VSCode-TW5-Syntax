@@ -6,6 +6,17 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## 3.0.1 — unreleased
 
+### Changed
+
+- **Calls ride named, ticked values (the kupono grammar cut).** The carrier snippets, the language
+  detector and every pinned specimen write ``name=`value` `` and the bearing pair as `from=` and `to=`;
+  no arrow stands between two values. The `set` snippets fire `lares=` with `aim`, `steer` and
+  `yield`, and the retired `lares`, `aperture` and `drift-ward` sigils leave the snippet set.
+- **A lar: address inside a tick ends at the closing tick.** `from=`lar:///a.b.c/x` to=`?`` used to read
+  the closing tick as address text, so `to` carried no attribute name and the call never closed.
+- **The bearing arrow reads in prose only.** It leaves the sigil injection: an arrow inside a ticked
+  value belongs to the value. The scope now reaches the phase markers `->✶ ->⏿ ->◇ ->▶ ->↺`.
+
 ### Added
 
 - **A carrier frame in one insert.** `carrier` writes the doctype, the four frame markers, the meta
@@ -13,7 +24,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   so tabbing through one binds no phantom parameter. `ctrl+k ctrl+m` reaches the frame and
   `ctrl+k ctrl+a` an ahu section at the cursor (`cmd` on a Mac).
 - **A carrier head selects the language.** An untitled buffer or a file whose extension no language
-  claims reads as the dialect when line one opens on `<<!DOCTYPE "…memetic-wikitext…">>` or a `<<^`
+  claims reads as the dialect when line one opens on ``<<!DOCTYPE type=`…memetic-wikitext…`>>`` or a `<<^`
   marker. An extension that IS claimed still wins — including `.txt`, which Plain Text owns.
 - **Enter continues a list, an ordered list or a quote block**, to depth three.
 

@@ -1,7 +1,7 @@
-<<!DOCTYPE "memetic-wikitext+tiddlywiki" "lar:///ha.ka.ba/lares/api/pono/memetic-wikitext">>
+<<!DOCTYPE type=`memetic-wikitext+tiddlywiki` spec=`lar:///ha.ka.ba/lares/api/pono/memetic-wikitext`>>
 
-<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/treesitter-and-semantic-tokens">>
-<<^ code="&#x0002;">>
+<<^ code=`&#x0001;` from=`?` to=`lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/treesitter-and-semantic-tokens`>>
+<<^ code=`&#x0002;`>>
 
 ```toml meta
 cacheable = true
@@ -15,7 +15,7 @@ uri-path  = "ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/treesitter-and-sema
 written   = "2026-09-01"
 ```
 
-<<~ ahu #treesitter-and-semantic-tokens>>
+<<~ ahu slot=`#treesitter-and-semantic-tokens`>>
 
 ! HANDBACK — kept verbatim below this line, unedited
 
@@ -550,6 +550,6 @@ Tooling: the ''scope inspector'' (`/api/language-extensions/syntax-highlight-gui
 
 <<~/ahu>>
 
-<<^ code="&#x0003;">>ni:///sha-256;rJhckPSSz0t0lgpdzIQjanHGUK36T7D0qgfP4OV05Us
+<<^ code=`&#x0003;`>>ni:///sha-256;rJhckPSSz0t0lgpdzIQjanHGUK36T7D0qgfP4OV05Us
 
-<<^ code="&#x0004;" -> to="?">>
+<<^ code=`&#x0004;` to=`?`>>

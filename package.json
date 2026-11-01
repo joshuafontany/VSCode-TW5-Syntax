@@ -123,7 +123,7 @@
                 "mimetypes": [
                     "text/memetic-wikitext+tiddlywiki"
                 ],
-                "firstLine": "^<<(!DOCTYPE\\s+\"[^\"]*memetic-wikitext|\\^[\\s>])",
+                "firstLine": "^<<(!DOCTYPE\\s+type=`[^`]*memetic-wikitext|\\^[\\s>])",
                 "configuration": "./memetic-language-configuration.json"
             }
         ],

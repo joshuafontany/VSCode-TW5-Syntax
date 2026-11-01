@@ -1,7 +1,7 @@
-<<!DOCTYPE "memetic-wikitext+tiddlywiki" "lar:///ha.ka.ba/lares/api/pono/memetic-wikitext">>
+<<!DOCTYPE type=`memetic-wikitext+tiddlywiki` spec=`lar:///ha.ka.ba/lares/api/pono/memetic-wikitext`>>
 
-<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/synthesis">>
-<<^ code="&#x0002;">>
+<<^ code=`&#x0001;` from=`?` to=`lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/synthesis`>>
+<<^ code=`&#x0002;`>>
 
 ```toml meta
 cacheable = true
@@ -15,7 +15,7 @@ uri-path  = "ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/synthesis"
 written   = "2026-09-01"
 ```
 
-<<~ ahu #synthesis>>
+<<~ ahu slot=`#synthesis`>>
 
 ! A — THE SYSTEMS SURVEYED, one line on each model
 
@@ -466,7 +466,7 @@ foreground from `keyword` and italic from `keyword.control` on the same token.
 
 <<~/ahu>>
 
-<<~ ahu #handoff>>
+<<~ ahu slot=`#handoff`>>
 
 ! HANDOFF — what the coordinating spirit handed back, VERBATIM
 
@@ -538,6 +538,6 @@ Overusing `invalid` ("as they edit code"), styling `meta.*`, stacking meta varia
 
 <<~/ahu>>
 
-<<^ code="&#x0003;">>ni:///sha-256;MEAeiTdajekZLiUX2SeEVUus7PpEZCMwaL3DeVH0Xwk
+<<^ code=`&#x0003;`>>ni:///sha-256;MEAeiTdajekZLiUX2SeEVUus7PpEZCMwaL3DeVH0Xwk
 
-<<^ code="&#x0004;" -> to="?">>
+<<^ code=`&#x0004;` to=`?`>>
