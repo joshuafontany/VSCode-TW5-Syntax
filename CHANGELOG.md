@@ -53,7 +53,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - **A call with text after its closer reads inline.** TiddlyWiki builds a block call only where
   `>>` ends the line; ``<<m>>;abc``, ``<<m>>* item`` or ``<<m>>{{t}}`` is a paragraph holding an
   inline call. The grammar opened a block call there and then read the `;`, `*` or `!` after it as a
-  list or a heading. A nested call or a quoted `>>` in a parameter is not the closer. A sigil follows
+  list or a heading. A nested call (two deep), a transclusion, or a quoted, bracketed or ticked `>>`
+  in a parameter is not the closer, and trailing spaces after it count as text. A sigil follows
   the same law (the memetic block/inline law): `<<~ x a=`v`>>;abc` is a paragraph holding an inline
   sigil, as the memetic plug-in builds it.
 - **The carrier seal rides inside the ETX marker**: ``<<^ code=`&#x0003;` bcc=`ni:///sha-256;…`>>``.
@@ -62,7 +63,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   `created`, `modified`, `color` and `avatar` stay plain, a filter-valued key reads a filter, and
   every other key, the title included, reads memetic wikitext (`lar:` and `ni:` names, entities,
   `{{transclusions}}`, `<<calls>>` and sigils, links, emphasis). A single-line string's body is read
-  inside its own match, so a stray mark ends with its string. Any other `toml` fence stays plain TOML.
+  inside its own match, so a stray mark ends with its string; a field longer than 1000 characters
+  reads as a plain string, so one long pasted line costs nothing. Any other `toml` fence stays plain TOML.
 
 113 rulings stand over the divergence the two readers carry.
 

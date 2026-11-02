@@ -22,13 +22,13 @@
 #^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.call.inline.tiddlywiki5
 #      ^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.call.inline.tiddlywiki5
 
-# CONTROLS: a call alone on its line, trailing spaces included, stays a block call, and so does a
-# call whose parameters run onto later lines.
+# CONTROLS: a call alone on its line stays a block call, and so does a call whose parameters run
+# onto later lines. (Trailing spaces after the closer make a paragraph; see the end of this file.)
 
 <<m>>
 #^ text.html.tiddlywiki5 meta.variable.call.block.tiddlywiki5
 
-<<m a="x">>   
+<<m a="x">>
 #^ text.html.tiddlywiki5 meta.variable.call.block.tiddlywiki5
 
 <<m
@@ -66,4 +66,25 @@
 #^ text.html.tiddlywiki5 meta.variable.call.block.tiddlywiki5
 
 <<m p:[[a>>b]]>> tail
+#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.call.inline.tiddlywiki5
+
+# CONTROLS (wave-2 readers): a two-deep nested call, and a `>>` inside a transclusion or a filtered
+# transclusion, is not the closer either; TiddlyWiki builds each alone on its line as a block call.
+
+<<m a=<<b c=<<d>>>>>>
+#^ text.html.tiddlywiki5 meta.variable.call.block.tiddlywiki5
+
+<<m a={{{ [a>>b] }}}>>
+#^ text.html.tiddlywiki5 meta.variable.call.block.tiddlywiki5
+
+<<m a={{x>>y}}>>
+#^ text.html.tiddlywiki5 meta.variable.call.block.tiddlywiki5
+
+# A quoted `>>` inside a nested call is not its closer, and text after the outer closer, trailing
+# spaces included, makes the line a paragraph, as TiddlyWiki builds it.
+
+<<m a=<<b "c>>">>>>x
+#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.call.inline.tiddlywiki5
+
+<<m>>  
 #^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.call.inline.tiddlywiki5

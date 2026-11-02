@@ -573,7 +573,7 @@
       ]
     },
     "field-basic-string": {
-      "match": "(\")((?:[^\"\\\\]|\\\\.)*)(\")",
+      "match": "(\")((?:[^\"\\\\]|\\\\.){0,1000})(\")",
       "name": "meta.string.toml string.quoted.double.toml",
       "captures": {
         "1": {
@@ -596,7 +596,7 @@
       }
     },
     "field-literal-string": {
-      "match": "(')([^']*)(')",
+      "match": "(')([^']{0,1000})(')",
       "name": "meta.string.toml string.quoted.single.toml",
       "captures": {
         "1": {
@@ -616,7 +616,7 @@
       }
     },
     "filter-basic-string": {
-      "match": "(\")((?:[^\"\\\\]|\\\\.)*)(\")",
+      "match": "(\")((?:[^\"\\\\]|\\\\.){0,1000})(\")",
       "name": "meta.string.toml string.quoted.double.toml",
       "captures": {
         "1": {
@@ -639,7 +639,7 @@
       }
     },
     "filter-literal-string": {
-      "match": "(')([^']*)(')",
+      "match": "(')([^']{0,1000})(')",
       "name": "meta.string.toml string.quoted.single.toml",
       "captures": {
         "1": {
@@ -755,6 +755,12 @@
         },
         {
           "include": "#field-literal-string"
+        },
+        {
+          "include": "#basic-string"
+        },
+        {
+          "include": "#literal-string"
         }
       ]
     },
@@ -799,6 +805,12 @@
         },
         {
           "include": "#field-literal-multiline-string"
+        },
+        {
+          "include": "#basic-string"
+        },
+        {
+          "include": "#literal-string"
         }
       ]
     },
@@ -965,7 +977,7 @@
       ]
     },
     "meta-document": {
-      "comment": "A meme's toml meta block, read as TIDDLER FIELDS (operator ruling 2026-11-01: the meta string values are TiddlyWiki + memetic-wikitext fields, and memes carry the fields found in the wild, many of them wikitext transcluded elsewhere). Per key, as tw5-fields.json reads a .tid header: the key sets are tw5-fields.json's own, grounded in the field types boot.js declares: `created`, `modified`, `color` (and `avatar`, base-64 bytes) read plain; a filter-valued key reads a filter; every other key, the title included, reads memetic wikitext, where a lar: title still reads as an address because the dialect's injection claims it first. A single-line string's body is a regex CAPTURE, and patterns applied inside a capture cannot reach past it, so even a stray `//` or `''` ends with its string (measured on vscode-textmate 7.0.4 and 9.2.0, with 4338 real field values replayed). A multi-line string spans lines, so it keeps the bounded constructs only. The dialect (lar:, ni:, anchors, the bearing arrow) reaches field text through an injection on `meta.field.value.toml` in the memetic grammar, so it reads inside spans the field opens too. Only the `toml meta` fence takes this reading; any other toml fence reads plain TOML.",
+      "comment": "A meme's toml meta block, read as TIDDLER FIELDS (operator ruling 2026-11-01: the meta string values are TiddlyWiki + memetic-wikitext fields, and memes carry the fields found in the wild, many of them wikitext transcluded elsewhere). Per key, as tw5-fields.json reads a .tid header: the key sets are tw5-fields.json's own, grounded in the field types boot.js declares: `created`, `modified`, `color` (and `avatar`, base-64 bytes) read plain; a filter-valued key reads a filter; every other key, the title included, reads memetic wikitext, where a lar: title still reads as an address because the dialect's injection claims it first. A single-line string's body is a regex CAPTURE, and patterns applied inside a capture cannot reach past it, so even a stray `//` or `''` ends with its string (measured on vscode-textmate 7.0.4 and 9.2.0, with 4338 real field values replayed). A multi-line string spans lines, so it keeps the bounded constructs only. The dialect (lar:, ni:, anchors, the bearing arrow) reaches field text through an injection on `meta.field.value.toml` in the memetic grammar, so it reads inside spans the field opens too. Only the `toml meta` fence takes this reading; any other toml fence reads plain TOML. A single-line field reads this way up to 1000 characters; past that it reads as a plain string, because a capture's patterns cost the square of its length and a long run of lar: names inside one overflowed the tokenizer's stack (wave-2 cold readers). Real fields run to a few hundred characters.",
       "patterns": [
         {
           "include": "#comments"
