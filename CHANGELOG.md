@@ -43,8 +43,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - **A call with text after its closer reads inline.** TiddlyWiki builds a block call only where
   `>>` ends the line; ``<<m>>;abc``, ``<<m>>* item`` or ``<<m>>{{t}}`` is a paragraph holding an
   inline call. The grammar opened a block call there and then read the `;`, `*` or `!` after it as a
-  list or a heading. A nested call or a quoted `>>` in a parameter is not the closer. Sigil lines
-  keep their reading until the memetic block/inline law lands.
+  list or a heading. A nested call or a quoted `>>` in a parameter is not the closer. A sigil follows
+  the same law (the memetic block/inline law): `<<~ x a=`v`>>;abc` is a paragraph holding an inline
+  sigil, as the memetic plug-in builds it.
+- **The carrier seal rides inside the ETX marker**: ``<<^ code=`&#x0003;` bcc=`ni:///sha-256;…`>>``.
+  The snippet, the samples, the docs and the corpus fixtures write it there.
 
 ## 3.0.1 — unreleased
 

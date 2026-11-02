@@ -19,9 +19,9 @@ after the call
 
 # CONTROL: a whole ni: name still reads its algorithm and digest.
 
-<<^ code=`&#x0003;`>>ni:///sha-256;7uFf47o8VMhpXmwKCHt2Ev8Kyin9lwMX-N3DlYeX73k
-#                          ^^^^^^^ support.type.algorithm.ni.memetic-wikitext
-#                                  ^^^^ constant.other.checksum.ni.memetic-wikitext
+<<^ code=`&#x0003;` bcc=`ni:///sha-256;7uFf47o8VMhpXmwKCHt2Ev8Kyin9lwMX-N3DlYeX73k`>>
+#                              ^^^^^^^ support.type.algorithm.ni.memetic-wikitext
+#                                      ^^^^ constant.other.checksum.ni.memetic-wikitext
 
 after the call
 #^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5

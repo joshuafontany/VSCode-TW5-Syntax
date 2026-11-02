@@ -42,6 +42,6 @@ rule would take its dash and leave the angle to the parameters region — two to
 
 <<~/ahu>>
 
-<<^ code=`&#x0003;`>>ni:///sha-256;0dYUgDiGdGsYjGfeSFgA7DsV4t8w6ALtYogKgHzuPFQ
+<<^ code=`&#x0003;` bcc=`ni:///sha-256;0dYUgDiGdGsYjGfeSFgA7DsV4t8w6ALtYogKgHzuPFQ`>>
 
 <<^ code=`&#x0004;` to=`?`>>

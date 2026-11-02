@@ -69,7 +69,7 @@ The form repeats as held text, named by its own dialect's fence meta rather than
 time as a live block check:
 
 ```memetic-wikitext
-<<^ code=`&#x0003;`>>ni:///sha-256;RLbu7oqpmxUvCAdVD6WWpVjlL6L8xEvHEp8PF32siCg
+<<^ code=`&#x0003;` bcc=`ni:///sha-256;RLbu7oqpmxUvCAdVD6WWpVjlL6L8xEvHEp8PF32siCg`>>
 ```
 
 !! An authority with no role still reads as an authority
@@ -97,6 +97,6 @@ lar://read:this-fence@nowhere/the.dialect.reads-here check ni:///sha-256;address
 
 <<~/ahu>>
 
-<<^ code=`&#x0003;`>>ni:///sha-256;btpiMHCg5L6ghtz2JenhjKdUtXeIDdIqbZ3pYssG73w
+<<^ code=`&#x0003;` bcc=`ni:///sha-256;btpiMHCg5L6ghtz2JenhjKdUtXeIDdIqbZ3pYssG73w`>>
 
 <<^ code=`&#x0004;` to=`?`>>

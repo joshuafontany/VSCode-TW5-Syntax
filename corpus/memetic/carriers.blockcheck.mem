@@ -13,7 +13,7 @@ fault this file asserts, and no declaration names it.
 
 A body whose close carries a block check.
 
-<<^ code=`&#x0003;`>>ni:///sha-256;j1yWiREtBrtyp0nn-14FCoVTGPrIYWoom0NGp-WrjOE
+<<^ code=`&#x0003;` bcc=`ni:///sha-256;j1yWiREtBrtyp0nn-14FCoVTGPrIYWoom0NGp-WrjOE`>>
 
 <<^ code="&#x0017;">> ni:///sha-256;AAAA1234BBBB5678CCCC9012DDDD3456EEEE7890FFFF
 

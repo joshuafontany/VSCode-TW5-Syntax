@@ -262,6 +262,6 @@ he declined it. ''Cost signal, never permission.''
 
 <<~/ahu>>
 
-<<^ code=`&#x0003;`>>ni:///sha-256;K69VkVpOgM_aVXeG4E92nH4sqxX0wotHW2bDH6tjELc
+<<^ code=`&#x0003;` bcc=`ni:///sha-256;KXLl2rVk4CWqBOfGDOtSWm30tww2BGsdDhLLD4sfFmY`>>
 
 <<^ code=`&#x0004;` to=`?`>>

@@ -550,6 +550,6 @@ Tooling: the ''scope inspector'' (`/api/language-extensions/syntax-highlight-gui
 
 <<~/ahu>>
 
-<<^ code=`&#x0003;`>>ni:///sha-256;rJhckPSSz0t0lgpdzIQjanHGUK36T7D0qgfP4OV05Us
+<<^ code=`&#x0003;` bcc=`ni:///sha-256;y2qGIRIebwh-8PiH7F2wi8jiRuXeoraSGhAY5cn9hJI`>>
 
 <<^ code=`&#x0004;` to=`?`>>

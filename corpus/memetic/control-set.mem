@@ -13,7 +13,7 @@ only `lares meme check` answers for this fence.
 
 A body between the carriers.
 
-<<^ code=`&#x0003;`>>ni:///sha-256;UgAqSlrMpWD0q9fA03c124wKSTxewxD1YJjg4wGJu9E
+<<^ code=`&#x0003;` bcc=`ni:///sha-256;UgAqSlrMpWD0q9fA03c124wKSTxewxD1YJjg4wGJu9E`>>
 
 <<^ code=`&#x0004;` to=`?`>>
 

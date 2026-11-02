@@ -28,6 +28,6 @@ a quoteblock carrying <<~ sigil>> and lar:///ha.ka.ba/lares/api/pono/containers
 
 <<~/ahu>>
 
-<<^ code=`&#x0003;`>>ni:///sha-256;WIul98D6KBvQGSdLTMl7JFqeI8Hav085_KfCBonufGg
+<<^ code=`&#x0003;` bcc=`ni:///sha-256;WIul98D6KBvQGSdLTMl7JFqeI8Hav085_KfCBonufGg`>>
 
 <<^ code=`&#x0004;` to=`?`>>

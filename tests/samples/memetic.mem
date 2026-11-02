@@ -26,6 +26,6 @@ Prose naming lar:///ha.ka.ba/lares/api/pono/meme, a ''bold run'' and a `code spa
 
 <<~ /ahu>>
 
-<<^ code=`&#x0003;`>>ni:///sha-256;GLgSiSMbveKl9IPPIC9jDcXTXbN32BdsYQMiZ3bZr50
+<<^ code=`&#x0003;` bcc=`ni:///sha-256;GLgSiSMbveKl9IPPIC9jDcXTXbN32BdsYQMiZ3bZr50`>>
 
 <<^ code=`&#x0004;` to=`?`>>

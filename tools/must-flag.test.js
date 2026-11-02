@@ -53,7 +53,9 @@ test('a must-flag specimen that stops tripping its fault fails the gate', { ...l
     const afterHash = text.indexOf(hashLine);
     const close = text.indexOf('<<^ code=`&#x0004;` to=`?`>>');
     assert.ok(afterHash > 0 && close > afterHash, 'fixture shape moved; the heal needs both anchors');
-    fs.writeFileSync(file, `${text.slice(0, afterHash + hashLine.length)}\n\n<<^ code=\`&#x0004;\` to=\`?\`>>\n`);
+    // The seal rides inside the ETX marker as `bcc=` (Train R), so the cut runs to the end of that line.
+    const footEnd = text.indexOf('\n', afterHash);
+    fs.writeFileSync(file, `${text.slice(0, footEnd < 0 ? text.length : footEnd)}\n\n<<^ code=\`&#x0004;\` to=\`?\`>>\n`);
   };
   const { code, out } = runInSandbox(heal, ['tools/must-flag.js']);
   assert.match(out, /etb-bare/, out.slice(-700));
