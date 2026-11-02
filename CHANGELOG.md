@@ -53,6 +53,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   value belongs to the value. The scope now reaches the phase markers `->✶ ->⏿ ->◇ ->▶ ->↺`.
 - **The carrier-head detector reads the kupono head.** An untitled buffer opens as the dialect when
   line one reads ``<<!DOCTYPE type=`…memetic-wikitext…`>>``, the ticked form every carrier now writes.
+  The old quoted head (`<<!DOCTYPE "…memetic-wikitext…">>`) no longer selects the dialect in such a
+  buffer; a `.mem` file is claimed by its extension either way.
 - **A call standing in a list item, quote line, term, definition or heading ends at a blank
   line.** One left open while typing ran the rest of the file as its arguments. TiddlyWiki builds a
   call across a blank line, but across 5891 of its tiddlers, 790 memes and this corpus, none of the
