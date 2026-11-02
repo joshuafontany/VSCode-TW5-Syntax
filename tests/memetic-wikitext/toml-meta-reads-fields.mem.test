@@ -1,0 +1,47 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A meme's toml meta strings read as tiddler fields"
+
+# OPERATOR RULING 2026-11-01: the meta block's string values ARE TiddlyWiki + memetic-wikitext tiddler
+# fields, and memes will carry the fields found in the wild, many of them wikitext meant for
+# transclusion elsewhere. Read per key, as tw5-fields.json reads a .tid header: created, modified, color
+# and avatar plain, filter keys a filter, every other key (the title too) memetic wikitext. A one-line string's
+# body is a regex capture, so nothing inside it reaches past the closing quote.
+
+```toml meta
+caption = "see {{Tid}} and //lar:///ha.ka.ba/x// now"
+#              ^^ meta.transclusion.transcludeinline.tiddlywiki5
+#                          ^^ punctuation.definition.markup.begin.italic.tiddlywiki5
+#                            ^^^ markup.italic.tiddlywiki5
+#                            ^^^ support.constant.scheme.lar.memetic-wikitext
+description = "a // stray mark"
+next = 1
+#      ^ constant.numeric.value.toml
+#    ^ - markup.italic.tiddlywiki5
+created = "20261101 ''x''"
+#                   ^^^ - markup.bold.tiddlywiki5
+title = "lar:///ha.ka.ba/lares/x"
+#        ^^^ support.constant.scheme.lar.memetic-wikitext
+#               ^^ entity.name.tag.heading.lar.memetic-wikitext
+condition = "[<count>compare:lte[1]]"
+#            ^ meta.filter.run.tiddlywiki5
+filter = "[[Some Title]]"
+#         ^^ - markup.link.tiddlywiki5
+hint = "a \"quoted\" {{T}}"
+#         ^^ constant.character.escape.toml
+#                    ^^ meta.transclusion.transcludeinline.tiddlywiki5
+role = 'the <<~ set mode="riff">> keel'
+#               ^^^ keyword.control.sigil.memetic-wikitext
+tags = ["a", "[[b c]]"]
+#             ^^ punctuation.definition.link.begin.tiddlywiki5
+summary = """
+a {{Block}} and ''not bold''
+# ^^ meta.transclusion.transcludeinline.tiddlywiki5
+#               ^^^ - markup.bold.tiddlywiki5
+"""
+```
+
+# CONTROL: an ordinary toml fence keeps plain TOML strings; no field reading outside the meta block.
+
+```toml
+caption = "see {{Tid}}"
+#              ^^ - meta.transclusion.transcludeinline.tiddlywiki5
+```

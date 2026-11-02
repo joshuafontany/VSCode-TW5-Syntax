@@ -48,6 +48,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   sigil, as the memetic plug-in builds it.
 - **The carrier seal rides inside the ETX marker**: ``<<^ code=`&#x0003;` bcc=`ni:///sha-256;…`>>``.
   The snippet, the samples, the docs and the corpus fixtures write it there.
+- **A meme's `toml meta` strings read as tiddler fields.** Per key, as a `.tid` header reads:
+  `created`, `modified`, `color` and `avatar` stay plain, a filter-valued key reads a filter, and
+  every other key, the title included, reads memetic wikitext (`lar:` and `ni:` names, entities,
+  `{{transclusions}}`, `<<calls>>` and sigils, links, emphasis). A single-line string's body is read
+  inside its own match, so a stray mark ends with its string. Any other `toml` fence stays plain TOML.
 
 ## 3.0.1 — unreleased
 
@@ -88,7 +93,7 @@ typo instead of flooding your file, error colours appear only where TiddlyWiki i
 the colours you see tell you what your wiki will actually render.
 
 A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 110 of the 421
-names `v2.2.1` published, and 245 stand new since — `MIGRATION.md` names every one, with what it
+names `v2.2.1` published, and 247 stand new since — `MIGRATION.md` names every one, with what it
 stands as now.
 
 The full record of this release — every construct, ruling and measurement behind it — lives in

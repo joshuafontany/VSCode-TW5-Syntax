@@ -374,6 +374,23 @@
         }
     },
     "injections": {
+        "L:meta.field.value.toml": {
+            "comment": "A meme's toml meta field reads as memetic wikitext (operator ruling 2026-11-01). The field's TW5 inline reading comes from the toml grammar; the dialect reaches it here, as an injection rather than an include, so a lar: name, an ni: name, an anchor or the bearing arrow reads inside a span the field opens (an italic, a link) as it does in prose. The general injections skip meta.embedded.block, so the meta fence needs its own.",
+            "patterns": [
+                {
+                    "include": "text.html.tiddlywiki5.memetic-wikitext#lar-uri-in-value"
+                },
+                {
+                    "include": "text.html.tiddlywiki5.memetic-wikitext#ni-uri"
+                },
+                {
+                    "include": "text.html.tiddlywiki5.memetic-wikitext#fragment"
+                },
+                {
+                    "include": "text.html.tiddlywiki5.memetic-wikitext#bearing"
+                }
+            ]
+        },
         "L:text.html.tiddlywiki5 string - (meta.embedded.block, markup.inline.raw.block.tiddlywiki5, markup.raw.inline.tiddlywiki5, meta.typedblock.tiddlywiki5), L:meta.embedded.block.memetic string": {
             "patterns": [
                 {

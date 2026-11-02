@@ -571,6 +571,421 @@
           "name": "invalid.illegal.string.escape.toml"
         }
       ]
+    },
+    "field-basic-string": {
+      "match": "(\")((?:[^\"\\\\]|\\\\.)*)(\")",
+      "name": "meta.string.toml string.quoted.double.toml",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.string.begin.toml"
+        },
+        "2": {
+          "name": "meta.field.value.toml",
+          "patterns": [
+            {
+              "include": "#string-escapes"
+            },
+            {
+              "include": "text.html.tiddlywiki5#inline"
+            }
+          ]
+        },
+        "3": {
+          "name": "punctuation.definition.string.end.toml"
+        }
+      }
+    },
+    "field-literal-string": {
+      "match": "(')([^']*)(')",
+      "name": "meta.string.toml string.quoted.single.toml",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.string.begin.toml"
+        },
+        "2": {
+          "name": "meta.field.value.toml",
+          "patterns": [
+            {
+              "include": "text.html.tiddlywiki5#inline"
+            }
+          ]
+        },
+        "3": {
+          "name": "punctuation.definition.string.end.toml"
+        }
+      }
+    },
+    "filter-basic-string": {
+      "match": "(\")((?:[^\"\\\\]|\\\\.)*)(\")",
+      "name": "meta.string.toml string.quoted.double.toml",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.string.begin.toml"
+        },
+        "2": {
+          "name": "meta.field.filter.toml",
+          "patterns": [
+            {
+              "include": "#string-escapes"
+            },
+            {
+              "include": "text.html.tiddlywiki5#filter"
+            }
+          ]
+        },
+        "3": {
+          "name": "punctuation.definition.string.end.toml"
+        }
+      }
+    },
+    "filter-literal-string": {
+      "match": "(')([^']*)(')",
+      "name": "meta.string.toml string.quoted.single.toml",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.string.begin.toml"
+        },
+        "2": {
+          "name": "meta.field.filter.toml",
+          "patterns": [
+            {
+              "include": "text.html.tiddlywiki5#filter"
+            }
+          ]
+        },
+        "3": {
+          "name": "punctuation.definition.string.end.toml"
+        }
+      }
+    },
+    "field-basic-multiline-string": {
+      "begin": "\"\"\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.toml"
+        }
+      },
+      "end": "\"{3,5}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.toml"
+        }
+      },
+      "name": "meta.string.toml string.quoted.double.block.toml",
+      "patterns": [
+        {
+          "include": "#string-escapes"
+        },
+        {
+          "include": "text.html.tiddlywiki5#htmlwidget-entities"
+        },
+        {
+          "include": "text.html.tiddlywiki5#macrocallinline"
+        },
+        {
+          "include": "text.html.tiddlywiki5#transcludeinline"
+        },
+        {
+          "include": "text.html.tiddlywiki5#filteredtranscludeinline"
+        },
+        {
+          "include": "text.html.tiddlywiki5#link"
+        }
+      ],
+      "contentName": "meta.field.value.toml"
+    },
+    "field-literal-multiline-string": {
+      "begin": "'''",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.toml"
+        }
+      },
+      "end": "'{3,5}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.toml"
+        }
+      },
+      "name": "meta.string.toml string.quoted.single.block.toml",
+      "contentName": "meta.field.value.toml",
+      "patterns": [
+        {
+          "include": "text.html.tiddlywiki5#htmlwidget-entities"
+        },
+        {
+          "include": "text.html.tiddlywiki5#macrocallinline"
+        },
+        {
+          "include": "text.html.tiddlywiki5#transcludeinline"
+        },
+        {
+          "include": "text.html.tiddlywiki5#filteredtranscludeinline"
+        },
+        {
+          "include": "text.html.tiddlywiki5#link"
+        }
+      ]
+    },
+    "field-value": {
+      "patterns": [
+        {
+          "include": "#field-array"
+        },
+        {
+          "include": "#field-inline-table"
+        },
+        {
+          "include": "#boolean"
+        },
+        {
+          "include": "#datetime"
+        },
+        {
+          "include": "#number"
+        },
+        {
+          "include": "#field-basic-multiline-string"
+        },
+        {
+          "include": "#field-basic-string"
+        },
+        {
+          "include": "#field-literal-multiline-string"
+        },
+        {
+          "include": "#field-literal-string"
+        }
+      ]
+    },
+    "name-value": {
+      "patterns": [
+        {
+          "include": "#field-array"
+        },
+        {
+          "include": "#boolean"
+        },
+        {
+          "include": "#datetime"
+        },
+        {
+          "include": "#number"
+        },
+        {
+          "include": "#basic-multiline-string"
+        },
+        {
+          "include": "#basic-string"
+        },
+        {
+          "include": "#literal-multiline-string"
+        },
+        {
+          "include": "#literal-string"
+        }
+      ]
+    },
+    "filter-value": {
+      "patterns": [
+        {
+          "include": "#filter-basic-string"
+        },
+        {
+          "include": "#filter-literal-string"
+        },
+        {
+          "include": "#field-basic-multiline-string"
+        },
+        {
+          "include": "#field-literal-multiline-string"
+        }
+      ]
+    },
+    "field-array": {
+      "begin": "\\[",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.sequence.begin.toml"
+        }
+      },
+      "end": "\\]",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.sequence.end.toml"
+        }
+      },
+      "name": "meta.sequence.array.toml",
+      "patterns": [
+        {
+          "match": ",",
+          "name": "punctuation.separator.sequence.toml"
+        },
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#field-value"
+        }
+      ]
+    },
+    "field-inline-table": {
+      "begin": "\\{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.mapping.begin.toml"
+        }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.mapping.end.toml"
+        }
+      },
+      "name": "meta.mapping.toml",
+      "patterns": [
+        {
+          "match": ",",
+          "name": "punctuation.separator.sequence.toml"
+        },
+        {
+          "begin": "(?=[\"'0-9A-Za-z_-])",
+          "end": "(?=[,}])",
+          "patterns": [
+            {
+              "begin": "(=)",
+              "beginCaptures": {
+                "1": {
+                  "name": "punctuation.separator.key-value.toml"
+                }
+              },
+              "end": "(?=[,}])",
+              "name": "meta.mapping.value.toml",
+              "patterns": [
+                {
+                  "include": "#field-value"
+                }
+              ]
+            },
+            {
+              "include": "#table-key"
+            }
+          ]
+        }
+      ]
+    },
+    "name-field-line": {
+      "begin": "^(?=[ \\t]*(?:color|created|modified|avatar)[ \\t]*=)",
+      "end": "$",
+      "patterns": [
+        {
+          "begin": "(=)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.separator.key-value.toml"
+            }
+          },
+          "end": "(?=[,#\\]\\}])|$",
+          "name": "meta.mapping.value.toml",
+          "patterns": [
+            {
+              "include": "#name-value"
+            },
+            {
+              "include": "#comments"
+            }
+          ]
+        },
+        {
+          "include": "#table-key"
+        },
+        {
+          "include": "#comments"
+        }
+      ]
+    },
+    "filter-field-line": {
+      "begin": "^(?=[ \\t]*(?:filter|condition|condition-disabled|first-search-filter|second-search-filter|default-filter|subfilter|tag-filter)[ \\t]*=)",
+      "end": "$",
+      "patterns": [
+        {
+          "begin": "(=)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.separator.key-value.toml"
+            }
+          },
+          "end": "(?=[,#\\]\\}])|$",
+          "name": "meta.mapping.value.toml",
+          "patterns": [
+            {
+              "include": "#filter-value"
+            },
+            {
+              "include": "#comments"
+            }
+          ]
+        },
+        {
+          "include": "#table-key"
+        },
+        {
+          "include": "#comments"
+        }
+      ]
+    },
+    "field-line": {
+      "begin": "(?=[\"'0-9A-Za-z_-])",
+      "end": "$",
+      "patterns": [
+        {
+          "begin": "(=)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.separator.key-value.toml"
+            }
+          },
+          "end": "(?=[,#\\]\\}])|$",
+          "name": "meta.mapping.value.toml",
+          "patterns": [
+            {
+              "include": "#field-value"
+            },
+            {
+              "include": "#comments"
+            }
+          ]
+        },
+        {
+          "include": "#table-key"
+        },
+        {
+          "include": "#comments"
+        }
+      ]
+    },
+    "meta-document": {
+      "comment": "A meme's toml meta block, read as TIDDLER FIELDS (operator ruling 2026-11-01: the meta string values are TiddlyWiki + memetic-wikitext fields, and memes carry the fields found in the wild, many of them wikitext transcluded elsewhere). Per key, as tw5-fields.json reads a .tid header: the key sets are tw5-fields.json's own, grounded in the field types boot.js declares: `created`, `modified`, `color` (and `avatar`, base-64 bytes) read plain; a filter-valued key reads a filter; every other key, the title included, reads memetic wikitext, where a lar: title still reads as an address because the dialect's injection claims it first. A single-line string's body is a regex CAPTURE, and patterns applied inside a capture cannot reach past it, so even a stray `//` or `''` ends with its string (measured on vscode-textmate 7.0.4 and 9.2.0, with 4338 real field values replayed). A multi-line string spans lines, so it keeps the bounded constructs only. The dialect (lar:, ni:, anchors, the bearing arrow) reaches field text through an injection on `meta.field.value.toml` in the memetic grammar, so it reads inside spans the field opens too. Only the `toml meta` fence takes this reading; any other toml fence reads plain TOML.",
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#table-header"
+        },
+        {
+          "include": "#name-field-line"
+        },
+        {
+          "include": "#filter-field-line"
+        },
+        {
+          "include": "#field-line"
+        },
+        {
+          "include": "#illegal-token"
+        }
+      ]
     }
   }
 }
