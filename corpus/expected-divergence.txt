@@ -42,7 +42,6 @@ degenerate.unterminated-definition.tw:        # a fixture written to leave a def
 # Divergences on TiddlyWiki's own tiddlers, each traced to its cause.
 
 markup.other.preformatted.hardlinebreaks  # TiddlyWiki builds no container node for a hardlinebreaks block — its text nodes and line breaks are all it emits — so a scope over the block's content stands over text by construction
-RangeWidget Example.tid:meta.transclusion  # READER 5.5.0-prerelease — a transclusion opening at the end of a widget tag that continues onto the next line
 
 # ── A STATE TOGGLE NEVER TAKES A COLOUR AWAY ─────────────────────────────────
 #
@@ -186,10 +185,6 @@ tiddlywiki5.math.tw:punctuation.definition.tag.begin.html   # an element body Ti
 tiddlywiki5.math.tw:punctuation.definition.tag.end.html   # the same inline `<p>` body
 tiddlywiki5.math.tw:punctuation.definition.list   # the same inline `<p>` body: a definition-list mark inside it stays text
 core/templates/html-div-skinny-tiddler.tid:punctuation.definition.tag   # OWED — markup inside a code run TiddlyWiki carries across lines: codeinline closes at the next matching backtick run, newlines and all, while the grammar closes a code run on its own line — the bound that keeps an unclosed backtick from running past it — and reads the lines after as markup. It awaits the ruling italic across lines awaits
-es-ES/tiddlers/Formatting_text_in_TiddlyWiki.tid:punctuation.definition.tag   # READER 5.5.0-prerelease OWED — the same code run across lines, holding a whole `\define`
-es-ES/tiddlers/Formatting_text_in_TiddlyWiki.tid:punctuation.definition.string   # READER 5.5.0-prerelease OWED — the same code run across lines
-es-ES/tiddlers/Formatting_text_in_TiddlyWiki.tid:punctuation.definition.transclusion   # READER 5.5.0-prerelease OWED — the same code run across lines
-tw5.com/tiddlers/widgets/ListWidget.tid:punctuation.definition.list   # READER 5.5.0-prerelease OWED — the grammar claims a definition-list mark at a `:` standing mid-line after `<<counter>>`, inside a `<div>` whose body TiddlyWiki reads inline; the host keeps the colon as text
 
 # SURFACED WHEN THE CORPUS JOINED THE GATES. overreach-check ran over corpus/ only by hand while
 # gate-report skipped it, so the divergences below stood unreported. Each stands traced; OWED ones
@@ -213,6 +208,5 @@ reading.in-prose.mem:punctuation.definition.heading   # READER 5.4.1 — the `la
 # as an UNTERMINATED construct, and 5.4.1's scan-ahead recovery lands somewhere the fork's does not.
 es-ES/tiddlers/AlertMechanism.tid:   # READER 5.4.1 — `<<.tag ~$:/tags/Alert]].` opens a macro call with no `>>` on its own line (the source carries `]]` where a closer belongs, an upstream typo); 5.4.1's macrocall rule scans ahead for the next `>>` and swallows the prose after it as parameters, where the fork's rule recovers at a different point
 geospatialdemo/tiddlers/Features.tid:   # READER 5.4.1 — a mismatched HTML closing tag reads as an unterminated element under 5.4.1's html rule, carrying to the next `>` it finds, where the fork's rule recovers at a different point
-ja-JP/tiddlers/howtos/KeyboardShortcuts.tid:   # READER 5.4.1 — a description-list marker's own spacing reads differently once 5.4.1's list rule recovers past it, where the fork's rule does not
 tw5.com/tiddlers/tag-pill Macro (Examples).tid:   # READER 5.4.1 — a list marker inside an HTML block reads differently once 5.4.1's html rule recovers past it, where the fork's rule does not
 tw5.com/tiddlers/widgets/ActionDeleteFieldWidget.tid:   # READER 5.4.1 — a mismatched HTML closing tag reads as an unterminated element under 5.4.1's html rule, carrying to the next `>` it finds, where the fork's rule recovers at a different point

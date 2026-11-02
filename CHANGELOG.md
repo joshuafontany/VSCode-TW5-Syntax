@@ -76,7 +76,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   inside its own match, so a stray mark ends with its string; a field longer than 1000 characters
   reads as a plain string, so one long pasted line costs nothing. Any other `toml` fence stays plain TOML.
 
-113 rulings stand over the divergence the two readers carry.
+107 rulings stand over the divergence the two readers carry.
 
 ## 3.0.1 — 2026-10-09
 
