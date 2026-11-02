@@ -2,7 +2,7 @@
     "name": "tw5-syntax",
     "displayName": "TiddlyWiki5 Syntax",
     "description": "Syntax highlighting for TiddlyWiki5 wikitext and the Memetic-Wikitext dialect",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "icon": "tw5.png",
     "engines": {
         "vscode": "^1.43.0"

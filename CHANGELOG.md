@@ -35,6 +35,16 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Changed
 
+- **Calls ride named, ticked values (the kupono grammar cut).** The carrier snippets, the language
+  detector and every pinned specimen write ``name=`value` `` and the bearing pair as `from=` and `to=`;
+  no arrow stands between two values. The `set` snippets fire `lares=` with `aim`, `steer` and
+  `yield`, and the retired `lares`, `aperture` and `drift-ward` sigils leave the snippet set.
+- **A lar: address inside a tick ends at the closing tick.** `from=`lar:///a.b.c/x` to=`?`` used to read
+  the closing tick as address text, so `to` carried no attribute name and the call never closed.
+- **The bearing arrow reads in prose only.** It leaves the sigil injection: an arrow inside a ticked
+  value belongs to the value. The scope now reaches the phase markers `->✶ ->⏿ ->◇ ->▶ ->↺`.
+- **The carrier-head detector reads the kupono head.** An untitled buffer opens as the dialect when
+  line one reads ``<<!DOCTYPE type=`…memetic-wikitext…`>>``, the ticked form every carrier now writes.
 - **A call standing in a list item, quote line, term, definition or heading ends at a blank
   line.** One left open while typing ran the rest of the file as its arguments. TiddlyWiki builds a
   call across a blank line, but across 5891 of its tiddlers, 790 memes and this corpus, none of the
@@ -54,18 +64,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   `{{transclusions}}`, `<<calls>>` and sigils, links, emphasis). A single-line string's body is read
   inside its own match, so a stray mark ends with its string. Any other `toml` fence stays plain TOML.
 
-## 3.0.1 — unreleased
+113 rulings stand over the divergence the two readers carry.
 
-### Changed
-
-- **Calls ride named, ticked values (the kupono grammar cut).** The carrier snippets, the language
-  detector and every pinned specimen write ``name=`value` `` and the bearing pair as `from=` and `to=`;
-  no arrow stands between two values. The `set` snippets fire `lares=` with `aim`, `steer` and
-  `yield`, and the retired `lares`, `aperture` and `drift-ward` sigils leave the snippet set.
-- **A lar: address inside a tick ends at the closing tick.** `from=`lar:///a.b.c/x` to=`?`` used to read
-  the closing tick as address text, so `to` carried no attribute name and the call never closed.
-- **The bearing arrow reads in prose only.** It leaves the sigil injection: an arrow inside a ticked
-  value belongs to the value. The scope now reaches the phase markers `->✶ ->⏿ ->◇ ->▶ ->↺`.
+## 3.0.1 — 2026-10-09
 
 ### Added
 
@@ -74,7 +75,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   so tabbing through one binds no phantom parameter. `ctrl+k ctrl+m` reaches the frame and
   `ctrl+k ctrl+a` an ahu section at the cursor (`cmd` on a Mac).
 - **A carrier head selects the language.** An untitled buffer or a file whose extension no language
-  claims reads as the dialect when line one opens on ``<<!DOCTYPE type=`…memetic-wikitext…`>>`` or a `<<^`
+  claims reads as the dialect when line one opens on `<<!DOCTYPE "…memetic-wikitext…">>` or a `<<^`
   marker. An extension that IS claimed still wins — including `.txt`, which Plain Text owns.
 - **Enter continues a list, an ordered list or a quote block**, to depth three.
 
@@ -84,7 +85,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   the Memetic-Wikitext dialect**. It read `TiddlyWiki5 v5.3.4 Textmate compatible Syntax / Grammar`,
   pinning a version that had moved twice and never naming the dialect.
 
-113 rulings stand over the divergence the two readers carry.
+111 rulings stand over the divergence the two readers carry.
 
 ## 3.0.0
 
