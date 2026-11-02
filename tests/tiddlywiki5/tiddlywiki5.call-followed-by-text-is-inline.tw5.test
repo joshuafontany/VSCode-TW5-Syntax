@@ -46,3 +46,24 @@
 
 <<p a1=<<v>>>> -
 #^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.call.inline.tiddlywiki5
+
+# CONTROLS: a `>>` inside any quoted or ticked value is not the closer — TiddlyWiki builds each of
+# these alone on its line as a block call (collided on develop).
+
+<<m p:[[a>>b]]>>
+#^ text.html.tiddlywiki5 meta.variable.call.block.tiddlywiki5
+
+<<m """a>>b""">>
+#^ text.html.tiddlywiki5 meta.variable.call.block.tiddlywiki5
+
+<<m 'a>>b'>>
+#^ text.html.tiddlywiki5 meta.variable.call.block.tiddlywiki5
+
+<<m a=```x>>y```>>
+#^ text.html.tiddlywiki5 meta.variable.call.block.tiddlywiki5
+
+<<m a=`x>>y`>>
+#^ text.html.tiddlywiki5 meta.variable.call.block.tiddlywiki5
+
+<<m p:[[a>>b]]>> tail
+#^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5 meta.variable.call.inline.tiddlywiki5
