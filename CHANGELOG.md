@@ -4,7 +4,7 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## 3.0.2 — unreleased
+## 3.0.2 — 2026-11-02
 
 ### Fixed
 
