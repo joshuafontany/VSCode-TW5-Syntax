@@ -39,3 +39,22 @@ an inner fence, paired, read raw inside the outer one
 
 After the fence.
 #^^^^^^^^^^^^^^ - meta.codeblock.tiddlywiki5
+
+# AN INFO STRING MAY OPEN WITH BLANKS: TiddlyWiki takes the language from its first word after them
+# (codeblock.js), so the label still embeds.
+
+``` memetic-wikitext
+<<~ stance named=`poet`>>
+#   ^^^^^^ keyword.control.sigil.memetic-wikitext
+```
+
+# A SEVEN-TICK FENCE keeps its label's grammar past a paired inner six-tick fence, and closes only at seven.
+
+```````memetic-wikitext
+``````text
+inner, read raw
+``````
+<<~ stance named=`poet`>>
+#   ^^^^^^ keyword.control.sigil.memetic-wikitext
+```````
+#<- punctuation.definition.raw.markup.end.tiddlywiki5

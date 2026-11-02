@@ -28,6 +28,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   reach a later one past the call.
 - **A doubled apostrophe inside a word** opens no parameter, as a single one already did:
   ``<<m the ''reified edge-DAG'' here>>`` coloured the rest of its file as arguments.
+- **A `lar:` address in prose leaves the sentence its punctuation.** A trailing `.`, `,`, `;`, `:`, `!`
+  or `)` stays prose (a dot inside the path still belongs to it), an address may follow `_` so
+  `__lar:…__` reads inside an underline, and an unquoted `a=lar:…` call value reads its address.
+- **A fence's info string may open with blanks**, as TiddlyWiki takes the language from its first
+  word after them, and a labelled fence of any width (up to nine ticks and beyond) keeps its
+  grammar past a paired inner fence shorter than itself.
 - **The `<<color` snippet closes its placeholder.** It inserted `${1:page-background` with no closing
   brace, so the default value never selected.
 - **A labelled fence keeps its grammar to its own closer.** A ```` fence labelled
