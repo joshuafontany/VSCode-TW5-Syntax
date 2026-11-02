@@ -1,0 +1,51 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A substitution inside a backtick value ends with the value"
+
+# TiddlyWiki ends a backtick value at its closing backtick before it expands anything inside, so a
+# `${` or `$(` whose closer never arrives inside the value stays literal text. The substitution rules
+# took any character up to the next `}$` or `)$` on the line, past the backtick and into the next
+# value or call. The house writes `${copula}` as a literal mock, with no closing `$`, so the first
+# drift-ward to carry a `}$` after one swallowed the values between.
+
+<<m a=`${copula} x` b=`y}$ z` c=`1`>>
+#      ^^ - keyword.other.variable.substitute-filter.begin.tiddlywiki5
+#                   ^ entity.other.attribute-name.argument.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+<<m a=`$(x` b=`y)$` c=`1`>>
+#      ^^ - keyword.other.variable.substitute-variable.begin.tiddlywiki5
+#           ^ entity.other.attribute-name.argument.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+<$w a=`${copula} x` b=`y}$ z`/>
+#                   ^ entity.other.attribute-name.html.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+# CONTROL: a whole substitution inside one value still reads.
+
+<<m a=`p ${ [[x]] }$ q $(v)$ r`>>
+#        ^^ keyword.other.variable.substitute-filter.begin.tiddlywiki5
+#                      ^^ keyword.other.variable.substitute-variable.begin.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+# A BACKTICK IS ORDINARY TEXT OUTSIDE A SINGLE-TICK VALUE. A `\define` body expands `${ … }$` and
+# `$( … )$` whatever they hold (wiki.js getSubstitutedText: `/\$\{([\S\s]+?)\}\$/`), and a
+# triple-backtick value closes only at three, so a lone tick inside a substitution there stays
+# inside it. Only the single-tick value stops a substitution at its tick.
+
+<$w a=```p ${ [[`]] }$ q```/>
+#          ^^ keyword.other.variable.substitute-filter.begin.tiddlywiki5
+
+<<m a=```p $(x`y)$ q```>>
+#          ^^ keyword.other.variable.substitute-variable.begin.tiddlywiki5

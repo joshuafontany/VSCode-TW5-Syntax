@@ -2,7 +2,7 @@
     "name": "tw5-syntax",
     "displayName": "TiddlyWiki5 Syntax",
     "description": "Syntax highlighting for TiddlyWiki5 wikitext and the Memetic-Wikitext dialect",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "icon": "tw5.png",
     "engines": {
         "vscode": "^1.43.0"
@@ -123,7 +123,7 @@
                 "mimetypes": [
                     "text/memetic-wikitext+tiddlywiki"
                 ],
-                "firstLine": "^<<(!DOCTYPE\\s+\"[^\"]*memetic-wikitext|\\^[\\s>])",
+                "firstLine": "^<<(!DOCTYPE\\s+type=`[^`]*memetic-wikitext|\\^[\\s>])",
                 "configuration": "./memetic-language-configuration.json"
             }
         ],
@@ -454,7 +454,7 @@
         "builtins:write": "node ./tools/builtins-sync.js",
         "colour-witness": "node ./tools/colour-witness.js",
         "delimiters": "node ./tools/delimiter-inheritance.js",
-        "compose-memes": "bash -c 'ok=0; for d in ${MEMES:-../bags/lares/ha.ka.ba/lares/docs ../bags/lares/ha.ka.ba/lares/api ../bags/lares/latent.attention.relation/agents/api}; do if compgen -G \"$d/*.mem\" >/dev/null; then ok=1; node ./tools/composition-check.js text.html.tiddlywiki5.memetic-wikitext \"$d/*.mem\"; fi; done; [ $ok = 1 ] || echo \"no memes beside this checkout \u2014 set MEMES to one or more directories\"'",
+        "compose-memes": "bash -c 'ok=0; for d in ${MEMES:-../bags/lares/ha.ka.ba/lares/docs ../bags/lares/ha.ka.ba/lares/api}; do if compgen -G \"$d/*.mem\" >/dev/null; then ok=1; node ./tools/composition-check.js text.html.tiddlywiki5.memetic-wikitext \"$d/*.mem\"; fi; done; [ $ok = 1 ] || echo \"no memes beside this checkout \u2014 set MEMES to one or more directories\"'",
         "nesting-coverage": "node ./tools/nesting-coverage.js",
         "corpus": "node ./tools/corpus-check.js",
         "corpus-verbose": "node ./tools/corpus-check.js --verbose",

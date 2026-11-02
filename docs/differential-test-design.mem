@@ -1,7 +1,7 @@
-<<!DOCTYPE "memetic-wikitext+tiddlywiki" "lar:///ha.ka.ba/lares/api/pono/memetic-wikitext">>
+<<!DOCTYPE type=`memetic-wikitext+tiddlywiki` spec=`lar:///ha.ka.ba/lares/api/pono/memetic-wikitext`>>
 
-<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/differential-test-design">>
-<<^ code="&#x0002;">>
+<<^ code=`&#x0001;` from=`?` to=`lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/differential-test-design`>>
+<<^ code=`&#x0002;`>>
 
 ```toml meta
 cacheable = true
@@ -15,7 +15,7 @@ uri-path  = "ha.ka.ba/lares/docs/vscode-tw5-syntax/differential-test-design"
 written   = "2026-09-06"
 ```
 
-<<~ ahu #the-frame>>
+<<~ ahu slot=`#the-frame`>>
 
 ! THE FRAME — no global now, and two readers who never share one
 
@@ -38,7 +38,7 @@ afternoon. This design takes a third road: it ''measures which kind a divergence
 
 <<~/ahu>>
 
-<<~ ahu #the-decidable-test>>
+<<~ ahu slot=`#the-decidable-test`>>
 
 ! THE DECIDABLE TEST — reach, measured, and one-sided by construction
 
@@ -82,7 +82,7 @@ two rulings stood without proof and stand marked.
 
 <<~/ahu>>
 
-<<~ ahu #two-axes>>
+<<~ ahu slot=`#two-axes`>>
 
 ! TWO AXES, NEVER ONE COUNT
 
@@ -102,7 +102,7 @@ hide the other: a swallow retired and an invention added reads as no change at a
 
 <<~/ahu>>
 
-<<~ ahu #the-specimen-law>>
+<<~ ahu slot=`#the-specimen-law`>>
 
 ! THE SPECIMEN LAW
 
@@ -143,7 +143,7 @@ the position — and a specimen earns its place by producing a tuple nobody has 
 
 <<~/ahu>>
 
-<<~ ahu #workstreams>>
+<<~ ahu slot=`#workstreams`>>
 
 ! THE SIX WORKSTREAMS
 
@@ -221,7 +221,7 @@ and a seed set drawn from one corpus inherits that corpus's blind spots whole.
 
 <<~/ahu>>
 
-<<~ ahu #what-this-declines>>
+<<~ ahu slot=`#what-this-declines`>>
 
 ! WHAT THIS DESIGN DECLINES, AND WHY
 
@@ -242,7 +242,7 @@ reference-parser side reports an error.
 
 <<~/ahu>>
 
-<<~ ahu #standing-ground>>
+<<~ ahu slot=`#standing-ground`>>
 
 ! THE GROUND THIS STANDS ON
 
@@ -262,6 +262,6 @@ he declined it. ''Cost signal, never permission.''
 
 <<~/ahu>>
 
-<<^ code="&#x0003;">>ni:///sha-256;K69VkVpOgM_aVXeG4E92nH4sqxX0wotHW2bDH6tjELc
+<<^ code=`&#x0003;` bcc=`ni:///sha-256;KXLl2rVk4CWqBOfGDOtSWm30tww2BGsdDhLLD4sfFmY`>>
 
-<<^ code="&#x0004;" -> to="?">>
+<<^ code=`&#x0004;` to=`?`>>

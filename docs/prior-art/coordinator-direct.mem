@@ -1,7 +1,7 @@
-<<!DOCTYPE "memetic-wikitext+tiddlywiki" "lar:///ha.ka.ba/lares/api/pono/memetic-wikitext">>
+<<!DOCTYPE type=`memetic-wikitext+tiddlywiki` spec=`lar:///ha.ka.ba/lares/api/pono/memetic-wikitext`>>
 
-<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/coordinator-direct">>
-<<^ code="&#x0002;">>
+<<^ code=`&#x0001;` from=`?` to=`lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/coordinator-direct`>>
+<<^ code=`&#x0002;`>>
 
 ```toml meta
 cacheable = true
@@ -15,7 +15,7 @@ uri-path  = "ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/coordinator-direct"
 written   = "2026-09-01"
 ```
 
-<<~ ahu #coordinator-direct>>
+<<~ ahu slot=`#coordinator-direct`>>
 
 ! TextMate scope selectors — the ranking algorithm (AUTHORITATIVE)
 
@@ -389,6 +389,6 @@ rather than in the grammar.
 
 <<~/ahu>>
 
-<<^ code="&#x0003;">>ni:///sha-256;Ls3wTKi_ueXST6p7ZlPyFUWr4GBDdr30EhIUXWd9JIM
+<<^ code=`&#x0003;` bcc=`ni:///sha-256;KW7l-9yf5NtI498n5ffBdyZMfmvWAEz_7gjoFDjofvU`>>
 
-<<^ code="&#x0004;" -> to="?">>
+<<^ code=`&#x0004;` to=`?`>>

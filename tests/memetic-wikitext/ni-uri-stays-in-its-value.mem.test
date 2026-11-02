@@ -1,0 +1,28 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "An ni: name stops at a quote, a backtick or a closing angle"
+
+# The ni: body took any run without `;` or whitespace, so an ni: lacking its own `;` reached forward to a
+# later one, swallowing the value's closing backtick and the call's `>>`; the call never closed.
+
+<<~ x a=`ni:///x`>>;abc tail
+#                ^^ - meta.variable.call.parameters.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+<<~ x a="ni:///x">>;abc tail
+#                ^^ - meta.variable.call.parameters.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+# CONTROL: a whole ni: name still reads its algorithm and digest.
+
+<<^ code=`&#x0003;` bcc=`ni:///sha-256;7uFf47o8VMhpXmwKCHt2Ev8Kyin9lwMX-N3DlYeX73k`>>
+#                              ^^^^^^^ support.type.algorithm.ni.memetic-wikitext
+#                                      ^^^^ constant.other.checksum.ni.memetic-wikitext
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5

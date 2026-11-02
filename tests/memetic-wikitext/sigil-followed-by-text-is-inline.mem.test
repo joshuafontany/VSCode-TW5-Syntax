@@ -1,0 +1,25 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A sigil with text after its closer reads inline, as the memetic plug-in builds it"
+
+# THE MEMETIC BLOCK/INLINE LAW (Train R, operator-approved 2026-11-01). A sigil counts as a block
+# only where its `>>` ends the line; with text after it, the line is a paragraph holding an inline
+# sigil, the same split TiddlyWiki draws for any call. Collided against the plug-in at Train R's
+# aa0a308: `<<~ x a=`v`>>;abc` builds a paragraph (inline lar-sigil, then the text ";abc"), and the
+# same sigil alone on its line builds a block.
+
+<<~ x a=`v`>>;abc
+#^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.variable.call.inline.tiddlywiki5
+#            ^ - markup.list.unnumbered.term.dl.dt.tiddlywiki5
+
+<<~ ahu slot=`#/x`>> tail
+#^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.variable.call.inline.tiddlywiki5
+
+<<~ loulou uri=`lar:///a.b.c`>> tail
+#^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 meta.variable.call.inline.tiddlywiki5
+
+# CONTROLS: a sigil alone on its line stays a block, the ETX foot carrying its seal as `bcc=` among them.
+
+<<~ set from=`lar:///a.b.c` to=`?`>>
+#^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5
+
+<<^ code=`&#x0003;` bcc=`ni:///sha-256;7uFf47o8VMhpXmwKCHt2Ev8Kyin9lwMX-N3DlYeX73k`>>
+#^ text.html.tiddlywiki5.memetic-wikitext meta.variable.call.block.tiddlywiki5

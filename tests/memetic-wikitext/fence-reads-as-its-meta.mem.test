@@ -10,6 +10,9 @@
 # Every target below sits at least one column past the line's own start, so a `^` caret — which
 # shares its column numbering with the comment token before it — can address it without losing the
 # first character to that token.
+#
+# SUPERSEDED FOR THE META BLOCK 2026-11-01: a `toml meta` fence's string values read as tiddler
+# fields (memetic-wikitext/toml-meta-reads-fields). Any other toml fence keeps this ruling.
 
 x `lar://alias:grant@place/lares.api.pono` held inline, unaddressed.
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext meta.paragraph.tiddlywiki5 markup.inline.raw.string.tiddlywiki5 markup.inline.raw.single.tiddlywiki5 markup.raw.inline.tiddlywiki5
@@ -22,7 +25,7 @@ x lar://alias:grant@place/lares.api.pono check ni:///sha-256;abcdef0123
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - meta.uri.ni.memetic-wikitext
 ```
 
-```toml meta
+```toml
 x = "lar://alias:grant@place/lares.api.pono"
 check = "ni:///sha-256;abcdef0123"
 #         ^^^^^^^^^^^^^^^^^^^^^^^ text.html.tiddlywiki5.memetic-wikitext markup.fenced_code.block.tiddlywiki5 meta.codeblock.tiddlywiki5 markup.inline.raw.block.tiddlywiki5 meta.embedded.block.toml source.toml.tw5-syntax

@@ -92,7 +92,7 @@
             "gate": "corpus",
             "held": true,
             "state": "held",
-            "said": "corpus-check  68 files, 598 scopes declared, 526 reached (floor 450), 43 of 43 parser rule(s) fired"
+            "said": "corpus-check  68 files, 600 scopes declared, 527 reached (floor 450), 43 of 43 parser rule(s) fired"
         },
         {
             "gate": "dark-construct",
@@ -110,25 +110,25 @@
             "gate": "delimiters",
             "held": true,
             "state": "held",
-            "said": "delimiter-inheritance  124 contentName rule(s) over 45 shape(s), 0 unruled"
+            "said": "delimiter-inheritance  296 contentName rule(s) over 46 shape(s), 0 unruled"
         },
         {
             "gate": "divergence-staleness",
             "held": true,
             "state": "held",
-            "said": "divergence-staleness  5 run(s) over 111 ruling(s): 0 stale"
+            "said": "divergence-staleness  5 run(s) over 107 ruling(s): 0 stale"
         },
         {
             "gate": "engine-behaviour",
             "held": true,
             "state": "held",
-            "said": "engine-witness  884 pattern(s) read against 1103 corpus line(s), 1 that match differently, 0 unruled"
+            "said": "engine-witness  1267 pattern(s) read against 1099 corpus line(s), 1 that match differently, 0 unruled"
         },
         {
             "gate": "engine-witness",
             "held": true,
             "state": "held",
-            "said": "engine-witness  884 pattern(s) across 9 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
+            "said": "engine-witness  1267 pattern(s) across 9 grammar(s), 0 refused by the second engine, 0 unruled, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "filter-witness",
@@ -152,7 +152,7 @@
             "gate": "light-cone",
             "held": true,
             "state": "held",
-            "said": "light-cone  206 divergence(s) across 18 class(es), 10 quote(s) closed to ask; forward arm moved 34, backward arm moved 27, typo arm moved 36; 10 proven or unruled, 8 ruled without proof, 0 owed but reaching out"
+            "said": "light-cone  208 divergence(s) across 18 class(es), 10 quote(s) closed to ask; forward arm moved 34, backward arm moved 27, typo arm moved 32; 10 proven or unruled, 8 ruled without proof, 0 owed but reaching out"
         },
         {
             "gate": "must-fail",
@@ -218,13 +218,13 @@
             "gate": "sigil-shape",
             "held": true,
             "state": "held",
-            "said": "sigil-shape  7 shape(s) the seed writes across 11 specimen(s), 0 unexercised, 0 carried beyond the seed"
+            "said": "sigil-shape  4 shape(s) the seed writes across 11 specimen(s), 0 unexercised, 3 carried beyond the seed"
         },
         {
             "gate": "sigil-vocabulary",
             "held": true,
             "state": "held",
-            "said": "sigil-vocabulary  18 sigil(s) the seed writes across 11 specimen(s), 0 unexercised, 7 carried beyond the seed"
+            "said": "sigil-vocabulary  14 sigil(s) the seed writes across 11 specimen(s), 0 unexercised, 11 carried beyond the seed"
         },
         {
             "gate": "signals",
@@ -266,25 +266,25 @@
             "gate": "still",
             "held": true,
             "state": "held",
-            "said": "still  25 of 4485 carrier(s) at seed 1, 0 quote(s) closed to ask, 30 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 53.1% of corpus tokens ruled"
+            "said": "still  25 of 4485 carrier(s) at seed 1, 0 quote(s) closed to ask, 30 divergence(s) across 2 class(es), 0 unnamed, 0 ruling(s) broadened, widest ruling spans 1 cause(s) (ceiling 1), 53.4% of corpus tokens ruled"
         },
         {
             "gate": "still-reach",
             "held": true,
             "state": "held",
-            "said": "reach  4429 of 4447 carrier(s) stand fully named, 99.6% (floor 99.5%); 38 carrier(s) no cut reads, 5934 divergence(s), 4 class(es) blocking"
+            "said": "reach  4429 of 4447 carrier(s) stand fully named, 99.6% (floor 99.5%); 38 carrier(s) no cut reads, 5761 divergence(s), 4 class(es) blocking"
         },
         {
             "gate": "swallow-witness",
             "held": true,
             "state": "held",
-            "said": "swallow-witness  1704 cut(s) across 52 corpus file(s), 10 quote(s) closed to ask, 13 divergence(s), 0 recorded, 0 unruled, 1 answering the host sweep, 0 ruling(s) explaining nothing"
+            "said": "swallow-witness  1700 cut(s) across 52 corpus file(s), 10 quote(s) closed to ask, 13 divergence(s), 0 recorded, 0 unruled, 1 answering the host sweep, 0 ruling(s) explaining nothing"
         },
         {
             "gate": "theme-collision",
             "held": true,
             "state": "held",
-            "said": "theme-collision  382200 token-reading(s) over 65 themes and 55 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
+            "said": "theme-collision  382070 token-reading(s) over 65 themes and 55 specimens, 0 where the model parts from the engine (0.00%), 0 control fault(s)"
         },
         {
             "gate": "theme-parity",

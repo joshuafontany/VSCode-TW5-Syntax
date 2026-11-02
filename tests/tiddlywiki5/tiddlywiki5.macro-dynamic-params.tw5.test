@@ -34,64 +34,64 @@ text <<myproc param=[[value with spaces]]>>
 <$let v="foo 1" v2="foo 3">
 
 <<p a1=<<v>>>> -
-#<- meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.begin.tiddlywiki5
-# ^ meta.variable.procedurecallblock.tiddlywiki5 variable.name.procedure.tiddlywiki5
-#   ^^ meta.variable.procedurecallblock.tiddlywiki5 variable.parameter.tiddlywiki5
-#     ^ meta.variable.procedurecallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
-#      ^^ meta.variable.procedurecallblock.tiddlywiki5 variable.procedure.attribute.html.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.begin.tiddlywiki5
-#        ^ meta.variable.procedurecallblock.tiddlywiki5 variable.procedure.attribute.html.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5
-#         ^^ meta.variable.procedurecallblock.tiddlywiki5 variable.procedure.attribute.html.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5
-#           ^^ meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.end.tiddlywiki5
-#             ^ -meta.variable.procedurecallblock.tiddlywiki5
+#<- meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.begin.tiddlywiki5
+# ^ meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5
+#   ^^ meta.variable.procedurecallinline.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.procedurecallinline.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^^ meta.variable.procedurecallinline.tiddlywiki5 variable.procedure.attribute.html.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.begin.tiddlywiki5
+#        ^ meta.variable.procedurecallinline.tiddlywiki5 variable.procedure.attribute.html.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5
+#         ^^ meta.variable.procedurecallinline.tiddlywiki5 variable.procedure.attribute.html.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5
+#           ^^ meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5
+#             ^ -meta.variable.procedurecallinline.tiddlywiki5
 
 <<p a1=<<f 2>>>> -
-#<- meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.begin.tiddlywiki5
-#   ^^ meta.variable.procedurecallblock.tiddlywiki5 variable.parameter.tiddlywiki5
-#     ^ meta.variable.procedurecallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
-#      ^^ meta.variable.procedurecallblock.tiddlywiki5 variable.procedure.attribute.html.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.begin.tiddlywiki5
-#        ^ meta.variable.procedurecallblock.tiddlywiki5 variable.procedure.attribute.html.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5
-#          ^ meta.variable.procedurecallblock.tiddlywiki5 variable.procedure.attribute.html.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5
-#           ^^ meta.variable.procedurecallblock.tiddlywiki5 variable.procedure.attribute.html.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5
-#             ^^ meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.end.tiddlywiki5
-#               ^ -meta.variable.procedurecallblock.tiddlywiki5
+#<- meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.begin.tiddlywiki5
+#   ^^ meta.variable.procedurecallinline.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.procedurecallinline.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^^ meta.variable.procedurecallinline.tiddlywiki5 variable.procedure.attribute.html.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.begin.tiddlywiki5
+#        ^ meta.variable.procedurecallinline.tiddlywiki5 variable.procedure.attribute.html.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 variable.name.procedure.tiddlywiki5
+#          ^ meta.variable.procedurecallinline.tiddlywiki5 variable.procedure.attribute.html.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5
+#           ^^ meta.variable.procedurecallinline.tiddlywiki5 variable.procedure.attribute.html.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5
+#             ^^ meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5
+#               ^ -meta.variable.procedurecallinline.tiddlywiki5
 
 <<p a1=`$(v2)$`>> -
-#<- meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.begin.tiddlywiki5
-#   ^^ meta.variable.procedurecallblock.tiddlywiki5 variable.parameter.tiddlywiki5
-#     ^ meta.variable.procedurecallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
-#      ^ meta.variable.procedurecallblock.tiddlywiki5 string.template.substituted.single.attribute.html.tiddlywiki5
-#              ^^ meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.end.tiddlywiki5
-#                ^ -meta.variable.procedurecallblock.tiddlywiki5
+#<- meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.begin.tiddlywiki5
+#   ^^ meta.variable.procedurecallinline.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.procedurecallinline.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^ meta.variable.procedurecallinline.tiddlywiki5 string.template.substituted.single.attribute.html.tiddlywiki5
+#              ^^ meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5
+#                ^ -meta.variable.procedurecallinline.tiddlywiki5
 
 <<p a1=```$(v2)$```>> -
-#<- meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.begin.tiddlywiki5
-#   ^^ meta.variable.procedurecallblock.tiddlywiki5 variable.parameter.tiddlywiki5
-#     ^ meta.variable.procedurecallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
-#      ^^^ meta.variable.procedurecallblock.tiddlywiki5 string.template.substituted.triple.attribute.html.tiddlywiki5 punctuation.definition.substituted.triple.attribute.begin.tiddlywiki5
-#         ^ meta.variable.procedurecallblock.tiddlywiki5 string.template.substituted.triple.attribute.html.tiddlywiki5
-#               ^^^ meta.variable.procedurecallblock.tiddlywiki5 string.template.substituted.triple.attribute.html.tiddlywiki5 punctuation.definition.substituted.triple.attribute.end.tiddlywiki5
-#                  ^^ meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.end.tiddlywiki5
-#                    ^ -meta.variable.procedurecallblock.tiddlywiki5
+#<- meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.begin.tiddlywiki5
+#   ^^ meta.variable.procedurecallinline.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.procedurecallinline.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^^^ meta.variable.procedurecallinline.tiddlywiki5 string.template.substituted.triple.attribute.html.tiddlywiki5 punctuation.definition.substituted.triple.attribute.begin.tiddlywiki5
+#         ^ meta.variable.procedurecallinline.tiddlywiki5 string.template.substituted.triple.attribute.html.tiddlywiki5
+#               ^^^ meta.variable.procedurecallinline.tiddlywiki5 string.template.substituted.triple.attribute.html.tiddlywiki5 punctuation.definition.substituted.triple.attribute.end.tiddlywiki5
+#                  ^^ meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5
+#                    ^ -meta.variable.procedurecallinline.tiddlywiki5
 
 <<p a1={{my tiddler}}>> -
-#<- meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.begin.tiddlywiki5
-#   ^^ meta.variable.procedurecallblock.tiddlywiki5 variable.parameter.tiddlywiki5
-#     ^ meta.variable.procedurecallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
-#      ^^ meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.text-reference.begin.tiddlywiki5
-#        ^ meta.variable.procedurecallblock.tiddlywiki5 meta.attribute.indirect.html.tiddlywiki5
-#                  ^^ meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.text-reference.end.tiddlywiki5
-#                    ^^ meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.end.tiddlywiki5
-#                      ^ -meta.variable.procedurecallblock.tiddlywiki5
+#<- meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.begin.tiddlywiki5
+#   ^^ meta.variable.procedurecallinline.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.procedurecallinline.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^^ meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.text-reference.begin.tiddlywiki5
+#        ^ meta.variable.procedurecallinline.tiddlywiki5 meta.attribute.indirect.html.tiddlywiki5
+#                  ^^ meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.text-reference.end.tiddlywiki5
+#                    ^^ meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5
+#                      ^ -meta.variable.procedurecallinline.tiddlywiki5
 
 <<p a1={{my tiddler!!myfield}}>> -
-#<- meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.begin.tiddlywiki5
-#   ^^ meta.variable.procedurecallblock.tiddlywiki5 variable.parameter.tiddlywiki5
-#     ^ meta.variable.procedurecallblock.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
-#      ^^ meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.text-reference.begin.tiddlywiki5
-#        ^ meta.variable.procedurecallblock.tiddlywiki5 meta.attribute.indirect.html.tiddlywiki5
-#                           ^^ meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.text-reference.end.tiddlywiki5
-#                             ^^ meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.end.tiddlywiki5
-#                               ^ -meta.variable.procedurecallblock.tiddlywiki5
+#<- meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.begin.tiddlywiki5
+#   ^^ meta.variable.procedurecallinline.tiddlywiki5 variable.parameter.tiddlywiki5
+#     ^ meta.variable.procedurecallinline.tiddlywiki5 keyword.operator.assignment.tiddlywiki5
+#      ^^ meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.text-reference.begin.tiddlywiki5
+#        ^ meta.variable.procedurecallinline.tiddlywiki5 meta.attribute.indirect.html.tiddlywiki5
+#                           ^^ meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.text-reference.end.tiddlywiki5
+#                             ^^ meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5
+#                               ^ -meta.variable.procedurecallinline.tiddlywiki5
 
 <<p a1={{{ foo 6 :and[join[ ]] }}}>>
 #<- meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.begin.tiddlywiki5

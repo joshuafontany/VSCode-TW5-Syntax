@@ -102,7 +102,10 @@ test('a class lost from the reading fails the gate', live, () => {
   const blind = (sandbox) => {
     const file = path.join(sandbox, 'tools', 'attribute-witness.js');
     const text = fs.readFileSync(file, 'utf8');
-    const cut = text.replace(/^ *\['a call opening on `<<<<`'.*$/m, '');
+    // Cut the class that can never empty: TiddlyWiki synthesises a valueless attribute's value, so
+    // those rows stand by construction. Cutting `<<<<` once served, until a grammar fix emptied it
+    // and the provocation planted nothing.
+    const cut = text.replace(/^ *\['an attribute carrying no value in the source'.*$/m, '');
     assert.notStrictEqual(cut, text, 'the provocation changed nothing, so it plants no fault');
     fs.writeFileSync(file, cut);
   };

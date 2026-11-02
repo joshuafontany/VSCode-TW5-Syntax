@@ -4,7 +4,81 @@ All notable changes to the "tw5-syntax" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## 3.0.1 — unreleased
+## 3.0.2 — 2026-11-02
+
+### Fixed
+
+- **An attribute value reads as plain text.** TiddlyWiki parses a quoted value as a string, but the
+  grammar read the whole wikitext inline set inside every value. A lone `//`, `''`, `[[` or `{{` in
+  one value paired with a closer outside the call, and the call stayed open to the end of the file.
+  A value now reads entities, autolinks and system links; a backtick value still colours its
+  `$(…)$` and `${ … }$`. Wikitext written inside a quoted value no longer colours as wikitext.
+- **A lone backtick inside a triple-backtick value** stays in the value instead of opening inline
+  code that never closed.
+- **A backtick value glued to the next parameter** (``a=`x`b=1``) ends at its backtick. It used to
+  want a space after it and ran away without one.
+- **`${ … }$` and `$( … )$` end with their single-tick value.** The house's `${copula}` mock, which
+  carries no closing `$`, reached forward to the next `}$` across values and calls. A triple-tick
+  value and a `\define` body still take a lone backtick inside a substitution, as TiddlyWiki does.
+- **A `lar:` address** stops at a backtick in its authority too
+  (``from=`lar://mara:operator@crossroads` `` ran away), ends in prose before the doubled mark that
+  closes an italic, underline, superscript, subscript or strikethrough run (inside a value, where
+  no such run opens, it reads its whole path), and reads its root's intro slash before a `#` or `?`.
+- **An `ni:` name** stops at a quote, a backtick or `>`, where one lacking its own `;` used to
+  reach a later one past the call.
+- **A doubled apostrophe inside a word** opens no parameter, as a single one already did:
+  ``<<m the ''reified edge-DAG'' here>>`` coloured the rest of its file as arguments.
+- **A `lar:` address in prose leaves the sentence its punctuation.** A trailing `.`, `,`, `;`, `:`, `!`
+  or `)` stays prose (a dot inside the path still belongs to it), an address may follow `_` so
+  `__lar:…__` reads inside an underline, and an unquoted `a=lar:…` call value reads its address.
+- **A fence's info string may open with blanks**, as TiddlyWiki takes the language from its first
+  word after them, and a labelled fence of any width (up to nine ticks and beyond) keeps its
+  grammar past a paired inner fence shorter than itself.
+- **The `<<color` snippet closes its placeholder.** It inserted `${1:page-background` with no closing
+  brace, so the default value never selected.
+- **A labelled fence keeps its grammar to its own closer.** A ```` fence labelled
+  `memetic-wikitext` (or any embedded language) stopped reading as that language at the first inner
+  ``` line, the closer of a paired inner fence included, though the fence itself stayed open. The
+  embedding now ends only at a run as wide as the opener, as TiddlyWiki closes the fence.
+
+### Changed
+
+- **Calls ride named, ticked values (the kupono grammar cut).** The carrier snippets, the language
+  detector and every pinned specimen write ``name=`value` `` and the bearing pair as `from=` and `to=`;
+  no arrow stands between two values. The `set` snippets fire `lares=` with `aim`, `steer` and
+  `yield`, and the retired `lares`, `aperture` and `drift-ward` sigils leave the snippet set.
+- **A lar: address inside a tick ends at the closing tick.** `from=`lar:///a.b.c/x` to=`?`` used to read
+  the closing tick as address text, so `to` carried no attribute name and the call never closed.
+- **The bearing arrow reads in prose only.** It leaves the sigil injection: an arrow inside a ticked
+  value belongs to the value. The scope now reaches the phase markers `->✶ ->⏿ ->◇ ->▶ ->↺`.
+- **The carrier-head detector reads the kupono head.** An untitled buffer opens as the dialect when
+  line one reads ``<<!DOCTYPE type=`…memetic-wikitext…`>>``, the ticked form every carrier now writes.
+  The old quoted head (`<<!DOCTYPE "…memetic-wikitext…">>`) no longer selects the dialect in such a
+  buffer; a `.mem` file is claimed by its extension either way.
+- **A call standing in a list item, quote line, term, definition or heading ends at a blank
+  line.** One left open while typing ran the rest of the file as its arguments. TiddlyWiki builds a
+  call across a blank line, but across 5891 of its tiddlers, 790 memes and this corpus, none of the
+  2535 calls in such a line crosses one between its parameters; a value crossing a blank line
+  still keeps its call. A call in a paragraph or a `<<<` block still crosses, as before.
+- **A call with text after its closer reads inline.** TiddlyWiki builds a block call only where
+  `>>` ends the line; ``<<m>>;abc``, ``<<m>>* item`` or ``<<m>>{{t}}`` is a paragraph holding an
+  inline call. The grammar opened a block call there and then read the `;`, `*` or `!` after it as a
+  list or a heading. A nested call (two deep), a transclusion, or a quoted, bracketed or ticked `>>`
+  in a parameter is not the closer, and trailing spaces after it count as text. A sigil follows
+  the same law (the memetic block/inline law): `<<~ x a=`v`>>;abc` is a paragraph holding an inline
+  sigil, as the memetic plug-in builds it.
+- **The carrier seal rides inside the ETX marker**: ``<<^ code=`&#x0003;` bcc=`ni:///sha-256;…`>>``.
+  The snippet, the samples, the docs and the corpus fixtures write it there.
+- **A meme's `toml meta` strings read as tiddler fields.** Per key, as a `.tid` header reads:
+  `created`, `modified`, `color` and `avatar` stay plain, a filter-valued key reads a filter, and
+  every other key, the title included, reads memetic wikitext (`lar:` and `ni:` names, entities,
+  `{{transclusions}}`, `<<calls>>` and sigils, links, emphasis). A single-line string's body is read
+  inside its own match, so a stray mark ends with its string; a field longer than 1000 characters
+  reads as a plain string, so one long pasted line costs nothing. Any other `toml` fence stays plain TOML.
+
+107 rulings stand over the divergence the two readers carry.
+
+## 3.0.1 — 2026-10-09
 
 ### Added
 
@@ -32,7 +106,7 @@ typo instead of flooding your file, error colours appear only where TiddlyWiki i
 the colours you see tell you what your wiki will actually render.
 
 A MAJOR BUMP, because a scope name is what a theme rules on. This release retires 110 of the 421
-names `v2.2.1` published, and 245 stand new since — `MIGRATION.md` names every one, with what it
+names `v2.2.1` published, and 247 stand new since — `MIGRATION.md` names every one, with what it
 stands as now.
 
 The full record of this release — every construct, ruling and measurement behind it — lives in

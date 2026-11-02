@@ -112,6 +112,7 @@ tw5-version: 5.5.0-prerelease
         "codeblock",
         "count",
         "data",
+        "dialog",
         "diff-text",
         "draggable",
         "droppable",

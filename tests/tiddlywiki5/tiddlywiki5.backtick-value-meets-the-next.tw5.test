@@ -1,0 +1,34 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "A backtick value ends at its closing backtick, whatever stands after it"
+
+# A call's backtick value used to end only where whitespace, `>` or the line's end followed the closing
+# backtick. TiddlyWiki needs no space there: it reads ``a=`x`y`` as `a` with the value `x`, then a
+# positional `y`. The double-quote form and the widget form already closed; the backtick form ran
+# away to the end of the file. It now ends at the backtick itself.
+
+<<m a=`x`y>> after
+#        ^ - string.template.substituted.single.attribute.html.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+<<m a=`x`b=1>> after
+#        ^ entity.other.attribute-name.argument.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+<<m a=```x```b=1>> after
+#            ^ entity.other.attribute-name.argument.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+x <<m a=`x`,b=1>> after
+#              ^^ - meta.variable.call.parameters.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5

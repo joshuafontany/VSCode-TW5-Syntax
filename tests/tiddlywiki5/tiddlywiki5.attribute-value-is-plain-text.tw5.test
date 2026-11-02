@@ -1,0 +1,98 @@
+# SYNTAX TEST "text.html.tiddlywiki5" "An attribute value reads as plain text: no wikitext span opens inside it"
+
+# TiddlyWiki parses a quoted attribute or parameter value as a string and never as wikitext. The grammar
+# used to read the whole inline rule set inside every value, and an inline span looks ahead for its
+# closer on the rest of the line, past the value's own closing quote and past the call's `>>`. A lone
+# `//` or `''` inside a value therefore paired with one outside the call, and the call never closed.
+# A value now reads entities, autolinks and system links, all bounded to one match; the substituted
+# attribute injection still colours `$(v)$` and `${ … }$` inside a backtick value.
+
+<<m a=`y//w`>> k //c//
+#       ^^ - markup.italic.tiddlywiki5
+#           ^^ - meta.variable.call.parameters.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+<<m a="y//w">> k //c//
+#       ^^ - markup.italic.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+<<m a='y//w'>> k //c//
+#       ^^ - markup.italic.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+<<m s=`a''b`>> then ''x''
+#       ^^ - markup.bold.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+x <<m a=`y//w`>> k //c//
+#         ^^ - markup.italic.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+<$w a=`y//w`/> k //c//
+#       ^^ - markup.italic.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+<$w a="y//w"/> k //c//
+#       ^^ - markup.italic.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+<<m a=`[[x` c=`y]]`>> tail
+#      ^^ - markup.link.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+<<m a=`{{x` c=`y}}`>> tail
+#      ^^ - meta.transclusion.transcludeinline.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+# A lone backtick inside a triple-backtick value belongs to the value; the value ends at the first ``` .
+
+<<m a=```x ` y``` b=1>>
+#             ^^^ punctuation.definition.substituted.triple.attribute.end.tiddlywiki5
+#                 ^ entity.other.attribute-name.argument.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+<$w a=```x ` y``` b=1/>
+#                 ^ entity.other.attribute-name.html.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5
+
+# CONTROL: an autolink inside a value still paints, as LEDGER-3.0.0.md rules.
+
+<$w a="see https://x.y/z" />
+#          ^^^^^^^^^^^^^ markup.underline.link.external.tiddlywiki5
+
+after the call
+#^^^^^^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+#^^^^^^^^^^^^^ - meta.attribute.widget.html.tiddlywiki5

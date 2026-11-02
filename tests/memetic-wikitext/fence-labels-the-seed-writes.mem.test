@@ -1,0 +1,60 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "The fence labels the seed writes read the way Train R relies on"
+
+# Train R labels every fence in the boot seed by what it holds: `memetic-wikitext` for any
+# wikitext specimen (memetic is a superset of TiddlyWiki wikitext, so one label covers both),
+# `toml meta` for the meta block, `text` for illustration read raw on purpose. And a fence's tick
+# run exceeds the longest run inside it, so a closer is never confused with a value.
+
+```memetic-wikitext
+<<~ set lares=`aim` from=`lar:///ha.ka.ba/x` to=`?`>>
+#   ^^^ keyword.control.sigil.memetic-wikitext
+#                         ^^^ support.constant.scheme.lar.memetic-wikitext
+```
+#<- punctuation.definition.raw.markup.end.tiddlywiki5
+
+```toml meta
+title = "lar:///ha.ka.ba/lares/api/noosphere-boot"
+#^^^^ source.toml.tw5-syntax
+```
+
+```text
+<<~ set from=`lar:///a.b.c`>>
+#   ^^^ - keyword.control.sigil.memetic-wikitext
+#             ^^^ - support.constant.scheme.lar.memetic-wikitext
+```
+
+# A FOUR-TICK FENCE holds a three-tick value mid-line and a paired three-tick fence, keeps reading
+# its label's grammar after the inner fence closes, and closes only at four.
+
+````memetic-wikitext
+\procedure ~stance(named:"philosopher") <$text text=```~ stance named=`$(named)$` ```/>
+#                                                                      ^^ keyword.other.variable.substitute-variable.begin.tiddlywiki5
+```text
+an inner fence, paired, read raw inside the outer one
+```
+<<~ stance named=`poet`>>
+#   ^^^^^^ keyword.control.sigil.memetic-wikitext
+````
+#<- punctuation.definition.raw.markup.end.tiddlywiki5
+
+After the fence.
+#^^^^^^^^^^^^^^ - meta.codeblock.tiddlywiki5
+
+# AN INFO STRING MAY OPEN WITH BLANKS: TiddlyWiki takes the language from its first word after them
+# (codeblock.js), so the label still embeds.
+
+``` memetic-wikitext
+<<~ stance named=`poet`>>
+#   ^^^^^^ keyword.control.sigil.memetic-wikitext
+```
+
+# A SEVEN-TICK FENCE keeps its label's grammar past a paired inner six-tick fence, and closes only at seven.
+
+```````memetic-wikitext
+``````text
+inner, read raw
+``````
+<<~ stance named=`poet`>>
+#   ^^^^^^ keyword.control.sigil.memetic-wikitext
+```````
+#<- punctuation.definition.raw.markup.end.tiddlywiki5

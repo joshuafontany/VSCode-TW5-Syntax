@@ -1,31 +1,31 @@
-<<!DOCTYPE "memetic-wikitext+tiddlywiki" "lar:///ha.ka.ba/lares/api/pono/memetic-wikitext">>
+<<!DOCTYPE type=`memetic-wikitext+tiddlywiki` spec=`lar:///ha.ka.ba/lares/api/pono/memetic-wikitext`>>
 
-<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/api/pono/sample">>
-<<^ code="&#x0002;">>
+<<^ code=`&#x0001;` from=`?` to=`lar:///ha.ka.ba/lares/api/pono/sample`>>
+<<^ code=`&#x0002;`>>
 
 ```toml meta
 uri-path = "ha.ka.ba/lares/api/pono/sample"
 ```
 
-<<~ kanawai lar:///ha.ka.ba/lares/api/pono/RFC-2119#normative-language>>
+<<~ kanawai uri=`lar:///ha.ka.ba/lares/api/pono/RFC-2119#normative-language`>>
 
-<<~ ahu #entry>>
+<<~ ahu slot=`#entry`>>
 
 ! A heading the base grammar reads
 
 Prose naming lar:///ha.ka.ba/lares/api/pono/meme, a ''bold run'' and a `code span`.
 
-<<~ranks aperture pulse@0..4 -> beat@5..8>>
-<<~ loulou #entry ? -> lar:///ha.ka.ba/x.y.z>>
-<<~! wehe name(p)>>
+<<~scale name=`aperture` ranks=`pulse@0..4 -> beat@5..8`>>
+<<~ pranala slot=`#entry` from=`?` to=`lar:///ha.ka.ba/x.y.z`>>
+<<~! wehe name=`name` params=`p`>>
 <<~?#unresolved>>
 
-<<~ hana x-tiddlywiki-filter>>
+<<~ hana key=`x-tiddlywiki-filter`>>
 [tag[invariant]sort[title]]
 <<~/hana>>
 
 <<~ /ahu>>
 
-<<^ code="&#x0003;">>ni:///sha-256;GLgSiSMbveKl9IPPIC9jDcXTXbN32BdsYQMiZ3bZr50
+<<^ code=`&#x0003;` bcc=`ni:///sha-256;GLgSiSMbveKl9IPPIC9jDcXTXbN32BdsYQMiZ3bZr50`>>
 
-<<^ code="&#x0004;" -> to="?">>
+<<^ code=`&#x0004;` to=`?`>>

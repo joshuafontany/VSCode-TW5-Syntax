@@ -1,7 +1,7 @@
-<<!DOCTYPE "memetic-wikitext+tiddlywiki" "lar:///ha.ka.ba/lares/api/pono/memetic-wikitext">>
+<<!DOCTYPE type=`memetic-wikitext+tiddlywiki` spec=`lar:///ha.ka.ba/lares/api/pono/memetic-wikitext`>>
 
-<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/library-highlighters">>
-<<^ code="&#x0002;">>
+<<^ code=`&#x0001;` from=`?` to=`lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/library-highlighters`>>
+<<^ code=`&#x0002;`>>
 
 ```toml meta
 cacheable = true
@@ -15,7 +15,7 @@ uri-path  = "ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/library-highlighter
 written   = "2026-09-01"
 ```
 
-<<~ ahu #library-highlighters>>
+<<~ ahu slot=`#library-highlighters`>>
 
 ! HANDBACK — kept verbatim below this line, unedited
 
@@ -336,6 +336,6 @@ Sources:
 
 <<~/ahu>>
 
-<<^ code="&#x0003;">>ni:///sha-256;br0mhST4jZ4eUH9egpILM6HDikd6_hZhFg7PVfkKllc
+<<^ code=`&#x0003;` bcc=`ni:///sha-256;LFoUtBIU9lCCh399_YHKzRkY2KkdKKgglXTdemfbU1I`>>
 
-<<^ code="&#x0004;" -> to="?">>
+<<^ code=`&#x0004;` to=`?`>>

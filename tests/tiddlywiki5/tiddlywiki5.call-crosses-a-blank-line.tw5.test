@@ -1,19 +1,27 @@
-# SYNTAX TEST "text.html.tiddlywiki5" "A call crosses a blank line"
+# SYNTAX TEST "text.html.tiddlywiki5" "A call crosses a blank line, except where it stands in a line host"
 
 # TiddlyWiki carries a call across a blank line and builds it — measured, one blank line or many,
-# inline and block alike. So no blank-line bound belongs on a call's end: cutting there reads the
-# closer as whatever the line looks like standing alone, and a reader loses a construct the host
-# keeps. Here the closer would read as a blockquote.
+# inline and block alike. So no blank-line bound belongs on a call's end in a paragraph or a block:
+# cutting there reads the closer as whatever the line looks like standing alone, and a reader loses
+# a construct the host keeps.
 #
 # corpus/carrier-ledger.txt rules the runaway this leaves standing, where a value's closing quote
 # reaches nowhere in the source and the region meets nothing to close on.
-
-* <<myCall
-
-  >>
-#  ^^ text.html.tiddlywiki5 markup.list.unnumbered.unordered.ul.li.tiddlywiki5 meta.variable.procedurecallinline.tiddlywiki5 punctuation.definition.procedurecallinline.end.tiddlywiki5
 
 <<myCall
 
 >>
 #^^ text.html.tiddlywiki5 meta.variable.procedurecallblock.tiddlywiki5 punctuation.definition.procedurecallblock.end.tiddlywiki5
+
+# A LINE HOST IS THE EXCEPTION (reversed 2026-11-01, on a measurement). A call standing directly in
+# a list item, quote line, term, definition or heading ends at a blank line
+# (tiddlywiki5.call-in-a-line-host-ends-at-a-blank). Across 5891 TiddlyWiki tiddlers, 790 memes and
+# this corpus, 0 of 2535 such calls cross a blank line between their parameters, while an
+# unterminated one ran the rest of the file as arguments. The shape below is the one the host builds
+# and the grammar now ends: the closer reads as the quote line it looks like, a divergence
+# corpus/expected-divergence.txt rules.
+
+* <<myCall
+
+  >>
+#  ^^ - meta.variable.procedurecallinline.tiddlywiki5

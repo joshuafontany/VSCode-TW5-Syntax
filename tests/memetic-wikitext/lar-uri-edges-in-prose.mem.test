@@ -1,0 +1,27 @@
+# SYNTAX TEST "text.html.tiddlywiki5.memetic-wikitext" "A lar: address in prose leaves trailing punctuation, starts after an underline mark, and reads in an unquoted value"
+
+# Wave-2 cold readers, 2026-11-01, each inherited from 3.0.1. An address in a sentence left the
+# sentence's full stop or closing parenthesis inside its path; `__lar:…__` read no address, because
+# `\b` finds no boundary after `_`; and an unquoted `a=lar:…` call value read as a bare string.
+
+x see lar:///a.b.c/x/y. Next sentence.
+#                    ^ variable.other.constant.path.lar.memetic-wikitext
+#                     ^ - meta.uri.lar.memetic-wikitext
+
+x (lar:///a.b.c/x) and on
+#               ^ variable.other.constant.path.lar.memetic-wikitext
+#                ^ - meta.uri.lar.memetic-wikitext
+
+x lar:///a.b.c, then more
+#            ^ entity.name.tag.dynamic.lar.memetic-wikitext
+#             ^ - meta.uri.lar.memetic-wikitext
+
+x lar:///a.b.c/x.y/z mid-path dots stay
+#              ^^^ variable.other.constant.path.lar.memetic-wikitext
+
+x __lar:///a.b.c/x__ tail
+#   ^^^ support.constant.scheme.lar.memetic-wikitext
+#          ^ entity.name.tag.heading.lar.memetic-wikitext
+
+<<m a=lar:///a.b.c/x>>
+#     ^^^ support.constant.scheme.lar.memetic-wikitext

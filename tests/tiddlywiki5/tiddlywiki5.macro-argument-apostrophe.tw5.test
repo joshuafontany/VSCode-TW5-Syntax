@@ -20,3 +20,25 @@ A paragraph standing after it.
 
 Prose after the quoted forms.
 #^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+
+# A DOUBLED APOSTROPHE INSIDE A WORD opens nothing either. Only the first apostrophe stood inside
+# the word, so the second, standing after a quote rather than a word character, opened a region
+# no closing quote ever reached, and an old-form sigil carrying bold (``''reified edge-DAG''``)
+# coloured the rest of its file as arguments. An unquoted argument now carries any apostrophe
+# after its first character.
+
+<<myMacro the ''reified edge-DAG'' here>>
+
+A paragraph after the bold.
+#^^^^^^^^ text.html.tiddlywiki5 meta.paragraph.tiddlywiki5
+#^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+
+<<myMacro x'' b>>
+
+A paragraph after the doubled mark.
+#^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5
+
+<<myMacro name=x'' b>>
+
+A paragraph after the named form.
+#^^^^^^^^ - meta.variable.call.parameters.tiddlywiki5

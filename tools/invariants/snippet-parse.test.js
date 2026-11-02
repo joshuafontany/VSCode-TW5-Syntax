@@ -121,14 +121,11 @@ const sets = SETS.map((file) => ({
 // The ruling names the exact codes. A snippet reporting anything else, or reporting nothing at all,
 // fails below — so this cannot widen into permission, and it retires itself the day the parser
 // stops saying it. The finding itself stands owed upstream.
-const REPORTED_BY_DESIGN = {
-  'Memetic Carrier Frame': {
-    codes: ['unterminated-italic'],
-    why: 'the frame inserts three addresses outside its meta fence — the doctype\'s, the carrier '
-      + 'head\'s and the content hash\'s — and an odd count leaves one `//` open. A `lar:` address '
-      + 'and TiddlyWiki\'s italic marker spell the same two characters'
-  }
-};
+// RETIRED 2026-11-01: 'Memetic Carrier Frame' reported `unterminated-italic` while its content hash
+// trailed the ETX marker as prose, the third `//` outside the meta fence. Train R moved the seal into
+// the marker as a `bcc=` value, which TiddlyWiki reads as a string, and the parser reads the frame
+// cleanly. No ruling stands; a new one names its snippet and the exact codes.
+const REPORTED_BY_DESIGN = {};
 
 test('every snippet inserts a construct TiddlyWiki closes', diagnosticsLive, () => {
   const oracle = boot(host);

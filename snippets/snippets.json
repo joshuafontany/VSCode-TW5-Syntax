@@ -270,7 +270,7 @@
         "description": "Returns the CSS value of the specified color in the current palette.",
         "descriptionMoreURL": "http://tiddlywiki.com#colour%20Macro",
         "prefix": "<<color",
-        "body": "<<color name:\"${1:page-background\">>$0"
+        "body": "<<color name:\"${1:page-background}\">>$0"
     },
     "Macro Datauri": {
         "description": "Returns a data URI for the content of the specified tiddler.",

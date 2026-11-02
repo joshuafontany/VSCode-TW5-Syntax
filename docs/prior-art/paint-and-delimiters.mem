@@ -1,7 +1,7 @@
-<<!DOCTYPE "memetic-wikitext+tiddlywiki" "lar:///ha.ka.ba/lares/api/pono/memetic-wikitext">>
+<<!DOCTYPE type=`memetic-wikitext+tiddlywiki` spec=`lar:///ha.ka.ba/lares/api/pono/memetic-wikitext`>>
 
-<<^ code="&#x0001;" from="?" -> to="lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/paint-and-delimiters">>
-<<^ code="&#x0002;">>
+<<^ code=`&#x0001;` from=`?` to=`lar:///ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/paint-and-delimiters`>>
+<<^ code=`&#x0002;`>>
 
 ```toml meta
 cacheable = true
@@ -15,7 +15,7 @@ uri-path  = "ha.ka.ba/lares/docs/vscode-tw5-syntax/prior-art/paint-and-delimiter
 written   = "2026-09-10"
 ```
 
-<<~ ahu #how-to-read-this>>
+<<~ ahu slot=`#how-to-read-this`>>
 
 ! HOW TO READ THIS
 
@@ -37,7 +37,7 @@ own.'' Nothing here recommends borrowing a language's name to borrow its colour.
 
 <<~/ahu>>
 
-<<~ ahu #q1-per-glyph>>
+<<~ ahu slot=`#q1-per-glyph`>>
 
 ! 1 — PER-GLYPH DELIMITER TOKENS · OVERTURNED
 
@@ -116,7 +116,7 @@ because neither `outer` nor `inner` sits in a selector any theme writes.
 
 <<~/ahu>>
 
-<<~ ahu #q2-compound-root>>
+<<~ ahu slot=`#q2-compound-root`>>
 
 ! 2 — `string.punctuation.definition.*` · OVERTURNED, WITH A NAMED REPLACEMENT ALREADY IN THIS TREE
 
@@ -243,7 +243,7 @@ shape runs across four roots rather than the one `string.` name it names.
 
 <<~/ahu>>
 
-<<~ ahu #q3-named-argument>>
+<<~ ahu slot=`#q3-named-argument`>>
 
 ! 3 — THE NAMED ARGUMENT AND ITS `=` · SPLIT VERDICT — the NAME overturns, the `=` VINDICATES
 
@@ -344,7 +344,7 @@ at `:323`. They agree on the node SHAPE and part on what the source may spell.
 
 <<~/ahu>>
 
-<<~ ahu #q4-meta-vocabulary>>
+<<~ ahu slot=`#q4-meta-vocabulary`>>
 
 ! 4 — `meta.*`, NEVER STYLED, AND INTERPOLATED · VINDICATED
 
@@ -427,7 +427,7 @@ ones.
 
 <<~/ahu>>
 
-<<~ ahu #q5-vocabulary-size>>
+<<~ ahu slot=`#q5-vocabulary-size`>>
 
 ! 5 — VOCABULARY SIZE AND PUNCTUATION SHARE · OVERTURNED — both readings sit in the ordinary band
 
@@ -521,7 +521,7 @@ here — not a count.
 
 <<~/ahu>>
 
-<<~ ahu #q6-wiki-grammars>>
+<<~ ahu slot=`#q6-wiki-grammars`>>
 
 ! 6 — HOW THE WIKI LINEAGE HANDLES BRACKET NOISE · UNDECIDED BY PRACTICE, DECIDED BY DEFECT
 
@@ -584,7 +584,7 @@ names: `invalid.illegal.punctuation.link.creole`, with `punctuation` in the THIR
 
 <<~/ahu>>
 
-<<~ ahu #q7-one-construct-one-colour>>
+<<~ ahu slot=`#q7-one-construct-one-colour`>>
 
 ! 7 — "ONE CONSTRUCT, ONE COLOUR" · UNDECIDED — no canon states it, and the better instrument already stands here
 
@@ -691,7 +691,7 @@ louder than HTML and stands as the single construct a bound would bite.
 
 <<~/ahu>>
 
-<<~ ahu #q8-the-calm-lever>>
+<<~ ahu slot=`#q8-the-calm-lever`>>
 
 ! 8 — THE CALM-THEME LEVER · LEGAL, UNPOLICED, AND STILL THE WRONG LEVER
 
@@ -840,7 +840,7 @@ gate.''
 
 <<~/ahu>>
 
-<<~ ahu #q9-pattern-rhymes>>
+<<~ ahu slot=`#q9-pattern-rhymes`>>
 
 ! 9 — PATTERN-INTEGRITY RHYMES · MIXED — one rhyme VINDICATES F3 exactly, one candidate OVERTURNS
 
@@ -950,7 +950,7 @@ searched — do not cite Tufte from this work.
 
 <<~/ahu>>
 
-<<~ ahu #recommendations>>
+<<~ ahu slot=`#recommendations`>>
 
 ! RECOMMENDATIONS — ranked by payoff over risk, each naming what must go RED first
 
@@ -1066,6 +1066,6 @@ the correct move reads ''record the finding, widen the floor's note to all six, 
 
 <<~/ahu>>
 
-<<^ code="&#x0003;">>ni:///sha-256;GT6mKgrPh_0A-3S8bekkDoFBDV0llESaeO65E0q45CU
+<<^ code=`&#x0003;` bcc=`ni:///sha-256;WFTGMVF4gp72oNPW3WUFWmbp-zFlTOGge8GYYFWDCNg`>>
 
-<<^ code="&#x0004;" -> to="?">>
+<<^ code=`&#x0004;` to=`?`>>
